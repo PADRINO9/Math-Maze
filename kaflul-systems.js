@@ -257,6 +257,8 @@
         selectedMode: "arcade",
         soundEnabled: true,
         musicEnabled: true,
+        language: "he",
+        controlMode: "swipe",
         timeLimitEnabled: false,
         accessibility: {
           reducedMotion: false
@@ -316,6 +318,8 @@
     save.settings.selectedDifficulty = normalizeDifficulty(save.settings.selectedDifficulty);
     save.settings.soundEnabled = save.settings.soundEnabled !== false;
     save.settings.musicEnabled = save.settings.musicEnabled !== false;
+    save.settings.language = save.settings.language === "en" ? "en" : "he";
+    save.settings.controlMode = save.settings.controlMode === "joystick" ? "joystick" : "swipe";
     save.settings.timeLimitEnabled = save.settings.timeLimitEnabled === true;
     save.unlockedDifficulties = normalizeUnlockedDifficulties(save.unlockedDifficulties);
     save.leaderboardEntries = Array.isArray(rawSave.leaderboardEntries)

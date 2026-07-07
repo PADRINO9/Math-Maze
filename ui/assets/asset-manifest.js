@@ -189,17 +189,65 @@
           },
           adapters: {
             "static-png": {
-              sourceStatus: "current-production-static",
+              sourceStatus: "free-generated-expression-frames-20260630",
               states: {
                 idle: {
-                  assetId: "biflyMenu",
-                  path: "assets/bifly-menu.png",
+                  assetId: "biflyExpressionIdle",
+                  path: "assets/generated/bifly-expression-idle.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                blink: {
+                  assetId: "biflyExpressionBlink",
+                  path: "assets/generated/bifly-expression-blink.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                tap: {
+                  assetId: "biflyExpressionBlink",
+                  path: "assets/generated/bifly-expression-blink.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                selected: {
+                  assetId: "biflyExpressionBlink",
+                  path: "assets/generated/bifly-expression-blink.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                excited: {
+                  assetId: "biflyExpressionVictory",
+                  path: "assets/generated/bifly-expression-victory.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                worried: {
+                  assetId: "biflyExpressionHit",
+                  path: "assets/generated/bifly-expression-hit.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                victory: {
+                  assetId: "biflyExpressionVictory",
+                  path: "assets/generated/bifly-expression-victory.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                defeat: {
+                  assetId: "biflyExpressionHit",
+                  path: "assets/generated/bifly-expression-hit.png",
                   dimensions: [512, 512],
                   safeArea: [36, 34, 440, 430]
                 },
                 eat: {
-                  assetId: "biflyEat",
-                  path: "assets/bifly-eat.png",
+                  assetId: "biflyExpressionEat",
+                  path: "assets/generated/bifly-expression-eat.png",
+                  dimensions: [512, 512],
+                  safeArea: [36, 34, 440, 430]
+                },
+                hit: {
+                  assetId: "biflyExpressionHit",
+                  path: "assets/generated/bifly-expression-hit.png",
                   dimensions: [512, 512],
                   safeArea: [36, 34, 440, 430]
                 }
@@ -223,17 +271,65 @@
           },
           adapters: {
             "static-png": {
-              sourceStatus: "current-production-reference-static",
+              sourceStatus: "free-generated-expression-frames-20260630",
               states: {
                 idle: {
-                  assetId: "nabatickIdle",
-                  path: "assets/nabatick-idle-reference.png",
+                  assetId: "nabatickExpressionIdle",
+                  path: "assets/generated/nabatick-expression-idle.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                blink: {
+                  assetId: "nabatickExpressionBlink",
+                  path: "assets/generated/nabatick-expression-blink.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                tap: {
+                  assetId: "nabatickExpressionBlink",
+                  path: "assets/generated/nabatick-expression-blink.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                selected: {
+                  assetId: "nabatickExpressionSelected",
+                  path: "assets/generated/nabatick-expression-selected.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                excited: {
+                  assetId: "nabatickExpressionVictory",
+                  path: "assets/generated/nabatick-expression-victory.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                worried: {
+                  assetId: "nabatickExpressionHit",
+                  path: "assets/generated/nabatick-expression-hit.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                victory: {
+                  assetId: "nabatickExpressionVictory",
+                  path: "assets/generated/nabatick-expression-victory.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                defeat: {
+                  assetId: "nabatickExpressionHit",
+                  path: "assets/generated/nabatick-expression-hit.png",
                   dimensions: [512, 512],
                   safeArea: [42, 28, 428, 430]
                 },
                 eat: {
-                  assetId: "nabatickEat",
-                  path: "assets/nabatick-eat-reference.png",
+                  assetId: "nabatickExpressionEat",
+                  path: "assets/generated/nabatick-expression-eat.png",
+                  dimensions: [512, 512],
+                  safeArea: [42, 28, 428, 430]
+                },
+                hit: {
+                  assetId: "nabatickExpressionHit",
+                  path: "assets/generated/nabatick-expression-hit.png",
                   dimensions: [512, 512],
                   safeArea: [42, 28, 428, 430]
                 }

@@ -1,0 +1,13 @@
+{
+  "worldId": "ice",
+  "displayName": "Ice World",
+  "primaryColor": "#9ef7ff",
+  "secondaryColor": "#2f85a6",
+  "wallColor": "#d8fbff",
+  "floorColor": "#08233a",
+  "collectibleColor": "#e9fdff",
+  "glowColor": "rgba(158, 247, 255, 0.62)",
+  "particleType": "snow",
+  "decorStyle": "frosted ice spikes, frozen chips, snow dust",
+  "portalStyle": "icy swirl arch"
+}

@@ -1,0 +1,13 @@
+{
+  "worldId": "ancient",
+  "displayName": "Ancient World",
+  "primaryColor": "#29dcc6",
+  "secondaryColor": "#8a7650",
+  "wallColor": "#dfc68d",
+  "floorColor": "#4d4128",
+  "collectibleColor": "#ffe8a3",
+  "glowColor": "rgba(41, 220, 198, 0.48)",
+  "particleType": "dust-motes",
+  "decorStyle": "carved tablets, moss flecks, broken stone fragments",
+  "portalStyle": "carved rune arch"
+}

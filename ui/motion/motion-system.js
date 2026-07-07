@@ -224,6 +224,12 @@
     if (direct instanceof HTMLElement) return direct;
     const label = element.closest("label");
     if (label?.querySelector?.("input[type='radio'], input[type='checkbox']")) {
+      const characterCard = label.matches("#start-screen .menu-character")
+        ? label.querySelector(".character-card")
+        : null;
+      if (characterCard instanceof HTMLElement) {
+        return characterCard;
+      }
       return label;
     }
     return null;

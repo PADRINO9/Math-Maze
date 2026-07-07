@@ -1,0 +1,14 @@
+{
+  "appId": "com.kaflul.mathmaze",
+  "appName": "כפלול",
+  "webDir": "dist/android-www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "backgroundColor": "#05070b"
+    }
+  }
+}

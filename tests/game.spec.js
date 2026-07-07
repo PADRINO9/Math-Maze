@@ -29,6 +29,37 @@ async function setNickname(page, playerName) {
   await expect(page.locator("#settings-panel")).toBeHidden();
 }
 
+async function openSettingsPanel(page) {
+  if (await page.locator("#settings-panel").isHidden()) {
+    await page.locator("#menu-settings-button").click();
+  }
+  await expect(page.locator("#settings-panel")).toBeVisible();
+}
+
+async function openHeroGalleryFromSettings(page) {
+  await openSettingsPanel(page);
+  await page.locator("#character-control-button").click();
+  await expect(page.locator("#hero-gallery")).toBeVisible();
+}
+
+async function openModePanelFromSettings(page) {
+  await openSettingsPanel(page);
+  await page.locator("#mode-control-button").click();
+  await expect(page.locator("#mode-panel")).toBeVisible();
+}
+
+async function openDifficultyPanelFromSettings(page) {
+  await openSettingsPanel(page);
+  await page.locator("#difficulty-control-button").click();
+  await expect(page.locator("#difficulty-panel")).toBeVisible();
+}
+
+async function openPregamePanelFromSettings(page) {
+  await openSettingsPanel(page);
+  await page.locator("#pregame-open-button").click();
+  await expect(page.locator("#pregame-panel")).toBeVisible();
+}
+
 async function seedLocalLeaderboard(page) {
   await page.addInitScript(() => {
     localStorage.setItem("kaflulArcadeSave", JSON.stringify({
@@ -285,34 +316,30 @@ test("phase 2 home summary and bottom navigation stay interactive", async ({ pag
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#start-screen")).toBeVisible();
 
-  await page.locator("#character-control-button").click();
-  await expect(page.locator("#hero-gallery")).toBeVisible();
+  await openHeroGalleryFromSettings(page);
   await page.locator("#hero-gallery-back").click();
   await expect(page.locator("#hero-gallery")).toBeHidden();
 
-  await page.locator("#mode-control-button").click();
-  await expect(page.locator("#mode-panel")).toBeVisible();
+  await openModePanelFromSettings(page);
   await page.locator("#mode-panel [data-close-panel]").click();
   await expect(page.locator("#mode-panel")).toBeHidden();
 
-  await page.locator("#difficulty-control-button").click();
-  await expect(page.locator("#difficulty-panel")).toBeVisible();
+  await openDifficultyPanelFromSettings(page);
   await page.locator("#difficulty-panel [data-close-panel]").click();
   await expect(page.locator("#difficulty-panel")).toBeHidden();
 
-  await page.locator("#home-nav-progress").click();
+  await page.locator("#home-progress-button").click();
   await expect(page.locator("#progress-panel")).toBeVisible();
   await expect(page.locator("#progress-panel [data-close-panel]")).toBeFocused();
   await page.locator("#progress-panel [data-close-panel]").click();
   await expect(page.locator("#progress-panel")).toBeHidden();
 
-  await page.locator("#home-nav-game").click();
-  await expect(page.locator("#pregame-panel")).toBeVisible();
+  await openPregamePanelFromSettings(page);
   await expect(page.locator("#pregame-panel [data-close-panel]")).toBeFocused();
   await page.locator("#pregame-panel [data-close-panel]").click();
   await expect(page.locator("#pregame-panel")).toBeHidden();
 
-  await page.locator("#home-nav-champions").click();
+  await page.locator("#leaderboard-open").click();
   await expect(page.locator("#leaderboard-dialog")).toBeVisible();
   await page.locator("#leaderboard-close").click();
   await expect(page.locator("#leaderboard-dialog")).toBeHidden();
@@ -345,7 +372,7 @@ test("leaderboard remains local-only when public backend is unavailable", async 
   await expect(page.locator("#start-screen")).toBeVisible();
   await expect(page.locator("#leaderboard-copy")).toContainText("טבלת השיאים הציבורית עדיין לא פעילה");
 
-  await page.locator("#home-nav-champions").click();
+  await page.locator("#leaderboard-open").click();
   await expect(page.locator("#leaderboard-dialog")).toBeVisible();
   await expect(page.locator("#leaderboard-public-chip")).toContainText("ציבורי לא פעיל");
   await expect(page.locator("#leaderboard-list")).toContainText("שיא מקומי");
@@ -431,8 +458,7 @@ test("phase 3 hero gallery selects characters and returns to the home hub", asyn
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#start-screen")).toBeVisible();
 
-  await page.locator("#home-nav-characters").click();
-  await expect(page.locator("#hero-gallery")).toBeVisible();
+  await openHeroGalleryFromSettings(page);
   await expect(page.locator("#hero-gallery-name")).toContainText("ביפלי");
 
   await page.locator("#hero-gallery-next").click();
@@ -450,7 +476,7 @@ test("phase 3 hero gallery selects characters and returns to the home hub", asyn
   await expect(page.locator("#hero-gallery")).toBeHidden();
   await expect(page.locator("#start-button")).toBeVisible();
 
-  await page.locator("#home-nav-characters").click();
+  await openHeroGalleryFromSettings(page);
   await page.locator("#hero-gallery-next").click();
   await page.locator("#hero-gallery-select").click();
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -466,15 +492,12 @@ test("phase 8.8 hero gallery, home navigation and real progress data are complet
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#start-screen")).toBeVisible();
 
-  await expect(page.locator(".home-bottom-nav .home-nav-button strong")).toHaveText([
-    "משחק",
-    "דמויות",
-    "התקדמות",
-    "אלופים"
-  ]);
+  await expect(page.locator("#home-progress-button")).toBeVisible();
+  await expect(page.locator("#leaderboard-open")).toBeVisible();
+  await expect(page.locator("#menu-settings-button")).toBeVisible();
+  await expect(page.locator(".home-bottom-nav")).toBeHidden();
 
-  await page.locator("#home-nav-characters").click();
-  await expect(page.locator("#hero-gallery")).toBeVisible();
+  await openHeroGalleryFromSettings(page);
   await expect(page.locator("#hero-gallery-name")).toHaveText("ביפלי");
   await expect(page.locator("#hero-gallery-description")).toContainText("מבוך");
   await expect(page.locator("#hero-gallery-best")).toContainText("2,100");
@@ -499,7 +522,7 @@ test("phase 8.8 hero gallery, home navigation and real progress data are complet
   await expect(page.locator("#hero-gallery")).toBeHidden();
   await expect(page.locator("#start-button")).toBeVisible();
 
-  await page.locator("#home-nav-progress").click();
+  await page.locator("#home-progress-button").click();
   await expect(page.locator("#progress-panel")).toBeVisible();
   await expect(page.locator("#progress-panel-copy")).toContainText("שמירה המקומית");
   await expect(page.locator("#progress-best-list")).toContainText("3,400");
@@ -508,17 +531,16 @@ test("phase 8.8 hero gallery, home navigation and real progress data are complet
   await page.locator("#progress-panel [data-close-panel]").click();
   await expect(page.locator("#progress-panel")).toBeHidden();
 
-  await page.locator("#home-nav-champions").click();
+  await page.locator("#leaderboard-open").click();
   await expect(page.locator("#leaderboard-dialog")).toBeVisible();
   await page.locator("#leaderboard-close").click();
   await expect(page.locator("#leaderboard-dialog")).toBeHidden();
 
-  await page.locator("#home-nav-game").click();
-  await expect(page.locator("#pregame-panel")).toBeVisible();
+  await openPregamePanelFromSettings(page);
   await page.locator("#pregame-panel [data-close-panel]").click();
   await expect(page.locator("#pregame-panel")).toBeHidden();
 
-  await page.locator("#home-nav-characters").click();
+  await openHeroGalleryFromSettings(page);
   await page.locator("#hero-gallery-next").click();
   await page.locator("#hero-gallery-select").click();
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -580,8 +602,7 @@ test("phase 8.9 motion and UI audio hooks are stable", async ({ page }) => {
   const autoplayBeforeGesture = await page.evaluate(() => window.KaflulUiSound.play("buttonPress"));
   expect(autoplayBeforeGesture.reason).toBe("not-unlocked");
 
-  await page.locator("#pregame-open-button").click();
-  await expect(page.locator("#pregame-panel")).toBeVisible();
+  await openPregamePanelFromSettings(page);
   await expect
     .poll(() => page.evaluate(() => window.KaflulMotionSystem.getDiagnostics().lastEvent))
     .toBe("sheetOpen");
@@ -598,8 +619,7 @@ test("phase 8.9 motion and UI audio hooks are stable", async ({ page }) => {
     .poll(() => page.evaluate(() => window.KaflulUiSound.getDiagnostics().lastEvent))
     .toBe("panelClose");
 
-  await page.locator("#mode-control-button").click();
-  await expect(page.locator("#mode-panel")).toBeVisible();
+  await openModePanelFromSettings(page);
   await page.locator("#mode-panel label", { hasText: "הרפתקה" }).click();
   await expect(page.locator("input[name='game-mode'][value='adventure']")).toBeChecked();
   await expect(page.locator("#mode-panel")).toBeHidden();
@@ -666,19 +686,20 @@ test("menu selections, nickname and sound state persist across reloads", async (
   await page.locator(".menu-character-nabatick").click();
   await expect(page.locator("input[name='character'][value='nabatick']")).toBeChecked();
 
-  await page.locator("#mode-control-button").click();
-  await expect(page.locator("#mode-panel")).toBeVisible();
+  await openModePanelFromSettings(page);
   await page.locator("#mode-panel label", { hasText: "הרפתקה" }).click();
   await expect(page.locator("input[name='game-mode'][value='adventure']")).toBeChecked();
 
-  await page.locator("#difficulty-control-button").click();
-  await expect(page.locator("#difficulty-panel")).toBeVisible();
+  await openDifficultyPanelFromSettings(page);
   await page.locator("#difficulty-panel label", { hasText: "מתקדם" }).click();
   await expect(page.locator("input[name='difficulty'][value='advanced']")).toBeChecked();
 
   await page.locator("#menu-settings-button").click();
   await expect(page.locator("#settings-panel")).toBeVisible();
   await page.locator("#player-name-input").fill("שומר");
+  await expect(page.locator("input[name='control-mode'][value='swipe']")).toBeChecked();
+  await page.locator("#settings-panel label", { hasText: "ג׳ויסטיק" }).click();
+  await expect(page.locator("input[name='control-mode'][value='joystick']")).toBeChecked();
   await page.locator("#settings-save-button").click();
   await expect(page.locator("#settings-panel")).toBeHidden();
 
@@ -691,5 +712,6 @@ test("menu selections, nickname and sound state persist across reloads", async (
   await expect(page.locator("input[name='difficulty'][value='advanced']")).toBeChecked();
   await expect(page.locator("#player-name-input")).toHaveValue("שומר");
   await expect(page.locator("#menu-sound-button")).toHaveAttribute("data-icon", "sound-off");
+  await expect(page.locator("input[name='control-mode'][value='joystick']")).toBeChecked();
   expect(errors).toEqual([]);
 });

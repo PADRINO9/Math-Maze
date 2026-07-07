@@ -8,9 +8,29 @@
   const hudActions = document.querySelector(".hud-actions");
   const answerInput = document.getElementById("answer-input");
   const coarseQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+  const CONTROL_MODE_STORAGE_KEY = "mathMazeControlMode";
+  const SAVE_KEY = window.KaflulSystems?.SAVE_KEY || "kaflulArcadeSave";
 
   function isTouchLayout() {
     return coarseQuery.matches;
+  }
+
+  function normalizeControlMode(value) {
+    return value === "joystick" ? "joystick" : "swipe";
+  }
+
+  function getStoredControlMode() {
+    try {
+      const storedMode = window.localStorage?.getItem(CONTROL_MODE_STORAGE_KEY);
+      if (storedMode) {
+        return normalizeControlMode(storedMode);
+      }
+
+      const save = JSON.parse(window.localStorage?.getItem(SAVE_KEY) || "null");
+      return normalizeControlMode(save?.settings?.controlMode);
+    } catch {
+      return "swipe";
+    }
   }
 
   function syncViewportHeight() {
@@ -20,15 +40,17 @@
 
   function syncDeviceClasses() {
     const touch = isTouchLayout();
+    const controlMode = getStoredControlMode();
     root.classList.toggle("touch-layout", touch);
     root.classList.toggle("mobile-low-effects", touch && (window.innerWidth < 900 || window.devicePixelRatio > 2));
-    root.classList.toggle("control-swipe", touch);
-    root.classList.remove("control-joystick");
+    root.classList.toggle("control-joystick", touch && controlMode === "joystick");
+    root.classList.toggle("control-swipe", touch && controlMode === "swipe");
+    root.dataset.controlMode = controlMode;
     syncViewportHeight();
   }
 
   function removeLegacyTouchControls() {
-    document.querySelectorAll(".control-field, [data-control-mode], .mobile-joystick").forEach((element) => element.remove());
+    document.querySelectorAll(".control-field").forEach((element) => element.remove());
     document.querySelectorAll(".mobile-number-pad").forEach((pad) => pad.remove());
   }
 
@@ -116,6 +138,7 @@
   });
   window.addEventListener("resize", syncDeviceClasses, { passive: true });
   window.addEventListener("orientationchange", () => window.setTimeout(syncDeviceClasses, 120), { passive: true });
+  window.addEventListener("kaflul:control-mode-change", syncDeviceClasses);
   window.visualViewport?.addEventListener("resize", syncViewportHeight, { passive: true });
   document.addEventListener("fullscreenchange", syncDeviceClasses);
 

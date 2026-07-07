@@ -2,6 +2,16 @@
 .env.*
 !.env.example
 .vercel
+.tools/
+.android-sdk/
+.gradle-user-home/
+.pnpm-store/
+.telegram-agent-state.json
 node_modules/
+dist/
 test-results/
 playwright-report/
+docs/release-gates/latest.json
+assets/blender/
+assets/generated/blender/
+assets/generated/blender-preview/
