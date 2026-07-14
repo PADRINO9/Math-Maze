@@ -5,6 +5,7 @@ import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveStaticFile } from "./static-file-security.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputDir = path.join(root, "docs", "phase2-screenshots");
@@ -47,13 +48,7 @@ function startServer() {
   const server = createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", "http://127.0.0.1");
-      const decoded = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
-      const resolved = path.resolve(root, decoded.slice(1));
-      if (!resolved.startsWith(root)) {
-        response.writeHead(403);
-        response.end("Forbidden");
-        return;
-      }
+      const resolved = await resolveStaticFile(root, url.pathname);
       const bytes = await readFile(resolved);
       response.writeHead(200, { "content-type": contentType(resolved), "cache-control": "no-store" });
       response.end(bytes);
@@ -180,6 +175,15 @@ async function evaluate(cdp, sessionId, expression) {
     expression
   }, sessionId);
   return result.result.value;
+}
+
+async function waitForExpression(cdp, sessionId, expression, timeoutMs = 10_000) {
+  const startedAt = Date.now();
+  while (Date.now() - startedAt < timeoutMs) {
+    if (await evaluate(cdp, sessionId, expression)) return true;
+    await wait(100);
+  }
+  throw new Error(`Timed out waiting for: ${expression}`);
 }
 
 async function tapSelector(cdp, sessionId, selector) {
@@ -314,9 +318,9 @@ async function runAcceptance(cdp, appPort) {
   const { targetId, sessionId } = await createPage(cdp, { width: 430, height: 932, mobile: true });
   const { events, off } = collectEvents(cdp, sessionId);
   await cdp.send("Page.navigate", { url: `http://127.0.0.1:${appPort}/?phase2-acceptance=1` }, sessionId);
-  await wait(900);
+  await waitForExpression(cdp, sessionId, "document.getElementById('app-loading-screen')?.hidden === true");
   await evaluate(cdp, sessionId, "localStorage.clear(); location.reload(); true;");
-  await wait(900);
+  await waitForExpression(cdp, sessionId, "document.getElementById('app-loading-screen')?.hidden === true");
 
   await tapSelector(cdp, sessionId, ".menu-character-nabatick");
   const afterCharacter = await evaluate(cdp, sessionId, `(() => ({

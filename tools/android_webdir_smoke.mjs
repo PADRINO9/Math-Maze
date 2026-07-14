@@ -1,9 +1,10 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { dirname, extname, join, relative, resolve } from "node:path";
+import { dirname, extname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium, devices } from "@playwright/test";
+import { resolveStaticFile } from "./static-file-security.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const webDir = join(rootDir, "dist", "android-www");
@@ -35,15 +36,7 @@ function createStaticServer() {
   return createServer(async (request, response) => {
     try {
       const requestUrl = new URL(request.url || "/", "http://127.0.0.1");
-      const pathname = decodeURIComponent(requestUrl.pathname);
-      const relativePath = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
-      const filePath = resolve(webDir, relativePath);
-
-      if (!filePath.startsWith(resolve(webDir))) {
-        response.writeHead(403);
-        response.end("Forbidden");
-        return;
-      }
+      const filePath = await resolveStaticFile(webDir, requestUrl.pathname);
 
       const body = await readFile(filePath);
       response.writeHead(200, {

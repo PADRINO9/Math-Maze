@@ -28,6 +28,14 @@
     y: HEIGHT / 2,
     zoom: 1
   };
+  const STAGE_INTRO_CAMERA = Object.freeze({
+    overviewHoldSeconds: 1.45,
+    travelSeconds: 1.5,
+    settleSeconds: 0.24,
+    reducedTravelSeconds: 0.34,
+    desktopOverviewScale: 0.86,
+    phoneOverviewScale: 0.94
+  });
   const PLAYER_START = { x: Math.floor(COLS / 2), y: ROWS - 4 };
   const CENTER_CELL = { x: Math.floor(COLS / 2), y: Math.floor(ROWS / 2) };
 
@@ -351,9 +359,9 @@
     "decorA",
     "decorB"
   ];
-  const MAZE_PROCEDURAL_ART_VERSION = "next-level-pacman-arena-v1";
-  const MAZE_OPTIONAL_TILESET_VERSION = "phase7-optional-tileset-v1";
-  const MAZE_STATIC_BOARD_CACHE_VERSION = "multi-world-playful-maze-v1";
+  const MAZE_PROCEDURAL_ART_VERSION = "stage1-style-all-worlds-v1";
+  const MAZE_OPTIONAL_TILESET_VERSION = "production-world-tilesets-v3";
+  const MAZE_STATIC_BOARD_CACHE_VERSION = "stage1-style-all-worlds-v1";
   const MAZE_SCATTER_DENSITY_SCALE = 1;
   const MAZE_VISUAL_PROFILES = {
     desktop: {
@@ -513,6 +521,308 @@
     }
   };
 
+  // Worlds two through four inherit the approved world-one composition:
+  // continuous readable masses, restrained macro texture and sparse authored
+  // landmarks. Their palettes and material language remain world-specific.
+  // Rendering is always clipped to the canonical maze masks, so these visual
+  // treatments can never open a wall or close a playable corridor.
+  const APPROVED_STAGE_STYLE = Object.freeze({
+    lava: Object.freeze({
+      key: "stage2-forge-caldera",
+      material: "lava",
+      wallStroke: "rgba(13, 4, 3, 0.96)",
+      wallDetail: "rgba(255, 104, 34, 0.58)",
+      floorTextureBlend: "overlay",
+      floorTextureAlpha: 0.1,
+      floorAccentAlpha: 0.08,
+      wallTextureBlend: "overlay",
+      wallTextureAlpha: 0.18,
+      propGlow: "rgba(255, 89, 24, 0.72)"
+    }),
+    ancient: Object.freeze({
+      key: "stage3-sunken-temple",
+      material: "ancient",
+      wallStroke: "rgba(48, 31, 14, 0.94)",
+      wallDetail: "rgba(72, 45, 20, 0.52)",
+      floorTextureBlend: "soft-light",
+      floorTextureAlpha: 0.08,
+      floorAccentAlpha: 0.07,
+      wallTextureBlend: "soft-light",
+      wallTextureAlpha: 0.16,
+      propGlow: "rgba(45, 220, 198, 0.42)"
+    }),
+    diamond: Object.freeze({
+      key: "stage4-prism-sanctum",
+      material: "diamond",
+      wallStroke: "rgba(18, 15, 66, 0.96)",
+      wallDetail: "rgba(113, 235, 255, 0.58)",
+      floorTextureBlend: "overlay",
+      floorTextureAlpha: 0.12,
+      floorAccentAlpha: 0.1,
+      wallTextureBlend: "screen",
+      wallTextureAlpha: 0.18,
+      propGlow: "rgba(173, 112, 255, 0.68)"
+    })
+  });
+
+  const DEFAULT_WORLD_ONE_CONCEPT = "sun-garden";
+  const WORLD_ONE_RELEASE_BASELINE = Object.freeze({
+    id: "world1-sun-garden-approved-v1",
+    locked: true,
+    authoredBoardSrc: "assets/maze/world1/sun-garden/board-v3.png",
+    navigationVersion: "world1-canonical-semantic-layout-v5",
+    chestCell: Object.freeze({ x: 23, y: 18 }),
+    actorScale: Object.freeze({
+      playerPhone: 0.84,
+      playerWide: 0.82,
+      enemyPhone: 0.66,
+      enemyWide: 0.64
+    }),
+    gameplayZoom: Object.freeze({
+      desktop: 1.06,
+      phonePortrait: 1.05,
+      phoneLandscape: 1.07,
+      tablet: 1.05
+    })
+  });
+  const WORLD_ONE_AUTHORED_BOARD_SRC = WORLD_ONE_RELEASE_BASELINE.authoredBoardSrc;
+  const WORLD_ONE_GAMEPLAY_MAZE_VERSION = WORLD_ONE_RELEASE_BASELINE.navigationVersion;
+  const WORLD_ONE_CORRIDOR_REPAIR = Object.freeze({
+    x: 23,
+    y: 12,
+    width: 4,
+    height: 1,
+    sourceX: 27,
+    sourceY: 13
+  });
+  const WORLD_ONE_AUTHORED_ACTOR_SCALE = WORLD_ONE_RELEASE_BASELINE.actorScale;
+  // Canonical gameplay topology for level one. The production board was
+  // aligned to these lane centers during export; visual assets never select or
+  // mutate the topology at runtime. Do not reuse this grid as an occlusion mask.
+  const WORLD_ONE_GAMEPLAY_MAZE_ROWS = Object.freeze([
+    "########################################",
+    "########################################",
+    "##....................................##",
+    "##...#................................##",
+    "##..########...###...###....########..##",
+    "##..########...###...###....########..##",
+    "##.....###.....#########......###.....##",
+    "##.....###.....#########......####....##",
+    "##..###...........###............###..##",
+    "##..###..#######..###..########..###..##",
+    "##..###..#######...#...########..###..##",
+    "##..###..#######...#...#..#####..###..##",
+    "##..###.......###................###..##",
+    "##...........####......####...........##",
+    "##...........####......####...........##",
+    "##..########.###.......####.########..##",
+    "##..########.###.......####.########..##",
+    "##...........###.......####...........##",
+    "##....#####..####.......###..#####....##",
+    "##....#####..#######.######..#####....##",
+    "##................###.................##",
+    "##..##########....###....###########..##",
+    "##..##########....###....###########..##",
+    "##....................................##",
+    "##....................................##",
+    "##.....########.........#########.....##",
+    "##.....########.........#########.....##",
+    "##....................................##",
+    "########################################",
+    "########################################"
+  ]);
+  const WORLD_ONE_CONCEPTS = {
+    "sun-garden": {
+      key: "sun-garden",
+      nameHe: "גן השמש המתעורר",
+      nameEn: "The Waking Sun Garden",
+      material: "garden",
+      collectible: {
+        core: "#efffd2",
+        mid: "#79ca71",
+        edge: "#f6bd45",
+        glow: "rgba(112, 198, 109, 0.58)",
+        shadow: "rgba(25, 40, 34, 0.72)"
+      },
+      actorContact: {
+        fill: "rgba(39, 55, 44, 0.68)",
+        ring: "rgba(45, 212, 191, 0.66)",
+        spark: "rgba(255, 209, 102, 0.82)"
+      },
+      theme: {
+        world: "world1-sun-garden",
+        motif: "world1",
+        concept: "sun-garden",
+        base: ["#071918", "#163a32", "#020b0c"],
+        floor: ["#173c36", "#24574a", "#0c2625"],
+        floorAlt: ["#1c493f", "#2d6552", "#102d29"],
+        floorVein: "rgba(246, 189, 69, 0.26)",
+        floorGlow: "rgba(45, 212, 191, 0.18)",
+        wall: ["#a56842", "#e1b878", "#603829"],
+        wallAlt: ["#8d5738", "#c99661", "#4c2b25"],
+        wallSide: "#593126",
+        wallShadow: "rgba(16, 8, 12, 0.78)",
+        rim: "rgba(255, 226, 163, 0.84)",
+        innerShadow: "rgba(8, 24, 22, 0.72)",
+        accent: "#f6bd45",
+        decor: "#72c66d",
+        particle: "rgba(255, 222, 144, 0.34)",
+        hazardWash: "rgba(45, 212, 191, 0.07)",
+        laneColor: "rgba(45, 212, 191, 0.7)",
+        worldOneVisuals: {
+          floorPanel: "rgba(255, 226, 163, 0.1)",
+          floorDetail: "rgba(105, 204, 147, 0.32)",
+          floorGlow: "rgba(45, 212, 191, 0.13)",
+          wallSeam: "rgba(87, 49, 36, 0.46)",
+          wallInset: "rgba(58, 30, 29, 0.32)",
+          wallRim: "rgba(255, 226, 163, 0.72)",
+          wallAccent: "rgba(45, 212, 191, 0.58)",
+          sideShade: "rgba(39, 18, 20, 0.62)",
+          ambient: "rgba(246, 189, 69, 0.08)"
+        },
+        axonometric: {
+          front: ["#9d633f", "#68402e", "#35201e"],
+          side: ["#70422f", "#2a1719"],
+          topEdge: "rgba(255, 226, 163, 0.94)",
+          faceEdge: "rgba(196, 126, 77, 0.74)",
+          detail: "rgba(88, 48, 35, 0.58)",
+          accent: "rgba(45, 212, 191, 0.72)",
+          shadow: "rgba(18, 8, 13, 0.86)"
+        }
+      },
+      artStyle: {
+        world: "world1-sun-garden",
+        wallShape: "garden",
+        floorStops: ["rgba(28, 70, 61, 0.99)", "rgba(18, 51, 47, 0.99)", "rgba(7, 27, 28, 0.99)"],
+        floorLine: "rgba(255, 218, 139, 0.25)",
+        floorRunGlow: "rgba(45, 212, 191, 0.34)",
+        floorContactShadow: "rgba(4, 20, 20, 0.86)",
+        floorDots: ["246, 189, 69", "45, 212, 191", "114, 198, 109"],
+        wallPalettes: [
+          { topA: "#f1d495", topB: "#c58a55", sideA: "#8b5339", sideB: "#3c2421", rim: "rgba(255, 232, 178, 0.94)" },
+          { topA: "#dfbc7b", topB: "#ad7049", sideA: "#75442f", sideB: "#321d1d", rim: "rgba(248, 218, 157, 0.9)" },
+          { topA: "#e8c88b", topB: "#b77b4e", sideA: "#7f4b35", sideB: "#382120", rim: "rgba(255, 226, 166, 0.92)" },
+          { topA: "#d9b170", topB: "#9f6543", sideA: "#6e402f", sideB: "#2d1b1c", rim: "rgba(239, 207, 145, 0.88)" }
+        ],
+        wallStroke: "rgba(47, 27, 26, 0.92)",
+        wallDetail: "rgba(87, 48, 34, 0.54)",
+        wallFaceDown: ["rgba(122, 70, 44, 0.52)", "rgba(31, 15, 18, 0.94)"],
+        wallFaceSide: ["rgba(91, 52, 39, 0.46)", "rgba(25, 13, 17, 0.92)"],
+        cornerFill: "rgba(255, 214, 133, 0.94)",
+        cornerStroke: "rgba(45, 212, 191, 0.8)",
+        goal: {
+          shape: "seed",
+          base: ["rgba(30, 69, 52, 0.94)", "rgba(25, 45, 39, 0.82)", "rgba(5, 15, 16, 0)"],
+          halo: ["rgba(246, 189, 69, 0.66)", "rgba(45, 212, 191, 0.34)", "rgba(246, 189, 69, 0)"],
+          stroke: "rgba(255, 218, 119, 0.98)",
+          shadow: "#f6bd45",
+          fill: "rgba(106, 200, 104, 0.96)",
+          outline: "rgba(43, 61, 39, 0.9)",
+          text: "rgba(48, 36, 30, 0.94)",
+          chevron: "rgba(45, 212, 191, 0.86)",
+          glyph: "×"
+        },
+        landmarkFills: ["rgba(246, 189, 69, 0.9)", "rgba(45, 212, 191, 0.82)", "rgba(238, 127, 96, 0.82)"],
+        landmarks: [
+          { cell: { x: 14, y: 13 }, type: "sum-token", scale: 1.62 },
+          { cell: { x: 26, y: 13 }, type: "star-token", scale: 1.54 },
+          { cell: { x: 19, y: 23 }, type: "arrow-token", scale: 1.48 }
+        ],
+        gate: {
+          locked: { color: "rgba(246, 189, 69, 0.94)", fill: "rgba(57, 50, 33, 0.82)", glow: "rgba(246, 189, 69, 0.44)", glyph: "×" },
+          active: { color: "rgba(255, 229, 135, 0.99)", fill: "rgba(38, 85, 68, 0.92)", glow: "rgba(45, 212, 191, 0.66)", glyph: "?" },
+          success: { color: "rgba(139, 245, 154, 0.99)", fill: "rgba(31, 99, 68, 0.9)", glow: "rgba(96, 238, 144, 0.62)", glyph: "+" },
+          wrong: { color: "rgba(255, 111, 126, 0.99)", fill: "rgba(105, 39, 55, 0.92)", glow: "rgba(255, 76, 95, 0.62)", glyph: "!" }
+        }
+      }
+    },
+    "wonder-workshop": {
+      key: "wonder-workshop",
+      nameHe: "סדנת הפלאים",
+      nameEn: "The Wonder Workshop",
+      material: "workshop",
+      collectible: { core: "#fff3cf", mid: "#f1bd55", edge: "#45c7c0", glow: "rgba(241, 189, 85, 0.7)", shadow: "rgba(33, 29, 43, 0.74)" },
+      actorContact: { fill: "rgba(36, 34, 50, 0.72)", ring: "rgba(69, 199, 192, 0.68)", spark: "rgba(241, 189, 85, 0.84)" },
+      theme: {
+        world: "world1-wonder-workshop", motif: "world1", concept: "wonder-workshop",
+        base: ["#131525", "#252744", "#080914"], floor: ["#202940", "#2f3b55", "#12192c"], floorAlt: ["#293650", "#3b4963", "#172036"],
+        floorVein: "rgba(69, 199, 192, 0.24)", floorGlow: "rgba(69, 199, 192, 0.17)", wall: ["#9d6139", "#e2b978", "#553126"], wallAlt: ["#825035", "#c68d55", "#432822"],
+        wallSide: "#4c2c25", wallShadow: "rgba(12, 9, 18, 0.82)", rim: "rgba(255, 233, 191, 0.86)", innerShadow: "rgba(9, 12, 25, 0.74)", accent: "#f1bd55", decor: "#e96c5c", particle: "rgba(255, 236, 198, 0.3)", hazardWash: "rgba(69, 199, 192, 0.065)", laneColor: "rgba(69, 199, 192, 0.7)",
+        worldOneVisuals: { floorPanel: "rgba(255, 239, 207, 0.08)", floorDetail: "rgba(69, 199, 192, 0.28)", floorGlow: "rgba(69, 199, 192, 0.12)", wallSeam: "rgba(72, 39, 30, 0.5)", wallInset: "rgba(61, 34, 29, 0.34)", wallRim: "rgba(255, 230, 183, 0.72)", wallAccent: "rgba(241, 189, 85, 0.58)", sideShade: "rgba(34, 19, 22, 0.64)", ambient: "rgba(233, 108, 92, 0.07)" },
+        axonometric: { front: ["#875232", "#573323", "#29191b"], side: ["#633a2a", "#241419"], topEdge: "rgba(255, 228, 180, 0.94)", faceEdge: "rgba(195, 132, 75, 0.72)", detail: "rgba(74, 40, 31, 0.58)", accent: "rgba(69, 199, 192, 0.74)", shadow: "rgba(13, 8, 17, 0.88)" }
+      },
+      artStyle: {
+        world: "world1-wonder-workshop", wallShape: "workshop", floorStops: ["rgba(37, 47, 70, 0.99)", "rgba(25, 34, 54, 0.99)", "rgba(12, 18, 34, 0.99)"], floorLine: "rgba(255, 232, 190, 0.2)", floorRunGlow: "rgba(69, 199, 192, 0.34)", floorContactShadow: "rgba(7, 10, 22, 0.88)", floorDots: ["241, 189, 85", "69, 199, 192", "233, 108, 92"],
+        wallPalettes: [
+          { topA: "#f0cf96", topB: "#bd7e49", sideA: "#815037", sideB: "#352222", rim: "rgba(255, 237, 202, 0.94)" },
+          { topA: "#ddb276", topB: "#a6683f", sideA: "#70442f", sideB: "#2e1c20", rim: "rgba(247, 218, 175, 0.9)" },
+          { topA: "#e8c48a", topB: "#b47444", sideA: "#794a32", sideB: "#321f21", rim: "rgba(255, 228, 188, 0.92)" }
+        ],
+        wallStroke: "rgba(44, 26, 27, 0.94)", wallDetail: "rgba(79, 43, 31, 0.56)", wallFaceDown: ["rgba(116, 66, 43, 0.52)", "rgba(24, 14, 19, 0.95)"], wallFaceSide: ["rgba(83, 48, 37, 0.46)", "rgba(21, 13, 18, 0.93)"], cornerFill: "rgba(241, 189, 85, 0.96)", cornerStroke: "rgba(69, 199, 192, 0.82)",
+        goal: { shape: "gear", base: ["rgba(35, 40, 58, 0.94)", "rgba(24, 26, 43, 0.84)", "rgba(8, 9, 20, 0)"], halo: ["rgba(241, 189, 85, 0.62)", "rgba(69, 199, 192, 0.32)", "rgba(241, 189, 85, 0)"], stroke: "rgba(255, 226, 156, 0.98)", shadow: "#f1bd55", fill: "rgba(233, 108, 92, 0.94)", outline: "rgba(61, 31, 35, 0.9)", text: "rgba(46, 31, 34, 0.94)", chevron: "rgba(69, 199, 192, 0.84)", glyph: "×" },
+        landmarkFills: ["rgba(241, 189, 85, 0.9)", "rgba(69, 199, 192, 0.82)", "rgba(233, 108, 92, 0.84)"], landmarks: [{ cell: { x: 14, y: 13 }, type: "sum-token", scale: 1.62 }, { cell: { x: 26, y: 13 }, type: "gear-token", scale: 1.54 }, { cell: { x: 19, y: 23 }, type: "arrow-token", scale: 1.48 }],
+        gate: { locked: { color: "rgba(241, 189, 85, 0.94)", fill: "rgba(57, 43, 43, 0.84)", glow: "rgba(241, 189, 85, 0.42)", glyph: "×" }, active: { color: "rgba(255, 228, 165, 0.99)", fill: "rgba(33, 71, 75, 0.92)", glow: "rgba(69, 199, 192, 0.64)", glyph: "?" }, success: { color: "rgba(131, 244, 167, 0.99)", fill: "rgba(29, 91, 63, 0.9)", glow: "rgba(96, 238, 144, 0.6)", glyph: "+" }, wrong: { color: "rgba(255, 107, 128, 0.99)", fill: "rgba(104, 36, 57, 0.92)", glow: "rgba(255, 73, 98, 0.62)", glyph: "!" } }
+      }
+    },
+    "dawn-islands": {
+      key: "dawn-islands",
+      nameHe: "איי השחר",
+      nameEn: "The Dawn Islands",
+      material: "islands",
+      collectible: { core: "#fff8df", mid: "#ffd35c", edge: "#72c8e6", glow: "rgba(255, 211, 92, 0.72)", shadow: "rgba(42, 49, 70, 0.7)" },
+      actorContact: { fill: "rgba(55, 62, 82, 0.64)", ring: "rgba(114, 200, 230, 0.7)", spark: "rgba(255, 211, 92, 0.84)" },
+      theme: {
+        world: "world1-dawn-islands", motif: "world1", concept: "dawn-islands",
+        base: ["#335978", "#70bad5", "#1f3452"], floor: ["#526276", "#758598", "#374354"], floorAlt: ["#617286", "#8796a7", "#414d5e"],
+        floorVein: "rgba(255, 211, 92, 0.24)", floorGlow: "rgba(114, 200, 230, 0.2)", wall: ["#778493", "#d8d4bd", "#4a5262"], wallAlt: ["#697685", "#c5c2ad", "#3d4655"],
+        wallSide: "#4a5160", wallShadow: "rgba(24, 31, 48, 0.74)", rim: "rgba(255, 247, 220, 0.86)", innerShadow: "rgba(29, 42, 60, 0.66)", accent: "#ffd35c", decor: "#65a45b", particle: "rgba(255, 248, 223, 0.4)", hazardWash: "rgba(114, 200, 230, 0.08)", laneColor: "rgba(255, 211, 92, 0.7)",
+        worldOneVisuals: { floorPanel: "rgba(255, 248, 223, 0.11)", floorDetail: "rgba(114, 200, 230, 0.34)", floorGlow: "rgba(114, 200, 230, 0.15)", wallSeam: "rgba(70, 78, 92, 0.46)", wallInset: "rgba(62, 70, 84, 0.32)", wallRim: "rgba(255, 247, 220, 0.75)", wallAccent: "rgba(255, 211, 92, 0.55)", sideShade: "rgba(38, 43, 58, 0.56)", ambient: "rgba(255, 178, 107, 0.1)" },
+        axonometric: { front: ["#777d87", "#535b6a", "#303645"], side: ["#5a6270", "#303747"], topEdge: "rgba(255, 247, 220, 0.96)", faceEdge: "rgba(143, 202, 220, 0.76)", detail: "rgba(74, 82, 96, 0.55)", accent: "rgba(255, 211, 92, 0.72)", shadow: "rgba(24, 29, 46, 0.82)" }
+      },
+      artStyle: {
+        world: "world1-dawn-islands", wallShape: "islands", floorStops: ["rgba(84, 101, 120, 0.98)", "rgba(60, 75, 95, 0.98)", "rgba(38, 52, 70, 0.99)"], floorLine: "rgba(255, 247, 220, 0.28)", floorRunGlow: "rgba(114, 200, 230, 0.4)", floorContactShadow: "rgba(25, 36, 52, 0.78)", floorDots: ["255, 211, 92", "114, 200, 230", "255, 178, 107"],
+        wallPalettes: [
+          { topA: "#f2ead4", topB: "#a7acaa", sideA: "#707886", sideB: "#3d4453", rim: "rgba(255, 252, 236, 0.96)" },
+          { topA: "#ddd8c5", topB: "#939a9d", sideA: "#626b79", sideB: "#353d4d", rim: "rgba(247, 242, 224, 0.92)" },
+          { topA: "#e8e1ce", topB: "#9fa5a5", sideA: "#697280", sideB: "#394151", rim: "rgba(255, 248, 228, 0.94)" }
+        ],
+        wallStroke: "rgba(49, 55, 69, 0.9)", wallDetail: "rgba(70, 82, 96, 0.52)", wallFaceDown: ["rgba(86, 95, 111, 0.52)", "rgba(36, 41, 55, 0.9)"], wallFaceSide: ["rgba(74, 84, 100, 0.46)", "rgba(31, 38, 53, 0.9)"], cornerFill: "rgba(255, 245, 216, 0.94)", cornerStroke: "rgba(114, 200, 230, 0.84)",
+        goal: { shape: "star", base: ["rgba(56, 75, 101, 0.92)", "rgba(38, 52, 76, 0.8)", "rgba(23, 36, 58, 0)"], halo: ["rgba(255, 211, 92, 0.66)", "rgba(255, 178, 107, 0.34)", "rgba(255, 211, 92, 0)"], stroke: "rgba(255, 238, 168, 0.98)", shadow: "#ffd35c", fill: "rgba(255, 178, 107, 0.96)", outline: "rgba(73, 62, 67, 0.88)", text: "rgba(52, 45, 55, 0.92)", chevron: "rgba(114, 200, 230, 0.88)", glyph: "×" },
+        landmarkFills: ["rgba(255, 211, 92, 0.9)", "rgba(114, 200, 230, 0.84)", "rgba(255, 178, 107, 0.84)"], landmarks: [{ cell: { x: 14, y: 13 }, type: "star-token", scale: 1.62 }, { cell: { x: 26, y: 13 }, type: "spark-token", scale: 1.54 }, { cell: { x: 19, y: 23 }, type: "arrow-token", scale: 1.48 }],
+        gate: { locked: { color: "rgba(255, 211, 92, 0.94)", fill: "rgba(59, 65, 83, 0.82)", glow: "rgba(255, 211, 92, 0.42)", glyph: "×" }, active: { color: "rgba(255, 240, 182, 0.99)", fill: "rgba(47, 83, 107, 0.9)", glow: "rgba(114, 200, 230, 0.64)", glyph: "?" }, success: { color: "rgba(139, 245, 167, 0.99)", fill: "rgba(35, 91, 66, 0.88)", glow: "rgba(96, 238, 144, 0.6)", glyph: "+" }, wrong: { color: "rgba(255, 110, 130, 0.99)", fill: "rgba(105, 40, 58, 0.9)", glow: "rgba(255, 73, 98, 0.62)", glyph: "!" } }
+      }
+    }
+  };
+
+  function normalizeWorldOneConceptKey(value) {
+    return Object.prototype.hasOwnProperty.call(WORLD_ONE_CONCEPTS, value)
+      ? value
+      : DEFAULT_WORLD_ONE_CONCEPT;
+  }
+
+  function getWorldOneConceptKey() {
+    const queryValue = new URLSearchParams(window.location.search).get("world1Concept");
+    if (queryValue && Object.prototype.hasOwnProperty.call(WORLD_ONE_CONCEPTS, queryValue)) {
+      return queryValue;
+    }
+    try {
+      return normalizeWorldOneConceptKey(window.localStorage.getItem("mathMazeWorld1Concept"));
+    } catch {
+      return DEFAULT_WORLD_ONE_CONCEPT;
+    }
+  }
+
+  function getWorldOneConcept() {
+    return WORLD_ONE_CONCEPTS[getWorldOneConceptKey()] || WORLD_ONE_CONCEPTS[DEFAULT_WORLD_ONE_CONCEPT];
+  }
+
+  function isWorldOneAuthoredBoardReady(level = getCurrentLevel()) {
+    const image = GAME_ASSETS?.worldOneAuthoredBoard;
+    return isWorldOneReimagined(level)
+      && getWorldOneConceptKey() === "sun-garden"
+      && Boolean(image?.complete && image.naturalWidth > 0);
+  }
+
   const MAZE_WORLD_SHEETS = {
     ice: {
       src: "assets/reference/maze-worlds/world_ice.png",
@@ -627,13 +937,66 @@
   const MAZE_OPTIONAL_TILESETS = Object.fromEntries(["ice", "lava", "ancient", "diamond"].map((worldKey) => [
     worldKey,
     {
-      mode: "procedural",
-      imageSrc: `assets/maze/${worldKey}/tileset.png`,
-      metadataSrc: `assets/maze/${worldKey}/tileset.json`
+      mode: "hybrid",
+      imageSrc: worldKey === "ice"
+        ? "assets/maze/ice/v3/tileset.png"
+        : `assets/maze/${worldKey}/tileset.png`,
+      metadataSrc: worldKey === "ice"
+        ? "assets/maze/ice/v3/tileset.json"
+        : `assets/maze/${worldKey}/tileset.json`
     }
   ]));
 
-  const MAZE_TILESET_EXTRA_ROLES = ["collectible", "bonusCollectible", "portal"];
+  const MAZE_CC0_WANG_SHEETS = {
+    lava: "assets/maze/source-cc0-sbs/Wall-Stone_02-64x64.png",
+    ancient: "assets/maze/source-cc0-sbs/Wall-Sand_02-64x64.png",
+    diamond: "assets/maze/source-cc0-sbs/Wall-Glass_03-64x64.png"
+  };
+  const MAZE_AXONOMETRIC_WALL_ATLASES = Object.freeze(Object.fromEntries(
+    ["ice", "lava", "ancient", "diamond"].map((worldKey) => [worldKey, {
+      src: `assets/maze/${worldKey}/v4/walls.png`,
+      tileSize: 256,
+      columns: 4,
+      camera: Object.freeze({ azimuthDegrees: 10, elevationDegrees: 56 })
+    }])
+  ));
+  const MAZE_CC0_WANG_TILE_BY_MASK = {
+    0: 30,
+    1: 6,
+    2: 14,
+    3: 8,
+    4: 13,
+    5: 2,
+    6: 0,
+    7: 11,
+    8: 5,
+    9: 9,
+    10: 10,
+    11: 4,
+    12: 1,
+    13: 12,
+    14: 3,
+    15: 7
+  };
+
+  const ICE_V3_TILESET_ROLES = [
+    ...Array.from({ length: 16 }, (_, mask) => `wallMask${mask}`),
+    "floor0",
+    "floor1",
+    "floor2",
+    "floor3",
+    "collectible0",
+    "collectible1",
+    "collectible2",
+    "bonusCollectible",
+    "powerCollectible"
+  ];
+  const MAZE_TILESET_EXTRA_ROLES = Array.from(new Set([
+    "collectible",
+    "bonusCollectible",
+    "portal",
+    ...ICE_V3_TILESET_ROLES
+  ]));
   const MAZE_TILESET_ROLE_ALIASES = {
     floor: ["floor", "floorTile", "floorBase", "floor-base", "floor tile"],
     floorAlt: ["floorAlt", "floorAccent", "floorVariant", "floorVariant01", "floor-variant-01", "floor alt"],
@@ -655,6 +1018,8 @@
   };
   const MAZE_THEME_SYSTEM = window.KaflulMazeThemeSystem || null;
   const MAZE_DECOR_SYSTEM = window.KaflulMazeDecorSystem || null;
+  const MAZE_TILE_TOPOLOGY = window.KaflulMazeTileTopology || null;
+  const MAZE_AXONOMETRIC_PROJECTION = window.KaflulMazeAxonometric || null;
   MAZE_THEME_SYSTEM?.attachRuntimeThemes?.({
     materials: MAZE_MATERIALS,
     renderThemes: MAZE_WORLD_RENDER_THEMES,
@@ -786,7 +1151,10 @@
     },
     bosses: Object.fromEntries(Object.entries(BOSS_CONFIG).map(([bossKey]) => [bossKey, new Image()])),
     bossActorSheet: new Image(),
+    worldOneAuthoredBoard: new Image(),
     mazeWorlds: Object.fromEntries(Object.entries(MAZE_WORLD_SHEETS).map(([worldKey]) => [worldKey, new Image()])),
+    mazeWangWalls: Object.fromEntries(Object.keys(MAZE_CC0_WANG_SHEETS).map((worldKey) => [worldKey, new Image()])),
+    mazeAxonometricWalls: Object.fromEntries(Object.keys(MAZE_AXONOMETRIC_WALL_ATLASES).map((worldKey) => [worldKey, new Image()])),
     arcadeChest: {
       closed: new Image(),
       open: new Image(),
@@ -797,8 +1165,21 @@
   const mazeWorldSpriteCache = new Map();
   const mazeTileAtlasCache = new Map();
   const mazeStaticBoardCache = new Map();
+  const mazeBackdropCache = new Map();
   const mazeOptionalTilesetCache = new Map();
   const bossSpriteCutoutCache = new Map();
+  const enemyPathDirectionCache = new Map();
+  const collectibleStaticLayerCache = {
+    canvas: null,
+    signature: "",
+    dynamic: []
+  };
+  const worldOneMobileStaticCompositeCache = {
+    canvas: null,
+    key: "",
+    boardSource: null
+  };
+  let activeWorldOneMobileCollectibleSignature = "";
   for (const [characterId, characterAssets] of Object.entries(GAME_ASSETS.players)) {
     const characterTheme = PLAYER_CHARACTERS[characterId];
     for (const [name, image] of Object.entries(characterAssets)) {
@@ -822,14 +1203,30 @@
     image.src = GAME_THEME.enemies.spriteSources[name];
   }
   for (const [bossKey, image] of Object.entries(GAME_ASSETS.bosses)) {
+    if (!BOSS_CONFIG[bossKey].sheetSource) continue;
     image.decoding = "async";
     image.src = BOSS_CONFIG[bossKey].sheetSource;
   }
   GAME_ASSETS.bossActorSheet.decoding = "async";
   GAME_ASSETS.bossActorSheet.src = BOSS_ACTOR_SHEET.src;
+  GAME_ASSETS.worldOneAuthoredBoard.decoding = "async";
+  GAME_ASSETS.worldOneAuthoredBoard.onload = () => mazeStaticBoardCache.clear();
+  GAME_ASSETS.worldOneAuthoredBoard.src = WORLD_ONE_AUTHORED_BOARD_SRC;
   for (const [worldKey, image] of Object.entries(GAME_ASSETS.mazeWorlds)) {
+    if (worldKey === "ice") continue;
     image.decoding = "async";
     image.src = MAZE_WORLD_SHEETS[worldKey].src;
+  }
+  for (const [worldKey, image] of Object.entries(GAME_ASSETS.mazeWangWalls)) {
+    image.decoding = "async";
+    image.onload = () => mazeStaticBoardCache.clear();
+    image.src = MAZE_CC0_WANG_SHEETS[worldKey];
+  }
+  for (const [worldKey, image] of Object.entries(GAME_ASSETS.mazeAxonometricWalls)) {
+    if (worldKey === "ice") continue;
+    image.decoding = "async";
+    image.onload = () => mazeStaticBoardCache.clear();
+    image.src = MAZE_AXONOMETRIC_WALL_ATLASES[worldKey].src;
   }
   GAME_ASSETS.arcadeChest.closed.decoding = "async";
   GAME_ASSETS.arcadeChest.closed.src = "assets/generated/arcade-chest-closed-v1.png";
@@ -841,8 +1238,10 @@
   GAME_ASSETS.arcadeChest.openRight.src = "assets/generated/arcade-chest-open-right-v1.png";
 
   const CONFIG = {
-    targetCorrect: 100,
-    answersPerLevel: 25,
+    regularAnswersPerStage: 24,
+    bossQuestionsPerStage: 3,
+    answersPerLevel: 27,
+    targetCorrect: 108,
     initialLives: 3,
     minEnemies: 10,
     missionBonus: 420,
@@ -865,8 +1264,20 @@
       chestScoreValue: 650,
       chestShieldSeconds: 12
     },
+    bossMechanics: {
+      iceTrail: {
+        world: "ice",
+        cooldown: 2.1,
+        telegraph: 0.28,
+        duration: 4.8,
+        maxActiveTrails: 5,
+        minMoveDistance: 7.5,
+        slideSeconds: 0.42,
+        slideSpeed: 255
+      }
+    },
     speed: {
-      player: 184,
+      player: 148,
       enemyBase: 108,
       enemyTierEveryAnswers: 6,
       enemyTierStep: 3,
@@ -898,34 +1309,34 @@
     difficulty: SYSTEMS.DIFFICULTIES,
     levels: [
       {
-        name: "עולם הקרח",
-        shortName: "קרח",
-        intro: "שלב 1: עולם הקרח",
+        name: "גן השמש המתעורר",
+        shortName: "גן השמש",
+        intro: "שלב 1: גן השמש המתעורר",
         bossKey: "stage1",
         enemyVisualStyle: "ice",
-        decor: "snow",
+        decor: "sun-garden",
         enemyCountBonus: 0,
         enemySpeedMultiplier: 1,
-        wallStops: ["#10385f", "#1fb9d4", "#b8f7ff"],
-        backgroundStops: ["#04101b", "#082337", "#020914"],
-        gridColor: "rgba(170, 244, 255, 0.065)",
-        wallGlow: "rgba(104, 225, 244, 0.52)",
-        wallStroke: "rgba(232, 253, 255, 0.32)",
-        collectibleColor: "#e9fdff",
-        bonusCollectibleColor: "#9ef7ff",
-        accent: "#9ef7ff",
-        decorRgb: "224, 253, 255",
+        wallStops: ["#8b5339", "#c58a55", "#f1d495"],
+        backgroundStops: ["#071918", "#163a32", "#020b0c"],
+        gridColor: "rgba(45, 212, 191, 0.055)",
+        wallGlow: "rgba(246, 189, 69, 0.42)",
+        wallStroke: "rgba(255, 226, 163, 0.34)",
+        collectibleColor: "#fff1a8",
+        bonusCollectibleColor: "#f6bd45",
+        accent: "#f6bd45",
+        decorRgb: "114, 198, 109",
         hazard: {
           type: "ice-slick",
-          label: "משטח קרח",
-          warning: "קרח חלק במבוך!",
-          activeText: "נזהרים מהקרח",
+          label: "תעלת אור פראית",
+          warning: "האור מתפרץ בשביל!",
+          activeText: "עוקפים את תעלת האור",
           duration: 22,
           telegraph: 1.6,
           intervalMin: 18,
           intervalMax: 30,
-          color: "#9ef7ff",
-          hitText: "הקרח הקפיא אותנו"
+          color: "#2dd4bf",
+          hitText: "האור הסיט אותנו מהמסלול"
         },
         enemyColors: GAME_THEME.enemies.palettes[0]
       },
@@ -1085,9 +1496,9 @@
         adventure: {
           label: "מצב הרפתקה",
           shortLabel: "הרפתקה",
-          rule: "הרפתקה: מסלול של 100 תשובות דרך ארבעת העולמות.",
-          description: "שלבים מסודרים, התקדמות והשלמת עולמות.",
-          meta: "100 תשובות · עולמות · מסלול ברור"
+          rule: "הרפתקה: 24 שאלות ואז קרב בוס של 3 שאלות בכל עולם.",
+          description: "שלבים מסודרים, קרבות בוס קולנועיים והשלמת עולמות.",
+          meta: "24 שאלות + בוס · ארבעה עולמות"
         }
       },
       difficulties: {
@@ -1098,7 +1509,7 @@
         legendary: { label: "אגדי", description: "1 חיים, 12 שניות, אתגר קצה לשיאים גדולים." }
       },
       levels: {
-        ice: "עולם הקרח",
+        ice: "גן השמש המתעורר",
         lava: "עולם הלבה",
         ancient: "עולם העתיקות",
         diamond: "עולם היהלומים"
@@ -1163,9 +1574,23 @@
         joystick: "ג׳ויסטיק",
         saveNickname: "שמור כינוי",
         progressClose: "סגור התקדמות",
-        progressKicker: "נתונים שמורים בלבד",
-        progressTitle: "התקדמות",
-        progressCopy: "מוצגים רק שיאים ופתיחות שקיימים בשמירה המקומית.",
+        progressKicker: "מסע השליטה שלי",
+        progressTitle: "מפת לוח הכפל",
+        progressCopy: "כל תשובה צובעת את המפה ומראה בדיוק במה כדאי להתאמן.",
+        masteryRoute: "המסלול שלך",
+        masteryTitle: "כל תרגיל הוא חדר במבוך",
+        masteryFocusLabel: "היעד הבא",
+        masteryFocusTitle: "שלושה תרגילים לחיזוק",
+        masteryScoresTitle: "השיאים שלי",
+        masteryLegendMastered: "שולט",
+        masteryLegendPracticing: "מתחזק",
+        masteryLegendLearning: "בלמידה",
+        masteryLegendNew: "חדש",
+        dailyOpen: "פתח מבוך יומי אישי",
+        dailyKicker: "המשימה של היום",
+        dailyTitle: "המבוך האישי שלך",
+        dailyCopy: "עשרה תרגילים שנבחרו לפי המקומות שבהם הכי כדאי להתחזק.",
+        dailyStart: "התחל את המבוך היומי",
         unlockedDifficulties: "רמות פתוחות",
         currentCategoryBest: "שיא בקטגוריה הנוכחית",
         hudScore: "ניקוד",
@@ -1173,6 +1598,7 @@
         hudLives: "חיים",
         hudMission: "משימה",
         hudProgress: "התקדמות גל או שלב",
+        hudCollections: "התקדמות איסוף",
         pauseSafe: "הפסקה בטוחה",
         pauseTitle: "המשחק מושהה",
         gameStatePaused: "מצב המשחק בזמן ההשהיה",
@@ -1188,7 +1614,10 @@
         questionCaught: "יריב נתפס",
         timer: "זמן",
         answer: "תשובה",
-        submit: "שלח"
+        answerEntry: "התשובה שלך",
+        numberPad: "מקלדת מספרים",
+        eraseDigit: "מחיקת ספרה אחרונה",
+        submit: "שליחת תשובה"
       },
       runtime: {
         wave: "גל",
@@ -1207,6 +1636,9 @@
         combo: "רצף",
         lifeMinus: "חיים-",
         lifePlus: "+חיים",
+        collectionAria: "מפתחות {keys} מתוך {keyTarget}; אותיות כפל {letters} מתוך {letterTarget}",
+        chestReadyTitle: "שלושת המפתחות בידיך!",
+        chestReadyMessage: "גש לתיבה ופתח את האוצר",
         unlocked: "פתוח",
         lockedLegendary: "נעול: סיימו הרפתקה במומחה או הגיעו ל-75,000 נקודות בארקייד מומחה",
         noSavedScores: "עוד אין שיאים שמורים.",
@@ -1237,9 +1669,9 @@
           combo: "תרומת רצף"
         },
         question: {
-          bossSuffix: "ליבת הקרח",
-          rewardStatus: "פתית כוח · שאלת בונוס",
-          transitionStatus: "שאלת מעבר 25",
+          bossSuffix: "שלוש שאלות הקצה",
+          rewardStatus: "זרע כוח · שאלת בונוס",
+          transitionStatus: "שאלת מעבר 24",
           enemyStatus: "רוח תפסה אותך · ענה כדי לברוח",
           correctMark: "כן",
           correctDefault: "פתרת נכון, הדרך נפתחה!",
@@ -1299,9 +1731,9 @@
         adventure: {
           label: "Adventure Mode",
           shortLabel: "Adventure",
-          rule: "Adventure: answer 100 questions across the four worlds.",
-          description: "Structured stages, world progress, and a clear route.",
-          meta: "100 answers · Worlds · Clear path"
+          rule: "Adventure: answer 24 questions, then beat a three-question boss in every world.",
+          description: "Structured stages, cinematic boss battles, and world progression.",
+          meta: "24 questions + boss · Four worlds"
         }
       },
       difficulties: {
@@ -1312,7 +1744,7 @@
         legendary: { label: "Legendary", description: "1 life, 12 seconds, a high-score challenge." }
       },
       levels: {
-        ice: "Ice World",
+        ice: "The Waking Sun Garden",
         lava: "Lava World",
         ancient: "Ancient World",
         diamond: "Diamond World"
@@ -1377,9 +1809,23 @@
         joystick: "Joystick",
         saveNickname: "Save Nickname",
         progressClose: "Close progress",
-        progressKicker: "Local data only",
-        progressTitle: "Progress",
-        progressCopy: "Only local saved scores and unlocks are shown here.",
+        progressKicker: "My mastery journey",
+        progressTitle: "Multiplication Map",
+        progressCopy: "Every answer colors the map and shows exactly what to practice next.",
+        masteryRoute: "Your route",
+        masteryTitle: "Every fact is a room in the maze",
+        masteryFocusLabel: "Next target",
+        masteryFocusTitle: "Three facts to strengthen",
+        masteryScoresTitle: "My best scores",
+        masteryLegendMastered: "Mastered",
+        masteryLegendPracticing: "Building",
+        masteryLegendLearning: "Learning",
+        masteryLegendNew: "New",
+        dailyOpen: "Open personalized daily maze",
+        dailyKicker: "Today's mission",
+        dailyTitle: "Your Personal Maze",
+        dailyCopy: "Ten facts selected from the places where practice will help most.",
+        dailyStart: "Start Today's Maze",
         unlockedDifficulties: "Unlocked levels",
         currentCategoryBest: "Best in current category",
         hudScore: "Score",
@@ -1387,6 +1833,7 @@
         hudLives: "Lives",
         hudMission: "Mission",
         hudProgress: "Wave or stage progress",
+        hudCollections: "Collection progress",
         pauseSafe: "Safe pause",
         pauseTitle: "Game Paused",
         gameStatePaused: "Game state while paused",
@@ -1402,7 +1849,10 @@
         questionCaught: "Enemy caught you",
         timer: "Time",
         answer: "Answer",
-        submit: "Submit"
+        answerEntry: "Your answer",
+        numberPad: "Number keypad",
+        eraseDigit: "Delete last digit",
+        submit: "Submit answer"
       },
       runtime: {
         wave: "Wave",
@@ -1421,6 +1871,9 @@
         combo: "Streak",
         lifeMinus: "-Life",
         lifePlus: "+Life",
+        collectionAria: "Keys {keys} of {keyTarget}; Kaflul letters {letters} of {letterTarget}",
+        chestReadyTitle: "All three keys are yours!",
+        chestReadyMessage: "Head to the chest and claim the treasure",
         unlocked: "Unlocked",
         lockedLegendary: "Locked: finish Adventure on Expert or reach 75,000 points in Expert Arcade",
         noSavedScores: "No saved scores yet.",
@@ -1451,9 +1904,9 @@
           combo: "Streak contribution"
         },
         question: {
-          bossSuffix: "Ice core",
-          rewardStatus: "Power flake · Bonus question",
-          transitionStatus: "Gate question 25",
+          bossSuffix: "Three ultimate questions",
+          rewardStatus: "Power seed · Bonus question",
+          transitionStatus: "Gate question 24",
           enemyStatus: "A ghost caught you · Answer to escape",
           correctMark: "Yes",
           correctDefault: "Correct, the path is open!",
@@ -1499,10 +1952,24 @@
 
   const DIR_NAMES = ["up", "down", "left", "right"];
   const OPPOSITE = { up: "down", down: "up", left: "right", right: "left", none: "none" };
-  const INPUT_BUFFER_SECONDS = 0.7;
+  // Swipe input is an intended next turn, not a short-lived button press.
+  // Keep it until the player reaches a legal junction or requests another
+  // direction; expiring it after 700 ms made long mobile corridors feel stuck.
+  const INPUT_BUFFER_SECONDS = Number.POSITIVE_INFINITY;
   const TURN_LOOKAHEAD = 7.5;
-  const TURN_SNAP_DISTANCE = 8.5;
+  // A legal turn must recover a small amount of legacy/off-frame drift. The
+  // previous 1.25 px tolerance was smaller than one normal frame of movement,
+  // so an actor that stopped 2-4 px beyond a lane center could never turn.
+  const TURN_SNAP_DISTANCE = 5.5;
   const JOYSTICK_DEADZONE = 12;
+  const SWIPE_DIRECTION_THRESHOLD = 18;
+  const SIMULATION_STEP_SECONDS = 1 / 60;
+  // Never let a slow render trigger a long burst of gameplay work before the
+  // next paint. Two fixed steps preserve normal 30/60 FPS speed, while any
+  // transient timing debt is repaid over later frames instead of teleporting
+  // actors and deepening the stall that caused the missed frame.
+  const MAX_SIMULATION_STEPS_PER_FRAME = 2;
+  const MAX_SIMULATION_DEBT_SECONDS = 0.12;
   const NON_EASY_FACTORS = [3, 4, 5, 6, 7, 8, 9];
   const LEGACY_DIFFICULTY_MAP = {
     easy: "beginner",
@@ -1548,7 +2015,10 @@
   ];
 
   const canvas = document.getElementById("game-canvas");
-  let ctx = canvas.getContext("2d");
+  // The gameplay canvas is fully opaque every frame. Asking the browser for an
+  // opaque, desynchronized surface avoids an unnecessary alpha-composite and
+  // reduces touch-to-pixel latency in Android WebView and mobile Chromium.
+  let ctx = canvas.getContext("2d", { alpha: false, desynchronized: true });
   const stage = document.querySelector(".stage");
 
   const els = {
@@ -1563,6 +2033,14 @@
     missionCard: document.getElementById("mission-card"),
     missionTitle: document.getElementById("mission-title"),
     missionProgress: document.getElementById("mission-progress"),
+    arcadeCollectionHud: document.getElementById("arcade-collection-hud"),
+    arcadeKeyTrack: document.getElementById("arcade-key-track"),
+    arcadeKeySlots: Array.from(document.querySelectorAll("[data-key-slot]")),
+    arcadeWordTrack: document.getElementById("arcade-word-track"),
+    arcadeLetterSlots: Array.from(document.querySelectorAll("[data-bonus-letter]")),
+    chestReadyGuidance: document.getElementById("chest-ready-guidance"),
+    chestReadyTitle: document.getElementById("chest-ready-title"),
+    chestReadyMessage: document.getElementById("chest-ready-message"),
     pause: document.getElementById("pause-button"),
     sound: document.getElementById("sound-button"),
     menuSound: document.getElementById("menu-sound-button"),
@@ -1637,11 +2115,77 @@
     settingsPanel: document.getElementById("settings-panel"),
     settingsSoundButton: document.getElementById("settings-sound-button"),
     settingsSoundLabel: document.getElementById("settings-sound-label"),
+    audioMasterVolume: document.getElementById("audio-master-volume"),
+    audioMusicVolume: document.getElementById("audio-music-volume"),
+    audioSfxVolume: document.getElementById("audio-sfx-volume"),
+    audioVoicesVolume: document.getElementById("audio-voices-volume"),
+    audioMasterOutput: document.getElementById("audio-master-output"),
+    audioMusicOutput: document.getElementById("audio-music-output"),
+    audioSfxOutput: document.getElementById("audio-sfx-output"),
+    audioVoicesOutput: document.getElementById("audio-voices-output"),
+    audioSafetyToggle: document.getElementById("audio-safety-toggle"),
+    audioSafetyLabel: document.getElementById("audio-safety-label"),
+    audioMixerTitle: document.getElementById("audio-mixer-title"),
+    audioMixerNote: document.getElementById("audio-mixer-note"),
+    audioMasterLabel: document.getElementById("audio-master-label"),
+    audioMusicLabel: document.getElementById("audio-music-label"),
+    audioSfxLabel: document.getElementById("audio-sfx-label"),
+    audioVoicesLabel: document.getElementById("audio-voices-label"),
     settingsSelectionSummary: document.getElementById("settings-selection-summary"),
     settingsSaveButton: document.getElementById("settings-save-button"),
     controlModeInputs: Array.from(document.querySelectorAll("input[name='control-mode']")),
     languageInputs: Array.from(document.querySelectorAll("input[name='language']")),
     progressPanel: document.getElementById("progress-panel"),
+    dailyChallengeOpen: document.getElementById("daily-challenge-open"),
+    dailyChallengePanel: document.getElementById("daily-challenge-panel"),
+    dailyChallengeStart: document.getElementById("daily-challenge-start"),
+    dailyHomeStatus: document.getElementById("daily-home-status"),
+    dailyHomeStreak: document.getElementById("daily-home-streak"),
+    dailyPanelStreak: document.getElementById("daily-panel-streak"),
+    dailyPanelStatus: document.getElementById("daily-panel-status"),
+    dailyPanelBest: document.getElementById("daily-panel-best"),
+    dailyFocusFacts: document.getElementById("daily-focus-facts"),
+    duelPanelOpen: document.getElementById("duel-panel-open"),
+    duelPanel: document.getElementById("duel-panel"),
+    duelCreateCode: document.getElementById("duel-create-code"),
+    duelCreateStatus: document.getElementById("duel-create-status"),
+    duelShareBox: document.getElementById("duel-share-box"),
+    duelCodeOutput: document.getElementById("duel-code-output"),
+    duelShareCode: document.getElementById("duel-share-code"),
+    duelShareStatus: document.getElementById("duel-share-status"),
+    duelCodeInput: document.getElementById("duel-code-input"),
+    duelValidateCode: document.getElementById("duel-validate-code"),
+    duelCodeError: document.getElementById("duel-code-error"),
+    duelOpponentPreview: document.getElementById("duel-opponent-preview"),
+    duelTargetScore: document.getElementById("duel-target-score"),
+    duelTargetAccuracy: document.getElementById("duel-target-accuracy"),
+    duelStart: document.getElementById("duel-start"),
+    leaguePanelOpen: document.getElementById("league-panel-open"),
+    leaguePanel: document.getElementById("league-panel"),
+    leagueSetup: document.getElementById("league-setup"),
+    leagueCreate: document.getElementById("league-create"),
+    leagueInviteInput: document.getElementById("league-invite-input"),
+    leagueJoin: document.getElementById("league-join"),
+    leagueSetupStatus: document.getElementById("league-setup-status"),
+    leagueActive: document.getElementById("league-active"),
+    leagueWeekLabel: document.getElementById("league-week-label"),
+    leagueMyAlias: document.getElementById("league-my-alias"),
+    leagueMyPoints: document.getElementById("league-my-points"),
+    leagueMyDays: document.getElementById("league-my-days"),
+    leagueInviteOutput: document.getElementById("league-invite-output"),
+    leagueShareInvite: document.getElementById("league-share-invite"),
+    leagueResultOutput: document.getElementById("league-result-output"),
+    leagueShareResult: document.getElementById("league-share-result"),
+    leagueShareStatus: document.getElementById("league-share-status"),
+    leagueStandings: document.getElementById("league-standings"),
+    leagueResultInput: document.getElementById("league-result-input"),
+    leagueImportResult: document.getElementById("league-import-result"),
+    leagueImportStatus: document.getElementById("league-import-status"),
+    masteryProgressRing: document.getElementById("mastery-progress-ring"),
+    masteryProgressPercent: document.getElementById("mastery-progress-percent"),
+    masterySummary: document.getElementById("mastery-summary"),
+    masteryFocusFacts: document.getElementById("mastery-focus-facts"),
+    masteryMap: document.getElementById("mastery-map"),
     progressUnlockedDifficulties: document.getElementById("progress-unlocked-difficulties"),
     progressCurrentBest: document.getElementById("progress-current-best"),
     progressBestList: document.getElementById("progress-best-list"),
@@ -1693,6 +2237,8 @@
     answerForm: document.getElementById("answer-form"),
     answerInput: document.getElementById("answer-input"),
     submitAnswer: document.getElementById("submit-answer"),
+    numberPad: document.getElementById("game-number-pad"),
+    numberPadButtons: Array.from(document.querySelectorAll("#game-number-pad button")),
     questionFeedback: document.getElementById("question-feedback"),
     joystick: document.getElementById("movement-joystick"),
     joystickKnob: document.querySelector(".joystick-knob"),
@@ -1822,12 +2368,7 @@
   }
 
   function getPersonalBestForSelection(mode = state.mode, difficulty = state.difficulty) {
-    const localBest = SYSTEMS.getPersonalBest(state.save, mode, difficulty);
-    return Math.max(localBest, Number(storage.getMigrated(
-      CONFIG.storageKeys.bestScore,
-      CONFIG.legacyStorageKeys.bestScore,
-      "0"
-    )) || 0);
+    return SYSTEMS.getPersonalBest(state.save, mode, difficulty);
   }
 
   function getLevelIndexForAnswers(correctAnswers) {
@@ -1885,13 +2426,12 @@
       return;
     }
 
-    const textNode = Array.from(button.childNodes).find((node) => node.nodeType === 3);
-    if (textNode) {
-      textNode.textContent = ` ${text}`;
-      return;
+    for (const node of Array.from(button.childNodes)) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.remove();
+      }
     }
-
-    button.append(document.createTextNode(text));
+    button.append(document.createTextNode(` ${text}`));
   }
 
   function replaceLabelWithStrong(container, label, strongElement) {
@@ -1915,15 +2455,7 @@
   }
 
   function levelLabel(level = getCurrentLevel()) {
-    const key = level?.bossKey === "stage1"
-      ? "ice"
-      : level?.bossKey === "stage2"
-        ? "lava"
-        : level?.bossKey === "stage3"
-          ? "ancient"
-          : level?.bossKey === "stage4"
-            ? "diamond"
-            : "";
+    const key = level?.enemyVisualStyle || "";
     return getUiCopy().levels[key] || level?.name || LANGUAGE_COPY.he.levels.ice;
   }
 
@@ -2003,11 +2535,18 @@
     updateMetricLabel("lives", text.hudLives);
     updateMetricLabel("progress", text.hudProgress);
     updateMetricLabel("mission", text.hudMission);
+    setAttr("#arcade-collection-hud", "data-label", text.hudCollections);
+    updateChestReadyGuidanceCopy();
+    syncArcadeBonusHud();
     setAttr(".progress-wrap", "aria-label", text.hudProgress);
     setAttr(".stage", "aria-label", text.boardLabel);
     setText("#question-status", text.questionCaught);
     setText("#question-timer span", text.timer);
     setAttr("#answer-input", "aria-label", text.answer);
+    setText("#answer-display-label", text.answerEntry || text.answer);
+    setAttr("#game-number-pad", "aria-label", text.numberPad || text.answer);
+    setAttr('[data-keypad-action="delete"]', "aria-label", text.eraseDigit || text.answer);
+    setAttr('[data-keypad-action="submit"]', "aria-label", text.submit);
     setText("#submit-answer", text.submit);
 
     setAttr("#start-screen", "aria-label", copy.appLabel);
@@ -2113,6 +2652,20 @@
     setText("#progress-panel .secondary-kicker", text.progressKicker);
     setText("#progress-panel-title", text.progressTitle);
     setText("#progress-panel-copy", text.progressCopy);
+    setText(".mastery-eyebrow", text.masteryRoute);
+    setText("#mastery-dashboard-title", text.masteryTitle);
+    setText(".mastery-focus-card small", text.masteryFocusLabel);
+    setText("#mastery-focus-title", text.masteryFocusTitle);
+    setText(".progress-scores-title", text.masteryScoresTitle);
+    setText(".mastery-legend span:nth-child(1) b", text.masteryLegendMastered);
+    setText(".mastery-legend span:nth-child(2) b", text.masteryLegendPracticing);
+    setText(".mastery-legend span:nth-child(3) b", text.masteryLegendLearning);
+    setText(".mastery-legend span:nth-child(4) b", text.masteryLegendNew);
+    setAttr("#daily-challenge-open", "aria-label", text.dailyOpen);
+    setText("#daily-challenge-panel .secondary-kicker", text.dailyKicker);
+    setText("#daily-challenge-title", text.dailyTitle);
+    setText("#daily-challenge-copy", text.dailyCopy);
+    setText("#daily-challenge-start", text.dailyStart);
     setText(".progress-real-grid span:nth-child(1) small", text.unlockedDifficulties);
     setText(".progress-real-grid span:nth-child(2) small", text.currentCategoryBest);
 
@@ -2190,14 +2743,24 @@
     localSave.settings.selectedDifficulty
   ));
   const initialDifficulty = SYSTEMS.isDifficultyUnlocked(localSave, savedDifficulty) ? savedDifficulty : "normal";
-  const initialBestScore = Math.max(
-    SYSTEMS.getPersonalBest(localSave, initialMode, initialDifficulty),
-    Number(storage.getMigrated(
-      CONFIG.storageKeys.bestScore,
-      CONFIG.legacyStorageKeys.bestScore,
-      "0"
-    )) || 0
-  );
+  const legacyBestScore = Number(storage.getMigrated(
+    CONFIG.storageKeys.bestScore,
+    CONFIG.legacyStorageKeys.bestScore,
+    "0"
+  )) || 0;
+  if (legacyBestScore > 0 && Object.keys(localSave.personalBests || {}).length === 0) {
+    SYSTEMS.recordPersonalBest(localSave, {
+      mode: initialMode,
+      difficulty: initialDifficulty,
+      score: legacyBestScore,
+      reachedStage: 1,
+      maxCombo: 0,
+      accuracy: 0,
+      date: new Date().toISOString()
+    });
+    SYSTEMS.persistSave(window.localStorage, localSave, { key: CONFIG.storageKeys.save });
+  }
+  const initialBestScore = SYSTEMS.getPersonalBest(localSave, initialMode, initialDifficulty);
 
   const state = {
     phase: "start",
@@ -2209,6 +2772,7 @@
     reachable: new Set(),
     reachableList: [],
     collectibles: new Map(),
+    collectiblesRevision: 0,
     mazeScatterDecor: [],
     mazeScatterSignature: null,
     mazeScatterSeed: null,
@@ -2216,6 +2780,8 @@
     enemies: [],
     boss: null,
     bossIntro: null,
+    bossCinematic: null,
+    bossDefeatTransition: null,
     finalBossExplosion: null,
     hazards: [],
     nextHazardAt: 0,
@@ -2228,6 +2794,7 @@
     arcadeBonus: createArcadeBonusState(),
     levelIndex: 0,
     levelBanner: null,
+    stageIntroCamera: null,
     score: 0,
     scoreState: SYSTEMS.createScoreState(),
     combo: 0,
@@ -2243,8 +2810,14 @@
     difficulty: initialDifficulty,
     controlMode: normalizeControlMode(storage.get(CONFIG.storageKeys.controlMode, localSave.settings.controlMode)),
     language: normalizeLanguage(storage.get(CONFIG.storageKeys.language, localSave.settings.language || "he")),
-    timeLimitEnabled: true,
+    timeLimitEnabled: storage.get(
+      CONFIG.storageKeys.timeLimit,
+      localSave.settings.timeLimitEnabled === false ? "off" : "on"
+    ) !== "off",
     factStats: loadFactStats(),
+    sessionKind: "standard",
+    dailyChallenge: null,
+    duelChallenge: null,
     recentQuestionKeys: [],
     mission: null,
     question: null,
@@ -2252,15 +2825,26 @@
     questionTimeRemaining: null,
     questionDeadline: null,
     questionFeedbackTimerId: null,
+    lastQuestionTimerSecond: null,
     currentEnemyId: null,
     questionSource: null,
     answerLocked: false,
     nextEnemyId: 1,
+    nextEnemyAmbientAt: 0,
     soundEnabled: storage.getMigrated(
       CONFIG.storageKeys.sound,
       CONFIG.legacyStorageKeys.sound,
       "on"
     ) !== "off",
+    musicEnabled: localSave.settings.musicEnabled !== false,
+    audioVolumes: {
+      master: Number(localSave.settings.audioVolumes?.master ?? 0.78),
+      music: Number(localSave.settings.audioVolumes?.music ?? 0.45),
+      sfx: Number(localSave.settings.audioVolumes?.sfx ?? 0.78),
+      voices: Number(localSave.settings.audioVolumes?.voices ?? 0.82),
+      ui: Number(localSave.settings.audioVolumes?.ui ?? 0.68)
+    },
+    headphoneSafetyMode: localSave.settings.headphoneSafetyMode !== false,
     audioContext: null,
     shake: 0,
     fireworkTimer: 0,
@@ -2272,6 +2856,8 @@
       checked: false
     },
     sessionStartedAt: null,
+    activePlayTimeMs: 0,
+    phaseBeforePause: "playing",
     hitsTaken: 0,
     finalResult: null,
     victoryEndTimerId: null,
@@ -2301,6 +2887,8 @@
     }
   };
   const hudFeedbackTimers = new WeakMap();
+  const arcadeCollectionAnimationTimers = new WeakMap();
+  let chestReadyGuidanceTimerId = null;
 
   function cellKey(x, y) {
     return `${x},${y}`;
@@ -2381,6 +2969,12 @@
 
   function syncUiSoundController() {
     window.KaflulUiSound?.setEnabled?.(state.soundEnabled);
+    window.KaflulAudio?.setMusicEnabled?.(state.musicEnabled && state.soundEnabled);
+    window.KaflulAudio?.setVolumes?.({
+      ...state.audioVolumes,
+      master: state.audioVolumes.master * (state.headphoneSafetyMode ? 0.56 : 1)
+    });
+    window.KaflulAudio?.setSelectedCharacter?.(state.characterId);
   }
 
   function playUiSound(eventName, options = {}) {
@@ -2390,6 +2984,27 @@
     }
     controller.setEnabled?.(state.soundEnabled);
     return controller.play(eventName, options);
+  }
+
+  function playGameSound(eventName, options = {}) {
+    const audio = window.KaflulAudio;
+    if (!audio?.play) return { ok: false, reason: "missing-audio-engine" };
+    audio.setEnabled?.(state.soundEnabled);
+    return audio.play(eventName, options);
+  }
+
+  function playCharacterSound(cue, options = {}) {
+    return window.KaflulAudio?.playCharacter?.(state.characterId, cue, options)
+      || { ok: false, reason: "missing-audio-engine" };
+  }
+
+  function playBossSound(bossKey, cue, options = {}) {
+    return window.KaflulAudio?.playBoss?.(bossKey, cue, options)
+      || { ok: false, reason: "missing-audio-engine" };
+  }
+
+  function setGameMusicScene(scene, options = {}) {
+    return window.KaflulAudio?.setMusicScene?.(scene, options);
   }
 
   function resizeCanvas() {
@@ -2428,25 +3043,28 @@
   function updateViewportProfile() {
     const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const deviceMemory = Number(navigator.deviceMemory) || 4;
+    const hardwareConcurrency = Number(navigator.hardwareConcurrency) || 4;
+    const lowPerformanceDevice = deviceMemory <= 2 || hardwareConcurrency <= 2;
     const portrait = window.innerHeight >= window.innerWidth;
     let mode = "desktop";
-    let zoom = 1;
+    let zoom = WORLD_ONE_RELEASE_BASELINE.gameplayZoom.desktop;
 
     if (portrait && window.innerWidth <= 600) {
       mode = "phone-portrait";
-      zoom = 1;
+      zoom = WORLD_ONE_RELEASE_BASELINE.gameplayZoom.phonePortrait;
     } else if (coarse && !portrait && window.innerHeight <= 700) {
       mode = "phone-landscape";
-      zoom = 1;
+      zoom = WORLD_ONE_RELEASE_BASELINE.gameplayZoom.phoneLandscape;
     } else if (coarse) {
       mode = "tablet";
-      zoom = 1;
+      zoom = WORLD_ONE_RELEASE_BASELINE.gameplayZoom.tablet;
     }
 
     MOBILE_RUNTIME.coarse = coarse;
     MOBILE_RUNTIME.mode = mode;
     MOBILE_RUNTIME.zoom = zoom;
-    MOBILE_RUNTIME.reducedEffects = prefersReducedMotion || (coarse && (window.innerWidth < 900 || window.devicePixelRatio > 2));
+    MOBILE_RUNTIME.reducedEffects = prefersReducedMotion || lowPerformanceDevice;
     MOBILE_RUNTIME.phonePortrait = mode === "phone-portrait";
     MOBILE_RUNTIME.compactPortrait = mode === "phone-portrait" && (window.innerWidth <= 370 || window.innerHeight <= 680);
     MOBILE_RUNTIME.visualProfileKey = MOBILE_RUNTIME.reducedEffects
@@ -2470,8 +3088,181 @@
       || MAZE_VISUAL_PROFILES.desktop;
   }
 
+  function smoothCameraStep(value) {
+    const t = clamp(value, 0, 1);
+    return t * t * (3 - 2 * t);
+  }
+
+  function getClampedCameraTarget(targetX, targetY, zoom = CAMERA.zoom) {
+    const safeZoom = Math.max(0.05, zoom || 1);
+    const visibleWidth = (MOBILE_RUNTIME.projectionWidth || WIDTH) / safeZoom;
+    const visibleHeight = (MOBILE_RUNTIME.projectionHeight || HEIGHT) / safeZoom;
+    const x = visibleWidth >= WIDTH
+      ? WIDTH / 2
+      : clamp(targetX, visibleWidth / 2, WIDTH - visibleWidth / 2);
+    const y = visibleHeight >= HEIGHT
+      ? HEIGHT / 2
+      : clamp(targetY, visibleHeight / 2, HEIGHT - visibleHeight / 2);
+    return { x, y };
+  }
+
+  function getStageOverviewZoom() {
+    const widthFit = (MOBILE_RUNTIME.projectionWidth || WIDTH) / WIDTH;
+    const heightFit = (MOBILE_RUNTIME.projectionHeight || HEIGHT) / HEIGHT;
+    const framingScale = isPhonePortraitView()
+      ? STAGE_INTRO_CAMERA.phoneOverviewScale
+      : STAGE_INTRO_CAMERA.desktopOverviewScale;
+    return clamp(Math.min(widthFit, heightFit) * framingScale, 0.3, 0.92);
+  }
+
+  function isStageIntroCameraActive() {
+    return Boolean(state.stageIntroCamera);
+  }
+
+  function finishStageIntroCamera(options = {}) {
+    const intro = state.stageIntroCamera;
+    if (!intro) {
+      return;
+    }
+
+    state.stageIntroCamera = null;
+    document.documentElement.classList.remove("stage-intro-camera-active");
+    document.documentElement.removeAttribute("data-stage-intro-phase");
+    if (!options.preserveInput) {
+      resetJoystick();
+    }
+    if (state.player) {
+      state.player.invulnerable = Math.max(state.player.invulnerable || 0, 0.72);
+      if (intro.queuedDirection && DIRS[intro.queuedDirection]) {
+        state.player.desiredDirection = intro.queuedDirection;
+        state.player.directionRequestTime = state.clock;
+        tryApplyPlayerDirection(state.player, intro.queuedDirection);
+      }
+    }
+
+    if (!intro.verification && state.player) {
+      addBurst(state.player.x, state.player.y, getCurrentLevel().accent, 24, 105);
+      if (intro.awardedLife) {
+        addFloatingText(state.player.x, state.player.y - 30, "+חיים", "#ff5f9f");
+      }
+      if (intro.awardedLife) {
+        playGameSound("heart");
+      }
+    }
+
+    if (options.snapToGameplay) {
+      CAMERA.zoom = MOBILE_RUNTIME.zoom;
+      const target = getClampedCameraTarget(state.player.x, state.player.y, CAMERA.zoom);
+      CAMERA.x = target.x;
+      CAMERA.y = target.y;
+    }
+
+    window.dispatchEvent(new CustomEvent("kaflul:stage-intro-complete", {
+      detail: { levelIndex: state.levelIndex }
+    }));
+  }
+
+  function cancelStageIntroCamera(options = {}) {
+    state.stageIntroCamera = null;
+    document.documentElement.classList.remove("stage-intro-camera-active");
+    document.documentElement.removeAttribute("data-stage-intro-phase");
+    if (options.snapToGameplay !== false) {
+      CAMERA.zoom = MOBILE_RUNTIME.zoom;
+      const target = getClampedCameraTarget(
+        state.player?.x ?? WIDTH / 2,
+        state.player?.y ?? HEIGHT / 2,
+        CAMERA.zoom
+      );
+      CAMERA.x = target.x;
+      CAMERA.y = target.y;
+    }
+  }
+
+  function startStageIntroCamera(options = {}) {
+    if (!state.player) {
+      return false;
+    }
+
+    const reducedMotion = MOBILE_RUNTIME.reducedEffects;
+    const holdDuration = reducedMotion ? 1.25 : STAGE_INTRO_CAMERA.overviewHoldSeconds;
+    const travelDuration = reducedMotion ? STAGE_INTRO_CAMERA.reducedTravelSeconds : STAGE_INTRO_CAMERA.travelSeconds;
+    const settleDuration = STAGE_INTRO_CAMERA.settleSeconds;
+    const totalDuration = holdDuration + travelDuration + settleDuration;
+    state.stageIntroCamera = {
+      elapsed: 0,
+      holdDuration,
+      travelDuration,
+      settleDuration,
+      totalDuration,
+      progress: 0,
+      travelProgress: 0,
+      awardedLife: Boolean(options.awardedLife),
+      announce: Boolean(options.announce),
+      verification: Boolean(options.verification),
+      queuedDirection: null,
+      levelIndex: state.levelIndex
+    };
+
+    CAMERA.zoom = getStageOverviewZoom();
+    CAMERA.x = WIDTH / 2;
+    CAMERA.y = HEIGHT / 2;
+    document.documentElement.classList.add("stage-intro-camera-active");
+    document.documentElement.dataset.stageIntroPhase = "overview";
+    resetJoystick();
+    if (Number.isFinite(state.nextHazardAt)) {
+      state.nextHazardAt += totalDuration;
+    }
+    if (options.announce && !options.verification) {
+      playMissionSound();
+    }
+    return true;
+  }
+
+  function updateStageIntroCamera(dt) {
+    const intro = state.stageIntroCamera;
+    if (!intro) {
+      return false;
+    }
+
+    if (state.phase === "playing") {
+      intro.elapsed = Math.min(intro.totalDuration, intro.elapsed + Math.max(0, dt));
+    }
+    const overviewZoom = getStageOverviewZoom();
+    const gameplayZoom = MOBILE_RUNTIME.zoom;
+    const rawTravel = clamp((intro.elapsed - intro.holdDuration) / Math.max(0.01, intro.travelDuration), 0, 1);
+    const travelProgress = smoothCameraStep(rawTravel);
+    const playerTarget = getClampedCameraTarget(state.player.x, state.player.y, gameplayZoom);
+
+    CAMERA.zoom = overviewZoom + (gameplayZoom - overviewZoom) * travelProgress;
+    CAMERA.x = WIDTH / 2 + (playerTarget.x - WIDTH / 2) * travelProgress;
+    CAMERA.y = HEIGHT / 2 + (playerTarget.y - HEIGHT / 2) * travelProgress;
+
+    intro.progress = intro.elapsed / intro.totalDuration;
+    intro.travelProgress = travelProgress;
+    document.documentElement.dataset.stageIntroPhase = rawTravel <= 0 ? "overview" : rawTravel < 1 ? "focus" : "settle";
+
+    if (intro.elapsed >= intro.totalDuration) {
+      finishStageIntroCamera();
+    }
+    return true;
+  }
+
   function updateCamera(dt) {
-    const targetZoom = MOBILE_RUNTIME.zoom;
+    if (updateStageIntroCamera(dt)) {
+      return;
+    }
+
+    let targetZoom = MOBILE_RUNTIME.zoom;
+    if (state.phase === "victory" && state.bossDefeatTransition) {
+      const transitionProgress = clamp(
+        state.bossDefeatTransition.elapsed / Math.max(0.01, state.bossDefeatTransition.duration),
+        0,
+        1
+      );
+      const zoomOutProgress = smoothCameraStep(clamp((transitionProgress - 0.28) / 0.72, 0, 1));
+      targetZoom = MOBILE_RUNTIME.zoom
+        + (getStageOverviewZoom() - MOBILE_RUNTIME.zoom) * zoomOutProgress;
+    }
     const zoomEase = dt > 0 ? 1 - Math.exp(-dt * 10) : 1;
     CAMERA.zoom += (targetZoom - CAMERA.zoom) * zoomEase;
 
@@ -2490,24 +3281,17 @@
         targetY = player.y * 0.42 + state.boss.y * 0.58;
       }
     }
-    const visibleWidth = (MOBILE_RUNTIME.projectionWidth || WIDTH) / CAMERA.zoom;
-    const visibleHeight = (MOBILE_RUNTIME.projectionHeight || HEIGHT) / CAMERA.zoom;
-    const minX = visibleWidth / 2;
-    const maxX = WIDTH - visibleWidth / 2;
-    const minY = visibleHeight / 2;
-    const maxY = HEIGHT - visibleHeight / 2;
-    const clampedX = clamp(targetX, Math.min(minX, maxX), Math.max(minX, maxX));
-    const clampedY = clamp(targetY, Math.min(minY, maxY), Math.max(minY, maxY));
+    const target = getClampedCameraTarget(targetX, targetY, CAMERA.zoom);
     const followEase = dt > 0 ? 1 - Math.exp(-dt * 7.5) : 1;
 
-    CAMERA.x += (clampedX - CAMERA.x) * followEase;
-    CAMERA.y += (clampedY - CAMERA.y) * followEase;
+    CAMERA.x += (target.x - CAMERA.x) * followEase;
+    CAMERA.y += (target.y - CAMERA.y) * followEase;
   }
 
   function applyCameraTransform(renderContext) {
     const croppedProjection = (MOBILE_RUNTIME.projectionWidth || WIDTH) < WIDTH - 1
       || (MOBILE_RUNTIME.projectionHeight || HEIGHT) < HEIGHT - 1;
-    if (CAMERA.zoom <= 1.001 && !croppedProjection) {
+    if (Math.abs(CAMERA.zoom - 1) <= 0.001 && !croppedProjection) {
       return;
     }
     renderContext.translate(WIDTH / 2, HEIGHT / 2);
@@ -2516,6 +3300,12 @@
   }
 
   function createMaze(levelIndex = 0) {
+    if (levelIndex === 0) {
+      return WORLD_ONE_GAMEPLAY_MAZE_ROWS.map((row) => (
+        Array.from(row, (cell) => cell === "#" ? 1 : 0)
+      ));
+    }
+
     const maze = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
 
     const setCell = (x, y, value) => {
@@ -2813,6 +3603,24 @@
     return false;
   }
 
+  function getActorWallCollisionRadius(actor) {
+    const requestedRadius = Number(actor?.wallCollisionRadius);
+    if (Number.isFinite(requestedRadius) && requestedRadius > 0) {
+      return requestedRadius;
+    }
+
+    const radius = Math.max(1, Number(actor?.radius) || 1);
+    if (!isWorldOneReimagined()) {
+      return radius;
+    }
+
+    // Collision represents the actor's feet on the navigation plane. The body
+    // is taller than that plane and is depth-occluded by raised walls at render
+    // time. Using the full sprite footprint here leaves under two pixels of
+    // clearance in a 24 px lane and causes valid mobile turns to snag.
+    return Math.max(6.8, radius * 0.72);
+  }
+
   function computeReachable(start) {
     const reachable = new Set();
     const queue = [start];
@@ -2841,6 +3649,7 @@
 
   function seedCollectibles() {
     state.collectibles.clear();
+    state.collectiblesRevision += 1;
     for (const cell of state.reachableList) {
       const nearPlayer = distanceCells(cell, PLAYER_START) <= 2;
       const nearCenter = distanceCells(cell, CENTER_CELL) <= 2;
@@ -2857,6 +3666,7 @@
           radius: Math.random() < 0.08 ? 4.5 : 2.6,
           value: Math.random() < 0.08 ? 30 : 10
         });
+        state.collectiblesRevision += 1;
       }
     }
     seedPowerCollectible();
@@ -2916,6 +3726,7 @@
         radius: Math.random() < 0.1 ? 4.5 : 2.6,
         value: Math.random() < 0.1 ? 30 : 10
       });
+      state.collectiblesRevision += 1;
     }
     seedBossChallengeCollectible();
     seedPowerCollectible();
@@ -2973,6 +3784,7 @@
       value: 0,
       kind
     });
+    state.collectiblesRevision += 1;
     return true;
   }
 
@@ -2993,6 +3805,7 @@
       collectedLetters: [],
       letterHeartAwarded: false,
       keysCollected: 0,
+      chestReadyAnnounced: false,
       chestOpened: false,
       chestReward: null,
       chestOpenedAt: 0
@@ -3005,13 +3818,18 @@
     state.arcadeBonus.letterHeartAwarded = false;
     if (options.resetChest !== false) {
       state.arcadeBonus.keysCollected = 0;
+      state.arcadeBonus.chestReadyAnnounced = false;
       state.arcadeBonus.chestOpened = false;
       state.arcadeBonus.chestReward = null;
       state.arcadeBonus.chestOpenedAt = 0;
+      hideChestReadyGuidance({ immediate: true });
     }
   }
 
   function getArcadeChestCell() {
+    if (state.levelIndex === 0) {
+      return { ...WORLD_ONE_RELEASE_BASELINE.chestCell };
+    }
     return { x: CENTER_CELL.x + 3, y: CENTER_CELL.y + 3 };
   }
 
@@ -3068,6 +3886,7 @@
         letter: item.letter || null,
         letterIndex: item.letterIndex ?? null
       });
+      state.collectiblesRevision += 1;
     }
 
     return selected.length;
@@ -3082,7 +3901,7 @@
       kind: "bonus-letter",
       letter,
       letterIndex: index,
-      radius: 8.2,
+      radius: 9.8,
       value: CONFIG.arcadeBonus.letterScoreValue
     })), {
       minPlayerDistance: 6,
@@ -3107,15 +3926,10 @@
   }
 
   function seedBossChallengeCollectible() {
-    if (!state.boss || state.phase === "question") {
-      return;
-    }
-    addSpecialCollectible("boss-core", {
-      minPlayerDistance: 5,
-      minCenterDistance: 6,
-      preferNearPlayer: true,
-      targetPlayerDistance: 9
-    });
+    // Boss questions begin only on physical contact with the chasing boss.
+    // Keeping a remote "boss core" pickup here allowed players to bypass the
+    // chase and did not match the encounter's promised rules.
+    return false;
   }
 
   function createPlayer() {
@@ -3138,6 +3952,10 @@
       invulnerable: 0,
       questionAnimation: 0,
       rewardAnimation: 0,
+      iceSlideTime: 0,
+      iceSlideMax: 0,
+      iceSlideDirection: "right",
+      iceSlideSpeed: 0,
       turnAnimation: 0,
       turnDirection: "right",
       walkCycle: 0,
@@ -3178,6 +3996,8 @@
       roamTargetCooldown: 0.8 + Math.random() * 2.6,
       personality: index % 4,
       pathCooldown: 0,
+      stuckTime: 0,
+      lastMoveDistance: 0,
       spawnFlash: 0.8,
       wobble: Math.random() * Math.PI * 2,
       expressionOffset: index * 0.47 + Math.random() * 0.8
@@ -3268,11 +4088,41 @@
   }
 
   function getStageQuestionNumber() {
-    return (state.correctAnswers % CONFIG.answersPerLevel) + 1;
+    return Math.min(CONFIG.regularAnswersPerStage, getStageRegularCorrectCount()) + 1;
   }
 
   function isFinalQuestionInStage() {
-    return getStageQuestionNumber() === CONFIG.answersPerLevel;
+    return !state.boss
+      && getStageRegularCorrectCount() === CONFIG.regularAnswersPerStage - 1;
+  }
+
+  function getStageBaseCorrectCount() {
+    if (state.mode === "arcade") {
+      return Math.floor(state.correctAnswers / CONFIG.answersPerLevel) * CONFIG.answersPerLevel;
+    }
+    return state.levelIndex * CONFIG.answersPerLevel;
+  }
+
+  function getStageCorrectCount() {
+    if (state.phase === "victory" && state.bossDefeatTransition) {
+      return CONFIG.answersPerLevel;
+    }
+    return clamp(state.correctAnswers - getStageBaseCorrectCount(), 0, CONFIG.answersPerLevel);
+  }
+
+  function getStageRegularCorrectCount() {
+    return Math.min(CONFIG.regularAnswersPerStage, getStageCorrectCount());
+  }
+
+  function getBossQuestionCorrectCount() {
+    if (state.boss) {
+      return clamp(state.boss.questionsCorrect || 0, 0, CONFIG.bossQuestionsPerStage);
+    }
+    return clamp(
+      getStageCorrectCount() - CONFIG.regularAnswersPerStage,
+      0,
+      CONFIG.bossQuestionsPerStage
+    );
   }
 
   function getBossConfigForCurrentLevel() {
@@ -3283,7 +4133,8 @@
   function shouldStartBossChallenge() {
     return state.phase === "playing"
       && !state.boss
-      && isFinalQuestionInStage()
+      && getStageRegularCorrectCount() >= CONFIG.regularAnswersPerStage
+      && getStageCorrectCount() < CONFIG.answersPerLevel
       && Boolean(getBossConfigForCurrentLevel());
   }
 
@@ -3294,15 +4145,20 @@
     }
     const bossKey = getCurrentLevel().bossKey || "stage1";
 
-    for (const enemy of state.enemies) {
+    const vanishingEnemies = state.enemies.map((enemy, index) => ({
+      ...enemy,
+      vanishIndex: index
+    }));
+    for (const enemy of vanishingEnemies) {
       addBurst(enemy.x, enemy.y, enemy.color, 14, 105);
     }
 
     state.enemies = [];
     state.pendingSpawns = [];
     for (const [key, collectible] of state.collectibles) {
-      if (collectible.kind === "power") {
+      if (collectible.kind === "power" || collectible.kind === "boss-core") {
         state.collectibles.delete(key);
+        state.collectiblesRevision += 1;
       }
     }
 
@@ -3332,28 +4188,47 @@
       pathCooldown: 0,
       spawnProgress: 0,
       wobble: 0,
+      iceTrailCooldown: 0.75,
+      iceTrailAnnounced: false,
       stuckTime: 0,
       walkCycle: 0,
       lastMoveDistance: 0,
+      nextStepSoundAt: 0,
       turnAnimation: 0,
+      questionsCorrect: getBossQuestionCorrectCount(),
+      damageLevel: getBossQuestionCorrectCount(),
+      hitFlash: 0,
       trail: []
     };
-    state.bossIntro = { life: 1.15, maxLife: 1.15 };
-    state.shake = Math.max(state.shake, 0.42);
+    state.bossCinematic = {
+      elapsed: 0,
+      totalDuration: MOBILE_RUNTIME.reducedEffects ? 1.35 : 2.85,
+      vanishDuration: MOBILE_RUNTIME.reducedEffects ? 0.3 : 0.72,
+      emergeDelay: MOBILE_RUNTIME.reducedEffects ? 0.18 : 0.52,
+      emergeDuration: MOBILE_RUNTIME.reducedEffects ? 0.62 : 1.35,
+      vanishingEnemies,
+      bossName: bossDefinition.name,
+      bossTitle: bossDefinition.title,
+      accent: bossDefinition.accent
+    };
+    state.bossIntro = {
+      life: state.bossCinematic.totalDuration,
+      maxLife: state.bossCinematic.totalDuration
+    };
+    state.shake = Math.max(state.shake, 0.58);
     if (state.player) {
-      state.player.invulnerable = Math.max(state.player.invulnerable, 0.9);
+      state.player.invulnerable = Math.max(state.player.invulnerable, state.bossCinematic.totalDuration + 0.55);
     }
 
-    addBurst(pos.x, pos.y, bossDefinition.accent, 66, 185);
-    addFloatingText(pos.x, pos.y - 50, `${bossDefinition.name} התעורר`, bossDefinition.accent);
-    seedBossChallengeCollectible();
-    playTone(128, 0.18, "sawtooth", 0.042);
-    playTone(242, 0.12, "triangle", 0.035);
+    addBurst(pos.x, pos.y, bossDefinition.accent, 82, 210);
+    window.KaflulAudio?.setBossActive?.(true);
+    playBossSound(bossKey, "spawn", { gain: 0.92 });
   }
 
   function enterLevel(levelIndex, options = {}) {
     state.levelIndex = clamp(levelIndex, 0, CONFIG.levels.length - 1);
     state.maze = createMaze(state.levelIndex);
+    enemyPathDirectionCache.clear();
     const reachability = computeReachable(PLAYER_START);
     state.reachable = reachability.reachable;
     state.reachableList = reachability.list;
@@ -3361,6 +4236,8 @@
     state.enemies = [];
     state.boss = null;
     state.bossIntro = null;
+    state.bossCinematic = null;
+    state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
     state.hazards = [];
     state.nextHazardAt = state.clock + 6 + Math.random() * 4;
@@ -3372,6 +4249,8 @@
     state.floatingTexts = [];
     state.arcadeRewardBanner = null;
     state.nextPowerCollectibleAt = 0;
+    setGameMusicScene(getMazeWorldKey());
+    window.KaflulAudio?.setBossActive?.(false);
     seedCollectibles();
     seedBackdrop();
 
@@ -3383,14 +4262,27 @@
     }
 
     prepareMazeScatterDecor(true);
+    const stageIntroStarted = options.stageIntro !== false && startStageIntroCamera({
+      announce: options.announce,
+      awardedLife: options.awardedLife,
+      verification: options.verification
+    });
+    if (!stageIntroStarted) {
+      cancelStageIntroCamera();
+    }
 
     if (options.announce) {
-      state.player.invulnerable = 2.4;
-      showLevelBanner(options.awardedLife);
+      playGameSound("worldTransition");
+      if (!stageIntroStarted) {
+        state.player.invulnerable = 2.4;
+        showLevelBanner(options.awardedLife);
+      }
       playUiMotion(stage, "worldTransition");
-      addBurst(state.player.x, state.player.y, getCurrentLevel().accent, 42, 145);
-      if (options.awardedLife) {
-        addFloatingText(state.player.x, state.player.y - 28, "+חיים", "#ff5f9f");
+      if (!stageIntroStarted) {
+        addBurst(state.player.x, state.player.y, getCurrentLevel().accent, 42, 145);
+        if (options.awardedLife) {
+          addFloatingText(state.player.x, state.player.y - 28, "+חיים", "#ff5f9f");
+        }
       }
     }
 
@@ -3403,6 +4295,7 @@
     state.lastTime = performance.now();
     state.levelIndex = 0;
     state.levelBanner = null;
+    cancelStageIntroCamera({ snapToGameplay: false });
     state.scoreState = SYSTEMS.createScoreState();
     state.comboState = SYSTEMS.createComboState();
     state.score = 0;
@@ -3420,26 +4313,45 @@
     state.questionSource = null;
     state.boss = null;
     state.bossIntro = null;
+    state.bossCinematic = null;
+    state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
     state.hazards = [];
     state.nextHazardAt = 0;
     state.answerLocked = false;
     state.nextEnemyId = 1;
+    state.nextEnemyAmbientAt = 3.5 + Math.random() * 2;
     state.shake = 0;
     state.fireworkTimer = 0;
     state.nextPowerCollectibleAt = 0;
     state.arcadeRewardBanner = null;
     state.arcadeBonus = createArcadeBonusState();
+    hideChestReadyGuidance({ immediate: true });
     if (state.victoryEndTimerId) {
       window.clearTimeout(state.victoryEndTimerId);
       state.victoryEndTimerId = null;
     }
     state.sessionStartedAt = performance.now();
+    state.activePlayTimeMs = 0;
+    state.phaseBeforePause = "playing";
     state.hitsTaken = 0;
     state.finalResult = null;
     state.latestLeaderboardEntryId = null;
     resetHudSnapshot();
     assignMission();
+    const shortChallenge = getActiveShortChallenge();
+    if (shortChallenge) {
+      shortChallenge.questionCursor = 0;
+      state.lives = Math.max(state.lives, 4);
+      state.mission = {
+        type: "correct",
+        target: shortChallenge.targetCorrect,
+        label: state.sessionKind === "duel" ? "השלם את דו־קרב החברים" : "השלם את המבוך היומי",
+        labelEn: state.sessionKind === "duel" ? "Complete the friend duel" : "Complete today's maze",
+        progress: 0,
+        startScore: 0
+      };
+    }
     enterLevel(0);
 
     updateHud();
@@ -3541,12 +4453,11 @@
 
   function showLevelBanner(awardedLife = false) {
     const level = getCurrentLevel();
-    const nextGoal = Math.min(CONFIG.targetCorrect, (state.levelIndex + 1) * CONFIG.answersPerLevel);
     state.levelBanner = {
       title: level.intro,
       subtitle: awardedLife
-        ? `עוד עולם נפתח, וקיבלת חיים. היעד הבא: ${nextGoal} תשובות`
-        : `היעד הבא: ${nextGoal} תשובות נכונות`,
+        ? `עוד עולם נפתח, וקיבלת חיים. היעד: ${CONFIG.regularAnswersPerStage} שאלות ואז הבוס`
+        : `היעד: ${CONFIG.regularAnswersPerStage} שאלות נכונות ואז הבוס`,
       color: level.accent,
       life: 2.25,
       maxLife: 2.25
@@ -3575,6 +4486,9 @@
     state.save.settings.selectedDifficulty = state.difficulty;
     state.save.settings.selectedMode = state.mode;
     state.save.settings.soundEnabled = state.soundEnabled;
+    state.save.settings.musicEnabled = state.musicEnabled;
+    state.save.settings.audioVolumes = { ...state.audioVolumes };
+    state.save.settings.headphoneSafetyMode = state.headphoneSafetyMode;
     state.save.settings.timeLimitEnabled = state.timeLimitEnabled;
     state.save.settings.controlMode = state.controlMode;
     state.save.settings.language = state.language;
@@ -3644,6 +4558,7 @@
   }
 
   function updateProgressPanel() {
+    updateMasteryDashboard();
     if (els.progressUnlockedDifficulties) {
       els.progressUnlockedDifficulties.textContent = getUnlockedDifficultyLabels() || difficultyLabel("normal");
     }
@@ -3683,6 +4598,391 @@
       item.append(title, score, detail);
       els.progressBestList.append(item);
     });
+  }
+
+  function masteryLevelLabel(level) {
+    const english = state.language === "en";
+    const labels = english
+      ? { mastered: "mastered", practicing: "building", learning: "learning", unpracticed: "new" }
+      : { mastered: "שליטה", practicing: "מתחזק", learning: "בלמידה", unpracticed: "חדש" };
+    return labels[level] || labels.unpracticed;
+  }
+
+  function updateMasteryDashboard() {
+    if (!els.masteryMap || !SYSTEMS.buildMultiplicationMastery) {
+      return;
+    }
+    const mastery = SYSTEMS.buildMultiplicationMastery(state.factStats, { focusLimit: 3 });
+    const mastered = mastery.counts.mastered;
+    const attempted = mastery.total - mastery.counts.unpracticed;
+    const english = state.language === "en";
+    const percentText = `${mastery.progressPercent}%`;
+    els.masteryProgressPercent.textContent = percentText;
+    els.masteryProgressRing.style.setProperty("--mastery-progress", `${mastery.progressPercent * 3.6}deg`);
+    els.masteryProgressRing.setAttribute(
+      "aria-label",
+      english ? `${mastery.progressPercent} percent mastery` : `${mastery.progressPercent} אחוזי שליטה`
+    );
+    if (attempted === 0) {
+      els.masterySummary.textContent = english
+        ? "The map is ready. One short game will reveal your first route."
+        : "המפה מוכנה. משחק קצר אחד יגלה את המסלול הראשון שלך.";
+    } else if (mastered === mastery.total) {
+      els.masterySummary.textContent = english
+        ? "The whole multiplication maze is mastered. Legendary work!"
+        : "כל מבוך הכפל בשליטתך. עבודה אגדית!";
+    } else {
+      els.masterySummary.textContent = english
+        ? `${mastered} facts mastered · ${attempted} facts explored`
+        : `${mastered} תרגילים בשליטה · ${attempted} תרגילים כבר נחשפו`;
+    }
+
+    els.masteryFocusFacts.replaceChildren();
+    for (const fact of mastery.focusFacts) {
+      const chip = document.createElement("span");
+      chip.className = `mastery-focus-fact is-${fact.level}`;
+      chip.textContent = `${fact.a}×${fact.b}`;
+      chip.title = english
+        ? `${fact.a} × ${fact.b} = ${fact.answer}, ${masteryLevelLabel(fact.level)}`
+        : `${fact.a} כפול ${fact.b} הם ${fact.answer}, ${masteryLevelLabel(fact.level)}`;
+      els.masteryFocusFacts.append(chip);
+    }
+
+    els.masteryMap.replaceChildren();
+    const corner = document.createElement("span");
+    corner.className = "mastery-map-label is-corner";
+    corner.textContent = "×";
+    corner.setAttribute("role", "columnheader");
+    els.masteryMap.append(corner);
+    for (let value = mastery.min; value <= mastery.max; value += 1) {
+      const label = document.createElement("span");
+      label.className = "mastery-map-label";
+      label.textContent = String(value);
+      label.setAttribute("role", "columnheader");
+      els.masteryMap.append(label);
+    }
+    for (let a = mastery.min; a <= mastery.max; a += 1) {
+      const rowLabel = document.createElement("span");
+      rowLabel.className = "mastery-map-label";
+      rowLabel.textContent = String(a);
+      rowLabel.setAttribute("role", "rowheader");
+      els.masteryMap.append(rowLabel);
+      for (let b = mastery.min; b <= mastery.max; b += 1) {
+        const fact = mastery.cells.find((cell) => cell.a === a && cell.b === b);
+        const cell = document.createElement("span");
+        cell.className = `mastery-map-cell is-${fact.level}`;
+        cell.textContent = String(fact.answer);
+        cell.setAttribute("role", "gridcell");
+        cell.setAttribute(
+          "aria-label",
+          english
+            ? `${a} times ${b} equals ${fact.answer}, ${masteryLevelLabel(fact.level)}`
+            : `${a} כפול ${b} הם ${fact.answer}, ${masteryLevelLabel(fact.level)}`
+        );
+        cell.title = `${a} × ${b} = ${fact.answer}`;
+        els.masteryMap.append(cell);
+      }
+    }
+  }
+
+  function getDailyChallengeForToday() {
+    return SYSTEMS.createDailyChallenge(state.factStats, SYSTEMS.getLocalDateKey(), { questionCount: 10 });
+  }
+
+  function getActiveShortChallenge() {
+    if (state.sessionKind === "daily") {
+      return state.dailyChallenge;
+    }
+    if (state.sessionKind === "duel") {
+      return state.duelChallenge;
+    }
+    return null;
+  }
+
+  function updateDailyChallengeUi() {
+    if (!els.dailyChallengeOpen || !SYSTEMS.createDailyChallenge) {
+      return;
+    }
+    const challenge = getDailyChallengeForToday();
+    const progress = SYSTEMS.normalizeDailyProgress(state.save.dailyProgress);
+    const todayBest = progress.bestByDate[challenge.dateKey] || null;
+    const english = state.language === "en";
+    setText(".daily-challenge-copy small", english ? "Personal daily maze" : "מבוך יומי אישי");
+    setText(".daily-streak-orb small", english ? "day streak" : "ימי רצף");
+    setText("#daily-date-label", english ? "Today's challenge" : "האתגר של היום");
+    setText(".daily-focus-section > span", english ? "Facts returning today" : "התרגילים שחוזרים היום");
+    setText("#daily-focus-title", english ? "Your personal route" : "המסלול האישי");
+    setText(".daily-rules span:nth-child(1) small", english ? "Goal" : "מטרה");
+    setText(".daily-rules span:nth-child(1) strong", english ? "10 correct answers" : "10 תשובות נכונות");
+    setText(".daily-rules span:nth-child(2) small", english ? "Pace" : "קצב");
+    setText(".daily-rules span:nth-child(2) strong", english ? "About 3 minutes" : "כ־3 דקות");
+    setText(".daily-rules span:nth-child(3) small", english ? "Personalized" : "התאמה");
+    setText(".daily-rules span:nth-child(3) strong", english ? "From your map" : "לפי המפה שלך");
+    els.dailyHomeStatus.textContent = todayBest
+      ? (english ? `Complete · ${numberFormat.format(todayBest.score)}` : `הושלם · ${numberFormat.format(todayBest.score)}`)
+      : (english ? `Ready · ${challenge.targetCorrect} facts` : `מוכן · ${challenge.targetCorrect} תרגילים`);
+    els.dailyHomeStreak.textContent = String(progress.streak);
+    els.dailyChallengeOpen.title = english
+      ? `Personal daily maze · ${progress.streak} day streak`
+      : `מבוך יומי אישי · רצף ${progress.streak}`;
+    els.dailyPanelStreak.textContent = String(progress.streak);
+    els.dailyPanelStatus.textContent = todayBest
+      ? (english ? "Today's route is complete" : "המסלול של היום הושלם")
+      : (english ? "Your maze is ready" : "המבוך שלך מוכן");
+    els.dailyPanelBest.textContent = todayBest
+      ? (english
+        ? `Today's best: ${numberFormat.format(todayBest.score)} · ${todayBest.accuracy}% accuracy`
+        : `השיא היום: ${numberFormat.format(todayBest.score)} · דיוק ${todayBest.accuracy}%`)
+      : (english ? "No result yet today." : "עוד אין תוצאה להיום.");
+    els.dailyChallengeStart.textContent = todayBest
+      ? (english ? "Play today's maze again" : "שחק שוב במבוך היומי")
+      : (english ? "Start today's maze" : "התחל את המבוך היומי");
+    els.dailyFocusFacts.replaceChildren();
+    for (const fact of challenge.focusFacts) {
+      const chip = document.createElement("span");
+      chip.className = "daily-focus-fact";
+      chip.textContent = `${fact.a}×${fact.b}`;
+      chip.setAttribute("aria-label", english ? `${fact.a} times ${fact.b}` : `${fact.a} כפול ${fact.b}`);
+      els.dailyFocusFacts.append(chip);
+    }
+  }
+
+  function updateDuelPanelUi() {
+    if (!els.duelPanel || !SYSTEMS.createFriendChallenge) {
+      return;
+    }
+    const daily = getDailyChallengeForToday();
+    const progress = SYSTEMS.normalizeDailyProgress(state.save.dailyProgress);
+    const todayBest = progress.bestByDate[daily.dateKey] || null;
+    els.duelCreateCode.disabled = !todayBest;
+    els.duelCreateStatus.textContent = todayBest
+      ? `השיא שלך היום הוא ${numberFormat.format(todayBest.score)}. הקוד ישמור את אותו מסלול בדיוק.`
+      : "סיימו את המבוך היומי כדי ליצור קוד עם שיא לניצחון.";
+    els.duelShareStatus.textContent = "";
+    if (!todayBest) {
+      els.duelShareBox.hidden = true;
+      els.duelCodeOutput.textContent = "";
+    }
+  }
+
+  function createDuelCode() {
+    const daily = getDailyChallengeForToday();
+    const progress = SYSTEMS.normalizeDailyProgress(state.save.dailyProgress);
+    const todayBest = progress.bestByDate[daily.dateKey];
+    if (!todayBest) {
+      els.duelShareStatus.textContent = "צריך להשלים קודם את המבוך היומי.";
+      return;
+    }
+    const code = SYSTEMS.createFriendChallenge(daily, todayBest);
+    els.duelCodeOutput.textContent = code;
+    els.duelShareBox.hidden = false;
+    els.duelShareStatus.textContent = "הקוד מוכן. הוא מכיל רק מסלול ושיא, בלי פרטים אישיים.";
+  }
+
+  async function shareDuelCode() {
+    const code = els.duelCodeOutput.textContent.trim();
+    if (!code) {
+      return;
+    }
+    const text = `דו־קרב כפלול: נסו לנצח אותי באותו מבוך!\n${code}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "דו־קרב כפלול", text });
+        els.duelShareStatus.textContent = "קוד האתגר מוכן לשיתוף.";
+        return;
+      }
+      await navigator.clipboard.writeText(code);
+      els.duelShareStatus.textContent = "קוד האתגר הועתק.";
+    } catch {
+      els.duelShareStatus.textContent = "אפשר לסמן ולהעתיק את הקוד ידנית.";
+    }
+  }
+
+  function validateDuelCode() {
+    try {
+      const decoded = SYSTEMS.decodeFriendChallenge(els.duelCodeInput.value);
+      state.duelChallenge = { ...decoded, questionCursor: 0 };
+      els.duelCodeInput.value = decoded.code;
+      els.duelCodeError.textContent = "";
+      els.duelTargetScore.textContent = numberFormat.format(decoded.targetScore);
+      els.duelTargetAccuracy.textContent = `${decoded.targetAccuracy}%`;
+      els.duelOpponentPreview.hidden = false;
+      els.duelStart.hidden = false;
+      playUiSound("notification", { fromGesture: true });
+    } catch {
+      state.duelChallenge = null;
+      els.duelCodeError.textContent = "הקוד לא תקין. בדקו שכל האותיות והמקפים הועתקו.";
+      els.duelOpponentPreview.hidden = true;
+      els.duelStart.hidden = true;
+      playUiSound("lockedAction", { fromGesture: true });
+    }
+  }
+
+  function getLeagueMemberId() {
+    return (SYSTEMS.hashSeed(state.playerId || "kaflul-player") & 0xffff) || 1;
+  }
+
+  function formatLeagueWeek(weekKey) {
+    const date = new Date(`${weekKey}T12:00:00`);
+    return new Intl.DateTimeFormat(state.language === "en" ? "en-GB" : "he-IL", {
+      day: "numeric",
+      month: "numeric"
+    }).format(date);
+  }
+
+  function syncLocalLeagueEntry() {
+    const progress = SYSTEMS.normalizeLeagueProgress(state.save.leagueProgress);
+    const league = progress.currentLeague;
+    const currentWeek = SYSTEMS.getWeekKey();
+    if (!league || league.weekKey !== currentWeek) {
+      return null;
+    }
+    const memberId = getLeagueMemberId();
+    const summary = SYSTEMS.buildWeeklyLeagueScore(state.save.dailyProgress, currentWeek);
+    const aliasIndex = memberId % SYSTEMS.LEAGUE_ALIASES.length;
+    const entry = SYSTEMS.recordWeeklyLeagueEntry(state.save, {
+      leagueId: league.id,
+      weekKey: league.weekKey,
+      memberId,
+      aliasIndex,
+      ...summary
+    }, { isLocal: true });
+    return { league, memberId, summary, entry };
+  }
+
+  function renderLeagueStandings(standings) {
+    els.leagueStandings.replaceChildren();
+    if (!standings.length) {
+      const empty = document.createElement("li");
+      empty.className = "league-empty";
+      empty.textContent = "עוד אין תוצאות בליגה.";
+      els.leagueStandings.append(empty);
+      return;
+    }
+    for (const entry of standings) {
+      const item = document.createElement("li");
+      item.classList.toggle("is-local", entry.isLocal);
+      const rank = document.createElement("span");
+      rank.className = "league-rank";
+      rank.textContent = `#${entry.rank}`;
+      const name = document.createElement("strong");
+      name.className = "league-name";
+      name.textContent = entry.isLocal ? `${entry.alias} · אני` : entry.alias;
+      const meta = document.createElement("span");
+      meta.className = "league-meta";
+      meta.textContent = `${entry.daysPlayed}/7 ימים · ${entry.accuracy}%`;
+      const points = document.createElement("strong");
+      points.className = "league-points";
+      points.textContent = numberFormat.format(entry.points);
+      item.append(rank, name, meta, points);
+      els.leagueStandings.append(item);
+    }
+  }
+
+  function updateLeaguePanelUi() {
+    if (!els.leaguePanel || !SYSTEMS.getWeekKey) {
+      return;
+    }
+    const progress = SYSTEMS.normalizeLeagueProgress(state.save.leagueProgress);
+    const currentWeek = SYSTEMS.getWeekKey();
+    const league = progress.currentLeague;
+    const isCurrent = Boolean(league && league.weekKey === currentWeek);
+    els.leagueSetup.hidden = isCurrent;
+    els.leagueActive.hidden = !isCurrent;
+    els.leagueSetupStatus.textContent = league && !isCurrent
+      ? "הליגה הקודמת הסתיימה. פתחו ליגה חדשה לשבוע הנוכחי."
+      : "קוד ההזמנה פועל רק בשבוע הנוכחי ולא מכיל שמות או פרטים אישיים.";
+    els.leagueShareStatus.textContent = "";
+    els.leagueImportStatus.textContent = "";
+    if (!isCurrent) {
+      return;
+    }
+    const local = syncLocalLeagueEntry();
+    if (!local) {
+      return;
+    }
+    persistSave();
+    els.leagueWeekLabel.textContent = formatLeagueWeek(currentWeek);
+    els.leagueMyAlias.textContent = local.entry.alias;
+    els.leagueMyPoints.textContent = numberFormat.format(local.summary.points);
+    els.leagueMyDays.textContent = `${local.summary.daysPlayed}/7`;
+    els.leagueInviteOutput.textContent = league.code;
+    els.leagueResultOutput.textContent = SYSTEMS.createWeeklyLeagueResultCode(
+      league,
+      local.memberId,
+      local.summary
+    );
+    renderLeagueStandings(SYSTEMS.getWeeklyLeagueStandings(state.save.leagueProgress, currentWeek));
+  }
+
+  function createPrivateLeague() {
+    const weekKey = SYSTEMS.getWeekKey();
+    const inviteCode = SYSTEMS.createPrivateLeagueInvite(weekKey, state.playerId);
+    SYSTEMS.joinPrivateLeague(state.save, inviteCode);
+    persistSave();
+    updateLeaguePanelUi();
+    els.leagueShareStatus.textContent = "הליגה מוכנה. שלחו לחברים את קוד ההזמנה.";
+    playUiSound("notification", { fromGesture: true });
+  }
+
+  function joinPrivateLeague() {
+    try {
+      const league = SYSTEMS.decodePrivateLeagueInvite(els.leagueInviteInput.value);
+      if (league.weekKey !== SYSTEMS.getWeekKey()) {
+        throw new Error("expired_league");
+      }
+      SYSTEMS.joinPrivateLeague(state.save, league.code);
+      persistSave();
+      updateLeaguePanelUi();
+      els.leagueShareStatus.textContent = "הצטרפת לליגה. עכשיו אפשר לשתף את כרטיס התוצאה שלך.";
+      playUiSound("notification", { fromGesture: true });
+    } catch {
+      els.leagueSetupStatus.textContent = "קוד ההזמנה לא תקין או שייך לשבוע שהסתיים.";
+      playUiSound("lockedAction", { fromGesture: true });
+    }
+  }
+
+  async function shareLeagueCode(kind) {
+    const isInvite = kind === "invite";
+    const code = (isInvite ? els.leagueInviteOutput : els.leagueResultOutput).textContent.trim();
+    if (!code) {
+      return;
+    }
+    const text = isInvite
+      ? `הליגה הפרטית שלי בכפלול מחכה לך!\n${code}`
+      : `זה כרטיס התוצאה השבועי שלי בליגת כפלול:\n${code}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "ליגת כפלול", text });
+        els.leagueShareStatus.textContent = "הקוד מוכן לשיתוף.";
+        return;
+      }
+      await navigator.clipboard.writeText(code);
+      els.leagueShareStatus.textContent = "הקוד הועתק.";
+    } catch {
+      els.leagueShareStatus.textContent = "אפשר לסמן ולהעתיק את הקוד ידנית.";
+    }
+  }
+
+  function importLeagueResult() {
+    try {
+      const decoded = SYSTEMS.decodeWeeklyLeagueResultCode(els.leagueResultInput.value);
+      const current = SYSTEMS.normalizeLeagueProgress(state.save.leagueProgress).currentLeague;
+      if (!current || decoded.leagueId !== current.id || decoded.weekKey !== current.weekKey) {
+        throw new Error("league_result_mismatch");
+      }
+      SYSTEMS.recordWeeklyLeagueEntry(state.save, decoded, {
+        isLocal: decoded.memberId === getLeagueMemberId()
+      });
+      persistSave();
+      els.leagueResultInput.value = "";
+      updateLeaguePanelUi();
+      els.leagueImportStatus.textContent = `התוצאה של ${decoded.alias} נוספה לטבלה.`;
+      playUiSound("notification", { fromGesture: true });
+    } catch {
+      els.leagueImportStatus.textContent = "כרטיס התוצאה לא מתאים לליגה הזו או לשבוע הנוכחי.";
+      playUiSound("lockedAction", { fromGesture: true });
+    }
   }
 
   function updateDifficultyLockCopy() {
@@ -3825,7 +5125,12 @@
         characterImage.dataset.assetPipeline = "character-sheet";
       }
     }
-    const duration = Math.max(260, Number(options.duration) || (reaction === "blink" ? 520 : 1500));
+    const reactionDurations = {
+      blink: 190,
+      tap: 560,
+      selected: 940
+    };
+    const duration = Math.max(140, Number(options.duration) || reactionDurations[reaction] || 760);
     state.homeCharacterReactionTimerId = window.setTimeout(() => {
       if (reactionToken !== state.homeCharacterReactionToken) {
         return;
@@ -3840,10 +5145,10 @@
 
   function scheduleHomeCharacterIdleActing() {
     window.clearTimeout(state.homeCharacterIdleTimerId);
-    const delay = 2800 + Math.random() * 2600;
+    const delay = 4200 + Math.random() * 4200;
     state.homeCharacterIdleTimerId = window.setTimeout(() => {
       if (state.phase === "start" && !document.hidden) {
-        playHomeCharacterReaction(state.characterId, "blink", { duration: 460 });
+        playHomeCharacterReaction(state.characterId, "blink", { duration: 190 });
       }
       scheduleHomeCharacterIdleActing();
     }, delay);
@@ -4107,6 +5412,7 @@
     updateMenuLeaderboardPreview();
     updatePregamePanel();
     updateProgressPanel();
+    updateDailyChallengeUi();
     updatePauseScreen();
   }
 
@@ -4141,6 +5447,7 @@
     const nextCharacterId = normalizeCharacterId(value);
     const changed = state.characterId !== nextCharacterId;
     state.characterId = nextCharacterId;
+    window.KaflulAudio?.setSelectedCharacter?.(state.characterId);
     if (persist && changed) {
       storage.set(CONFIG.storageKeys.character, state.characterId);
       persistSave();
@@ -4172,7 +5479,6 @@
   function setDifficulty(value, persist = true) {
     const nextDifficulty = normalizeDifficulty(value);
     state.difficulty = SYSTEMS.isDifficultyUnlocked(state.save, nextDifficulty) ? nextDifficulty : "normal";
-    state.timeLimitEnabled = true;
     if (persist) {
       storage.set(CONFIG.storageKeys.difficulty, state.difficulty);
       persistSave();
@@ -4334,6 +5640,15 @@
     if (sheet === els.progressPanel) {
       return [els.homeNavProgress, els.homeProgressButton, els.homeProgressCard].filter(Boolean);
     }
+    if (sheet === els.dailyChallengePanel) {
+      return [els.dailyChallengeOpen].filter(Boolean);
+    }
+    if (sheet === els.duelPanel) {
+      return [els.duelPanelOpen].filter(Boolean);
+    }
+    if (sheet === els.leaguePanel) {
+      return [els.leaguePanelOpen].filter(Boolean);
+    }
     return [];
   }
 
@@ -4385,13 +5700,13 @@
   }
 
   function closeMenuSheets(options = {}) {
-    const { restoreFocus = true, sound = true } = options;
+    const { restoreFocus = true, sound = true, immediate = false } = options;
     let closedAnySheet = false;
     for (const sheet of els.menuSheets) {
       const wasOpen = !sheet.hidden;
       if (wasOpen) {
         closedAnySheet = true;
-        hideWithMotion(sheet, "sheetClose");
+        hideWithMotion(sheet, "sheetClose", immediate ? { duration: 1, maxDelay: 1 } : {});
       } else {
         sheet.hidden = true;
       }
@@ -4427,6 +5742,15 @@
     }
     if (sheet === els.progressPanel) {
       updateProgressPanel();
+    }
+    if (sheet === els.dailyChallengePanel) {
+      updateDailyChallengeUi();
+    }
+    if (sheet === els.duelPanel) {
+      updateDuelPanelUi();
+    }
+    if (sheet === els.leaguePanel) {
+      updateLeaguePanelUi();
     }
     state.lastFocusBeforeMenuSheet = trigger || document.activeElement;
     closeMenuSheets({ restoreFocus: false, sound: false });
@@ -4563,7 +5887,8 @@
       endpoint: `${CONFIG.leaderboard.endpoint}?capability=1`
     })
       .then((payload) => {
-        const isAvailable = payload?.publicAvailable === true || Array.isArray(payload?.scores);
+        const isAvailable = payload?.publicAvailable === true
+          && payload?.publicSubmissionsAvailable === true;
         setPublicLeaderboardStatus(isAvailable ? "available" : "localOnly");
         return isAvailable;
       })
@@ -4817,13 +6142,15 @@
     const toState = PHASE_TO_GAME_STATE[nextPhase] || nextPhase;
     if (!options.force && !SYSTEMS.canTransition(fromState, toState)) {
       console.warn(`Invalid game phase transition ignored by audit: ${fromState} -> ${toState}`);
+      return false;
     }
     state.phase = nextPhase;
     document.documentElement.dataset.gameState = toState;
+    return true;
   }
 
   const MAZE_THEME_PREVIEW_WORLDS = [
-    { worldId: "ice", levelIndex: 0, label: "Ice" },
+    { worldId: "ice", levelIndex: 0, label: "Sun Garden" },
     { worldId: "lava", levelIndex: 1, label: "Lava" },
     { worldId: "ancient", levelIndex: 2, label: "Ancient" },
     { worldId: "diamond", levelIndex: 3, label: "Diamond" }
@@ -5069,7 +6396,7 @@
 
     runtime.extendQuestionFeedbackDelayForVerification = (delayMs = 1200) => {
       const requestedDelay = Math.max(300, Number(delayMs) || 1200);
-      const delay = Math.max(2200, Math.min(3200, requestedDelay));
+      const delay = Math.max(2200, Math.min(2600, requestedDelay));
       CONFIG.questionFeedbackDelay.correct = delay;
       CONFIG.questionFeedbackDelay.wrong = delay;
       return { ...CONFIG.questionFeedbackDelay };
@@ -5078,11 +6405,878 @@
     runtime.getPlayerSnapshot = () => state.player ? {
       x: state.player.x,
       y: state.player.y,
+      speed: state.player.speed,
       direction: state.player.direction,
       desiredDirection: state.player.desiredDirection,
       phase: state.phase,
       controlMode: state.controlMode
     } : null;
+
+    runtime.profileRenderForVerification = (iterations = 12) => {
+      const sampleCount = clamp(Math.floor(Number(iterations) || 0), 1, 60);
+      const profile = (draw) => {
+        const samples = [];
+        for (let index = 0; index < sampleCount; index += 1) {
+          const startedAt = performance.now();
+          draw();
+          samples.push(performance.now() - startedAt);
+        }
+        samples.sort((a, b) => a - b);
+        const totalMs = samples.reduce((sum, sample) => sum + sample, 0);
+        return {
+          averageMs: totalMs / samples.length,
+          medianMs: samples[Math.floor(samples.length * 0.5)],
+          p95Ms: samples[Math.min(samples.length - 1, Math.floor(samples.length * 0.95))],
+          maxMs: samples[samples.length - 1]
+        };
+      };
+      const inWorld = (draw) => () => {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.save();
+        applyCameraTransform(ctx);
+        draw();
+        ctx.restore();
+      };
+
+      return {
+        sampleCount,
+        fullFrame: profile(() => render()),
+        boardAndAmbient: profile(inWorld(() => drawReferenceMazeBoard())),
+        collectiblesAndChest: profile(inWorld(() => drawCollectibles())),
+        questionGates: profile(inWorld(() => drawFirstMazeQuestionGateOverlays())),
+        actors: profile(inWorld(() => drawWorldOneAuthoredActors())),
+        extraChestPass: profile(inWorld(() => drawArcadeBonusChest())),
+        particlesAndText: profile(inWorld(() => {
+          drawParticles();
+          drawFloatingTexts();
+        }))
+      };
+    };
+
+    runtime.getMazeCollisionSnapshot = () => {
+      const playerCell = state.player ? toCell(state.player.x, state.player.y) : null;
+      return {
+        cols: COLS,
+        rows: ROWS,
+        tile: TILE,
+        geometrySource: state.levelIndex === 0
+          ? WORLD_ONE_GAMEPLAY_MAZE_VERSION
+          : "procedural-grid",
+        grid: state.maze.map((row) => row.join("")),
+        playerCell,
+        playerWallCollisionRadius: state.player ? getActorWallCollisionRadius(state.player) : null,
+        playerOverlapsWall: state.player
+          ? circleHitsWall(state.player.x, state.player.y, getActorWallCollisionRadius(state.player))
+          : null
+      };
+    };
+
+    runtime.getActorCollisionSnapshotForVerification = () => {
+      const describeActor = (actor, kind, index = 0) => {
+        if (!actor) return null;
+        const collisionRadius = getActorWallCollisionRadius(actor);
+        return {
+          kind,
+          index,
+          x: actor.x,
+          y: actor.y,
+          speed: actor.speed,
+          direction: actor.direction,
+          lastMoveDistance: actor.lastMoveDistance || 0,
+          stuckTime: actor.stuckTime || 0,
+          pathCooldown: actor.pathCooldown || 0,
+          cell: toCell(actor.x, actor.y),
+          collisionRadius,
+          overlapsWall: circleHitsWall(actor.x, actor.y, collisionRadius)
+        };
+      };
+      return {
+        player: describeActor(state.player, "player"),
+        enemies: state.enemies.map((enemy, index) => describeActor(enemy, "enemy", index)),
+        boss: describeActor(state.boss, "boss")
+      };
+    };
+
+    runtime.getActorVisualMetricsForVerification = () => {
+      const playerScale = getPlayerCharacterVisualScale();
+      const enemyScale = getEnemyCharacterVisualScale();
+      return {
+        authoredWorldOne: isWorldOneReimagined() && isWorldOneAuthoredBoardReady(),
+        coarsePointer: MOBILE_RUNTIME.coarse,
+        player: state.player ? {
+          radius: state.player.radius,
+          scale: playerScale,
+          displaySize: state.player.radius * getPlayerTheme().renderScale * playerScale
+        } : null,
+        enemies: state.enemies.map((enemy, index) => {
+          const sizeVariation = [1, 0.94, 1.04, 0.98][enemy.visualVariant ?? index % 4];
+          return {
+            index,
+            radius: enemy.radius,
+            scale: enemyScale,
+            displaySize: enemy.radius * GAME_THEME.enemies.renderScale * sizeVariation * enemyScale
+          };
+        })
+      };
+    };
+
+    runtime.getWorldOneReleaseBaselineForVerification = () => {
+      const mazeRows = state.maze.map((row) => row.map((cell) => cell ? "#" : ".").join(""));
+      const chestCell = getArcadeChestCell();
+      const actorMetrics = runtime.getActorVisualMetricsForVerification();
+      return {
+        baseline: {
+          id: WORLD_ONE_RELEASE_BASELINE.id,
+          locked: WORLD_ONE_RELEASE_BASELINE.locked,
+          authoredBoardSrc: WORLD_ONE_RELEASE_BASELINE.authoredBoardSrc,
+          navigationVersion: WORLD_ONE_RELEASE_BASELINE.navigationVersion,
+          chestCell: { ...WORLD_ONE_RELEASE_BASELINE.chestCell },
+          actorScale: { ...WORLD_ONE_RELEASE_BASELINE.actorScale },
+          gameplayZoom: { ...WORLD_ONE_RELEASE_BASELINE.gameplayZoom }
+        },
+        runtime: {
+          levelIndex: state.levelIndex,
+          concept: getWorldOneConceptKey(),
+          authoredBoardReady: isWorldOneAuthoredBoardReady(),
+          cols: COLS,
+          rows: ROWS,
+          tile: TILE,
+          mazeRows,
+          walkableCellCount: mazeRows.reduce(
+            (count, row) => count + Array.from(row).filter((cell) => cell === ".").length,
+            0
+          ),
+          reachableCellCount: state.reachable.size,
+          chest: {
+            cell: chestCell,
+            reachable: state.reachable.has(cellKey(chestCell.x, chestCell.y))
+          },
+          actors: actorMetrics,
+          camera: {
+            viewportMode: MOBILE_RUNTIME.mode,
+            coarsePointer: MOBILE_RUNTIME.coarse,
+            gameplayZoom: MOBILE_RUNTIME.zoom,
+            projectionWidth: MOBILE_RUNTIME.projectionWidth,
+            projectionHeight: MOBILE_RUNTIME.projectionHeight
+          }
+        }
+      };
+    };
+
+    runtime.spawnEnemiesForVerification = (count = 5) => {
+      const requestedCount = clamp(Math.floor(Number(count) || 0), 0, 8);
+      state.enemies = [];
+      state.pendingSpawns = [];
+      if (state.player) {
+        state.player.invulnerable = Math.max(state.player.invulnerable, 10);
+      }
+      for (let index = 0; index < requestedCount; index += 1) {
+        spawnEnemy(index);
+      }
+      return runtime.getActorCollisionSnapshotForVerification();
+    };
+
+    runtime.setEnemyCellsForVerification = (cells = []) => {
+      const requestedCells = Array.isArray(cells) ? cells.slice(0, 8) : [];
+      state.enemies = [];
+      state.pendingSpawns = [];
+      const rejected = [];
+      requestedCells.forEach((requestedCell, index) => {
+        const cell = {
+          x: clamp(Math.floor(Number(requestedCell?.x) || 0), 0, COLS - 1),
+          y: clamp(Math.floor(Number(requestedCell?.y) || 0), 0, ROWS - 1)
+        };
+        if (!isWalkableCell(cell.x, cell.y)) {
+          rejected.push(cell);
+          return;
+        }
+        const enemy = createEnemy(index);
+        const center = centerOfCell(cell.x, cell.y);
+        enemy.id = `verification-enemy-${index}`;
+        enemy.x = center.x;
+        enemy.y = center.y;
+        enemy.direction = "none";
+        enemy.spawnFlash = 0;
+        enemy.lastMoveDistance = 0;
+        state.enemies.push(enemy);
+      });
+      return {
+        rejected,
+        actors: runtime.getActorCollisionSnapshotForVerification()
+      };
+    };
+
+    runtime.setEnemyMotionStateForVerification = (index = 0, options = {}) => {
+      const enemy = state.enemies[clamp(Math.floor(Number(index) || 0), 0, state.enemies.length - 1)];
+      if (!enemy) return null;
+      const requestedDirection = String(options.direction || enemy.direction);
+      enemy.direction = DIRS[requestedDirection] ? requestedDirection : enemy.direction;
+      enemy.pathCooldown = Math.max(0, Number(options.pathCooldown) || 0);
+      enemy.stuckTime = Math.max(0, Number(options.stuckTime) || 0);
+      enemy.lastMoveDistance = 0;
+      return runtime.getActorCollisionSnapshotForVerification().enemies[index] || null;
+    };
+
+    runtime.stepEnemiesForVerification = (frames = 120, dt = 1 / 60) => {
+      const frameCount = clamp(Math.floor(Number(frames) || 0), 0, 600);
+      const stepSeconds = clamp(Number(dt) || 0, 1 / 240, 1 / 15);
+      let maxStepDistance = 0;
+      let wallOverlapFrames = 0;
+      for (let frame = 0; frame < frameCount; frame += 1) {
+        const before = state.enemies.map((enemy) => ({ x: enemy.x, y: enemy.y }));
+        updateEnemies(stepSeconds);
+        state.enemies.forEach((enemy, index) => {
+          maxStepDistance = Math.max(
+            maxStepDistance,
+            Math.hypot(enemy.x - before[index].x, enemy.y - before[index].y)
+          );
+          if (circleHitsWall(enemy.x, enemy.y, getActorWallCollisionRadius(enemy))) {
+            wallOverlapFrames += 1;
+          }
+        });
+      }
+      return {
+        frameCount,
+        maxStepDistance,
+        wallOverlapFrames,
+        actors: runtime.getActorCollisionSnapshotForVerification()
+      };
+    };
+
+    runtime.auditMazeCollisionForVerification = () => {
+      const failures = [];
+      let wallCellCount = 0;
+      let walkableCellCount = 0;
+      let openTransitions = 0;
+      let blockedTransitions = 0;
+
+      for (let y = 0; y < ROWS; y += 1) {
+        for (let x = 0; x < COLS; x += 1) {
+          if (isWallCell(x, y)) {
+            wallCellCount += 1;
+            continue;
+          }
+          walkableCellCount += 1;
+          for (const direction of DIR_NAMES) {
+            const vector = DIRS[direction];
+            const target = { x: x + vector.x, y: y + vector.y };
+            const targetWall = isWallCell(target.x, target.y);
+            const origin = centerOfCell(x, y);
+            const probe = {
+              x: origin.x,
+              y: origin.y,
+              radius: state.player?.radius || 10.2,
+              wallCollisionRadius: state.player
+                ? getActorWallCollisionRadius(state.player)
+                : 7.2,
+              direction: "none",
+              desiredDirection: "none"
+            };
+            moveActor(probe, direction, TILE);
+            const finalCell = toCell(probe.x, probe.y);
+            const overlapsWall = circleHitsWall(probe.x, probe.y, probe.wallCollisionRadius);
+
+            if (targetWall) {
+              blockedTransitions += 1;
+              if (isWallCell(finalCell.x, finalCell.y) || overlapsWall) {
+                failures.push({ type: "entered-wall", x, y, direction, target, finalCell });
+              }
+            } else {
+              openTransitions += 1;
+              const targetCenter = centerOfCell(target.x, target.y);
+              if (Math.hypot(probe.x - targetCenter.x, probe.y - targetCenter.y) > 0.05 || overlapsWall) {
+                failures.push({ type: "blocked-open-lane", x, y, direction, target, finalCell });
+              }
+            }
+          }
+        }
+      }
+
+      return {
+        passed: failures.length === 0,
+        wallCellCount,
+        walkableCellCount,
+        openTransitions,
+        blockedTransitions,
+        failures: failures.slice(0, 24)
+      };
+    };
+
+    runtime.auditFullMazeTraversalForVerification = () => {
+      const start = isWalkableCell(PLAYER_START.x, PLAYER_START.y)
+        ? { ...PLAYER_START }
+        : state.reachableList[0];
+      if (!start) {
+        return { passed: false, failures: [{ type: "missing-walkable-start" }] };
+      }
+
+      const route = [{ ...start }];
+      const visited = new Set([cellKey(start.x, start.y)]);
+      const walkDepthFirst = (cell) => {
+        for (const direction of DIR_NAMES) {
+          const vector = DIRS[direction];
+          const next = { x: cell.x + vector.x, y: cell.y + vector.y };
+          const key = cellKey(next.x, next.y);
+          if (!state.reachable.has(key) || visited.has(key)) {
+            continue;
+          }
+          visited.add(key);
+          route.push(next);
+          walkDepthFirst(next);
+          route.push({ ...cell });
+        }
+      };
+      walkDepthFirst(start);
+
+      const startPosition = centerOfCell(start.x, start.y);
+      const probe = {
+        x: startPosition.x,
+        y: startPosition.y,
+        radius: state.player?.radius || 10.2,
+        wallCollisionRadius: state.player
+          ? getActorWallCollisionRadius(state.player)
+          : 7.2,
+        direction: "none",
+        desiredDirection: "none",
+        directionRequestTime: 0
+      };
+      const failures = [];
+      let overlapSamples = 0;
+      let simulatedFrames = 0;
+      let traveledDistance = 0;
+      let maxTurnResponseFrames = 0;
+      let previousDirection = "none";
+
+      for (let index = 1; index < route.length; index += 1) {
+        const from = route[index - 1];
+        const target = route[index];
+        const dx = target.x - from.x;
+        const dy = target.y - from.y;
+        const direction = dx > 0 ? "right" : dx < 0 ? "left" : dy > 0 ? "down" : "up";
+        const targetPosition = centerOfCell(target.x, target.y);
+        probe.desiredDirection = direction;
+        let edgeFrames = 0;
+        let directionAppliedAt = null;
+
+        while (Math.hypot(probe.x - targetPosition.x, probe.y - targetPosition.y) > 0.025 && edgeFrames < 24) {
+          const remaining = Math.hypot(probe.x - targetPosition.x, probe.y - targetPosition.y);
+          const beforeX = probe.x;
+          const beforeY = probe.y;
+          movePlayerWithBufferedTurn(
+            probe,
+            Math.min(CONFIG.speed.player / 60, remaining),
+            true
+          );
+          edgeFrames += 1;
+          simulatedFrames += 1;
+          const movedDistance = Math.hypot(probe.x - beforeX, probe.y - beforeY);
+          traveledDistance += movedDistance;
+          if (directionAppliedAt === null && probe.direction === direction) {
+            directionAppliedAt = edgeFrames;
+          }
+          if (circleHitsWall(probe.x, probe.y, probe.wallCollisionRadius)) {
+            overlapSamples += 1;
+          }
+          if (movedDistance < 0.001) {
+            failures.push({ type: "stalled-open-route", from, target, direction, edgeFrames });
+            break;
+          }
+        }
+
+        if (direction !== previousDirection && directionAppliedAt !== null) {
+          maxTurnResponseFrames = Math.max(maxTurnResponseFrames, directionAppliedAt);
+        }
+        previousDirection = direction;
+        if (Math.hypot(probe.x - targetPosition.x, probe.y - targetPosition.y) > 0.05) {
+          failures.push({
+            type: "missed-open-cell-center",
+            from,
+            target,
+            direction,
+            actual: { x: probe.x, y: probe.y }
+          });
+          break;
+        }
+      }
+
+      if (visited.size !== state.reachable.size) {
+        failures.push({
+          type: "unvisited-walkable-cells",
+          visited: visited.size,
+          expected: state.reachable.size
+        });
+      }
+      if (overlapSamples > 0) {
+        failures.push({ type: "wall-overlap-during-full-traversal", count: overlapSamples });
+      }
+
+      return {
+        passed: failures.length === 0,
+        navigationVersion: WORLD_ONE_GAMEPLAY_MAZE_VERSION,
+        walkableCellCount: state.reachable.size,
+        visitedCellCount: visited.size,
+        routeEdgeCount: Math.max(0, route.length - 1),
+        simulatedFrames,
+        traveledDistance,
+        overlapSamples,
+        maxTurnResponseFrames,
+        playerSpeed: CONFIG.speed.player,
+        playerWallCollisionRadius: probe.wallCollisionRadius,
+        inputBufferMode: Number.isFinite(INPUT_BUFFER_SECONDS) ? "timed" : "until-next-input",
+        failures: failures.slice(0, 24)
+      };
+    };
+
+    runtime.auditWallStopTurnsForVerification = () => {
+      const failures = [];
+      const driftOffsets = [0, 2.8, 4.2];
+      const stepDistances = [
+        CONFIG.speed.player / 120,
+        CONFIG.speed.player / 60,
+        CONFIG.speed.player / 30,
+        CONFIG.speed.player * 0.1
+      ];
+      let scenarioCount = 0;
+      let legalTurnCount = 0;
+      let maxStopCenterError = 0;
+      let maxTurnCrossAxisError = 0;
+
+      for (let y = 0; y < ROWS; y += 1) {
+        for (let x = 0; x < COLS; x += 1) {
+          if (!isWalkableCell(x, y)) continue;
+          const center = centerOfCell(x, y);
+          for (const heading of DIR_NAMES) {
+            const headingVector = DIRS[heading];
+            if (!isWallCell(x + headingVector.x, y + headingVector.y)) continue;
+            const legalTurns = DIR_NAMES.filter((turn) => {
+              const turnVector = DIRS[turn];
+              const perpendicular = headingVector.x * turnVector.x + headingVector.y * turnVector.y === 0;
+              return perpendicular && isWalkableCell(x + turnVector.x, y + turnVector.y);
+            });
+
+            for (const turn of legalTurns) {
+              legalTurnCount += 1;
+              for (const drift of driftOffsets) {
+                for (const stepDistance of stepDistances) {
+                  scenarioCount += 1;
+                  const probe = {
+                    x: center.x + headingVector.x * drift,
+                    y: center.y + headingVector.y * drift,
+                    radius: state.player?.radius || 10.2,
+                    wallCollisionRadius: state.player
+                      ? getActorWallCollisionRadius(state.player)
+                      : 7.2,
+                    direction: heading,
+                    desiredDirection: heading,
+                    directionRequestTime: 0,
+                    turnAnimation: 0,
+                    turnDirection: heading
+                  };
+
+                  moveActor(probe, heading, TILE);
+                  const stopError = Math.hypot(probe.x - center.x, probe.y - center.y);
+                  maxStopCenterError = Math.max(maxStopCenterError, stopError);
+                  probe.desiredDirection = turn;
+                  const beforeTurn = { x: probe.x, y: probe.y };
+                  const moved = movePlayerWithBufferedTurn(probe, stepDistance, true);
+                  const turnVector = DIRS[turn];
+                  const forwardTravel = (probe.x - beforeTurn.x) * turnVector.x
+                    + (probe.y - beforeTurn.y) * turnVector.y;
+                  const crossAxisError = turnVector.x !== 0
+                    ? Math.abs(probe.y - center.y)
+                    : Math.abs(probe.x - center.x);
+                  maxTurnCrossAxisError = Math.max(maxTurnCrossAxisError, crossAxisError);
+
+                  if (stopError > 0.01
+                    || !moved
+                    || probe.direction !== turn
+                    || forwardTravel <= 0.1
+                    || crossAxisError > 0.01
+                    || circleHitsWall(probe.x, probe.y, probe.wallCollisionRadius)) {
+                    failures.push({
+                      type: "wall-stop-legal-turn-failed",
+                      cell: { x, y },
+                      heading,
+                      turn,
+                      drift,
+                      stepDistance,
+                      stopError,
+                      moved,
+                      appliedDirection: probe.direction,
+                      forwardTravel,
+                      crossAxisError,
+                      final: { x: probe.x, y: probe.y }
+                    });
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return {
+        passed: failures.length === 0,
+        scenarioCount,
+        legalTurnCount,
+        driftOffsets,
+        stepDistances,
+        maxStopCenterError,
+        maxTurnCrossAxisError,
+        failures: failures.slice(0, 24)
+      };
+    };
+
+    runtime.auditWorldOneAuthoredGeometryForVerification = () => {
+      const applicable = state.levelIndex === 0;
+      if (!applicable) {
+        return { applicable: false, passed: false, failures: ["wrong-world"] };
+      }
+      const expectedWalls = [
+        { x: 20, y: 1, cue: "top-frame-footprint" },
+        { x: 1, y: 15, cue: "left-frame-footprint" },
+        { x: 38, y: 15, cue: "right-frame-footprint" },
+        { x: 8, y: 4, cue: "upper-left-terrace-footprint" },
+        { x: 20, y: 6, cue: "upper-center-terrace-footprint" },
+        { x: 15, y: 18, cue: "center-left-terrace-footprint" },
+        { x: 10, y: 25, cue: "lower-planter-footprint" }
+      ];
+      const expectedFloor = [
+        { x: 20, y: 3, cue: "top-corridor" },
+        { x: 13, y: 4, cue: "top-left-entry" },
+        { x: 26, y: 4, cue: "top-right-entry" },
+        { x: 3, y: 12, cue: "left-side-passage" },
+        { x: 36, y: 12, cue: "right-side-passage" },
+        { x: 20, y: 14, cue: "central-passage" },
+        { x: 23, y: 12, cue: "reported-center-corridor-left" },
+        { x: 24, y: 12, cue: "reported-center-corridor-right" },
+        { x: 23, y: 18, cue: "arcade-chest-floor" },
+        { x: 21, y: 23, cue: "lower-crossing" },
+        { x: PLAYER_START.x, y: PLAYER_START.y, cue: "player-start" }
+      ];
+      const failures = [];
+      expectedWalls.forEach((cell) => {
+        if (!isWallCell(cell.x, cell.y)) failures.push({ type: "painted-wall-is-open", ...cell });
+      });
+      expectedFloor.forEach((cell) => {
+        if (!isWalkableCell(cell.x, cell.y)) failures.push({ type: "painted-passage-is-blocked", ...cell });
+      });
+      let walkableCellCount = 0;
+      for (let y = 0; y < ROWS; y += 1) {
+        for (let x = 0; x < COLS; x += 1) {
+          if (isWalkableCell(x, y)) walkableCellCount += 1;
+        }
+      }
+      const disconnectedWalkableCells = Math.max(0, walkableCellCount - state.reachable.size);
+      if (disconnectedWalkableCells > 0) {
+        failures.push({ type: "disconnected-painted-passage", count: disconnectedWalkableCells });
+      }
+      return {
+        applicable: true,
+        version: WORLD_ONE_GAMEPLAY_MAZE_VERSION,
+        passed: failures.length === 0,
+        expectedWallCount: expectedWalls.length,
+        expectedFloorCount: expectedFloor.length,
+        walkableCellCount,
+        reachableCellCount: state.reachable.size,
+        disconnectedWalkableCells,
+        failures
+      };
+    };
+
+    runtime.setPlayerCellForVerification = (x, y) => {
+      if (!state.player) return null;
+      const cell = {
+        x: clamp(Math.floor(Number(x) || 0), 0, COLS - 1),
+        y: clamp(Math.floor(Number(y) || 0), 0, ROWS - 1)
+      };
+      if (isWallCell(cell.x, cell.y)) {
+        return { moved: false, reason: "wall", cell };
+      }
+      const center = centerOfCell(cell.x, cell.y);
+      state.player.x = center.x;
+      state.player.y = center.y;
+      state.player.direction = "none";
+      state.player.desiredDirection = "none";
+      state.player.trail = [];
+      return { moved: true, cell, x: center.x, y: center.y };
+    };
+
+    runtime.setPlayerDirectionForVerification = (direction = "none") => {
+      if (!state.player || (!DIRS[direction] && direction !== "none")) return null;
+      state.player.direction = direction;
+      state.player.desiredDirection = direction;
+      state.player.directionRequestTime = state.clock;
+      return runtime.getPlayerSnapshot();
+    };
+
+    runtime.resumeLiveGameplayForVerification = () => {
+      if (!state.player) return null;
+      state.visualVerificationMode = false;
+      cancelStageIntroCamera();
+      setPhase("playing", { force: true });
+      state.player.invulnerable = Math.max(state.player.invulnerable, 999);
+      state.hazards = [];
+      state.nextHazardAt = Number.POSITIVE_INFINITY;
+      state.pendingSpawns = [];
+      return runtime.getPlayerSnapshot();
+    };
+
+    // Advances the real player update path after Playwright has delivered a
+    // genuine keyboard/swipe event. Unlike stepPlayerForVerification, this does
+    // not inject a direction, so it verifies the production input buffer and
+    // turn logic together without enabling enemies, pickups, or hazards.
+    runtime.advancePlayerInputForVerification = (frames = 1, dt = 1 / 60) => {
+      if (!state.player) return null;
+      const frameCount = clamp(Math.floor(Number(frames) || 0), 0, 600);
+      const stepSeconds = clamp(Number(dt) || 0, 1 / 240, 0.1);
+      const samples = [runtime.getPlayerSnapshot()];
+      let maxStepDistance = 0;
+      let wallOverlapFrames = 0;
+
+      for (let frame = 0; frame < frameCount; frame += 1) {
+        const beforeX = state.player.x;
+        const beforeY = state.player.y;
+        state.clock += stepSeconds;
+        updatePlayer(stepSeconds);
+        maxStepDistance = Math.max(
+          maxStepDistance,
+          Math.hypot(state.player.x - beforeX, state.player.y - beforeY)
+        );
+        if (circleHitsWall(
+          state.player.x,
+          state.player.y,
+          getActorWallCollisionRadius(state.player)
+        )) {
+          wallOverlapFrames += 1;
+        }
+        samples.push(runtime.getPlayerSnapshot());
+      }
+
+      return {
+        frameCount,
+        stepSeconds,
+        maxStepDistance,
+        wallOverlapFrames,
+        samples,
+        player: runtime.getPlayerSnapshot(),
+        collision: runtime.getMazeCollisionSnapshot()
+      };
+    };
+
+    runtime.stepPlayerForVerification = (direction, distance = 2) => {
+      if (!state.player || !DIRS[direction] || direction === "none") return null;
+      const player = state.player;
+      const beforeX = player.x;
+      const beforeY = player.y;
+      player.desiredDirection = direction;
+      player.directionRequestTime = state.clock;
+      const moved = movePlayerWithBufferedTurn(
+        player,
+        clamp(Number(distance) || 0, 0, TILE),
+        true
+      );
+      player.lastMoveDistance = Math.hypot(player.x - beforeX, player.y - beforeY);
+      if (player.lastMoveDistance > 0.04) {
+        player.walkCycle = (player.walkCycle + player.lastMoveDistance * 0.18) % (Math.PI * 2);
+      }
+      return {
+        moved,
+        player: runtime.getPlayerSnapshot(),
+        collision: runtime.getMazeCollisionSnapshot()
+      };
+    };
+
+    runtime.getDailyChallengeSnapshot = () => ({
+      sessionKind: state.sessionKind,
+      phase: state.phase,
+      dateKey: state.dailyChallenge?.dateKey || SYSTEMS.getLocalDateKey(),
+      seed: state.dailyChallenge?.seed || getDailyChallengeForToday().seed,
+      targetCorrect: state.dailyChallenge?.targetCorrect || 10,
+      questionCursor: state.dailyChallenge?.questionCursor || 0,
+      correctAnswers: state.correctAnswers,
+      focusFacts: (state.dailyChallenge?.focusFacts || getDailyChallengeForToday().focusFacts).map((fact) => `${fact.a}×${fact.b}`)
+    });
+
+    runtime.forceDailyCompletionForVerification = (playerName = "אלוף יומי") => {
+      state.playerName = SYSTEMS.safeNickname(playerName);
+      state.save.player.nickname = state.playerName;
+      state.sessionKind = "daily";
+      state.dailyChallenge = { ...getDailyChallengeForToday(), questionCursor: 10 };
+      setupGame();
+      state.correctAnswers = state.dailyChallenge.targetCorrect;
+      state.mathStats.correctAnswers = state.dailyChallenge.targetCorrect;
+      state.mathStats.incorrectAnswers = 1;
+      state.mathStats.totalQuestions = state.dailyChallenge.targetCorrect + 1;
+      state.mathStats.totalAnswerTimeMs = 28000;
+      state.mathStats.fastestAnswerMs = 1700;
+      state.comboState.max = 6;
+      els.startScreen.hidden = true;
+      els.startScreen.classList.remove("screen-visible");
+      showEndScreen(true);
+      return { ...state.finalResult };
+    };
+
+    runtime.getDuelSnapshot = () => ({
+      sessionKind: state.sessionKind,
+      phase: state.phase,
+      id: state.duelChallenge?.id || null,
+      seed: state.duelChallenge?.seed || null,
+      targetCorrect: state.duelChallenge?.targetCorrect || 10,
+      targetScore: state.duelChallenge?.targetScore || 0,
+      targetAccuracy: state.duelChallenge?.targetAccuracy || 0,
+      questionCursor: state.duelChallenge?.questionCursor || 0,
+      correctAnswers: state.correctAnswers,
+      questions: (state.duelChallenge?.questions || []).map((fact) => `${fact.a}×${fact.b}`)
+    });
+
+    runtime.forceDuelCompletionForVerification = (options = {}) => {
+      const challenge = state.duelChallenge || SYSTEMS.decodeFriendChallenge(
+        SYSTEMS.createFriendChallenge(getDailyChallengeForToday(), {
+          score: Number(options.targetScore) || 4200,
+          accuracy: 90
+        })
+      );
+      state.playerName = SYSTEMS.safeNickname(options.playerName || "אלוף דו־קרב");
+      state.save.player.nickname = state.playerName;
+      state.sessionKind = "duel";
+      state.dailyChallenge = null;
+      state.duelChallenge = { ...challenge, questionCursor: 10 };
+      setupGame();
+      state.correctAnswers = state.duelChallenge.targetCorrect;
+      state.mathStats.correctAnswers = state.duelChallenge.targetCorrect;
+      state.mathStats.incorrectAnswers = options.wrongAnswers === undefined ? 1 : Math.max(0, Number(options.wrongAnswers) || 0);
+      state.mathStats.totalQuestions = state.mathStats.correctAnswers + state.mathStats.incorrectAnswers;
+      state.mathStats.totalAnswerTimeMs = 26000;
+      state.mathStats.fastestAnswerMs = 1550;
+      state.comboState.max = 7;
+      const shouldWin = options.win !== false;
+      state.scoreState.total = shouldWin
+        ? state.duelChallenge.targetScore + 800
+        : Math.max(0, state.duelChallenge.targetScore - 2400);
+      state.score = state.scoreState.total;
+      els.startScreen.hidden = true;
+      els.startScreen.classList.remove("screen-visible");
+      showEndScreen(true);
+      return { ...state.finalResult };
+    };
+
+    runtime.getLeagueSnapshot = () => {
+      const progress = SYSTEMS.normalizeLeagueProgress(state.save.leagueProgress);
+      const weekKey = SYSTEMS.getWeekKey();
+      return {
+        currentLeague: progress.currentLeague,
+        summary: SYSTEMS.buildWeeklyLeagueScore(state.save.dailyProgress, weekKey),
+        standings: SYSTEMS.getWeeklyLeagueStandings(progress, weekKey)
+      };
+    };
+
+    runtime.forceLeagueFriendResultForVerification = (options = {}) => {
+      const weekKey = SYSTEMS.getWeekKey();
+      let progress = SYSTEMS.normalizeLeagueProgress(state.save.leagueProgress);
+      if (!progress.currentLeague || progress.currentLeague.weekKey !== weekKey) {
+        const invite = SYSTEMS.createPrivateLeagueInvite(weekKey, state.playerId);
+        SYSTEMS.joinPrivateLeague(state.save, invite);
+        progress = SYSTEMS.normalizeLeagueProgress(state.save.leagueProgress);
+      }
+      const localMemberId = getLeagueMemberId();
+      const memberId = clamp(
+        Math.floor(Number(options.memberId) || ((localMemberId + 137) % 0xffff) || 2),
+        1,
+        0xffff
+      );
+      const code = SYSTEMS.createWeeklyLeagueResultCode(progress.currentLeague, memberId, {
+        points: Number(options.points) || 14800,
+        daysPlayed: Number(options.daysPlayed) || 4,
+        accuracy: Number(options.accuracy) || 92
+      });
+      const decoded = SYSTEMS.decodeWeeklyLeagueResultCode(code);
+      SYSTEMS.recordWeeklyLeagueEntry(state.save, decoded);
+      persistSave();
+      updateLeaguePanelUi();
+      return {
+        code,
+        standings: SYSTEMS.getWeeklyLeagueStandings(state.save.leagueProgress, weekKey)
+      };
+    };
+
+    runtime.getStageIntroCameraSnapshot = () => {
+      const intro = state.stageIntroCamera;
+      const bonusItems = Array.from(state.collectibles?.values?.() || [])
+        .filter((collectible) => collectible.kind === "bonus-key" || collectible.kind === "bonus-letter");
+      return {
+        active: Boolean(intro),
+        levelIndex: state.levelIndex,
+        elapsed: intro?.elapsed ?? null,
+        progress: intro?.progress ?? 1,
+        travelProgress: intro?.travelProgress ?? 1,
+        phase: document.documentElement.dataset.stageIntroPhase || "gameplay",
+        zoom: CAMERA.zoom,
+        cameraX: CAMERA.x,
+        cameraY: CAMERA.y,
+        gameplayZoom: MOBILE_RUNTIME.zoom,
+        playerX: state.player?.x ?? null,
+        playerY: state.player?.y ?? null,
+        keyCount: bonusItems.filter((collectible) => collectible.kind === "bonus-key").length,
+        letterCount: bonusItems.filter((collectible) => collectible.kind === "bonus-letter").length
+      };
+    };
+
+    runtime.forceStageIntroForVerification = (levelIndex = 0) => {
+      const index = clamp(Math.floor(Number(levelIndex) || 0), 0, CONFIG.levels.length - 1);
+      state.visualVerificationMode = true;
+      runtime.forceLevelForVerification(index);
+      setPhase("playing", { force: true });
+      hideMazeThemePreviewOverlays();
+      updatePauseButton();
+      state.enemies = [];
+      state.pendingSpawns = [];
+      state.hazards = [];
+      state.nextHazardAt = Number.POSITIVE_INFINITY;
+      startStageIntroCamera({ announce: true, verification: true });
+      stage.focus({ preventScroll: true });
+      return runtime.getStageIntroCameraSnapshot();
+    };
+
+    runtime.auditFirstInputResponseForVerification = (direction = "left") => {
+      const requestedDirection = DIRS[direction] && direction !== "none" ? direction : "left";
+      runtime.forceStageIntroForVerification(0);
+      const player = state.player;
+      const before = { x: player.x, y: player.y };
+      const startedAt = performance.now();
+      setDirection(requestedDirection);
+      const handlerDurationMs = performance.now() - startedAt;
+      const introActiveAfterInput = isStageIntroCameraActive();
+      movePlayerWithBufferedTurn(player, player.speed / 60, true);
+      const firstFrameDistance = Math.hypot(player.x - before.x, player.y - before.y);
+      return {
+        passed: !introActiveAfterInput
+          && player.direction === requestedDirection
+          && firstFrameDistance > 0.5,
+        requestedDirection,
+        appliedDirection: player.direction,
+        desiredDirection: player.desiredDirection,
+        introActiveAfterInput,
+        handlerDurationMs,
+        firstFrameDistance,
+        playerSpeed: player.speed,
+        swipeThresholdPx: SWIPE_DIRECTION_THRESHOLD,
+        inputBufferMode: Number.isFinite(INPUT_BUFFER_SECONDS) ? "timed" : "until-next-input"
+      };
+    };
+
+    runtime.setStageIntroProgressForVerification = (progress = 0) => {
+      if (!state.stageIntroCamera) {
+        runtime.forceStageIntroForVerification(state.levelIndex);
+      }
+      const intro = state.stageIntroCamera;
+      if (!intro) {
+        return runtime.getStageIntroCameraSnapshot();
+      }
+      intro.elapsed = clamp(Number(progress) || 0, 0, 0.995) * intro.totalDuration;
+      updateStageIntroCamera(0);
+      return runtime.getStageIntroCameraSnapshot();
+    };
 
     runtime.forceLevelForVerification = (levelIndex = 0) => {
       const index = clamp(Math.floor(Number(levelIndex) || 0), 0, CONFIG.levels.length - 1);
@@ -5093,7 +7287,7 @@
       state.correctAnswers = index * CONFIG.answersPerLevel;
       state.mathStats.correctAnswers = state.correctAnswers;
       state.mathStats.totalQuestions = Math.max(state.mathStats.totalQuestions, state.correctAnswers);
-      enterLevel(index, { announce: false });
+      enterLevel(index, { announce: false, stageIntro: false });
       updateHud();
       return {
         levelIndex: state.levelIndex,
@@ -5139,6 +7333,60 @@
       };
     };
 
+    runtime.forceBossIceTrailForVerification = () => {
+      if (state.phase === "start") {
+        setupGame();
+        setPhase("playing");
+      }
+      if (state.levelIndex !== 0) {
+        runtime.forceLevelForVerification(0);
+      }
+      els.startScreen.hidden = true;
+      els.startScreen.classList.remove("screen-visible");
+      els.endScreen.hidden = true;
+      els.questionDialog.hidden = true;
+      hidePauseScreen({ restoreFocus: false, sound: false });
+      updatePauseButton();
+      state.lives = 99;
+      state.enemies = [];
+      state.pendingSpawns = [];
+      state.hazards = [];
+      const stageBase = getStageBaseCorrectCount();
+      state.correctAnswers = stageBase + CONFIG.regularAnswersPerStage;
+      state.mathStats.correctAnswers = state.correctAnswers;
+      updateHud();
+      if (!state.boss) {
+        startBossChallenge();
+      }
+      if (!state.boss) {
+        return null;
+      }
+
+      const boss = state.boss;
+      state.bossCinematic = null;
+      state.bossIntro = null;
+      boss.spawnProgress = 1;
+      boss.iceTrailCooldown = 0;
+      boss.direction = "right";
+      boss.turnDirection = "right";
+      boss.x = centerOfCell(CENTER_CELL.x, CENTER_CELL.y).x + TILE * 1.2;
+      boss.y = centerOfCell(CENTER_CELL.x, CENTER_CELL.y).y;
+      const hazard = spawnBossIceTrail(boss, boss.x - TILE * 0.8, boss.y, {
+        active: true,
+        announce: true
+      });
+      return {
+        levelIndex: state.levelIndex,
+        boss: runtime.getBossSnapshot(),
+        hazard: hazard ? {
+          type: hazard.type,
+          cells: hazard.cells,
+          hitEffect: hazard.hitEffect,
+          slideDirection: hazard.slideDirection
+        } : null
+      };
+    };
+
     runtime.forceArcadeBonusForVerification = (mode = "closed") => {
       if (state.phase === "start") {
         setupGame();
@@ -5147,19 +7395,28 @@
       for (const [key, collectible] of state.collectibles) {
         if (collectible.kind === "bonus-letter" || collectible.kind === "bonus-key") {
           state.collectibles.delete(key);
+          state.collectiblesRevision += 1;
         }
       }
       state.arcadeBonus.keysCollected = mode === "closed" ? 0 : CONFIG.arcadeBonus.keysRequired;
+      state.arcadeBonus.chestReadyAnnounced = mode !== "closed";
       state.arcadeBonus.chestOpened = mode === "opened";
       state.arcadeBonus.chestReward = mode === "opened" ? "verification" : null;
       state.arcadeBonus.chestOpenedAt = mode === "opened" ? state.clock : 0;
       seedArcadeBonusCollectibles({ resetChest: false });
+      hideChestReadyGuidance({ immediate: true });
       updateHud();
+      const chestCell = getArcadeChestCell();
       return {
         levelIndex: state.levelIndex,
         mode,
         keysCollected: state.arcadeBonus.keysCollected,
         chestOpened: state.arcadeBonus.chestOpened,
+        chest: {
+          cell: chestCell,
+          reachable: state.reachable.has(cellKey(chestCell.x, chestCell.y)),
+          center: centerOfCell(chestCell.x, chestCell.y)
+        },
         letters: state.arcadeBonus.collectedLetters,
         bonusItems: Array.from(state.collectibles.values())
           .filter((collectible) => collectible.kind === "bonus-letter" || collectible.kind === "bonus-key")
@@ -5168,6 +7425,90 @@
             letter: collectible.letter || null,
             cell: toCell(collectible.x, collectible.y)
           }))
+      };
+    };
+
+    runtime.forceArcadeCollectionProgressForVerification = (options = {}) => {
+      if (state.phase === "start") {
+        setupGame();
+      }
+      setPhase("playing", { force: true });
+      hideMazeThemePreviewOverlays();
+      state.visualVerificationMode = true;
+      state.enemies = [];
+      state.pendingSpawns = [];
+
+      const keysCollected = clamp(
+        Math.floor(Number(options.keysCollected) || 0),
+        0,
+        CONFIG.arcadeBonus.keysRequired
+      );
+      const requestedLetters = Array.isArray(options.collectedLetters) ? options.collectedLetters : [];
+      const collectedLetters = CONFIG.arcadeBonus.letters.filter((letter) => requestedLetters.includes(letter));
+      state.arcadeBonus.levelIndex = state.levelIndex;
+      state.arcadeBonus.keysCollected = keysCollected;
+      state.arcadeBonus.collectedLetters = collectedLetters;
+      state.arcadeBonus.chestOpened = false;
+      state.arcadeBonus.chestReward = null;
+      state.arcadeBonus.chestOpenedAt = 0;
+      state.arcadeBonus.chestReadyAnnounced = keysCollected >= CONFIG.arcadeBonus.keysRequired
+        && options.announceChestReady === true;
+      updateHud();
+
+      if (options.animateKey === true && keysCollected > 0) {
+        animateArcadeCollectionSlot(els.arcadeKeySlots[keysCollected - 1]);
+      }
+      if (typeof options.animateLetter === "string") {
+        animateArcadeCollectionSlot(
+          els.arcadeLetterSlots.find((slot) => slot.dataset.bonusLetter === options.animateLetter)
+        );
+      }
+
+      if (state.arcadeBonus.chestReadyAnnounced) {
+        pulseElement(els.arcadeKeyTrack, "is-complete-pulse");
+        pulseElement(els.arcadeCollectionHud, "is-all-keys-pulse");
+        showChestReadyGuidance({ duration: options.duration || 5000 });
+      } else {
+        hideChestReadyGuidance({ immediate: true });
+      }
+
+      return {
+        keysCollected,
+        collectedLetters,
+        ariaLabel: els.arcadeCollectionHud?.getAttribute("aria-label") || "",
+        chestReadyVisible: Boolean(els.chestReadyGuidance && !els.chestReadyGuidance.hidden)
+      };
+    };
+
+    runtime.collectArcadeBonusItemForVerification = (kind = "key", requestedLetter = "כ") => {
+      if (state.phase === "start" || !state.player) {
+        runtime.forceArcadeCollectionProgressForVerification({ keysCollected: 0, collectedLetters: [] });
+      }
+      const player = state.player;
+      if (!player) {
+        return null;
+      }
+
+      if (kind === "letter") {
+        const letter = CONFIG.arcadeBonus.letters.includes(requestedLetter) ? requestedLetter : CONFIG.arcadeBonus.letters[0];
+        collectArcadeBonusLetter({
+          x: player.x,
+          y: player.y,
+          letter,
+          value: CONFIG.arcadeBonus.letterScoreValue
+        });
+      } else {
+        collectArcadeBonusKey({
+          x: player.x,
+          y: player.y,
+          value: CONFIG.arcadeBonus.keyScoreValue
+        });
+      }
+
+      return {
+        keysCollected: state.arcadeBonus.keysCollected,
+        collectedLetters: [...state.arcadeBonus.collectedLetters],
+        chestReadyVisible: Boolean(els.chestReadyGuidance && !els.chestReadyGuidance.hidden)
       };
     };
 
@@ -5192,12 +7533,21 @@
         return null;
       }
 
-      const stageBase = Math.floor(state.correctAnswers / CONFIG.answersPerLevel) * CONFIG.answersPerLevel;
-      state.correctAnswers = stageBase + CONFIG.answersPerLevel - 1;
+      // Screenshot verification intentionally freezes regular gameplay. A forced
+      // boss challenge is an animation check, so restore the real update path.
+      state.visualVerificationMode = false;
+
+      const stageBase = getStageBaseCorrectCount();
+      state.correctAnswers = stageBase + CONFIG.regularAnswersPerStage;
       state.mathStats.correctAnswers = state.correctAnswers;
       state.mathStats.totalQuestions = Math.max(state.mathStats.totalQuestions, state.correctAnswers);
       updateHud();
       if (!state.boss) {
+        if (state.enemies.length === 0) {
+          for (let index = 0; index < Math.min(7, getRequiredEnemyCount()); index += 1) {
+            spawnEnemy(index);
+          }
+        }
         startBossChallenge();
       }
       return runtime.getBossSnapshot();
@@ -5205,6 +7555,8 @@
 
     runtime.getBossSnapshot = () => state.boss ? {
       id: state.boss.id,
+      configKey: state.boss.configKey,
+      definitionId: state.boss.definition?.id || null,
       name: state.boss.name,
       x: state.boss.x,
       y: state.boss.y,
@@ -5215,8 +7567,42 @@
       actorSheetReady: isImageReady(GAME_ASSETS.bossActorSheet),
       spawnProgress: state.boss.spawnProgress,
       phase: state.phase,
-      enemyCount: state.enemies.length
+      enemyCount: state.enemies.length,
+      iceTrailReady: isIceTrailBossMechanicActive(state.boss),
+      iceTrailCount: state.hazards.filter((hazard) => hazard.type === "boss-ice-trail").length,
+      questionsCorrect: state.boss.questionsCorrect || 0,
+      questionsTotal: CONFIG.bossQuestionsPerStage,
+      damageLevel: state.boss.damageLevel || 0,
+      cinematicProgress: state.bossCinematic
+        ? clamp(state.bossCinematic.elapsed / state.bossCinematic.totalDuration, 0, 1)
+        : 1
     } : null;
+
+    runtime.getBossEncounterSnapshot = () => ({
+      phase: state.phase,
+      levelIndex: state.levelIndex,
+      correctAnswers: state.correctAnswers,
+      stageCorrect: getStageCorrectCount(),
+      regularCorrect: getStageRegularCorrectCount(),
+      bossCorrect: getBossQuestionCorrectCount(),
+      boss: runtime.getBossSnapshot(),
+      cinematic: state.bossCinematic ? {
+        elapsed: state.bossCinematic.elapsed,
+        totalDuration: state.bossCinematic.totalDuration,
+        vanishingEnemyCount: state.bossCinematic.vanishingEnemies?.length || 0
+      } : null,
+      defeatTransition: state.bossDefeatTransition ? { ...state.bossDefeatTransition } : null,
+      stageIntro: Boolean(state.stageIntroCamera)
+    });
+
+    runtime.completeBossCinematicForVerification = () => {
+      if (!state.boss || !state.bossCinematic) {
+        return runtime.getBossEncounterSnapshot();
+      }
+      state.bossCinematic.elapsed = state.bossCinematic.totalDuration;
+      updateBoss(0);
+      return runtime.getBossEncounterSnapshot();
+    };
 
     runtime.getMazeScatterSnapshot = () => {
       prepareMazeScatterDecor();
@@ -5246,19 +7632,109 @@
 
     runtime.getMazeTilesetSnapshot = () => {
       const world = getMazeWorldKey();
+      if (isWorldOneReimagined()) {
+        const authoredBoardReady = isWorldOneAuthoredBoardReady();
+        return {
+          world,
+          concept: getWorldOneConceptKey(),
+          mode: authoredBoardReady ? "authored-raster" : "authored-procedural",
+          renderer: authoredBoardReady ? "world1-authored-environment-v1" : "world1-continuous-2.5d",
+          schemaVersion: 1,
+          ready: true,
+          imageStatus: authoredBoardReady ? "loaded" : "not-requested",
+          metadataStatus: "not-requested",
+          imageSrc: authoredBoardReady ? WORLD_ONE_AUTHORED_BOARD_SRC : null,
+          metadataSrc: null,
+          fallbackMode: "not-applicable",
+          missingRequiredRoles: [],
+          availableRoles: authoredBoardReady
+            ? ["authored-floor", "authored-wall", "authored-landmarks", "goal-cue"]
+            : ["continuous-floor", "continuous-wall", "macro-landmarks", "goal-cue"]
+        };
+      }
       const tilesetState = getMazeOptionalTilesetState(world);
       const loadedTileset = getLoadedMazeTileset(getCurrentLevel());
+      const iceV3Tileset = getReadyIceV3Tileset(getCurrentLevel());
+      const missingRequiredRoles = world === "ice" && loadedTileset
+        ? ICE_V3_TILESET_ROLES.filter((role) => !loadedTileset.definition.crops?.[role])
+        : [];
       return {
         world,
         mode: tilesetState?.mode || "unavailable",
+        renderer: loadedTileset?.definition?.renderer || "procedural",
+        schemaVersion: loadedTileset?.definition?.schemaVersion || null,
+        ready: world === "ice" ? Boolean(iceV3Tileset) : Boolean(loadedTileset),
         imageStatus: tilesetState?.imageStatus || "unavailable",
         metadataStatus: tilesetState?.metadataStatus || "unavailable",
         imageSrc: tilesetState?.imageSrc || null,
         metadataSrc: tilesetState?.metadataSrc || null,
-        fallbackMode: loadedTileset ? "image-tileset" : "procedural",
+        fallbackMode: iceV3Tileset ? "modular-v3" : loadedTileset ? "image-tileset" : "procedural",
+        missingRequiredRoles,
         availableRoles: loadedTileset
           ? Object.keys(loadedTileset.definition.crops || {})
           : []
+      };
+    };
+
+    runtime.getMazeProjectionSnapshot = () => {
+      const projection = getMazeAxonometricProjection();
+      const world = getMazeWorldKey();
+      const axonometricAtlas = GAME_ASSETS.mazeAxonometricWalls?.[world];
+      return {
+        renderer: "orthographic-3/4",
+        world,
+        concept: isWorldOneReimagined() ? getWorldOneConceptKey() : null,
+        visualRenderer: isWorldOneReimagined()
+          ? (isWorldOneAuthoredBoardReady() ? "world1-authored-environment-v1" : "world1-continuous-2.5d")
+          : APPROVED_STAGE_STYLE[world]
+            ? "stage1-style-themed-continuous-v1"
+            : "axonometric-atlas",
+        azimuthDegrees: projection.azimuthDegrees,
+        elevationDegrees: projection.elevationDegrees,
+        tiltFromVerticalDegrees: projection.tiltFromVerticalDegrees,
+        tileSize: TILE,
+        southDepth: projection.southDepth,
+        eastDepth: projection.eastDepth,
+        blenderAtlasReady: isWorldOneReimagined()
+          ? false
+          : Boolean(axonometricAtlas?.complete && axonometricAtlas.naturalWidth >= 1024)
+      };
+    };
+
+    runtime.getMazeVisualSnapshot = () => ({
+      ...(state.mazeVisualAudit || {
+        levelIndex: state.levelIndex,
+        worldId: getMazeWorldKey(),
+        concept: isWorldOneReimagined() ? getWorldOneConceptKey() : null,
+        renderer: "unreported",
+        layersDrawn: [],
+        assetUrlsActuallyDrawn: [],
+        legacyIceLayersDrawn: []
+      }),
+      hazardType: getCurrentLevel().hazard?.type || null,
+      hazardVisualStyle: isWorldOneReimagined() ? getWorldOneConcept().material : getMazeWorldKey(),
+      bossTrailVisualStyle: isWorldOneReimagined() ? getWorldOneConcept().material : getMazeWorldKey(),
+      legacyIceAssetsRequested: isWorldOneReimagined()
+        ? Boolean(
+          GAME_ASSETS.mazeWorlds.ice?.src
+          || GAME_ASSETS.mazeAxonometricWalls.ice?.src
+          || mazeOptionalTilesetCache.has("ice")
+        )
+        : null
+    });
+
+    runtime.exportWorldOneStaticBoard = () => {
+      if (!isWorldOneReimagined()) return null;
+      const level = getCurrentLevel();
+      const atlas = getMazeAutotileAtlas(level);
+      const visualProfile = getMazeMobileVisualProfile();
+      const staticBoard = atlas ? getAutotileStaticMazeBoard(level, atlas, visualProfile) : null;
+      if (!staticBoard?.canvas) return null;
+      return {
+        width: staticBoard.canvas.width,
+        height: staticBoard.canvas.height,
+        concept: getWorldOneConceptKey(),
+        dataUrl: staticBoard.canvas.toDataURL("image/png")
       };
     };
 
@@ -5273,7 +7749,39 @@
       return {
         answer: state.question?.answer,
         text: state.question?.text,
-        status: els.questionStatus.textContent
+        status: els.questionStatus.textContent,
+        bossQuestionNumber: state.question?.bossQuestionNumber,
+        bossQuestionTotal: state.question?.bossQuestionTotal
+      };
+    };
+
+    runtime.setBossQuestionFeedbackDelayForVerification = (delayMs = 180) => {
+      const delay = clamp(Math.floor(Number(delayMs) || 180), 80, 900);
+      CONFIG.questionFeedbackDelay.correct = delay;
+      CONFIG.questionFeedbackDelay.wrong = delay;
+      return delay;
+    };
+
+    runtime.answerCurrentQuestionForVerification = (
+      answer = state.question?.answer,
+      finishImmediately = false
+    ) => {
+      if (state.phase !== "question" || !state.question || state.answerLocked) {
+        return null;
+      }
+      const submitted = Number(answer);
+      const expected = state.question.answer;
+      const bossQuestionNumber = state.question.bossQuestionNumber || null;
+      setAnswerDigits(String(submitted));
+      els.answerForm.requestSubmit();
+      if (finishImmediately && state.questionFeedbackTimerId) {
+        clearQuestionFeedbackTimer();
+        finishQuestion(submitted === expected, { responseMs: 0, verification: true });
+      }
+      return {
+        submitted,
+        expected,
+        bossQuestionNumber
       };
     };
 
@@ -5319,7 +7827,7 @@
       els.endScreen.hidden = true;
       els.questionDialog.hidden = true;
       hidePauseScreen({ restoreFocus: false, sound: false });
-      enterLevel(CONFIG.levels.length - 1, { announce: false });
+      enterLevel(CONFIG.levels.length - 1, { announce: false, stageIntro: false });
       state.correctAnswers = CONFIG.targetCorrect - 1;
       state.mathStats.correctAnswers = CONFIG.targetCorrect - 1;
       state.mathStats.totalQuestions = Math.max(state.mathStats.totalQuestions, CONFIG.targetCorrect - 1);
@@ -5377,11 +7885,66 @@
 
     state.playerName = playerName.value;
     state.save.player.nickname = state.playerName;
-    state.timeLimitEnabled = true;
     setMode(getSelectedMode());
     setCharacter(getSelectedCharacterId());
     setDifficulty(getSelectedDifficulty());
     persistSave();
+    state.sessionKind = "standard";
+    state.dailyChallenge = null;
+    state.duelChallenge = null;
+    launchPreparedGameSession();
+  }
+
+  function startDailyChallenge(event) {
+    event?.preventDefault();
+    if (state.phase === "playing" || state.phase === "question") {
+      return;
+    }
+    const playerName = normalizePlayerName(els.playerNameInput.value);
+    if (!playerName.ok) {
+      els.nameError.textContent = playerName.error;
+      closeMenuSheets({ restoreFocus: false, sound: false });
+      els.playerNameInput.focus();
+      return;
+    }
+    state.playerName = playerName.value;
+    state.save.player.nickname = state.playerName;
+    setCharacter(getSelectedCharacterId());
+    setDifficulty(getSelectedDifficulty());
+    persistSave();
+    state.sessionKind = "daily";
+    state.duelChallenge = null;
+    state.dailyChallenge = {
+      ...getDailyChallengeForToday(),
+      questionCursor: 0
+    };
+    launchPreparedGameSession();
+  }
+
+  function startFriendDuel(event) {
+    event?.preventDefault();
+    if (state.phase === "playing" || state.phase === "question" || !state.duelChallenge) {
+      return;
+    }
+    const playerName = normalizePlayerName(els.playerNameInput.value);
+    if (!playerName.ok) {
+      els.nameError.textContent = playerName.error;
+      closeMenuSheets({ restoreFocus: false, sound: false });
+      els.playerNameInput.focus();
+      return;
+    }
+    state.playerName = playerName.value;
+    state.save.player.nickname = state.playerName;
+    setCharacter(getSelectedCharacterId());
+    setDifficulty(getSelectedDifficulty());
+    persistSave();
+    state.sessionKind = "duel";
+    state.dailyChallenge = null;
+    state.duelChallenge = { ...state.duelChallenge, questionCursor: 0 };
+    launchPreparedGameSession();
+  }
+
+  function launchPreparedGameSession() {
     closeMenuSheets({ restoreFocus: false, sound: false });
     hidePauseScreen();
     els.nameError.textContent = "";
@@ -5397,6 +7960,9 @@
     updatePauseButton();
     stage.focus({ preventScroll: true });
     resumeAudio();
+    setGameMusicScene(getMazeWorldKey(), { immediate: true });
+    window.KaflulAudio?.setPaused?.(false);
+    window.KaflulAudio?.setQuestionDucked?.(false);
     playUiMotion(stage, "screenEnter");
     playUiSound("notification");
   }
@@ -5436,14 +8002,26 @@
     syncMenuSummary();
     closeHeroGallery({ restoreFocus: false });
     closeMenuSheets({ restoreFocus: false, sound: false });
+    state.sessionKind = "standard";
+    state.dailyChallenge = null;
+    state.duelChallenge = null;
     setupGame();
+    setGameMusicScene("menu");
+    window.KaflulAudio?.setBossActive?.(false);
+    window.KaflulAudio?.setQuestionDucked?.(false);
     focusPlayerNameWhenUseful();
   }
 
   function retryGame() {
     const nickname = SYSTEMS.safeNickname(state.playerName || state.save.player.nickname);
     els.playerNameInput.value = nickname;
-    startGame();
+    if (state.sessionKind === "daily") {
+      startDailyChallenge();
+    } else if (state.sessionKind === "duel") {
+      startFriendDuel();
+    } else {
+      startGame();
+    }
   }
 
   function updatePauseScreen() {
@@ -5499,16 +8077,32 @@
   }
 
   function togglePause() {
-    if (state.phase === "playing") {
-      setPhase("paused");
+    if (state.phase === "playing" || state.phase === "question") {
+      state.phaseBeforePause = state.phase;
+      if (state.phase === "question") {
+        suspendQuestionTimer();
+      }
+      if (!setPhase("paused")) {
+        return;
+      }
       resetJoystick();
+      window.KaflulAudio?.setPaused?.(true);
+      playGameSound("pause");
       updatePauseButton();
       showPauseScreen();
       return;
     }
 
     if (state.phase === "paused") {
-      setPhase("playing");
+      const resumePhase = state.phaseBeforePause === "question" ? "question" : "playing";
+      if (!setPhase(resumePhase)) {
+        return;
+      }
+      if (resumePhase === "question") {
+        resumeQuestionTimer();
+      }
+      window.KaflulAudio?.setPaused?.(false);
+      playGameSound("resume");
       updatePauseButton();
       hidePauseScreen({ restoreFocus: true });
       state.lastTime = performance.now();
@@ -5541,6 +8135,52 @@
     if (els.pauseSoundLabel) {
       els.pauseSoundLabel.textContent = state.soundEnabled ? uiRuntime("sound") : uiRuntime("quiet");
     }
+    syncAudioSettingsUi();
+  }
+
+  function syncAudioSettingsUi() {
+    const fields = [
+      ["master", els.audioMasterVolume, els.audioMasterOutput],
+      ["music", els.audioMusicVolume, els.audioMusicOutput],
+      ["sfx", els.audioSfxVolume, els.audioSfxOutput],
+      ["voices", els.audioVoicesVolume, els.audioVoicesOutput]
+    ];
+    for (const [key, input, output] of fields) {
+      const percent = Math.round(Math.max(0, Math.min(1, state.audioVolumes[key])) * 100);
+      if (input && document.activeElement !== input) input.value = String(percent);
+      if (output) output.value = `${percent}%`;
+    }
+    if (els.audioSafetyToggle) {
+      els.audioSafetyToggle.setAttribute("aria-pressed", String(state.headphoneSafetyMode));
+    }
+    const english = state.language === "en";
+    if (els.audioMixerTitle) els.audioMixerTitle.textContent = english ? "Audio mix" : "מיקס שמע";
+    if (els.audioMixerNote) els.audioMixerNote.textContent = english ? "Music softens during questions" : "מוזיקה שקטה יותר בזמן תרגילים";
+    if (els.audioMasterLabel) els.audioMasterLabel.textContent = english ? "Master" : "עוצמה כללית";
+    if (els.audioMusicLabel) els.audioMusicLabel.textContent = english ? "Music" : "מוזיקה";
+    if (els.audioSfxLabel) els.audioSfxLabel.textContent = english ? "Effects" : "אפקטים";
+    if (els.audioVoicesLabel) els.audioVoicesLabel.textContent = english ? "Characters & bosses" : "דמויות ובוסים";
+    if (els.audioSafetyLabel) {
+      els.audioSafetyLabel.textContent = english
+        ? `Headphone safety: ${state.headphoneSafetyMode ? "On" : "Off"}`
+        : `מצב אוזניות בטוח: ${state.headphoneSafetyMode ? "פועל" : "כבוי"}`;
+    }
+  }
+
+  function updateAudioVolume(key, rawValue, persist = false) {
+    if (!Object.prototype.hasOwnProperty.call(state.audioVolumes, key)) return;
+    state.audioVolumes[key] = Math.max(0, Math.min(1, Number(rawValue) / 100));
+    syncUiSoundController();
+    syncAudioSettingsUi();
+    if (persist) persistSave();
+  }
+
+  function toggleHeadphoneSafety() {
+    state.headphoneSafetyMode = !state.headphoneSafetyMode;
+    syncUiSoundController();
+    syncAudioSettingsUi();
+    persistSave();
+    playUiSound("notification", { fromGesture: true });
   }
 
   function updatePauseButton() {
@@ -5579,6 +8219,17 @@
       return;
     }
 
+    if (window.KaflulAudio) {
+      window.KaflulAudio.setEnabled?.(true);
+      window.KaflulAudio.setMusicEnabled?.(state.musicEnabled);
+      window.KaflulAudio.setVolumes?.({
+        ...state.audioVolumes,
+        master: state.audioVolumes.master * (state.headphoneSafetyMode ? 0.56 : 1)
+      });
+      window.KaflulAudio.unlockFromGesture?.();
+      return;
+    }
+
     if (!state.audioContext) {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       if (!AudioContextClass) {
@@ -5593,6 +8244,9 @@
   }
 
   function playTone(frequency, duration, type = "sine", gainValue = 0.035) {
+    if (window.KaflulAudio) {
+      return;
+    }
     if (!state.soundEnabled || !state.audioContext) {
       return;
     }
@@ -5612,23 +8266,46 @@
   }
 
   function playCorrectSound() {
+    if (window.KaflulAudio) {
+      playGameSound("answerCorrect");
+      playCharacterSound("correct", { gain: 0.58 });
+      return;
+    }
     playTone(520, 0.08, "triangle", 0.04);
     setTimeout(() => playTone(740, 0.09, "triangle", 0.035), 55);
   }
 
   function playMissionSound() {
+    if (window.KaflulAudio) {
+      playGameSound("missionComplete");
+      return;
+    }
     playTone(660, 0.07, "triangle", 0.035);
     setTimeout(() => playTone(880, 0.08, "triangle", 0.03), 60);
     setTimeout(() => playTone(990, 0.09, "triangle", 0.025), 120);
   }
 
   function playWrongSound() {
+    if (window.KaflulAudio) {
+      playGameSound("answerWrong");
+      playCharacterSound("hit", { gain: 0.5 });
+      return;
+    }
     playTone(160, 0.16, "sawtooth", 0.035);
   }
 
   function setDirection(direction) {
     if (!DIRS[direction] || !state.player || state.phase !== "playing") {
       return;
+    }
+
+    if (state.stageIntroCamera) {
+      state.stageIntroCamera.queuedDirection = direction;
+      state.player.desiredDirection = direction;
+      // The overview is presentation, never an input lock. The first swipe or
+      // joystick press closes it immediately and starts movement in that same
+      // input event instead of making the player wait more than three seconds.
+      finishStageIntroCamera({ preserveInput: true, snapToGameplay: true });
     }
 
     state.player.desiredDirection = direction;
@@ -5647,8 +8324,13 @@
   }
 
   function applyCombo(eventName) {
+    const previousCount = state.comboState.count;
     SYSTEMS.applyComboEvent(state.comboState, eventName, getDifficultySettings());
     state.combo = state.comboState.count;
+    window.KaflulAudio?.setMusicIntensity?.(Math.min(1, 0.32 + state.combo * 0.055));
+    if (eventName === "success" && state.combo > previousCount && state.combo >= 5 && state.combo % 5 === 0) {
+      playGameSound("comboMilestone");
+    }
     return state.comboState;
   }
 
@@ -5712,6 +8394,121 @@
       overflow.textContent = `+${count - visibleLifeIcons}`;
       els.lives.append(overflow);
     }
+  }
+
+  function updateChestReadyGuidanceCopy() {
+    if (els.chestReadyTitle) {
+      els.chestReadyTitle.textContent = uiRuntime("chestReadyTitle");
+    }
+    if (els.chestReadyMessage) {
+      els.chestReadyMessage.textContent = uiRuntime("chestReadyMessage");
+    }
+  }
+
+  function syncArcadeBonusHud() {
+    if (!els.arcadeCollectionHud) {
+      return;
+    }
+
+    const bonus = state.arcadeBonus || createArcadeBonusState();
+    const keysRequired = CONFIG.arcadeBonus.keysRequired;
+    const keysCollected = clamp(Number(bonus.keysCollected) || 0, 0, keysRequired);
+    const collectedLetters = new Set(bonus.collectedLetters || []);
+    const letterCount = CONFIG.arcadeBonus.letters.reduce(
+      (count, letter) => count + (collectedLetters.has(letter) ? 1 : 0),
+      0
+    );
+
+    els.arcadeKeySlots.forEach((slot, index) => {
+      const isCollected = index < keysCollected;
+      slot.classList.toggle("is-collected", isCollected);
+      slot.setAttribute("data-collected", String(isCollected));
+    });
+
+    els.arcadeLetterSlots.forEach((slot) => {
+      const isCollected = collectedLetters.has(slot.dataset.bonusLetter);
+      slot.classList.toggle("is-collected", isCollected);
+      slot.setAttribute("data-collected", String(isCollected));
+    });
+
+    const keysComplete = keysCollected >= keysRequired;
+    const wordComplete = letterCount >= CONFIG.arcadeBonus.letters.length;
+    els.arcadeKeyTrack?.classList.toggle("is-complete", keysComplete);
+    els.arcadeWordTrack?.classList.toggle("is-complete", wordComplete);
+    els.arcadeCollectionHud.classList.toggle("keys-complete", keysComplete);
+    els.arcadeCollectionHud.classList.toggle("word-complete", wordComplete);
+    els.arcadeCollectionHud.dataset.keysCollected = String(keysCollected);
+    els.arcadeCollectionHud.dataset.lettersCollected = String(letterCount);
+    els.arcadeCollectionHud.setAttribute("aria-label", formatTemplate(uiRuntime("collectionAria"), {
+      keys: keysCollected,
+      keyTarget: keysRequired,
+      letters: letterCount,
+      letterTarget: CONFIG.arcadeBonus.letters.length
+    }));
+  }
+
+  function animateArcadeCollectionSlot(element) {
+    if (!element) {
+      return;
+    }
+
+    const previousTimer = arcadeCollectionAnimationTimers.get(element);
+    if (previousTimer) {
+      window.clearTimeout(previousTimer);
+    }
+    element.classList.remove("is-just-collected");
+    void element.offsetWidth;
+    element.classList.add("is-just-collected");
+    const timerId = window.setTimeout(() => {
+      element.classList.remove("is-just-collected");
+      arcadeCollectionAnimationTimers.delete(element);
+    }, 920);
+    arcadeCollectionAnimationTimers.set(element, timerId);
+  }
+
+  function hideChestReadyGuidance(options = {}) {
+    if (chestReadyGuidanceTimerId) {
+      window.clearTimeout(chestReadyGuidanceTimerId);
+      chestReadyGuidanceTimerId = null;
+    }
+    if (!els.chestReadyGuidance || els.chestReadyGuidance.hidden) {
+      return;
+    }
+
+    if (options.immediate) {
+      els.chestReadyGuidance.classList.remove("is-visible", "is-leaving");
+      els.chestReadyGuidance.hidden = true;
+      return;
+    }
+
+    els.chestReadyGuidance.classList.remove("is-visible");
+    els.chestReadyGuidance.classList.add("is-leaving");
+    chestReadyGuidanceTimerId = window.setTimeout(() => {
+      els.chestReadyGuidance.classList.remove("is-leaving");
+      els.chestReadyGuidance.hidden = true;
+      chestReadyGuidanceTimerId = null;
+    }, 280);
+  }
+
+  function showChestReadyGuidance(options = {}) {
+    if (!els.chestReadyGuidance || state.arcadeBonus?.chestOpened || state.phase === "start") {
+      return;
+    }
+    if (chestReadyGuidanceTimerId) {
+      window.clearTimeout(chestReadyGuidanceTimerId);
+      chestReadyGuidanceTimerId = null;
+    }
+
+    updateChestReadyGuidanceCopy();
+    els.chestReadyGuidance.hidden = false;
+    els.chestReadyGuidance.classList.remove("is-visible", "is-leaving");
+    void els.chestReadyGuidance.offsetWidth;
+    window.requestAnimationFrame(() => {
+      els.chestReadyGuidance?.classList.add("is-visible");
+    });
+
+    const duration = Math.max(2600, Number(options.duration) || 5000);
+    chestReadyGuidanceTimerId = window.setTimeout(() => hideChestReadyGuidance(), duration);
   }
 
   function getHudMissionKey() {
@@ -5824,13 +8621,24 @@
 
   function updateHud() {
     const arcadeWave = getArcadeWave();
-    const progressTarget = state.mode === "arcade" ? CONFIG.answersPerLevel : CONFIG.targetCorrect;
-    const progressStageLabel = state.mode === "arcade"
+    const shortChallenge = getActiveShortChallenge();
+    const bossProgressActive = !shortChallenge
+      && getStageCorrectCount() >= CONFIG.regularAnswersPerStage;
+    const progressTarget = shortChallenge
+      ? shortChallenge.targetCorrect
+      : (bossProgressActive ? CONFIG.bossQuestionsPerStage : CONFIG.regularAnswersPerStage);
+    const progressStageLabel = shortChallenge
+      ? (state.sessionKind === "duel"
+        ? (state.language === "en" ? "Friend duel" : "דו־קרב חברים")
+        : (state.language === "en" ? "Daily maze" : "מבוך יומי"))
+      : (bossProgressActive
+      ? (state.language === "en" ? `Stage ${state.levelIndex + 1} boss` : `בוס שלב ${state.levelIndex + 1}`)
+      : state.mode === "arcade"
       ? `${uiRuntime("wave")} ${arcadeWave}`
-      : `${uiRuntime("stage")} ${state.levelIndex + 1}`;
-    const progressValue = state.mode === "arcade"
-      ? state.correctAnswers % CONFIG.answersPerLevel
-      : state.correctAnswers;
+      : `${uiRuntime("stage")} ${state.levelIndex + 1}`);
+    const progressValue = shortChallenge
+      ? state.correctAnswers
+      : (bossProgressActive ? getBossQuestionCorrectCount() : getStageRegularCorrectCount());
     const progressPercent = progressTarget > 0 ? progressValue / progressTarget * 100 : 0;
     const missionProgress = getMissionProgress();
 
@@ -5844,6 +8652,7 @@
       ? `${state.combo} · ×${(state.comboState.multiplierPct / 100).toFixed(1)}`
       : String(state.combo);
     renderLivesHud();
+    syncArcadeBonusHud();
     const boundedProgress = Math.min(100, progressPercent);
     els.progress.style.width = `${boundedProgress}%`;
     if (els.progressWrap) {
@@ -5974,7 +8783,12 @@
   }
 
   function update(dt) {
-    state.clock += dt;
+    if (state.phase === "playing" || state.phase === "question" || state.phase === "victory") {
+      state.clock += dt;
+    }
+    if ((state.phase === "playing" || state.phase === "question") && !isStageIntroCameraActive()) {
+      state.activePlayTimeMs += dt * 1000;
+    }
     state.shake = Math.max(0, state.shake - dt);
     updateCamera(dt);
 
@@ -5992,6 +8806,13 @@
   }
 
   function updatePlaying(dt) {
+    if (isStageIntroCameraActive()) {
+      updatePlayerVisualState(state.player, dt);
+      updateParticles(dt);
+      updateFloatingTexts(dt);
+      return;
+    }
+
     if (state.visualVerificationMode) {
       updatePlayerVisualState(state.player, dt);
       updateParticles(dt);
@@ -6009,7 +8830,11 @@
       updateSpawns(dt);
     }
 
-    updatePlayer(dt);
+    if (state.bossCinematic) {
+      updatePlayerVisualState(state.player, dt);
+    } else {
+      updatePlayer(dt);
+    }
     collectItems();
     if (state.boss) {
       updateBoss(dt);
@@ -6039,6 +8864,7 @@
     }
 
     updateFinalBossExplosion(dt);
+    updateBossDefeatTransition(dt);
     updateParticles(dt);
     updateFloatingTexts(dt);
   }
@@ -6087,6 +8913,106 @@
     }
   }
 
+  function isIceTrailBossMechanicActive(boss = state.boss) {
+    const settings = CONFIG.bossMechanics.iceTrail;
+    return Boolean(
+      boss
+      && settings
+      && getCurrentLevel().enemyVisualStyle === settings.world
+    );
+  }
+
+  function pruneBossIceTrails(maxActive) {
+    const trails = state.hazards.filter((hazard) => hazard.type === "boss-ice-trail");
+    if (trails.length < maxActive) {
+      return;
+    }
+
+    const removable = trails
+      .slice()
+      .sort((a, b) => (b.age || 0) - (a.age || 0))
+      .slice(0, trails.length - maxActive + 1);
+    const removableIds = new Set(removable.map((hazard) => hazard.id));
+    state.hazards = state.hazards.filter((hazard) => !removableIds.has(hazard.id));
+  }
+
+  function spawnBossIceTrail(boss, beforeX = boss?.x, beforeY = boss?.y, options = {}) {
+    const settings = CONFIG.bossMechanics.iceTrail;
+    if (!settings || !boss || !isIceTrailBossMechanicActive(boss)) {
+      return null;
+    }
+
+    const direction = DIRS[boss.direction] ? boss.direction : "down";
+    const vector = DIRS[direction];
+    const origin = toCell(beforeX, beforeY);
+    const candidates = uniqueCells([
+      origin,
+      { x: origin.x - vector.x, y: origin.y - vector.y },
+      { x: origin.x - vector.x * 2, y: origin.y - vector.y * 2 }
+    ]).filter((cell) => isWalkableCell(cell.x, cell.y));
+
+    if (!candidates.length) {
+      return null;
+    }
+
+    pruneBossIceTrails(settings.maxActiveTrails || 5);
+    const center = centerOfCell(candidates[0].x, candidates[0].y);
+    const hazard = {
+      id: `boss-ice-trail-${state.levelIndex}-${Math.round(state.clock * 1000)}`,
+      type: "boss-ice-trail",
+      source: "boss",
+      label: isWorldOneReimagined() ? "פס אור של השומר" : "פס קרח של הבוס",
+      warning: isWorldOneReimagined() ? "השומר מציף את הדרך באור!" : "הבוס מקפיא את הדרך!",
+      activeText: isWorldOneReimagined() ? "תעלת אור של השומר" : "קרח של הבוס",
+      hitText: isWorldOneReimagined() ? "זרם האור הסיט אותנו" : "החלקנו על הקרח",
+      hitEffect: "slide",
+      color: getCurrentLevel().hazard?.color || (isWorldOneReimagined() ? "#2dd4bf" : "#9ef7ff"),
+      cells: candidates,
+      age: options.active ? settings.telegraph + 0.14 : 0,
+      telegraph: settings.telegraph,
+      duration: settings.duration,
+      phase: Math.random() * Math.PI * 2,
+      hitCooldown: 0,
+      slideDirection: direction,
+      slideSeconds: settings.slideSeconds,
+      slideSpeed: settings.slideSpeed
+    };
+
+    state.hazards.push(hazard);
+    addBurst(center.x, center.y, hazard.color, options.active ? 16 : 10, options.active ? 92 : 58);
+    if (!boss.iceTrailAnnounced || options.announce) {
+      boss.iceTrailAnnounced = true;
+      addFloatingText(center.x, center.y - 20, hazard.warning, isWorldOneReimagined() ? "#ffe08a" : "#dffcff");
+      playGameSound("hazardIce");
+      playBossSound(boss.configKey, "attack", { gain: 0.58 });
+    }
+
+    return hazard;
+  }
+
+  function updateBossIceTrailMechanic(boss, dt, beforeX, beforeY, movedDistance) {
+    const settings = CONFIG.bossMechanics.iceTrail;
+    if (!settings || !isIceTrailBossMechanicActive(boss)) {
+      return;
+    }
+
+    boss.iceTrailCooldown = Math.max(0, (boss.iceTrailCooldown || 0) - dt);
+    if (
+      boss.spawnProgress < 0.96
+      || boss.iceTrailCooldown > 0
+      || movedDistance < settings.minMoveDistance
+    ) {
+      return;
+    }
+
+    const hazard = spawnBossIceTrail(boss, beforeX, beforeY);
+    if (hazard) {
+      boss.iceTrailCooldown = settings.cooldown + Math.random() * 0.65;
+    } else {
+      boss.iceTrailCooldown = 0.65;
+    }
+  }
+
   function spawnEnvironmentHazard() {
     const definition = getCurrentLevel().hazard;
     if (!definition || !state.player) {
@@ -6120,7 +9046,13 @@
     state.nextHazardAt = Number.POSITIVE_INFINITY;
     addFloatingText(center.x, center.y - 18, definition.warning, definition.color || getCurrentLevel().accent);
     addBurst(center.x, center.y, definition.color || getCurrentLevel().accent, 16, 82);
-    playTone(definition.type === "lava-spill" ? 118 : 210, 0.1, "triangle", 0.022);
+    const hazardSound = {
+      "ice-slick": "hazardIce",
+      "lava-spill": "hazardLava",
+      "rune-trap": "hazardRune",
+      "crystal-burst": "hazardCrystal"
+    }[definition.type] || "notification";
+    playGameSound(hazardSound);
   }
 
   function chooseHazardOrigin() {
@@ -6247,16 +9179,9 @@
     updatePlayerVisualState(player, dt);
 
     const hasFreshDirection = state.clock - player.directionRequestTime <= INPUT_BUFFER_SECONDS;
+    movePlayerWithBufferedTurn(player, player.speed * dt, hasFreshDirection);
 
-    if (hasFreshDirection) {
-      tryApplyPlayerDirection(player, player.desiredDirection);
-    }
-
-    const moved = moveActor(player, player.direction, player.speed * dt);
-
-    if (!moved && hasFreshDirection && tryApplyPlayerDirection(player, player.desiredDirection)) {
-      moveActor(player, player.direction, player.speed * dt);
-    }
+    updatePlayerIceSlide(player, dt);
 
     player.lastMoveDistance = Math.hypot(player.x - beforeX, player.y - beforeY);
     if (player.lastMoveDistance > 0.04) {
@@ -6270,6 +9195,28 @@
       point.life -= dt;
       return point.life > 0;
     }).slice(0, 14);
+  }
+
+  function updatePlayerIceSlide(player, dt) {
+    if (!player || player.iceSlideTime <= 0) {
+      return;
+    }
+
+    const direction = DIRS[player.iceSlideDirection] ? player.iceSlideDirection : player.direction;
+    const maxTime = Math.max(0.01, player.iceSlideMax || player.iceSlideTime);
+    const ratio = clamp(player.iceSlideTime / maxTime, 0, 1);
+    const speed = Math.max(0, player.iceSlideSpeed || CONFIG.bossMechanics.iceTrail.slideSpeed);
+    const slideDistance = speed * dt * (0.42 + ratio * 0.58);
+    const moved = moveActor(player, direction, slideDistance);
+
+    player.iceSlideTime = Math.max(0, player.iceSlideTime - dt);
+    player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.12);
+    if (moved) {
+      player.turnDirection = direction;
+      player.turnAnimation = Math.max(player.turnAnimation || 0, 0.08);
+    } else {
+      player.iceSlideTime = 0;
+    }
   }
 
   function updatePlayerVisualState(player, dt) {
@@ -6297,6 +9244,17 @@
       return false;
     }
 
+    if (direction === player.direction) {
+      return true;
+    }
+
+    if (direction === OPPOSITE[player.direction]) {
+      player.direction = direction;
+      player.turnAnimation = 0.18;
+      player.turnDirection = direction;
+      return true;
+    }
+
     const turnPosition = getPlayerTurnPosition(player, direction);
     if (!turnPosition) {
       return false;
@@ -6306,7 +9264,7 @@
     const nextX = turnPosition.x + vector.x * TURN_LOOKAHEAD;
     const nextY = turnPosition.y + vector.y * TURN_LOOKAHEAD;
 
-    if (circleHitsWall(nextX, nextY, player.radius)) {
+    if (circleHitsWall(nextX, nextY, getActorWallCollisionRadius(player))) {
       return false;
     }
 
@@ -6319,6 +9277,77 @@
       player.turnDirection = direction;
     }
     return true;
+  }
+
+  function movePlayerWithBufferedTurn(player, distance, hasFreshDirection) {
+    const desiredDirection = hasFreshDirection ? player.desiredDirection : "none";
+    const desiredVector = DIRS[desiredDirection];
+    const currentVector = DIRS[player.direction];
+
+    if (!desiredVector || desiredDirection === "none") {
+      return moveActor(player, player.direction, distance);
+    }
+
+    if (!currentVector || player.direction === "none" || desiredDirection === player.direction) {
+      tryApplyPlayerDirection(player, desiredDirection);
+      return moveActor(player, player.direction, distance);
+    }
+
+    if (desiredDirection === OPPOSITE[player.direction]) {
+      tryApplyPlayerDirection(player, desiredDirection);
+      return moveActor(player, player.direction, distance);
+    }
+
+    const perpendicular = currentVector.x * desiredVector.x + currentVector.y * desiredVector.y === 0;
+    if (!perpendicular) {
+      return moveActor(player, player.direction, distance);
+    }
+
+    const currentCell = toCell(player.x, player.y);
+    let turnCell = { ...currentCell };
+    let turnPosition = centerOfCell(turnCell.x, turnCell.y);
+    let distanceToTurn = currentVector.x !== 0
+      ? (turnPosition.x - player.x) * currentVector.x
+      : (turnPosition.y - player.y) * currentVector.y;
+
+    if (distanceToTurn < -0.001) {
+      turnCell = {
+        x: currentCell.x + currentVector.x,
+        y: currentCell.y + currentVector.y
+      };
+      turnPosition = centerOfCell(turnCell.x, turnCell.y);
+      distanceToTurn = currentVector.x !== 0
+        ? (turnPosition.x - player.x) * currentVector.x
+        : (turnPosition.y - player.y) * currentVector.y;
+    }
+
+    const turnRadius = getActorWallCollisionRadius(player);
+    const desiredProbeX = turnPosition.x + desiredVector.x * TURN_LOOKAHEAD;
+    const desiredProbeY = turnPosition.y + desiredVector.y * TURN_LOOKAHEAD;
+    const turnIsOpen = distanceToTurn >= -0.001
+      && !circleHitsWall(desiredProbeX, desiredProbeY, turnRadius);
+
+    if (!turnIsOpen || distanceToTurn > distance + 0.001) {
+      return moveActor(player, player.direction, distance);
+    }
+
+    let moved = false;
+    if (distanceToTurn > 0.001) {
+      moved = moveActor(player, player.direction, distanceToTurn) || moved;
+    }
+    player.x = turnPosition.x;
+    player.y = turnPosition.y;
+    const changedDirection = player.direction !== desiredDirection;
+    player.direction = desiredDirection;
+    if (changedDirection) {
+      player.turnAnimation = 0.18;
+      player.turnDirection = desiredDirection;
+    }
+    const remainingDistance = Math.max(0, distance - Math.max(0, distanceToTurn));
+    if (remainingDistance > 0.001) {
+      moved = moveActor(player, desiredDirection, remainingDistance) || moved;
+    }
+    return moved;
   }
 
   function getPlayerTurnPosition(player, direction) {
@@ -6350,12 +9379,40 @@
 
   function canMove(actor, direction, distance) {
     const vector = DIRS[direction];
-    if (!vector) {
+    if (!vector || direction === "none") {
       return false;
     }
 
     const aligned = alignedPosition(actor, direction);
-    return !circleHitsWall(aligned.x + vector.x * distance, aligned.y + vector.y * distance, actor.radius);
+    return !circleHitsWall(
+      aligned.x + vector.x * distance,
+      aligned.y + vector.y * distance,
+      getActorWallCollisionRadius(actor)
+    );
+  }
+
+  function getBlockedForwardLaneStop(actor, direction) {
+    const vector = DIRS[direction];
+    if (!vector || direction === "none") {
+      return null;
+    }
+
+    const cell = toCell(actor.x, actor.y);
+    if (!isWalkableCell(cell.x, cell.y)) {
+      return null;
+    }
+    const forwardCell = {
+      x: cell.x + vector.x,
+      y: cell.y + vector.y
+    };
+    if (isWalkableCell(forwardCell.x, forwardCell.y)) {
+      return null;
+    }
+
+    const center = centerOfCell(cell.x, cell.y);
+    return vector.x !== 0
+      ? { axis: "x", value: center.x, crossAxis: "y", crossValue: center.y }
+      : { axis: "y", value: center.y, crossAxis: "x", crossValue: center.x };
   }
 
   function moveActor(actor, direction, distance) {
@@ -6373,11 +9430,32 @@
     const step = TILE / 5;
 
     while (remaining > 0) {
-      const amount = Math.min(step, remaining);
+      let amount = Math.min(step, remaining);
+      const laneStop = getBlockedForwardLaneStop(actor, direction);
+      if (laneStop) {
+        const current = actor[laneStop.axis];
+        const signedDistanceToStop = (laneStop.value - current)
+          * (laneStop.axis === "x" ? vector.x : vector.y);
+
+        // Stop on the node, not at the circle-vs-wall contact point. This keeps
+        // every legal perpendicular exit available after reaching a dead end.
+        // The tiny reverse snap also repairs positions produced by older builds.
+        if (signedDistanceToStop <= 0.001) {
+          if (Math.abs(current - laneStop.value) > 0.001) {
+            actor[laneStop.axis] = laneStop.value;
+            moved = true;
+          }
+          if (Math.abs(actor[laneStop.crossAxis] - laneStop.crossValue) <= TURN_SNAP_DISTANCE) {
+            actor[laneStop.crossAxis] = laneStop.crossValue;
+          }
+          return moved;
+        }
+        amount = Math.min(amount, signedDistanceToStop);
+      }
       const nextX = actor.x + vector.x * amount;
       const nextY = actor.y + vector.y * amount;
 
-      if (circleHitsWall(nextX, nextY, actor.radius)) {
+      if (circleHitsWall(nextX, nextY, getActorWallCollisionRadius(actor))) {
         return moved;
       }
 
@@ -6395,7 +9473,7 @@
     const result = { x: actor.x, y: actor.y };
     const cell = toCell(actor.x, actor.y);
     const center = centerOfCell(cell.x, cell.y);
-    const snapDistance = 4.8;
+    const snapDistance = TURN_SNAP_DISTANCE;
 
     if (vector.x !== 0 && Math.abs(actor.y - center.y) < snapDistance) {
       result.y = center.y;
@@ -6418,7 +9496,10 @@
       const hitRadius = player.radius + collectible.radius + 1.4;
       if (dx * dx + dy * dy <= hitRadius * hitRadius) {
         state.collectibles.delete(key);
+        state.collectiblesRevision += 1;
         if (collectible.kind === "power") {
+          const worldOnePower = isWorldOneReimagined();
+          const powerColor = worldOnePower ? getWorldOneConcept().collectible.mid : "#9ef7ff";
           state.nextPowerCollectibleAt = state.clock + 14;
           player.eatAnimation = GAME_THEME.player.eatAnimationDuration;
           player.eatDirection = player.direction;
@@ -6426,13 +9507,14 @@
             x: collectible.x,
             y: collectible.y,
             value: 0,
-            color: "#9ef7ff",
+            color: powerColor,
             life: GAME_THEME.player.eatAnimationDuration,
             maxLife: GAME_THEME.player.eatAnimationDuration
           };
-          addBurst(collectible.x, collectible.y, "#9ef7ff", 20, 96);
-          addFloatingText(collectible.x, collectible.y - 20, "פתית כוח", "#9ef7ff");
-          playTone(760, 0.06, "triangle", 0.02);
+          addBurst(collectible.x, collectible.y, powerColor, 20, 96);
+          addFloatingText(collectible.x, collectible.y - 20, worldOnePower ? "זרע כוח" : "פתית כוח", powerColor);
+          playGameSound("rewardPower");
+          playCharacterSound("eat", { gain: 0.44 });
           openQuestion(null, { source: "reward" });
           return;
         }
@@ -6441,7 +9523,8 @@
           player.eatDirection = player.direction;
           addBurst(collectible.x, collectible.y, "#c7a6ff", 30, 130);
           addFloatingText(collectible.x, collectible.y - 22, "ליבת הבוס", "#c7a6ff");
-          playTone(360, 0.1, "triangle", 0.03);
+          playGameSound("bossCore");
+          playCharacterSound("eat", { gain: 0.46 });
           if (state.boss) {
             openQuestion(state.boss);
           }
@@ -6485,7 +9568,8 @@
     }
 
     if (collected > 0) {
-      playTone(620 + Math.min(collected, 4) * 40, 0.035, "square", 0.012);
+      playGameSound(collected > 1 ? "bonusCollectible" : "collectible");
+      playCharacterSound("eat", { gain: 0.26 });
       updateMission("score");
       updateHud();
     }
@@ -6509,7 +9593,7 @@
     player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.38);
     addBurst(collectible.x, collectible.y, "#ffd84a", 18, 90);
     addFloatingText(collectible.x, collectible.y - 18, `${letter} +${award.total}`, "#ffd84a");
-    playTone(760 + state.arcadeBonus.collectedLetters.length * 70, 0.06, "triangle", 0.022);
+    playGameSound(`letter${Math.max(1, Math.min(3, state.arcadeBonus.collectedLetters.length))}`);
 
     const completedWord = CONFIG.arcadeBonus.letters.every((target) => state.arcadeBonus.collectedLetters.includes(target));
     if (completedWord && !state.arcadeBonus.letterHeartAwarded) {
@@ -6520,16 +9604,23 @@
       addBurst(player.x, player.y, "#ff5f9f", 44, 150);
       addFloatingText(player.x, player.y - 46, "כפל הושלם!", "#ffd84a");
       addFloatingText(player.x, player.y - 28, "+לב", "#ff5f9f");
-      playTone(880, 0.12, "triangle", 0.04);
-      window.setTimeout(() => playTone(1160, 0.11, "triangle", 0.035), 90);
+      playGameSound("wordComplete");
+      playGameSound("heart", { throttleMs: 80 });
     }
 
     updateMission("score");
     updateHud();
+    animateArcadeCollectionSlot(
+      els.arcadeLetterSlots.find((slot) => slot.dataset.bonusLetter === letter)
+    );
+    if (completedWord) {
+      pulseElement(els.arcadeWordTrack, "is-complete-pulse");
+    }
   }
 
   function collectArcadeBonusKey(collectible) {
     const player = state.player;
+    const previousKeyCount = state.arcadeBonus.keysCollected;
     const award = awardScore({
       type: "collectible",
       value: collectible.value || CONFIG.arcadeBonus.keyScoreValue
@@ -6551,17 +9642,27 @@
       "#ffd84a"
     );
     addFloatingText(collectible.x, collectible.y - 4, `+${award.total}`, "#fff7c6");
-    playTone(620 + state.arcadeBonus.keysCollected * 95, 0.08, "square", 0.018);
+    playGameSound(`key${Math.max(1, Math.min(3, state.arcadeBonus.keysCollected))}`);
 
-    if (state.arcadeBonus.keysCollected >= CONFIG.arcadeBonus.keysRequired && !state.arcadeBonus.chestOpened) {
+    const completedKeys = previousKeyCount < CONFIG.arcadeBonus.keysRequired
+      && state.arcadeBonus.keysCollected >= CONFIG.arcadeBonus.keysRequired
+      && !state.arcadeBonus.chestOpened;
+    if (completedKeys) {
       const chest = centerOfCell(getArcadeChestCell().x, getArcadeChestCell().y);
       addBurst(chest.x, chest.y, "#ffd84a", 30, 130);
       addFloatingText(chest.x, chest.y - 28, "התיבה מוכנה!", "#ffd84a");
-      playTone(980, 0.12, "triangle", 0.03);
+      playGameSound("chestReady");
+      state.arcadeBonus.chestReadyAnnounced = true;
     }
 
     updateMission("score");
     updateHud();
+    animateArcadeCollectionSlot(els.arcadeKeySlots[state.arcadeBonus.keysCollected - 1]);
+    if (completedKeys) {
+      pulseElement(els.arcadeKeyTrack, "is-complete-pulse");
+      pulseElement(els.arcadeCollectionHud, "is-all-keys-pulse");
+      showChestReadyGuidance();
+    }
   }
 
   function tryOpenArcadeBonusChest() {
@@ -6583,22 +9684,23 @@
     state.arcadeBonus.chestOpened = true;
     state.arcadeBonus.chestReward = reward;
     state.arcadeBonus.chestOpenedAt = state.clock;
+    hideChestReadyGuidance({ immediate: true });
     state.shake = Math.max(state.shake, 0.18);
     player.rewardAnimation = 1.05;
 
     addBurst(chest.x, chest.y, "#ffd84a", 56, 175);
     addFloatingText(chest.x, chest.y - 44, "התיבה נפתחה!", "#ffd84a");
-    playTone(420, 0.08, "triangle", 0.028);
-    window.setTimeout(() => playTone(760, 0.1, "triangle", 0.033), 90);
-    window.setTimeout(() => playTone(1080, 0.12, "triangle", 0.04), 190);
+    playGameSound("chestOpen");
 
     if (reward === "heart") {
       state.lives += 1;
+      playGameSound("heart");
       addFloatingText(chest.x, chest.y - 24, "+לב", "#ff5f9f");
       showArcadeRewardBanner("heart");
       addBurst(player.x, player.y, "#ff5f9f", 28, 120);
     } else if (reward === "shield") {
       player.invulnerable = Math.max(player.invulnerable || 0, CONFIG.arcadeBonus.chestShieldSeconds);
+      playGameSound("shield");
       addFloatingText(chest.x, chest.y - 24, "מגן זהב!", "#9ef7ff");
       showArcadeRewardBanner("shield");
       addBurst(player.x, player.y, "#9ef7ff", 34, 135);
@@ -6662,6 +9764,10 @@
 
   function updateEnemies(dt) {
     const playerCell = toCell(state.player.x, state.player.y);
+    if (state.enemies.length && state.clock >= state.nextEnemyAmbientAt) {
+      window.KaflulAudio?.playEnemy?.("idle", { gain: 0.28 });
+      state.nextEnemyAmbientAt = state.clock + 5.5 + Math.random() * 4.5;
+    }
     for (const enemy of state.enemies) {
       enemy.pathCooldown -= dt;
       enemy.roamTargetCooldown = Math.max(0, (enemy.roamTargetCooldown || 0) - dt);
@@ -6676,6 +9782,10 @@
       const nearCenter = Math.abs(enemy.x - center.x) <= centerTolerance
         && Math.abs(enemy.y - center.y) <= centerTolerance;
       const blocked = !canMove(enemy, enemy.direction, Math.max(3.2, enemy.speed * dt + 1));
+      const directionVector = DIRS[enemy.direction] || DIRS.none;
+      const signedDistanceToCenter = (center.x - enemy.x) * directionVector.x
+        + (center.y - enemy.y) * directionVector.y;
+      let remainingMove = enemy.speed * dt;
 
       // Choose a route only at a lane center or when a wall blocks movement.
       // Re-routing in the middle of a corridor could wedge enemies on phones
@@ -6684,48 +9794,72 @@
       // On phones an enemy moves only about 1-2 logical pixels per frame, so the
       // old unconditional nearCenter branch continuously reset its position and
       // made it look frozen. The cooldown now lets it leave the intersection.
-      if (blocked || (nearCenter && enemy.pathCooldown <= 0)) {
-        enemy.x = center.x;
-        enemy.y = center.y;
-        enemy.direction = findNextDirection(
-          cell,
-          getEnemyTarget(enemy, playerCell),
-          enemy.direction
-        );
-        enemy.pathCooldown = Math.max(0.12, (TILE * 0.55) / Math.max(enemy.speed, 1));
+      const shouldChooseRoute = blocked || (
+        nearCenter
+        && enemy.pathCooldown <= 0
+        && signedDistanceToCenter >= -0.001
+      );
+      if (shouldChooseRoute) {
+        const centerDx = center.x - enemy.x;
+        const centerDy = center.y - enemy.y;
+        const centerDistance = Math.hypot(centerDx, centerDy);
+        if (centerDistance > 0.001) {
+          const correctionDistance = Math.min(centerDistance, remainingMove);
+          const correctionRatio = correctionDistance / centerDistance;
+          const correctionX = enemy.x + centerDx * correctionRatio;
+          const correctionY = enemy.y + centerDy * correctionRatio;
+          if (!circleHitsWall(correctionX, correctionY, getActorWallCollisionRadius(enemy))) {
+            enemy.x = correctionX;
+            enemy.y = correctionY;
+            remainingMove -= correctionDistance;
+          }
+        }
+
+        const reachedCenter = Math.hypot(enemy.x - center.x, enemy.y - center.y) <= 0.001;
+        if (reachedCenter) {
+          enemy.x = center.x;
+          enemy.y = center.y;
+          enemy.direction = findNextDirection(
+            cell,
+            getEnemyTarget(enemy, playerCell),
+            enemy.direction
+          );
+          enemy.pathCooldown = Math.max(0.12, (TILE * 0.55) / Math.max(enemy.speed, 1));
+        }
       }
 
-      moveActor(enemy, enemy.direction, enemy.speed * dt);
+      if (remainingMove > 0.001) {
+        moveActor(enemy, enemy.direction, remainingMove);
+      }
 
       let movedDistance = Math.hypot(enemy.x - beforeX, enemy.y - beforeY);
       if (movedDistance < 0.05) {
-        const stuckCell = toCell(enemy.x, enemy.y);
-        const stuckCenter = centerOfCell(stuckCell.x, stuckCell.y);
-        enemy.x = stuckCenter.x;
-        enemy.y = stuckCenter.y;
+        // A direction of "none" used to be treated as a valid zero-vector by
+        // canMove(). The recovery then selected OPPOSITE.none (also "none"),
+        // leaving the ghost visibly frozen until the late watchdog fired.
+        // Select an actually open route immediately; at a dead end the path
+        // finder naturally returns the reverse lane without a position jump.
         enemy.direction = findNextDirection(
-          stuckCell,
+          cell,
           getEnemyTarget(enemy, playerCell),
-          enemy.direction
+          enemy.direction === "none" ? "right" : enemy.direction
         );
-        moveActor(enemy, enemy.direction, Math.max(1.5, enemy.speed * dt));
-        movedDistance = Math.hypot(enemy.x - stuckCenter.x, enemy.y - stuckCenter.y);
+        enemy.pathCooldown = 0;
+        moveActor(enemy, enemy.direction, Math.min(remainingMove || enemy.speed * dt, enemy.speed * dt));
+        movedDistance = Math.hypot(enemy.x - beforeX, enemy.y - beforeY);
       }
 
       enemy.stuckTime = movedDistance < 0.05 ? (enemy.stuckTime || 0) + dt : 0;
       if (enemy.stuckTime > 0.35) {
-        const stuckCell = toCell(enemy.x, enemy.y);
-        const stuckCenter = centerOfCell(stuckCell.x, stuckCell.y);
-        enemy.x = stuckCenter.x;
-        enemy.y = stuckCenter.y;
         enemy.direction = findNextDirection(
-          stuckCell,
+          cell,
           getEnemyTarget(enemy, playerCell),
           OPPOSITE[enemy.direction] || enemy.direction
         );
         enemy.pathCooldown = 0;
         enemy.stuckTime = 0;
       }
+      enemy.lastMoveDistance = movedDistance;
     }
   }
 
@@ -6746,25 +9880,42 @@
       return;
     }
 
-    boss.spawnProgress = clamp(boss.spawnProgress + dt * 0.82, 0, 1);
+    boss.hitFlash = Math.max(0, (boss.hitFlash || 0) - dt * 2.8);
     boss.wobble += dt * 3.15;
     boss.turnAnimation = Math.max(0, (boss.turnAnimation || 0) - dt);
-    if (state.bossIntro) {
-      state.bossIntro.life -= dt;
-      if (state.bossIntro.life <= 0) {
-        state.bossIntro = null;
+    if (state.bossCinematic) {
+      const cinematic = state.bossCinematic;
+      cinematic.elapsed = Math.min(cinematic.totalDuration, cinematic.elapsed + dt);
+      const emergeProgress = clamp(
+        (cinematic.elapsed - cinematic.emergeDelay) / Math.max(0.01, cinematic.emergeDuration),
+        0,
+        1
+      );
+      boss.spawnProgress = smoothCameraStep(emergeProgress);
+      if (state.bossIntro) {
+        state.bossIntro.life = Math.max(0, cinematic.totalDuration - cinematic.elapsed);
       }
-    }
-
-    if (boss.spawnProgress < 0.78) {
+      state.shake = Math.max(
+        state.shake,
+        Math.sin(emergeProgress * Math.PI) * (MOBILE_RUNTIME.reducedEffects ? 0.08 : 0.24)
+      );
       boss.lastMoveDistance = 0;
       boss.walkCycle = ((boss.walkCycle || 0) + dt * 1.35) % (Math.PI * 2);
       boss.trail = (boss.trail || []).filter((point) => {
         point.life -= dt;
         return point.life > 0;
       });
+      if (cinematic.elapsed >= cinematic.totalDuration) {
+        state.bossCinematic = null;
+        state.bossIntro = null;
+        boss.spawnProgress = 1;
+        addFloatingText(boss.x, boss.y - 58, `${boss.name} יוצא למרדף!`, boss.color);
+        addBurst(boss.x, boss.y, boss.color, 44, 155);
+      }
       return;
     }
+
+    boss.spawnProgress = clamp(boss.spawnProgress + dt * 0.82, 0, 1);
 
     const playerCell = toCell(state.player.x, state.player.y);
     const beforeX = boss.x;
@@ -6809,6 +9960,10 @@
       boss.walkCycle = ((boss.walkCycle || 0) + movedDistance * 0.16) % (Math.PI * 2);
       boss.trail = boss.trail || [];
       boss.trail.unshift({ x: beforeX, y: beforeY, life: 0.42, direction: boss.direction });
+      if (state.clock >= (boss.nextStepSoundAt || 0)) {
+        playBossSound(boss.configKey, "move", { gain: 0.42 });
+        boss.nextStepSoundAt = state.clock + 0.76 + Math.random() * 0.18;
+      }
     } else {
       boss.walkCycle = ((boss.walkCycle || 0) + dt * 1.15) % (Math.PI * 2);
     }
@@ -6816,6 +9971,8 @@
       point.life -= dt;
       return point.life > 0;
     }).slice(0, 10);
+
+    updateBossIceTrailMechanic(boss, dt, beforeX, beforeY, movedDistance);
   }
 
   function getEnemyTarget(enemy, playerCell) {
@@ -6915,6 +10072,18 @@
   }
 
   function findNextDirection(start, target, currentDirection) {
+    const pathCacheKey = `${state.levelIndex}|${start.x},${start.y}|${target.x},${target.y}|${currentDirection}`;
+    const cachedDirection = enemyPathDirectionCache.get(pathCacheKey);
+    if (cachedDirection) {
+      return cachedDirection;
+    }
+    const rememberDirection = (direction) => {
+      enemyPathDirectionCache.set(pathCacheKey, direction);
+      if (enemyPathDirectionCache.size > 2400) {
+        enemyPathDirectionCache.delete(enemyPathDirectionCache.keys().next().value);
+      }
+      return direction;
+    };
     const options = DIR_NAMES.filter((dir) => {
       const next = {
         x: start.x + DIRS[dir].x,
@@ -6924,7 +10093,7 @@
     });
 
     if (options.length === 0) {
-      return OPPOSITE[currentDirection] || "right";
+      return rememberDirection(OPPOSITE[currentDirection] || "right");
     }
 
     const withoutReverse = options.filter((dir) => dir !== OPPOSITE[currentDirection]);
@@ -6957,7 +10126,7 @@
       }
 
       if (item.cell.x === target.x && item.cell.y === target.y) {
-        return item.first;
+        return rememberDirection(item.first);
       }
 
       for (const dir of DIR_NAMES) {
@@ -6973,7 +10142,7 @@
       }
     }
 
-    return fallback;
+    return rememberDirection(fallback);
   }
 
   function checkEnemyCollision() {
@@ -7045,13 +10214,34 @@
   }
 
   function applyEnvironmentHazardHit(hazard) {
+    if (hazard.hitEffect === "slide") {
+      applyBossIceTrailSlide(hazard);
+      return;
+    }
+
+    if (getActiveShortChallenge()) {
+      hazard.hitCooldown = 1.5;
+      state.hitsTaken += 1;
+      applyCombo("mistake");
+      state.shake = 0.16;
+      if (state.player) {
+        addBurst(state.player.x, state.player.y, hazard.color || getCurrentLevel().accent, 18, 100);
+        addFloatingText(state.player.x, state.player.y - 38, "ממשיכים במסלול", "#ffe66d");
+        resetPositionsAfterHit();
+        state.player.invulnerable = 2.4;
+      }
+      updateHud();
+      return;
+    }
+
     hazard.hitCooldown = 1.5;
     state.lives -= 1;
     state.hitsTaken += 1;
     applyCombo("lifeLost");
     updateMission("wrongAnswer");
     state.shake = 0.32;
-    playWrongSound();
+    playGameSound("lifeLost");
+    playCharacterSound("hit", { gain: 0.64 });
     pulseElement(stage, "stage-hit");
     pulseElement(els.lives.closest(".metric"), "life-hit");
     const player = state.player;
@@ -7070,7 +10260,44 @@
     updateHud();
   }
 
+  function applyBossIceTrailSlide(hazard) {
+    const player = state.player;
+    if (!player) {
+      return;
+    }
+
+    hazard.hitCooldown = 0.72;
+    const direction = DIRS[hazard.slideDirection] ? hazard.slideDirection : player.direction;
+    const slideSeconds = Math.max(0.18, hazard.slideSeconds || CONFIG.bossMechanics.iceTrail.slideSeconds);
+    player.iceSlideDirection = direction;
+    player.iceSlideTime = Math.max(player.iceSlideTime || 0, slideSeconds);
+    player.iceSlideMax = slideSeconds;
+    player.iceSlideSpeed = Math.max(
+      player.iceSlideSpeed || 0,
+      hazard.slideSpeed || CONFIG.bossMechanics.iceTrail.slideSpeed
+    );
+    player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.36);
+    state.shake = Math.max(state.shake, 0.08);
+    addBurst(player.x, player.y, hazard.color || "#9ef7ff", 16, 86);
+    addFloatingText(player.x, player.y - 26, hazard.hitText || "החלקה!", "#dffcff");
+    playGameSound("iceSlide");
+  }
+
   function generateQuestion() {
+    const shortChallenge = getActiveShortChallenge();
+    if (shortChallenge?.questions?.length) {
+      const cursor = shortChallenge.questionCursor || 0;
+      const source = shortChallenge.questions[cursor % shortChallenge.questions.length];
+      shortChallenge.questionCursor = cursor + 1;
+      const question = makeMultiplicationQuestion(source.a, source.b);
+      rememberQuestionKey(question.key);
+      return {
+        ...question,
+        daily: state.sessionKind === "daily",
+        duel: state.sessionKind === "duel",
+        challengeSeed: shortChallenge.seed
+      };
+    }
     const difficulty = getDifficultySettings();
     const reviewQuestion = Math.random() < getAdaptiveQuestionChance() ? createReviewQuestion(difficulty) : null;
     const question = reviewQuestion || createRandomQuestion();
@@ -7112,6 +10339,23 @@
     };
   }
 
+  function generateBossQuestion(boss = state.boss) {
+    const questionIndex = clamp(
+      Math.floor(boss?.questionsCorrect || 0),
+      0,
+      CONFIG.bossQuestionsPerStage - 1
+    );
+    const question = createHardestQuestion(getDifficultySettings(), questionIndex);
+    rememberQuestionKey(question.key);
+    return {
+      ...question,
+      peak: true,
+      boss: true,
+      bossQuestionNumber: questionIndex + 1,
+      bossQuestionTotal: CONFIG.bossQuestionsPerStage
+    };
+  }
+
   function createRandomQuestion() {
     const difficulty = getDifficultySettings();
     let { a, b } = createFactorPair(difficulty);
@@ -7123,24 +10367,17 @@
     return makeMultiplicationQuestion(a, b);
   }
 
-  function createHardestQuestion(difficulty) {
-    if (difficulty.questionMode === "table") {
-      return makeMultiplicationQuestion(9, 9);
-    }
-
-    if (difficulty.questionMode === "filteredTable") {
-      return makeMultiplicationQuestion(9, 8);
-    }
-
-    if (difficulty.questionMode === "twoByOne") {
-      return makeMultiplicationQuestion(97, 9);
-    }
-
-    if (difficulty.questionMode === "legendary") {
-      return makeMultiplicationQuestion(99, 98);
-    }
-
-    return makeMultiplicationQuestion(98, 97);
+  function createHardestQuestion(difficulty, sequenceIndex = 0) {
+    const sequences = {
+      table: [[9, 9], [8, 9], [8, 8]],
+      filteredTable: [[9, 9], [9, 8], [8, 8]],
+      twoByOne: [[97, 9], [96, 9], [89, 8]],
+      legendary: [[99, 98], [97, 96], [94, 93]],
+      twoByTwo: [[98, 97], [96, 94], [93, 92]]
+    };
+    const sequence = sequences[difficulty.questionMode] || sequences.twoByTwo;
+    const [a, b] = sequence[clamp(Math.floor(sequenceIndex), 0, sequence.length - 1)];
+    return makeMultiplicationQuestion(a, b);
   }
 
   function createFactorPair(difficulty) {
@@ -7286,9 +10523,12 @@
     const stats = state.factStats[question.key] || { wrong: 0, correct: 0 };
     if (correct) {
       stats.correct += 1;
+      stats.streak = Math.max(0, Number(stats.streak) || 0) + 1;
     } else {
       stats.wrong += 1;
+      stats.streak = 0;
     }
+    stats.lastAnsweredAt = new Date().toISOString();
 
     state.factStats[question.key] = stats;
     saveFactStats();
@@ -7388,9 +10628,25 @@
 
   function getQuestionStatusText(enemy, isBossQuestion, isRewardQuestion, isPeakQuestion) {
     const questionCopy = getUiCopy().runtime.question;
+    const shortChallenge = getActiveShortChallenge();
+    if (shortChallenge) {
+      const current = Math.min(shortChallenge.questionCursor || 1, shortChallenge.targetCorrect);
+      const title = state.sessionKind === "duel"
+        ? (state.language === "en" ? "Friend duel" : "דו־קרב חברים")
+        : (state.language === "en" ? "Daily maze" : "מבוך יומי");
+      return state.language === "en"
+        ? `${title} · fact ${current} of ${shortChallenge.targetCorrect}`
+        : `${title} · תרגיל ${current} מתוך ${shortChallenge.targetCorrect}`;
+    }
     if (isBossQuestion) {
       const bossTitle = state.language === "en" ? "Boss" : (enemy?.title || "בוס");
-      return `${bossTitle} · ${questionCopy.bossSuffix}`;
+      const current = Math.min(
+        CONFIG.bossQuestionsPerStage,
+        (enemy?.questionsCorrect || 0) + 1
+      );
+      return state.language === "en"
+        ? `${bossTitle} · ultimate question ${current} of ${CONFIG.bossQuestionsPerStage}`
+        : `${bossTitle} · שאלת בוס ${current} מתוך ${CONFIG.bossQuestionsPerStage}`;
     }
     if (isRewardQuestion) {
       return questionCopy.rewardStatus;
@@ -7414,7 +10670,61 @@
     );
     setText("#question-timer span", uiStatic("timer"));
     setAttr("#answer-input", "aria-label", uiStatic("answer"));
+    setText("#answer-display-label", uiStatic("answerEntry") || uiStatic("answer"));
+    setAttr("#game-number-pad", "aria-label", uiStatic("numberPad") || uiStatic("answer"));
+    setAttr('[data-keypad-action="delete"]', "aria-label", uiStatic("eraseDigit") || uiStatic("answer"));
+    setAttr('[data-keypad-action="submit"]', "aria-label", uiStatic("submit"));
     setText("#submit-answer", uiStatic("submit"));
+  }
+
+  function setNumberPadDisabled(disabled) {
+    for (const button of els.numberPadButtons || []) {
+      button.disabled = Boolean(disabled);
+    }
+    els.numberPad?.setAttribute("aria-disabled", String(Boolean(disabled)));
+  }
+
+  function setAnswerDigits(value) {
+    if (!els.answerInput || state.answerLocked || !state.question) {
+      return false;
+    }
+    const nextValue = String(value ?? "").replace(/\D/g, "").slice(0, 4);
+    if (nextValue === els.answerInput.value) {
+      return false;
+    }
+    els.answerInput.value = nextValue;
+    els.answerInput.dispatchEvent(new Event("input", { bubbles: true }));
+    return true;
+  }
+
+  function handleNumberPadInput(button) {
+    if (!button || state.answerLocked || !state.question || button.disabled) {
+      return;
+    }
+
+    const digit = button.dataset.keypadDigit;
+    const action = button.dataset.keypadAction;
+    if (/^\d$/.test(digit || "")) {
+      if (setAnswerDigits(`${els.answerInput.value}${digit}`)) {
+        playGameSound("keypadDigit", { detune: (Number(digit) - 4.5) * 10 });
+      }
+    } else if (action === "delete") {
+      if (setAnswerDigits(els.answerInput.value.slice(0, -1))) {
+        playGameSound("keypadDelete");
+      }
+    } else if (action === "submit") {
+      if (els.answerInput.value !== "") {
+        playGameSound("keypadSubmit");
+        els.answerForm.requestSubmit();
+      }
+    }
+
+    button.classList.add("is-pressed");
+    window.setTimeout(() => button.classList.remove("is-pressed"), 110);
+    els.answerInput.focus({ preventScroll: true });
+    if (!navigator.userActivation || navigator.userActivation.isActive) {
+      navigator.vibrate?.(8);
+    }
   }
 
   function openQuestion(enemy, options = {}) {
@@ -7427,8 +10737,11 @@
     const isPeakQuestion = isBossQuestion || isFinalQuestionInStage();
     state.question = isRewardQuestion
       ? generateRewardQuestion()
-      : (isPeakQuestion ? generatePeakQuestion() : generateQuestion());
+      : (isBossQuestion
+        ? generateBossQuestion(enemy)
+        : (isPeakQuestion ? generatePeakQuestion() : generateQuestion()));
     state.questionStartedAt = performance.now();
+    state.lastQuestionTimerSecond = null;
     state.currentEnemyId = enemy?.id || null;
     state.questionSource = isRewardQuestion ? "reward" : (isBossQuestion ? "boss" : "enemy");
     if (state.player) {
@@ -7444,9 +10757,19 @@
     els.answerInput.value = "";
     els.answerInput.disabled = false;
     els.submitAnswer.disabled = false;
+    setNumberPadDisabled(false);
     els.questionDialog.hidden = false;
     startQuestionTimer();
-    playTone(310, 0.08, "triangle", 0.035);
+    window.KaflulAudio?.setQuestionDucked?.(true);
+    if (isBossQuestion) {
+      playGameSound("questionBoss");
+      playBossSound(enemy.configKey, "attack", { gain: 0.64 });
+    } else if (isRewardQuestion) {
+      playGameSound("questionReward");
+    } else {
+      playGameSound("questionOpen");
+      playGameSound("enemyCaught", { gain: 0.58 });
+    }
     setTimeout(() => els.answerInput.focus(), 30);
   }
 
@@ -7468,6 +10791,9 @@
   }
 
   function getQuestionTimeLimit() {
+    if (!state.timeLimitEnabled) {
+      return 0;
+    }
     return getDifficultySettings().answerTimeLimit || CONFIG.questionTimeLimit;
   }
 
@@ -7540,6 +10866,10 @@
     const seconds = Math.ceil(state.questionTimeRemaining);
     els.questionTime.textContent = String(seconds);
     els.questionTimer.classList.toggle("question-timer-low", seconds <= 5);
+    if (seconds <= 3 && seconds > 0 && seconds !== state.lastQuestionTimerSecond) {
+      state.lastQuestionTimerSecond = seconds;
+      playGameSound("timerTick", { gain: seconds === 1 ? 0.72 : 0.5 });
+    }
   }
 
   function expireQuestionTimer() {
@@ -7550,6 +10880,7 @@
     state.answerLocked = true;
     els.answerInput.disabled = true;
     els.submitAnswer.disabled = true;
+    setNumberPadDisabled(true);
     if (state.questionSource !== "reward") {
       recordFactResult(state.question, false);
       SYSTEMS.recordMathAnswer(state.mathStats, {
@@ -7567,6 +10898,8 @@
         answer: state.question.answer
       }
       : timeExpiredFeedback(state.question.answer));
+    playGameSound("answerTimeout");
+    playCharacterSound("hit", { gain: 0.42 });
     scheduleQuestionFinish(false, {
       responseMs: getQuestionTimeLimit() * 1000,
       timedOut: true
@@ -7590,21 +10923,38 @@
     );
   }
 
-  function startFinalBossVictorySequence(bossSnapshot, award) {
+  function startBossDefeatSequence(bossSnapshot, award, options = {}) {
     if (state.victoryEndTimerId) {
       window.clearTimeout(state.victoryEndTimerId);
     }
 
     const accent = bossSnapshot.accent || "#55ffd6";
+    const duration = MOBILE_RUNTIME.reducedEffects ? 0.9 : 1.72;
+    const isFinalAdventureBoss = state.mode === "adventure"
+      && state.levelIndex === CONFIG.levels.length - 1;
+    const nextLevelIndex = state.mode === "arcade"
+      ? (state.levelIndex + 1) % CONFIG.levels.length
+      : Math.min(CONFIG.levels.length - 1, state.levelIndex + 1);
     state.finalBossExplosion = {
       x: bossSnapshot.x,
       y: bossSnapshot.y,
       accent,
-      life: 1.15,
-      maxLife: 1.15
+      life: duration,
+      maxLife: duration
+    };
+    state.bossDefeatTransition = {
+      elapsed: 0,
+      duration,
+      accent,
+      bossName: bossSnapshot.name || "הבוס",
+      fromLevelIndex: state.levelIndex,
+      nextLevelIndex,
+      isFinalAdventureBoss,
+      awardedLife: Boolean(options.awardedLife)
     };
     state.boss = null;
     state.bossIntro = null;
+    state.bossCinematic = null;
     state.pendingSpawns = [];
     state.currentEnemyId = null;
     state.question = null;
@@ -7617,16 +10967,59 @@
     addBurst(bossSnapshot.x, bossSnapshot.y, "#fff7c6", 124, 420);
     addBurst(bossSnapshot.x, bossSnapshot.y, accent, 96, 340);
     addBurst(bossSnapshot.x, bossSnapshot.y, "#ff5fd7", 72, 290);
-    addFloatingText(bossSnapshot.x, bossSnapshot.y - 74, "הבוס האחרון נעלם!", "#fff7c6");
+    addFloatingText(
+      bossSnapshot.x,
+      bossSnapshot.y - 74,
+      isFinalAdventureBoss ? "הבוס האחרון התפוצץ!" : "הבוס התפוצץ!",
+      "#fff7c6"
+    );
     addFloatingText(bossSnapshot.x, bossSnapshot.y - 48, `+${award.total}`, "#ffd84a");
-    playTone(180, 0.16, "sawtooth", 0.04);
-    window.setTimeout(() => playTone(520, 0.13, "triangle", 0.045), 130);
-    window.setTimeout(() => playTone(880, 0.16, "triangle", 0.05), 310);
+    window.KaflulAudio?.setBossActive?.(false);
+    playBossSound(bossSnapshot.configKey, "defeat", { gain: 0.96 });
+    window.setTimeout(() => playGameSound("victory"), 260);
 
     state.victoryEndTimerId = window.setTimeout(() => {
       state.victoryEndTimerId = null;
-      showEndScreen(true);
-    }, 1180);
+      if (isFinalAdventureBoss) {
+        showEndScreen(true);
+        return;
+      }
+      setPhase("playing", { force: true });
+      enterLevel(nextLevelIndex, {
+        announce: true,
+        awardedLife: Boolean(options.awardedLife),
+        stageIntro: true
+      });
+    }, duration * 1000);
+  }
+
+  function resetPositionsAfterBossRound() {
+    if (!state.player || !state.boss) {
+      return;
+    }
+    const playerPos = centerOfCell(PLAYER_START.x, PLAYER_START.y);
+    const bossPos = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    Object.assign(state.player, {
+      x: playerPos.x,
+      y: playerPos.y,
+      direction: "right",
+      desiredDirection: "right",
+      directionRequestTime: state.clock,
+      rewardAnimation: 0.78,
+      questionAnimation: 0,
+      invulnerable: Math.max(state.player.invulnerable || 0, 1.35),
+      trail: []
+    });
+    Object.assign(state.boss, {
+      x: bossPos.x,
+      y: bossPos.y,
+      direction: "down",
+      turnDirection: "down",
+      pathCooldown: 0,
+      stuckTime: 0,
+      lastMoveDistance: 0,
+      trail: []
+    });
   }
 
   function finishQuestion(correct, answerContext = {}) {
@@ -7635,12 +11028,14 @@
     state.questionDeadline = null;
     updateQuestionTimerDisplay();
     els.questionDialog.hidden = true;
+    window.KaflulAudio?.setQuestionDucked?.(false);
     resetQuestionFeedbackState();
     els.questionDialog.classList.remove("question-boss");
     els.questionDialog.classList.remove("question-reward");
     state.answerLocked = false;
     els.answerInput.disabled = false;
     els.submitAnswer.disabled = false;
+    setNumberPadDisabled(false);
 
     if (correct) {
       applyCorrectAnswer(answerContext);
@@ -7659,8 +11054,9 @@
 
     const boss = state.boss && state.boss.id === state.currentEnemyId ? state.boss : null;
     const enemy = state.enemies.find((candidate) => candidate.id === state.currentEnemyId);
-    const defeatedTarget = boss || enemy;
     const previousLevelIndex = state.levelIndex;
+    const bossQuestionNumber = boss ? (boss.questionsCorrect || 0) + 1 : 0;
+    const defeatsBoss = Boolean(boss && bossQuestionNumber >= CONFIG.bossQuestionsPerStage);
     state.correctAnswers = state.mathStats.correctAnswers;
     applyCombo("success");
     const award = awardScore({
@@ -7668,33 +11064,44 @@
       responseMs: answerContext.responseMs,
       timeLimitMs: isQuestionTimerEnabled() ? getQuestionTimeLimit() * 1000 : 0,
       questionMode: getDifficultySettings().questionMode,
-      enemyDefeated: Boolean(defeatedTarget)
+      enemyDefeated: Boolean(enemy || defeatsBoss)
     });
     state.shake = 0.07;
-    playCorrectSound();
     pulseElement(els.progressWrap, "progress-pulse");
     pulseElement(els.combo.closest(".metric"), "metric-pulse");
 
     let defeatedBossSnapshot = null;
     if (boss) {
-      defeatedBossSnapshot = {
-        x: boss.x,
-        y: boss.y,
-        accent: boss.color || boss.definition?.accent || getCurrentLevel().accent,
-        configKey: boss.configKey,
-        levelBossKey: getCurrentLevel().bossKey
-      };
-      state.shake = Math.max(state.shake, 0.5);
-      addBurst(boss.x, boss.y, boss.color, 82, 225);
-      addFloatingText(boss.x, boss.y - 46, `הבוס נשבר +${award.total}`, "#c7a6ff");
-      state.boss = null;
-      state.bossIntro = null;
-      updateMission("enemyDefeated");
-      playTone(540, 0.15, "triangle", 0.045);
+      boss.questionsCorrect = bossQuestionNumber;
+      boss.damageLevel = bossQuestionNumber;
+      boss.hitFlash = 1;
+      state.shake = Math.max(state.shake, defeatsBoss ? 0.88 : 0.38);
+      addBurst(boss.x, boss.y, defeatsBoss ? "#fff7c6" : boss.color, defeatsBoss ? 118 : 58, defeatsBoss ? 360 : 190);
+      if (defeatsBoss) {
+        defeatedBossSnapshot = {
+          x: boss.x,
+          y: boss.y,
+          name: boss.name,
+          title: boss.title,
+          accent: boss.color || boss.definition?.accent || getCurrentLevel().accent,
+          configKey: boss.configKey,
+          levelBossKey: getCurrentLevel().bossKey
+        };
+        updateMission("enemyDefeated");
+      } else {
+        addFloatingText(
+          boss.x,
+          boss.y - 50,
+          `פגיעה ${bossQuestionNumber}/${CONFIG.bossQuestionsPerStage} · +${award.total}`,
+          "#fff7c6"
+        );
+        playBossSound(boss.configKey, "attack", { gain: 0.56 });
+      }
     } else if (enemy) {
       addBurst(enemy.x, enemy.y, enemy.color, 36, 150);
       addFloatingText(enemy.x, enemy.y - 24, `+${award.total}`, "#67f08b");
       state.enemies = state.enemies.filter((candidate) => candidate.id !== enemy.id);
+      playGameSound("enemyDefeated");
       scheduleEnemySpawn(0.9);
       updateMission("enemyDefeated");
     }
@@ -7705,6 +11112,21 @@
 
     updateMission("correctAnswer");
 
+    if (boss && !defeatsBoss) {
+      setPhase("playing");
+      state.currentEnemyId = null;
+      state.question = null;
+      state.questionSource = null;
+      resetPositionsAfterBossRound();
+      return;
+    }
+
+    const shortChallenge = getActiveShortChallenge();
+    if (shortChallenge && state.correctAnswers >= shortChallenge.targetCorrect) {
+      showEndScreen(true);
+      return;
+    }
+
     const awardedLife = state.correctAnswers % CONFIG.answersPerLevel === 0;
     if (awardedLife) {
       const stageAward = awardScore({
@@ -7714,14 +11136,15 @@
       state.lives += 1;
       addFloatingText(state.player.x, state.player.y - 28, `גל +${stageAward.total}`, "#ffd84a");
       addFloatingText(state.player.x, state.player.y - 10, "+חיים", "#ff5f9f");
-      playTone(880, 0.12, "triangle", 0.04);
+      playGameSound("heart");
+    }
+
+    if (defeatedBossSnapshot) {
+      startBossDefeatSequence(defeatedBossSnapshot, award, { awardedLife });
+      return;
     }
 
     if (state.mode === "adventure" && state.correctAnswers >= CONFIG.targetCorrect) {
-      if (boss && defeatedBossSnapshot.levelBossKey === "stage4") {
-        startFinalBossVictorySequence(defeatedBossSnapshot, award);
-        return;
-      }
       showEndScreen(true);
       return;
     }
@@ -7748,12 +11171,11 @@
     });
     applyCombo("success");
     state.shake = 0.08;
-    playCorrectSound();
     if (player) {
       player.invulnerable = Math.max(player.invulnerable || 0, CONFIG.rewardPower.durationSeconds);
       player.rewardAnimation = 1.05;
       addBurst(player.x, player.y, "#9ef7ff", 34, 145);
-      addFloatingText(player.x, player.y - 46, `כוח קרח ${CONFIG.rewardPower.durationSeconds} שניות`, "#9ef7ff");
+      addFloatingText(player.x, player.y - 46, `כוח שמש ${CONFIG.rewardPower.durationSeconds} שניות`, "#f6bd45");
       addFloatingText(player.x, player.y - 28, `+${award.total}`, "#ffd84a");
     }
     for (const enemy of state.enemies) {
@@ -7773,7 +11195,27 @@
       if (state.player) {
         addFloatingText(state.player.x, state.player.y - 38, "לא נורא, ממשיכים", "#9ef7ff");
       }
-      playTone(260, 0.08, "triangle", 0.018);
+      playGameSound("notification", { gain: 0.5 });
+      setPhase("playing");
+      state.currentEnemyId = null;
+      state.questionSource = null;
+      state.question = null;
+      return;
+    }
+
+    if (getActiveShortChallenge()) {
+      state.incorrectAnswers = state.mathStats.incorrectAnswers;
+      state.hitsTaken += 1;
+      applyCombo("mistake");
+      updateMission("wrongAnswer");
+      state.shake = 0.12;
+      pulseElement(stage, "stage-hit");
+      if (state.player) {
+        addBurst(state.player.x, state.player.y, "#ffb83d", 18, 105);
+        addFloatingText(state.player.x, state.player.y - 38, "לומדים וממשיכים", "#ffe66d");
+        resetPositionsAfterHit();
+        state.player.invulnerable = 2.2;
+      }
       setPhase("playing");
       state.currentEnemyId = null;
       state.questionSource = null;
@@ -7786,7 +11228,6 @@
     state.hitsTaken += 1;
     applyCombo("lifeLost");
     state.shake = 0.28;
-    playWrongSound();
     updateMission("wrongAnswer");
     pulseElement(stage, "stage-hit");
     pulseElement(els.lives.closest(".metric"), "life-hit");
@@ -7863,8 +11304,8 @@
     if (state.mathStats.totalQuestions >= 5) {
       awardScore({ type: "accuracyBonus", accuracy }, { comboMultiplierPct: 100 });
     }
-    if (won && state.sessionStartedAt) {
-      const elapsedSeconds = Math.max(0, (performance.now() - state.sessionStartedAt) / 1000);
+    if (won && state.activePlayTimeMs > 0) {
+      const elapsedSeconds = state.activePlayTimeMs / 1000;
       const timeBonus = Math.max(0, Math.floor(SYSTEMS.SCORE_CONFIG.timeBonusMax - elapsedSeconds * 6));
       awardScore({ type: "timeBonus", value: timeBonus }, { comboMultiplierPct: 100 });
     }
@@ -7885,6 +11326,86 @@
     const previousBest = getPersonalBestForSelection(mode, difficulty);
     const score = state.scoreState.total;
     const resultDate = new Date().toISOString();
+
+    if (state.sessionKind === "daily" && state.dailyChallenge) {
+      const dailyResult = SYSTEMS.recordDailyCompletion(state.save, {
+        score,
+        accuracy,
+        correctAnswers: state.mathStats.correctAnswers,
+        seed: state.dailyChallenge.seed,
+        completedAt: resultDate
+      }, state.dailyChallenge.dateKey);
+      state.save.player.nickname = state.playerName || state.save.player.nickname;
+      SYSTEMS.persistSave(window.localStorage, state.save, { key: CONFIG.storageKeys.save });
+      state.finalResult = {
+        won,
+        score,
+        previousBest: dailyResult.previousBest,
+        newRecord: dailyResult.improved,
+        leaderboardRank: null,
+        scoreToNextRank: null,
+        mode,
+        difficulty,
+        reachedStage: 1,
+        correctAnswers: state.mathStats.correctAnswers,
+        incorrectAnswers: state.mathStats.incorrectAnswers,
+        totalQuestions: state.mathStats.totalQuestions,
+        accuracy,
+        averageAnswerTimeMs,
+        fastestAnswerMs: state.mathStats.fastestAnswerMs,
+        maxCombo: state.comboState.max,
+        remainingLives: state.lives,
+        breakdown: { ...state.scoreState.breakdown },
+        unlocksLegendary: false,
+        sessionKind: "daily",
+        dailyDateKey: state.dailyChallenge.dateKey,
+        dailySeed: state.dailyChallenge.seed,
+        dailyStreak: dailyResult.progress.streak,
+        firstCompletionToday: dailyResult.firstCompletionToday
+      };
+      return state.finalResult;
+    }
+
+    if (state.sessionKind === "duel" && state.duelChallenge) {
+      const duelEntry = SYSTEMS.recordDuelResult(state.save, {
+        id: state.duelChallenge.id,
+        seed: state.duelChallenge.seed,
+        score,
+        targetScore: state.duelChallenge.targetScore,
+        accuracy,
+        playedAt: resultDate
+      });
+      state.save.player.nickname = state.playerName || state.save.player.nickname;
+      SYSTEMS.persistSave(window.localStorage, state.save, { key: CONFIG.storageKeys.save });
+      state.finalResult = {
+        won: duelEntry.won,
+        score,
+        previousBest: state.duelChallenge.targetScore,
+        newRecord: false,
+        leaderboardRank: null,
+        scoreToNextRank: null,
+        mode,
+        difficulty,
+        reachedStage: 1,
+        correctAnswers: state.mathStats.correctAnswers,
+        incorrectAnswers: state.mathStats.incorrectAnswers,
+        totalQuestions: state.mathStats.totalQuestions,
+        accuracy,
+        averageAnswerTimeMs,
+        fastestAnswerMs: state.mathStats.fastestAnswerMs,
+        maxCombo: state.comboState.max,
+        remainingLives: state.lives,
+        breakdown: { ...state.scoreState.breakdown },
+        unlocksLegendary: false,
+        sessionKind: "duel",
+        duelWon: duelEntry.won,
+        duelTargetScore: state.duelChallenge.targetScore,
+        duelTargetAccuracy: state.duelChallenge.targetAccuracy,
+        duelScoreDifference: score - state.duelChallenge.targetScore,
+        duelSeed: state.duelChallenge.seed
+      };
+      return state.finalResult;
+    }
 
     const bestResult = SYSTEMS.recordPersonalBest(state.save, {
       mode,
@@ -7942,7 +11463,8 @@
 
     if (newRecord) {
       state.bestScore = score;
-      storage.set(CONFIG.storageKeys.bestScore, String(score));
+      const globalBest = Math.max(legacyBestScore, Number(storage.get(CONFIG.storageKeys.bestScore, "0")) || 0, score);
+      storage.set(CONFIG.storageKeys.bestScore, String(globalBest));
       els.bestScore.textContent = numberFormat.format(score);
     } else {
       state.bestScore = Math.max(previousBest, bestResult.current);
@@ -7967,7 +11489,8 @@
       maxCombo: state.comboState.max,
       remainingLives: state.lives,
       breakdown: { ...state.scoreState.breakdown },
-      unlocksLegendary
+      unlocksLegendary,
+      sessionKind: "standard"
     };
 
     return state.finalResult;
@@ -8534,31 +12057,53 @@
     if (els.newRecordBadge) {
       els.newRecordBadge.hidden = champion || !result.newRecord;
     }
-    els.endKicker.textContent = champion
-      ? "ניצחת את הבוס הרביעי"
-      : (result.newRecord ? `שיא חדש, ${playerName}` : (result.won ? `כל הכבוד ${playerName}` : "עוד סיבוב"));
-    els.endTitle.textContent = champion
-      ? `כל הכבוד ${playerName}, אתה אלוף הכפל של כפלול!!`
-      : (result.won
-      ? `${playerName} ניצח!`
-      : (state.mode === "arcade" ? "המרדף נגמר" : "המשחק נגמר"));
-    els.endCopy.textContent = champion
-      ? "ענית על 100 תשובות, ניצחת את כל הבוסים וקיבלת את גביע האלופים."
-      : (result.unlocksLegendary
-      ? "פתחת את רמת אגדי. עכשיו מתחיל המבחן האמיתי."
-      : (state.mode === "arcade"
-        ? `הגעת לגל ${result.reachedStage} ושמרת שיא מקומי בהיכל.`
-        : (result.won ? "השלמת את מסלול ההרפתקה." : "לא נורא, חוזרים חזקים יותר.")));
+    if (result.sessionKind === "duel") {
+      els.endKicker.textContent = result.duelWon ? "ניצחת בדו־קרב!" : "היה קרוב — אפשר לנסות שוב";
+      els.endTitle.textContent = result.duelWon
+        ? `${playerName}, עקפת את שיא החבר!`
+        : `${playerName}, השלמתם בדיוק את אותו מבוך`;
+      els.endCopy.textContent = result.duelWon
+        ? `פתרת ${result.correctAnswers} תרגילים וקבעת ${numberFormat.format(result.score)} נקודות מול יעד של ${numberFormat.format(result.duelTargetScore)}.`
+        : `היעד היה ${numberFormat.format(result.duelTargetScore)} נקודות. התרגילים נשארים זהים, אז אפשר להשתפר ולנסות שוב.`;
+    } else if (result.sessionKind === "daily") {
+      els.endKicker.textContent = result.firstCompletionToday
+        ? `רצף של ${result.dailyStreak} ימים`
+        : "שיפרת את המסלול של היום";
+      els.endTitle.textContent = `המבוך היומי הושלם, ${playerName}!`;
+      els.endCopy.textContent = `פתרת ${result.correctAnswers} תרגילים מותאמים בדיוק של ${result.accuracy}%. מחר מחכה מסלול אישי חדש.`;
+    } else {
+      els.endKicker.textContent = champion
+        ? "ניצחת את הבוס הרביעי"
+        : (result.newRecord ? `שיא חדש, ${playerName}` : (result.won ? `כל הכבוד ${playerName}` : "עוד סיבוב"));
+      els.endTitle.textContent = champion
+        ? `כל הכבוד ${playerName}, אתה אלוף הכפל של כפלול!!`
+        : (result.won
+        ? `${playerName} ניצח!`
+        : (state.mode === "arcade" ? "המרדף נגמר" : "המשחק נגמר"));
+      els.endCopy.textContent = champion
+        ? "השלמת 24 שאלות ושלוש שאלות בוס בכל עולם, ניצחת את כל הבוסים וקיבלת את גביע האלופים."
+        : (result.unlocksLegendary
+        ? "פתחת את רמת אגדי. עכשיו מתחיל המבחן האמיתי."
+        : (state.mode === "arcade"
+          ? `הגעת לגל ${result.reachedStage} ושמרת שיא מקומי בהיכל.`
+          : (result.won ? "השלמת את מסלול ההרפתקה." : "לא נורא, חוזרים חזקים יותר.")));
+    }
     els.finalScore.textContent = numberFormat.format(result.score);
     els.previousBest.textContent = numberFormat.format(result.previousBest);
     els.leaderboardRank.textContent = result.leaderboardRank ? `#${result.leaderboardRank}` : "-";
     els.nextRankScore.textContent = result.scoreToNextRank === 0
       ? "בפסגה"
       : (result.scoreToNextRank ? `+${numberFormat.format(result.scoreToNextRank)}` : "-");
-    els.resultMode.textContent = modeLabel(result.mode);
+    els.resultMode.textContent = result.sessionKind === "duel"
+      ? "דו־קרב חברים"
+      : (result.sessionKind === "daily" ? "מבוך יומי" : modeLabel(result.mode));
     els.resultDifficulty.textContent = difficultyLabel(result.difficulty);
-    els.resultStageLabel.firstChild.textContent = result.mode === "arcade" ? "גל " : "שלב ";
-    els.resultStage.textContent = result.reachedStage;
+    els.resultStageLabel.firstChild.textContent = result.sessionKind === "duel"
+      ? "פער מהיעד "
+      : (result.sessionKind === "daily" ? "רצף ימים " : (result.mode === "arcade" ? "גל " : "שלב "));
+    els.resultStage.textContent = result.sessionKind === "duel"
+      ? `${result.duelScoreDifference > 0 ? "+" : ""}${numberFormat.format(result.duelScoreDifference)}`
+      : (result.sessionKind === "daily" ? result.dailyStreak : result.reachedStage);
     els.finalCorrect.textContent = result.correctAnswers;
     els.finalIncorrect.textContent = result.incorrectAnswers;
     els.finalAccuracy.textContent = `${result.accuracy}%`;
@@ -8577,18 +12122,41 @@
     state.question = null;
     state.boss = null;
     state.bossIntro = null;
+    state.bossCinematic = null;
+    state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
     els.questionDialog.hidden = true;
     hidePauseScreen();
     renderResults(result);
     els.endScreen.hidden = false;
+    els.endScreen.scrollTop = 0;
+    const resultsPanel = els.endScreen.querySelector(".results-panel");
+    if (resultsPanel) {
+      resultsPanel.scrollTop = 0;
+    }
+    window.KaflulAudio?.setQuestionDucked?.(false);
+    window.KaflulAudio?.setBossActive?.(false);
+    window.KaflulAudio?.setMusicIntensity?.(0.2);
     playUiMotion(els.endScreen, "screenEnter");
 
     updatePublishScorePanel();
-    window.setTimeout(() => els.retryButton?.focus({ preventScroll: true }), 0);
+    window.setTimeout(() => {
+      els.endScreen.scrollTop = 0;
+      if (resultsPanel) {
+        resultsPanel.scrollTop = 0;
+      }
+      els.retryButton?.focus({ preventScroll: true });
+    }, 0);
+
+    if (result.newRecord) {
+      playUiSound("newRecord");
+    } else if (won) {
+      playGameSound("victory");
+    } else {
+      playGameSound("gameOver");
+    }
 
     if (won || result.newRecord) {
-      playUiSound(result.newRecord ? "newRecord" : "reward");
       const resultsMotionTarget = els.endScreen.querySelector(".results-panel") || els.endScreen;
       playUiMotion(resultsMotionTarget, result.newRecord ? "newRecord" : "reward", {
         particles: result.newRecord ? { count: 10, color: "var(--kf-color-gold, #ffd84a)" } : { count: 8 }
@@ -8634,7 +12202,7 @@
     const level = getCurrentLevel();
     const color = randomItem([level.accent, level.bonusCollectibleColor, "#ffd84a", "#67f08b", "#ff5f9f"]);
     addBurst(x, y, color, 58, 210);
-    playTone(560 + Math.random() * 260, 0.08, "triangle", 0.018);
+    playGameSound("firework", { detune: (Math.random() * 2 - 1) * 70 });
   }
 
   function updateFinalBossExplosion(dt) {
@@ -8646,6 +12214,61 @@
     if (state.finalBossExplosion.life <= 0) {
       state.finalBossExplosion = null;
     }
+  }
+
+  function updateBossDefeatTransition(dt) {
+    if (!state.bossDefeatTransition) {
+      return;
+    }
+    state.bossDefeatTransition.elapsed = Math.min(
+      state.bossDefeatTransition.duration,
+      state.bossDefeatTransition.elapsed + dt
+    );
+  }
+
+  function drawBossDefeatTransitionOverlay() {
+    const transition = state.bossDefeatTransition;
+    if (!transition) {
+      return;
+    }
+    const progress = clamp(transition.elapsed / Math.max(0.01, transition.duration), 0, 1);
+    const flash = 1 - smoothCameraStep(clamp(progress / 0.28, 0, 1));
+    const titleIn = smoothCameraStep(clamp((progress - 0.08) / 0.22, 0, 1));
+    const titleOut = 1 - smoothCameraStep(clamp((progress - 0.72) / 0.28, 0, 1));
+    const alpha = titleIn * titleOut;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = `rgba(255, 255, 255, ${flash * 0.76})`;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    if (alpha > 0.01) {
+      const panelWidth = isPhonePortraitView() ? 620 : 520;
+      const panelHeight = isPhonePortraitView() ? 126 : 112;
+      const x = (WIDTH - panelWidth) / 2;
+      const y = HEIGHT * 0.18;
+      ctx.globalAlpha = alpha;
+      const panel = ctx.createLinearGradient(x, y, x + panelWidth, y + panelHeight);
+      panel.addColorStop(0, "rgba(6, 7, 21, 0)");
+      panel.addColorStop(0.22, "rgba(6, 7, 21, 0.9)");
+      panel.addColorStop(0.78, "rgba(6, 7, 21, 0.9)");
+      panel.addColorStop(1, "rgba(6, 7, 21, 0)");
+      ctx.fillStyle = panel;
+      ctx.fillRect(x, y, panelWidth, panelHeight);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.shadowColor = transition.accent;
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = "#fff9d8";
+      ctx.font = `900 ${isPhonePortraitView() ? 42 : 38}px Assistant, system-ui, sans-serif`;
+      ctx.fillText(state.language === "en" ? "BOSS DEFEATED!" : "הבוס הובס!", WIDTH / 2, y + panelHeight * 0.42);
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = transition.accent;
+      ctx.font = `800 ${isPhonePortraitView() ? 18 : 17}px Assistant, system-ui, sans-serif`;
+      const subtitle = transition.isFinalAdventureBoss
+        ? (state.language === "en" ? "The final world is yours" : "ארבעת העולמות נכבשו")
+        : (state.language === "en" ? "Zooming out · next world" : "זום אאוט · העולם הבא נפתח");
+      ctx.fillText(subtitle, WIDTH / 2, y + panelHeight * 0.76);
+    }
+    ctx.restore();
   }
 
   function drawFinalBossExplosion() {
@@ -8744,8 +12367,43 @@
     }
   }
 
+  function drawStageIntroBackdrop() {
+    const intro = state.stageIntroCamera;
+    if (!intro || CAMERA.zoom >= MOBILE_RUNTIME.zoom - 0.01) {
+      return;
+    }
+
+    const level = getCurrentLevel();
+    const stops = level.backgroundStops || ["#05070b", "#091a2a", "#02040a"];
+    ctx.save();
+    const gradient = ctx.createRadialGradient(WIDTH / 2, HEIGHT / 2, 30, WIDTH / 2, HEIGHT / 2, WIDTH * 0.72);
+    gradient.addColorStop(0, stops[1] || stops[0]);
+    gradient.addColorStop(0.58, stops[0]);
+    gradient.addColorStop(1, "#02040a");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.globalAlpha = 0.12 * (1 - intro.travelProgress);
+    ctx.strokeStyle = level.accent || "#68e7ff";
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= WIDTH; x += 48) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, HEIGHT);
+      ctx.stroke();
+    }
+    for (let y = 0; y <= HEIGHT; y += 48) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(WIDTH, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
   function render() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    drawStageIntroBackdrop();
 
     ctx.save();
     if (state.shake > 0) {
@@ -8753,9 +12411,9 @@
       ctx.translate((Math.random() - 0.5) * amount, (Math.random() - 0.5) * amount);
     }
     applyCameraTransform(ctx);
-    drawBackdrop();
     const usingReferenceMazeArt = drawReferenceMazeBoard();
     if (!usingReferenceMazeArt) {
+      drawBackdrop();
       drawCorridorBase();
       drawMazeFloor();
       drawMazeLaneDepth();
@@ -8768,15 +12426,35 @@
     }
     drawCollectibles();
     drawFirstMazeQuestionGateOverlays();
-    drawPlayerCharacter(ctx, state.player);
-    drawEnemies();
-    drawBoss();
+    drawBossEmergenceEffects();
+    if (usingReferenceMazeArt && isWorldOneAuthoredBoardReady()) {
+      drawWorldOneAuthoredActors();
+    } else {
+      drawPlayerCharacter(ctx, state.player);
+      if (state.stageIntroCamera) {
+        ctx.save();
+        ctx.globalAlpha = smoothCameraStep(clamp((state.stageIntroCamera.travelProgress - 0.12) / 0.7, 0, 1));
+        drawEnemies();
+        ctx.restore();
+      } else {
+        drawEnemies();
+      }
+      drawBoss();
+    }
+    drawBossVanishingEnemies();
+    if (isWorldOneReimagined()) {
+      drawArcadeBonusChest();
+    }
     drawFinalBossExplosion();
     drawParticles();
     drawFloatingTexts();
-    drawArenaVignette();
+    if (!usingReferenceMazeArt) {
+      drawArenaVignette();
+    }
     ctx.restore();
 
+    drawBossCinematicOverlay();
+    drawBossDefeatTransitionOverlay();
     drawArcadeRewardBanner();
     drawLevelBanner();
     if (state.phase === "paused") {
@@ -8784,12 +12462,58 @@
     }
   }
 
+  function isWorldOneReimagined(level = getCurrentLevel()) {
+    return Boolean(level && state.levelIndex === 0 && level.enemyVisualStyle === "ice");
+  }
+
   function getMazeMaterial(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      const theme = getWorldOneConcept().theme;
+      return {
+        floorStops: theme.floor,
+        floorBridge: theme.floor[1],
+        floorTile: theme.floorVein,
+        floorLine: theme.floorVein,
+        floorNode: theme.accent,
+        wallStops: theme.wall,
+        wallSide: theme.wallSide,
+        wallCap: theme.rim,
+        wallStroke: theme.rim,
+        seam: theme.floorVein,
+        shadow: theme.wallShadow,
+        accent: theme.accent,
+        accent2: theme.decor,
+        portal: theme.accent,
+        decoration: theme.decor
+      };
+    }
     const theme = getMazeThemeForLevel(level);
     return theme?.runtime?.material || MAZE_MATERIALS[level.enemyVisualStyle] || MAZE_MATERIALS.ice;
   }
 
   function getMazeRenderTheme(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      const theme = getWorldOneConcept().theme;
+      return {
+        ...MAZE_WORLD_RENDER_THEMES.ancient,
+        baseStops: theme.base,
+        pathTop: theme.floor[0],
+        pathMid: theme.floor[1],
+        pathDeep: theme.floor[2],
+        wallTop: theme.wall[1],
+        wallTopLight: theme.rim,
+        wallTopDeep: theme.wall[0],
+        wallSide: theme.wallSide,
+        wallShadow: theme.wallShadow,
+        wallRim: theme.rim,
+        crack: theme.floorVein,
+        glow: theme.hazardWash,
+        ambient: theme.particle,
+        decor: theme.decor,
+        dust: theme.particle,
+        motif: "world1"
+      };
+    }
     const theme = getMazeThemeForLevel(level);
     return theme?.runtime?.renderTheme || MAZE_WORLD_RENDER_THEMES[level.enemyVisualStyle] || MAZE_WORLD_RENDER_THEMES.ice;
   }
@@ -8803,6 +12527,9 @@
   }
 
   function getMazeWorldSheet(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      return null;
+    }
     const worldKey = getMazeWorldKey(level);
     const definition = MAZE_WORLD_SHEETS[worldKey];
     const image = GAME_ASSETS.mazeWorlds[worldKey];
@@ -8888,11 +12615,18 @@
     }
 
     return {
+      schemaVersion: Number(rawMetadata?.schemaVersion || rawMetadata?.schema_version || 1),
+      renderer: rawMetadata?.renderer || rawMetadata?.rendererId || "legacy",
       tileSize,
       atlas: rawMetadata?.atlas || rawMetadata?.source || rawMetadata?.image || rawMetadata?.imageSrc || null,
       crops,
       hasMetadata: Boolean(hasMetadata)
     };
+  }
+
+  function invalidateCollectibleVisualCache() {
+    collectibleStaticLayerCache.signature = "";
+    collectibleStaticLayerCache.dynamic = [];
   }
 
   function markMazeTilesetImageMissing(tilesetState, imageSrc) {
@@ -8905,6 +12639,7 @@
     tilesetState.revision += 1;
     mazeTileAtlasCache.clear();
     mazeStaticBoardCache.clear();
+    invalidateCollectibleVisualCache();
   }
 
   function loadMazeTilesetImage(tilesetState, imageSrc) {
@@ -8927,12 +12662,14 @@
       tilesetState.revision += 1;
       mazeTileAtlasCache.clear();
       mazeStaticBoardCache.clear();
+      invalidateCollectibleVisualCache();
     };
     image.onerror = () => {
       tilesetState.imageStatus = "missing";
       tilesetState.revision += 1;
       mazeTileAtlasCache.clear();
       mazeStaticBoardCache.clear();
+      invalidateCollectibleVisualCache();
     };
     image.src = imageSrc;
   }
@@ -8996,6 +12733,7 @@
         }
         mazeTileAtlasCache.clear();
         mazeStaticBoardCache.clear();
+        invalidateCollectibleVisualCache();
       })
       .catch(() => {
         tilesetState.metadataStatus = "missing";
@@ -9003,6 +12741,7 @@
         tilesetState.revision += 1;
         mazeTileAtlasCache.clear();
         mazeStaticBoardCache.clear();
+        invalidateCollectibleVisualCache();
       });
   }
 
@@ -9040,6 +12779,9 @@
   }
 
   function getLoadedMazeTileset(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      return null;
+    }
     const worldKey = getMazeWorldKey(level);
     const tilesetState = getMazeOptionalTilesetState(worldKey);
     const image = tilesetState?.image;
@@ -9056,6 +12798,33 @@
       image,
       definition: tilesetState.definition || normalizeMazeTilesetMetadata(null),
       cacheKey: `${worldKey}:${tilesetState.imageSrc}:${tilesetState.metadataStatus}:${tilesetState.revision}:${MAZE_OPTIONAL_TILESET_VERSION}`
+    };
+  }
+
+  function getReadyIceV3Tileset(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      return null;
+    }
+    if (getMazeWorldKey(level) !== "ice") {
+      return null;
+    }
+    const tilesetState = getMazeOptionalTilesetState("ice");
+    const loaded = getLoadedMazeTileset(level);
+    const definition = loaded?.definition;
+    if (!loaded
+      || tilesetState?.metadataStatus !== "loaded"
+      || definition?.schemaVersion !== 3
+      || definition?.renderer !== "modular-v3") {
+      return null;
+    }
+    const missingRequiredRoles = ICE_V3_TILESET_ROLES.filter((role) => !definition.crops?.[role]);
+    if (missingRequiredRoles.length > 0) {
+      return null;
+    }
+    return {
+      ...loaded,
+      renderer: "modular-v3",
+      missingRequiredRoles
     };
   }
 
@@ -9089,6 +12858,9 @@
   }
 
   function getMazeAutotileTheme(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      return getWorldOneConcept().theme;
+    }
     const worldKey = getMazeWorldKey(level);
     const theme = getMazeThemeForLevel(level);
     return theme?.runtime?.autotileTheme || MAZE_AUTOTILE_THEMES[worldKey] || MAZE_AUTOTILE_THEMES.ice;
@@ -9096,8 +12868,12 @@
 
   function getMazeAutotileAtlas(level = getCurrentLevel()) {
     const theme = getMazeAutotileTheme(level);
-    const tileset = getLoadedMazeTileset(level);
-    const sheet = null;
+    // The old per-world tile atlases flatten each wall into a repeated square.
+    // Keep gameplay geometry procedural, but source the material directly from
+    // the approved world art sheets so every theme inherits world one's
+    // continuous, authored look without ever desynchronising collision.
+    const tileset = null;
+    const sheet = getMazeWorldSheet(level);
     const cacheKey = tileset
       ? `${theme.world}:tileset:${tileset.cacheKey}`
       : `${theme.world}:procedural:${MAZE_PROCEDURAL_ART_VERSION}`;
@@ -9139,6 +12915,7 @@
     const atlas = {
       canvas: atlasCanvas,
       tileSize,
+      cacheKey,
       theme,
       sheet,
       tileset,
@@ -9189,6 +12966,9 @@
   }
 
   function getMazeProceduralVisuals(theme) {
+    if (theme?.worldOneVisuals) {
+      return theme.worldOneVisuals;
+    }
     if (getMazeProceduralVisuals.cache) {
       return getMazeProceduralVisuals.cache[theme.motif] || getMazeProceduralVisuals.cache.ice;
     }
@@ -9566,6 +13346,7 @@
       MAZE_STATIC_BOARD_CACHE_VERSION,
       atlas.cacheKey,
       getMazeWorldKey(level),
+      isWorldOneReimagined(level) ? getWorldOneConceptKey() : "standard-world",
       state.levelIndex,
       mazeSignature,
       state.mazeScatterSignature || "no-scatter",
@@ -9576,56 +13357,4145 @@
   }
 
   function drawAutotileStaticMazeLayers(level, atlas, visualProfile) {
-    const enhancedMazeArt = isFirstPlayableMazeVisualLevel(level);
+    if (isWorldOneReimagined(level)) {
+      drawWorldOneStaticMazeLayers(level, atlas, visualProfile);
+      return;
+    }
+    if (atlas.theme.motif === "ice") {
+      const iceV3Tileset = getReadyIceV3Tileset(level);
+      if (iceV3Tileset) {
+        drawIceV3StaticLayers(level, iceV3Tileset, visualProfile);
+        return;
+      }
+      drawIceWorldStaticLayers(level, visualProfile);
+      return;
+    }
+    drawApprovedStageStaticMazeLayers(level, atlas, visualProfile);
+  }
+
+  function getApprovedStageConcept(level, atlas) {
+    const worldKey = getMazeWorldKey(level);
+    const style = APPROVED_STAGE_STYLE[worldKey];
+    if (!style) return null;
+    return {
+      key: style.key,
+      material: style.material,
+      theme: atlas.theme,
+      sheet: atlas.sheet,
+      stageStyle: style,
+      artStyle: {
+        wallStroke: style.wallStroke,
+        wallDetail: style.wallDetail
+      }
+    };
+  }
+
+  function drawApprovedStageStaticMazeLayers(level, atlas, visualProfile) {
+    const concept = getApprovedStageConcept(level, atlas);
+    if (!concept) return;
+    state.mazeVisualAudit = {
+      levelIndex: state.levelIndex,
+      worldId: getMazeWorldKey(level),
+      concept: concept.key,
+      renderer: "stage1-style-themed-continuous-v1",
+      layersDrawn: [
+        "continuous-themed-backdrop",
+        "continuous-themed-floor",
+        "authored-macro-floor-material",
+        "topology-contact-shadows",
+        "continuous-themed-walls",
+        "authored-macro-wall-material",
+        "continuous-axonometric-wall-faces",
+        "theme-material-accents",
+        "wall-clipped-authored-landmarks",
+        "static-theme-lighting"
+      ],
+      assetUrlsActuallyDrawn: concept.sheet?.definition?.src
+        ? [concept.sheet.definition.src]
+        : [],
+      legacyIceLayersDrawn: [],
+      canonicalCollisionMask: true,
+      misleadingRouteLineDrawn: false,
+      landmarkCount: concept.sheet?.definition?.decorSprites?.length ? 6 : 0,
+      actorScaleBaseline: WORLD_ONE_RELEASE_BASELINE.id
+    };
+
     drawAutotileWorldBase(atlas.theme, visualProfile);
-    drawAutotileScatterDecorLayer(atlas, "behind", visualProfile);
-    drawAutotileFloorLayer(atlas, visualProfile);
-    drawAutotileFloorDetailLayer(atlas, visualProfile);
+    drawApprovedStageBackdrop(concept, visualProfile);
+    drawWorldOneContinuousFloorLayer(concept, visualProfile);
+    drawApprovedStageSheetMaterial(concept, "floor", visualProfile);
     drawAutotileWorldIdentityLayer(level, atlas.theme, visualProfile);
-    drawAutotileLaneRibbonLayer(atlas, visualProfile);
-    if (!enhancedMazeArt) {
-      drawAutotileScatterDecorLayer(atlas, "floor", visualProfile);
-    }
-    if (enhancedMazeArt) {
-      drawFirstMazeFloorPolishLayer(atlas, visualProfile);
-    }
     drawAutotilePathContactShadows(atlas.theme, visualProfile);
-    drawAutotileWallLayer(atlas, visualProfile);
-    drawAutotileWallRimLightLayer(atlas, visualProfile);
-    if (!enhancedMazeArt) {
-      drawAutotileDecorationLayer(atlas, visualProfile);
-    }
-    drawAutotileSetPiecesLayer(level, visualProfile);
-    if (enhancedMazeArt) {
-      drawFirstMazeWallDepthLayer(level, atlas, visualProfile);
-    }
+    drawWorldOneContinuousWallLayer(concept, visualProfile);
+    drawApprovedStageSheetMaterial(concept, "wall", visualProfile);
+    drawApprovedStageSurfaceFinish(concept, visualProfile);
+    drawMazeAxonometricWallTopFinish(atlas.theme, visualProfile);
+    drawMazeAxonometricMaterialAccents(atlas.theme, visualProfile);
+    drawApprovedStageLandmarks(concept, visualProfile);
     drawAutotileStaticLightingLayer(atlas.theme, visualProfile);
-    if (enhancedMazeArt) {
-      drawFirstMazeGoalCueLayer(level, visualProfile);
-      drawFirstMazeLandmarkLayer(level, visualProfile);
+  }
+
+  function drawApprovedStageBackdrop(concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const motif = concept.material;
+    const colors = motif === "lava"
+      ? ["rgba(255, 92, 24, 0.18)", "rgba(255, 172, 63, 0)"]
+      : motif === "ancient"
+        ? ["rgba(255, 220, 143, 0.16)", "rgba(45, 220, 198, 0)"]
+        : ["rgba(129, 234, 255, 0.17)", "rgba(255, 112, 224, 0)"];
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.62 : 0.78) * visualProfile.ambientAlphaScale;
+    const light = ctx.createRadialGradient(WIDTH * 0.18, HEIGHT * 0.08, 0, WIDTH * 0.18, HEIGHT * 0.08, WIDTH * 0.84);
+    light.addColorStop(0, colors[0]);
+    light.addColorStop(1, colors[1]);
+    ctx.fillStyle = light;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+  }
+
+  function drawApprovedStageSheetMaterial(concept, layer, visualProfile) {
+    const sheet = concept.sheet;
+    if (!sheet) return false;
+    const phonePortrait = isPhonePortraitView();
+    const style = concept.stageStyle;
+    const wallLayer = layer === "wall";
+    const primaryCrop = wallLayer ? "wallTexture" : "floorTexture";
+    const accentCrop = wallLayer ? "wallFaceTexture" : "floorAccentTexture";
+    const primary = getMazeWorldCropCanvas(sheet, primaryCrop);
+    const accent = getMazeWorldCropCanvas(sheet, accentCrop);
+    if (!primary) return false;
+
+    const paintPattern = (texture, scaleInTiles, alpha, blend, offsetX, offsetY) => {
+      if (!texture) return;
+      const scale = Math.max(0.1, TILE * scaleInTiles / Math.max(1, texture.width));
+      const pattern = ctx.createPattern(texture, "repeat");
+      if (!pattern) return;
+      ctx.save();
+      ctx.globalCompositeOperation = blend;
+      ctx.globalAlpha = alpha * visualProfile.textureAlphaScale;
+      ctx.translate(offsetX, offsetY);
+      ctx.scale(scale, scale);
+      ctx.fillStyle = pattern;
+      ctx.fillRect(
+        -offsetX / scale,
+        -offsetY / scale,
+        WIDTH / scale + texture.width,
+        HEIGHT / scale + texture.height
+      );
+      ctx.restore();
+    };
+
+    ctx.save();
+    traceIceWorldCellMask(wallLayer);
+    ctx.clip();
+    paintPattern(
+      primary,
+      wallLayer ? 8.6 : 9.4,
+      (wallLayer ? style.wallTextureAlpha : style.floorTextureAlpha) * (phonePortrait ? 0.84 : 1),
+      wallLayer ? style.wallTextureBlend : style.floorTextureBlend,
+      TILE * 0.37,
+      TILE * 0.21
+    );
+    paintPattern(
+      accent,
+      wallLayer ? 12.4 : 13.2,
+      (wallLayer ? style.wallTextureAlpha * 0.36 : style.floorAccentAlpha) * (phonePortrait ? 0.8 : 1),
+      wallLayer ? "soft-light" : "screen",
+      -TILE * 1.7,
+      TILE * 1.25
+    );
+    ctx.restore();
+    return true;
+  }
+
+  function drawApprovedStageLandmarks(concept, visualProfile) {
+    const sprites = concept.sheet?.definition?.decorSprites || [];
+    if (!sprites.length) return;
+    const targets = [
+      { x: 5, y: 5 },
+      { x: COLS - 7, y: 7 },
+      { x: CENTER_CELL.x - 7, y: CENTER_CELL.y - 5 },
+      { x: CENTER_CELL.x + 7, y: CENTER_CELL.y + 4 },
+      { x: 8, y: ROWS - 7 },
+      { x: COLS - 9, y: ROWS - 8 }
+    ];
+    const used = [];
+    const phonePortrait = isPhonePortraitView();
+    ctx.save();
+    // Landmarks are allowed to decorate walls, never to visually occupy a
+    // navigable tile. This clip preserves the honesty of every corridor.
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    for (let index = 0; index < targets.length; index += 1) {
+      const cell = findNearestIceWorldWallAnchor(targets[index], used, 9);
+      if (!cell) continue;
+      const crop = sprites[index % sprites.length];
+      const image = getTransparentMazeWorldSprite(concept.sheet, crop);
+      if (!image) continue;
+      used.push(cell);
+      const center = centerOfCell(cell.x, cell.y);
+      const targetHeight = TILE * (phonePortrait ? 2.35 : 2.72) * (index === 0 ? 1.12 : 1);
+      const scale = targetHeight / Math.max(1, crop.h);
+      const drawWidth = crop.w * scale;
+      ctx.save();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = (phonePortrait ? 0.76 : 0.88) * visualProfile.scatterAlphaScale;
+      ctx.shadowColor = concept.stageStyle.propGlow;
+      ctx.shadowBlur = (phonePortrait ? 5 : 9) * visualProfile.glowScale;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = phonePortrait ? "medium" : "high";
+      ctx.drawImage(
+        image,
+        center.x - drawWidth * 0.5,
+        center.y + TILE * 0.58 - targetHeight,
+        drawWidth,
+        targetHeight
+      );
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function drawApprovedStageSurfaceFinish(concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const motif = concept.material;
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    if (motif === "lava") {
+      ctx.globalCompositeOperation = "screen";
+      ctx.strokeStyle = "rgba(255, 88, 24, 0.82)";
+      ctx.shadowColor = "rgba(255, 48, 12, 0.72)";
+      ctx.shadowBlur = (phonePortrait ? 2.4 : 4.2) * visualProfile.glowScale;
+      ctx.lineWidth = phonePortrait ? 0.85 : 1.2;
+      for (let vein = 0; vein < 18; vein += 1) {
+        const x = (vein * 211 + 47) % WIDTH;
+        const y = (vein * 157 + 61) % HEIGHT;
+        const length = TILE * (1.4 + (vein % 4) * 0.42);
+        ctx.globalAlpha = (0.22 + (vein % 3) * 0.08) * visualProfile.glowScale;
+        ctx.beginPath();
+        ctx.moveTo(x - length * 0.5, y - TILE * 0.14);
+        ctx.lineTo(x - length * 0.14, y + TILE * 0.04);
+        ctx.lineTo(x + length * 0.08, y - TILE * 0.12);
+        ctx.lineTo(x + length * 0.5, y + TILE * 0.12);
+        ctx.stroke();
+      }
+    } else if (motif === "ancient") {
+      ctx.globalCompositeOperation = "multiply";
+      ctx.strokeStyle = "rgba(82, 52, 23, 0.72)";
+      ctx.lineWidth = phonePortrait ? 0.7 : 1;
+      for (let slab = 0; slab < 20; slab += 1) {
+        const x = ((slab * 193 + 71) % (WIDTH + TILE * 3)) - TILE * 1.5;
+        const y = ((slab * 127 + 89) % (HEIGHT + TILE * 2)) - TILE;
+        const width = TILE * (1.8 + (slab % 4) * 0.72);
+        const height = TILE * (0.62 + (slab % 3) * 0.24);
+        ctx.globalAlpha = (phonePortrait ? 0.13 : 0.18) * visualProfile.textureAlphaScale;
+        roundedRect(x, y, width, height, TILE * 0.16);
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = "screen";
+      ctx.strokeStyle = "rgba(45, 220, 198, 0.7)";
+      ctx.lineWidth = phonePortrait ? 0.65 : 0.92;
+      for (let rune = 0; rune < 10; rune += 1) {
+        const x = (rune * 257 + 109) % WIDTH;
+        const y = (rune * 181 + 137) % HEIGHT;
+        ctx.globalAlpha = (phonePortrait ? 0.18 : 0.24) * visualProfile.glowScale;
+        ctx.strokeRect(x - TILE * 0.32, y - TILE * 0.18, TILE * 0.64, TILE * 0.36);
+      }
+    } else if (motif === "diamond") {
+      const step = TILE * (phonePortrait ? 3.5 : 3.9);
+      ctx.globalCompositeOperation = "screen";
+      for (let row = -1; row * step < HEIGHT + step; row += 1) {
+        for (let column = -1; column * step < WIDTH + step; column += 1) {
+          const x = column * step + (row % 2) * step * 0.5;
+          const y = row * step;
+          const seed = mazeCellNoise(column + 30, row + 30, 9901);
+          ctx.globalAlpha = (phonePortrait ? 0.055 : 0.075) * visualProfile.rimAlphaScale;
+          ctx.fillStyle = seed < 0.5 ? "rgba(103, 235, 255, 0.9)" : "rgba(255, 117, 225, 0.86)";
+          ctx.beginPath();
+          ctx.moveTo(x, y - step * 0.46);
+          ctx.lineTo(x + step * 0.52, y);
+          ctx.lineTo(x, y + step * 0.46);
+          ctx.lineTo(x - step * 0.52, y);
+          ctx.closePath();
+          ctx.fill();
+          ctx.globalAlpha *= 1.8;
+          ctx.strokeStyle = "rgba(207, 249, 255, 0.72)";
+          ctx.lineWidth = phonePortrait ? 0.52 : 0.74;
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneStaticMazeLayers(level, atlas, visualProfile) {
+    const concept = getWorldOneConcept();
+    const authoredBoard = GAME_ASSETS.worldOneAuthoredBoard;
+    const authoredBoardReady = isWorldOneAuthoredBoardReady(level);
+    state.mazeVisualAudit = {
+      levelIndex: state.levelIndex,
+      worldId: getMazeWorldKey(level),
+      concept: concept.key,
+      renderer: authoredBoardReady ? "world1-authored-environment-v2" : "world1-continuous-2.5d",
+      layersDrawn: authoredBoardReady
+        ? ["world1-authored-sandstone-board", "world1-authored-guidance-cleanup"]
+        : [
+          "world1-backdrop",
+          "world1-continuous-floor",
+          "world1-floor-inlay",
+          "world1-contact-shadows",
+          "world1-continuous-walls",
+          "world1-wall-edge-details",
+          "world1-macro-set-pieces",
+          "world1-landmarks",
+          "world1-static-lighting"
+        ],
+      assetUrlsActuallyDrawn: authoredBoardReady ? [WORLD_ONE_AUTHORED_BOARD_SRC] : [],
+      legacyIceLayersDrawn: [],
+      authoredGuidanceLineRemoved: authoredBoardReady,
+      goalCue: false,
+      landmarkCount: concept.artStyle.landmarks.length,
+      gateStyle: concept.artStyle.goal.shape,
+      collectibleStyle: concept.material,
+      actorContactStyle: concept.material
+    };
+    if (authoredBoardReady) {
+      ctx.save();
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(authoredBoard, 0, 0, WIDTH, HEIGHT);
+      drawWorldOneAuthoredGuidanceCleanup(authoredBoard);
+      drawWorldOneAuthoredCorridorRepair(authoredBoard);
+      ctx.restore();
+      return;
+    }
+    drawAutotileWorldBase(atlas.theme, visualProfile);
+    drawWorldOneBackdropLayer(concept, visualProfile);
+    drawWorldOneContinuousFloorLayer(concept, visualProfile);
+    drawWorldOneFloorInlayLayer(concept, visualProfile);
+    drawAutotilePathContactShadows(atlas.theme, visualProfile);
+    drawWorldOneContinuousWallLayer(concept, visualProfile);
+    drawWorldOneWallEdgeDetails(concept, visualProfile);
+    drawWorldOneSetPieces(concept, visualProfile);
+    drawFirstMazeLandmarkLayer(level, visualProfile);
+    drawWorldOneStaticLighting(concept, visualProfile);
+  }
+
+  function getWorldOneAuthoredGuidanceRoutes() {
+    const spawn = centerOfCell(PLAYER_START.x, PLAYER_START.y);
+    const gate = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const chestCell = getArcadeChestCell();
+    const chest = centerOfCell(chestCell.x, chestCell.y);
+    const route = [{ x: spawn.x, y: spawn.y - TILE * 0.25 }];
+    const appendBezier = (points, controlA, controlB, end, steps = 28) => {
+      const start = points[points.length - 1];
+      for (let step = 1; step <= steps; step += 1) {
+        const t = step / steps;
+        const inverse = 1 - t;
+        points.push({
+          x: inverse ** 3 * start.x
+            + 3 * inverse ** 2 * t * controlA.x
+            + 3 * inverse * t ** 2 * controlB.x
+            + t ** 3 * end.x,
+          y: inverse ** 3 * start.y
+            + 3 * inverse ** 2 * t * controlA.y
+            + 3 * inverse * t ** 2 * controlB.y
+            + t ** 3 * end.y
+        });
+      }
+    };
+    appendBezier(
+      route,
+      { x: spawn.x - TILE * 0.45, y: spawn.y - TILE * 3.2 },
+      { x: gate.x - TILE * 0.8, y: gate.y + TILE * 2.8 },
+      { x: gate.x, y: gate.y + TILE * 0.75 }
+    );
+    appendBezier(
+      route,
+      { x: gate.x + TILE * 0.65, y: gate.y + TILE * 0.42 },
+      { x: chest.x - TILE * 1.1, y: chest.y - TILE * 0.75 },
+      { x: chest.x, y: chest.y - TILE * 0.18 }
+    );
+
+    // The exported raster contains an additional tail below the player portal.
+    const tail = [{ x: WIDTH * 0.529, y: HEIGHT + TILE * 0.25 }];
+    appendBezier(
+      tail,
+      { x: WIDTH * 0.529, y: HEIGHT - TILE * 2.2 },
+      { x: spawn.x + TILE * 0.72, y: spawn.y + TILE * 0.72 },
+      { x: spawn.x, y: spawn.y - TILE * 0.08 },
+      24
+    );
+    return [route, tail];
+  }
+
+  function drawWorldOneAuthoredGuidanceCleanup(authoredBoard) {
+    if (!isImageReady(authoredBoard)) return;
+
+    // The authored board contains a baked turquoise route. Reconstruct the
+    // narrow route footprint from balanced rings of nearby clean floor pixels.
+    // This keeps local lighting continuous and avoids repeated texture bands or
+    // single-side clones that can intersect the route again at a bend.
+    const sourceCanvas = document.createElement("canvas");
+    sourceCanvas.width = WIDTH;
+    sourceCanvas.height = HEIGHT;
+    const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
+    const cleanup = document.createElement("canvas");
+    cleanup.width = WIDTH;
+    cleanup.height = HEIGHT;
+    const cleanupContext = cleanup.getContext("2d");
+    if (!sourceContext || !cleanupContext) return;
+    sourceContext.drawImage(authoredBoard, 0, 0, WIDTH, HEIGHT);
+    const sourcePixels = sourceContext.getImageData(0, 0, WIDTH, HEIGHT);
+    const cleanupPixels = cleanupContext.createImageData(WIDTH, HEIGHT);
+    const routes = getWorldOneAuthoredGuidanceRoutes();
+    const segments = [];
+
+    routes.forEach((points) => {
+      for (let index = 1; index < points.length; index += 1) {
+        const start = points[index - 1];
+        const end = points[index];
+        const dx = end.x - start.x;
+        const dy = end.y - start.y;
+        const lengthSquared = dx * dx + dy * dy;
+        if (lengthSquared < 0.001) continue;
+        segments.push({
+          start,
+          dx,
+          dy,
+          lengthSquared
+        });
+      }
+    });
+
+    const minX = Math.max(0, Math.floor(Math.min(...segments.map((segment) => segment.start.x)) - TILE));
+    const maxX = Math.min(WIDTH - 1, Math.ceil(Math.max(...segments.map((segment) => segment.start.x + segment.dx)) + TILE));
+    const minY = Math.max(0, Math.floor(Math.min(...segments.map((segment) => segment.start.y)) - TILE));
+    const maxY = Math.min(HEIGHT - 1, Math.ceil(Math.max(...segments.map((segment) => segment.start.y + segment.dy)) + TILE));
+    const solidRadius = TILE * 0.58;
+    const featherRadius = TILE * 0.92;
+    const routeMask = new Uint8Array(WIDTH * HEIGHT);
+    const routeDistance = new Float32Array(WIDTH * HEIGHT);
+    routeDistance.fill(Number.POSITIVE_INFINITY);
+
+    for (let y = minY; y <= maxY; y += 1) {
+      for (let x = minX; x <= maxX; x += 1) {
+        let nearestDistanceSquared = Number.POSITIVE_INFINITY;
+        segments.forEach((segment) => {
+          const relativeX = x - segment.start.x;
+          const relativeY = y - segment.start.y;
+          const t = clamp(
+            (relativeX * segment.dx + relativeY * segment.dy) / segment.lengthSquared,
+            0,
+            1
+          );
+          const closestX = segment.start.x + segment.dx * t;
+          const closestY = segment.start.y + segment.dy * t;
+          const distanceSquared = (x - closestX) ** 2 + (y - closestY) ** 2;
+          if (distanceSquared < nearestDistanceSquared) {
+            nearestDistanceSquared = distanceSquared;
+          }
+        });
+        if (nearestDistanceSquared > featherRadius ** 2) continue;
+        const pixelIndex = y * WIDTH + x;
+        routeMask[pixelIndex] = 1;
+        routeDistance[pixelIndex] = Math.sqrt(nearestDistanceSquared);
+      }
+    }
+
+    const sampleRadii = [TILE * 1.12, TILE * 1.48, TILE * 1.86, TILE * 2.24];
+    const sampleDirections = Array.from({ length: 16 }, (_, index) => {
+      const angle = index / 16 * Math.PI * 2;
+      return { x: Math.cos(angle), y: Math.sin(angle) };
+    });
+    const inspectPixel = (x, y) => {
+      const sampleX = clamp(Math.round(x), 0, WIDTH - 1);
+      const sampleY = clamp(Math.round(y), 0, HEIGHT - 1);
+      const sourceOffset = (sampleY * WIDTH + sampleX) * 4;
+      const red = sourcePixels.data[sourceOffset];
+      const green = sourcePixels.data[sourceOffset + 1];
+      const blue = sourcePixels.data[sourceOffset + 2];
+      const turquoise = green > 68
+        && blue > 52
+        && green - red > 15
+        && blue - red > 8;
+      const sandstone = red > 82
+        && red > green * 1.13
+        && red > blue * 1.42;
+      const floorLike = !turquoise
+        && !sandstone
+        && green >= red * 0.95
+        && blue >= red * 0.55
+        && green >= blue * 0.9;
+      return {
+        red,
+        green,
+        blue,
+        turquoise,
+        sandstone,
+        floorLike,
+        luminance: red * 0.24 + green * 0.58 + blue * 0.18
+      };
+    };
+
+    for (let y = minY; y <= maxY; y += 1) {
+      for (let x = minX; x <= maxX; x += 1) {
+        const pixelIndex = y * WIDTH + x;
+        if (!routeMask[pixelIndex]) continue;
+        const originalPixel = inspectPixel(x, y);
+        if (originalPixel.sandstone && !originalPixel.turquoise) continue;
+        const candidates = [];
+        sampleRadii.forEach((radius) => {
+          sampleDirections.forEach((direction) => {
+            const candidate = inspectPixel(
+              x + direction.x * radius,
+              y + direction.y * radius
+            );
+            if (candidate.floorLike) candidates.push(candidate);
+          });
+        });
+        if (!candidates.length) continue;
+        candidates.sort((a, b) => a.luminance - b.luminance);
+        const trim = Math.floor(candidates.length * 0.2);
+        const balanced = candidates.slice(trim, Math.max(trim + 1, candidates.length - trim));
+        const floorPixel = balanced.reduce((average, candidate) => ({
+          red: average.red + candidate.red / balanced.length,
+          green: average.green + candidate.green / balanced.length,
+          blue: average.blue + candidate.blue / balanced.length
+        }), { red: 0, green: 0, blue: 0 });
+        const distance = routeDistance[pixelIndex];
+        const alpha = distance <= solidRadius
+          ? 1
+          : 1 - (distance - solidRadius) / (featherRadius - solidRadius);
+        const sourceOffset = pixelIndex * 4;
+        cleanupPixels.data[sourceOffset] = floorPixel.red;
+        cleanupPixels.data[sourceOffset + 1] = floorPixel.green;
+        cleanupPixels.data[sourceOffset + 2] = floorPixel.blue;
+        cleanupPixels.data[sourceOffset + 3] = Math.round(255 * clamp(alpha, 0, 1));
+      }
+    }
+    cleanupContext.putImageData(cleanupPixels, 0, 0);
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.drawImage(cleanup, 0, 0);
+    ctx.restore();
+  }
+
+  function drawWorldOneAuthoredCorridorRepair(authoredBoard) {
+    if (!isImageReady(authoredBoard)) return;
+    const repair = WORLD_ONE_CORRIDOR_REPAIR;
+    const sourceScaleX = authoredBoard.naturalWidth / WIDTH;
+    const sourceScaleY = authoredBoard.naturalHeight / HEIGHT;
+    const sourceX = repair.sourceX * TILE;
+    const sourceY = repair.sourceY * TILE;
+    const destinationX = repair.x * TILE;
+    const destinationY = repair.y * TILE;
+    const width = repair.width * TILE;
+    const height = repair.height * TILE;
+
+    // The baked 2.5D board visually reads as one continuous horizontal lane at
+    // this seam, but two legacy wall cells split it in the navigation grid.
+    // Reuse untouched floor pixels from the same board, then feather the patch
+    // into the authored shadows so the opened lane does not become a flat box.
+    const feather = 4;
+    const patchCanvas = document.createElement("canvas");
+    patchCanvas.width = width + feather * 2;
+    patchCanvas.height = height + feather * 2;
+    const patchContext = patchCanvas.getContext("2d");
+    if (!patchContext) return;
+    patchContext.imageSmoothingEnabled = true;
+    patchContext.imageSmoothingQuality = "high";
+    patchContext.drawImage(
+      authoredBoard,
+      sourceX * sourceScaleX,
+      sourceY * sourceScaleY,
+      width * sourceScaleX,
+      height * sourceScaleY,
+      feather,
+      feather,
+      width,
+      height
+    );
+    patchContext.globalCompositeOperation = "destination-in";
+    const horizontalMask = patchContext.createLinearGradient(0, 0, patchCanvas.width, 0);
+    horizontalMask.addColorStop(0, "rgba(0, 0, 0, 0)");
+    horizontalMask.addColorStop(0.08, "#000");
+    horizontalMask.addColorStop(0.92, "#000");
+    horizontalMask.addColorStop(1, "rgba(0, 0, 0, 0)");
+    patchContext.fillStyle = horizontalMask;
+    patchContext.fillRect(0, 0, patchCanvas.width, patchCanvas.height);
+    const verticalMask = patchContext.createLinearGradient(0, 0, 0, patchCanvas.height);
+    verticalMask.addColorStop(0, "rgba(0, 0, 0, 0)");
+    verticalMask.addColorStop(0.16, "#000");
+    verticalMask.addColorStop(0.84, "#000");
+    verticalMask.addColorStop(1, "rgba(0, 0, 0, 0)");
+    patchContext.fillStyle = verticalMask;
+    patchContext.fillRect(0, 0, patchCanvas.width, patchCanvas.height);
+    ctx.drawImage(patchCanvas, destinationX - feather, destinationY - feather);
+  }
+
+  function drawWorldOneContinuousFloorLayer(concept, visualProfile) {
+    const theme = concept.theme;
+    const phonePortrait = isPhonePortraitView();
+    ctx.save();
+    traceIceWorldCellMask(false);
+    ctx.clip();
+    const floor = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    floor.addColorStop(0, theme.floor[1]);
+    floor.addColorStop(0.5, theme.floor[0]);
+    floor.addColorStop(1, theme.floor[2]);
+    ctx.fillStyle = floor;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.globalCompositeOperation = "overlay";
+    ctx.globalAlpha = (phonePortrait ? 0.12 : 0.17) * visualProfile.textureAlphaScale;
+    for (let patch = 0; patch < 14; patch += 1) {
+      const cx = ((patch * 337 + 79) % (WIDTH + TILE * 4)) - TILE * 2;
+      const cy = ((patch * 229 + 113) % (HEIGHT + TILE * 4)) - TILE * 2;
+      const radius = TILE * (2.8 + (patch % 4) * 0.9);
+      const bloom = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      bloom.addColorStop(0, patch % 3 === 0 ? "rgba(255, 242, 204, 0.2)" : "rgba(255, 255, 255, 0.1)");
+      bloom.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = bloom;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, radius, radius * (0.36 + (patch % 2) * 0.12), patch % 2 ? 0.16 : -0.12, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.08 : 0.12) * visualProfile.textureAlphaScale;
+    ctx.strokeStyle = theme.floorVein;
+    ctx.lineWidth = phonePortrait ? 0.7 : 0.95;
+    ctx.lineCap = "round";
+    if (concept.material === "garden") {
+      // The garden floor is one continuous material. Its only strong line is
+      // the authored irrigation route drawn below, not a repeated row grid.
+      ctx.globalAlpha *= 0.38;
+      for (let vein = 0; vein < 5; vein += 1) {
+        const cx = WIDTH * (0.12 + vein * 0.2);
+        const cy = HEIGHT * (0.18 + (vein % 3) * 0.27);
+        ctx.beginPath();
+        ctx.arc(cx, cy, TILE * (0.5 + (vein % 2) * 0.22), 0.15, Math.PI * 0.86);
+        ctx.stroke();
+      }
+    } else if (concept.material === "workshop") {
+      for (let curve = 0; curve < 9; curve += 1) {
+        const y = HEIGHT * (0.06 + curve * 0.115);
+        ctx.beginPath();
+        ctx.moveTo(-TILE, y);
+        ctx.bezierCurveTo(WIDTH * 0.34, y + TILE * 0.25, WIDTH * 0.7, y - TILE * 0.22, WIDTH + TILE, y + TILE * 0.08);
+        ctx.stroke();
+      }
+    } else {
+      for (let contour = 0; contour < 7; contour += 1) {
+        ctx.beginPath();
+        ctx.ellipse(WIDTH * (0.16 + (contour % 4) * 0.24), HEIGHT * (0.18 + Math.floor(contour / 4) * 0.48), TILE * (2.8 + contour % 3), TILE * (0.55 + contour % 2 * 0.22), 0.08, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneContinuousWallLayer(concept, visualProfile) {
+    const theme = concept.theme;
+    const style = concept.artStyle;
+    const phonePortrait = isPhonePortraitView();
+
+    drawMazeAxonometricWallExtrusion(theme, visualProfile);
+
+    ctx.save();
+    ctx.translate(phonePortrait ? 1.5 : 2.2, phonePortrait ? 3.8 : 5.2);
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = (phonePortrait ? 0.66 : 0.76) * visualProfile.wallShadowScale;
+    ctx.fillStyle = theme.wallShadow;
+    ctx.shadowColor = theme.wallShadow;
+    ctx.shadowBlur = phonePortrait ? 3.5 : 6;
+    traceIceWorldCellMask(true);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    const wall = ctx.createLinearGradient(0, 0, WIDTH * 0.72, HEIGHT);
+    wall.addColorStop(0, theme.rim);
+    wall.addColorStop(0.18, theme.wall[1]);
+    wall.addColorStop(0.58, theme.wall[0]);
+    wall.addColorStop(1, theme.wall[2]);
+    ctx.fillStyle = wall;
+    ctx.fill();
+    ctx.clip();
+
+    if (concept.material === "garden") {
+      // A planted terrace lip breaks the collision grid into a living silhouette.
+      // It stays inside the wall mask, so the playable corridor remains honest.
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = phonePortrait ? 0.88 : 0.94;
+      ctx.strokeStyle = "#315d3d";
+      ctx.lineWidth = TILE * (phonePortrait ? 0.34 : 0.4);
+      ctx.lineJoin = "round";
+      traceIceWorldCellMask(true);
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.28 : 0.38) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = "rgba(137, 211, 112, 0.88)";
+      ctx.lineWidth = TILE * (phonePortrait ? 0.11 : 0.14);
+      traceIceWorldCellMask(true);
+      ctx.stroke();
+    }
+
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = (phonePortrait ? 0.16 : 0.22) * visualProfile.textureAlphaScale;
+    ctx.strokeStyle = style.wallDetail;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    if (concept.material === "garden") {
+      ctx.lineWidth = phonePortrait ? 0.8 : 1.1;
+      const spacingX = TILE * 3.2;
+      const spacingY = TILE * 2.45;
+      for (let y = spacingY * 0.7; y < HEIGHT; y += spacingY) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.bezierCurveTo(WIDTH * 0.3, y - 1.5, WIDTH * 0.68, y + 1.8, WIDTH, y - 0.6);
+        ctx.stroke();
+      }
+      for (let x = spacingX; x < WIDTH; x += spacingX) {
+        const offset = Math.floor(x / spacingX) % 2 ? spacingY * 0.5 : 0;
+        for (let y = offset; y < HEIGHT; y += spacingY) {
+          ctx.beginPath();
+          ctx.moveTo(x + Math.sin(y * 0.02) * 1.2, y + 2);
+          ctx.lineTo(x - 1.2, Math.min(HEIGHT, y + spacingY - 2));
+          ctx.stroke();
+        }
+      }
+    } else if (concept.material === "workshop") {
+      ctx.lineWidth = phonePortrait ? 0.75 : 1;
+      for (let grain = 0; grain < 18; grain += 1) {
+        const y = HEIGHT * (grain + 0.5) / 18;
+        ctx.beginPath();
+        ctx.moveTo(-TILE, y);
+        ctx.bezierCurveTo(WIDTH * 0.25, y - 3, WIDTH * 0.72, y + 3, WIDTH + TILE, y - 0.5);
+        ctx.stroke();
+      }
+      ctx.globalAlpha *= 0.72;
+      ctx.lineWidth = phonePortrait ? 1 : 1.25;
+      for (let joint = TILE * 4; joint < WIDTH; joint += TILE * 4) {
+        ctx.beginPath();
+        ctx.moveTo(joint, 0);
+        ctx.lineTo(joint, HEIGHT);
+        ctx.stroke();
+      }
+    } else {
+      ctx.lineWidth = phonePortrait ? 0.78 : 1.05;
+      for (let crack = 0; crack < 24; crack += 1) {
+        const x = (crack * 179 + 53) % WIDTH;
+        const y = (crack * 131 + 77) % HEIGHT;
+        ctx.beginPath();
+        ctx.moveTo(x - TILE * 0.45, y - TILE * 0.12);
+        ctx.lineTo(x, y + TILE * 0.08);
+        ctx.lineTo(x + TILE * 0.4, y - TILE * 0.04);
+        ctx.stroke();
+      }
+    }
+
+    if (concept.material === "garden") {
+      drawWorldOneGardenTerraceBeds(visualProfile);
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.16 : 0.23) * visualProfile.rimAlphaScale;
+    const glaze = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    glaze.addColorStop(0, "rgba(255, 255, 255, 0.62)");
+    glaze.addColorStop(0.34, "rgba(255, 255, 255, 0.06)");
+    glaze.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.fillStyle = glaze;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.strokeStyle = style.wallStroke;
+    ctx.lineWidth = phonePortrait ? 1.35 : 1.7;
+    ctx.lineJoin = "round";
+    ctx.shadowColor = theme.wallShadow;
+    ctx.shadowBlur = phonePortrait ? 1.8 : 3;
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = theme.rim;
+    ctx.lineWidth = phonePortrait ? 1.05 : 1.45;
+    ctx.globalAlpha = (phonePortrait ? 0.72 : 0.88) * visualProfile.rimAlphaScale;
+    for (const run of collectIceWorldHorizontalEdgeRuns("up")) {
+      const y = run.y * TILE + 0.8;
+      ctx.beginPath();
+      ctx.moveTo(run.start * TILE + 2, y);
+      ctx.lineTo(run.end * TILE - 2, y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha *= 0.62;
+    for (const run of collectIceWorldVerticalEdgeRuns("left")) {
+      const x = run.x * TILE + 0.8;
+      ctx.beginPath();
+      ctx.moveTo(x, run.start * TILE + 2);
+      ctx.lineTo(x, run.end * TILE - 2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function getWorldOneWallComponents() {
+    const mazeSignature = MAZE_DECOR_SYSTEM?.createMazeSignature?.(state.maze)
+      || `${state.levelIndex}:${state.mazeScatterSignature || "maze"}`;
+    const cacheKey = `${mazeSignature}:${COLS}x${ROWS}`;
+    if (getWorldOneWallComponents.cache?.key === cacheKey) {
+      return getWorldOneWallComponents.cache.components;
+    }
+
+    const seen = new Set();
+    const components = [];
+    const offsets = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        const firstKey = `${x},${y}`;
+        if (!isWallCell(x, y) || seen.has(firstKey)) continue;
+        const stack = [{ x, y }];
+        const cells = [];
+        seen.add(firstKey);
+        let minX = x;
+        let maxX = x;
+        let minY = y;
+        let maxY = y;
+        let touchesBorder = false;
+        while (stack.length) {
+          const cell = stack.pop();
+          cells.push(cell);
+          minX = Math.min(minX, cell.x);
+          maxX = Math.max(maxX, cell.x);
+          minY = Math.min(minY, cell.y);
+          maxY = Math.max(maxY, cell.y);
+          touchesBorder ||= cell.x === 0 || cell.y === 0 || cell.x === COLS - 1 || cell.y === ROWS - 1;
+          for (const [dx, dy] of offsets) {
+            const nx = cell.x + dx;
+            const ny = cell.y + dy;
+            const key = `${nx},${ny}`;
+            if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || seen.has(key) || !isWallCell(nx, ny)) continue;
+            seen.add(key);
+            stack.push({ x: nx, y: ny });
+          }
+        }
+        components.push({ cells, minX, maxX, minY, maxY, touchesBorder });
+      }
+    }
+    getWorldOneWallComponents.cache = { key: cacheKey, components };
+    return components;
+  }
+
+  function drawWorldOneGardenTerraceBeds(visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const components = getWorldOneWallComponents()
+      .filter((component) => !component.touchesBorder && component.cells.length >= 4)
+      .sort((a, b) => b.cells.length - a.cells.length);
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    for (let index = 0; index < components.length; index += 1) {
+      const component = components[index];
+      const widthCells = component.maxX - component.minX + 1;
+      const heightCells = component.maxY - component.minY + 1;
+      const horizontal = widthCells >= 4 && heightCells <= 3;
+      const vertical = heightCells >= 4 && widthCells <= 3;
+      const centerX = (component.minX + component.maxX + 1) * TILE * 0.5;
+      const centerY = (component.minY + component.maxY + 1) * TILE * 0.5;
+      const anchor = component.cells.reduce((best, cell) => {
+        const cx = (cell.x + 0.5) * TILE;
+        const cy = (cell.y + 0.5) * TILE;
+        const distance = Math.abs(cx - centerX) + Math.abs(cy - centerY);
+        return !best || distance < best.distance ? { x: cx, y: cy, distance } : best;
+      }, null);
+
+      const soil = ctx.createRadialGradient(anchor.x - TILE * 0.16, anchor.y - TILE * 0.12, 0, anchor.x, anchor.y, TILE * Math.max(1, Math.min(3.4, widthCells * 0.42)));
+      soil.addColorStop(0, "rgba(73, 54, 38, 0.96)");
+      soil.addColorStop(0.62, "rgba(50, 43, 31, 0.94)");
+      soil.addColorStop(1, "rgba(32, 38, 28, 0.9)");
+      ctx.fillStyle = soil;
+      ctx.strokeStyle = "rgba(137, 188, 92, 0.82)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.25;
+      ctx.globalAlpha = (phonePortrait ? 0.76 : 0.88) * visualProfile.scatterAlphaScale;
+
+      if (horizontal) {
+        const x = (component.minX + 0.52) * TILE;
+        const y = centerY - TILE * 0.3;
+        const width = Math.max(TILE * 0.9, (widthCells - 1.04) * TILE);
+        roundedRect(x, y, width, TILE * 0.6, TILE * 0.28);
+      } else if (vertical) {
+        const x = centerX - TILE * 0.3;
+        const y = (component.minY + 0.52) * TILE;
+        const height = Math.max(TILE * 0.9, (heightCells - 1.04) * TILE);
+        roundedRect(x, y, TILE * 0.6, height, TILE * 0.28);
+      } else {
+        ctx.beginPath();
+        ctx.ellipse(anchor.x, anchor.y, TILE * 0.68, TILE * 0.46, -0.14 + (index % 3) * 0.14, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      ctx.stroke();
+
+      const sproutCount = horizontal ? Math.min(4, Math.max(2, Math.floor(widthCells / 3))) : vertical ? Math.min(3, Math.max(2, Math.floor(heightCells / 3))) : 1;
+      for (let sprout = 0; sprout < sproutCount; sprout += 1) {
+        const spread = sproutCount === 1 ? 0 : sprout / (sproutCount - 1) - 0.5;
+        const sx = horizontal ? centerX + spread * Math.max(TILE, (widthCells - 2.2) * TILE) : anchor.x;
+        const sy = vertical ? centerY + spread * Math.max(TILE, (heightCells - 2.2) * TILE) : anchor.y;
+        ctx.fillStyle = sprout % 2 ? "rgba(238, 127, 96, 0.9)" : "rgba(246, 189, 69, 0.9)";
+        ctx.strokeStyle = "rgba(62, 119, 61, 0.94)";
+        ctx.lineWidth = phonePortrait ? 0.8 : 1.05;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy + TILE * 0.15);
+        ctx.quadraticCurveTo(sx - TILE * 0.04, sy, sx, sy - TILE * 0.2);
+        ctx.stroke();
+        for (const side of [-1, 1]) {
+          ctx.beginPath();
+          ctx.ellipse(sx + side * TILE * 0.09, sy - TILE * 0.08, TILE * 0.11, TILE * 0.065, side * -0.55, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneBackdropLayer(concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    if (concept.material === "garden") {
+      const sunrise = ctx.createRadialGradient(WIDTH * 0.18, HEIGHT * 0.02, 0, WIDTH * 0.18, HEIGHT * 0.02, WIDTH * 0.72);
+      sunrise.addColorStop(0, "rgba(255, 215, 129, 0.24)");
+      sunrise.addColorStop(0.42, "rgba(246, 189, 69, 0.09)");
+      sunrise.addColorStop(1, "rgba(246, 189, 69, 0)");
+      ctx.globalAlpha = (phonePortrait ? 0.62 : 0.82) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = sunrise;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    } else if (concept.material === "workshop") {
+      const lamp = ctx.createRadialGradient(WIDTH * 0.22, HEIGHT * 0.04, 0, WIDTH * 0.22, HEIGHT * 0.04, WIDTH * 0.66);
+      lamp.addColorStop(0, "rgba(255, 226, 167, 0.2)");
+      lamp.addColorStop(0.42, "rgba(233, 108, 92, 0.07)");
+      lamp.addColorStop(1, "rgba(233, 108, 92, 0)");
+      ctx.globalAlpha = (phonePortrait ? 0.58 : 0.76) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = lamp;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    } else {
+      const dawn = ctx.createLinearGradient(0, 0, 0, HEIGHT);
+      dawn.addColorStop(0, "rgba(255, 178, 107, 0.22)");
+      dawn.addColorStop(0.28, "rgba(114, 200, 230, 0.12)");
+      dawn.addColorStop(1, "rgba(57, 65, 95, 0)");
+      ctx.globalAlpha = (phonePortrait ? 0.58 : 0.78) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = dawn;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneFloorInlayLayer(concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    ctx.save();
+    traceIceWorldCellMask(false);
+    ctx.clip();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    if (concept.material === "garden") {
+      const spawn = centerOfCell(PLAYER_START.x, PLAYER_START.y);
+      const gate = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+      const chestCell = getArcadeChestCell();
+      const chest = centerOfCell(chestCell.x, chestCell.y);
+      const traceIrrigationRoute = () => {
+        ctx.beginPath();
+        ctx.moveTo(spawn.x, spawn.y - TILE * 0.25);
+        ctx.bezierCurveTo(
+          spawn.x - TILE * 0.45,
+          spawn.y - TILE * 3.2,
+          gate.x - TILE * 0.8,
+          gate.y + TILE * 2.8,
+          gate.x,
+          gate.y + TILE * 0.75
+        );
+        ctx.bezierCurveTo(
+          gate.x + TILE * 0.65,
+          gate.y + TILE * 0.42,
+          chest.x - TILE * 1.1,
+          chest.y - TILE * 0.75,
+          chest.x,
+          chest.y - TILE * 0.18
+        );
+      };
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.11 : 0.15) * visualProfile.glowScale;
+      ctx.strokeStyle = "rgba(45, 212, 191, 0.72)";
+      ctx.lineWidth = TILE * (phonePortrait ? 0.48 : 0.56);
+      traceIrrigationRoute();
+      ctx.stroke();
+      ctx.globalAlpha = (phonePortrait ? 0.5 : 0.62) * visualProfile.glowScale;
+      ctx.strokeStyle = "rgba(133, 238, 199, 0.84)";
+      ctx.lineWidth = phonePortrait ? 1.25 : 1.7;
+      traceIrrigationRoute();
+      ctx.stroke();
+      ctx.globalAlpha *= 0.58;
+      ctx.strokeStyle = "rgba(246, 189, 69, 0.82)";
+      ctx.setLineDash([TILE * 0.12, TILE * 1.1]);
+      ctx.lineWidth = phonePortrait ? 1.7 : 2.2;
+      traceIrrigationRoute();
+      ctx.stroke();
+    } else if (concept.material === "workshop") {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.09 : 0.13) * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = "rgba(115, 213, 209, 0.68)";
+      ctx.lineWidth = phonePortrait ? 0.75 : 1;
+      const spacing = TILE * 4;
+      for (let x = TILE * 2; x < WIDTH; x += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, HEIGHT);
+        ctx.stroke();
+      }
+      for (let y = TILE * 2; y < HEIGHT; y += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(WIDTH, y);
+        ctx.stroke();
+      }
+      ctx.globalAlpha *= 0.86;
+      ctx.strokeStyle = "rgba(241, 189, 85, 0.72)";
+      for (let arc = 0; arc < 5; arc += 1) {
+        ctx.beginPath();
+        ctx.arc(WIDTH * 0.5, HEIGHT * 0.5, TILE * (2.6 + arc * 2.2), -Math.PI * 0.78, Math.PI * 0.28);
+        ctx.stroke();
+      }
+    } else {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.11 : 0.16) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = "rgba(245, 242, 221, 0.36)";
+      for (let cloud = 0; cloud < 9; cloud += 1) {
+        const x = ((cloud * 271 + 83) % WIDTH);
+        const y = ((cloud * 167 + 91) % HEIGHT);
+        const width = TILE * (2.2 + (cloud % 3) * 0.8);
+        ctx.beginPath();
+        ctx.ellipse(x, y, width, width * 0.22, cloud % 2 ? 0.12 : -0.08, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha *= 0.9;
+      ctx.strokeStyle = "rgba(255, 211, 92, 0.72)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.25;
+      ctx.setLineDash([TILE * 0.85, TILE * 1.5]);
+      ctx.beginPath();
+      ctx.moveTo(WIDTH * 0.08, HEIGHT * 0.8);
+      ctx.bezierCurveTo(WIDTH * 0.32, HEIGHT * 0.66, WIDTH * 0.62, HEIGHT * 0.34, WIDTH * 0.94, HEIGHT * 0.18);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneWallEdgeDetails(concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const step = phonePortrait ? 2 : 1;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    for (let y = 1; y < ROWS - 1; y += step) {
+      for (let x = 1; x < COLS - 1; x += step) {
+        if (!isWallCell(x, y)) continue;
+        const openUp = !isWallCell(x, y - 1);
+        const openDown = !isWallCell(x, y + 1);
+        if (!openUp && !openDown) continue;
+        const seed = mazeCellNoise(x, y, 1907);
+        const px = x * TILE;
+        const py = y * TILE;
+
+        if (concept.material === "garden") {
+          if (openUp && seed < 0.58) {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = (phonePortrait ? 0.56 : 0.7) * visualProfile.scatterAlphaScale;
+            ctx.strokeStyle = "rgba(59, 111, 61, 0.88)";
+            ctx.fillStyle = seed < 0.13 ? "rgba(112, 198, 109, 0.9)" : "rgba(69, 148, 77, 0.9)";
+            ctx.lineWidth = phonePortrait ? 0.9 : 1.2;
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.12, py + 3);
+            ctx.quadraticCurveTo(px + TILE * 0.5, py + TILE * (0.02 + seed * 0.16), px + TILE * 0.88, py + 3);
+            ctx.stroke();
+            for (let leaf = 0; leaf < 4; leaf += 1) {
+              ctx.beginPath();
+              ctx.ellipse(px + TILE * (0.14 + leaf * 0.24), py + 4 + (leaf % 2) * 2, phonePortrait ? 2.2 : 3, phonePortrait ? 1.05 : 1.5, leaf * 0.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+          if (openDown && seed > 0.84) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.58 * visualProfile.glowScale;
+            ctx.fillStyle = "rgba(45, 212, 191, 0.82)";
+            ctx.shadowColor = "rgba(45, 212, 191, 0.72)";
+            ctx.shadowBlur = phonePortrait ? 3 : 6;
+            ctx.beginPath();
+            ctx.arc(px + TILE * 0.5, py + TILE + 2.5, phonePortrait ? 1.4 : 1.8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        } else if (concept.material === "workshop") {
+          if (openUp && seed < 0.2) {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 0.88;
+            const boltX = px + TILE * (0.3 + seed * 2);
+            ctx.fillStyle = "#f1bd55";
+            ctx.strokeStyle = "rgba(79, 47, 32, 0.92)";
+            ctx.lineWidth = phonePortrait ? 0.8 : 1;
+            ctx.beginPath();
+            for (let point = 0; point < 6; point += 1) {
+              const angle = point * Math.PI / 3;
+              const bx = boltX + Math.cos(angle) * (phonePortrait ? 2.4 : 3);
+              const by = py + 5 + Math.sin(angle) * (phonePortrait ? 2.4 : 3);
+              if (point === 0) ctx.moveTo(bx, by);
+              else ctx.lineTo(bx, by);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+          }
+        } else if (openUp && seed < 0.3) {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.globalAlpha = (phonePortrait ? 0.52 : 0.68) * visualProfile.scatterAlphaScale;
+          ctx.fillStyle = "rgba(101, 164, 91, 0.9)";
+          for (let blade = 0; blade < 4; blade += 1) {
+            const bx = px + TILE * (0.18 + blade * 0.2);
+            ctx.beginPath();
+            ctx.moveTo(bx - 1.4, py + 4);
+            ctx.quadraticCurveTo(bx, py - (phonePortrait ? 3 : 5) - blade % 2, bx + 1.4, py + 4);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneSetPieces(concept, visualProfile) {
+    const targets = [
+      { x: 5, y: 5 },
+      { x: 34, y: 7 },
+      { x: 8, y: 23 }
+    ];
+    const used = [];
+    for (let index = 0; index < targets.length; index += 1) {
+      const cell = findNearestIceWorldWallAnchor(targets[index], used, 9);
+      if (!cell) continue;
+      used.push(cell);
+      const center = centerOfCell(cell.x, cell.y);
+      drawWorldOneSetPiece(center.x, center.y, index, concept, visualProfile);
+    }
+  }
+
+  function drawWorldOneSetPiece(x, y, index, concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const size = TILE * (phonePortrait ? 0.92 : 1.16) * (index === 0 ? 1.35 : 1.12);
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = (phonePortrait ? 0.68 : 0.82) * visualProfile.scatterAlphaScale;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    if (concept.material === "garden") {
+      if (index === 0) {
+        ctx.globalCompositeOperation = "source-over";
+        ctx.strokeStyle = "rgba(54, 70, 39, 0.96)";
+        ctx.lineWidth = phonePortrait ? 2.2 : 2.8;
+        ctx.beginPath();
+        ctx.moveTo(0, size * 0.62);
+        ctx.quadraticCurveTo(-size * 0.08, size * 0.08, size * 0.05, -size * 0.28);
+        ctx.stroke();
+        const canopy = [
+          [-0.36, -0.18, 0.47], [0.34, -0.2, 0.5], [0, -0.5, 0.56],
+          [-0.08, 0.03, 0.54], [0.42, -0.56, 0.38]
+        ];
+        for (let leaf = 0; leaf < canopy.length; leaf += 1) {
+          const [lx, ly, lr] = canopy[leaf];
+          const crown = ctx.createRadialGradient(lx * size - size * 0.1, ly * size - size * 0.1, 0, lx * size, ly * size, size * lr);
+          crown.addColorStop(0, leaf % 2 ? "#9bd86f" : "#79ca71");
+          crown.addColorStop(1, leaf % 2 ? "#397d48" : "#315d3d");
+          ctx.fillStyle = crown;
+          ctx.beginPath();
+          ctx.arc(lx * size, ly * size, size * lr, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalCompositeOperation = "screen";
+        ctx.shadowColor = "rgba(246, 189, 69, 0.8)";
+        ctx.shadowBlur = phonePortrait ? 3 : 6;
+        ctx.fillStyle = "#f6bd45";
+        for (const [fx, fy] of [[-0.38, -0.38], [0.2, -0.6], [0.38, -0.13], [-0.04, -0.08]]) {
+          ctx.beginPath();
+          ctx.arc(fx * size, fy * size, size * 0.09, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else {
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "rgba(118, 73, 49, 0.96)";
+        ctx.strokeStyle = "rgba(57, 34, 30, 0.94)";
+        ctx.lineWidth = phonePortrait ? 1.1 : 1.45;
+        ctx.beginPath();
+        ctx.moveTo(-size * 0.34, size * 0.28);
+        ctx.lineTo(size * 0.34, size * 0.28);
+        ctx.lineTo(size * 0.24, size * 0.72);
+        ctx.lineTo(-size * 0.24, size * 0.72);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.strokeStyle = "rgba(54, 113, 63, 0.96)";
+        ctx.lineWidth = phonePortrait ? 1.7 : 2.1;
+        ctx.beginPath();
+        ctx.moveTo(0, size * 0.38);
+        ctx.quadraticCurveTo(-size * 0.15, -size * 0.08, 0, -size * 0.54);
+        ctx.stroke();
+        ctx.fillStyle = index === 1 ? "rgba(45, 212, 191, 0.92)" : "rgba(238, 127, 96, 0.94)";
+        ctx.strokeStyle = "rgba(54, 82, 48, 0.94)";
+        for (let petal = 0; petal < 6; petal += 1) {
+          const angle = petal * Math.PI / 3;
+          ctx.beginPath();
+          ctx.ellipse(Math.cos(angle) * size * 0.26, -size * 0.54 + Math.sin(angle) * size * 0.22, size * 0.23, size * 0.12, angle, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+        }
+        ctx.fillStyle = "#f6bd45";
+        ctx.beginPath();
+        ctx.arc(0, -size * 0.54, size * 0.16, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    } else if (concept.material === "workshop") {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = index === 0 ? "#f1bd55" : index === 1 ? "#45c7c0" : "#e96c5c";
+      ctx.strokeStyle = "rgba(62, 34, 31, 0.9)";
+      ctx.lineWidth = phonePortrait ? 1.3 : 1.8;
+      const teeth = index === 0 ? 10 : 8;
+      ctx.beginPath();
+      for (let point = 0; point < teeth * 2; point += 1) {
+        const angle = point * Math.PI / teeth - Math.PI / 2;
+        const radius = point % 2 === 0 ? size * 0.72 : size * 0.52;
+        const px = Math.cos(angle) * radius;
+        const py = Math.sin(angle) * radius;
+        if (point === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "rgba(39, 37, 50, 0.9)";
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 0.22, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.globalCompositeOperation = "screen";
+      ctx.strokeStyle = index === 0 ? "rgba(255, 211, 92, 0.94)" : "rgba(114, 200, 230, 0.9)";
+      ctx.fillStyle = "rgba(255, 247, 220, 0.34)";
+      ctx.shadowColor = ctx.strokeStyle;
+      ctx.shadowBlur = phonePortrait ? 4 : 8;
+      ctx.lineWidth = phonePortrait ? 1.4 : 1.9;
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 0.58, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.72, size * 0.16);
+      ctx.quadraticCurveTo(0, -size * 0.64, size * 0.72, size * 0.16);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, -size * 0.8);
+      ctx.lineTo(0, size * 0.78);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneStaticLighting(concept, visualProfile) {
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    const warm = concept.material === "islands" ? "rgba(255, 178, 107, 0.16)" : "rgba(255, 217, 146, 0.14)";
+    const keyLight = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    keyLight.addColorStop(0, warm);
+    keyLight.addColorStop(0.42, "rgba(255, 255, 255, 0.025)");
+    keyLight.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.58 : 0.76) * visualProfile.ambientAlphaScale;
+    ctx.fillStyle = keyLight;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+
+    drawAutotileStaticLightingLayer(concept.theme, visualProfile);
+  }
+
+  function drawWorldOneAmbientLayer(concept, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const compactAuthoredMobile = isWorldOneAuthoredBoardReady()
+      && MOBILE_RUNTIME.coarse;
+    const count = compactAuthoredMobile
+      ? 6
+      : Math.max(9, Math.round((phonePortrait ? 18 : 32) * visualProfile.ambientParticleScale));
+    const wrap = (value, max) => ((value % max) + max) % max;
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    for (let index = 0; index < count; index += 1) {
+      const speed = 2.8 + (index % 5) * 0.85;
+      const x = wrap(index * 193 + Math.sin(state.clock * 0.42 + index) * 12, WIDTH);
+      const y = concept.material === "islands"
+        ? wrap(index * 109 + state.clock * speed, HEIGHT)
+        : wrap(index * 109 - state.clock * speed, HEIGHT);
+      const radius = (phonePortrait ? 0.72 : 0.92) + (index % 4) * 0.22;
+      ctx.globalAlpha = (0.14 + (index % 5) * 0.035) * visualProfile.ambientAlphaScale;
+      if (concept.material === "garden") {
+        ctx.fillStyle = index % 4 === 0 ? "rgba(255, 215, 103, 0.9)" : "rgba(78, 225, 190, 0.72)";
+        ctx.shadowColor = ctx.fillStyle;
+        ctx.shadowBlur = compactAuthoredMobile ? 0 : (phonePortrait ? 2.5 : 5);
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (concept.material === "workshop") {
+        ctx.fillStyle = index % 5 === 0 ? "rgba(241, 189, 85, 0.82)" : "rgba(255, 236, 207, 0.56)";
+        ctx.shadowBlur = 0;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(state.clock * 0.18 + index);
+        ctx.fillRect(-radius * 0.35, -radius, radius * 0.7, radius * 2);
+        ctx.restore();
+      } else {
+        ctx.fillStyle = index % 4 === 0 ? "rgba(255, 211, 92, 0.8)" : "rgba(255, 248, 223, 0.58)";
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.ellipse(x, y, radius * 1.8, radius * 0.55, 0.12, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.shadowBlur = 0;
+
+    if (!MOBILE_RUNTIME.reducedEffects && !compactAuthoredMobile) {
+      ctx.globalAlpha = (phonePortrait ? 0.08 : 0.12) * visualProfile.ambientAlphaScale;
+      ctx.strokeStyle = concept.material === "garden"
+        ? "rgba(45, 212, 191, 0.72)"
+        : concept.material === "workshop"
+          ? "rgba(241, 189, 85, 0.66)"
+          : "rgba(255, 248, 223, 0.7)";
+      ctx.lineWidth = phonePortrait ? 1 : 1.35;
+      for (let band = 0; band < (phonePortrait ? 2 : 4); band += 1) {
+        const y = wrap(band * 241 + state.clock * (5 + band), HEIGHT);
+        const x = wrap(band * 337 + state.clock * 13, WIDTH + 180) - 90;
+        ctx.beginPath();
+        ctx.moveTo(x - 38, y + 2);
+        ctx.bezierCurveTo(x - 10, y - 5, x + 26, y + 6, x + 58, y - 2);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function getIceWorldWallContourLoops() {
+    const mazeSignature = MAZE_DECOR_SYSTEM?.createMazeSignature?.(state.maze)
+      || `${state.levelIndex}:${state.mazeScatterSignature || "maze"}`;
+    const cacheKey = `${mazeSignature}:${COLS}x${ROWS}:${TILE}`;
+    if (getIceWorldWallContourLoops.cache?.key === cacheKey) {
+      return getIceWorldWallContourLoops.cache.loops;
+    }
+
+    const edges = [];
+    const wallAt = (x, y) => x >= 0 && y >= 0 && x < COLS && y < ROWS && isWallCell(x, y);
+    const addEdge = (x1, y1, x2, y2, direction) => {
+      edges.push({ x1, y1, x2, y2, direction, id: edges.length });
+    };
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (!wallAt(x, y)) continue;
+        if (!wallAt(x, y - 1)) addEdge(x, y, x + 1, y, 0);
+        if (!wallAt(x + 1, y)) addEdge(x + 1, y, x + 1, y + 1, 1);
+        if (!wallAt(x, y + 1)) addEdge(x + 1, y + 1, x, y + 1, 2);
+        if (!wallAt(x - 1, y)) addEdge(x, y + 1, x, y, 3);
+      }
+    }
+
+    const pointKey = (x, y) => `${x},${y}`;
+    const outgoing = new Map();
+    for (const edge of edges) {
+      const key = pointKey(edge.x1, edge.y1);
+      if (!outgoing.has(key)) outgoing.set(key, []);
+      outgoing.get(key).push(edge);
+    }
+    const unvisited = new Set(edges.map((edge) => edge.id));
+    const loops = [];
+    const turnPreference = [1, 0, 3, 2];
+
+    while (unvisited.size) {
+      const firstId = unvisited.values().next().value;
+      const first = edges[firstId];
+      const loop = [{ x: first.x1, y: first.y1 }];
+      let current = first;
+      let guard = 0;
+      while (current && guard <= edges.length + 2) {
+        unvisited.delete(current.id);
+        loop.push({ x: current.x2, y: current.y2 });
+        if (current.x2 === first.x1 && current.y2 === first.y1) break;
+        const candidates = (outgoing.get(pointKey(current.x2, current.y2)) || [])
+          .filter((edge) => unvisited.has(edge.id));
+        if (!candidates.length) break;
+        candidates.sort((a, b) => {
+          const turnA = (a.direction - current.direction + 4) % 4;
+          const turnB = (b.direction - current.direction + 4) % 4;
+          return turnPreference.indexOf(turnA) - turnPreference.indexOf(turnB);
+        });
+        current = candidates[0];
+        guard += 1;
+      }
+      if (loop.length > 3) {
+        const last = loop[loop.length - 1];
+        if (last.x === loop[0].x && last.y === loop[0].y) loop.pop();
+        loops.push(loop);
+      }
+    }
+
+    getIceWorldWallContourLoops.cache = { key: cacheKey, loops };
+    return loops;
+  }
+
+  function traceIceWorldCellMask(wallCells) {
+    ctx.beginPath();
+    if (!wallCells) {
+      for (let y = 0; y < ROWS; y += 1) {
+        for (let x = 0; x < COLS; x += 1) {
+          if (!isWallCell(x, y)) {
+            ctx.rect(x * TILE - 0.3, y * TILE - 0.3, TILE + 0.6, TILE + 0.6);
+          }
+        }
+      }
+      return;
+    }
+
+    const phonePortrait = isPhonePortraitView();
+    const worldOneConcept = isWorldOneReimagined() ? getWorldOneConcept() : null;
+    const contourAmplitude = worldOneConcept?.material === "garden"
+      ? TILE * 0.095
+      : worldOneConcept?.material === "islands"
+        ? TILE * 0.115
+        : worldOneConcept?.material === "workshop"
+          ? TILE * 0.035
+          : 0;
+    const baseCut = Math.min(phonePortrait ? 7.2 : 9.2, TILE * 0.3);
+    const loops = getIceWorldWallContourLoops();
+    for (const loop of loops) {
+      const corners = loop.map((point, index) => {
+        const previous = loop[(index - 1 + loop.length) % loop.length];
+        const next = loop[(index + 1) % loop.length];
+        const incomingX = point.x - previous.x;
+        const incomingY = point.y - previous.y;
+        const outgoingX = next.x - point.x;
+        const outgoingY = next.y - point.y;
+        const turns = incomingX * outgoingY - incomingY * outgoingX;
+        const px = point.x * TILE;
+        const py = point.y * TILE;
+        const contourSeed = mazeCellNoise(point.x + index, point.y - index, 2467);
+        if (Math.abs(turns) < 0.001) {
+          const normalX = -incomingY;
+          const normalY = incomingX;
+          const wave = contourAmplitude
+            ? ((contourSeed - 0.5) * 1.34 + Math.sin(index * 1.91 + point.x * 0.37 + point.y * 0.23) * 0.33) * contourAmplitude
+            : 0;
+          return {
+            px: px + normalX * wave,
+            py: py + normalY * wave,
+            entryX: px + normalX * wave,
+            entryY: py + normalY * wave,
+            exitX: px + normalX * wave,
+            exitY: py + normalY * wave
+          };
+        }
+        const cut = baseCut * (0.7 + contourSeed * 0.55);
+        return {
+          px,
+          py,
+          entryX: px - incomingX * cut,
+          entryY: py - incomingY * cut,
+          exitX: px + outgoingX * cut,
+          exitY: py + outgoingY * cut
+        };
+      });
+      if (!corners.length) continue;
+      ctx.moveTo(corners[0].entryX, corners[0].entryY);
+      for (const corner of corners) {
+        ctx.lineTo(corner.entryX, corner.entryY);
+        ctx.quadraticCurveTo(corner.px, corner.py, corner.exitX, corner.exitY);
+      }
+      ctx.closePath();
+    }
+  }
+
+  function collectIceWorldHorizontalEdgeRuns(side) {
+    const runs = [];
+    const offsetY = side === "up" ? -1 : 1;
+    const salt = side === "up" ? 2101 : 2111;
+    for (let y = 0; y < ROWS; y += 1) {
+      let x = 0;
+      while (x < COLS) {
+        const exposed = isWallCell(x, y) && !isWallCell(x, y + offsetY);
+        if (!exposed) {
+          x += 1;
+          continue;
+        }
+        const start = x;
+        while (x < COLS && isWallCell(x, y) && !isWallCell(x, y + offsetY)) {
+          x += 1;
+        }
+        runs.push({
+          side,
+          start,
+          end: x,
+          y,
+          seed: mazeCellNoise(start, y, salt)
+        });
+      }
+    }
+    return runs;
+  }
+
+  function collectIceWorldVerticalEdgeRuns(side) {
+    const runs = [];
+    const offsetX = side === "left" ? -1 : 1;
+    const salt = side === "left" ? 2129 : 2141;
+    for (let x = 0; x < COLS; x += 1) {
+      let y = 0;
+      while (y < ROWS) {
+        const exposed = isWallCell(x, y) && !isWallCell(x + offsetX, y);
+        if (!exposed) {
+          y += 1;
+          continue;
+        }
+        const start = y;
+        while (y < ROWS && isWallCell(x, y) && !isWallCell(x + offsetX, y)) {
+          y += 1;
+        }
+        runs.push({
+          side,
+          start,
+          end: y,
+          x,
+          seed: mazeCellNoise(x, start, salt)
+        });
+      }
+    }
+    return runs;
+  }
+
+  const MAZE_AXONOMETRIC_WALL_STYLES = Object.freeze({
+    ice: Object.freeze({
+      front: ["#287c9c", "#0d456b", "#02152b"],
+      side: ["#216c91", "#05243f"],
+      topEdge: "rgba(220, 252, 255, 0.96)",
+      faceEdge: "rgba(91, 211, 236, 0.76)",
+      detail: "rgba(177, 239, 249, 0.52)",
+      shadow: "rgba(0, 8, 24, 0.82)"
+    }),
+    lava: Object.freeze({
+      front: ["#3b1b16", "#1b0908", "#050202"],
+      side: ["#33120f", "#090303"],
+      topEdge: "rgba(255, 173, 74, 0.88)",
+      faceEdge: "rgba(255, 84, 25, 0.68)",
+      detail: "rgba(255, 103, 30, 0.72)",
+      shadow: "rgba(0, 0, 0, 0.88)"
+    }),
+    ancient: Object.freeze({
+      front: ["#8b6939", "#4b3218", "#211306"],
+      side: ["#72552f", "#2a1c0d"],
+      topEdge: "rgba(255, 235, 183, 0.9)",
+      faceEdge: "rgba(211, 172, 103, 0.7)",
+      detail: "rgba(45, 31, 16, 0.58)",
+      accent: "rgba(34, 215, 193, 0.72)",
+      shadow: "rgba(12, 7, 2, 0.82)"
+    }),
+    diamond: Object.freeze({
+      front: ["#5148b2", "#29236f", "#0e0f39"],
+      side: ["#393184", "#11123e"],
+      topEdge: "rgba(239, 255, 255, 0.98)",
+      faceEdge: "rgba(173, 126, 255, 0.82)",
+      detail: "rgba(111, 239, 255, 0.62)",
+      accent: "rgba(255, 116, 225, 0.7)",
+      shadow: "rgba(3, 2, 31, 0.86)"
+    })
+  });
+
+  function getMazeAxonometricProjection() {
+    if (MAZE_AXONOMETRIC_PROJECTION?.computeProjection) {
+      const projection = MAZE_AXONOMETRIC_PROJECTION.computeProjection(TILE);
+      if (isWorldOneReimagined() || APPROVED_STAGE_STYLE[getMazeWorldKey()]) {
+        return {
+          ...projection,
+          southDepth: TILE * 0.34,
+          eastDepth: TILE * 0.105,
+          contactShadowY: TILE * 0.255,
+          contactShadowX: TILE * 0.052
+        };
+      }
+      return projection;
+    }
+    return {
+      azimuthDegrees: 10,
+      elevationDegrees: 56,
+      tiltFromVerticalDegrees: 34,
+      southDepth: TILE * 0.28,
+      eastDepth: TILE * 0.09,
+      contactShadowY: TILE * 0.21,
+      contactShadowX: TILE * 0.04
+    };
+  }
+
+  function traceMazeAxonometricSouthFace(run, projection, inset = 0.55) {
+    const topY = (run.y + 1) * TILE - 0.65;
+    const leftX = run.start * TILE + inset;
+    const rightX = run.end * TILE - inset;
+    ctx.beginPath();
+    ctx.moveTo(leftX, topY);
+    ctx.lineTo(rightX, topY);
+    ctx.lineTo(rightX + projection.eastDepth, topY + projection.southDepth);
+    ctx.lineTo(leftX + projection.eastDepth, topY + projection.southDepth);
+    ctx.closePath();
+  }
+
+  function traceMazeAxonometricEastFace(run, projection, inset = 0.55) {
+    const topX = (run.x + 1) * TILE - 0.65;
+    const topY = run.start * TILE + inset;
+    const bottomY = run.end * TILE - inset;
+    ctx.beginPath();
+    ctx.moveTo(topX, topY);
+    ctx.lineTo(topX, bottomY);
+    ctx.lineTo(topX + projection.eastDepth, bottomY + projection.southDepth);
+    ctx.lineTo(topX + projection.eastDepth, topY + projection.southDepth);
+    ctx.closePath();
+  }
+
+  function drawMazeAxonometricSouthFaceDetails(run, theme, style, projection, visualProfile) {
+    const motif = theme.motif;
+    const topY = (run.y + 1) * TILE - 0.65;
+    const bottomY = topY + projection.southDepth;
+    const x0 = run.start * TILE;
+    const x1 = run.end * TILE;
+    ctx.save();
+    traceMazeAxonometricSouthFace(run, projection);
+    ctx.clip();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    if (motif === "ancient") {
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.7 * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = style.detail;
+      ctx.lineWidth = isPhonePortraitView() ? 0.72 : 1.05;
+      ctx.beginPath();
+      ctx.moveTo(x0, topY + projection.southDepth * 0.52);
+      ctx.lineTo(x1 + projection.eastDepth, topY + projection.southDepth * 0.52);
+      for (let x = run.start + 1; x < run.end; x += 1) {
+        const seamX = x * TILE;
+        ctx.moveTo(seamX, topY);
+        ctx.lineTo(seamX + projection.eastDepth, bottomY);
+      }
+      ctx.stroke();
+      for (let x = run.start; x < run.end; x += 1) {
+        if (mazeCellNoise(x, run.y, 8851) > 0.28) continue;
+        const insetX = x * TILE + TILE * 0.22;
+        ctx.globalCompositeOperation = "screen";
+        ctx.globalAlpha = 0.62 * visualProfile.glowScale;
+        ctx.strokeStyle = style.accent;
+        ctx.lineWidth = isPhonePortraitView() ? 0.85 : 1.2;
+        ctx.strokeRect(insetX, topY + projection.southDepth * 0.26, TILE * 0.56, projection.southDepth * 0.34);
+      }
+    } else if (motif === "lava") {
+      ctx.globalCompositeOperation = "screen";
+      ctx.strokeStyle = style.detail;
+      ctx.shadowColor = style.detail;
+      ctx.shadowBlur = isPhonePortraitView() ? 2.5 : 4.5;
+      ctx.lineWidth = isPhonePortraitView() ? 0.85 : 1.25;
+      for (let x = run.start; x < run.end; x += 1) {
+        const seed = mazeCellNoise(x, run.y, 8863);
+        if (seed > 0.46) continue;
+        const centerX = (x + 0.35 + seed * 0.32) * TILE;
+        ctx.globalAlpha = (0.44 + seed * 0.34) * visualProfile.glowScale;
+        ctx.beginPath();
+        ctx.moveTo(centerX, topY - 0.5);
+        ctx.lineTo(centerX + projection.eastDepth * 0.28, topY + projection.southDepth * 0.36);
+        ctx.lineTo(centerX - TILE * 0.055, topY + projection.southDepth * 0.67);
+        ctx.lineTo(centerX + projection.eastDepth * 0.72, bottomY + 0.5);
+        ctx.stroke();
+      }
+    } else if (motif === "diamond") {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.44 * visualProfile.rimAlphaScale;
+      ctx.lineWidth = isPhonePortraitView() ? 0.7 : 1;
+      for (let x = run.start; x < run.end; x += 1) {
+        const cellLeft = x * TILE;
+        const cellRight = (x + 1) * TILE;
+        const centerX = (cellLeft + cellRight) * 0.5 + projection.eastDepth * 0.5;
+        ctx.strokeStyle = mazeCellNoise(x, run.y, 8879) < 0.5 ? style.detail : style.accent;
+        ctx.beginPath();
+        ctx.moveTo(cellLeft, topY);
+        ctx.lineTo(centerX, bottomY);
+        ctx.lineTo(cellRight, topY);
+        ctx.moveTo(centerX, topY);
+        ctx.lineTo(cellLeft + projection.eastDepth, bottomY);
+        ctx.stroke();
+      }
+    } else {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.38 * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = style.detail;
+      ctx.lineWidth = isPhonePortraitView() ? 0.72 : 1.05;
+      for (let x = run.start; x < run.end; x += 1) {
+        const cellLeft = x * TILE;
+        const seed = mazeCellNoise(x, run.y, 8893);
+        ctx.beginPath();
+        ctx.moveTo(cellLeft + TILE * (0.18 + seed * 0.18), topY);
+        ctx.lineTo(cellLeft + TILE * (0.46 + seed * 0.12), bottomY);
+        ctx.lineTo(cellLeft + TILE * (0.76 + seed * 0.1), topY);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawMazeAxonometricWallExtrusion(theme, visualProfile = getMazeMobileVisualProfile()) {
+    const motif = theme?.motif || "ice";
+    const style = theme?.axonometric || MAZE_AXONOMETRIC_WALL_STYLES[motif] || MAZE_AXONOMETRIC_WALL_STYLES.ice;
+    const projection = getMazeAxonometricProjection();
+    const downRuns = collectIceWorldHorizontalEdgeRuns("down");
+    const rightRuns = collectIceWorldVerticalEdgeRuns("right");
+
+    // Contact shadow belongs to the projected wall base, not the top-down
+    // gameplay cell. This is the cue that was absent from the flat renderer.
+    ctx.save();
+    ctx.translate(projection.contactShadowX, projection.contactShadowY);
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.56 : 0.68) * visualProfile.wallShadowScale;
+    ctx.fillStyle = style.shadow;
+    ctx.shadowColor = style.shadow;
+    ctx.shadowBlur = isPhonePortraitView() ? 3.5 : 6;
+    for (const run of rightRuns) {
+      traceMazeAxonometricEastFace(run, projection, 0.2);
+      ctx.fill();
+    }
+    for (const run of downRuns) {
+      traceMazeAxonometricSouthFace(run, projection, 0.2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    for (const run of rightRuns) {
+      const boundary = (run.x + 1) * TILE;
+      const side = ctx.createLinearGradient(boundary, 0, boundary + projection.eastDepth, projection.southDepth);
+      side.addColorStop(0, style.side[0]);
+      side.addColorStop(1, style.side[1]);
+      ctx.fillStyle = side;
+      traceMazeAxonometricEastFace(run, projection);
+      ctx.fill();
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (isPhonePortraitView() ? 0.28 : 0.4) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = style.faceEdge;
+      ctx.lineWidth = isPhonePortraitView() ? 0.72 : 1.05;
+      ctx.beginPath();
+      ctx.moveTo(boundary, run.start * TILE + 1);
+      ctx.lineTo(boundary, run.end * TILE - 1);
+      ctx.stroke();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 1;
+    }
+
+    for (const run of downRuns) {
+      const boundary = (run.y + 1) * TILE;
+      const face = ctx.createLinearGradient(0, boundary, 0, boundary + projection.southDepth);
+      face.addColorStop(0, style.front[0]);
+      face.addColorStop(0.48, style.front[1]);
+      face.addColorStop(1, style.front[2]);
+      ctx.fillStyle = face;
+      traceMazeAxonometricSouthFace(run, projection);
+      ctx.fill();
+      drawMazeAxonometricSouthFaceDetails(run, theme, style, projection, visualProfile);
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (isPhonePortraitView() ? 0.52 : 0.68) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = style.faceEdge;
+      ctx.lineWidth = isPhonePortraitView() ? 0.9 : 1.25;
+      ctx.beginPath();
+      ctx.moveTo(run.start * TILE + 1, boundary);
+      ctx.lineTo(run.end * TILE - 1, boundary);
+      ctx.stroke();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+  }
+
+  function drawMazeAxonometricBlenderWallCaps(theme, visualProfile = getMazeMobileVisualProfile()) {
+    const world = theme?.world || theme?.motif || getMazeWorldKey();
+    const definition = MAZE_AXONOMETRIC_WALL_ATLASES[world];
+    const image = GAME_ASSETS.mazeAxonometricWalls?.[world];
+    if (!definition || !image?.complete || image.naturalWidth < definition.tileSize * definition.columns) {
+      return false;
+    }
+
+    const sourceSize = definition.tileSize;
+    const drawSize = TILE * (isPhonePortraitView() ? 1.18 : 1.2);
+    const offsetX = (drawSize - TILE) * 0.52;
+    const offsetY = TILE * 0.025;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.7 : 0.66) * Math.max(0.88, visualProfile.textureAlphaScale);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = isPhonePortraitView() ? "medium" : "high";
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (!isWallCell(x, y)) continue;
+        const mask = getIceV3WallMaskAt(x, y);
+        const sourceX = (mask % definition.columns) * sourceSize;
+        const sourceY = Math.floor(mask / definition.columns) * sourceSize;
+        ctx.drawImage(
+          image,
+          sourceX + 0.5,
+          sourceY + 0.5,
+          sourceSize - 1,
+          sourceSize - 1,
+          x * TILE - offsetX,
+          y * TILE - offsetY,
+          drawSize,
+          drawSize
+        );
+      }
+    }
+    ctx.restore();
+    return true;
+  }
+
+  function drawMazeAxonometricFaceOverlay(theme, visualProfile = getMazeMobileVisualProfile()) {
+    const motif = theme?.motif || "ice";
+    const style = MAZE_AXONOMETRIC_WALL_STYLES[motif] || MAZE_AXONOMETRIC_WALL_STYLES.ice;
+    const projection = getMazeAxonometricProjection();
+    const phonePortrait = isPhonePortraitView();
+    const downRuns = collectIceWorldHorizontalEdgeRuns("down");
+    const rightRuns = collectIceWorldVerticalEdgeRuns("right");
+    const capRatio = phonePortrait ? 0.64 : 0.62;
+    const innerFaceHeight = TILE * (1 - capRatio);
+    const outerFaceDepth = projection.southDepth * (phonePortrait ? 0.46 : 0.52);
+    const horizontalShift = projection.eastDepth * 0.72;
+    const sheet = getMazeWorldSheet();
+
+    ctx.save();
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    // Re-introduce the authored material from the supplied world sheets at a
+    // readable strength. It is clipped to the gameplay wall mask, so no white
+    // sheet background or decorative sample leaks into the maze.
+    if (sheet) {
+      ctx.save();
+      traceIceWorldCellMask(true);
+      ctx.clip();
+      for (let y = 0; y < ROWS; y += 1) {
+        for (let x = 0; x < COLS; x += 1) {
+          if (!isWallCell(x, y)) continue;
+          const authoredTextureAlpha = motif === "lava"
+            ? (phonePortrait ? 0.2 : 0.25)
+            : motif === "diamond"
+              ? (phonePortrait ? 0.26 : 0.32)
+              : (phonePortrait ? 0.32 : 0.39);
+          drawMazeWorldTextureRect(sheet, "wallTexture", x * TILE, y * TILE, TILE, TILE, {
+            alpha: authoredTextureAlpha * visualProfile.textureAlphaScale,
+            blend: motif === "lava" || motif === "diamond" ? "overlay" : "source-over",
+            patternScale: 0.56,
+            offsetX: x * 29 + y * 11,
+            offsetY: y * 23 + x * 7
+          });
+        }
+      }
+      ctx.restore();
+    }
+
+    if (motif === "lava") {
+      ctx.save();
+      traceIceWorldCellMask(true);
+      ctx.clip();
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = phonePortrait ? 0.34 : 0.42;
+      ctx.fillStyle = "#181116";
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+      ctx.restore();
+    }
+
+    // The east plane is darker and narrower. Drawing it first lets the front
+    // plane own the lower-right corner, matching the light direction in the
+    // reference sheets.
+    for (const run of rightRuns) {
+      const boundary = (run.x + 1) * TILE;
+      const innerX = boundary - Math.max(TILE * 0.14, projection.eastDepth * 1.25);
+      const y0 = run.start * TILE + 0.8;
+      const y1 = run.end * TILE - 0.8;
+      const side = ctx.createLinearGradient(innerX, 0, boundary + projection.eastDepth, 0);
+      side.addColorStop(0, style.side[0]);
+      side.addColorStop(1, style.side[1]);
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.98;
+      ctx.fillStyle = side;
+      ctx.beginPath();
+      ctx.moveTo(innerX, y0 + TILE * 0.055);
+      ctx.lineTo(boundary, y0);
+      ctx.lineTo(boundary + projection.eastDepth, y0 + projection.southDepth);
+      ctx.lineTo(boundary + projection.eastDepth, y1 + outerFaceDepth);
+      ctx.lineTo(innerX, y1 - TILE * 0.03);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.34 : 0.46) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = style.faceEdge;
+      ctx.lineWidth = phonePortrait ? 0.78 : 1.08;
+      ctx.beginPath();
+      ctx.moveTo(innerX + 0.5, y0 + TILE * 0.075);
+      ctx.lineTo(boundary, y0 + 0.5);
+      ctx.stroke();
+    }
+
+    for (const run of downRuns) {
+      const boundary = (run.y + 1) * TILE;
+      const faceTop = boundary - innerFaceHeight;
+      const faceBottom = boundary + outerFaceDepth;
+      const x0 = run.start * TILE + 0.65;
+      const x1 = run.end * TILE - 0.65;
+      const front = ctx.createLinearGradient(0, faceTop, 0, faceBottom);
+      front.addColorStop(0, style.front[0]);
+      front.addColorStop(0.18, style.front[1]);
+      front.addColorStop(0.68, style.front[1]);
+      front.addColorStop(1, style.front[2]);
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.99;
+      ctx.fillStyle = front;
+      ctx.beginPath();
+      ctx.moveTo(x0 + TILE * 0.025, faceTop);
+      ctx.lineTo(x1 - TILE * 0.025, faceTop);
+      ctx.lineTo(x1 + horizontalShift, faceBottom);
+      ctx.lineTo(x0 + horizontalShift, faceBottom);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(x0 + TILE * 0.025, faceTop);
+      ctx.lineTo(x1 - TILE * 0.025, faceTop);
+      ctx.lineTo(x1 + horizontalShift, faceBottom);
+      ctx.lineTo(x0 + horizontalShift, faceBottom);
+      ctx.closePath();
+      ctx.clip();
+
+      if (sheet) {
+        drawMazeWorldTextureRect(sheet, "wallFaceTexture", x0, faceTop, Math.max(1, x1 - x0), faceBottom - faceTop, {
+          alpha: (phonePortrait ? 0.48 : 0.58) * visualProfile.textureAlphaScale,
+          blend: motif === "lava" ? "screen" : "source-over",
+          patternScale: 0.5,
+          offsetX: run.start * 37 + run.y * 13,
+          offsetY: run.y * 17
+        });
+      }
+
+      const seamAlpha = motif === "lava" ? 0.52 : motif === "ancient" ? 0.58 : 0.42;
+      ctx.globalAlpha = seamAlpha * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = motif === "ancient" ? style.detail : style.faceEdge;
+      ctx.lineWidth = phonePortrait ? 0.68 : 0.96;
+      for (let x = run.start + 1; x < run.end; x += 1) {
+        const seamX = x * TILE;
+        ctx.beginPath();
+        ctx.moveTo(seamX, faceTop);
+        ctx.lineTo(seamX + horizontalShift, faceBottom);
+        ctx.stroke();
+      }
+
+      if (motif === "ancient") {
+        ctx.globalCompositeOperation = "multiply";
+        ctx.strokeStyle = style.detail;
+        ctx.globalAlpha = 0.62;
+        ctx.beginPath();
+        ctx.moveTo(x0, faceTop + (faceBottom - faceTop) * 0.5);
+        ctx.lineTo(x1 + horizontalShift, faceTop + (faceBottom - faceTop) * 0.5);
+        ctx.stroke();
+      } else if (motif === "ice" || motif === "diamond") {
+        ctx.globalCompositeOperation = "screen";
+        ctx.globalAlpha = (motif === "diamond" ? 0.5 : 0.38) * visualProfile.rimAlphaScale;
+        for (let x = run.start; x < run.end; x += 1) {
+          const left = x * TILE;
+          const right = (x + 1) * TILE;
+          const center = (left + right) * 0.5 + horizontalShift * 0.46;
+          ctx.strokeStyle = motif === "diamond" && mazeCellNoise(x, run.y, 9127) > 0.48
+            ? style.accent
+            : style.detail;
+          ctx.beginPath();
+          ctx.moveTo(left + 1, faceTop);
+          ctx.lineTo(center, faceBottom);
+          ctx.lineTo(right - 1, faceTop);
+          ctx.moveTo(center, faceTop);
+          ctx.lineTo(left + horizontalShift + 1, faceBottom);
+          ctx.stroke();
+        }
+      } else if (motif === "lava") {
+        ctx.globalCompositeOperation = "screen";
+        ctx.strokeStyle = style.detail;
+        ctx.shadowColor = style.detail;
+        ctx.shadowBlur = phonePortrait ? 2.4 : 4;
+        ctx.lineWidth = phonePortrait ? 0.78 : 1.08;
+        for (let x = run.start; x < run.end; x += 1) {
+          const seed = mazeCellNoise(x, run.y, 9143);
+          if (seed > 0.34) continue;
+          const crackX = (x + 0.28 + seed * 0.42) * TILE;
+          ctx.globalAlpha = (0.48 + seed * 0.32) * visualProfile.glowScale;
+          ctx.beginPath();
+          ctx.moveTo(crackX, faceTop);
+          ctx.lineTo(crackX + TILE * 0.07, faceTop + (faceBottom - faceTop) * 0.34);
+          ctx.lineTo(crackX - TILE * 0.025, faceTop + (faceBottom - faceTop) * 0.66);
+          ctx.lineTo(crackX + horizontalShift, faceBottom);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.7 : 0.86) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = style.topEdge;
+      ctx.lineWidth = phonePortrait ? 1.05 : 1.45;
+      ctx.beginPath();
+      ctx.moveTo(x0 + TILE * 0.035, faceTop);
+      ctx.lineTo(x1 - TILE * 0.035, faceTop);
+      ctx.stroke();
+
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = (phonePortrait ? 0.5 : 0.62) * visualProfile.wallShadowScale;
+      ctx.strokeStyle = style.shadow;
+      ctx.lineWidth = phonePortrait ? 1.2 : 1.65;
+      ctx.beginPath();
+      ctx.moveTo(x0 + horizontalShift + 1, faceBottom);
+      ctx.lineTo(x1 + horizontalShift - 1, faceBottom);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawMazeAxonometricWallTopFinish(theme, visualProfile = getMazeMobileVisualProfile()) {
+    const motif = theme?.motif || "ice";
+    const style = MAZE_AXONOMETRIC_WALL_STYLES[motif] || MAZE_AXONOMETRIC_WALL_STYLES.ice;
+    const upRuns = collectIceWorldHorizontalEdgeRuns("up");
+    const leftRuns = collectIceWorldVerticalEdgeRuns("left");
+    const downRuns = collectIceWorldHorizontalEdgeRuns("down");
+    const projection = getMazeAxonometricProjection();
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.12 : 0.17) * visualProfile.rimAlphaScale;
+    const directionalLight = ctx.createLinearGradient(0, 0, TILE * 1.1, TILE * 0.9);
+    directionalLight.addColorStop(0, style.topEdge);
+    directionalLight.addColorStop(0.38, "rgba(255, 255, 255, 0.08)");
+    directionalLight.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.fillStyle = directionalLight;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = style.topEdge;
+    ctx.lineWidth = isPhonePortraitView() ? 1.05 : 1.5;
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.7 : 0.86) * visualProfile.rimAlphaScale;
+    for (const run of upRuns) {
+      const y = run.y * TILE + 0.8;
+      ctx.beginPath();
+      ctx.moveTo(run.start * TILE + 1.5, y);
+      ctx.lineTo(run.end * TILE - 1.5, y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha *= 0.72;
+    for (const run of leftRuns) {
+      const x = run.x * TILE + 0.8;
+      ctx.beginPath();
+      ctx.moveTo(x, run.start * TILE + 1.5);
+      ctx.lineTo(x, run.end * TILE - 1.5);
+      ctx.stroke();
+    }
+
+    ctx.strokeStyle = style.faceEdge;
+    ctx.lineWidth = isPhonePortraitView() ? 0.85 : 1.15;
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.42 : 0.56) * visualProfile.rimAlphaScale;
+    for (const run of downRuns) {
+      const y = (run.y + 1) * TILE - 0.65;
+      ctx.beginPath();
+      ctx.moveTo(run.start * TILE + 1, y);
+      ctx.lineTo(run.end * TILE - 1, y);
+      ctx.stroke();
+
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = (isPhonePortraitView() ? 0.35 : 0.46) * visualProfile.wallShadowScale;
+      ctx.strokeStyle = style.shadow;
+      ctx.beginPath();
+      ctx.moveTo(run.start * TILE + projection.eastDepth + 1, y + projection.southDepth);
+      ctx.lineTo(run.end * TILE + projection.eastDepth - 1, y + projection.southDepth);
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (isPhonePortraitView() ? 0.42 : 0.56) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = style.faceEdge;
+    }
+    ctx.restore();
+  }
+
+  function drawMazeAxonometricMaterialAccents(theme, visualProfile = getMazeMobileVisualProfile()) {
+    const motif = theme?.motif || "ice";
+    const phonePortrait = isPhonePortraitView();
+    const threshold = { ice: 0.07, lava: 0.12, ancient: 0.055, diamond: 0.09 }[motif] || 0.06;
+    const step = phonePortrait ? 2 : 1;
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    for (let y = 0; y < ROWS; y += step) {
+      for (let x = 0; x < COLS; x += step) {
+        if (!isWallCell(x, y)) continue;
+        const seed = mazeCellNoise(x, y, 9323);
+        if (seed > threshold) continue;
+        const px = x * TILE;
+        const py = y * TILE;
+
+        if (motif === "lava") {
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = (0.5 + seed * 1.8) * visualProfile.glowScale;
+          ctx.strokeStyle = "rgba(255, 91, 24, 0.94)";
+          ctx.shadowColor = "rgba(255, 54, 13, 0.94)";
+          ctx.shadowBlur = phonePortrait ? 2.6 : 4.8;
+          ctx.lineWidth = phonePortrait ? 0.9 : 1.25;
+          ctx.beginPath();
+          ctx.moveTo(px + TILE * 0.18, py + TILE * 0.16);
+          ctx.lineTo(px + TILE * 0.47, py + TILE * 0.3);
+          ctx.lineTo(px + TILE * 0.38, py + TILE * 0.49);
+          ctx.lineTo(px + TILE * 0.72, py + TILE * 0.63);
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        } else if (motif === "ancient") {
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = 0.52 * visualProfile.rimAlphaScale;
+          ctx.strokeStyle = "rgba(42, 224, 198, 0.9)";
+          ctx.lineWidth = phonePortrait ? 0.72 : 0.98;
+          ctx.strokeRect(px + TILE * 0.2, py + TILE * 0.18, TILE * 0.6, TILE * 0.34);
+          ctx.beginPath();
+          ctx.moveTo(px + TILE * 0.34, py + TILE * 0.35);
+          ctx.lineTo(px + TILE * 0.5, py + TILE * 0.24);
+          ctx.lineTo(px + TILE * 0.66, py + TILE * 0.35);
+          ctx.stroke();
+        } else if (motif === "diamond") {
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = 0.56 * visualProfile.rimAlphaScale;
+          ctx.strokeStyle = seed < threshold * 0.5
+            ? "rgba(111, 239, 255, 0.92)"
+            : "rgba(255, 117, 225, 0.88)";
+          ctx.lineWidth = phonePortrait ? 0.72 : 1;
+          ctx.beginPath();
+          ctx.moveTo(px + TILE * 0.12, py + TILE * 0.5);
+          ctx.lineTo(px + TILE * 0.48, py + TILE * 0.12);
+          ctx.lineTo(px + TILE * 0.88, py + TILE * 0.48);
+          ctx.lineTo(px + TILE * 0.5, py + TILE * 0.7);
+          ctx.closePath();
+          ctx.moveTo(px + TILE * 0.48, py + TILE * 0.12);
+          ctx.lineTo(px + TILE * 0.5, py + TILE * 0.7);
+          ctx.stroke();
+        } else {
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = 0.46 * visualProfile.rimAlphaScale;
+          ctx.strokeStyle = "rgba(221, 253, 255, 0.9)";
+          ctx.lineWidth = phonePortrait ? 0.68 : 0.94;
+          ctx.beginPath();
+          ctx.moveTo(px + TILE * 0.18, py + TILE * 0.56);
+          ctx.lineTo(px + TILE * 0.44, py + TILE * 0.3);
+          ctx.lineTo(px + TILE * 0.72, py + TILE * 0.42);
+          ctx.moveTo(px + TILE * 0.44, py + TILE * 0.3);
+          ctx.lineTo(px + TILE * 0.38, py + TILE * 0.14);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawIceV3AtlasCrop(tileset, role, x, y, width, height, alpha = 1) {
+    const crop = getMazeTilesetCrop(tileset, role);
+    if (!crop) {
+      return false;
+    }
+    ctx.save();
+    ctx.globalAlpha *= alpha;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = isPhonePortraitView() || MOBILE_RUNTIME.reducedEffects ? "medium" : "high";
+    ctx.drawImage(tileset.image, crop.x, crop.y, crop.w, crop.h, x, y, width, height);
+    ctx.restore();
+    return true;
+  }
+
+  function getIceV3WallMaskAt(x, y) {
+    if (MAZE_TILE_TOPOLOGY?.getMaskAt) {
+      return MAZE_TILE_TOPOLOGY.getMaskAt(state.maze, x, y);
+    }
+    return (isWallCell(x, y - 1) ? 1 : 0)
+      | (isWallCell(x + 1, y) ? 2 : 0)
+      | (isWallCell(x, y + 1) ? 4 : 0)
+      | (isWallCell(x - 1, y) ? 8 : 0);
+  }
+
+  function getIceV3VariantIndex(x, y, mask, channel, variantCount) {
+    if (MAZE_TILE_TOPOLOGY?.getVariantIndex) {
+      return MAZE_TILE_TOPOLOGY.getVariantIndex({
+        x,
+        y,
+        mask,
+        seed: `ice:${state.levelIndex}`,
+        channel,
+        variantCount
+      });
+    }
+    return Math.abs(Math.imul(x + 11, 92821) ^ Math.imul(y + 7, 68917) ^ mask ^ channel) % variantCount;
+  }
+
+  function drawIceV3FacetField(visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const step = TILE * (phonePortrait ? 1.64 : 1.76);
+    const columns = Math.ceil(WIDTH / step) + 2;
+    const rows = Math.ceil(HEIGHT / step) + 2;
+    const pointAt = (gridX, gridY) => ({
+      x: gridX * step + (mazeCellNoise(gridX, gridY, 7613) - 0.5) * step * 0.26,
+      y: gridY * step + (mazeCellNoise(gridX, gridY, 7621) - 0.5) * step * 0.24
+    });
+    const drawTriangle = (a, b, c, fillStyle) => {
+      ctx.fillStyle = fillStyle;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.lineTo(c.x, c.y);
+      ctx.closePath();
+      ctx.fill();
+    };
+    const lightFacets = [
+      "rgba(98, 202, 218, 0.135)",
+      "rgba(149, 228, 237, 0.1)",
+      "rgba(58, 164, 193, 0.125)"
+    ];
+    const deepFacets = [
+      "rgba(3, 63, 96, 0.105)",
+      "rgba(8, 82, 113, 0.09)",
+      "rgba(18, 96, 126, 0.08)"
+    ];
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = (phonePortrait ? 0.88 : 1) * visualProfile.textureAlphaScale;
+    for (let gridY = -1; gridY < rows; gridY += 1) {
+      for (let gridX = -1; gridX < columns; gridX += 1) {
+        const topLeft = pointAt(gridX, gridY);
+        const topRight = pointAt(gridX + 1, gridY);
+        const bottomLeft = pointAt(gridX, gridY + 1);
+        const bottomRight = pointAt(gridX + 1, gridY + 1);
+        const variant = Math.floor(mazeCellNoise(gridX, gridY, 7643) * 3) % 3;
+        if (mazeCellNoise(gridX, gridY, 7669) > 0.5) {
+          drawTriangle(topLeft, topRight, bottomRight, lightFacets[variant]);
+          drawTriangle(topLeft, bottomRight, bottomLeft, deepFacets[(variant + 1) % 3]);
+        } else {
+          drawTriangle(topLeft, topRight, bottomLeft, deepFacets[variant]);
+          drawTriangle(topRight, bottomRight, bottomLeft, lightFacets[(variant + 2) % 3]);
+        }
+      }
+    }
+
+    // Only a minority of crystal boundaries catch light, so the material
+    // reads as cut glacier rather than a visible wireframe.
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.12 : 0.16) * visualProfile.rimAlphaScale;
+    ctx.strokeStyle = "rgba(175, 239, 246, 0.72)";
+    ctx.lineWidth = phonePortrait ? 0.48 : 0.68;
+    ctx.lineCap = "round";
+    for (let gridY = 0; gridY < rows - 1; gridY += 1) {
+      for (let gridX = 0; gridX < columns - 1; gridX += 1) {
+        if (mazeCellNoise(gridX, gridY, 7687) < 0.72) continue;
+        const a = pointAt(gridX, gridY);
+        const b = pointAt(gridX + 1, gridY + 1);
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawIceV3WallFinish(visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const upRuns = collectIceWorldHorizontalEdgeRuns("up");
+    const downRuns = collectIceWorldHorizontalEdgeRuns("down");
+    const leftRuns = collectIceWorldVerticalEdgeRuns("left");
+    const rightRuns = collectIceWorldVerticalEdgeRuns("right");
+
+    // One material grade across the complete wall mass keeps neighbouring
+    // modules feeling like the same glacier instead of repeated stickers.
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = phonePortrait ? 0.56 : 0.5;
+    const surfaceWash = ctx.createLinearGradient(WIDTH * 0.06, 0, WIDTH * 0.94, HEIGHT);
+    surfaceWash.addColorStop(0, "#3997ad");
+    surfaceWash.addColorStop(0.5, "#247994");
+    surfaceWash.addColorStop(1, "#0f5679");
+    ctx.fillStyle = surfaceWash;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = phonePortrait ? 0.34 : 0.3;
+    const glacierGrade = ctx.createLinearGradient(WIDTH * 0.08, 0, WIDTH * 0.92, HEIGHT);
+    glacierGrade.addColorStop(0, "#3c91aa");
+    glacierGrade.addColorStop(0.45, "#176586");
+    glacierGrade.addColorStop(1, "#063457");
+    ctx.fillStyle = glacierGrade;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.restore();
+
+    drawIceV3FacetField(visualProfile);
+
+    // Directional inset bands turn the painted top into a raised cap: light
+    // catches the north/left bevel while south/right edges recede.
+    const bevelBand = phonePortrait ? 3.5 : 5.2;
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.globalCompositeOperation = "screen";
+    for (const run of upRuns) {
+      const boundary = run.y * TILE;
+      const bevel = ctx.createLinearGradient(0, boundary, 0, boundary + bevelBand);
+      bevel.addColorStop(0, "rgba(187, 246, 255, 0.56)");
+      bevel.addColorStop(0.3, "rgba(77, 188, 218, 0.2)");
+      bevel.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = bevel;
+      ctx.fillRect(run.start * TILE, boundary - 0.5, (run.end - run.start) * TILE, bevelBand + 0.5);
+    }
+    ctx.globalAlpha = 0.62;
+    for (const run of leftRuns) {
+      const boundary = run.x * TILE;
+      const bevel = ctx.createLinearGradient(boundary, 0, boundary + bevelBand * 0.72, 0);
+      bevel.addColorStop(0, "rgba(129, 230, 245, 0.48)");
+      bevel.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = bevel;
+      ctx.fillRect(boundary - 0.4, run.start * TILE, bevelBand * 0.75, (run.end - run.start) * TILE);
+    }
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = 0.68;
+    for (const run of downRuns) {
+      const boundary = (run.y + 1) * TILE;
+      const bevel = ctx.createLinearGradient(0, boundary - bevelBand, 0, boundary);
+      bevel.addColorStop(0, "rgba(20, 83, 111, 0)");
+      bevel.addColorStop(1, "rgba(0, 31, 61, 0.74)");
+      ctx.fillStyle = bevel;
+      ctx.fillRect(run.start * TILE, boundary - bevelBand, (run.end - run.start) * TILE, bevelBand);
+    }
+    for (const run of rightRuns) {
+      const boundary = (run.x + 1) * TILE;
+      const bevel = ctx.createLinearGradient(boundary - bevelBand * 0.7, 0, boundary, 0);
+      bevel.addColorStop(0, "rgba(12, 72, 104, 0)");
+      bevel.addColorStop(1, "rgba(0, 28, 56, 0.66)");
+      ctx.fillStyle = bevel;
+      ctx.fillRect(boundary - bevelBand * 0.72, run.start * TILE, bevelBand * 0.72, (run.end - run.start) * TILE);
+    }
+    ctx.restore();
+
+    const innerFaceDepth = phonePortrait ? 5.1 : 7.5;
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.76;
+    for (const run of downRuns) {
+      const boundary = (run.y + 1) * TILE;
+      const face = ctx.createLinearGradient(0, boundary - innerFaceDepth, 0, boundary);
+      face.addColorStop(0, "rgba(52, 137, 161, 0.7)");
+      face.addColorStop(0.15, "rgba(23, 102, 134, 0.88)");
+      face.addColorStop(1, "rgba(2, 38, 69, 0.98)");
+      ctx.fillStyle = face;
+      ctx.fillRect(run.start * TILE, boundary - innerFaceDepth, (run.end - run.start) * TILE, innerFaceDepth + 0.5);
+    }
+    ctx.globalAlpha = 0.62;
+    for (const run of rightRuns) {
+      const boundary = (run.x + 1) * TILE;
+      const face = ctx.createLinearGradient(boundary - innerFaceDepth * 0.58, 0, boundary, 0);
+      face.addColorStop(0, "rgba(31, 108, 137, 0.46)");
+      face.addColorStop(1, "rgba(1, 32, 61, 0.94)");
+      ctx.fillStyle = face;
+      ctx.fillRect(boundary - innerFaceDepth * 0.58, run.start * TILE, innerFaceDepth * 0.6, (run.end - run.start) * TILE);
+    }
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.46 * visualProfile.rimAlphaScale;
+    ctx.strokeStyle = "rgba(92, 208, 228, 0.72)";
+    ctx.lineWidth = phonePortrait ? 0.72 : 0.96;
+    for (const run of downRuns) {
+      const y = (run.y + 1) * TILE - innerFaceDepth;
+      ctx.beginPath();
+      ctx.moveTo(run.start * TILE + 1, y);
+      ctx.lineTo(run.end * TILE - 1, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Exposed lower/right faces establish real thickness and contact with the
+    // floor. The extrusion is deliberately shallow so it never masks actors.
+    // The full projected face is rendered by the shared 3/4 camera layer.
+    // This remains as a narrow material lip that joins the atlas cap to it.
+    const lowerDepth = phonePortrait ? 1.35 : 1.8;
+    const sideDepth = phonePortrait ? 1.05 : 1.4;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    for (const run of downRuns) {
+      const x0 = run.start * TILE + 0.8;
+      const x1 = run.end * TILE - 0.8;
+      const boundary = (run.y + 1) * TILE;
+      const face = ctx.createLinearGradient(0, boundary - 1, 0, boundary + lowerDepth);
+      face.addColorStop(0, "rgba(31, 112, 145, 0.96)");
+      face.addColorStop(0.44, "rgba(5, 55, 92, 0.98)");
+      face.addColorStop(1, "rgba(0, 18, 39, 0.98)");
+      ctx.fillStyle = face;
+      ctx.beginPath();
+      ctx.moveTo(x0, boundary - 1.2);
+      ctx.lineTo(x1, boundary - 1.2);
+      ctx.lineTo(x1 - 0.9, boundary + lowerDepth);
+      ctx.lineTo(x0 + 0.9, boundary + lowerDepth);
+      ctx.closePath();
+      ctx.fill();
+      ctx.globalAlpha = 0.55 * visualProfile.wallShadowScale;
+      ctx.strokeStyle = "rgba(0, 8, 24, 0.94)";
+      ctx.lineWidth = phonePortrait ? 1.3 : 1.8;
+      ctx.beginPath();
+      ctx.moveTo(x0 + 1, boundary + lowerDepth);
+      ctx.lineTo(x1 - 1, boundary + lowerDepth);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    for (const run of rightRuns) {
+      const boundary = (run.x + 1) * TILE;
+      const y0 = run.start * TILE + 0.8;
+      const y1 = run.end * TILE - 0.8;
+      const face = ctx.createLinearGradient(boundary - 1, 0, boundary + sideDepth, 0);
+      face.addColorStop(0, "rgba(24, 97, 133, 0.94)");
+      face.addColorStop(1, "rgba(0, 24, 52, 0.98)");
+      ctx.fillStyle = face;
+      ctx.beginPath();
+      ctx.moveTo(boundary - 1.1, y0);
+      ctx.lineTo(boundary + sideDepth, y0 + 0.8);
+      ctx.lineTo(boundary + sideDepth, y1 - 0.8);
+      ctx.lineTo(boundary - 1.1, y1);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // A dark silhouette gives every shape a readable contour on the blue
+    // floor; restrained broken highlights preserve the cold material.
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.strokeStyle = "rgba(0, 24, 49, 0.96)";
+    ctx.lineWidth = phonePortrait ? 2.1 : 2.8;
+    ctx.lineJoin = "round";
+    ctx.shadowColor = "rgba(0, 8, 23, 0.72)";
+    ctx.shadowBlur = phonePortrait ? 1.8 : 2.8;
+    ctx.stroke();
+    ctx.restore();
+
+    const strokeBrokenHorizontalRim = (run) => {
+      const boundary = run.side === "up" ? run.y * TILE : (run.y + 1) * TILE;
+      const start = run.start * TILE + TILE * (0.1 + run.seed * 0.12);
+      const end = run.end * TILE - TILE * 0.1;
+      let cursor = start;
+      let segment = 0;
+      while (cursor < end - TILE * 0.18) {
+        const seed = mazeCellNoise(run.start + segment, run.y, run.side === "up" ? 7411 : 7421);
+        const length = Math.min(end - cursor, TILE * (0.52 + seed * 0.54));
+        const lift = (mazeCellNoise(run.start, run.y + segment, 7433) - 0.5) * (phonePortrait ? 0.75 : 1.05);
+        ctx.beginPath();
+        ctx.moveTo(cursor, boundary + lift);
+        ctx.quadraticCurveTo(cursor + length * 0.48, boundary - lift * 0.7, cursor + length, boundary + lift * 0.22);
+        ctx.stroke();
+        cursor += length + TILE * (0.22 + (1 - seed) * 0.18);
+        segment += 1;
+      }
+    };
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = "rgba(178, 244, 255, 0.72)";
+    ctx.globalAlpha = (phonePortrait ? 0.78 : 0.82) * visualProfile.rimAlphaScale;
+    ctx.lineWidth = phonePortrait ? 1.05 : 1.34;
+    ctx.lineCap = "round";
+    for (const run of upRuns) strokeBrokenHorizontalRim(run);
+    ctx.globalAlpha *= 0.52;
+    for (const run of leftRuns) {
+      const boundary = run.x * TILE;
+      const y0 = run.start * TILE + TILE * 0.16;
+      const y1 = run.end * TILE - TILE * 0.16;
+      ctx.beginPath();
+      ctx.moveTo(boundary, y0);
+      ctx.lineTo(boundary, y1);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+  }
+
+  function drawIceV3StaticLayers(level, tileset, visualProfile = getMazeMobileVisualProfile()) {
+    ctx.save();
+    const base = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    base.addColorStop(0, "#061a2d");
+    base.addColorStop(0.46, "#0b3150");
+    base.addColorStop(1, "#03111f");
+    ctx.fillStyle = base;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+
+    const overlap = isPhonePortraitView() ? 0.45 : 0.7;
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (isWallCell(x, y)) continue;
+        const variant = getIceV3VariantIndex(x, y, 0, 701, 4);
+        drawIceV3AtlasCrop(
+          tileset,
+          `floor${variant}`,
+          x * TILE - overlap,
+          y * TILE - overlap,
+          TILE + overlap * 2,
+          TILE + overlap * 2,
+          0.98
+        );
+      }
+    }
+
+    drawMazeAxonometricWallExtrusion(MAZE_AUTOTILE_THEMES.ice, visualProfile);
+
+    ctx.save();
+    ctx.translate(isPhonePortraitView() ? 1.2 : 1.8, isPhonePortraitView() ? 2.4 : 3.2);
+    ctx.globalAlpha = 0.54 * visualProfile.wallShadowScale;
+    ctx.fillStyle = "rgba(0, 8, 20, 0.88)";
+    ctx.shadowColor = "rgba(0, 4, 14, 0.86)";
+    ctx.shadowBlur = isPhonePortraitView() ? 3.2 : 4.8;
+    traceIceWorldCellMask(true);
+    ctx.fill();
+    ctx.restore();
+
+    // The Blender modules contain translucent bevel pixels. A continuous
+    // glacier body beneath them prevents diagonal corner cut-outs from
+    // exposing the floor where several topology masks meet.
+    ctx.save();
+    traceIceWorldCellMask(true);
+    const wallBody = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    wallBody.addColorStop(0, "#78c8d7");
+    wallBody.addColorStop(0.5, "#62b7ca");
+    wallBody.addColorStop(1, "#4398b1");
+    ctx.fillStyle = wallBody;
+    ctx.fill();
+    ctx.restore();
+
+    const wallScale = 1;
+    const wallSize = TILE * wallScale;
+    const wallOffset = (wallSize - TILE) * 0.5;
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (!isWallCell(x, y)) continue;
+        const mask = getIceV3WallMaskAt(x, y);
+        drawIceV3AtlasCrop(
+          tileset,
+          `wallMask${mask}`,
+          x * TILE - wallOffset,
+          y * TILE - wallOffset,
+          wallSize,
+          wallSize
+        );
+      }
+    }
+
+    drawIceV3WallFinish(visualProfile);
+    drawMazeAxonometricBlenderWallCaps(MAZE_AUTOTILE_THEMES.ice, visualProfile);
+    drawMazeAxonometricFaceOverlay(MAZE_AUTOTILE_THEMES.ice, visualProfile);
+    drawMazeAxonometricWallTopFinish(MAZE_AUTOTILE_THEMES.ice, visualProfile);
+    drawMazeAxonometricMaterialAccents(MAZE_AUTOTILE_THEMES.ice, visualProfile);
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.12 : 0.17) * visualProfile.glowScale;
+    const grade = ctx.createRadialGradient(WIDTH * 0.3, HEIGHT * 0.08, 0, WIDTH * 0.3, HEIGHT * 0.08, WIDTH * 0.8);
+    grade.addColorStop(0, "rgba(171, 238, 255, 0.74)");
+    grade.addColorStop(0.48, "rgba(75, 170, 218, 0.16)");
+    grade.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = grade;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+  }
+
+  function drawIceV3AmbientLayer(visualProfile = getMazeMobileVisualProfile()) {
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.07 : 0.1) * visualProfile.glowScale;
+    ctx.strokeStyle = "rgba(182, 235, 255, 0.72)";
+    ctx.lineWidth = isPhonePortraitView() ? 1.2 : 1.7;
+    ctx.lineCap = "round";
+    for (let band = 0; band < 5; band += 1) {
+      const phase = state.clock * (7 + band * 0.8) + band * 173;
+      const x = ((phase * 5.4) % (WIDTH + TILE * 10)) - TILE * 5;
+      const y = HEIGHT * (0.16 + band * 0.17) + Math.sin(state.clock * 0.32 + band) * TILE * 0.28;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.quadraticCurveTo(x + TILE * 1.8, y - TILE * 0.16, x + TILE * 3.5, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldStaticLayers(level, visualProfile = getMazeMobileVisualProfile()) {
+    drawIceWorldBase();
+    drawIceWorldFrozenFloor(visualProfile);
+    drawIceWorldFloorDetails(visualProfile);
+    drawIceWorldWallSystem(visualProfile);
+    drawIceWorldSetPieces(visualProfile);
+    drawIceWorldStaticLighting(visualProfile);
+  }
+
+  function drawIceWorldBase() {
+    ctx.save();
+    const base = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    base.addColorStop(0, "#020a17");
+    base.addColorStop(0.42, "#08263e");
+    base.addColorStop(0.74, "#06172b");
+    base.addColorStop(1, "#01050d");
+    ctx.fillStyle = base;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.globalCompositeOperation = "screen";
+    const aurora = ctx.createRadialGradient(WIDTH * 0.48, HEIGHT * 0.12, 0, WIDTH * 0.5, HEIGHT * 0.26, HEIGHT * 0.88);
+    aurora.addColorStop(0, "rgba(84, 248, 220, 0.22)");
+    aurora.addColorStop(0.28, "rgba(72, 183, 229, 0.12)");
+    aurora.addColorStop(0.55, "rgba(120, 108, 224, 0.06)");
+    aurora.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = aurora;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    const polarLight = ctx.createLinearGradient(0, HEIGHT * 0.02, WIDTH, HEIGHT * 0.34);
+    polarLight.addColorStop(0, "rgba(69, 239, 204, 0)");
+    polarLight.addColorStop(0.28, "rgba(69, 239, 204, 0.15)");
+    polarLight.addColorStop(0.58, "rgba(91, 195, 255, 0.2)");
+    polarLight.addColorStop(0.78, "rgba(196, 111, 255, 0.1)");
+    polarLight.addColorStop(1, "rgba(121, 247, 255, 0)");
+    ctx.globalAlpha = 0.56;
+    ctx.fillStyle = polarLight;
+    ctx.beginPath();
+    ctx.moveTo(-WIDTH * 0.08, HEIGHT * 0.05);
+    ctx.bezierCurveTo(WIDTH * 0.2, -HEIGHT * 0.01, WIDTH * 0.48, HEIGHT * 0.22, WIDTH * 1.08, HEIGHT * 0.08);
+    ctx.lineTo(WIDTH * 1.08, HEIGHT * 0.24);
+    ctx.bezierCurveTo(WIDTH * 0.62, HEIGHT * 0.38, WIDTH * 0.3, HEIGHT * 0.1, -WIDTH * 0.08, HEIGHT * 0.29);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawIceWorldFrozenFloor(visualProfile) {
+    ctx.save();
+    traceIceWorldCellMask(false);
+    ctx.clip();
+
+    const lake = ctx.createLinearGradient(WIDTH * 0.08, 0, WIDTH * 0.88, HEIGHT);
+    lake.addColorStop(0, "#1b5872");
+    lake.addColorStop(0.3, "#103f5d");
+    lake.addColorStop(0.64, "#082a45");
+    lake.addColorStop(1, "#03152b");
+    ctx.fillStyle = lake;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.globalCompositeOperation = "screen";
+    const plateCount = isPhonePortraitView() ? 8 : 12;
+    for (let plate = 0; plate < plateCount; plate += 1) {
+      const cx = ((plate * 379 + 91) % (WIDTH + TILE * 5)) - TILE * 2.5;
+      const cy = ((plate * 227 + 137) % (HEIGHT + TILE * 4)) - TILE * 2;
+      const rx = TILE * (2.8 + (plate % 4) * 0.9);
+      const ry = TILE * (1.05 + (plate % 3) * 0.34);
+      const bloom = ctx.createRadialGradient(cx, cy, 0, cx, cy, rx);
+      bloom.addColorStop(0, plate % 3 === 0 ? "rgba(223, 251, 255, 0.2)" : "rgba(135, 220, 239, 0.15)");
+      bloom.addColorStop(0.48, "rgba(108, 193, 224, 0.075)");
+      bloom.addColorStop(1, "rgba(24, 95, 137, 0)");
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate((plate % 2 ? -1 : 1) * (0.08 + (plate % 4) * 0.035));
+      ctx.scale(1, ry / rx);
+      ctx.translate(-cx, -cy);
+      ctx.globalAlpha = (isPhonePortraitView() ? 0.88 : 1) * visualProfile.textureAlphaScale;
+      ctx.fillStyle = bloom;
+      ctx.beginPath();
+      ctx.arc(cx, cy, rx, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    const reflection = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    reflection.addColorStop(0, "rgba(223, 251, 255, 0)");
+    reflection.addColorStop(0.3, "rgba(223, 251, 255, 0.26)");
+    reflection.addColorStop(0.52, "rgba(128, 211, 241, 0.18)");
+    reflection.addColorStop(0.76, "rgba(93, 163, 222, 0.09)");
+    reflection.addColorStop(1, "rgba(223, 251, 255, 0)");
+    ctx.strokeStyle = reflection;
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.5 : 0.68) * visualProfile.textureAlphaScale;
+    ctx.lineCap = "round";
+    for (let ribbon = 0; ribbon < 4; ribbon += 1) {
+      const y = HEIGHT * (0.16 + ribbon * 0.21);
+      const wave = (ribbon % 2 ? 1 : -1) * TILE * 0.72;
+      ctx.lineWidth = TILE * (0.62 + ribbon * 0.08);
+      ctx.beginPath();
+      ctx.moveTo(-TILE * 3, y + wave);
+      ctx.bezierCurveTo(WIDTH * 0.24, y - TILE * 1.6, WIDTH * 0.62, y + TILE * 1.45, WIDTH + TILE * 3, y - wave);
+      ctx.stroke();
+    }
+
+    ctx.globalCompositeOperation = "overlay";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.2 : 0.27) * visualProfile.textureAlphaScale;
+    ctx.strokeStyle = "rgba(210, 247, 255, 0.58)";
+    ctx.lineWidth = isPhonePortraitView() ? 0.8 : 1.15;
+    for (let scratch = 0; scratch < 30; scratch += 1) {
+      const x = (scratch * 197 + 61) % WIDTH;
+      const y = (scratch * 113 + 47) % HEIGHT;
+      const length = TILE * (0.8 + (scratch % 5) * 0.45);
+      ctx.beginPath();
+      ctx.moveTo(x - length * 0.5, y + length * 0.06);
+      ctx.lineTo(x + length * 0.5, y - length * 0.06);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalCompositeOperation = "multiply";
+    ctx.fillStyle = "rgba(1, 20, 39, 0.56)";
+    const shadowSize = isPhonePortraitView() ? 3.4 : 5.2;
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (isWallCell(x, y)) continue;
+        const px = x * TILE;
+        const py = y * TILE;
+        if (isWallCell(x, y - 1)) ctx.fillRect(px, py, TILE, shadowSize);
+        if (isWallCell(x - 1, y)) ctx.fillRect(px, py, shadowSize, TILE);
+        if (isWallCell(x + 1, y)) ctx.fillRect(px + TILE - shadowSize * 0.72, py, shadowSize * 0.72, TILE);
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldFloorDetails(visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    ctx.save();
+    traceIceWorldCellMask(false);
+    ctx.clip();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.globalCompositeOperation = "screen";
+    const crackCount = phonePortrait ? 11 : 16;
+    for (let crack = 0; crack < crackCount; crack += 1) {
+      let x = ((crack * 233 + 83) % WIDTH) - TILE * 2;
+      let y = ((crack * 151 + 109) % HEIGHT) - TILE;
+      const direction = crack % 2 === 0 ? 1 : -1;
+      ctx.globalAlpha = (phonePortrait ? 0.28 : 0.37) * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = crack % 3 === 0 ? "rgba(223, 251, 255, 0.9)" : "rgba(135, 210, 239, 0.72)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.28;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      for (let segment = 0; segment < 6; segment += 1) {
+        x += TILE * (0.46 + ((crack + segment) % 3) * 0.18);
+        y += direction * TILE * (((segment * 7 + crack) % 5) - 2) * 0.12;
+        ctx.lineTo(x, y);
+        if (segment === 2 || segment === 4) {
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + TILE * 0.22, y - direction * TILE * 0.36);
+          ctx.moveTo(x, y);
+        }
+      }
+      ctx.stroke();
+    }
+
+    const frostBloomCount = phonePortrait ? 5 : 8;
+    for (let bloom = 0; bloom < frostBloomCount; bloom += 1) {
+      const cx = ((bloom * 347 + 149) % WIDTH);
+      const cy = ((bloom * 263 + 211) % HEIGHT);
+      const radius = TILE * (0.42 + (bloom % 3) * 0.12);
+      ctx.globalAlpha = (phonePortrait ? 0.17 : 0.24) * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = "rgba(225, 252, 255, 0.82)";
+      ctx.lineWidth = phonePortrait ? 0.62 : 0.88;
+      for (let ray = 0; ray < 6; ray += 1) {
+        const angle = ray * Math.PI / 3 + bloom * 0.29;
+        ctx.beginPath();
+        ctx.moveTo(cx + Math.cos(angle) * radius * 0.16, cy + Math.sin(angle) * radius * 0.16);
+        ctx.lineTo(cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function getIceWorldWallDepthField() {
+    const mazeSignature = MAZE_DECOR_SYSTEM?.createMazeSignature?.(state.maze)
+      || `${state.levelIndex}:${state.mazeScatterSignature || "maze"}`;
+    const cacheKey = `${mazeSignature}:${COLS}x${ROWS}`;
+    if (getIceWorldWallDepthField.cache?.key === cacheKey) {
+      return getIceWorldWallDepthField.cache.value;
+    }
+
+    const distances = new Int16Array(COLS * ROWS);
+    distances.fill(-1);
+    const queue = new Int32Array(COLS * ROWS);
+    let head = 0;
+    let tail = 0;
+    let maxDepth = 0;
+    const indexOf = (x, y) => y * COLS + x;
+    const wallInside = (x, y) => x >= 0 && y >= 0 && x < COLS && y < ROWS && state.maze[y][x] === 1;
+
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (!wallInside(x, y)) continue;
+        const boundary = !wallInside(x, y - 1)
+          || !wallInside(x + 1, y)
+          || !wallInside(x, y + 1)
+          || !wallInside(x - 1, y);
+        if (!boundary) continue;
+        const index = indexOf(x, y);
+        distances[index] = 0;
+        queue[tail] = index;
+        tail += 1;
+      }
+    }
+
+    const directions = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+    while (head < tail) {
+      const index = queue[head];
+      head += 1;
+      const x = index % COLS;
+      const y = Math.floor(index / COLS);
+      const nextDepth = distances[index] + 1;
+      for (const [dx, dy] of directions) {
+        const nextX = x + dx;
+        const nextY = y + dy;
+        if (!wallInside(nextX, nextY)) continue;
+        const nextIndex = indexOf(nextX, nextY);
+        if (distances[nextIndex] >= 0) continue;
+        distances[nextIndex] = nextDepth;
+        maxDepth = Math.max(maxDepth, nextDepth);
+        queue[tail] = nextIndex;
+        tail += 1;
+      }
+    }
+
+    const value = { distances, maxDepth, indexOf };
+    getIceWorldWallDepthField.cache = { key: cacheKey, value };
+    return value;
+  }
+
+  function getIceWorldWallComponents() {
+    const mazeSignature = MAZE_DECOR_SYSTEM?.createMazeSignature?.(state.maze)
+      || `${state.levelIndex}:${state.mazeScatterSignature || "maze"}`;
+    const cacheKey = `${mazeSignature}:${COLS}x${ROWS}`;
+    if (getIceWorldWallComponents.cache?.key === cacheKey) {
+      return getIceWorldWallComponents.cache.value;
+    }
+
+    const componentIds = new Int16Array(COLS * ROWS);
+    componentIds.fill(-1);
+    const queue = new Int32Array(COLS * ROWS);
+    const components = [];
+    const wallInside = (x, y) => x >= 0 && y >= 0 && x < COLS && y < ROWS && state.maze[y][x] === 1;
+    const directions = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+
+    for (let startY = 0; startY < ROWS; startY += 1) {
+      for (let startX = 0; startX < COLS; startX += 1) {
+        const startIndex = startY * COLS + startX;
+        if (!wallInside(startX, startY) || componentIds[startIndex] >= 0) continue;
+        const id = components.length;
+        const cells = [];
+        let head = 0;
+        let tail = 0;
+        let minX = startX;
+        let maxX = startX;
+        let minY = startY;
+        let maxY = startY;
+        componentIds[startIndex] = id;
+        queue[tail] = startIndex;
+        tail += 1;
+
+        while (head < tail) {
+          const index = queue[head];
+          head += 1;
+          cells.push(index);
+          const x = index % COLS;
+          const y = Math.floor(index / COLS);
+          minX = Math.min(minX, x);
+          maxX = Math.max(maxX, x);
+          minY = Math.min(minY, y);
+          maxY = Math.max(maxY, y);
+          for (const [dx, dy] of directions) {
+            const nextX = x + dx;
+            const nextY = y + dy;
+            if (!wallInside(nextX, nextY)) continue;
+            const nextIndex = nextY * COLS + nextX;
+            if (componentIds[nextIndex] >= 0) continue;
+            componentIds[nextIndex] = id;
+            queue[tail] = nextIndex;
+            tail += 1;
+          }
+        }
+
+        components.push({
+          id,
+          cells,
+          minX,
+          maxX,
+          minY,
+          maxY,
+          family: id % 3,
+          seed: mazeCellNoise(minX + id, minY - id, 2753)
+        });
+      }
+    }
+
+    const value = { componentIds, components };
+    getIceWorldWallComponents.cache = { key: cacheKey, value };
+    return value;
+  }
+
+  function drawIceWorldWallComponentMaterials(visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const { components } = getIceWorldWallComponents();
+    for (const component of components) {
+      if (component.cells.length < 2) continue;
+      const x = component.minX * TILE;
+      const y = component.minY * TILE;
+      const width = (component.maxX - component.minX + 1) * TILE;
+      const height = (component.maxY - component.minY + 1) * TILE;
+      const centerX = x + width * (0.42 + component.seed * 0.16);
+      const centerY = y + height * (0.4 + mazeCellNoise(component.id, component.cells.length, 2767) * 0.18);
+      const radius = Math.max(TILE * 1.4, Math.max(width, height) * 0.58);
+
+      ctx.save();
+      ctx.beginPath();
+      for (const index of component.cells) {
+        const cellX = index % COLS;
+        const cellY = Math.floor(index / COLS);
+        ctx.rect(cellX * TILE - 0.4, cellY * TILE - 0.4, TILE + 0.8, TILE + 0.8);
+      }
+      ctx.clip();
+
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = (phonePortrait ? 0.42 : 0.52) * visualProfile.textureAlphaScale;
+      const core = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+      core.addColorStop(0, component.family === 0 ? "rgba(0, 18, 51, 0.7)" : "rgba(3, 24, 59, 0.64)");
+      core.addColorStop(0.52, "rgba(5, 54, 88, 0.24)");
+      core.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = core;
+      ctx.fillRect(x, y, width, height);
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.68 : 0.82) * visualProfile.textureAlphaScale;
+      const family = ctx.createLinearGradient(x, y, x + width, y + height);
+      if (component.family === 0) {
+        family.addColorStop(0, "rgba(174, 255, 247, 0.2)");
+        family.addColorStop(0.42, "rgba(61, 207, 215, 0.08)");
+        family.addColorStop(1, "rgba(35, 106, 170, 0.035)");
+      } else if (component.family === 1) {
+        family.addColorStop(0, "rgba(225, 253, 252, 0.3)");
+        family.addColorStop(0.5, "rgba(129, 211, 224, 0.14)");
+        family.addColorStop(1, "rgba(52, 116, 173, 0.05)");
+      } else {
+        family.addColorStop(0, "rgba(91, 250, 215, 0.24)");
+        family.addColorStop(0.48, "rgba(77, 177, 230, 0.1)");
+        family.addColorStop(0.78, "rgba(188, 111, 235, 0.16)");
+        family.addColorStop(1, "rgba(83, 89, 182, 0.04)");
+      }
+      ctx.fillStyle = family;
+      ctx.fillRect(x, y, width, height);
+
+      if (component.family === 1) {
+        const frost = ctx.createRadialGradient(centerX, centerY - height * 0.12, 0, centerX, centerY, radius * 0.84);
+        frost.addColorStop(0, "rgba(232, 255, 252, 0.21)");
+        frost.addColorStop(0.46, "rgba(181, 238, 241, 0.08)");
+        frost.addColorStop(1, "rgba(255, 255, 255, 0)");
+        ctx.globalAlpha = (phonePortrait ? 0.72 : 0.86) * visualProfile.textureAlphaScale;
+        ctx.fillStyle = frost;
+        ctx.fillRect(x, y, width, height);
+      } else if (component.family === 2) {
+        ctx.globalAlpha = (phonePortrait ? 0.5 : 0.66) * visualProfile.rimAlphaScale;
+        ctx.lineWidth = phonePortrait ? 1.45 : 1.9;
+        ctx.lineCap = "round";
+        const vein = ctx.createLinearGradient(x, y, x + width, y + height);
+        vein.addColorStop(0, "rgba(72, 250, 214, 0)");
+        vein.addColorStop(0.34, "rgba(72, 250, 214, 0.82)");
+        vein.addColorStop(0.68, "rgba(186, 117, 240, 0.72)");
+        vein.addColorStop(1, "rgba(99, 121, 235, 0)");
+        ctx.strokeStyle = vein;
+        ctx.beginPath();
+        ctx.moveTo(x - TILE * 0.4, centerY + height * 0.14);
+        ctx.bezierCurveTo(x + width * 0.28, y + height * 0.08, x + width * 0.62, y + height * 0.84, x + width + TILE * 0.4, centerY - height * 0.18);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+
+  function drawIceWorldWallFacetField(visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const { distances, indexOf } = getIceWorldWallDepthField();
+    ctx.save();
+    drawIceWorldWallComponentMaterials(visualProfile);
+    ctx.globalCompositeOperation = "multiply";
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        const depth = distances[indexOf(x, y)];
+        if (depth < 1) continue;
+        const seed = mazeCellNoise(x, y, 2503);
+        const cx = (x + 0.5) * TILE + (seed - 0.5) * TILE * 0.24;
+        const cy = (y + 0.5) * TILE + (mazeCellNoise(x, y, 2519) - 0.5) * TILE * 0.2;
+        const radius = TILE * (1.08 + Math.min(depth, 3) * 0.56 + seed * 0.24);
+        const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+        core.addColorStop(0, depth >= 2 ? "rgba(0, 13, 43, 0.78)" : "rgba(2, 28, 65, 0.62)");
+        core.addColorStop(0.48, "rgba(5, 48, 84, 0.38)");
+        core.addColorStop(1, "rgba(0, 16, 43, 0)");
+        ctx.globalAlpha = (phonePortrait ? 0.5 : 0.62) * visualProfile.textureAlphaScale;
+        ctx.fillStyle = core;
+        ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+      }
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    const bodyLight = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    bodyLight.addColorStop(0, "rgba(188, 255, 247, 0.24)");
+    bodyLight.addColorStop(0.3, "rgba(72, 226, 222, 0.08)");
+    bodyLight.addColorStop(0.66, "rgba(88, 160, 231, 0.1)");
+    bodyLight.addColorStop(1, "rgba(174, 116, 236, 0.07)");
+    ctx.globalAlpha = (phonePortrait ? 0.62 : 0.76) * visualProfile.textureAlphaScale;
+    ctx.fillStyle = bodyLight;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    const bloomCount = phonePortrait ? 15 : 23;
+    for (let bloom = 0; bloom < bloomCount; bloom += 1) {
+      const seed = mazeCellNoise(bloom + 17, bloom * 3 + 9, 2527);
+      const cx = (bloom * 229 + 71) % WIDTH;
+      const cy = (bloom * 157 + 43) % HEIGHT;
+      const rx = TILE * (1.3 + seed * 2.6);
+      const ry = TILE * (0.42 + mazeCellNoise(bloom, bloom + 4, 2539) * 0.72);
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate((seed - 0.5) * 0.62);
+      ctx.scale(1, ry / rx);
+      const bloomGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+      const bloomColor = bloom % 4 === 0
+        ? "rgba(81, 249, 215, 0.2)"
+        : bloom % 5 === 0
+        ? "rgba(187, 132, 238, 0.14)"
+        : "rgba(207, 252, 252, 0.19)";
+      bloomGradient.addColorStop(0, bloomColor);
+      bloomGradient.addColorStop(0.5, bloom % 3 === 0 ? "rgba(74, 181, 216, 0.08)" : "rgba(118, 213, 226, 0.075)");
+      bloomGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.globalAlpha = (phonePortrait ? 0.76 : 0.9) * visualProfile.textureAlphaScale;
+      ctx.fillStyle = bloomGradient;
+      ctx.beginPath();
+      ctx.arc(0, 0, rx, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    ctx.lineCap = "round";
+    for (let stratum = 0; stratum < 6; stratum += 1) {
+      const y = HEIGHT * (0.12 + stratum * 0.165);
+      const glow = ctx.createLinearGradient(0, y, WIDTH, y + TILE);
+      glow.addColorStop(0, "rgba(49, 239, 215, 0)");
+      glow.addColorStop(0.22, stratum % 2 ? "rgba(80, 237, 218, 0.18)" : "rgba(118, 222, 247, 0.16)");
+      glow.addColorStop(0.58, stratum % 3 ? "rgba(86, 173, 232, 0.12)" : "rgba(181, 119, 235, 0.13)");
+      glow.addColorStop(1, "rgba(80, 216, 230, 0)");
+      ctx.globalAlpha = (phonePortrait ? 0.34 : 0.46) * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = glow;
+      ctx.lineWidth = TILE * (0.2 + (stratum % 2) * 0.08);
+      ctx.beginPath();
+      ctx.moveTo(-TILE * 2, y + TILE * 0.2);
+      ctx.bezierCurveTo(WIDTH * 0.24, y - TILE * 0.9, WIDTH * 0.63, y + TILE * 0.82, WIDTH + TILE * 2, y - TILE * 0.18);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = (phonePortrait ? 0.3 : 0.4) * visualProfile.textureAlphaScale;
+    ctx.lineWidth = phonePortrait ? 0.72 : 1;
+    for (let y = 1; y < ROWS - 1; y += 1) {
+      for (let x = 1; x < COLS - 1; x += 1) {
+        if (!isWallCell(x, y)) continue;
+        const seed = mazeCellNoise(x, y, 2573);
+        if (seed < (phonePortrait ? 0.9 : 0.86)) continue;
+        const cx = (x + 0.5) * TILE;
+        const cy = (y + 0.5) * TILE;
+        const direction = seed > 0.5 ? 1 : -1;
+        ctx.strokeStyle = seed > 0.93 ? "rgba(85, 247, 216, 0.72)" : "rgba(205, 246, 249, 0.58)";
+        ctx.beginPath();
+        ctx.moveTo(cx - TILE * 0.48, cy + direction * TILE * 0.18);
+        ctx.lineTo(cx - TILE * 0.08, cy - direction * TILE * 0.08);
+        ctx.lineTo(cx + TILE * 0.42, cy + direction * TILE * 0.12);
+        ctx.moveTo(cx - TILE * 0.08, cy - direction * TILE * 0.08);
+        ctx.lineTo(cx + TILE * 0.1, cy - direction * TILE * 0.38);
+        ctx.stroke();
+      }
+    }
+
+    const inclusionLimit = phonePortrait ? 13 : 20;
+    let inclusions = 0;
+    const cellCount = COLS * ROWS;
+    for (let order = 0; order < cellCount && inclusions < inclusionLimit; order += 1) {
+      const index = (order * 37 + 17) % cellCount;
+      const x = index % COLS;
+      const y = Math.floor(index / COLS);
+      if (x <= 0 || y <= 0 || x >= COLS - 1 || y >= ROWS - 1) continue;
+      const depth = distances[indexOf(x, y)];
+      const seed = mazeCellNoise(x, y, 2551);
+      if (depth < 1 || seed < 0.78) continue;
+      const cx = (x + 0.5) * TILE;
+      const cy = (y + 0.5) * TILE;
+      const radius = TILE * (0.11 + seed * 0.1);
+      ctx.globalAlpha = (phonePortrait ? 0.24 : 0.32) * visualProfile.textureAlphaScale;
+      ctx.fillStyle = inclusions % 3 === 0 ? "rgba(92, 247, 218, 0.68)" : "rgba(191, 241, 255, 0.56)";
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, radius * 0.7, radius, seed * Math.PI, 0, Math.PI * 2);
+      ctx.fill();
+      inclusions += 1;
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldWallWindows(visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const { distances, indexOf } = getIceWorldWallDepthField();
+    const used = [];
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    const cavityLimit = phonePortrait ? 7 : 11;
+    const totalCells = COLS * ROWS;
+    for (let order = 0; order < totalCells && used.length < cavityLimit; order += 1) {
+      const index = (order * 53 + 29) % totalCells;
+      const x = index % COLS;
+      const y = Math.floor(index / COLS);
+      if (x <= 0 || y <= 0 || x >= COLS - 1 || y >= ROWS - 1) continue;
+      if (distances[indexOf(x, y)] < 1) continue;
+      const seed = mazeCellNoise(x, y, 2591);
+      if (seed < 0.73 || used.some((cell) => distanceCells(cell, { x, y }) < 5)) continue;
+      used.push({ x, y });
+      const cx = (x + 0.5) * TILE;
+      const cy = (y + 0.5) * TILE;
+      const rx = TILE * (0.48 + seed * 0.36);
+      const ry = TILE * (0.16 + mazeCellNoise(x, y, 2609) * 0.16);
+      const rotation = (seed - 0.5) * 0.62;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotation);
+      const traceInclusion = () => {
+        ctx.beginPath();
+        ctx.moveTo(-rx, -ry * 0.05);
+        ctx.lineTo(-rx * 0.44, -ry);
+        ctx.lineTo(rx * 0.42, -ry * 0.72);
+        ctx.lineTo(rx, ry * 0.06);
+        ctx.lineTo(rx * 0.32, ry);
+        ctx.lineTo(-rx * 0.62, ry * 0.58);
+        ctx.closePath();
+      };
+      const inclusion = ctx.createLinearGradient(-rx, -ry, rx, ry);
+      inclusion.addColorStop(0, "rgba(222, 251, 255, 0.52)");
+      inclusion.addColorStop(0.36, "rgba(98, 181, 213, 0.34)");
+      inclusion.addColorStop(0.72, "rgba(19, 73, 111, 0.46)");
+      inclusion.addColorStop(1, "rgba(205, 244, 255, 0.24)");
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.48 : 0.62) * visualProfile.textureAlphaScale;
+      ctx.fillStyle = inclusion;
+      traceInclusion();
+      ctx.fill();
+
+      ctx.save();
+      traceInclusion();
+      ctx.clip();
+      ctx.globalAlpha = (phonePortrait ? 0.34 : 0.48) * visualProfile.textureAlphaScale;
+      ctx.fillStyle = "rgba(232, 253, 255, 0.9)";
+      for (let bubble = 0; bubble < 4; bubble += 1) {
+        const bubbleX = -rx * 0.52 + rx * 0.34 * bubble;
+        const bubbleY = (bubble % 2 ? -1 : 1) * ry * (0.16 + bubble * 0.07);
+        const bubbleRadius = Math.max(1.1, ry * (0.13 + bubble * 0.025));
+        ctx.beginPath();
+        ctx.arc(bubbleX, bubbleY, bubbleRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.strokeStyle = "rgba(234, 254, 255, 0.92)";
+      ctx.lineWidth = phonePortrait ? 0.62 : 0.9;
+      const bloomX = rx * 0.2;
+      for (let ray = 0; ray < 5; ray += 1) {
+        const angle = -0.8 + ray * 0.4;
+        ctx.beginPath();
+        ctx.moveTo(bloomX, 0);
+        ctx.lineTo(bloomX + Math.cos(angle) * rx * 0.52, Math.sin(angle) * ry * 0.78);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.52 : 0.68) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = "rgba(223, 251, 255, 0.88)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.25;
+      traceInclusion();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    let crackCount = 0;
+    const crackLimit = phonePortrait ? 7 : 11;
+    for (let order = 0; order < totalCells && crackCount < crackLimit; order += 1) {
+      const index = (order * 47 + 61) % totalCells;
+      const x = index % COLS;
+      const y = Math.floor(index / COLS);
+      if (x <= 0 || y <= 0 || x >= COLS - 1 || y >= ROWS - 1) continue;
+      if (!isWallCell(x, y) || distances[indexOf(x, y)] !== 0) continue;
+      const seed = mazeCellNoise(x, y, 2633);
+      if (seed < 0.82) continue;
+        const openNormals = [];
+        if (!isWallCell(x, y - 1)) openNormals.push({ x: 0, y: -1 });
+        if (!isWallCell(x + 1, y)) openNormals.push({ x: 1, y: 0 });
+        if (!isWallCell(x, y + 1)) openNormals.push({ x: 0, y: 1 });
+        if (!isWallCell(x - 1, y)) openNormals.push({ x: -1, y: 0 });
+        if (!openNormals.length) continue;
+        let outwardX = openNormals.reduce((sum, normal) => sum + normal.x, 0);
+        let outwardY = openNormals.reduce((sum, normal) => sum + normal.y, 0);
+        const length = Math.hypot(outwardX, outwardY) || 1;
+        outwardX /= length;
+        outwardY /= length;
+        const tangentX = -outwardY;
+        const tangentY = outwardX;
+        const centerX = (x + 0.5) * TILE;
+        const centerY = (y + 0.5) * TILE;
+        const startX = centerX + outwardX * TILE * 0.48;
+        const startY = centerY + outwardY * TILE * 0.48;
+        const bend = (mazeCellNoise(x, y, 2647) - 0.5) * TILE * 0.34;
+        const endX = centerX - outwardX * TILE * (0.28 + seed * 0.18) + tangentX * bend;
+        const endY = centerY - outwardY * TILE * (0.28 + seed * 0.18) + tangentY * bend;
+        const midX = (startX + endX) * 0.5 - tangentX * bend * 0.4;
+        const midY = (startY + endY) * 0.5 - tangentY * bend * 0.4;
+
+        ctx.globalCompositeOperation = "multiply";
+        ctx.globalAlpha = (phonePortrait ? 0.5 : 0.62) * visualProfile.textureAlphaScale;
+        ctx.strokeStyle = "rgba(0, 25, 57, 0.88)";
+        ctx.lineWidth = phonePortrait ? 1.15 : 1.55;
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(midX, midY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+
+        ctx.globalCompositeOperation = "screen";
+        ctx.globalAlpha = (phonePortrait ? 0.34 : 0.46) * visualProfile.rimAlphaScale;
+        ctx.strokeStyle = crackCount % 3 === 0 ? "rgba(81, 241, 216, 0.78)" : "rgba(190, 239, 248, 0.72)";
+        ctx.lineWidth = phonePortrait ? 0.58 : 0.78;
+        ctx.beginPath();
+        ctx.moveTo(startX + 0.6, startY + 0.4);
+        ctx.lineTo(midX + 0.4, midY + 0.2);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(midX, midY);
+        ctx.lineTo(
+          midX - outwardX * TILE * 0.22 + tangentX * TILE * 0.16,
+          midY - outwardY * TILE * 0.22 + tangentY * TILE * 0.16
+        );
+        ctx.stroke();
+        crackCount += 1;
+    }
+    ctx.restore();
+  }
+
+  function traceIceWorldCliffFace(run, faceRatio) {
+    const x0 = run.start * TILE;
+    const x1 = run.end * TILE;
+    const py = run.y * TILE;
+    const top = py + TILE * faceRatio;
+    const steps = Math.max(2, Math.ceil((run.end - run.start) / 2));
+    ctx.beginPath();
+    ctx.moveTo(x0, top + (run.seed - 0.5) * 2.4);
+    for (let step = 1; step <= steps; step += 1) {
+      const progress = step / steps;
+      const x = x0 + (x1 - x0) * progress;
+      const noise = mazeCellNoise(run.start + step * 2, run.y, 2237);
+      ctx.lineTo(x, top + (noise - 0.5) * TILE * 0.12);
+    }
+    ctx.lineTo(x1, py + TILE + 0.5);
+    ctx.lineTo(x0, py + TILE + 0.5);
+    ctx.closePath();
+  }
+
+  function drawIceWorldSnowPocket(run, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const runWidth = (run.end - run.start) * TILE;
+    const width = Math.min(runWidth * 0.72, TILE * (phonePortrait ? 2.05 + run.seed * 1.18 : 1.7 + run.seed * 0.98));
+    const x = run.start * TILE + (runWidth - width) * (0.2 + run.seed * 0.5);
+    const edgeY = run.side === "up" ? run.y * TILE + 1.5 : run.y * TILE + TILE * 0.53;
+    const height = TILE * (phonePortrait ? 0.28 + run.seed * 0.1 : 0.21 + run.seed * 0.08);
+    const snow = ctx.createLinearGradient(x, edgeY - height, x, edgeY + height);
+    snow.addColorStop(0, "rgba(249, 255, 255, 0.98)");
+    snow.addColorStop(0.48, "rgba(215, 249, 255, 0.9)");
+    snow.addColorStop(1, "rgba(91, 177, 207, 0.12)");
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.86 * visualProfile.rimAlphaScale;
+    ctx.fillStyle = snow;
+    ctx.beginPath();
+    ctx.moveTo(x, edgeY + height * 0.2);
+    ctx.quadraticCurveTo(x + width * 0.2, edgeY - height, x + width * 0.42, edgeY - height * 0.45);
+    ctx.quadraticCurveTo(x + width * 0.68, edgeY + height * 0.1, x + width, edgeY - height * 0.22);
+    ctx.lineTo(x + width * 0.9, edgeY + height * 0.58);
+    ctx.quadraticCurveTo(x + width * 0.48, edgeY + height * 0.9, x, edgeY + height * 0.2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.globalAlpha *= 0.48;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.94)";
+    ctx.lineWidth = phonePortrait ? 0.9 : 1.05;
+    ctx.beginPath();
+    ctx.moveTo(x + width * 0.04, edgeY - height * 0.02);
+    ctx.quadraticCurveTo(x + width * 0.22, edgeY - height * 0.94, x + width * 0.43, edgeY - height * 0.42);
+    ctx.quadraticCurveTo(x + width * 0.7, edgeY + height * 0.02, x + width * 0.96, edgeY - height * 0.2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawIceWorldIcicleCluster(run, clusterIndex, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const runWidth = (run.end - run.start) * TILE;
+    const clusterWidth = Math.min(runWidth * 0.34, TILE * (0.78 + run.seed * 0.34));
+    const placement = 0.08 + ((run.seed * 0.47 + clusterIndex * 0.31) % 1) * 0.78;
+    const startX = run.start * TILE + (runWidth - clusterWidth) * placement;
+    const baseY = run.y * TILE + TILE * (phonePortrait ? 0.52 : 0.48);
+    const count = 2 + (clusterIndex % 3);
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.62 : 0.78) * visualProfile.rimAlphaScale;
+    ctx.shadowColor = "rgba(184, 241, 255, 0.58)";
+    ctx.shadowBlur = phonePortrait ? 2.5 : 4;
+    for (let icicle = 0; icicle < count; icicle += 1) {
+      const segmentWidth = clusterWidth / count;
+      const x = startX + segmentWidth * (icicle + 0.5);
+      const halfWidth = segmentWidth * (0.22 + ((clusterIndex + icicle) % 2) * 0.06);
+      const length = TILE * (0.2 + ((clusterIndex * 3 + icicle) % 4) * 0.065);
+      const ice = ctx.createLinearGradient(x - halfWidth, baseY, x + halfWidth, baseY + length);
+      ice.addColorStop(0, "rgba(247, 255, 255, 0.98)");
+      ice.addColorStop(0.45, "rgba(177, 232, 247, 0.9)");
+      ice.addColorStop(1, "rgba(76, 146, 190, 0.68)");
+      ctx.fillStyle = ice;
+      ctx.beginPath();
+      ctx.moveTo(x - halfWidth, baseY);
+      ctx.lineTo(x + halfWidth, baseY);
+      ctx.lineTo(x + (icicle % 2 ? 0.08 : -0.08) * segmentWidth, baseY + length);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function strokeIceWorldBrokenRim(run, y, color, width, alpha, visualProfile, salt = 0) {
+    const start = run.start * TILE + 2.5;
+    const end = run.end * TILE - 2.5;
+    let cursor = start;
+    let segment = 0;
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.globalAlpha = alpha * visualProfile.rimAlphaScale;
+    ctx.lineCap = "round";
+    while (cursor < end - 2) {
+      const seed = mazeCellNoise(run.start + segment * 2, run.y, 2321 + salt);
+      const length = Math.min(end - cursor, TILE * (0.72 + seed * 1.05));
+      const mid = cursor + length * 0.52;
+      const lift = (mazeCellNoise(run.start + segment, run.y, 2333 + salt) - 0.5) * (isPhonePortraitView() ? 2.2 : 3.2);
+      ctx.beginPath();
+      ctx.moveTo(cursor, y + lift * 0.25);
+      ctx.quadraticCurveTo(mid, y + lift, cursor + length, y - lift * 0.18);
+      ctx.stroke();
+      cursor += length + TILE * (0.2 + (1 - seed) * 0.2);
+      segment += 1;
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldCornerChamfers(visualProfile) {
+    const cut = isPhonePortraitView() ? 5.5 : 7.5;
+    ctx.save();
+    for (let y = 1; y < ROWS - 1; y += 1) {
+      for (let x = 1; x < COLS - 1; x += 1) {
+        if (!isWallCell(x, y)) continue;
+        const px = x * TILE;
+        const py = y * TILE;
+        const openUp = !isWallCell(x, y - 1);
+        const openDown = !isWallCell(x, y + 1);
+        const openLeft = !isWallCell(x - 1, y);
+        const openRight = !isWallCell(x + 1, y);
+        const corners = [];
+        if (openUp && openLeft) corners.push([[px, py], [px + cut, py], [px, py + cut]]);
+        if (openUp && openRight) corners.push([[px + TILE, py], [px + TILE - cut, py], [px + TILE, py + cut]]);
+        if (openDown && openLeft) corners.push([[px, py + TILE], [px + cut, py + TILE], [px, py + TILE - cut]]);
+        if (openDown && openRight) corners.push([[px + TILE, py + TILE], [px + TILE - cut, py + TILE], [px + TILE, py + TILE - cut]]);
+        for (const points of corners) {
+          ctx.globalCompositeOperation = "multiply";
+          ctx.globalAlpha = 0.62 * visualProfile.wallShadowScale;
+          ctx.fillStyle = "rgba(2, 29, 57, 0.86)";
+          ctx.beginPath();
+          ctx.moveTo(points[0][0], points[0][1]);
+          ctx.lineTo(points[1][0], points[1][1]);
+          ctx.lineTo(points[2][0], points[2][1]);
+          ctx.closePath();
+          ctx.fill();
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = 0.32 * visualProfile.rimAlphaScale;
+          ctx.strokeStyle = "rgba(135, 229, 237, 0.72)";
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(points[1][0], points[1][1]);
+          ctx.lineTo(points[2][0], points[2][1]);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldWallSystem(visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const faceRatio = phonePortrait ? 0.5 : 0.46;
+    const upRuns = collectIceWorldHorizontalEdgeRuns("up");
+    const downRuns = collectIceWorldHorizontalEdgeRuns("down");
+    const leftRuns = collectIceWorldVerticalEdgeRuns("left");
+    const rightRuns = collectIceWorldVerticalEdgeRuns("right");
+
+    ctx.save();
+    ctx.translate(phonePortrait ? 1.3 : 2.1, phonePortrait ? 2.7 : 4.1);
+    ctx.fillStyle = "rgba(0, 17, 38, 0.82)";
+    ctx.globalAlpha = 0.42 * visualProfile.wallShadowScale;
+    ctx.shadowColor = "rgba(0, 8, 25, 0.82)";
+    ctx.shadowBlur = phonePortrait ? 3.5 : 5.5;
+    traceIceWorldCellMask(true);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    const glacier = ctx.createLinearGradient(WIDTH * 0.08, 0, WIDTH * 0.86, HEIGHT);
+    glacier.addColorStop(0, "#9bdde5");
+    glacier.addColorStop(0.22, "#60b9cc");
+    glacier.addColorStop(0.5, "#2b7798");
+    glacier.addColorStop(0.76, "#12476f");
+    glacier.addColorStop(1, "#08233f");
+    ctx.fillStyle = glacier;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    drawIceWorldWallFacetField(visualProfile);
+    drawIceWorldWallWindows(visualProfile);
+    ctx.restore();
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.2 : 0.28) * visualProfile.rimAlphaScale;
+    ctx.strokeStyle = "rgba(151, 229, 244, 0.74)";
+    ctx.lineWidth = phonePortrait ? 4.2 : 5.5;
+    ctx.shadowColor = "rgba(151, 229, 244, 0.32)";
+    ctx.shadowBlur = phonePortrait ? 4.5 : 6.5;
+    ctx.stroke();
+    ctx.globalAlpha = (phonePortrait ? 0.56 : 0.68) * visualProfile.rimAlphaScale;
+    ctx.strokeStyle = "rgba(223, 251, 255, 0.92)";
+    ctx.lineWidth = phonePortrait ? 1.05 : 1.35;
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    for (const run of downRuns) {
+      const py = run.y * TILE;
+      const face = ctx.createLinearGradient(0, py + TILE * faceRatio, 0, py + TILE);
+      face.addColorStop(0, "rgba(92, 177, 201, 0.98)");
+      face.addColorStop(0.32, "rgba(35, 104, 140, 0.99)");
+      face.addColorStop(0.76, "rgba(12, 61, 98, 0.98)");
+      face.addColorStop(1, "rgba(8, 35, 63, 0.99)");
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = face;
+      traceIceWorldCliffFace(run, faceRatio);
+      ctx.fill();
+
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.34;
+      ctx.strokeStyle = "rgba(0, 17, 39, 0.92)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.25;
+      const widthCells = run.end - run.start;
+      const striationCount = Math.max(1, Math.floor(widthCells / 1.6));
+      for (let index = 0; index < striationCount; index += 1) {
+        const x = (run.start + (index + 0.6) * widthCells / striationCount) * TILE;
+        ctx.beginPath();
+        ctx.moveTo(x, py + TILE * (faceRatio + 0.08));
+        ctx.quadraticCurveTo(x - TILE * 0.08, py + TILE * 0.74, x + TILE * 0.04, py + TILE - 1.5);
+        ctx.stroke();
+      }
+
+      strokeIceWorldBrokenRim(
+        run,
+        py + TILE * faceRatio,
+        "rgba(187, 239, 249, 0.82)",
+        phonePortrait ? 0.9 : 1.2,
+        0.5,
+        visualProfile,
+        7
+      );
+    }
+
+    for (const run of rightRuns) {
+      const px = run.x * TILE;
+      const y0 = run.start * TILE;
+      const height = (run.end - run.start) * TILE;
+      const side = ctx.createLinearGradient(px + TILE * 0.72, 0, px + TILE, 0);
+      side.addColorStop(0, "rgba(11, 66, 99, 0)");
+      side.addColorStop(0.52, "rgba(5, 42, 77, 0.46)");
+      side.addColorStop(1, "rgba(3, 38, 69, 0.82)");
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.88;
+      ctx.fillStyle = side;
+      ctx.fillRect(px + TILE * 0.68, y0 + 1, TILE * 0.32, height - 2);
+    }
+
+    for (const run of upRuns) {
+      strokeIceWorldBrokenRim(
+        run,
+        run.y * TILE + 1.2,
+        "rgba(223, 251, 255, 0.96)",
+        phonePortrait ? 1.02 : 1.36,
+        0.62,
+        visualProfile,
+        17
+      );
+    }
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.38 * visualProfile.rimAlphaScale;
+    ctx.strokeStyle = "rgba(137, 229, 237, 0.76)";
+    ctx.lineWidth = phonePortrait ? 1 : 1.3;
+    for (const run of leftRuns) {
+      const x = run.x * TILE + 1.2;
+      ctx.beginPath();
+      ctx.moveTo(x, run.start * TILE + 2.5);
+      ctx.lineTo(x, run.end * TILE - 2.5);
+      ctx.stroke();
+    }
+
+    const snowCandidates = upRuns
+      .filter((run) => run.y >= 2 && run.y <= ROWS - 3 && run.end - run.start >= 1.4)
+      .sort((a, b) => {
+        const lengthA = Math.min(7, a.end - a.start);
+        const lengthB = Math.min(7, b.end - b.start);
+        const centerBiasA = 1 - Math.min(1, Math.abs((a.start + a.end) * 0.5 - CENTER_CELL.x) / Math.max(1, COLS * 0.5));
+        const centerBiasB = 1 - Math.min(1, Math.abs((b.start + b.end) * 0.5 - CENTER_CELL.x) / Math.max(1, COLS * 0.5));
+        return (lengthB * 0.16 + centerBiasB * 0.58 + b.seed * 0.12)
+          - (lengthA * 0.16 + centerBiasA * 0.58 + a.seed * 0.12);
+      });
+    const snowRuns = [];
+    const snowLimit = phonePortrait ? 7 : 11;
+    for (const candidate of snowCandidates) {
+      const candidateMid = (candidate.start + candidate.end) * 0.5;
+      if (snowRuns.some((run) => Math.abs(run.y - candidate.y) < 3 && Math.abs((run.start + run.end) * 0.5 - candidateMid) < 7)) {
+        continue;
+      }
+      snowRuns.push(candidate);
+      if (snowRuns.length >= snowLimit) break;
+    }
+
+    const icicleRuns = downRuns
+      .filter((run) => run.end - run.start >= 1.2)
+      .sort((a, b) => b.seed - a.seed)
+      .slice(0, phonePortrait ? 4 : 6);
+    for (let index = 0; index < icicleRuns.length; index += 1) {
+      drawIceWorldIcicleCluster(icicleRuns[index], index, visualProfile);
+    }
+    const topCorniceRun = downRuns
+      .filter((run) => run.y <= 3 && run.end - run.start >= 6)
+      .sort((a, b) => a.y - b.y || (b.end - b.start) - (a.end - a.start))[0];
+    if (topCorniceRun) {
+      drawIceWorldIcicleCluster(topCorniceRun, 7, visualProfile);
+      drawIceWorldIcicleCluster(topCorniceRun, 9, visualProfile);
+    }
+    ctx.restore();
+    for (const run of snowRuns) {
+      drawIceWorldSnowPocket(run, visualProfile);
+    }
+    drawIceWorldCornerChamfers(visualProfile);
+  }
+
+  function drawIceWorldStaticLighting(visualProfile) {
+    ctx.save();
+    const start = centerOfCell(PLAYER_START.x, PLAYER_START.y);
+    const center = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const chestCell = getArcadeChestCell();
+    const chest = centerOfCell(chestCell.x, chestCell.y);
+    const paintWallSpill = (x, y, radius, inner, mid, alpha) => {
+      ctx.save();
+      traceIceWorldCellMask(true);
+      ctx.clip();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = alpha * visualProfile.glowScale;
+      const spill = ctx.createRadialGradient(x, y, 0, x, y, radius);
+      spill.addColorStop(0, inner);
+      spill.addColorStop(0.42, mid);
+      spill.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = spill;
+      ctx.fillRect(x - radius, y - radius, radius * 2, radius * 2);
+      ctx.restore();
+    };
+
+    paintWallSpill(
+      center.x,
+      center.y,
+      TILE * 6.2,
+      "rgba(120, 255, 235, 0.54)",
+      "rgba(58, 204, 235, 0.18)",
+      isPhonePortraitView() ? 0.54 : 0.68
+    );
+    paintWallSpill(
+      chest.x,
+      chest.y,
+      TILE * 3.8,
+      "rgba(255, 221, 105, 0.5)",
+      "rgba(255, 162, 62, 0.13)",
+      isPhonePortraitView() ? 0.42 : 0.54
+    );
+    paintWallSpill(
+      start.x,
+      start.y,
+      TILE * 4.2,
+      "rgba(78, 249, 211, 0.32)",
+      "rgba(73, 165, 229, 0.11)",
+      isPhonePortraitView() ? 0.34 : 0.44
+    );
+
+    const welcome = ctx.createRadialGradient(start.x, start.y, 0, start.x, start.y, TILE * 5.4);
+    welcome.addColorStop(0, "rgba(86, 244, 217, 0.2)");
+    welcome.addColorStop(0.34, "rgba(84, 196, 238, 0.07)");
+    welcome.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.72 * visualProfile.glowScale;
+    ctx.fillStyle = welcome;
+    ctx.fillRect(start.x - TILE * 5.4, start.y - TILE * 5.4, TILE * 10.8, TILE * 10.8);
+
+    const promise = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, TILE * 6.6);
+    promise.addColorStop(0, "rgba(94, 248, 222, 0.18)");
+    promise.addColorStop(0.32, "rgba(80, 187, 237, 0.08)");
+    promise.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.globalAlpha = 0.66 * visualProfile.glowScale;
+    ctx.fillStyle = promise;
+    ctx.fillRect(center.x - TILE * 6.6, center.y - TILE * 6.6, TILE * 13.2, TILE * 13.2);
+
+    const treasure = ctx.createRadialGradient(chest.x, chest.y, 0, chest.x, chest.y, TILE * 3.8);
+    treasure.addColorStop(0, "rgba(255, 218, 104, 0.13)");
+    treasure.addColorStop(0.48, "rgba(255, 154, 66, 0.035)");
+    treasure.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.globalAlpha = 0.58 * visualProfile.glowScale;
+    ctx.fillStyle = treasure;
+    ctx.fillRect(chest.x - TILE * 3.8, chest.y - TILE * 3.8, TILE * 7.6, TILE * 7.6);
+
+    const vignette = ctx.createRadialGradient(WIDTH * 0.5, HEIGHT * 0.48, HEIGHT * 0.18, WIDTH * 0.5, HEIGHT * 0.5, HEIGHT * 0.9);
+    vignette.addColorStop(0, "rgba(0, 0, 0, 0)");
+    vignette.addColorStop(0.7, "rgba(0, 6, 17, 0.06)");
+    vignette.addColorStop(1, "rgba(0, 2, 10, 0.46)");
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.62 : 0.78) * visualProfile.wallShadowScale;
+    ctx.fillStyle = vignette;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    paintWallSpill(
+      center.x,
+      center.y,
+      TILE * 4.8,
+      "rgba(129, 255, 237, 0.72)",
+      "rgba(45, 202, 235, 0.24)",
+      isPhonePortraitView() ? 0.46 : 0.58
+    );
+    paintWallSpill(
+      chest.x,
+      chest.y,
+      TILE * 3.1,
+      "rgba(255, 224, 113, 0.7)",
+      "rgba(255, 158, 66, 0.2)",
+      isPhonePortraitView() ? 0.42 : 0.54
+    );
+    const gateWallAnchors = [];
+    for (const target of [
+      { x: CENTER_CELL.x - 4, y: CENTER_CELL.y },
+      { x: CENTER_CELL.x + 4, y: CENTER_CELL.y }
+    ]) {
+      const wallCell = findNearestIceWorldWallAnchor(target, gateWallAnchors, 7);
+      if (!wallCell) continue;
+      gateWallAnchors.push(wallCell);
+      const wallCenter = centerOfCell(wallCell.x, wallCell.y);
+      paintWallSpill(
+        wallCenter.x,
+        wallCenter.y,
+        TILE * 2.45,
+        "rgba(137, 255, 238, 0.86)",
+        "rgba(48, 207, 238, 0.34)",
+        isPhonePortraitView() ? 0.5 : 0.64
+      );
+    }
+    const treasureWallCell = findNearestIceWorldWallAnchor(
+      { x: chestCell.x, y: chestCell.y + 2 },
+      gateWallAnchors,
+      6
+    );
+    if (treasureWallCell) {
+      const treasureWallCenter = centerOfCell(treasureWallCell.x, treasureWallCell.y);
+      paintWallSpill(
+        treasureWallCenter.x,
+        treasureWallCenter.y,
+        TILE * 2.25,
+        "rgba(255, 228, 123, 0.86)",
+        "rgba(255, 163, 65, 0.3)",
+        isPhonePortraitView() ? 0.48 : 0.62
+      );
+    }
+    ctx.restore();
+  }
+
+  function findNearestIceWorldWallAnchor(target, used = [], maxRadius = 9) {
+    for (let radius = 0; radius <= maxRadius; radius += 1) {
+      for (let dy = -radius; dy <= radius; dy += 1) {
+        for (let dx = -radius; dx <= radius; dx += 1) {
+          if (radius > 0 && Math.abs(dx) !== radius && Math.abs(dy) !== radius) continue;
+          const x = target.x + dx;
+          const y = target.y + dy;
+          if (x < 2 || y < 2 || x >= COLS - 2 || y >= ROWS - 2 || !isWallCell(x, y)) continue;
+          const exposed = !isWallCell(x, y - 1) || !isWallCell(x, y + 1) || !isWallCell(x - 1, y) || !isWallCell(x + 1, y);
+          if (!exposed || used.some((cell) => distanceCells(cell, { x, y }) < 5)) continue;
+          return { x, y };
+        }
+      }
+    }
+    return null;
+  }
+
+  function drawIceWorldCrystalCluster(x, y, scale, seed, visualProfile) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.lineJoin = "round";
+    ctx.globalAlpha = 0.9 * visualProfile.scatterAlphaScale;
+    ctx.shadowColor = seed > 0.5 ? "rgba(78, 242, 213, 0.82)" : "rgba(123, 140, 255, 0.84)";
+    ctx.shadowBlur = (isPhonePortraitView() ? 7 : 12) * visualProfile.glowScale;
+    ctx.fillStyle = "rgba(3, 20, 42, 0.5)";
+    ctx.beginPath();
+    ctx.ellipse(0, scale * 0.16, scale * 0.7, scale * 0.18, 0, 0, Math.PI * 2);
+    ctx.fill();
+    const shardSpecs = [
+      { offset: -0.24, height: 0.78, width: 0.16, angle: -0.3 - seed * 0.1, palette: ["#d6fff7", "#53e7cb", "#176f9b"] },
+      { offset: 0.02, height: 1.28, width: 0.2, angle: (seed - 0.5) * 0.12, palette: ["#e3fbff", "#6bc8f4", "#314f9d"] },
+      { offset: 0.3, height: 0.68, width: 0.15, angle: 0.34 + seed * 0.08, palette: ["#f0e8ff", "#b596f2", "#514596"] }
+    ];
+    for (const spec of shardSpecs) {
+      const offset = spec.offset * scale;
+      const height = spec.height * scale;
+      const width = spec.width * scale;
+      ctx.save();
+      ctx.translate(offset, scale * 0.11);
+      ctx.rotate(spec.angle);
+      const gradient = ctx.createLinearGradient(0, -height, 0, scale * 0.12);
+      gradient.addColorStop(0, "rgba(232, 255, 255, 0.98)");
+      gradient.addColorStop(0.24, spec.palette[0]);
+      gradient.addColorStop(0.58, spec.palette[1]);
+      gradient.addColorStop(1, spec.palette[2]);
+      ctx.fillStyle = gradient;
+      ctx.strokeStyle = "rgba(207, 247, 252, 0.66)";
+      ctx.lineWidth = isPhonePortraitView() ? 0.8 : 1.1;
+      ctx.beginPath();
+      ctx.moveTo(-width, scale * 0.08);
+      ctx.lineTo(-width * 0.56, -height * 0.32);
+      ctx.lineTo(0, -height);
+      ctx.lineTo(width * 0.5, -height * 0.24);
+      ctx.lineTo(width, scale * 0.08);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.54;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.82)";
+      ctx.lineWidth = 0.75;
+      ctx.beginPath();
+      ctx.moveTo(0, -height * 0.9);
+      ctx.lineTo(-width * 0.08, -height * 0.08);
+      ctx.stroke();
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldLandmarkPedestal(size, accent) {
+    ctx.save();
+    const base = ctx.createLinearGradient(0, -size * 0.08, 0, size * 0.24);
+    base.addColorStop(0, "rgba(119, 203, 222, 0.92)");
+    base.addColorStop(1, "rgba(9, 46, 79, 0.98)");
+    ctx.fillStyle = base;
+    ctx.strokeStyle = "rgba(204, 248, 255, 0.76)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.ellipse(0, size * 0.13, size * 0.62, size * 0.2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.58;
+    ctx.strokeStyle = accent;
+    ctx.beginPath();
+    ctx.ellipse(0, size * 0.1, size * 0.42, size * 0.11, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawIceWorldHeroWallSocket(x, y, scale, type, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const accents = {
+      obelisk: ["rgba(255, 220, 103, 0.78)", "rgba(74, 214, 222, 0.46)"],
+      lantern: ["rgba(83, 255, 215, 0.82)", "rgba(71, 161, 233, 0.44)"],
+      waterfall: ["rgba(226, 252, 255, 0.92)", "rgba(79, 164, 216, 0.5)"],
+      arch: ["rgba(118, 214, 255, 0.78)", "rgba(184, 119, 240, 0.5)"]
+    };
+    const accent = accents[type] || accents.arch;
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.translate(x, y);
+    ctx.globalAlpha = (phonePortrait ? 0.76 : 0.86) * visualProfile.scatterAlphaScale;
+
+    const recess = ctx.createRadialGradient(0, -scale * 0.36, 0, 0, -scale * 0.34, scale * 0.94);
+    recess.addColorStop(0, "rgba(0, 18, 48, 0.9)");
+    recess.addColorStop(0.56, "rgba(4, 48, 82, 0.54)");
+    recess.addColorStop(1, "rgba(0, 15, 39, 0)");
+    ctx.globalCompositeOperation = "multiply";
+    ctx.fillStyle = recess;
+    ctx.beginPath();
+    ctx.ellipse(0, -scale * 0.28, scale * 0.88, scale * 0.68, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.shadowColor = accent[0];
+    ctx.shadowBlur = (phonePortrait ? 6 : 9) * visualProfile.glowScale;
+    if (type === "obelisk") {
+      const buttress = ctx.createLinearGradient(-scale * 0.5, -scale * 1.32, scale * 0.5, scale * 0.18);
+      buttress.addColorStop(0, "rgba(221, 255, 253, 0.58)");
+      buttress.addColorStop(0.48, accent[1]);
+      buttress.addColorStop(1, "rgba(15, 71, 111, 0.2)");
+      ctx.fillStyle = buttress;
+      ctx.strokeStyle = accent[0];
+      ctx.lineWidth = phonePortrait ? 1.1 : 1.45;
+      ctx.beginPath();
+      ctx.moveTo(-scale * 0.62, scale * 0.12);
+      ctx.lineTo(-scale * 0.34, -scale * 0.72);
+      ctx.lineTo(0, -scale * 1.3);
+      ctx.lineTo(scale * 0.38, -scale * 0.68);
+      ctx.lineTo(scale * 0.64, scale * 0.12);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    } else if (type === "lantern" || type === "waterfall") {
+      ctx.strokeStyle = accent[0];
+      ctx.lineWidth = scale * 0.12;
+      ctx.beginPath();
+      ctx.arc(0, -scale * 0.38, scale * 0.56, Math.PI * 0.08, Math.PI * 0.92, true);
+      ctx.stroke();
+      ctx.globalAlpha *= 0.58;
+      ctx.strokeStyle = accent[1];
+      ctx.lineWidth = scale * 0.24;
+      ctx.beginPath();
+      ctx.arc(0, -scale * 0.36, scale * 0.72, Math.PI * 0.12, Math.PI * 0.88, true);
+      ctx.stroke();
+    } else {
+      const side = ctx.createLinearGradient(-scale, -scale, scale, scale * 0.2);
+      side.addColorStop(0, "rgba(215, 252, 255, 0.62)");
+      side.addColorStop(0.44, accent[0]);
+      side.addColorStop(1, accent[1]);
+      ctx.fillStyle = side;
+      ctx.strokeStyle = "rgba(211, 249, 255, 0.62)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.2;
+      for (const direction of [-1, 1]) {
+        ctx.beginPath();
+        ctx.moveTo(direction * scale * 0.82, scale * 0.14);
+        ctx.lineTo(direction * scale * 0.68, -scale * 0.56);
+        ctx.lineTo(direction * scale * 0.42, -scale * 1.08);
+        ctx.lineTo(direction * scale * 0.28, -scale * 0.42);
+        ctx.lineTo(direction * scale * 0.42, scale * 0.14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldMultiplicationObelisk(x, y, scale, visualProfile) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = 0.96 * visualProfile.scatterAlphaScale;
+    ctx.shadowColor = "rgba(84, 226, 233, 0.76)";
+    ctx.shadowBlur = 10 * visualProfile.glowScale;
+    drawIceWorldLandmarkPedestal(scale, "rgba(255, 216, 101, 0.82)");
+    const stone = ctx.createLinearGradient(-scale * 0.3, -scale * 1.2, scale * 0.34, scale * 0.16);
+    stone.addColorStop(0, "rgba(220, 252, 255, 0.98)");
+    stone.addColorStop(0.42, "rgba(78, 178, 207, 0.98)");
+    stone.addColorStop(1, "rgba(12, 55, 94, 0.99)");
+    ctx.fillStyle = stone;
+    ctx.strokeStyle = "rgba(213, 251, 255, 0.88)";
+    ctx.lineWidth = 1.25;
+    ctx.beginPath();
+    ctx.moveTo(-scale * 0.3, scale * 0.08);
+    ctx.lineTo(-scale * 0.18, -scale * 0.86);
+    ctx.lineTo(0, -scale * 1.18);
+    ctx.lineTo(scale * 0.2, -scale * 0.82);
+    ctx.lineTo(scale * 0.32, scale * 0.08);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.shadowColor = "rgba(255, 214, 91, 0.9)";
+    ctx.shadowBlur = 8 * visualProfile.glowScale;
+    ctx.fillStyle = "#ffd765";
+    ctx.font = `900 ${Math.round(scale * 0.54)}px Assistant, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("×", 0, -scale * 0.42);
+    ctx.restore();
+  }
+
+  function drawIceWorldAuroraLantern(x, y, scale, visualProfile) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = 0.94 * visualProfile.scatterAlphaScale;
+    drawIceWorldLandmarkPedestal(scale, "rgba(75, 247, 211, 0.86)");
+    ctx.strokeStyle = "rgba(218, 253, 255, 0.86)";
+    ctx.fillStyle = "rgba(14, 59, 91, 0.96)";
+    ctx.lineWidth = 1.4;
+    roundedRect(-scale * 0.3, -scale * 0.82, scale * 0.6, scale * 0.82, scale * 0.1);
+    ctx.fill();
+    ctx.stroke();
+    ctx.globalCompositeOperation = "screen";
+    ctx.shadowColor = "#55f3cf";
+    ctx.shadowBlur = 14 * visualProfile.glowScale;
+    const flame = ctx.createRadialGradient(0, -scale * 0.4, 0, 0, -scale * 0.4, scale * 0.44);
+    flame.addColorStop(0, "rgba(255, 249, 191, 0.98)");
+    flame.addColorStop(0.32, "rgba(76, 255, 215, 0.92)");
+    flame.addColorStop(1, "rgba(68, 180, 244, 0)");
+    ctx.fillStyle = flame;
+    ctx.beginPath();
+    ctx.arc(0, -scale * 0.4, scale * 0.44, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(165, 255, 231, 0.96)";
+    ctx.beginPath();
+    ctx.moveTo(0, -scale * 0.73);
+    ctx.bezierCurveTo(scale * 0.2, -scale * 0.54, scale * 0.17, -scale * 0.27, 0, -scale * 0.16);
+    ctx.bezierCurveTo(-scale * 0.16, -scale * 0.34, -scale * 0.12, -scale * 0.56, 0, -scale * 0.73);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawIceWorldFrozenWaterfall(x, y, scale, visualProfile) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = 0.96 * visualProfile.scatterAlphaScale;
+    ctx.shadowColor = "rgba(190, 241, 255, 0.82)";
+    ctx.shadowBlur = (isPhonePortraitView() ? 8 : 13) * visualProfile.glowScale;
+
+    const frozenFlow = ctx.createLinearGradient(-scale * 0.48, -scale * 1.18, scale * 0.5, scale * 0.12);
+    frozenFlow.addColorStop(0, "rgba(247, 255, 255, 0.98)");
+    frozenFlow.addColorStop(0.28, "rgba(182, 235, 248, 0.98)");
+    frozenFlow.addColorStop(0.62, "rgba(75, 159, 207, 0.96)");
+    frozenFlow.addColorStop(1, "rgba(20, 73, 119, 0.98)");
+    ctx.fillStyle = frozenFlow;
+    ctx.strokeStyle = "rgba(226, 252, 255, 0.92)";
+    ctx.lineWidth = isPhonePortraitView() ? 1 : 1.4;
+    ctx.beginPath();
+    ctx.moveTo(-scale * 0.5, -scale * 0.94);
+    ctx.quadraticCurveTo(-scale * 0.18, -scale * 1.18, scale * 0.08, -scale * 1.02);
+    ctx.quadraticCurveTo(scale * 0.34, -scale * 0.92, scale * 0.5, -scale * 1.04);
+    ctx.lineTo(scale * 0.42, -scale * 0.2);
+    ctx.lineTo(scale * 0.24, scale * 0.04);
+    ctx.lineTo(scale * 0.09, -scale * 0.18);
+    ctx.lineTo(-scale * 0.06, scale * 0.1);
+    ctx.lineTo(-scale * 0.22, -scale * 0.08);
+    ctx.lineTo(-scale * 0.4, scale * 0.02);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha *= 0.68;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.94)";
+    ctx.lineCap = "round";
+    for (let stream = 0; stream < 4; stream += 1) {
+      const streamX = scale * (-0.32 + stream * 0.2);
+      ctx.lineWidth = scale * (stream % 2 ? 0.055 : 0.035);
+      ctx.beginPath();
+      ctx.moveTo(streamX, -scale * (0.88 + (stream % 2) * 0.08));
+      ctx.bezierCurveTo(
+        streamX + scale * 0.08,
+        -scale * 0.64,
+        streamX - scale * 0.06,
+        -scale * 0.34,
+        streamX + scale * 0.02,
+        -scale * (0.1 + (stream % 3) * 0.08)
+      );
+      ctx.stroke();
+    }
+
+    const snowCap = ctx.createLinearGradient(0, -scale * 1.27, 0, -scale * 0.9);
+    snowCap.addColorStop(0, "rgba(255, 255, 255, 0.99)");
+    snowCap.addColorStop(1, "rgba(201, 241, 249, 0.82)");
+    ctx.fillStyle = snowCap;
+    ctx.beginPath();
+    ctx.moveTo(-scale * 0.62, -scale * 0.98);
+    ctx.quadraticCurveTo(-scale * 0.38, -scale * 1.28, -scale * 0.08, -scale * 1.08);
+    ctx.quadraticCurveTo(scale * 0.2, -scale * 1.24, scale * 0.6, -scale * 1.02);
+    ctx.lineTo(scale * 0.46, -scale * 0.9);
+    ctx.quadraticCurveTo(0, -scale * 1.03, -scale * 0.58, -scale * 0.88);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawIceWorldCrystalArch(x, y, scale, visualProfile) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = 0.92 * visualProfile.scatterAlphaScale;
+    drawIceWorldLandmarkPedestal(scale, "rgba(107, 196, 255, 0.84)");
+    ctx.shadowColor = "rgba(96, 215, 255, 0.82)";
+    ctx.shadowBlur = 11 * visualProfile.glowScale;
+    const arch = ctx.createLinearGradient(-scale, -scale, scale, scale * 0.2);
+    arch.addColorStop(0, "rgba(221, 252, 255, 0.98)");
+    arch.addColorStop(0.44, "rgba(72, 181, 216, 0.96)");
+    arch.addColorStop(1, "rgba(18, 63, 105, 0.98)");
+    ctx.strokeStyle = "rgba(239, 254, 255, 0.94)";
+    ctx.lineWidth = scale * 0.34;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(-scale * 0.48, scale * 0.02);
+    ctx.lineTo(-scale * 0.38, -scale * 0.58);
+    ctx.quadraticCurveTo(0, -scale * 1.06, scale * 0.38, -scale * 0.58);
+    ctx.lineTo(scale * 0.48, scale * 0.02);
+    ctx.stroke();
+    ctx.strokeStyle = arch;
+    ctx.lineWidth = scale * 0.2;
+    ctx.stroke();
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = "rgba(255, 217, 100, 0.82)";
+    ctx.lineWidth = scale * 0.055;
+    ctx.beginPath();
+    ctx.moveTo(-scale * 0.25, -scale * 0.55);
+    ctx.quadraticCurveTo(0, -scale * 0.82, scale * 0.25, -scale * 0.55);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawIceWorldGlacialStrataMark(x, y, scale, seed, visualProfile) {
+    ctx.save();
+    traceIceWorldCellMask(true);
+    ctx.clip();
+    ctx.translate(x, y);
+    ctx.rotate((seed - 0.5) * 0.18);
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (isPhonePortraitView() ? 0.2 : 0.27) * visualProfile.textureAlphaScale;
+    ctx.strokeStyle = "rgba(223, 251, 255, 0.72)";
+    ctx.lineWidth = isPhonePortraitView() ? 0.7 : 0.95;
+    ctx.lineCap = "round";
+    for (let layer = 0; layer < 4; layer += 1) {
+      const layerY = scale * (-0.34 + layer * 0.22);
+      ctx.beginPath();
+      ctx.moveTo(-scale * (0.72 - layer * 0.05), layerY);
+      ctx.bezierCurveTo(
+        -scale * 0.28,
+        layerY - scale * (0.05 + seed * 0.03),
+        scale * 0.22,
+        layerY + scale * 0.05,
+        scale * (0.7 - layer * 0.04),
+        layerY - scale * 0.025
+      );
+      ctx.stroke();
+    }
+    ctx.globalAlpha *= 0.58;
+    ctx.fillStyle = "rgba(239, 254, 255, 0.76)";
+    for (let bubble = 0; bubble < 3; bubble += 1) {
+      const bx = scale * (-0.38 + bubble * 0.36 + (seed - 0.5) * 0.08);
+      const by = scale * (0.02 + (bubble % 2) * 0.16);
+      ctx.beginPath();
+      ctx.ellipse(bx, by, scale * 0.035, scale * 0.055, seed, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldSetPieces(visualProfile) {
+    const used = [];
+    const targets = [
+      { x: PLAYER_START.x - 5, y: PLAYER_START.y - 4 },
+      { x: CENTER_CELL.x - 8, y: CENTER_CELL.y + 3 },
+      { x: CENTER_CELL.x + 8, y: CENTER_CELL.y - 4 }
+    ];
+    for (let index = 0; index < targets.length; index += 1) {
+      const cell = findNearestIceWorldWallAnchor(targets[index], used, 10);
+      if (!cell) continue;
+      used.push(cell);
+      const center = centerOfCell(cell.x, cell.y);
+      drawIceWorldGlacialStrataMark(
+        center.x,
+        center.y,
+        TILE * (isPhonePortraitView() ? 1.5 : 1.85),
+        mazeCellNoise(cell.x, cell.y, 2819),
+        visualProfile
+      );
     }
   }
 
   const PLAYABLE_MAZE_ART_STYLES = {
     ice: {
       world: "ice",
-      floorStops: ["rgba(33, 52, 78, 0.98)", "rgba(22, 36, 58, 0.98)", "rgba(11, 22, 41, 0.98)"],
-      floorLine: "rgba(255, 232, 150, 0.42)",
-      floorRunGlow: "rgba(117, 237, 211, 0.52)",
-      floorContactShadow: "rgba(1, 5, 15, 0.78)",
-      floorDots: ["255, 211, 99", "120, 237, 206", "255, 132, 151"],
+      wallShape: "glacier",
+      floorStops: ["rgba(15, 47, 76, 0.99)", "rgba(9, 31, 55, 0.99)", "rgba(4, 17, 34, 0.99)"],
+      floorLine: "rgba(198, 246, 255, 0.3)",
+      floorRunGlow: "rgba(95, 222, 255, 0.38)",
+      floorContactShadow: "rgba(0, 10, 27, 0.88)",
+      floorDots: ["224, 252, 255", "135, 229, 255", "118, 187, 228"],
       wallPalettes: [
-        { topA: "#fff07a", topB: "#ffb84f", sideA: "#e07735", sideB: "#8f3f27", rim: "rgba(255, 250, 194, 0.96)" },
-        { topA: "#8df2d1", topB: "#28c6a7", sideA: "#158f86", sideB: "#0b4f5a", rim: "rgba(213, 255, 242, 0.92)" },
-        { topA: "#ff9d94", topB: "#ee586f", sideA: "#b33d57", sideB: "#67233c", rim: "rgba(255, 226, 219, 0.9)" },
-        { topA: "#9ec8ff", topB: "#5b7ff0", sideA: "#3454af", sideB: "#20306d", rim: "rgba(224, 238, 255, 0.9)" }
+        { topA: "#f2fdff", topB: "#9fe4f4", sideA: "#3d9fbd", sideB: "#123d66", rim: "rgba(247, 255, 255, 0.98)" },
+        { topA: "#d7f8ff", topB: "#77cbe4", sideA: "#2f82aa", sideB: "#102e58", rim: "rgba(226, 252, 255, 0.96)" },
+        { topA: "#c8edff", topB: "#68afd9", sideA: "#326f9c", sideB: "#142a4b", rim: "rgba(220, 248, 255, 0.94)" },
+        { topA: "#effcff", topB: "#a8dff1", sideA: "#4b91b4", sideB: "#173756", rim: "rgba(255, 255, 255, 0.96)" }
       ],
-      wallStroke: "rgba(36, 23, 34, 0.9)",
-      wallDetail: "rgba(55, 31, 37, 0.72)",
-      wallFaceDown: ["rgba(118, 69, 48, 0.28)", "rgba(0, 0, 0, 0.88)"],
-      wallFaceSide: ["rgba(85, 42, 42, 0.26)", "rgba(0, 0, 0, 0.78)"],
-      cornerFill: "rgba(255, 244, 170, 0.9)",
-      cornerStroke: "rgba(255, 144, 93, 0.86)",
+      wallStroke: "rgba(7, 39, 70, 0.96)",
+      wallDetail: "rgba(229, 252, 255, 0.62)",
+      wallFaceDown: ["rgba(55, 143, 178, 0.42)", "rgba(0, 12, 32, 0.94)"],
+      wallFaceSide: ["rgba(41, 117, 158, 0.34)", "rgba(0, 10, 28, 0.9)"],
+      cornerFill: "rgba(232, 253, 255, 0.96)",
+      cornerStroke: "rgba(104, 213, 245, 0.9)",
       goal: {
         shape: "star",
         base: ["rgba(77, 40, 22, 0.92)", "rgba(42, 31, 34, 0.78)", "rgba(4, 8, 18, 0)"],
@@ -9653,16 +17523,17 @@
     },
     lava: {
       world: "lava",
-      floorStops: ["rgba(42, 22, 20, 0.98)", "rgba(26, 14, 16, 0.98)", "rgba(10, 8, 10, 0.98)"],
+      wallShape: "basalt",
+      floorStops: ["rgba(33, 18, 17, 0.99)", "rgba(19, 11, 12, 0.99)", "rgba(6, 5, 7, 0.99)"],
       floorLine: "rgba(255, 131, 70, 0.38)",
       floorRunGlow: "rgba(255, 102, 44, 0.48)",
       floorContactShadow: "rgba(6, 2, 2, 0.84)",
       floorDots: ["255, 143, 54", "255, 212, 96", "111, 66, 54"],
       wallPalettes: [
-        { topA: "#ffcc55", topB: "#f06b23", sideA: "#a93122", sideB: "#42120f", rim: "rgba(255, 237, 156, 0.95)" },
-        { topA: "#58545b", topB: "#28242a", sideA: "#181419", sideB: "#060506", rim: "rgba(255, 125, 66, 0.82)" },
-        { topA: "#ff846a", topB: "#c72f2e", sideA: "#76151e", sideB: "#2c0710", rim: "rgba(255, 207, 126, 0.9)" },
-        { topA: "#ffd166", topB: "#b7501d", sideA: "#8b2d17", sideB: "#31100c", rim: "rgba(255, 245, 184, 0.9)" }
+        { topA: "#55525a", topB: "#29262d", sideA: "#17151b", sideB: "#050507", rim: "rgba(255, 126, 57, 0.88)" },
+        { topA: "#43383a", topB: "#23191d", sideA: "#150d10", sideB: "#050304", rim: "rgba(255, 92, 38, 0.82)" },
+        { topA: "#62504b", topB: "#322328", sideA: "#1b1115", sideB: "#070405", rim: "rgba(255, 160, 75, 0.84)" },
+        { topA: "#49464e", topB: "#242229", sideA: "#121116", sideB: "#040406", rim: "rgba(255, 197, 91, 0.8)" }
       ],
       wallStroke: "rgba(41, 16, 14, 0.96)",
       wallDetail: "rgba(255, 119, 54, 0.44)",
@@ -9697,16 +17568,17 @@
     },
     ancient: {
       world: "ancient",
+      wallShape: "ruins",
       floorStops: ["rgba(44, 37, 23, 0.98)", "rgba(28, 28, 21, 0.98)", "rgba(11, 20, 17, 0.98)"],
       floorLine: "rgba(222, 190, 118, 0.34)",
       floorRunGlow: "rgba(39, 224, 195, 0.38)",
       floorContactShadow: "rgba(4, 9, 8, 0.8)",
       floorDots: ["222, 190, 118", "39, 224, 195", "135, 177, 89"],
       wallPalettes: [
-        { topA: "#f0d58a", topB: "#b58a47", sideA: "#806238", sideB: "#382b1b", rim: "rgba(255, 240, 186, 0.9)" },
-        { topA: "#43ddc7", topB: "#168f82", sideA: "#0e635f", sideB: "#063334", rim: "rgba(193, 255, 239, 0.88)" },
-        { topA: "#c4ad74", topB: "#80643f", sideA: "#5a4630", sideB: "#241d16", rim: "rgba(245, 229, 173, 0.86)" },
-        { topA: "#95c86a", topB: "#517f45", sideA: "#31583b", sideB: "#142a20", rim: "rgba(216, 244, 158, 0.82)" }
+        { topA: "#e4cc91", topB: "#a88651", sideA: "#735936", sideB: "#2e2418", rim: "rgba(249, 232, 184, 0.9)" },
+        { topA: "#d3bc82", topB: "#927348", sideA: "#624b31", sideB: "#291f17", rim: "rgba(237, 219, 171, 0.86)" },
+        { topA: "#c8b27d", topB: "#7f6744", sideA: "#55442f", sideB: "#241d16", rim: "rgba(232, 218, 176, 0.84)" },
+        { topA: "#b7aa7d", topB: "#776c49", sideA: "#4d4932", sideB: "#20241b", rim: "rgba(219, 226, 184, 0.8)" }
       ],
       wallStroke: "rgba(39, 27, 18, 0.92)",
       wallDetail: "rgba(48, 100, 84, 0.48)",
@@ -9741,16 +17613,17 @@
     },
     diamond: {
       world: "diamond",
+      wallShape: "crystal",
       floorStops: ["rgba(20, 25, 62, 0.98)", "rgba(12, 17, 43, 0.98)", "rgba(7, 7, 21, 0.98)"],
       floorLine: "rgba(126, 255, 232, 0.34)",
       floorRunGlow: "rgba(255, 95, 215, 0.36)",
       floorContactShadow: "rgba(2, 4, 16, 0.84)",
       floorDots: ["126, 255, 232", "255, 95, 215", "176, 108, 255"],
       wallPalettes: [
-        { topA: "#8ffff0", topB: "#33c9ff", sideA: "#256bd1", sideB: "#17316e", rim: "rgba(226, 255, 255, 0.92)" },
-        { topA: "#ff9cf1", topB: "#d957ff", sideA: "#8336d0", sideB: "#321b78", rim: "rgba(255, 226, 255, 0.88)" },
-        { topA: "#b58cff", topB: "#6d69ff", sideA: "#3b40b8", sideB: "#1b2565", rim: "rgba(233, 228, 255, 0.86)" },
-        { topA: "#fff3a1", topB: "#55ffd6", sideA: "#21a0b0", sideB: "#12445c", rim: "rgba(255, 255, 226, 0.9)" }
+        { topA: "#d9fbff", topB: "#62c9ea", sideA: "#396bbd", sideB: "#20245f", rim: "rgba(239, 255, 255, 0.96)" },
+        { topA: "#eed8ff", topB: "#a36ee8", sideA: "#6143a8", sideB: "#28205f", rim: "rgba(250, 236, 255, 0.92)" },
+        { topA: "#d4e5ff", topB: "#777bd9", sideA: "#454caa", sideB: "#1d255d", rim: "rgba(235, 242, 255, 0.9)" },
+        { topA: "#d4fff6", topB: "#62d9c8", sideA: "#317f91", sideB: "#173957", rim: "rgba(238, 255, 252, 0.92)" }
       ],
       wallStroke: "rgba(14, 18, 51, 0.92)",
       wallDetail: "rgba(255, 116, 229, 0.48)",
@@ -9786,6 +17659,9 @@
   };
 
   function getPlayableMazeArtStyle(level = getCurrentLevel()) {
+    if (isWorldOneReimagined(level)) {
+      return getWorldOneConcept().artStyle;
+    }
     return PLAYABLE_MAZE_ART_STYLES[getMazeWorldKey(level)] || null;
   }
 
@@ -9793,7 +17669,7 @@
     return Boolean(getPlayableMazeArtStyle(level));
   }
 
-  function firstMazeToyPalette(x, y, style = getPlayableMazeArtStyle()) {
+  function firstMazeWallPalette(x, y, style = getPlayableMazeArtStyle()) {
     const palettes = style?.wallPalettes || PLAYABLE_MAZE_ART_STYLES.ice.wallPalettes;
     return palettes[Math.floor(mazeCellNoise(x, y, 411) * palettes.length) % palettes.length];
   }
@@ -9923,14 +17799,283 @@
     ctx.restore();
   }
 
+  function traceFirstMazeWallShape(x, y, width, height, style, seed = 0) {
+    const safeWidth = Math.max(1, width);
+    const safeHeight = Math.max(1, height);
+    const shape = style?.wallShape || "ruins";
+    if (shape === "ruins") {
+      roundedRect(x, y, safeWidth, safeHeight, Math.min(3.5, safeHeight * 0.12));
+      return;
+    }
+
+    if (shape === "garden") {
+      const radius = Math.min(7, safeHeight * 0.24, safeWidth * 0.08);
+      const segments = Math.max(2, Math.round(safeWidth / (TILE * 2.5)));
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y + 1.5);
+      for (let segment = 1; segment < segments; segment += 1) {
+        const px = x + safeWidth * segment / segments;
+        const lift = (mazeCellNoise(segment, Math.round(y / TILE), 4811) - 0.5) * 2.4;
+        ctx.quadraticCurveTo(px - safeWidth / segments * 0.42, y + lift, px, y + 1 + lift * 0.35);
+      }
+      ctx.lineTo(x + safeWidth - radius, y + 1.2);
+      ctx.quadraticCurveTo(x + safeWidth, y + 1.2, x + safeWidth, y + radius);
+      ctx.lineTo(x + safeWidth, y + safeHeight - radius * 0.72);
+      ctx.quadraticCurveTo(x + safeWidth, y + safeHeight, x + safeWidth - radius, y + safeHeight);
+      ctx.lineTo(x + radius, y + safeHeight);
+      ctx.quadraticCurveTo(x, y + safeHeight, x, y + safeHeight - radius * 0.72);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y + 1.5, x + radius, y + 1.5);
+      ctx.closePath();
+      return;
+    }
+
+    if (shape === "workshop") {
+      const cut = Math.min(6.5, safeHeight * 0.2, safeWidth * 0.065);
+      ctx.beginPath();
+      ctx.moveTo(x + cut, y);
+      ctx.lineTo(x + safeWidth - cut, y);
+      ctx.lineTo(x + safeWidth, y + cut);
+      ctx.lineTo(x + safeWidth, y + safeHeight - cut * 0.62);
+      ctx.lineTo(x + safeWidth - cut * 0.7, y + safeHeight);
+      ctx.lineTo(x + cut * 0.7, y + safeHeight);
+      ctx.lineTo(x, y + safeHeight - cut * 0.62);
+      ctx.lineTo(x, y + cut);
+      ctx.closePath();
+      return;
+    }
+
+    if (shape === "islands") {
+      roundedRect(x, y, safeWidth, safeHeight, Math.min(8, safeHeight * 0.28, safeWidth * 0.1));
+      return;
+    }
+
+    const baseCut = shape === "crystal"
+      ? Math.min(9, safeHeight * 0.24, safeWidth * 0.08)
+      : Math.min(5.5, safeHeight * 0.16, safeWidth * 0.055);
+    const cut = Math.max(2.5, baseCut);
+    const roughness = shape === "basalt" ? (seed - 0.5) * 2.4 : 0;
+    ctx.beginPath();
+    ctx.moveTo(x + cut, y + Math.max(0, roughness));
+    ctx.lineTo(x + safeWidth - cut * 0.72, y);
+    ctx.lineTo(x + safeWidth, y + cut * (shape === "crystal" ? 1.15 : 0.8));
+    ctx.lineTo(x + safeWidth, y + safeHeight - cut * 0.5);
+    ctx.lineTo(x + safeWidth - cut * (shape === "glacier" ? 0.45 : 0.85), y + safeHeight);
+    ctx.lineTo(x + cut * 0.7, y + safeHeight - Math.max(0, roughness * 0.35));
+    ctx.lineTo(x, y + safeHeight - cut * (shape === "basalt" ? 0.82 : 0.55));
+    ctx.lineTo(x, y + cut * 0.72);
+    ctx.closePath();
+  }
+
+  function drawFirstMazeWallSurfaceDetails(start, end, py, style, palette, visualProfile) {
+    const phonePortrait = isPhonePortraitView();
+    const shape = style?.wallShape || "ruins";
+    const runX = start * TILE;
+    const runWidth = (end - start) * TILE;
+    ctx.save();
+    ctx.lineCap = shape === "basalt" ? "butt" : "round";
+    ctx.lineJoin = "round";
+
+    if (shape === "garden") {
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.42 * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = "rgba(76, 42, 31, 0.82)";
+      ctx.lineWidth = phonePortrait ? 0.82 : 1.08;
+      for (let seam = start + 2; seam < end; seam += 3) {
+        const sx = seam * TILE + (mazeCellNoise(seam, Math.round(py / TILE), 4701) - 0.5) * TILE * 0.28;
+        ctx.beginPath();
+        ctx.moveTo(sx, py + TILE * 0.18);
+        ctx.lineTo(sx - TILE * 0.08, py + TILE * 0.72);
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.3 : 0.42) * visualProfile.glowScale;
+      ctx.strokeStyle = "rgba(45, 212, 191, 0.78)";
+      ctx.lineWidth = phonePortrait ? 0.8 : 1.08;
+      for (let cell = start; cell < end; cell += 1) {
+        const seed = mazeCellNoise(cell, Math.round(py / TILE), 4723);
+        if (seed > 0.13) continue;
+        const cx = cell * TILE + TILE * 0.5;
+        ctx.beginPath();
+        ctx.arc(cx, py + TILE * 0.48, TILE * 0.16, Math.PI * 0.12, Math.PI * 1.88);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx - TILE * 0.09, py + TILE * 0.48);
+        ctx.lineTo(cx + TILE * 0.09, py + TILE * 0.48);
+        ctx.stroke();
+      }
+    } else if (shape === "workshop") {
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.36 * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = "rgba(72, 38, 30, 0.82)";
+      ctx.lineWidth = phonePortrait ? 0.78 : 1.02;
+      for (let grain = 0; grain < 3; grain += 1) {
+        const y = py + TILE * (0.22 + grain * 0.21);
+        ctx.beginPath();
+        ctx.moveTo(runX + 4, y);
+        ctx.bezierCurveTo(runX + runWidth * 0.28, y - 2, runX + runWidth * 0.7, y + 2, runX + runWidth - 4, y - 0.5);
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.84;
+      ctx.fillStyle = "rgba(241, 189, 85, 0.9)";
+      ctx.strokeStyle = "rgba(73, 43, 31, 0.9)";
+      for (let cell = start + 1; cell < end; cell += 4) {
+        const cx = cell * TILE;
+        ctx.beginPath();
+        ctx.arc(cx, py + TILE * 0.44, phonePortrait ? 1.5 : 1.9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
+    } else if (shape === "islands") {
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.32 * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = "rgba(62, 70, 84, 0.8)";
+      ctx.lineWidth = phonePortrait ? 0.78 : 1.05;
+      for (let seam = start + 2; seam < end; seam += 3) {
+        const sx = seam * TILE;
+        ctx.beginPath();
+        ctx.moveTo(sx, py + TILE * 0.18);
+        ctx.lineTo(sx + TILE * 0.06, py + TILE * 0.72);
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.28 : 0.4) * visualProfile.rimAlphaScale;
+      ctx.strokeStyle = "rgba(255, 247, 220, 0.84)";
+      ctx.lineWidth = phonePortrait ? 0.92 : 1.2;
+      ctx.beginPath();
+      ctx.moveTo(runX + 5, py + 4);
+      ctx.bezierCurveTo(runX + runWidth * 0.3, py + 1.5, runX + runWidth * 0.72, py + 6, runX + runWidth - 5, py + 3);
+      ctx.stroke();
+    } else if (shape === "glacier") {
+      const snow = ctx.createLinearGradient(runX, py + 1, runX, py + TILE * 0.28);
+      snow.addColorStop(0, "rgba(255, 255, 255, 0.92)");
+      snow.addColorStop(0.42, "rgba(218, 248, 255, 0.72)");
+      snow.addColorStop(1, "rgba(146, 221, 242, 0)");
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.72 * visualProfile.rimAlphaScale;
+      ctx.fillStyle = snow;
+      ctx.beginPath();
+      ctx.moveTo(runX + 4, py + 3);
+      for (let cell = start; cell <= end; cell += 1) {
+        const ridgeX = Math.min(runX + runWidth - 3, cell * TILE + TILE * 0.55);
+        const ridgeY = py + 4.5 + mazeCellNoise(cell, Math.round(py / TILE), 701) * 2.8;
+        ctx.lineTo(ridgeX, ridgeY);
+      }
+      ctx.lineTo(runX + runWidth - 3, py + TILE * 0.25);
+      ctx.lineTo(runX + 3, py + TILE * 0.25);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.globalAlpha = (phonePortrait ? 0.34 : 0.46) * visualProfile.textureAlphaScale;
+      ctx.strokeStyle = "rgba(244, 255, 255, 0.88)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.2;
+      for (let cell = start; cell < end; cell += 1) {
+        const seed = mazeCellNoise(cell, Math.round(py / TILE), 719);
+        if (seed > 0.72) continue;
+        const cx = cell * TILE + TILE * (0.28 + seed * 0.34);
+        ctx.beginPath();
+        ctx.moveTo(cx, py + TILE * 0.3);
+        ctx.lineTo(cx + TILE * 0.12, py + TILE * 0.48);
+        ctx.lineTo(cx + TILE * 0.04, py + TILE * 0.69);
+        ctx.moveTo(cx + TILE * 0.1, py + TILE * 0.47);
+        ctx.lineTo(cx + TILE * 0.2, py + TILE * 0.4);
+        ctx.stroke();
+      }
+    } else if (shape === "basalt") {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.54;
+      ctx.strokeStyle = "rgba(3, 3, 5, 0.92)";
+      ctx.lineWidth = phonePortrait ? 1.25 : 1.7;
+      for (let seam = start + 1; seam < end; seam += 1) {
+        const sx = seam * TILE + (mazeCellNoise(seam, Math.round(py / TILE), 733) - 0.5) * 4;
+        ctx.beginPath();
+        ctx.moveTo(sx - 2, py + 4);
+        ctx.lineTo(sx + 1, py + TILE * 0.82);
+        ctx.stroke();
+      }
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.shadowColor = "rgba(255, 72, 18, 0.9)";
+      ctx.shadowBlur = phonePortrait ? 3 : 6;
+      ctx.strokeStyle = "rgba(255, 103, 34, 0.78)";
+      ctx.lineWidth = phonePortrait ? 0.9 : 1.2;
+      for (let cell = start; cell < end; cell += 1) {
+        const seed = mazeCellNoise(cell, Math.round(py / TILE), 743);
+        if (seed > 0.48) continue;
+        const cx = cell * TILE + TILE * (0.22 + seed * 0.34);
+        ctx.globalAlpha = 0.42 + seed * 0.28;
+        ctx.beginPath();
+        ctx.moveTo(cx, py + 3);
+        ctx.lineTo(cx + TILE * 0.1, py + TILE * 0.28);
+        ctx.lineTo(cx - TILE * 0.03, py + TILE * 0.48);
+        ctx.lineTo(cx + TILE * 0.14, py + TILE * 0.74);
+        ctx.stroke();
+      }
+    } else if (shape === "ruins") {
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.46;
+      ctx.strokeStyle = "rgba(52, 39, 25, 0.8)";
+      ctx.lineWidth = phonePortrait ? 0.85 : 1.15;
+      ctx.beginPath();
+      ctx.moveTo(runX + 3, py + TILE * 0.48);
+      ctx.lineTo(runX + runWidth - 3, py + TILE * 0.48);
+      ctx.stroke();
+      for (let seam = start + 1; seam < end; seam += 1) {
+        const sx = seam * TILE;
+        ctx.beginPath();
+        ctx.moveTo(sx, py + 3);
+        ctx.lineTo(sx, py + TILE * 0.46);
+        ctx.moveTo(sx - TILE * 0.5, py + TILE * 0.5);
+        ctx.lineTo(sx - TILE * 0.5, py + TILE * 0.8);
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = "screen";
+      ctx.strokeStyle = "rgba(75, 210, 183, 0.5)";
+      ctx.globalAlpha = 0.34 * visualProfile.glowScale;
+      for (let cell = start; cell < end; cell += 1) {
+        if (mazeCellNoise(cell, Math.round(py / TILE), 761) > 0.16) continue;
+        const cx = cell * TILE + TILE * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(cx - TILE * 0.13, py + TILE * 0.59);
+        ctx.lineTo(cx, py + TILE * 0.43);
+        ctx.lineTo(cx + TILE * 0.13, py + TILE * 0.59);
+        ctx.stroke();
+      }
+    } else {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (phonePortrait ? 0.25 : 0.36) * visualProfile.textureAlphaScale;
+      ctx.lineWidth = phonePortrait ? 0.8 : 1.15;
+      for (let cell = start; cell < end; cell += 1) {
+        const cx = cell * TILE;
+        const seed = mazeCellNoise(cell, Math.round(py / TILE), 773);
+        ctx.fillStyle = seed > 0.5 ? "rgba(128, 235, 255, 0.16)" : "rgba(203, 139, 255, 0.14)";
+        ctx.strokeStyle = seed > 0.5 ? palette.rim : "rgba(230, 184, 255, 0.72)";
+        ctx.beginPath();
+        ctx.moveTo(cx + 2, py + TILE * 0.8);
+        ctx.lineTo(cx + TILE * (0.3 + seed * 0.2), py + 3);
+        ctx.lineTo(cx + TILE - 2, py + TILE * 0.76);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+    }
+
+    ctx.restore();
+  }
+
   function drawFirstMazeWallDepthLayer(level, atlas, visualProfile = getMazeMobileVisualProfile()) {
     const style = getPlayableMazeArtStyle(level);
     if (!style) {
       return;
     }
     const phonePortrait = isPhonePortraitView();
-    const sideDepth = phonePortrait ? 8 : 11;
-    const bevel = phonePortrait ? 4 : 5.5;
+    const sideDepth = phonePortrait
+      ? (style.wallShape === "basalt" ? 9 : 8)
+      : (style.wallShape === "basalt" ? 13 : 11);
+    const bevel = style.wallShape === "crystal"
+      ? (phonePortrait ? 5.5 : 7)
+      : (phonePortrait ? 4 : 5.5);
 
     ctx.save();
     ctx.globalCompositeOperation = "source-over";
@@ -9948,12 +18093,12 @@
         const px = start * TILE;
         const py = y * TILE;
         const width = (x - start) * TILE;
-        const palette = firstMazeToyPalette(start, y, style);
-        const capRadius = Math.min(phonePortrait ? 9 : 12, Math.max(6, width * 0.08));
+        const palette = firstMazeWallPalette(start, y, style);
+        const runSeed = mazeCellNoise(start, y, 683);
 
         ctx.globalAlpha = 0.55 * visualProfile.wallShadowScale;
         ctx.fillStyle = "rgba(0, 0, 0, 0.82)";
-        roundedRect(px + 2.5, py + sideDepth * 0.72, Math.max(1, width - 5), TILE + sideDepth * 0.78, capRadius);
+        traceFirstMazeWallShape(px + 2.5, py + sideDepth * 0.72, Math.max(1, width - 5), TILE + sideDepth * 0.78, style, runSeed);
         ctx.fill();
 
         const side = ctx.createLinearGradient(px, py + TILE * 0.45, px, py + TILE + sideDepth);
@@ -9961,7 +18106,7 @@
         side.addColorStop(1, palette.sideB);
         ctx.globalAlpha = 0.98;
         ctx.fillStyle = side;
-        roundedRect(px + 1.8, py + TILE * 0.42, Math.max(1, width - 3.6), TILE * 0.62 + sideDepth, capRadius);
+        traceFirstMazeWallShape(px + 1.8, py + TILE * 0.42, Math.max(1, width - 3.6), TILE * 0.62 + sideDepth, style, runSeed);
         ctx.fill();
 
         const cap = ctx.createLinearGradient(px, py, px, py + TILE * 0.86);
@@ -9970,13 +18115,13 @@
         cap.addColorStop(1, palette.sideA);
         ctx.globalAlpha = 1;
         ctx.fillStyle = cap;
-        roundedRect(px + 1.4, py + 1.2, Math.max(1, width - 2.8), TILE * 0.86, capRadius);
+        traceFirstMazeWallShape(px + 1.4, py + 1.2, Math.max(1, width - 2.8), TILE * 0.86, style, runSeed);
         ctx.fill();
 
         ctx.globalAlpha = 0.88;
         ctx.strokeStyle = style.wallStroke;
         ctx.lineWidth = phonePortrait ? 1.9 : 2.5;
-        roundedRect(px + 1.2, py + 1, Math.max(1, width - 2.4), TILE + sideDepth * 0.45, capRadius);
+        traceFirstMazeWallShape(px + 1.2, py + 1, Math.max(1, width - 2.4), TILE + sideDepth * 0.45, style, runSeed);
         ctx.stroke();
 
         ctx.globalCompositeOperation = "screen";
@@ -9988,17 +18133,7 @@
         ctx.lineTo(px + width - bevel, py + bevel);
         ctx.stroke();
         ctx.globalCompositeOperation = "source-over";
-
-        ctx.globalAlpha = 0.34;
-        ctx.strokeStyle = style.wallDetail;
-        ctx.lineWidth = phonePortrait ? 1 : 1.25;
-        for (let seam = start + 1; seam < x; seam += 2) {
-          const sx = seam * TILE + (mazeCellNoise(seam, y, 610) - 0.5) * 3;
-          ctx.beginPath();
-          ctx.moveTo(sx, py + 5);
-          ctx.lineTo(sx - 2, py + TILE * 0.78);
-          ctx.stroke();
-        }
+        drawFirstMazeWallSurfaceDetails(start, x, py, style, palette, visualProfile);
       }
     }
     ctx.restore();
@@ -10061,7 +18196,7 @@
         const openRight = !isWallCell(x + 1, y);
         const openDown = !isWallCell(x, y + 1);
         const openLeft = !isWallCell(x - 1, y);
-        const palette = firstMazeToyPalette(x, y, style);
+        const palette = firstMazeWallPalette(x, y, style);
 
         ctx.globalAlpha = 0.78 * visualProfile.rimAlphaScale;
         ctx.strokeStyle = palette.rim;
@@ -10125,9 +18260,753 @@
     ctx.restore();
   }
 
+  function drawIceWorldBeaconShard(x, y, size, rotation, active, visualProfile) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.shadowColor = active ? "rgba(255, 215, 95, 0.88)" : "rgba(76, 229, 224, 0.78)";
+    ctx.shadowBlur = (isPhonePortraitView() ? 6 : 11) * visualProfile.glowScale;
+    const shard = ctx.createLinearGradient(0, -size, 0, size * 0.45);
+    shard.addColorStop(0, "rgba(242, 255, 255, 0.98)");
+    shard.addColorStop(0.32, active ? "rgba(255, 224, 119, 0.96)" : "rgba(104, 239, 223, 0.94)");
+    shard.addColorStop(0.7, "rgba(67, 157, 205, 0.94)");
+    shard.addColorStop(1, "rgba(12, 48, 88, 0.98)");
+    ctx.fillStyle = shard;
+    ctx.strokeStyle = "rgba(226, 253, 255, 0.88)";
+    ctx.lineWidth = isPhonePortraitView() ? 0.9 : 1.25;
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.22, size * 0.36);
+    ctx.lineTo(-size * 0.14, -size * 0.42);
+    ctx.lineTo(0, -size);
+    ctx.lineTo(size * 0.18, -size * 0.32);
+    ctx.lineTo(size * 0.24, size * 0.36);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.66;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.88)";
+    ctx.beginPath();
+    ctx.moveTo(0, -size * 0.82);
+    ctx.lineTo(-size * 0.03, size * 0.2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderIceWorldAuroraBeacon(level, visualProfile = getMazeMobileVisualProfile(), options = {}) {
+    const phonePortrait = isPhonePortraitView();
+    const center = options.center || centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const stageTarget = Math.max(1, CONFIG.regularAnswersPerStage || 10);
+    const completed = clamp(Math.floor(getStageRegularCorrectCount()), 0, stageTarget);
+    const progress = completed / stageTarget;
+    const pulse = options.staticPulse ? 1 : 1 + Math.sin(state.clock * 1.8) * 0.018;
+    const radius = (phonePortrait ? 54 : 68) * pulse;
+
+    ctx.save();
+    ctx.translate(center.x, center.y);
+
+    ctx.globalCompositeOperation = "screen";
+    const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, radius * 1.62);
+    halo.addColorStop(0, `rgba(255, 215, 94, ${0.28 + progress * 0.28})`);
+    halo.addColorStop(0.32, `rgba(67, 242, 213, ${0.2 + progress * 0.12})`);
+    halo.addColorStop(0.68, "rgba(74, 157, 236, 0.08)");
+    halo.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.globalAlpha = visualProfile.glowScale;
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius * 1.62, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.78;
+    ctx.fillStyle = "rgba(0, 8, 22, 0.7)";
+    ctx.beginPath();
+    ctx.ellipse(0, radius * 0.28, radius * 0.96, radius * 0.35, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const platform = ctx.createLinearGradient(-radius, -radius * 0.2, radius, radius * 0.46);
+    platform.addColorStop(0, "rgba(174, 239, 247, 0.96)");
+    platform.addColorStop(0.34, "rgba(72, 170, 203, 0.96)");
+    platform.addColorStop(0.72, "rgba(24, 83, 125, 0.98)");
+    platform.addColorStop(1, "rgba(5, 29, 58, 0.99)");
+    ctx.globalAlpha = 0.98;
+    ctx.fillStyle = platform;
+    ctx.strokeStyle = "rgba(211, 251, 255, 0.92)";
+    ctx.lineWidth = phonePortrait ? 1.4 : 1.9;
+    ctx.beginPath();
+    ctx.ellipse(0, radius * 0.12, radius * 0.82, radius * 0.29, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(0, -radius * 0.16);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.94;
+    const arch = ctx.createLinearGradient(-radius * 0.55, -radius * 0.8, radius * 0.55, radius * 0.34);
+    arch.addColorStop(0, "rgba(230, 255, 255, 0.98)");
+    arch.addColorStop(0.3, "rgba(91, 221, 226, 0.98)");
+    arch.addColorStop(0.72, "rgba(38, 112, 168, 0.98)");
+    arch.addColorStop(1, "rgba(10, 43, 83, 0.99)");
+    ctx.strokeStyle = arch;
+    ctx.shadowColor = "rgba(73, 231, 221, 0.88)";
+    ctx.shadowBlur = (phonePortrait ? 9 : 15) * visualProfile.glowScale;
+    ctx.lineWidth = radius * (phonePortrait ? 0.13 : 0.145);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(-radius * 0.48, radius * 0.35);
+    ctx.bezierCurveTo(
+      -radius * 0.54,
+      -radius * 0.56,
+      -radius * 0.3,
+      -radius * 0.86,
+      0,
+      -radius * 0.92
+    );
+    ctx.bezierCurveTo(
+      radius * 0.3,
+      -radius * 0.86,
+      radius * 0.54,
+      -radius * 0.56,
+      radius * 0.48,
+      radius * 0.35
+    );
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.72;
+    ctx.strokeStyle = "rgba(226, 255, 255, 0.94)";
+    ctx.lineWidth = phonePortrait ? 1.1 : 1.6;
+    ctx.beginPath();
+    ctx.moveTo(-radius * 0.42, radius * 0.28);
+    ctx.bezierCurveTo(-radius * 0.44, -radius * 0.5, -radius * 0.24, -radius * 0.76, 0, -radius * 0.8);
+    ctx.bezierCurveTo(radius * 0.24, -radius * 0.76, radius * 0.44, -radius * 0.5, radius * 0.42, radius * 0.28);
+    ctx.stroke();
+
+    const beam = ctx.createLinearGradient(0, -radius * 0.78, 0, radius * 0.3);
+    beam.addColorStop(0, "rgba(96, 243, 218, 0)");
+    beam.addColorStop(0.34, "rgba(96, 243, 218, 0.18)");
+    beam.addColorStop(0.7, `rgba(255, 216, 92, ${0.16 + progress * 0.18})`);
+    beam.addColorStop(1, "rgba(255, 216, 92, 0)");
+    ctx.fillStyle = beam;
+    ctx.globalAlpha = 0.72 * visualProfile.glowScale;
+    ctx.beginPath();
+    ctx.moveTo(-radius * 0.28, -radius * 0.66);
+    ctx.lineTo(radius * 0.28, -radius * 0.66);
+    ctx.lineTo(radius * 0.39, radius * 0.24);
+    ctx.lineTo(-radius * 0.39, radius * 0.24);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.save();
+    ctx.translate(0, radius * 0.08);
+    ctx.scale(1, 0.42);
+    for (let index = 0; index < stageTarget; index += 1) {
+      const startAngle = -Math.PI / 2 + index * Math.PI * 2 / stageTarget + 0.035;
+      const endAngle = -Math.PI / 2 + (index + 1) * Math.PI * 2 / stageTarget - 0.035;
+      const lit = index < completed;
+      ctx.globalAlpha = lit ? 0.96 : 0.24;
+      ctx.strokeStyle = lit ? "rgba(255, 219, 100, 0.98)" : "rgba(98, 233, 224, 0.84)";
+      ctx.shadowColor = lit ? "#ffd765" : "#55ead8";
+      ctx.shadowBlur = lit ? 10 : 4;
+      ctx.lineWidth = phonePortrait ? 3.8 : 4.8;
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.64, startAngle, endAngle);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    const shardRadius = radius * 0.62;
+    for (let index = 0; index < 4; index += 1) {
+      const angle = -Math.PI / 2 + index * Math.PI / 2;
+      const x = Math.cos(angle) * shardRadius;
+      const y = Math.sin(angle) * shardRadius * 0.38 + radius * 0.05;
+      const active = progress >= (index + 1) / 4;
+      drawIceWorldBeaconShard(x, y, radius * (phonePortrait ? 0.23 : 0.25), angle + Math.PI / 2, active, visualProfile);
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    const core = ctx.createRadialGradient(0, -radius * 0.08, 0, 0, -radius * 0.08, radius * 0.48);
+    core.addColorStop(0, "rgba(255, 250, 198, 0.98)");
+    core.addColorStop(0.22, `rgba(255, 213, 91, ${0.72 + progress * 0.24})`);
+    core.addColorStop(0.55, "rgba(68, 244, 215, 0.32)");
+    core.addColorStop(1, "rgba(69, 196, 236, 0)");
+    ctx.globalAlpha = 0.92;
+    ctx.fillStyle = core;
+    ctx.beginPath();
+    ctx.arc(0, -radius * 0.08, radius * 0.48, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
+    const heart = ctx.createLinearGradient(-radius * 0.22, -radius * 0.4, radius * 0.24, radius * 0.28);
+    heart.addColorStop(0, "#fff5bc");
+    heart.addColorStop(0.42, "#ffd765");
+    heart.addColorStop(1, "#b96a13");
+    ctx.fillStyle = heart;
+    ctx.strokeStyle = "rgba(255, 248, 194, 0.94)";
+    ctx.lineWidth = phonePortrait ? 1.2 : 1.6;
+    drawDiamond(0, -radius * 0.08, radius * 0.22);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(39, 38, 51, 0.92)";
+    ctx.strokeStyle = "rgba(255, 240, 159, 0.96)";
+    ctx.lineWidth = phonePortrait ? 2.2 : 2.8;
+    ctx.beginPath();
+    ctx.arc(0, -radius * 0.13, radius * 0.075, Math.PI, 0);
+    ctx.stroke();
+    roundedRect(-radius * 0.1, -radius * 0.11, radius * 0.2, radius * 0.17, phonePortrait ? 3 : 4);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.52 * visualProfile.glowScale;
+    ctx.strokeStyle = "rgba(255, 221, 112, 0.84)";
+    ctx.lineWidth = phonePortrait ? 1.4 : 1.9;
+    const guides = [
+      { x: 0, y: radius * 1.28, rotation: -Math.PI / 2 },
+      { x: -radius * 1.34, y: 0, rotation: 0 },
+      { x: radius * 1.34, y: 0, rotation: Math.PI }
+    ];
+    for (const guide of guides) {
+      drawFirstMazeChevron(guide.x, guide.y, guide.rotation, phonePortrait ? 8 : 11);
+    }
+    ctx.restore();
+  }
+
+  function renderIceWorldGlacierRiftGate(level, visualProfile = getMazeMobileVisualProfile(), options = {}) {
+    const phonePortrait = isPhonePortraitView();
+    const center = options.center || centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const stageTarget = Math.max(1, CONFIG.regularAnswersPerStage || 10);
+    const completed = clamp(Math.floor(getStageRegularCorrectCount()), 0, stageTarget);
+    const progress = completed / stageTarget;
+    const radius = phonePortrait ? 50 : 62;
+
+    ctx.save();
+    ctx.translate(center.x, center.y);
+
+    ctx.globalCompositeOperation = "screen";
+    const coldAir = ctx.createRadialGradient(0, -radius * 0.12, 0, 0, -radius * 0.08, radius * 1.18);
+    coldAir.addColorStop(0, `rgba(214, 249, 255, ${0.15 + progress * 0.08})`);
+    coldAir.addColorStop(0.48, "rgba(109, 190, 225, 0.07)");
+    coldAir.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.globalAlpha = 0.72 * visualProfile.glowScale;
+    ctx.fillStyle = coldAir;
+    ctx.beginPath();
+    ctx.arc(0, -radius * 0.08, radius * 1.18, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.72;
+    ctx.fillStyle = "rgba(0, 10, 27, 0.76)";
+    ctx.beginPath();
+    ctx.ellipse(0, radius * 0.32, radius * 0.86, radius * 0.21, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const shelf = ctx.createLinearGradient(-radius, radius * 0.06, radius, radius * 0.46);
+    shelf.addColorStop(0, "rgba(179, 227, 239, 0.92)");
+    shelf.addColorStop(0.48, "rgba(76, 147, 180, 0.94)");
+    shelf.addColorStop(1, "rgba(12, 50, 83, 0.98)");
+    ctx.fillStyle = shelf;
+    ctx.strokeStyle = "rgba(220, 249, 255, 0.78)";
+    ctx.lineWidth = phonePortrait ? 1 : 1.35;
+    ctx.beginPath();
+    ctx.moveTo(-radius * 0.82, radius * 0.22);
+    ctx.lineTo(-radius * 0.54, radius * 0.06);
+    ctx.lineTo(-radius * 0.16, radius * 0.12);
+    ctx.lineTo(radius * 0.18, radius * 0.04);
+    ctx.lineTo(radius * 0.58, radius * 0.1);
+    ctx.lineTo(radius * 0.82, radius * 0.26);
+    ctx.lineTo(radius * 0.5, radius * 0.43);
+    ctx.lineTo(-radius * 0.46, radius * 0.44);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    const voidGradient = ctx.createLinearGradient(0, -radius * 0.78, 0, radius * 0.22);
+    voidGradient.addColorStop(0, "rgba(4, 20, 38, 0.96)");
+    voidGradient.addColorStop(0.65, "rgba(1, 11, 25, 0.98)");
+    voidGradient.addColorStop(1, "rgba(12, 42, 66, 0.94)");
+    ctx.fillStyle = voidGradient;
+    ctx.beginPath();
+    ctx.moveTo(-radius * 0.13, radius * 0.18);
+    ctx.lineTo(-radius * 0.08, -radius * 0.68);
+    ctx.lineTo(0, -radius * 0.82);
+    ctx.lineTo(radius * 0.1, -radius * 0.62);
+    ctx.lineTo(radius * 0.14, radius * 0.18);
+    ctx.closePath();
+    ctx.fill();
+
+    for (const direction of [-1, 1]) {
+      ctx.save();
+      ctx.scale(direction, 1);
+      const glacier = ctx.createLinearGradient(radius * 0.08, -radius * 0.84, radius * 0.72, radius * 0.3);
+      glacier.addColorStop(0, "rgba(239, 253, 255, 0.98)");
+      glacier.addColorStop(0.3, "rgba(154, 215, 232, 0.98)");
+      glacier.addColorStop(0.68, "rgba(58, 128, 164, 0.98)");
+      glacier.addColorStop(1, "rgba(14, 54, 88, 0.99)");
+      ctx.fillStyle = glacier;
+      ctx.strokeStyle = "rgba(222, 250, 255, 0.86)";
+      ctx.lineWidth = phonePortrait ? 1.1 : 1.45;
+      ctx.beginPath();
+      ctx.moveTo(radius * 0.14, radius * 0.2);
+      ctx.lineTo(radius * 0.6, radius * 0.19);
+      ctx.lineTo(radius * 0.56, -radius * 0.18);
+      ctx.lineTo(radius * 0.43, -radius * 0.48);
+      ctx.lineTo(radius * 0.19, -radius * 0.82);
+      ctx.lineTo(radius * 0.11, -radius * 0.55);
+      ctx.lineTo(radius * 0.17, -radius * 0.18);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.48;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.84)";
+      ctx.lineWidth = phonePortrait ? 0.75 : 1;
+      ctx.beginPath();
+      ctx.moveTo(radius * 0.2, -radius * 0.67);
+      ctx.lineTo(radius * 0.31, -radius * 0.42);
+      ctx.lineTo(radius * 0.28, -radius * 0.08);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    const innerLight = ctx.createLinearGradient(0, -radius * 0.72, 0, radius * 0.18);
+    innerLight.addColorStop(0, "rgba(218, 250, 255, 0.08)");
+    innerLight.addColorStop(0.64, `rgba(255, 224, 126, ${0.22 + progress * 0.34})`);
+    innerLight.addColorStop(1, "rgba(255, 199, 77, 0)");
+    ctx.globalAlpha = 0.82 * visualProfile.glowScale;
+    ctx.fillStyle = innerLight;
+    ctx.beginPath();
+    ctx.moveTo(-radius * 0.065, radius * 0.12);
+    ctx.lineTo(-radius * 0.025, -radius * 0.6);
+    ctx.lineTo(radius * 0.035, -radius * 0.68);
+    ctx.lineTo(radius * 0.07, radius * 0.12);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.globalAlpha = 0.5;
+    ctx.strokeStyle = "rgba(213, 246, 255, 0.82)";
+    ctx.lineWidth = phonePortrait ? 0.8 : 1.1;
+    const crackSpecs = [
+      [-0.2, 0.25, -0.68, 0.56],
+      [0.18, 0.26, 0.66, 0.5],
+      [0.02, 0.31, 0.12, 0.72]
+    ];
+    for (const [x1, y1, x2, y2] of crackSpecs) {
+      ctx.beginPath();
+      ctx.moveTo(radius * x1, radius * y1);
+      ctx.lineTo(radius * ((x1 + x2) * 0.52), radius * ((y1 + y2) * 0.48));
+      ctx.lineTo(radius * x2, radius * y2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function getIceWorldAuroraBeaconSprite(level, visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const stageTarget = Math.max(1, CONFIG.regularAnswersPerStage || 10);
+    const completed = clamp(Math.floor(getStageRegularCorrectCount()), 0, stageTarget);
+    const baseRadius = phonePortrait ? 54 : 68;
+    const size = Math.ceil(baseRadius * 3.72);
+    const cacheKey = `${state.levelIndex}:${completed}/${stageTarget}:${visualProfile.key}:${size}`;
+    getIceWorldAuroraBeaconSprite.cache ||= new Map();
+    if (getIceWorldAuroraBeaconSprite.cache.has(cacheKey)) {
+      return getIceWorldAuroraBeaconSprite.cache.get(cacheKey);
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    renderContext.imageSmoothingEnabled = true;
+    renderContext.imageSmoothingQuality = phonePortrait ? "medium" : "high";
+    withMazeRenderContext(renderContext, () => {
+      renderIceWorldGlacierRiftGate(level, visualProfile, {
+        center: { x: size * 0.5, y: size * 0.5 },
+        staticPulse: true
+      });
+    });
+    const sprite = { canvas, halfSize: size * 0.5 };
+    getIceWorldAuroraBeaconSprite.cache.set(cacheKey, sprite);
+    if (getIceWorldAuroraBeaconSprite.cache.size > 16) {
+      getIceWorldAuroraBeaconSprite.cache.delete(getIceWorldAuroraBeaconSprite.cache.keys().next().value);
+    }
+    return sprite;
+  }
+
+  function drawIceWorldAuroraBeacon(level, visualProfile = getMazeMobileVisualProfile()) {
+    const sprite = getIceWorldAuroraBeaconSprite(level, visualProfile);
+    if (!sprite) return;
+    const center = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const pulse = 1 + Math.sin(state.clock * 1.8) * 0.018;
+    ctx.save();
+    ctx.translate(center.x, center.y);
+    ctx.scale(pulse, pulse);
+    ctx.drawImage(sprite.canvas, -sprite.halfSize, -sprite.halfSize);
+    ctx.restore();
+  }
+
+  function drawWorldOneSeedShrine(level, visualProfile = getMazeMobileVisualProfile()) {
+    const style = getPlayableMazeArtStyle(level);
+    const goal = style.goal;
+    const center = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const phonePortrait = isPhonePortraitView();
+    const stageTarget = Math.max(1, CONFIG.regularAnswersPerStage);
+    const completed = clamp(getStageRegularCorrectCount(), 0, stageTarget);
+    const progress = completed / stageTarget;
+    const pulse = 1 + Math.sin(state.clock * 1.9) * (0.01 + progress * 0.008);
+    const size = TILE * (phonePortrait ? 1.75 : 1.9) * pulse;
+    const coreY = -size * 0.2;
+    const line = phonePortrait ? 1 : 1.35;
+
+    const drawLeaf = (x, y, width, height, rotation, bright = false) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      const leaf = ctx.createLinearGradient(-width * 0.45, -height * 0.35, width * 0.45, height * 0.42);
+      leaf.addColorStop(0, bright ? "#e9ff8a" : "#a7df43");
+      leaf.addColorStop(0.48, bright ? "#74d746" : "#3f9d43");
+      leaf.addColorStop(1, bright ? "#167e55" : "#15573c");
+      ctx.fillStyle = leaf;
+      ctx.strokeStyle = "rgba(21, 68, 42, 0.96)";
+      ctx.lineWidth = line;
+      ctx.beginPath();
+      ctx.moveTo(0, height * 0.5);
+      ctx.bezierCurveTo(-width * 0.58, height * 0.2, -width * 0.54, -height * 0.38, 0, -height * 0.52);
+      ctx.bezierCurveTo(width * 0.58, -height * 0.28, width * 0.5, height * 0.22, 0, height * 0.5);
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.64;
+      ctx.strokeStyle = bright ? "rgba(244, 255, 166, 0.9)" : "rgba(184, 236, 114, 0.72)";
+      ctx.lineWidth = Math.max(0.6, line * 0.72);
+      ctx.beginPath();
+      ctx.moveTo(0, height * 0.38);
+      ctx.quadraticCurveTo(width * 0.03, 0, 0, -height * 0.38);
+      ctx.stroke();
+      ctx.restore();
+    };
+
+    const drawBlossom = (x, y, radius, active, rotation = 0) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.shadowColor = active ? "rgba(255, 208, 75, 0.9)" : "rgba(34, 92, 55, 0.6)";
+      ctx.shadowBlur = active ? size * 0.12 : 0;
+      for (let petal = 0; petal < 5; petal += 1) {
+        ctx.save();
+        ctx.rotate(petal * Math.PI * 2 / 5);
+        const petalGradient = ctx.createLinearGradient(0, -radius * 1.5, 0, radius * 0.15);
+        petalGradient.addColorStop(0, active ? "#fff7a7" : "#657248");
+        petalGradient.addColorStop(1, active ? "#ff9b43" : "#364a38");
+        ctx.fillStyle = petalGradient;
+        ctx.beginPath();
+        ctx.ellipse(0, -radius * 0.78, radius * 0.42, radius * 0.82, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = active ? "#fff2a2" : "#8a6a32";
+      ctx.strokeStyle = "rgba(85, 49, 24, 0.88)";
+      ctx.lineWidth = line * 0.7;
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.43, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    };
+
+    ctx.save();
+    ctx.translate(center.x, center.y);
+
+    // The Sunheart halo makes the landmark readable at a glance without painting over corridors.
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (0.5 + progress * 0.2) * visualProfile.glowScale;
+    const halo = ctx.createRadialGradient(0, coreY, 0, 0, coreY, size * 1.42);
+    halo.addColorStop(0, "rgba(255, 250, 184, 0.96)");
+    halo.addColorStop(0.2, "rgba(255, 193, 66, 0.42)");
+    halo.addColorStop(0.5, "rgba(45, 212, 191, 0.18)");
+    halo.addColorStop(1, "rgba(45, 212, 191, 0)");
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(0, coreY, size * 1.42, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Soft fireflies orbit the shrine and make it feel alive in the garden.
+    for (let mote = 0; mote < 6; mote += 1) {
+      const angle = state.clock * (0.34 + mote * 0.015) + mote * Math.PI * 2 / 6;
+      const orbit = size * (0.78 + (mote % 2) * 0.18);
+      const mx = Math.cos(angle) * orbit;
+      const my = coreY + Math.sin(angle) * orbit * 0.56;
+      ctx.globalAlpha = (0.32 + (mote % 3) * 0.14) * visualProfile.glowScale;
+      ctx.fillStyle = mote % 2 ? "#74f1cc" : "#fff3a1";
+      ctx.shadowColor = ctx.fillStyle;
+      ctx.shadowBlur = phonePortrait ? 4 : 7;
+      ctx.beginPath();
+      ctx.arc(mx, my, phonePortrait ? 0.9 : 1.25, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.62;
+    ctx.fillStyle = "rgba(18, 18, 12, 0.92)";
+    ctx.beginPath();
+    ctx.ellipse(size * 0.05, size * 0.55, size * 0.92, size * 0.24, 0.03, 0, Math.PI * 2);
+    ctx.fill();
+
+    // A glowing floor mosaic visually anchors the shrine to the maze floor.
+    ctx.save();
+    ctx.translate(0, size * 0.37);
+    ctx.scale(1, 0.42);
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.52 * visualProfile.glowScale;
+    ctx.strokeStyle = "rgba(78, 231, 200, 0.86)";
+    ctx.lineWidth = line * 1.1;
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.82, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.globalAlpha = 0.34;
+    ctx.strokeStyle = "rgba(255, 221, 107, 0.94)";
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.58, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // Twelve carved sun petals replace the anonymous doorway silhouette.
+    ctx.save();
+    ctx.translate(0, coreY - size * 0.02);
+    for (let ray = 0; ray < 12; ray += 1) {
+      ctx.save();
+      ctx.rotate(ray * Math.PI * 2 / 12 + state.clock * 0.018);
+      const rayGradient = ctx.createLinearGradient(0, -size * 0.7, 0, -size * 0.3);
+      rayGradient.addColorStop(0, ray % 2 ? "#ffd85d" : "#fff0a0");
+      rayGradient.addColorStop(1, "#9d5f24");
+      ctx.fillStyle = rayGradient;
+      ctx.strokeStyle = "rgba(86, 48, 21, 0.9)";
+      ctx.lineWidth = line * 0.75;
+      ctx.beginPath();
+      ctx.moveTo(0, -size * 0.7);
+      ctx.quadraticCurveTo(size * 0.13, -size * 0.53, size * 0.06, -size * 0.31);
+      ctx.lineTo(-size * 0.06, -size * 0.31);
+      ctx.quadraticCurveTo(-size * 0.13, -size * 0.53, 0, -size * 0.7);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+    ctx.restore();
+
+    // The dark emerald aperture gives the monument depth while keeping it distinct from walls.
+    const aperture = ctx.createRadialGradient(-size * 0.08, coreY - size * 0.28, 0, 0, coreY, size * 0.62);
+    aperture.addColorStop(0, "rgba(81, 242, 191, 0.5)");
+    aperture.addColorStop(0.38, "rgba(17, 92, 71, 0.92)");
+    aperture.addColorStop(1, "rgba(10, 31, 30, 0.98)");
+    ctx.fillStyle = aperture;
+    ctx.strokeStyle = "rgba(43, 77, 42, 0.96)";
+    ctx.lineWidth = size * 0.08;
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.38, size * 0.2);
+    ctx.bezierCurveTo(-size * 0.42, -size * 0.35, -size * 0.25, -size * 0.68, 0, -size * 0.76);
+    ctx.bezierCurveTo(size * 0.25, -size * 0.68, size * 0.42, -size * 0.35, size * 0.38, size * 0.2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Living sandstone branches form a premium 3D arch rather than a flat door frame.
+    const branch = ctx.createLinearGradient(-size * 0.62, -size * 0.72, size * 0.62, size * 0.28);
+    branch.addColorStop(0, "#fff1ae");
+    branch.addColorStop(0.36, "#df9d47");
+    branch.addColorStop(0.72, "#9a582c");
+    branch.addColorStop(1, "#51301f");
+    for (const direction of [-1, 1]) {
+      ctx.save();
+      ctx.scale(direction, 1);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = "rgba(66, 35, 20, 0.98)";
+      ctx.lineWidth = size * 0.24;
+      ctx.beginPath();
+      ctx.moveTo(size * 0.5, size * 0.25);
+      ctx.bezierCurveTo(size * 0.57, -size * 0.28, size * 0.37, -size * 0.66, 0, -size * 0.72);
+      ctx.stroke();
+      ctx.strokeStyle = branch;
+      ctx.lineWidth = size * 0.17;
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.66;
+      ctx.strokeStyle = "rgba(255, 241, 174, 0.9)";
+      ctx.lineWidth = line;
+      ctx.beginPath();
+      ctx.moveTo(size * 0.46, size * 0.18);
+      ctx.bezierCurveTo(size * 0.49, -size * 0.25, size * 0.31, -size * 0.56, size * 0.04, -size * 0.64);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    drawLeaf(-size * 0.5, -size * 0.24, size * 0.27, size * 0.37, -0.92, true);
+    drawLeaf(size * 0.5, -size * 0.24, size * 0.27, size * 0.37, 0.92, true);
+    drawLeaf(-size * 0.3, -size * 0.61, size * 0.22, size * 0.31, -0.36, false);
+    drawLeaf(size * 0.3, -size * 0.61, size * 0.22, size * 0.31, 0.36, false);
+
+    // Three-layer terraced plinth with a polished mosaic top.
+    const baseSide = ctx.createLinearGradient(0, size * 0.22, 0, size * 0.68);
+    baseSide.addColorStop(0, "#b87336");
+    baseSide.addColorStop(0.5, "#704024");
+    baseSide.addColorStop(1, "#342018");
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = baseSide;
+    ctx.strokeStyle = "rgba(55, 30, 20, 0.98)";
+    ctx.lineWidth = line * 1.3;
+    ctx.beginPath();
+    ctx.ellipse(0, size * 0.5, size * 0.83, size * 0.24, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    const rim = ctx.createLinearGradient(-size * 0.82, size * 0.1, size * 0.82, size * 0.5);
+    rim.addColorStop(0, "#fff4bd");
+    rim.addColorStop(0.33, "#efbd62");
+    rim.addColorStop(0.72, "#b06d34");
+    rim.addColorStop(1, "#6e3c27");
+    ctx.fillStyle = rim;
+    ctx.strokeStyle = "rgba(255, 232, 157, 0.92)";
+    ctx.beginPath();
+    ctx.ellipse(0, size * 0.31, size * 0.88, size * 0.25, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    const mosaic = ctx.createRadialGradient(-size * 0.24, size * 0.16, 0, 0, size * 0.24, size * 0.72);
+    mosaic.addColorStop(0, "#fff6c7");
+    mosaic.addColorStop(0.34, "#f3c45f");
+    mosaic.addColorStop(0.66, "#5cbf7a");
+    mosaic.addColorStop(1, "#1a664f");
+    ctx.fillStyle = mosaic;
+    ctx.strokeStyle = "rgba(72, 50, 29, 0.94)";
+    ctx.beginPath();
+    ctx.ellipse(0, size * 0.2, size * 0.67, size * 0.18, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(0, size * 0.2);
+    ctx.scale(1, 0.27);
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.7;
+    ctx.strokeStyle = "rgba(255, 246, 190, 0.9)";
+    ctx.lineWidth = line;
+    for (let segment = 0; segment < 8; segment += 1) {
+      const angle = segment * Math.PI / 4;
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(angle) * size * 0.22, Math.sin(angle) * size * 0.22);
+      ctx.lineTo(Math.cos(angle) * size * 0.59, Math.sin(angle) * size * 0.59);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Floating faceted Sunseed: a distinctive landmark and the actual answer gate.
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (0.72 + progress * 0.2) * visualProfile.glowScale;
+    const coreGlow = ctx.createRadialGradient(0, coreY, 0, 0, coreY, size * 0.48);
+    coreGlow.addColorStop(0, "rgba(255, 255, 213, 1)");
+    coreGlow.addColorStop(0.3, "rgba(255, 206, 73, 0.72)");
+    coreGlow.addColorStop(0.7, "rgba(64, 231, 193, 0.28)");
+    coreGlow.addColorStop(1, "rgba(64, 231, 193, 0)");
+    ctx.fillStyle = coreGlow;
+    ctx.beginPath();
+    ctx.arc(0, coreY, size * 0.48, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 1;
+    const seed = ctx.createLinearGradient(-size * 0.22, coreY - size * 0.38, size * 0.2, coreY + size * 0.3);
+    seed.addColorStop(0, "#fffbd0");
+    seed.addColorStop(0.32, "#ffe36e");
+    seed.addColorStop(0.65, "#f19a3f");
+    seed.addColorStop(1, "#9d4d2d");
+    ctx.fillStyle = seed;
+    ctx.strokeStyle = "rgba(85, 45, 26, 0.98)";
+    ctx.lineWidth = line * 1.4;
+    ctx.beginPath();
+    ctx.moveTo(0, coreY - size * 0.38);
+    ctx.bezierCurveTo(size * 0.27, coreY - size * 0.3, size * 0.31, coreY + size * 0.08, 0, coreY + size * 0.31);
+    ctx.bezierCurveTo(-size * 0.31, coreY + size * 0.08, -size * 0.27, coreY - size * 0.3, 0, coreY - size * 0.38);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.78;
+    ctx.strokeStyle = "rgba(255, 255, 222, 0.96)";
+    ctx.lineWidth = line;
+    ctx.beginPath();
+    ctx.moveTo(0, coreY - size * 0.32);
+    ctx.lineTo(-size * 0.08, coreY + size * 0.18);
+    ctx.moveTo(-size * 0.2, coreY - size * 0.1);
+    ctx.lineTo(size * 0.2, coreY - size * 0.1);
+    ctx.stroke();
+
+    if (progress < 1) {
+      // The small bronze seal keeps the locked state obvious without dominating the sculpture.
+      ctx.globalCompositeOperation = "source-over";
+      const seal = ctx.createRadialGradient(-size * 0.05, coreY - size * 0.05, 0, 0, coreY, size * 0.2);
+      seal.addColorStop(0, "#fff0a1");
+      seal.addColorStop(0.5, "#d78b38");
+      seal.addColorStop(1, "#6f3825");
+      ctx.fillStyle = seal;
+      ctx.strokeStyle = "rgba(255, 241, 174, 0.95)";
+      ctx.lineWidth = line;
+      ctx.beginPath();
+      ctx.arc(0, coreY + size * 0.01, size * 0.16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      drawFirstMazeGoalLock(0, coreY + size * 0.012, size * 0.34, {
+        ...goal,
+        text: "rgba(64, 38, 27, 0.98)",
+        stroke: "rgba(255, 244, 185, 0.98)"
+      }, phonePortrait);
+    } else {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.92;
+      ctx.fillStyle = "rgba(244, 255, 196, 0.98)";
+      ctx.shadowColor = "#74f1cc";
+      ctx.shadowBlur = phonePortrait ? 9 : 14;
+      ctx.beginPath();
+      ctx.arc(0, coreY, size * 0.09, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    // Five blossoms on the front rim communicate question progress in-world.
+    const markerCount = Math.min(5, stageTarget);
+    for (let marker = 0; marker < markerCount; marker += 1) {
+      const t = markerCount === 1 ? 0.5 : marker / (markerCount - 1);
+      const markerX = size * (-0.46 + t * 0.92);
+      const markerY = size * (0.4 + Math.abs(t - 0.5) * 0.09);
+      const active = progress >= (marker + 1) / markerCount;
+      drawBlossom(markerX, markerY, size * 0.075, active, marker * 0.37);
+    }
+
+    // Two side blossoms give the shrine a garden identity even before progress begins.
+    drawBlossom(-size * 0.63, size * 0.06, size * 0.095, true, -0.2);
+    drawBlossom(size * 0.63, size * 0.06, size * 0.095, true, 0.2);
+    ctx.restore();
+  }
+
   function drawFirstMazeGoalCueLayer(level, visualProfile = getMazeMobileVisualProfile()) {
     const style = getPlayableMazeArtStyle(level);
     if (!style) {
+      return;
+    }
+    if (getMazeWorldKey(level) === "ice" && !isWorldOneReimagined(level)) {
+      drawIceWorldAuroraBeacon(level, visualProfile);
+      return;
+    }
+    if (isWorldOneReimagined(level) && getWorldOneConcept().material === "garden") {
+      drawWorldOneSeedShrine(level, visualProfile);
       return;
     }
     const goal = style.goal;
@@ -10224,6 +19103,48 @@
       ctx.stroke();
       ctx.globalCompositeOperation = "source-over";
       ctx.globalAlpha = 0.96;
+    } else if (goal.shape === "seed") {
+      ctx.save();
+      ctx.translate(center.x, center.y);
+      ctx.rotate(-0.34);
+      ctx.beginPath();
+      ctx.moveTo(0, -radius * 0.42);
+      ctx.bezierCurveTo(radius * 0.34, -radius * 0.24, radius * 0.34, radius * 0.3, 0, radius * 0.4);
+      ctx.bezierCurveTo(-radius * 0.34, radius * 0.3, -radius * 0.34, -radius * 0.24, 0, -radius * 0.42);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.56;
+      ctx.strokeStyle = goal.stroke;
+      ctx.lineWidth = phonePortrait ? 1.2 : 1.6;
+      ctx.beginPath();
+      ctx.moveTo(0, -radius * 0.3);
+      ctx.quadraticCurveTo(-radius * 0.08, 0, 0, radius * 0.3);
+      ctx.stroke();
+      ctx.restore();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.96;
+    } else if (goal.shape === "gear") {
+      ctx.save();
+      ctx.translate(center.x, center.y);
+      for (let tooth = 0; tooth < 10; tooth += 1) {
+        ctx.save();
+        ctx.rotate(tooth * Math.PI / 5);
+        roundedRect(-radius * 0.055, -radius * 0.44, radius * 0.11, radius * 0.18, phonePortrait ? 2 : 3);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = goal.outline;
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
     } else {
       ctx.beginPath();
       for (let point = 0; point < 10; point += 1) {
@@ -10251,11 +19172,7 @@
     }
 
     ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = goal.text;
-    ctx.font = `900 ${phonePortrait ? 31 : 39}px Fredoka, Assistant, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(goal.glyph || "×", center.x, center.y + (phonePortrait ? 1 : 2));
+    drawFirstMazeGoalLock(center.x, center.y, radius, goal, phonePortrait);
 
     ctx.globalCompositeOperation = "screen";
     ctx.globalAlpha = 0.66 * visualProfile.glowScale;
@@ -10269,6 +19186,38 @@
     for (const item of chevrons) {
       drawFirstMazeChevron(item.x, item.y, item.rotation, phonePortrait ? 11 : 14);
     }
+    ctx.restore();
+  }
+
+  function drawFirstMazeGoalLock(x, y, radius, goal, phonePortrait) {
+    const lockWidth = radius * 0.34;
+    const lockHeight = radius * 0.28;
+    const shackleRadius = radius * 0.13;
+    const lineWidth = phonePortrait ? 3.2 : 4.2;
+
+    ctx.save();
+    ctx.fillStyle = goal.text;
+    ctx.strokeStyle = goal.text;
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    ctx.arc(x, y - lockHeight * 0.38, shackleRadius, Math.PI, 0);
+    ctx.stroke();
+    roundedRect(
+      x - lockWidth * 0.5,
+      y - lockHeight * 0.16,
+      lockWidth,
+      lockHeight,
+      phonePortrait ? 4 : 5
+    );
+    ctx.fill();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.58;
+    ctx.fillStyle = goal.stroke;
+    ctx.beginPath();
+    ctx.arc(x, y + lockHeight * 0.25, phonePortrait ? 2.1 : 2.7, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
   }
 
@@ -10542,6 +19491,25 @@
 
     ctx.save();
     ctx.translate(x, y);
+    if (gateState === "locked") {
+      const badgeY = -Math.max(actorRadius * 1.55, phonePortrait ? 14 : 17);
+      const badgeRadius = phonePortrait ? 6.5 : 8;
+      ctx.globalAlpha = alpha * 1.2;
+      ctx.fillStyle = palette.fill;
+      ctx.strokeStyle = palette.color;
+      ctx.lineWidth = phonePortrait ? 1.4 : 1.8;
+      ctx.beginPath();
+      ctx.arc(0, badgeY, badgeRadius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = palette.color;
+      ctx.font = `900 ${phonePortrait ? 9 : 11}px Fredoka, Assistant, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("?", 0, badgeY - 0.5);
+      ctx.restore();
+      return;
+    }
     ctx.globalCompositeOperation = "screen";
     ctx.globalAlpha = alpha;
     ctx.shadowColor = palette.glow;
@@ -10617,16 +19585,203 @@
     return cacheEntry;
   }
 
+  function getWorldOneMobileStaticCompositeBoard(staticBoard, level) {
+    if (!staticBoard?.canvas
+      || !isWorldOneAuthoredBoardReady(level)
+      || !MOBILE_RUNTIME.coarse) {
+      return null;
+    }
+    const collectibleLayer = prepareStaticPhoneCollectibleLayer(level);
+    if (!collectibleLayer?.canvas) {
+      return null;
+    }
+    const key = `${staticBoard.cacheKey}|${collectibleLayer.signature}`;
+    let compositeCanvas = worldOneMobileStaticCompositeCache.canvas;
+    if (!compositeCanvas || compositeCanvas.width !== WIDTH || compositeCanvas.height !== HEIGHT) {
+      compositeCanvas = document.createElement("canvas");
+      compositeCanvas.width = WIDTH;
+      compositeCanvas.height = HEIGHT;
+      worldOneMobileStaticCompositeCache.canvas = compositeCanvas;
+      worldOneMobileStaticCompositeCache.key = "";
+      worldOneMobileStaticCompositeCache.boardSource = null;
+    }
+    if (worldOneMobileStaticCompositeCache.key !== key
+      || worldOneMobileStaticCompositeCache.boardSource !== staticBoard.canvas) {
+      const compositeContext = compositeCanvas.getContext("2d", { alpha: false });
+      if (!compositeContext) {
+        return null;
+      }
+      compositeContext.setTransform(1, 0, 0, 1, 0, 0);
+      compositeContext.globalAlpha = 1;
+      compositeContext.globalCompositeOperation = "source-over";
+      compositeContext.clearRect(0, 0, WIDTH, HEIGHT);
+      compositeContext.drawImage(staticBoard.canvas, 0, 0, WIDTH, HEIGHT);
+      compositeContext.drawImage(collectibleLayer.canvas, 0, 0);
+      worldOneMobileStaticCompositeCache.key = key;
+      worldOneMobileStaticCompositeCache.boardSource = staticBoard.canvas;
+    }
+    return {
+      canvas: compositeCanvas,
+      collectibleSignature: collectibleLayer.signature
+    };
+  }
+
   function drawAutotileMazeBoard(level, atlas) {
     const visualProfile = getMazeMobileVisualProfile();
-    prepareMazeScatterDecor();
+    const worldOne = isWorldOneReimagined(level);
+    const iceV3Tileset = worldOne ? null : getReadyIceV3Tileset(level);
+    if (!worldOne) {
+      prepareMazeScatterDecor();
+    }
+    activeWorldOneMobileCollectibleSignature = "";
     const staticBoard = getAutotileStaticMazeBoard(level, atlas, visualProfile);
     if (staticBoard) {
-      ctx.drawImage(staticBoard.canvas, 0, 0, WIDTH, HEIGHT);
+      const mobileComposite = worldOne
+        ? getWorldOneMobileStaticCompositeBoard(staticBoard, level)
+        : null;
+      ctx.drawImage(mobileComposite?.canvas || staticBoard.canvas, 0, 0, WIDTH, HEIGHT);
+      activeWorldOneMobileCollectibleSignature = mobileComposite?.collectibleSignature || "";
     } else {
       drawAutotileStaticMazeLayers(level, atlas, visualProfile);
     }
-    drawAutotileAmbientLayer(level, atlas.theme, visualProfile);
+    if (worldOne) {
+      drawWorldOneAuthoredRegistrationDetails(visualProfile);
+      drawWorldOneAmbientLayer(getWorldOneConcept(), visualProfile);
+      if (state.mazeVisualAudit) {
+        state.mazeVisualAudit.layersDrawn = Array.from(new Set([
+          ...state.mazeVisualAudit.layersDrawn,
+          "world1-ambient",
+          "world1-focal-light"
+        ]));
+      }
+    } else if (iceV3Tileset) {
+      drawIceV3AmbientLayer(visualProfile);
+    } else if (atlas.theme.motif === "ice") {
+      drawIceWorldAmbientLayer(visualProfile);
+    } else {
+      drawAutotileAmbientLayer(level, atlas.theme, visualProfile);
+    }
+    drawAutotileFocalLightingLayer(atlas.theme, visualProfile);
+    if (isFirstPlayableMazeVisualLevel(level) && !iceV3Tileset) {
+      drawFirstMazeGoalCueLayer(level, visualProfile);
+      if (worldOne && state.mazeVisualAudit) {
+        state.mazeVisualAudit.goalCue = true;
+        state.mazeVisualAudit.layersDrawn = Array.from(new Set([
+          ...state.mazeVisualAudit.layersDrawn,
+          "world1-goal-cue"
+        ]));
+      }
+    }
+  }
+
+  function drawWorldOneAuthoredRegistrationDetails(visualProfile) {
+    if (!isWorldOneAuthoredBoardReady()) return;
+    const start = centerOfCell(PLAYER_START.x, PLAYER_START.y);
+    const phonePortrait = isPhonePortraitView();
+    const radius = TILE * (phonePortrait ? 1.08 : 1.18);
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.5;
+    ctx.fillStyle = "rgba(24, 17, 13, 0.88)";
+    ctx.beginPath();
+    ctx.ellipse(start.x + radius * 0.08, start.y + radius * 0.34, radius * 1.12, radius * 0.36, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const side = ctx.createLinearGradient(0, start.y, 0, start.y + radius * 0.7);
+    side.addColorStop(0, "#a56335");
+    side.addColorStop(1, "#4b2818");
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = side;
+    ctx.strokeStyle = "rgba(67, 36, 24, 0.96)";
+    ctx.lineWidth = phonePortrait ? 1.1 : 1.45;
+    ctx.beginPath();
+    ctx.ellipse(start.x, start.y + radius * 0.24, radius, radius * 0.38, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    const top = ctx.createRadialGradient(start.x - radius * 0.3, start.y - radius * 0.1, 0, start.x, start.y, radius * 1.15);
+    top.addColorStop(0, "#ffe29a");
+    top.addColorStop(0.42, "#d89a4d");
+    top.addColorStop(1, "#8d512d");
+    ctx.fillStyle = top;
+    ctx.strokeStyle = "rgba(255, 229, 157, 0.9)";
+    ctx.beginPath();
+    ctx.ellipse(start.x, start.y, radius, radius * 0.38, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (phonePortrait ? 0.66 : 0.76) * visualProfile.glowScale;
+    ctx.strokeStyle = "rgba(70, 235, 211, 0.9)";
+    ctx.shadowColor = "rgba(45, 212, 191, 0.7)";
+    ctx.shadowBlur = phonePortrait ? 5 : 8;
+    ctx.lineWidth = phonePortrait ? 1.25 : 1.65;
+    ctx.beginPath();
+    ctx.ellipse(start.x, start.y, radius * 0.62, radius * 0.21, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawWorldOneAuthoredActors() {
+    if (!isWorldOneReimagined() || !isWorldOneAuthoredBoardReady()) {
+      return false;
+    }
+
+    const enemyAlpha = state.stageIntroCamera
+      ? smoothCameraStep(clamp((state.stageIntroCamera.travelProgress - 0.12) / 0.7, 0, 1))
+      : 1;
+    // The production board is a flat raster without a semantic foreground
+    // alpha/depth layer. Repainting it through guessed wall-cell rectangles
+    // clipped actors, erased nearby effects, and re-blitted a 960x720 image for
+    // every actor. Keep actors on one stable, depth-sorted gameplay layer; the
+    // canonical board geometry and compact sprites provide the separation.
+    const actorLayers = [];
+    if (state.player) {
+      actorLayers.push({
+        actor: state.player,
+        kind: "player",
+        y: state.player.y,
+        draw: () => drawPlayerCharacter(ctx, state.player)
+      });
+    }
+    state.enemies.forEach((enemy, enemyIndex) => {
+      actorLayers.push({
+        actor: enemy,
+        kind: "enemy",
+        y: enemy.y,
+        draw: () => drawEnemyCharacter(ctx, enemy, enemyIndex, {
+          clock: state.clock,
+          spawning: enemy.spawnFlash > 0
+        }),
+        alpha: enemyAlpha
+      });
+    });
+    if (state.boss) {
+      actorLayers.push({
+        actor: state.boss,
+        kind: "boss",
+        y: state.boss.y,
+        draw: () => drawBoss()
+      });
+    }
+    actorLayers.sort((a, b) => a.y - b.y || (a.kind === "player" ? 1 : -1));
+
+    actorLayers.forEach((layer) => {
+      ctx.save();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = isPhonePortraitView() ? "medium" : "high";
+      ctx.globalAlpha *= layer.alpha ?? 1;
+      layer.draw();
+      ctx.restore();
+    });
+    if (state.mazeVisualAudit) {
+      state.mazeVisualAudit.layersDrawn = Array.from(new Set([
+        ...state.mazeVisualAudit.layersDrawn,
+        "world1-authored-depth-sorted-actors"
+      ]));
+    }
+    return true;
   }
 
   function drawAtlasTile(atlas, key, x, y, width = TILE, height = TILE, alpha = 1) {
@@ -10729,6 +19884,12 @@
             offsetX: start * 19 + y * 7,
             offsetY: y * 23
           });
+        }
+        if (atlas.tileset) {
+          for (let cellX = start; cellX < x; cellX += 1) {
+            const role = (cellX + y + state.levelIndex) % 7 === 0 ? "floorAlt" : "floor";
+            drawAtlasTile(atlas, role, cellX * TILE, py, TILE, TILE, isPhonePortraitView() ? 0.2 : 0.27);
+          }
         }
       }
     }
@@ -10916,8 +20077,8 @@
     const glowWidth = phonePortrait ? 7 : 8.5;
     const lineWidth = phonePortrait ? 2.1 : 2.6;
     const glowAlpha = (phonePortrait ? 0.1 : 0.14) * visualProfile.glowScale;
-    const lineAlpha = (phonePortrait ? 0.18 : 0.24) * visualProfile.glowScale;
-    const nodeAlpha = (phonePortrait ? 0.18 : 0.26) * visualProfile.glowScale;
+    const lineAlpha = (phonePortrait ? 0.11 : 0.16) * visualProfile.glowScale;
+    const nodeAlpha = (phonePortrait ? 0.09 : 0.14) * visualProfile.glowScale;
     const laneColor = theme.motif === "lava"
       ? "rgba(255, 117, 30, 0.78)"
       : theme.motif === "ancient"
@@ -11040,6 +20201,8 @@
 
     drawAutotileWallMasses(atlas, visualProfile);
     drawAutotileWallMaterialDetailLayer(atlas, visualProfile);
+    drawAutotileWallWorldFeatures(atlas, visualProfile);
+    drawAutotileWallDepthLayer(atlas, visualProfile);
 
     ctx.save();
     for (let y = 0; y < ROWS; y += 1) {
@@ -11049,6 +20212,81 @@
       }
     }
     ctx.restore();
+  }
+
+  function traceAutotileWallMassPath(theme, x, y, width, height, row, start, layer = 0) {
+    const motif = theme.motif;
+    if (motif === "ancient") {
+      roundedRect(x, y, width, height, Math.min(3, height * 0.1));
+      return;
+    }
+
+    const cut = motif === "diamond" ? Math.min(8, height * 0.2) : Math.min(5, height * 0.14);
+    ctx.beginPath();
+    ctx.moveTo(x + cut, y + (motif === "lava" ? 2 : 0));
+    if (motif === "ice" || motif === "lava") {
+      const segments = Math.max(1, Math.round(width / TILE));
+      for (let segment = 0; segment <= segments; segment += 1) {
+        const px = Math.min(x + width - cut, x + segment * width / segments);
+        const noise = mazeCellNoise(start + segment, row, 809 + layer * 17);
+        const amplitude = motif === "lava" ? 4.2 : 2.8;
+        ctx.lineTo(px, y + 1 + (noise - 0.5) * amplitude);
+      }
+    } else {
+      ctx.lineTo(x + width - cut, y);
+    }
+    ctx.lineTo(x + width, y + cut);
+    ctx.lineTo(x + width, y + height - cut * 0.55);
+    ctx.lineTo(x + width - cut * 0.82, y + height);
+    ctx.lineTo(x + cut * 0.72, y + height);
+    ctx.lineTo(x, y + height - cut * 0.55);
+    ctx.lineTo(x, y + cut * 0.72);
+    ctx.closePath();
+  }
+
+  function drawCc0WangWallTile(theme, cellX, cellY, visualProfile) {
+    const image = GAME_ASSETS.mazeWangWalls?.[theme.world];
+    if (!image?.complete || image.naturalWidth < 512 || image.naturalHeight < 384) {
+      return false;
+    }
+
+    const mask = (isWallCell(cellX, cellY - 1) ? 1 : 0)
+      | (isWallCell(cellX + 1, cellY) ? 2 : 0)
+      | (isWallCell(cellX, cellY + 1) ? 4 : 0)
+      | (isWallCell(cellX - 1, cellY) ? 8 : 0);
+    const tileId = MAZE_CC0_WANG_TILE_BY_MASK[mask] ?? 7;
+    const sourceX = (tileId % 8) * 64;
+    const sourceY = Math.floor(tileId / 8) * 64;
+    const px = cellX * TILE;
+    const py = cellY * TILE;
+
+    ctx.save();
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = isPhonePortraitView() ? "medium" : "high";
+    ctx.globalCompositeOperation = "source-over";
+    const textureAlpha = {
+      ice: isPhonePortraitView() ? 0.3 : 0.38,
+      lava: isPhonePortraitView() ? 0.39 : 0.47,
+      ancient: isPhonePortraitView() ? 0.46 : 0.56,
+      diamond: isPhonePortraitView() ? 0.28 : 0.36
+    }[theme.motif] || (isPhonePortraitView() ? 0.38 : 0.46);
+    ctx.globalAlpha = textureAlpha * visualProfile.textureAlphaScale;
+    ctx.drawImage(image, sourceX, sourceY, 64, 64, px, py, TILE, TILE);
+
+    ctx.globalCompositeOperation = theme.motif === "lava" ? "color-dodge" : "overlay";
+    ctx.globalAlpha = theme.motif === "lava"
+      ? 0.11 * visualProfile.glowScale
+      : theme.motif === "diamond"
+      ? 0.16 * visualProfile.glowScale
+      : 0.08 * visualProfile.glowScale;
+    ctx.fillStyle = theme.motif === "lava"
+      ? "rgba(255, 82, 24, 0.9)"
+      : theme.motif === "diamond"
+      ? "rgba(187, 111, 255, 0.78)"
+      : theme.accent;
+    ctx.fillRect(px, py, TILE, TILE);
+    ctx.restore();
+    return true;
   }
 
   function drawAutotileWallMasses(atlas, visualProfile = getMazeMobileVisualProfile()) {
@@ -11069,13 +20307,19 @@
         const px = start * TILE;
         const py = y * TILE;
         const width = (x - start) * TILE;
-        const radius = Math.min(TILE * 0.42, Math.max(5, width * 0.16));
+        const materialRadius = {
+          ice: 5,
+          lava: 3,
+          ancient: 1.5,
+          diamond: 2.5
+        }[theme.motif] || 3;
+        const radius = Math.min(TILE * 0.2, materialRadius);
         const wallBodyHeight = TILE + (isPhonePortraitView() ? 3 : 4);
         ctx.save();
         ctx.globalCompositeOperation = "multiply";
         ctx.globalAlpha = 0.28 * visualProfile.wallShadowScale;
         ctx.fillStyle = theme.wallShadow;
-        roundedRect(px + 2.5, py + 5.5, Math.max(1, width - 1), wallBodyHeight, radius);
+        traceAutotileWallMassPath(theme, px + 2.5, py + 5.5, Math.max(1, width - 1), wallBodyHeight, y, start, 0);
         ctx.fill();
         ctx.restore();
 
@@ -11086,7 +20330,7 @@
         sideGradient.addColorStop(1, theme.wallShadow);
         ctx.globalAlpha = 0.88;
         ctx.fillStyle = sideGradient;
-        roundedRect(px + 0.5, py + TILE * 0.34, Math.max(1, width - 1), TILE * 0.66 + 4, radius);
+        traceAutotileWallMassPath(theme, px + 0.5, py + TILE * 0.34, Math.max(1, width - 1), TILE * 0.66 + 4, y, start, 1);
         ctx.fill();
         ctx.restore();
 
@@ -11095,7 +20339,7 @@
         gradient.addColorStop(0.35, theme.wall[1]);
         gradient.addColorStop(1, theme.wall[2]);
         ctx.fillStyle = gradient;
-        roundedRect(px + 1, py + 1, Math.max(1, width - 2), TILE * 0.92, radius);
+        traceAutotileWallMassPath(theme, px + 1, py + 1, Math.max(1, width - 2), TILE * 0.92, y, start, 2);
         ctx.fill();
         ctx.save();
         ctx.globalCompositeOperation = "multiply";
@@ -11119,9 +20363,97 @@
         cap.addColorStop(1, "rgba(255, 255, 255, 0)");
         ctx.globalCompositeOperation = "screen";
         ctx.fillStyle = cap;
-        roundedRect(px + 2, py + 2, Math.max(1, width - 4), TILE * 0.42, Math.max(3, radius * 0.58));
+        traceAutotileWallMassPath(theme, px + 2, py + 2, Math.max(1, width - 4), TILE * 0.42, y, start, 3);
         ctx.fill();
         ctx.globalCompositeOperation = "source-over";
+
+        for (let cellX = start; cellX < x; cellX += 1) {
+          drawCc0WangWallTile(theme, cellX, y, visualProfile);
+        }
+
+        if (atlas.tileset) {
+          for (let cellX = start; cellX < x; cellX += 1) {
+            const role = (cellX * 3 + y + state.levelIndex) % 9 === 0 ? "wallAlt" : "wall";
+            drawAtlasTile(atlas, role, cellX * TILE, py, TILE, TILE, isPhonePortraitView() ? 0.2 : 0.28);
+          }
+        }
+
+        ctx.save();
+        ctx.lineCap = theme.motif === "lava" ? "round" : "butt";
+        for (let cellX = start; cellX < x; cellX += 1) {
+          const cellPx = cellX * TILE;
+          const seed = mazeCellNoise(cellX, y, 733);
+          if (theme.motif === "ice") {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.46 * visualProfile.rimAlphaScale;
+            ctx.strokeStyle = "rgba(224, 251, 255, 0.82)";
+            ctx.lineWidth = 1.1;
+            if (seed < 0.34) {
+              ctx.beginPath();
+              ctx.moveTo(cellPx + TILE * 0.2, py + TILE * 0.58);
+              ctx.lineTo(cellPx + TILE * 0.48, py + TILE * 0.38);
+              ctx.lineTo(cellPx + TILE * 0.74, py + TILE * 0.62);
+              ctx.stroke();
+            }
+          } else if (theme.motif === "lava") {
+            ctx.globalCompositeOperation = "multiply";
+            ctx.globalAlpha = 0.34;
+            ctx.strokeStyle = "rgba(8, 5, 8, 0.86)";
+            ctx.lineWidth = 1.25;
+            if ((cellX - start) % 2 === 1) {
+              ctx.beginPath();
+              ctx.moveTo(cellPx, py + 5);
+              ctx.lineTo(cellPx - 1.5, py + TILE * 0.78);
+              ctx.stroke();
+            }
+            if (seed < 0.3) {
+              ctx.globalCompositeOperation = "screen";
+              ctx.globalAlpha = 0.68 * visualProfile.glowScale;
+              ctx.strokeStyle = "rgba(255, 113, 38, 0.92)";
+              ctx.shadowColor = "#ff5f21";
+              ctx.shadowBlur = 5 * visualProfile.glowScale;
+              ctx.beginPath();
+              ctx.moveTo(cellPx + TILE * 0.18, py + TILE * 0.22);
+              ctx.lineTo(cellPx + TILE * 0.46, py + TILE * 0.44);
+              ctx.lineTo(cellPx + TILE * 0.36, py + TILE * 0.72);
+              ctx.lineTo(cellPx + TILE * 0.72, py + TILE * 0.82);
+              ctx.stroke();
+              ctx.shadowBlur = 0;
+            }
+          } else if (theme.motif === "ancient") {
+            ctx.globalCompositeOperation = "multiply";
+            ctx.globalAlpha = 0.42;
+            ctx.strokeStyle = "rgba(64, 45, 24, 0.82)";
+            ctx.lineWidth = 1.25;
+            const jointOffset = y % 2 === 0 ? 0 : TILE * 0.5;
+            ctx.beginPath();
+            ctx.moveTo(cellPx + 1, py + TILE * 0.46);
+            ctx.lineTo(cellPx + TILE - 1, py + TILE * 0.46);
+            ctx.moveTo(cellPx + jointOffset, py + 2);
+            ctx.lineTo(cellPx + jointOffset, py + TILE * 0.82);
+            ctx.stroke();
+            if (seed < 0.2) {
+              ctx.globalCompositeOperation = "screen";
+              ctx.globalAlpha = 0.46;
+              ctx.strokeStyle = "rgba(48, 232, 203, 0.78)";
+              ctx.strokeRect(cellPx + TILE * 0.28, py + TILE * 0.22, TILE * 0.44, TILE * 0.38);
+            }
+          } else {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.44 * visualProfile.rimAlphaScale;
+            ctx.strokeStyle = seed < 0.5 ? "rgba(205, 255, 255, 0.86)" : "rgba(255, 168, 244, 0.78)";
+            ctx.lineWidth = 1.05;
+            ctx.beginPath();
+            ctx.moveTo(cellPx + 2, py + TILE * 0.75);
+            ctx.lineTo(cellPx + TILE * 0.48, py + 3);
+            ctx.lineTo(cellPx + TILE - 2, py + TILE * 0.72);
+            ctx.moveTo(cellPx + 2, py + TILE * 0.25);
+            ctx.lineTo(cellPx + TILE * 0.48, py + TILE * 0.48);
+            ctx.lineTo(cellPx + TILE - 2, py + TILE * 0.22);
+            ctx.stroke();
+          }
+        }
+        ctx.restore();
       }
     }
 
@@ -11212,6 +20544,317 @@
           ctx.lineTo(px + TILE * 0.88, py + TILE * 0.62);
           ctx.lineTo(px + TILE * 0.54, py + TILE * 0.84);
           ctx.closePath();
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawAutotileWallWorldFeatures(atlas, visualProfile = getMazeMobileVisualProfile()) {
+    const theme = atlas.theme;
+    const phonePortrait = isPhonePortraitView();
+    const step = 1;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    for (let y = 1; y < ROWS - 1; y += step) {
+      for (let x = 1; x < COLS - 1; x += step) {
+        if (!isWallCell(x, y)) continue;
+        const openUp = !isWallCell(x, y - 1);
+        const openDown = !isWallCell(x, y + 1);
+        const openLeft = !isWallCell(x - 1, y);
+        const openRight = !isWallCell(x + 1, y);
+        if (!openUp && !openDown && !openLeft && !openRight) continue;
+
+        const seed = mazeCellNoise(x, y, 887);
+        const px = x * TILE;
+        const py = y * TILE;
+
+        if (theme.motif === "ice") {
+          if (openUp && seed < 0.82) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = (0.3 + seed * 0.22) * visualProfile.rimAlphaScale;
+            const snow = ctx.createLinearGradient(px, py, px, py + TILE * 0.28);
+            snow.addColorStop(0, "rgba(255,255,255,0.92)");
+            snow.addColorStop(1, "rgba(181,235,250,0)");
+            ctx.fillStyle = snow;
+            ctx.beginPath();
+            ctx.moveTo(px + 2, py + 2);
+            ctx.quadraticCurveTo(px + TILE * 0.28, py + TILE * (0.05 + seed * 0.08), px + TILE * 0.52, py + 3);
+            ctx.quadraticCurveTo(px + TILE * 0.75, py + TILE * 0.13, px + TILE - 2, py + 2);
+            ctx.lineTo(px + TILE - 2, py + TILE * 0.22);
+            ctx.lineTo(px + 2, py + TILE * 0.18);
+            ctx.closePath();
+            ctx.fill();
+          }
+          if (openDown && seed > 0.72) {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 0.7 * visualProfile.scatterAlphaScale;
+            const icicle = ctx.createLinearGradient(px, py + TILE - 2, px, py + TILE + 12);
+            icicle.addColorStop(0, "rgba(224,251,255,0.96)");
+            icicle.addColorStop(1, "rgba(82,183,224,0.48)");
+            ctx.fillStyle = icicle;
+            ctx.strokeStyle = "rgba(245,255,255,0.72)";
+            ctx.lineWidth = 0.7;
+            const count = seed > 0.78 ? 3 : 2;
+            for (let spike = 0; spike < count; spike += 1) {
+              const sx = px + TILE * (0.25 + spike * 0.24);
+              const length = (phonePortrait ? 5 : 7) + mazeCellNoise(x + spike, y, 901) * (phonePortrait ? 6 : 9);
+              ctx.beginPath();
+              ctx.moveTo(sx - 2.4, py + TILE - 3);
+              ctx.lineTo(sx, py + TILE + length);
+              ctx.lineTo(sx + 2.4, py + TILE - 3);
+              ctx.closePath();
+              ctx.fill();
+              ctx.stroke();
+            }
+          }
+        } else if (theme.motif === "lava") {
+          if (seed < 0.48) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = (0.5 + seed * 0.4) * visualProfile.glowScale;
+            ctx.strokeStyle = "rgba(255,92,27,0.9)";
+            ctx.shadowColor = "rgba(255,58,14,0.9)";
+            ctx.shadowBlur = (phonePortrait ? 4 : 7) * visualProfile.glowScale;
+            ctx.lineWidth = phonePortrait ? 1.1 : 1.5;
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.3, py + 2);
+            ctx.lineTo(px + TILE * 0.55, py + TILE * 0.3);
+            ctx.lineTo(px + TILE * 0.43, py + TILE * 0.55);
+            ctx.lineTo(px + TILE * 0.7, py + TILE * 0.82);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
+          if (openDown && seed > 0.7) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.fillStyle = "rgba(255,113,37,0.82)";
+            ctx.shadowColor = "rgba(255,67,16,0.86)";
+            ctx.shadowBlur = phonePortrait ? 4 : 7;
+            ctx.globalAlpha = 0.58 * visualProfile.glowScale;
+            ctx.beginPath();
+            ctx.ellipse(px + TILE * (0.32 + seed * 0.3), py + TILE + 3, 1.6, phonePortrait ? 4 : 6, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        } else if (theme.motif === "ancient") {
+          if (openUp && seed < 0.62) {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 0.58 * visualProfile.scatterAlphaScale;
+            ctx.strokeStyle = "rgba(82,128,67,0.82)";
+            ctx.fillStyle = "rgba(102,154,73,0.72)";
+            ctx.lineWidth = phonePortrait ? 1 : 1.35;
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.15, py + 3);
+            ctx.quadraticCurveTo(px + TILE * 0.48, py + TILE * 0.14, px + TILE * 0.82, py + 3);
+            ctx.stroke();
+            for (let leaf = 0; leaf < 3; leaf += 1) {
+              ctx.beginPath();
+              ctx.ellipse(px + TILE * (0.27 + leaf * 0.22), py + 4 + (leaf % 2) * 2, 2.2, 1.1, leaf * 0.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+          if (openDown && seed > 0.62) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.48 * visualProfile.glowScale;
+            ctx.strokeStyle = "rgba(67,229,201,0.78)";
+            ctx.lineWidth = phonePortrait ? 0.9 : 1.2;
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.36, py + TILE * 0.46);
+            ctx.lineTo(px + TILE * 0.5, py + TILE * 0.3);
+            ctx.lineTo(px + TILE * 0.64, py + TILE * 0.46);
+            ctx.lineTo(px + TILE * 0.5, py + TILE * 0.62);
+            ctx.closePath();
+            ctx.stroke();
+          }
+          if (openDown && seed > 0.48 && seed < 0.72) {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 0.62 * visualProfile.scatterAlphaScale;
+            ctx.strokeStyle = "rgba(69, 116, 55, 0.88)";
+            ctx.lineWidth = phonePortrait ? 1.15 : 1.5;
+            const vineX = px + TILE * (0.28 + seed * 0.42);
+            ctx.beginPath();
+            ctx.moveTo(vineX, py + TILE * 0.58);
+            ctx.bezierCurveTo(vineX - 4, py + TILE * 0.74, vineX + 5, py + TILE * 0.88, vineX - 2, py + TILE + (phonePortrait ? 5 : 8));
+            ctx.stroke();
+            ctx.fillStyle = "rgba(111, 160, 70, 0.84)";
+            for (let leaf = 0; leaf < 2; leaf += 1) {
+              ctx.beginPath();
+              ctx.ellipse(vineX + (leaf === 0 ? -2.5 : 2.5), py + TILE * (0.72 + leaf * 0.14), 2.5, 1.3, leaf === 0 ? -0.5 : 0.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        } else {
+          if ((openUp || openDown) && seed < 0.27) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = (0.38 + seed * 0.42) * visualProfile.rimAlphaScale;
+            const cyanFacet = seed < 0.135;
+            ctx.fillStyle = cyanFacet ? "rgba(126,246,255,0.74)" : "rgba(241,147,236,0.7)";
+            ctx.strokeStyle = "rgba(245,255,255,0.68)";
+            ctx.shadowColor = theme.accent;
+            ctx.shadowBlur = phonePortrait ? 3 : 6;
+            const baseY = openUp ? py + 4 : py + TILE - 3;
+            const direction = openUp ? -1 : 1;
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.2, baseY);
+            ctx.lineTo(px + TILE * 0.37, baseY + direction * (phonePortrait ? 8 : 12));
+            ctx.lineTo(px + TILE * 0.48, baseY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = cyanFacet ? "rgba(242,151,255,0.68)" : "rgba(117,255,233,0.72)";
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.42, baseY);
+            ctx.lineTo(px + TILE * 0.6, baseY + direction * (phonePortrait ? 13 : 19));
+            ctx.lineTo(px + TILE * 0.76, baseY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawAutotileWallDepthLayer(atlas, visualProfile = getMazeMobileVisualProfile()) {
+    const theme = atlas.theme;
+    const style = getPlayableMazeArtStyle();
+    const phonePortrait = isPhonePortraitView();
+    const faceTopRatio = phonePortrait ? 0.76 : 0.73;
+    const faceTopOffset = TILE * faceTopRatio;
+    const rightFaceWidth = phonePortrait ? Math.max(3, TILE * 0.12) : Math.max(4, TILE * 0.14);
+    const highlight = {
+      ice: "rgba(238, 255, 255, 0.92)",
+      lava: "rgba(255, 135, 58, 0.78)",
+      ancient: "rgba(246, 222, 165, 0.72)",
+      diamond: "rgba(224, 255, 255, 0.9)"
+    }[theme.motif] || "rgba(255,255,255,0.72)";
+
+    ctx.save();
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    for (let y = 0; y < ROWS; y += 1) {
+      for (let x = 0; x < COLS; x += 1) {
+        if (!isWallCell(x, y)) continue;
+        const openUp = !isWallCell(x, y - 1);
+        const openRight = !isWallCell(x + 1, y);
+        const openDown = !isWallCell(x, y + 1);
+        const openLeft = !isWallCell(x - 1, y);
+        if (!openUp && !openRight && !openDown && !openLeft) continue;
+
+        const px = x * TILE;
+        const py = y * TILE;
+        const seed = mazeCellNoise(x, y, 971);
+
+        if (openDown) {
+          const face = ctx.createLinearGradient(px, py + faceTopOffset, px, py + TILE + 2);
+          face.addColorStop(0, style?.wallFaceDown?.[0] || theme.wallSide);
+          face.addColorStop(0.18, theme.wallSide);
+          face.addColorStop(1, style?.wallFaceDown?.[1] || theme.wallShadow);
+          ctx.globalCompositeOperation = "source-over";
+          ctx.globalAlpha = 0.96;
+          ctx.fillStyle = face;
+          ctx.beginPath();
+          ctx.moveTo(px + 1.5, py + faceTopOffset);
+          ctx.lineTo(px + TILE - 1.5, py + faceTopOffset);
+          ctx.lineTo(px + TILE - 2.5, py + TILE - 1);
+          ctx.lineTo(px + 2.5, py + TILE - 1);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = (phonePortrait ? 0.58 : 0.7) * visualProfile.rimAlphaScale;
+          ctx.strokeStyle = highlight;
+          ctx.lineWidth = phonePortrait ? 1.15 : 1.45;
+          ctx.beginPath();
+          ctx.moveTo(px + 2.5, py + faceTopOffset);
+          ctx.lineTo(px + TILE - 2.5, py + faceTopOffset);
+          ctx.stroke();
+
+          ctx.globalCompositeOperation = "multiply";
+          ctx.globalAlpha = 0.5 * visualProfile.wallShadowScale;
+          ctx.strokeStyle = theme.wallShadow;
+          ctx.lineWidth = phonePortrait ? 1.1 : 1.4;
+          ctx.beginPath();
+          ctx.moveTo(px + 3, py + TILE - 1.5);
+          ctx.lineTo(px + TILE - 3, py + TILE - 1.5);
+          ctx.stroke();
+
+          if (theme.motif === "ancient") {
+            ctx.globalAlpha = 0.34;
+            ctx.strokeStyle = "rgba(35, 25, 17, 0.9)";
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * (0.34 + seed * 0.24), py + faceTopOffset + 1);
+            ctx.lineTo(px + TILE * (0.34 + seed * 0.24), py + TILE - 2);
+            ctx.stroke();
+          } else if (theme.motif === "ice") {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.24;
+            ctx.strokeStyle = "rgba(188, 244, 255, 0.92)";
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * (0.3 + seed * 0.25), py + faceTopOffset + 2);
+            ctx.lineTo(px + TILE * (0.26 + seed * 0.25), py + TILE - 3);
+            ctx.stroke();
+          } else if (theme.motif === "lava" && seed < 0.32) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.6 * visualProfile.glowScale;
+            ctx.strokeStyle = "rgba(255, 90, 24, 0.9)";
+            ctx.shadowColor = "rgba(255, 56, 12, 0.9)";
+            ctx.shadowBlur = phonePortrait ? 3 : 5;
+            ctx.beginPath();
+            ctx.moveTo(px + TILE * 0.52, py + faceTopOffset + 1);
+            ctx.lineTo(px + TILE * 0.46, py + TILE * 0.83);
+            ctx.lineTo(px + TILE * 0.58, py + TILE - 2);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          } else if (theme.motif === "diamond") {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.3;
+            ctx.strokeStyle = seed < 0.5 ? "rgba(125, 255, 235, 0.9)" : "rgba(255, 139, 235, 0.84)";
+            ctx.beginPath();
+            ctx.moveTo(px + 3, py + faceTopOffset + 1);
+            ctx.lineTo(px + TILE * 0.5, py + TILE - 2);
+            ctx.lineTo(px + TILE - 3, py + faceTopOffset + 1);
+            ctx.stroke();
+          }
+        }
+
+        if (openRight) {
+          const side = ctx.createLinearGradient(px + TILE - rightFaceWidth, py, px + TILE, py);
+          side.addColorStop(0, "rgba(0, 0, 0, 0)");
+          side.addColorStop(1, style?.wallFaceSide?.[1] || theme.wallShadow);
+          ctx.globalCompositeOperation = "source-over";
+          ctx.globalAlpha = 0.82;
+          ctx.fillStyle = side;
+          ctx.fillRect(px + TILE - rightFaceWidth, py + 2, rightFaceWidth - 1, openDown ? faceTopOffset - 2 : TILE - 4);
+
+          ctx.globalCompositeOperation = "multiply";
+          ctx.globalAlpha = 0.48 * visualProfile.wallShadowScale;
+          ctx.strokeStyle = theme.wallShadow;
+          ctx.lineWidth = phonePortrait ? 1.15 : 1.5;
+          ctx.beginPath();
+          ctx.moveTo(px + TILE - 1.5, py + 3);
+          ctx.lineTo(px + TILE - 1.5, py + (openDown ? faceTopOffset : TILE - 3));
+          ctx.stroke();
+        }
+
+        if (openLeft || openUp) {
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = (phonePortrait ? 0.32 : 0.42) * visualProfile.rimAlphaScale;
+          ctx.strokeStyle = highlight;
+          ctx.lineWidth = phonePortrait ? 0.9 : 1.2;
+          ctx.beginPath();
+          if (openLeft) {
+            ctx.moveTo(px + 1.5, py + 4);
+            ctx.lineTo(px + 1.5, py + (openDown ? faceTopOffset - 1 : TILE - 4));
+          }
+          if (openUp) {
+            ctx.moveTo(px + 4, py + 1.5);
+            ctx.lineTo(px + TILE - 4, py + 1.5);
+          }
           ctx.stroke();
         }
       }
@@ -11625,22 +21268,395 @@
     ctx.restore();
   }
 
-  function drawAutotileAmbientLayer(level, theme, visualProfile = getMazeMobileVisualProfile()) {
+  function getAutotileFocalLightSprite(theme, visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const colors = {
+      ice: ["rgba(119, 235, 255, 0.2)", "rgba(33, 128, 211, 0.06)"],
+      lava: ["rgba(255, 153, 65, 0.2)", "rgba(255, 58, 20, 0.055)"],
+      ancient: ["rgba(78, 235, 205, 0.16)", "rgba(220, 188, 116, 0.05)"],
+      diamond: ["rgba(125, 255, 234, 0.18)", "rgba(255, 105, 223, 0.055)"]
+    }[theme.motif] || ["rgba(255,255,255,0.15)", "rgba(255,255,255,0.04)"];
+    const radius = TILE * (phonePortrait ? 4.4 : 5.2);
+    const size = Math.ceil(radius * 2 + 4);
+    const cacheKey = `${theme.motif}:${visualProfile.key}:${TILE}:${size}`;
+    getAutotileFocalLightSprite.cache ||= new Map();
+    if (getAutotileFocalLightSprite.cache.has(cacheKey)) {
+      return getAutotileFocalLightSprite.cache.get(cacheKey);
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    const center = size * 0.5;
+    const glow = renderContext.createRadialGradient(center, center, TILE * 0.2, center, center, radius);
+    glow.addColorStop(0, colors[0]);
+    glow.addColorStop(0.36, colors[1]);
+    glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+    renderContext.save();
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.globalAlpha = (phonePortrait ? 0.76 : 0.9) * visualProfile.glowScale;
+    renderContext.fillStyle = glow;
+    renderContext.fillRect(center - radius, center - radius, radius * 2, radius * 2);
+
+    const shaftWidth = TILE * (phonePortrait ? 1.4 : 1.8);
+    const shaft = renderContext.createLinearGradient(center - shaftWidth, center - radius * 0.85, center + shaftWidth, center);
+    shaft.addColorStop(0, "rgba(255,255,255,0)");
+    shaft.addColorStop(0.55, colors[1]);
+    shaft.addColorStop(1, "rgba(255,255,255,0)");
+    renderContext.globalAlpha = (phonePortrait ? 0.22 : 0.3) * visualProfile.glowScale;
+    renderContext.fillStyle = shaft;
+    renderContext.beginPath();
+    renderContext.moveTo(center - shaftWidth * 0.22, center - radius * 0.85);
+    renderContext.lineTo(center + shaftWidth * 0.22, center - radius * 0.85);
+    renderContext.lineTo(center + shaftWidth, center + TILE * 0.7);
+    renderContext.lineTo(center - shaftWidth, center + TILE * 0.7);
+    renderContext.closePath();
+    renderContext.fill();
+    renderContext.restore();
+    const sprite = { canvas, radius: size * 0.5 };
+    getAutotileFocalLightSprite.cache.set(cacheKey, sprite);
+    if (getAutotileFocalLightSprite.cache.size > 12) {
+      getAutotileFocalLightSprite.cache.delete(getAutotileFocalLightSprite.cache.keys().next().value);
+    }
+    return sprite;
+  }
+
+  function drawAutotileFocalLightingLayer(theme, visualProfile = getMazeMobileVisualProfile()) {
+    if (!state.player) return;
+    // The authored board already carries a strong readable light hierarchy.
+    // On coarse mobile WebViews this extra screen-blended canvas transfer is
+    // expensive and visually redundant beside the player's contact beacon.
+    if (isWorldOneReimagined() && isWorldOneAuthoredBoardReady() && MOBILE_RUNTIME.coarse) {
+      return;
+    }
+    const sprite = getAutotileFocalLightSprite(theme, visualProfile);
+    if (!sprite) return;
     ctx.save();
     ctx.globalCompositeOperation = "screen";
-    ctx.fillStyle = theme.particle;
-    ctx.globalAlpha = (isPhonePortraitView() ? 0.18 : 0.24) * visualProfile.ambientAlphaScale;
-    const baseCount = isPhonePortraitView() ? 16 : 34;
-    const count = Math.max(6, Math.round(baseCount * visualProfile.ambientParticleScale));
-    for (let i = 0; i < count; i += 1) {
-      const x = (i * 173 + state.levelIndex * 41) % WIDTH;
-      const speed = theme.motif === "lava" ? -14 : 8;
-      const y = (i * 97 + state.clock * speed) % HEIGHT;
-      const drawY = y < 0 ? y + HEIGHT : y;
-      const radius = 0.7 + (i % 4) * 0.22;
-      ctx.beginPath();
-      ctx.arc(x + Math.sin(state.clock * 0.45 + i) * 3, drawY, radius, 0, Math.PI * 2);
-      ctx.fill();
+    ctx.drawImage(sprite.canvas, state.player.x - sprite.radius, state.player.y - sprite.radius);
+    ctx.restore();
+  }
+
+  function getIceWorldAuroraCurtainCanvas() {
+    const cacheKey = `${WIDTH}x${HEIGHT}`;
+    if (getIceWorldAuroraCurtainCanvas.cache?.key === cacheKey) {
+      return getIceWorldAuroraCurtainCanvas.cache.canvas;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.lineCap = "round";
+    for (let band = 0; band < 4; band += 1) {
+      const y = HEIGHT * (0.12 + band * 0.23);
+      const gradient = renderContext.createLinearGradient(0, y, WIDTH, y + TILE * 2);
+      gradient.addColorStop(0, "rgba(62, 245, 207, 0)");
+      gradient.addColorStop(0.22, "rgba(62, 245, 207, 0.28)");
+      gradient.addColorStop(0.5, "rgba(74, 180, 248, 0.24)");
+      gradient.addColorStop(0.74, "rgba(188, 101, 244, 0.15)");
+      gradient.addColorStop(1, "rgba(62, 220, 234, 0)");
+      renderContext.strokeStyle = gradient;
+      renderContext.globalAlpha = 0.4 - band * 0.045;
+      renderContext.lineWidth = TILE * (0.78 + band * 0.08);
+      renderContext.beginPath();
+      renderContext.moveTo(-TILE * 3, y + TILE * 0.6);
+      renderContext.bezierCurveTo(WIDTH * 0.22, y - TILE * 1.6, WIDTH * 0.62, y + TILE * 1.6, WIDTH + TILE * 3, y - TILE * 0.4);
+      renderContext.stroke();
+    }
+    getIceWorldAuroraCurtainCanvas.cache = { key: cacheKey, canvas };
+    return canvas;
+  }
+
+  function getIceWorldFogSpriteCanvas() {
+    if (getIceWorldFogSpriteCanvas.cache) {
+      return getIceWorldFogSpriteCanvas.cache;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = 320;
+    canvas.height = 120;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    const fog = renderContext.createRadialGradient(160, 60, 0, 160, 60, 160);
+    fog.addColorStop(0, "rgba(192, 244, 247, 0.18)");
+    fog.addColorStop(0.48, "rgba(114, 203, 224, 0.07)");
+    fog.addColorStop(1, "rgba(255, 255, 255, 0)");
+    renderContext.fillStyle = fog;
+    renderContext.fillRect(0, 0, canvas.width, canvas.height);
+    getIceWorldFogSpriteCanvas.cache = canvas;
+    return canvas;
+  }
+
+  function getIceWorldSpindriftCanvas(visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const cacheKey = `${WIDTH}x${HEIGHT}:${visualProfile.key}`;
+    if (getIceWorldSpindriftCanvas.cache?.key === cacheKey) {
+      return getIceWorldSpindriftCanvas.cache.canvas;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    const snowCount = Math.max(12, Math.round((phonePortrait ? 18 : 32) * visualProfile.ambientParticleScale));
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.strokeStyle = "rgba(247, 255, 255, 0.96)";
+    renderContext.lineCap = "round";
+    for (let index = 0; index < snowCount; index += 1) {
+      const depth = 0.42 + (index % 5) * 0.13;
+      const x = (index * 193 + 61) % WIDTH;
+      const y = (index * 113 + 47) % HEIGHT;
+      const radius = (phonePortrait ? 0.48 : 0.62) + depth * (phonePortrait ? 0.58 : 0.86);
+      renderContext.globalAlpha = (0.2 + depth * 0.22) * visualProfile.ambientAlphaScale;
+      renderContext.lineWidth = phonePortrait ? 0.68 : 0.9;
+      if (index % 6 === 0) {
+        for (let arm = 0; arm < 3; arm += 1) {
+          const angle = arm * Math.PI / 3 - 0.18;
+          renderContext.beginPath();
+          renderContext.moveTo(x - Math.cos(angle) * radius * 2.4, y - Math.sin(angle) * radius * 2.4);
+          renderContext.lineTo(x + Math.cos(angle) * radius * 2.4, y + Math.sin(angle) * radius * 2.4);
+          renderContext.stroke();
+        }
+      } else {
+        renderContext.beginPath();
+        renderContext.moveTo(x - radius * 2.5, y + radius * 1.2);
+        renderContext.lineTo(x + radius * 2.5, y - radius * 1.2);
+        renderContext.stroke();
+      }
+    }
+
+    renderContext.globalAlpha = (phonePortrait ? 0.16 : 0.22) * visualProfile.ambientAlphaScale;
+    renderContext.strokeStyle = "rgba(223, 251, 255, 0.9)";
+    renderContext.lineWidth = phonePortrait ? 0.9 : 1.25;
+    const gustCount = phonePortrait ? 6 : 9;
+    for (let gust = 0; gust < gustCount; gust += 1) {
+      const x = WIDTH * ((gust + 0.45) / gustCount);
+      const y = HEIGHT * (0.1 + ((gust * 0.37) % 0.82));
+      renderContext.beginPath();
+      renderContext.moveTo(x - 72, y + 18);
+      renderContext.bezierCurveTo(x - 22, y - 4, x + 38, y + 7, x + 92, y - 24);
+      renderContext.stroke();
+    }
+
+    renderContext.globalAlpha = (phonePortrait ? 0.12 : 0.18) * visualProfile.ambientAlphaScale;
+    renderContext.lineWidth = phonePortrait ? 0.78 : 1.05;
+    for (let swirl = 0; swirl < (phonePortrait ? 2 : 3); swirl += 1) {
+      const x = WIDTH * (0.24 + swirl * 0.29);
+      const y = HEIGHT * (0.32 + swirl * 0.24);
+      renderContext.beginPath();
+      renderContext.moveTo(x - 46, y + 9);
+      renderContext.bezierCurveTo(x - 12, y - 18, x + 38, y - 14, x + 26, y + 5);
+      renderContext.bezierCurveTo(x + 18, y + 18, x - 8, y + 13, x + 4, y + 1);
+      renderContext.stroke();
+    }
+    getIceWorldSpindriftCanvas.cache = { key: cacheKey, canvas };
+    return canvas;
+  }
+
+  function getIceWorldAmbientCompositeCanvas(visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const cacheKey = `${WIDTH}x${HEIGHT}:${visualProfile.key}`;
+    if (getIceWorldAmbientCompositeCanvas.cache?.key === cacheKey) {
+      return getIceWorldAmbientCompositeCanvas.cache.canvas;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    const aurora = getIceWorldAuroraCurtainCanvas();
+    const fogSprite = getIceWorldFogSpriteCanvas();
+    const spindrift = getIceWorldSpindriftCanvas(visualProfile);
+    renderContext.globalCompositeOperation = "screen";
+    if (aurora) {
+      renderContext.globalAlpha = (phonePortrait ? 0.22 : 0.3) * visualProfile.ambientAlphaScale;
+      renderContext.drawImage(aurora, 0, 0);
+    }
+    if (fogSprite) {
+      const mistCount = phonePortrait ? 2 : 3;
+      for (let mist = 0; mist < mistCount; mist += 1) {
+        const x = WIDTH * ((mist + 0.55) / mistCount);
+        const y = HEIGHT * (0.24 + ((mist * 0.31) % 0.58));
+        const width = TILE * (6.4 + (mist % 3) * 1.7);
+        const height = width * 0.28;
+        renderContext.globalAlpha = (phonePortrait ? 0.11 : 0.15) * visualProfile.ambientAlphaScale;
+        renderContext.drawImage(fogSprite, x - width * 0.5, y - height * 0.5, width, height);
+      }
+    }
+    if (spindrift) {
+      renderContext.globalAlpha = 1;
+      renderContext.drawImage(spindrift, 0, 0);
+    }
+    getIceWorldAmbientCompositeCanvas.cache = { key: cacheKey, canvas };
+    return canvas;
+  }
+
+  function drawIceWorldAmbientLayer(visualProfile = getMazeMobileVisualProfile()) {
+    const ambient = getIceWorldAmbientCompositeCanvas(visualProfile);
+    if (!ambient) return;
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    const driftX = Math.sin(state.clock * 0.28) * TILE * 0.34;
+    const driftY = Math.sin(state.clock * 0.19 + 0.8) * TILE * 0.18;
+    ctx.globalAlpha = 0.94 + Math.sin(state.clock * 0.35) * 0.04;
+    ctx.drawImage(ambient, driftX, driftY);
+    ctx.restore();
+  }
+
+  function drawAutotileAmbientLayer(level, theme, visualProfile = getMazeMobileVisualProfile()) {
+    const phonePortrait = isPhonePortraitView();
+    const wrap = (value, max) => ((value % max) + max) % max;
+    const baseCount = phonePortrait ? 18 : 38;
+    const count = Math.max(8, Math.round(baseCount * visualProfile.ambientParticleScale));
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+
+    if (theme.motif === "ice") {
+      const coldWash = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+      coldWash.addColorStop(0, "rgba(198, 246, 255, 0.13)");
+      coldWash.addColorStop(0.5, "rgba(74, 174, 224, 0.025)");
+      coldWash.addColorStop(1, "rgba(105, 178, 229, 0.08)");
+      ctx.globalAlpha = (phonePortrait ? 0.52 : 0.68) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = coldWash;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      ctx.strokeStyle = "rgba(222, 252, 255, 0.74)";
+      ctx.fillStyle = "rgba(235, 254, 255, 0.84)";
+      ctx.lineCap = "round";
+      for (let i = 0; i < count; i += 1) {
+        const speed = 9 + (i % 5) * 2.6;
+        const x = wrap(i * 173 + state.clock * (5 + (i % 3) * 2.4), WIDTH);
+        const y = wrap(i * 89 + state.clock * speed, HEIGHT);
+        const radius = (phonePortrait ? 0.75 : 0.95) + (i % 4) * 0.3;
+        ctx.globalAlpha = (0.22 + (i % 5) * 0.045) * visualProfile.ambientAlphaScale;
+        if (i % 5 === 0) {
+          ctx.lineWidth = phonePortrait ? 0.8 : 1;
+          ctx.beginPath();
+          ctx.moveTo(x - radius * 2.4, y);
+          ctx.lineTo(x + radius * 2.4, y);
+          ctx.moveTo(x, y - radius * 2.4);
+          ctx.lineTo(x, y + radius * 2.4);
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(x + Math.sin(state.clock * 0.7 + i) * 5, y, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      ctx.globalAlpha = (phonePortrait ? 0.13 : 0.2) * visualProfile.ambientAlphaScale;
+      ctx.strokeStyle = "rgba(190, 241, 255, 0.8)";
+      ctx.lineWidth = phonePortrait ? 1 : 1.35;
+      for (let gust = 0; gust < (phonePortrait ? 3 : 5); gust += 1) {
+        const y = wrap(gust * 211 + state.clock * (8 + gust), HEIGHT);
+        const x = wrap(gust * 307 + state.clock * 28, WIDTH + 180) - 90;
+        ctx.beginPath();
+        ctx.moveTo(x - 42, y + 4);
+        ctx.bezierCurveTo(x - 10, y - 5, x + 22, y + 7, x + 58, y - 2);
+        ctx.stroke();
+      }
+    } else if (theme.motif === "lava") {
+      const furnaceGlow = ctx.createRadialGradient(WIDTH * 0.5, HEIGHT * 0.86, 0, WIDTH * 0.5, HEIGHT * 0.86, HEIGHT * 0.74);
+      furnaceGlow.addColorStop(0, "rgba(255, 78, 22, 0.2)");
+      furnaceGlow.addColorStop(0.5, "rgba(255, 44, 12, 0.055)");
+      furnaceGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.globalAlpha = (phonePortrait ? 0.54 : 0.7) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = furnaceGlow;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      for (let i = 0; i < count; i += 1) {
+        const x = wrap(i * 157 + Math.sin(state.clock * 0.8 + i) * 9, WIDTH);
+        const y = wrap(i * 103 - state.clock * (15 + (i % 4) * 5), HEIGHT);
+        const radius = (phonePortrait ? 0.7 : 0.9) + (i % 4) * 0.34;
+        ctx.globalAlpha = (0.2 + (i % 5) * 0.055) * visualProfile.ambientAlphaScale;
+        ctx.fillStyle = i % 3 === 0 ? "rgba(255, 224, 126, 0.9)" : "rgba(255, 91, 30, 0.86)";
+        ctx.shadowColor = "rgba(255, 74, 20, 0.8)";
+        ctx.shadowBlur = phonePortrait ? 3 : 6;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.shadowBlur = 0;
+      ctx.globalCompositeOperation = "source-over";
+      ctx.strokeStyle = "rgba(40, 33, 36, 0.28)";
+      ctx.lineWidth = phonePortrait ? 3 : 5;
+      ctx.globalAlpha = 0.22 * visualProfile.ambientAlphaScale;
+      for (let smoke = 0; smoke < (phonePortrait ? 3 : 5); smoke += 1) {
+        const x = (smoke + 0.5) * WIDTH / (phonePortrait ? 3 : 5);
+        const y = wrap(HEIGHT - smoke * 131 - state.clock * 9, HEIGHT);
+        ctx.beginPath();
+        ctx.bezierCurveTo(x - 12, y + 18, x + 16, y + 4, x - 5, y - 22);
+        ctx.stroke();
+      }
+    } else if (theme.motif === "ancient") {
+      const sunDust = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+      sunDust.addColorStop(0, "rgba(245, 218, 157, 0.12)");
+      sunDust.addColorStop(0.48, "rgba(217, 180, 108, 0.025)");
+      sunDust.addColorStop(1, "rgba(35, 181, 158, 0.055)");
+      ctx.globalAlpha = (phonePortrait ? 0.45 : 0.62) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = sunDust;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      for (let i = 0; i < count; i += 1) {
+        const x = wrap(i * 181 + state.clock * (1.5 + (i % 3)), WIDTH);
+        const y = wrap(i * 109 + Math.sin(state.clock * 0.32 + i) * 8, HEIGHT);
+        const radius = 0.65 + (i % 4) * 0.23;
+        ctx.globalAlpha = (0.14 + (i % 5) * 0.035) * visualProfile.ambientAlphaScale;
+        ctx.fillStyle = i % 7 === 0 ? "rgba(73, 231, 202, 0.7)" : "rgba(241, 217, 163, 0.72)";
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.strokeStyle = "rgba(235, 207, 145, 0.34)";
+      ctx.lineWidth = phonePortrait ? 0.8 : 1.1;
+      ctx.globalAlpha = 0.18 * visualProfile.ambientAlphaScale;
+      for (let gust = 0; gust < (phonePortrait ? 2 : 4); gust += 1) {
+        const y = wrap(gust * 263 + state.clock * 4, HEIGHT);
+        const x = wrap(gust * 223 + state.clock * 12, WIDTH + 120) - 60;
+        ctx.beginPath();
+        ctx.moveTo(x - 28, y);
+        ctx.quadraticCurveTo(x, y - 6, x + 34, y + 2);
+        ctx.stroke();
+      }
+    } else {
+      const prismLight = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+      prismLight.addColorStop(0, "rgba(119, 235, 255, 0.1)");
+      prismLight.addColorStop(0.5, "rgba(142, 111, 255, 0.025)");
+      prismLight.addColorStop(1, "rgba(255, 105, 221, 0.09)");
+      ctx.globalAlpha = (phonePortrait ? 0.54 : 0.7) * visualProfile.ambientAlphaScale;
+      ctx.fillStyle = prismLight;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      for (let i = 0; i < count; i += 1) {
+        const x = wrap(i * 167 + Math.sin(state.clock * 0.45 + i) * 5, WIDTH);
+        const y = wrap(i * 101 + state.clock * (3 + (i % 3)), HEIGHT);
+        const size = (phonePortrait ? 1.2 : 1.6) + (i % 4) * 0.42;
+        ctx.globalAlpha = (0.18 + (i % 5) * 0.05) * visualProfile.ambientAlphaScale;
+        ctx.fillStyle = i % 2 === 0 ? "rgba(183, 249, 255, 0.82)" : "rgba(241, 180, 255, 0.78)";
+        ctx.beginPath();
+        ctx.moveTo(x, y - size * 1.7);
+        ctx.lineTo(x + size, y);
+        ctx.lineTo(x, y + size * 1.7);
+        ctx.lineTo(x - size, y);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      ctx.globalAlpha = (phonePortrait ? 0.09 : 0.14) * visualProfile.ambientAlphaScale;
+      ctx.strokeStyle = "rgba(214, 247, 255, 0.75)";
+      ctx.lineWidth = phonePortrait ? 5 : 8;
+      for (let beam = 0; beam < (phonePortrait ? 2 : 3); beam += 1) {
+        const x = wrap(beam * 431 + state.clock * 7, WIDTH + 240) - 120;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x + HEIGHT * 0.22, HEIGHT);
+        ctx.stroke();
+      }
     }
     ctx.restore();
   }
@@ -12466,6 +22482,46 @@
     const level = getCurrentLevel();
     const phonePortrait = isPhonePortraitView();
     const material = getMazeMaterial(level);
+    const cacheKey = `${state.levelIndex}|${getMazeWorldKey(level)}|${phonePortrait ? "phone" : "wide"}|${WIDTH}x${HEIGHT}`;
+    let cacheEntry = mazeBackdropCache.get(cacheKey);
+
+    if (!cacheEntry) {
+      const canvas = document.createElement("canvas");
+      canvas.width = WIDTH;
+      canvas.height = HEIGHT;
+      const renderContext = canvas.getContext("2d");
+      if (renderContext) {
+        renderContext.imageSmoothingEnabled = true;
+        renderContext.imageSmoothingQuality = phonePortrait ? "medium" : "high";
+        withMazeRenderContext(renderContext, () => drawBackdropStaticLayers(level, material, phonePortrait));
+        cacheEntry = { canvas };
+        mazeBackdropCache.set(cacheKey, cacheEntry);
+        if (mazeBackdropCache.size > 12) {
+          mazeBackdropCache.delete(mazeBackdropCache.keys().next().value);
+        }
+      }
+    }
+
+    if (cacheEntry?.canvas) {
+      ctx.drawImage(cacheEntry.canvas, 0, 0);
+    } else {
+      drawBackdropStaticLayers(level, material, phonePortrait);
+    }
+
+    // The bespoke ice renderer owns its layered snow and wind pass. Drawing the
+    // legacy backdrop snowflakes as well duplicates the effect and is costly on
+    // mobile GPUs because every flake uses three separate strokes per frame.
+    if (getMazeWorldKey(level) === "ice") {
+      return;
+    }
+
+    const decorationStep = phonePortrait ? 3 : (MOBILE_RUNTIME.reducedEffects ? 2 : 1);
+    for (let index = 0; index < state.backdropStars.length; index += decorationStep) {
+      drawLevelDecoration(state.backdropStars[index], level);
+    }
+  }
+
+  function drawBackdropStaticLayers(level, material, phonePortrait) {
     const gradient = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
     const stops = level.backgroundStops || ["#02050c", "#061020", "#02040a"];
     gradient.addColorStop(0, stops[0]);
@@ -12510,11 +22566,6 @@
     ctx.fillStyle = focus;
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
     ctx.restore();
-
-    const decorationStep = phonePortrait ? 2 : (MOBILE_RUNTIME.reducedEffects ? 2 : 1);
-    for (let index = 0; index < state.backdropStars.length; index += decorationStep) {
-      drawLevelDecoration(state.backdropStars[index], level);
-    }
   }
 
   function drawMazeWorldBackdropDetails(level, material, phonePortrait) {
@@ -12715,10 +22766,18 @@
     ctx.restore();
   }
 
-  function drawArenaVignette() {
+  function getArenaVignetteCanvas() {
     const phonePortrait = isPhonePortraitView();
-    ctx.save();
-    const vignette = ctx.createRadialGradient(
+    const cacheKey = `${WIDTH}x${HEIGHT}:${phonePortrait ? "phone" : "wide"}`;
+    if (getArenaVignetteCanvas.cache?.key === cacheKey) {
+      return getArenaVignetteCanvas.cache.canvas;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    const vignette = renderContext.createRadialGradient(
       WIDTH * 0.5,
       HEIGHT * 0.52,
       HEIGHT * 0.2,
@@ -12729,15 +22788,24 @@
     vignette.addColorStop(0, "rgba(0, 0, 0, 0)");
     vignette.addColorStop(0.62, "rgba(0, 0, 0, 0.02)");
     vignette.addColorStop(1, phonePortrait ? "rgba(0, 0, 0, 0.38)" : "rgba(0, 0, 0, 0.3)");
-    ctx.fillStyle = vignette;
-    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    renderContext.fillStyle = vignette;
+    renderContext.fillRect(0, 0, WIDTH, HEIGHT);
 
-    ctx.globalCompositeOperation = "screen";
-    const topLight = ctx.createLinearGradient(0, 0, 0, HEIGHT * 0.42);
+    renderContext.globalCompositeOperation = "screen";
+    const topLight = renderContext.createLinearGradient(0, 0, 0, HEIGHT * 0.42);
     topLight.addColorStop(0, "rgba(255, 255, 255, 0.045)");
     topLight.addColorStop(1, "rgba(255, 255, 255, 0)");
-    ctx.fillStyle = topLight;
-    ctx.fillRect(0, 0, WIDTH, HEIGHT * 0.42);
+    renderContext.fillStyle = topLight;
+    renderContext.fillRect(0, 0, WIDTH, HEIGHT * 0.42);
+    getArenaVignetteCanvas.cache = { key: cacheKey, canvas };
+    return canvas;
+  }
+
+  function drawArenaVignette() {
+    const vignetteCanvas = getArenaVignetteCanvas();
+    if (!vignetteCanvas) return;
+    ctx.save();
+    ctx.drawImage(vignetteCanvas, 0, 0);
     ctx.restore();
   }
 
@@ -13853,47 +23921,107 @@
   }
 
   function drawArcadeBonusLetterCollectible(collectible, radius) {
-    const pulse = 0.88 + Math.sin(state.clock * 4.2 + collectible.phase) * 0.08;
-    const size = Math.max(radius * 2.5, isPhonePortraitView() ? 22 : 20) * pulse;
+    const phonePortrait = isPhonePortraitView();
+    const pulse = 1 + Math.sin(state.clock * 3.6 + collectible.phase) * (phonePortrait ? 0.025 : 0.045);
+    const worldOneScale = isWorldOneReimagined();
+    const fontSize = worldOneScale
+      ? Math.max(radius * 2.7, phonePortrait ? 25 : 27) * pulse
+      : Math.max(radius * 3.55, phonePortrait ? 34 : 32) * pulse;
     const x = collectible.x;
-    const y = collectible.y;
-    const level = getCurrentLevel();
+    const y = collectible.y + Math.sin(state.clock * 2.7 + collectible.phase) * (phonePortrait ? 0.45 : 0.8);
+    const letter = collectible.letter || "?";
 
     ctx.save();
+    ctx.translate(x, y);
+    if (getMazeWorldKey() === "ice" && !isWorldOneReimagined()) {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.72;
+      const medal = ctx.createLinearGradient(-fontSize * 0.34, 0, fontSize * 0.34, fontSize * 0.3);
+      medal.addColorStop(0, "rgba(181, 241, 247, 0.92)");
+      medal.addColorStop(0.48, "rgba(56, 151, 188, 0.92)");
+      medal.addColorStop(1, "rgba(8, 42, 77, 0.98)");
+      ctx.fillStyle = medal;
+      ctx.strokeStyle = "rgba(211, 252, 255, 0.82)";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.ellipse(0, fontSize * 0.25, fontSize * 0.34, fontSize * 0.11, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.46;
+      ctx.strokeStyle = "rgba(78, 239, 216, 0.86)";
+      ctx.beginPath();
+      ctx.ellipse(0, fontSize * 0.24, fontSize * 0.23, fontSize * 0.065, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
     ctx.globalCompositeOperation = "source-over";
-    ctx.shadowColor = "#ffd84a";
-    ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 4 : 12;
-    const medal = ctx.createRadialGradient(x - size * 0.18, y - size * 0.22, 1, x, y, size * 0.68);
-    medal.addColorStop(0, "#fff7c6");
-    medal.addColorStop(0.44, "#ffd84a");
-    medal.addColorStop(1, level.accent || "#9ef7ff");
-    ctx.fillStyle = medal;
+    ctx.globalAlpha = 0.34;
+    ctx.fillStyle = "rgba(0, 0, 0, 0.62)";
     ctx.beginPath();
-    ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
+    ctx.ellipse(0, fontSize * 0.34, fontSize * 0.28, fontSize * 0.09, 0, 0, Math.PI * 2);
     ctx.fill();
+    ctx.globalAlpha = 1;
 
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "#432b05";
-    ctx.beginPath();
-    ctx.arc(x, y, size * 0.47, 0, Math.PI * 2);
-    ctx.stroke();
-
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = "#111827";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.direction = "rtl";
-    ctx.font = `900 ${Math.round(size * 0.58)}px Assistant, system-ui, sans-serif`;
-    ctx.fillText(collectible.letter || "?", x, y + size * 0.015);
+    ctx.font = `900 ${Math.round(fontSize)}px Assistant, "Arial Hebrew", system-ui, sans-serif`;
+    ctx.lineJoin = "round";
+    ctx.miterLimit = 2;
+
+    ctx.shadowColor = "rgba(0, 0, 0, 0.72)";
+    ctx.shadowBlur = phonePortrait ? 3 : 5;
+    ctx.shadowOffsetY = phonePortrait ? 1.5 : 2;
+    ctx.lineWidth = Math.max(4.2, fontSize * 0.17);
+    ctx.strokeStyle = "rgba(17, 24, 39, 0.96)";
+    ctx.strokeText(letter, 0, 0);
+
+    ctx.shadowColor = "rgba(255, 216, 74, 0.78)";
+    ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 5 : 14;
+    ctx.shadowOffsetY = 0;
+    ctx.lineWidth = Math.max(1.4, fontSize * 0.045);
+    ctx.strokeStyle = "#fff7c6";
+    ctx.strokeText(letter, 0, 0);
+
+    const fill = ctx.createLinearGradient(0, -fontSize * 0.55, 0, fontSize * 0.42);
+    fill.addColorStop(0, "#ffffff");
+    fill.addColorStop(0.26, "#fff7c6");
+    fill.addColorStop(0.58, "#ffd84a");
+    fill.addColorStop(1, "#ff9f1c");
+    ctx.fillStyle = fill;
+    ctx.fillText(letter, 0, 0);
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.38;
+    ctx.strokeStyle = "rgba(158, 247, 255, 0.78)";
+    ctx.lineWidth = Math.max(0.9, fontSize * 0.026);
+    ctx.strokeText(letter, 0, -fontSize * 0.015);
     ctx.restore();
   }
 
   function drawArcadeBonusKeyCollectible(collectible, radius) {
     const x = collectible.x;
     const y = collectible.y + Math.sin(state.clock * 4 + collectible.phase) * 1.1;
-    const scale = Math.max(radius / 7.2, isPhonePortraitView() ? 1.04 : 1);
+    const scale = isWorldOneReimagined()
+      ? Math.max(radius / 8.6, isPhonePortraitView() ? 0.82 : 0.86)
+      : Math.max(radius / 7.2, isPhonePortraitView() ? 1.04 : 1);
 
     ctx.save();
+    if (getMazeWorldKey() === "ice" && !isWorldOneReimagined()) {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 0.46;
+      ctx.fillStyle = "rgba(3, 18, 39, 0.78)";
+      ctx.beginPath();
+      ctx.ellipse(x, y + 8 * scale, 15 * scale, 5 * scale, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.58;
+      ctx.strokeStyle = "rgba(80, 235, 218, 0.84)";
+      ctx.lineWidth = 1.1;
+      ctx.beginPath();
+      ctx.ellipse(x, y + 7 * scale, 12 * scale, 3.6 * scale, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
     ctx.translate(x, y);
     ctx.rotate(Math.sin(state.clock * 2.8 + collectible.phase) * 0.12);
     ctx.scale(scale, scale);
@@ -13930,6 +24058,139 @@
     ctx.restore();
   }
 
+  function renderIceWorldChestPedestal(pos, ready, opened) {
+    if (getMazeWorldKey() !== "ice" || isWorldOneReimagined()) return;
+    const width = TILE * (opened ? 2.55 : 2.35);
+    const height = TILE * 0.62;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.74;
+    ctx.fillStyle = "rgba(0, 10, 26, 0.78)";
+    ctx.beginPath();
+    ctx.ellipse(pos.x, pos.y + TILE * 0.58, width * 0.54, height * 0.38, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const ice = ctx.createLinearGradient(pos.x - width * 0.5, pos.y, pos.x + width * 0.5, pos.y + height);
+    ice.addColorStop(0, "rgba(190, 244, 249, 0.9)");
+    ice.addColorStop(0.36, "rgba(69, 166, 198, 0.92)");
+    ice.addColorStop(1, "rgba(9, 45, 80, 0.98)");
+    ctx.globalAlpha = 0.96;
+    ctx.fillStyle = ice;
+    ctx.strokeStyle = "rgba(215, 251, 255, 0.82)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.ellipse(pos.x, pos.y + TILE * 0.47, width * 0.48, height * 0.31, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = ready || opened ? 0.82 : 0.34;
+    ctx.strokeStyle = ready || opened ? "rgba(255, 216, 92, 0.94)" : "rgba(78, 230, 218, 0.72)";
+    ctx.shadowColor = ready || opened ? "#ffd765" : "#4ce8d6";
+    ctx.shadowBlur = ready || opened ? 12 : 5;
+    ctx.lineWidth = ready || opened ? 1.8 : 1.1;
+    for (let rune = 0; rune < 6; rune += 1) {
+      const angle = rune * Math.PI / 3;
+      const x1 = pos.x + Math.cos(angle) * width * 0.28;
+      const y1 = pos.y + TILE * 0.47 + Math.sin(angle) * height * 0.13;
+      const x2 = pos.x + Math.cos(angle) * width * 0.4;
+      const y2 = pos.y + TILE * 0.47 + Math.sin(angle) * height * 0.2;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = 0.66;
+    ctx.fillStyle = "rgba(243, 255, 255, 0.74)";
+    ctx.beginPath();
+    ctx.ellipse(pos.x - width * 0.31, pos.y + TILE * 0.54, width * 0.16, height * 0.11, -0.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function getIceWorldChestPedestalSprite(ready, opened) {
+    const width = Math.ceil(TILE * 4.2);
+    const height = Math.ceil(TILE * 1.65);
+    const origin = { x: width * 0.5, y: TILE * 0.3 };
+    const cacheKey = `${TILE}:${ready ? 1 : 0}:${opened ? 1 : 0}:${isPhonePortraitView() ? "phone" : "wide"}`;
+    getIceWorldChestPedestalSprite.cache ||= new Map();
+    if (getIceWorldChestPedestalSprite.cache.has(cacheKey)) {
+      return getIceWorldChestPedestalSprite.cache.get(cacheKey);
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    withMazeRenderContext(renderContext, () => renderIceWorldChestPedestal(origin, ready, opened));
+    const sprite = { canvas, origin };
+    getIceWorldChestPedestalSprite.cache.set(cacheKey, sprite);
+    return sprite;
+  }
+
+  function drawIceWorldChestPedestal(pos, ready, opened) {
+    if (isWorldOneReimagined()) {
+      drawWorldOneChestPedestal(pos, ready, opened);
+      return;
+    }
+    if (getMazeWorldKey() !== "ice") return;
+    const sprite = getIceWorldChestPedestalSprite(ready, opened);
+    if (!sprite) return;
+    ctx.drawImage(sprite.canvas, pos.x - sprite.origin.x, pos.y - sprite.origin.y);
+  }
+
+  function drawWorldOneChestPedestal(pos, ready, opened) {
+    const concept = getWorldOneConcept();
+    const theme = concept.theme;
+    const width = TILE * (opened ? 2.75 : 2.5);
+    const height = TILE * 0.58;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.42;
+    ctx.fillStyle = theme.wallShadow;
+    ctx.beginPath();
+    ctx.ellipse(pos.x, pos.y + TILE * 0.58, width * 0.58, height * 0.42, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const stone = ctx.createLinearGradient(pos.x - width * 0.5, pos.y, pos.x + width * 0.5, pos.y + height);
+    stone.addColorStop(0, theme.rim);
+    stone.addColorStop(0.34, theme.wall[1]);
+    stone.addColorStop(1, theme.wallSide);
+    ctx.globalAlpha = 0.96;
+    ctx.fillStyle = stone;
+    ctx.strokeStyle = theme.rim;
+    ctx.lineWidth = 1.15;
+    ctx.beginPath();
+    ctx.ellipse(pos.x, pos.y + TILE * 0.48, width * 0.5, height * 0.32, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = ready || opened ? 0.82 : 0.38;
+    ctx.strokeStyle = ready || opened ? theme.accent : theme.decor;
+    ctx.shadowColor = ready || opened ? theme.accent : theme.floorGlow;
+    ctx.shadowBlur = ready || opened ? 11 : 4;
+    ctx.lineWidth = ready || opened ? 1.7 : 1.05;
+    ctx.beginPath();
+    ctx.ellipse(pos.x, pos.y + TILE * 0.47, width * 0.36, height * 0.2, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    for (let mark = 0; mark < 6; mark += 1) {
+      const angle = mark * Math.PI / 3;
+      ctx.beginPath();
+      ctx.moveTo(
+        pos.x + Math.cos(angle) * width * 0.31,
+        pos.y + TILE * 0.47 + Math.sin(angle) * height * 0.14
+      );
+      ctx.lineTo(
+        pos.x + Math.cos(angle) * width * 0.42,
+        pos.y + TILE * 0.47 + Math.sin(angle) * height * 0.22
+      );
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
   function drawArcadeBonusChest() {
     if (!state.player) {
       return;
@@ -13943,6 +24204,7 @@
     const pos = centerOfCell(chestCell.x, chestCell.y);
     const ready = !state.arcadeBonus.chestOpened && state.arcadeBonus.keysCollected >= CONFIG.arcadeBonus.keysRequired;
     const opened = state.arcadeBonus.chestOpened;
+    drawIceWorldChestPedestal(pos, ready, opened);
     const openProgress = opened
       ? clamp((state.clock - (state.arcadeBonus.chestOpenedAt || state.clock)) / 0.42, 0, 1)
       : 0;
@@ -14012,6 +24274,9 @@
       ctx.translate(pos.x, pos.y + bob + lift);
       ctx.rotate(rotation);
       ctx.globalAlpha = alpha;
+      if (isWorldOneAuthoredBoardReady()) {
+        ctx.filter = "sepia(1) saturate(1.65) hue-rotate(-18deg) brightness(1.08) contrast(0.94)";
+      }
       ctx.drawImage(image, -size / 2, -size * 0.62, size, size);
       ctx.restore();
     };
@@ -14121,14 +24386,571 @@
     ctx.restore();
   }
 
+  function getIceV3CollectibleRole(collectible) {
+    if (collectible.kind === "power") return "powerCollectible";
+    if (collectible.value > 10) return "bonusCollectible";
+    const cellX = Math.floor(collectible.x / TILE);
+    const cellY = Math.floor(collectible.y / TILE);
+    const variant = getIceV3VariantIndex(cellX, cellY, 0, 1301, 3);
+    return `collectible${variant}`;
+  }
+
+  function drawPremiumWorldPathGem(collectible, radius, reducedMotion = false) {
+    const world = getMazeWorldKey();
+    const palette = {
+      ice: { light: "#f2ffff", mid: "#55e8ff", deep: "#0876ad", edge: "#d9fbff", glow: "rgba(61, 218, 255, 0.42)", glowSoft: "rgba(61, 218, 255, 0.12)" },
+      lava: { light: "#fff2bd", mid: "#ff9a28", deep: "#a92712", edge: "#ffd27a", glow: "rgba(255, 92, 22, 0.44)", glowSoft: "rgba(255, 92, 22, 0.12)" },
+      ancient: { light: "#e7fffb", mid: "#34dcc8", deep: "#087d83", edge: "#b8fff3", glow: "rgba(38, 221, 196, 0.4)", glowSoft: "rgba(38, 221, 196, 0.12)" },
+      diamond: { light: "#fff6ff", mid: "#ff76df", deep: "#7136c7", edge: "#e9fbff", glow: "rgba(255, 91, 215, 0.42)", glowSoft: "rgba(255, 91, 215, 0.12)" }
+    }[world] || { light: "#ffffff", mid: "#77ddff", deep: "#3176bd", edge: "#ffffff", glow: "rgba(100, 220, 255, 0.4)", glowSoft: "rgba(100, 220, 255, 0.12)" };
+    const pulse = reducedMotion ? 1 : 1 + Math.sin(state.clock * 4.1 + collectible.phase) * 0.035;
+    const size = Math.max(radius * 1.52, isPhonePortraitView() ? 4.65 : 4.8) * pulse;
+    const y = collectible.y + (reducedMotion ? 0 : Math.sin(state.clock * 2.45 + collectible.phase) * 0.55);
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.46;
+    ctx.fillStyle = "rgba(0, 5, 18, 0.72)";
+    ctx.beginPath();
+    ctx.ellipse(collectible.x, y + size * 1.08, size * 0.74, size * 0.2, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.7;
+    const halo = ctx.createRadialGradient(collectible.x, y, 0, collectible.x, y, size * 2.1);
+    halo.addColorStop(0, palette.glow);
+    halo.addColorStop(0.5, palette.glowSoft);
+    halo.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(collectible.x, y, size * 2.1, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.translate(collectible.x, y);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 1;
+    ctx.shadowColor = palette.glow;
+    ctx.shadowBlur = reducedMotion ? 2.5 : (isPhonePortraitView() ? 4 : 6);
+    ctx.strokeStyle = palette.edge;
+    ctx.lineWidth = isPhonePortraitView() ? 0.72 : 0.92;
+    ctx.lineJoin = "round";
+
+    const topY = -size * 1.2;
+    const shoulderY = -size * 0.28;
+    const bottomY = size * 1.16;
+    const halfWidth = size * 0.92;
+    ctx.beginPath();
+    ctx.moveTo(0, topY);
+    ctx.lineTo(halfWidth, shoulderY);
+    ctx.lineTo(0, bottomY);
+    ctx.lineTo(-halfWidth, shoulderY);
+    ctx.closePath();
+    const body = ctx.createLinearGradient(-halfWidth, topY, halfWidth, bottomY);
+    body.addColorStop(0, palette.light);
+    body.addColorStop(0.34, palette.mid);
+    body.addColorStop(1, palette.deep);
+    ctx.fillStyle = body;
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = `${palette.light}d9`;
+    ctx.beginPath();
+    ctx.moveTo(0, topY);
+    ctx.lineTo(halfWidth, shoulderY);
+    ctx.lineTo(0, shoulderY + size * 0.28);
+    ctx.lineTo(-halfWidth, shoulderY);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = `${palette.deep}c7`;
+    ctx.beginPath();
+    ctx.moveTo(0, shoulderY + size * 0.28);
+    ctx.lineTo(0, bottomY);
+    ctx.lineTo(-halfWidth, shoulderY);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.72;
+    ctx.strokeStyle = palette.edge;
+    ctx.lineWidth = isPhonePortraitView() ? 0.58 : 0.72;
+    ctx.beginPath();
+    ctx.moveTo(-halfWidth, shoulderY);
+    ctx.lineTo(0, shoulderY + size * 0.28);
+    ctx.lineTo(halfWidth, shoulderY);
+    ctx.moveTo(0, topY);
+    ctx.lineTo(0, bottomY);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawIceV3Collectible(collectible, gemRadius, tileset, reducedMotion = false) {
+    if (!tileset) return false;
+    const role = getIceV3CollectibleRole(collectible);
+    const power = collectible.kind === "power";
+    const bonus = collectible.value > 10;
+    if (!power) {
+      drawPremiumWorldPathGem(collectible, gemRadius * (bonus ? 1.24 : 1), reducedMotion);
+      return true;
+    }
+    const baseSize = power
+      ? Math.max(gemRadius * 5.1, isPhonePortraitView() ? 30 : 28)
+      : bonus
+        ? Math.max(gemRadius * 4.5, isPhonePortraitView() ? 25 : 23)
+        : Math.max(gemRadius * 3.72, isPhonePortraitView() ? 18.8 : 18);
+    const pulse = reducedMotion ? 1 : 1 + Math.sin(state.clock * 3.4 + collectible.phase) * 0.025;
+    const size = baseSize * pulse;
+    const y = collectible.y + (reducedMotion ? 0 : Math.sin(state.clock * 2.2 + collectible.phase) * 0.5);
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    const halo = ctx.createRadialGradient(collectible.x, y, 0, collectible.x, y, size * 0.58);
+    halo.addColorStop(0, power ? "rgba(119, 238, 255, 0.24)" : "rgba(0, 219, 255, 0.095)");
+    halo.addColorStop(0.48, power ? "rgba(91, 155, 255, 0.1)" : "rgba(0, 145, 222, 0.038)");
+    halo.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(collectible.x, y, size * 0.58, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.52;
+    ctx.fillStyle = "rgba(0, 10, 26, 0.78)";
+    ctx.beginPath();
+    ctx.ellipse(collectible.x, y + size * 0.3, size * 0.25, size * 0.075, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+    const drawn = drawIceV3AtlasCrop(
+      tileset,
+      role,
+      collectible.x - size * 0.5,
+      y - size * 0.58,
+      size,
+      size
+    );
+    if (!drawn) return false;
+
+    const drawFacetedCrystal = (cx, cy, scale, rotation = 0) => {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotation);
+      const width = scale * 0.43;
+      const height = scale * 0.68;
+      const crystal = ctx.createLinearGradient(-width * 0.42, -height * 0.5, width * 0.38, height * 0.5);
+      crystal.addColorStop(0, power ? "#d9fdff" : "#bffbff");
+      crystal.addColorStop(0.34, power ? "#54e8ff" : "#18d9f5");
+      crystal.addColorStop(0.7, power ? "#168fd6" : "#008fc5");
+      crystal.addColorStop(1, power ? "#07518d" : "#005781");
+      ctx.fillStyle = crystal;
+      ctx.strokeStyle = "rgba(195, 250, 255, 0.92)";
+      ctx.lineWidth = isPhonePortraitView() ? 0.78 : 0.98;
+      ctx.beginPath();
+      ctx.moveTo(0, -height * 0.5);
+      ctx.lineTo(width * 0.5, -height * 0.16);
+      ctx.lineTo(width * 0.36, height * 0.34);
+      ctx.lineTo(0, height * 0.5);
+      ctx.lineTo(-width * 0.36, height * 0.34);
+      ctx.lineTo(-width * 0.5, -height * 0.16);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = power ? "rgba(19, 111, 204, 0.5)" : "rgba(0, 84, 135, 0.5)";
+      ctx.beginPath();
+      ctx.moveTo(0, -height * 0.5);
+      ctx.lineTo(0, height * 0.5);
+      ctx.lineTo(-width * 0.36, height * 0.34);
+      ctx.lineTo(-width * 0.5, -height * 0.16);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.globalCompositeOperation = "screen";
+      ctx.strokeStyle = "rgba(239, 255, 255, 0.9)";
+      ctx.globalAlpha = 0.78;
+      ctx.lineWidth = isPhonePortraitView() ? 0.62 : 0.78;
+      ctx.beginPath();
+      ctx.moveTo(-width * 0.28, -height * 0.15);
+      ctx.lineTo(0, -height * 0.5);
+      ctx.lineTo(width * 0.28, -height * 0.15);
+      ctx.moveTo(0, -height * 0.45);
+      ctx.lineTo(0, height * 0.34);
+      ctx.stroke();
+      ctx.restore();
+    };
+
+    if (power) {
+      drawFacetedCrystal(collectible.x, y - size * 0.02, size * 0.72, 0);
+      drawFacetedCrystal(collectible.x - size * 0.19, y + size * 0.08, size * 0.48, -0.28);
+      drawFacetedCrystal(collectible.x + size * 0.19, y + size * 0.08, size * 0.48, 0.28);
+    } else {
+      const tilt = (getIceV3VariantIndex(Math.floor(collectible.x / TILE), Math.floor(collectible.y / TILE), 0, 1327, 3) - 1) * 0.055;
+      drawFacetedCrystal(collectible.x, y - size * 0.015, size * (bonus ? 0.9 : 0.82), tilt);
+    }
+    return true;
+  }
+
+  function getIceWorldCollectibleSprite(variant = 0) {
+    const key = String(variant % 3);
+    getIceWorldCollectibleSprite.cache ||= new Map();
+    if (getIceWorldCollectibleSprite.cache.has(key)) {
+      return getIceWorldCollectibleSprite.cache.get(key);
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = 40;
+    canvas.height = 48;
+    const renderContext = canvas.getContext("2d");
+    if (!renderContext) return null;
+    const palettes = [
+      ["#ffffff", "#bcebf8", "#4d91bd"],
+      ["#effdff", "#91d7ef", "#356fa8"],
+      ["#f7fbff", "#b8d7f3", "#516fa4"]
+    ];
+    const palette = palettes[variant % palettes.length];
+    renderContext.translate(20, 23);
+    renderContext.shadowColor = "rgba(205, 244, 255, 0.82)";
+    renderContext.shadowBlur = 4;
+    const gem = renderContext.createLinearGradient(-8, -15, 9, 14);
+    gem.addColorStop(0, palette[0]);
+    gem.addColorStop(0.42, palette[1]);
+    gem.addColorStop(1, palette[2]);
+    renderContext.fillStyle = gem;
+    renderContext.strokeStyle = "rgba(231, 254, 255, 0.9)";
+    renderContext.lineWidth = 1.2;
+    renderContext.beginPath();
+    renderContext.moveTo(-5, -13);
+    renderContext.lineTo(5, -13);
+    renderContext.lineTo(9, -2);
+    renderContext.lineTo(4, 13);
+    renderContext.lineTo(-4, 13);
+    renderContext.lineTo(-9, -2);
+    renderContext.closePath();
+    renderContext.fill();
+    renderContext.stroke();
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.globalAlpha = 0.7;
+    renderContext.strokeStyle = "rgba(255, 255, 255, 0.94)";
+    renderContext.lineWidth = 1;
+    renderContext.beginPath();
+    renderContext.moveTo(-5, -11);
+    renderContext.lineTo(0, -3);
+    renderContext.lineTo(5, -11);
+    renderContext.moveTo(0, -3);
+    renderContext.lineTo(0, 10);
+    renderContext.stroke();
+    getIceWorldCollectibleSprite.cache.set(key, canvas);
+    return canvas;
+  }
+
+  function drawIceWorldCollectibleShard(collectible, gemRadius, reducedMotion = false) {
+    const cellX = Math.floor(collectible.x / TILE);
+    const cellY = Math.floor(collectible.y / TILE);
+    const variant = Math.abs(cellX * 7 + cellY * 11 + state.levelIndex) % 3;
+    const sprite = getIceWorldCollectibleSprite(variant);
+    if (!sprite) return;
+    const size = Math.max(gemRadius * (isPhonePortraitView() ? 3.15 : 2.8), isPhonePortraitView() ? 11.5 : 11);
+    const y = collectible.y + (reducedMotion ? 0 : Math.sin(state.clock * 2.6 + collectible.phase) * 0.45);
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.34;
+    ctx.fillStyle = "rgba(0, 8, 22, 0.74)";
+    ctx.beginPath();
+    ctx.ellipse(collectible.x, y + size * 0.46, size * 0.3, size * 0.1, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.98;
+    ctx.drawImage(sprite, collectible.x - size * 0.5, y - size * 0.62, size, size * 1.2);
+    ctx.restore();
+  }
+
+  function drawWorldOneCollectible(collectible, gemRadius, reducedMotion = false) {
+    const concept = getWorldOneConcept();
+    const palette = concept.collectible;
+    const bonus = collectible.value > 10;
+    const size = Math.max(gemRadius * (bonus ? 1.38 : 0.7), isPhonePortraitView() ? (bonus ? 3.4 : 2.05) : (bonus ? 3.6 : 2.2));
+    const y = collectible.y + (reducedMotion ? 0 : Math.sin(state.clock * 2.8 + collectible.phase) * 0.48);
+    const pulse = reducedMotion ? 1 : 1 + Math.sin(state.clock * 4.2 + collectible.phase) * 0.045;
+
+    ctx.save();
+    ctx.translate(collectible.x, y);
+    ctx.scale(pulse, pulse);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.34;
+    ctx.fillStyle = palette.shadow;
+    ctx.beginPath();
+    ctx.ellipse(0, size * 1.05, size * 0.85, size * 0.26, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = bonus ? 0.72 : 0.08;
+    const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, size * (bonus ? 2.5 : 1.15));
+    halo.addColorStop(0, palette.glow);
+    halo.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(0, 0, size * (bonus ? 2.5 : 1.15), 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = bonus ? 0.98 : 0.88;
+    ctx.fillStyle = palette.mid;
+    ctx.strokeStyle = palette.edge;
+    ctx.lineWidth = bonus ? (isPhonePortraitView() ? 0.75 : 0.95) : (isPhonePortraitView() ? 0.52 : 0.66);
+    ctx.shadowColor = palette.glow;
+    ctx.shadowBlur = reducedMotion ? 1 : (bonus ? 9 : 0.8);
+
+    if (concept.material === "garden") {
+      ctx.rotate(-0.3);
+      ctx.beginPath();
+      ctx.moveTo(0, -size * 1.1);
+      ctx.bezierCurveTo(size * 0.85, -size * 0.55, size * 0.72, size * 0.72, 0, size * 1.08);
+      ctx.bezierCurveTo(-size * 0.72, size * 0.72, -size * 0.85, -size * 0.55, 0, -size * 1.1);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.72;
+      ctx.strokeStyle = palette.core;
+      ctx.lineWidth *= 0.72;
+      ctx.beginPath();
+      ctx.moveTo(0, -size * 0.82);
+      ctx.quadraticCurveTo(-size * 0.18, 0, 0, size * 0.78);
+      ctx.stroke();
+    } else if (concept.material === "workshop") {
+      ctx.beginPath();
+      for (let point = 0; point < 6; point += 1) {
+        const angle = point * Math.PI / 3 - Math.PI / 2;
+        const px = Math.cos(angle) * size;
+        const py = Math.sin(angle) * size;
+        if (point === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = "rgba(36, 39, 55, 0.86)";
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 0.34, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.68;
+      ctx.fillStyle = palette.core;
+      ctx.beginPath();
+      ctx.arc(-size * 0.18, -size * 0.2, size * 0.2, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.moveTo(0, -size * 1.18);
+      ctx.lineTo(size * 0.34, -size * 0.28);
+      ctx.lineTo(size * 1.1, 0);
+      ctx.lineTo(size * 0.34, size * 0.28);
+      ctx.lineTo(0, size * 1.18);
+      ctx.lineTo(-size * 0.34, size * 0.28);
+      ctx.lineTo(-size * 1.1, 0);
+      ctx.lineTo(-size * 0.34, -size * 0.28);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.72;
+      ctx.fillStyle = palette.core;
+      ctx.beginPath();
+      ctx.arc(-size * 0.12, -size * 0.15, size * 0.22, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (bonus) {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.74;
+      ctx.strokeStyle = palette.core;
+      ctx.lineWidth = isPhonePortraitView() ? 0.8 : 1.05;
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 1.42, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOnePowerCollectible(collectible, radius, reducedMotion = false) {
+    const concept = getWorldOneConcept();
+    const palette = concept.collectible;
+    const size = Math.max(radius * 1.45, isPhonePortraitView() ? 10 : 9);
+    const y = collectible.y + (reducedMotion ? 0 : Math.sin(state.clock * 2.2 + collectible.phase) * 0.75);
+    ctx.save();
+    ctx.translate(collectible.x, y);
+    ctx.globalCompositeOperation = "screen";
+    const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 2.1);
+    halo.addColorStop(0, palette.glow);
+    halo.addColorStop(0.5, "rgba(255, 255, 255, 0.08)");
+    halo.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 2.1, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.rotate(reducedMotion ? 0 : state.clock * 0.28);
+    ctx.strokeStyle = palette.edge;
+    ctx.fillStyle = palette.mid;
+    ctx.lineWidth = isPhonePortraitView() ? 1.25 : 1.65;
+    ctx.shadowColor = palette.glow;
+    ctx.shadowBlur = reducedMotion ? 4 : 12;
+    ctx.beginPath();
+    for (let point = 0; point < 16; point += 1) {
+      const angle = point * Math.PI / 8;
+      const pointRadius = point % 2 === 0 ? size * 1.15 : size * 0.72;
+      const px = Math.cos(angle) * pointRadius;
+      const py = Math.sin(angle) * pointRadius;
+      if (point === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = palette.core;
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.34, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function isStaticPhoneCollectible(collectible) {
+    return collectible.kind !== "power"
+      && collectible.kind !== "boss-core";
+  }
+
+  function getStaticPhoneCollectibleSignature() {
+    const iceV3Tileset = getReadyIceV3Tileset();
+    const iceV3Signature = iceV3Tileset?.cacheKey || "ice-v3-fallback";
+    const conceptSignature = isWorldOneReimagined() ? getWorldOneConceptKey() : "standard";
+    return `${state.levelIndex}|${state.collectiblesRevision}|${WIDTH}x${HEIGHT}|${iceV3Signature}|${conceptSignature}`;
+  }
+
+  function prepareStaticPhoneCollectibleLayer(level) {
+    const signature = getStaticPhoneCollectibleSignature();
+    const sheet = getMazeWorldSheet(level);
+    const iceV3Tileset = getReadyIceV3Tileset(level);
+    let canvas = collectibleStaticLayerCache.canvas;
+    if (!canvas || canvas.width !== WIDTH || canvas.height !== HEIGHT) {
+      canvas = document.createElement("canvas");
+      canvas.width = WIDTH;
+      canvas.height = HEIGHT;
+      collectibleStaticLayerCache.canvas = canvas;
+      collectibleStaticLayerCache.signature = "";
+      collectibleStaticLayerCache.dynamic = [];
+    }
+
+    if (collectibleStaticLayerCache.signature !== signature) {
+      const renderContext = canvas.getContext("2d");
+      if (!renderContext) {
+        return null;
+      }
+      renderContext.clearRect(0, 0, WIDTH, HEIGHT);
+      withMazeRenderContext(renderContext, () => {
+        ctx.save();
+        ctx.shadowColor = level.bonusCollectibleColor || "rgba(255, 216, 74, 0.6)";
+        ctx.shadowBlur = 2;
+        const dynamic = [];
+        for (const collectible of state.collectibles.values()) {
+          if (!isStaticPhoneCollectible(collectible)) {
+            dynamic.push(collectible);
+            continue;
+          }
+          if (collectible.kind === "bonus-letter") {
+            drawArcadeBonusLetterCollectible(collectible, collectible.radius);
+            continue;
+          }
+          if (collectible.kind === "bonus-key") {
+            drawArcadeBonusKeyCollectible(collectible, collectible.radius);
+            continue;
+          }
+          const bonus = collectible.value > 10;
+          const gemRadius = bonus
+            ? Math.max(collectible.radius * 1.12, isPhonePortraitView() ? 4.6 : 4.4)
+            : Math.max(collectible.radius * 0.82, 3.1);
+          if (iceV3Tileset) {
+            drawIceV3Collectible(collectible, gemRadius, iceV3Tileset, true);
+            continue;
+          }
+          if (sheet && bonus) {
+            drawReferenceCollectibleSprite(
+              collectible.x,
+              collectible.y,
+              gemRadius * 3.25,
+              sheet,
+              true,
+              collectible.phase,
+              { reducedMotion: true }
+            );
+            continue;
+          }
+          if (isWorldOneReimagined(level)) {
+            drawWorldOneCollectible(collectible, gemRadius, true);
+            continue;
+          }
+          if (getMazeWorldKey(level) === "ice") {
+            drawIceWorldCollectibleShard(collectible, gemRadius, true);
+            continue;
+          }
+          ctx.globalAlpha = bonus ? 0.92 : 0.78;
+          ctx.fillStyle = bonus ? level.bonusCollectibleColor : level.collectibleColor;
+          if (bonus) {
+            drawPlusSymbol(collectible.x, collectible.y, gemRadius + 2, collectible.phase);
+          } else {
+            drawPremiumWorldPathGem(collectible, gemRadius, true);
+          }
+          if (bonus) {
+            ctx.globalCompositeOperation = "screen";
+            ctx.globalAlpha = 0.42;
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(collectible.x, collectible.y - gemRadius * 1.05);
+            ctx.lineTo(collectible.x, collectible.y + gemRadius * 1.05);
+            ctx.moveTo(collectible.x - gemRadius * 0.72, collectible.y);
+            ctx.lineTo(collectible.x + gemRadius * 0.72, collectible.y);
+            ctx.stroke();
+          }
+          ctx.globalCompositeOperation = "source-over";
+        }
+        ctx.restore();
+        collectibleStaticLayerCache.dynamic = dynamic;
+      });
+      collectibleStaticLayerCache.signature = signature;
+    }
+
+    return {
+      canvas,
+      dynamic: collectibleStaticLayerCache.dynamic,
+      signature
+    };
+  }
+
+  function drawStaticPhoneCollectibleLayer(level) {
+    const layer = prepareStaticPhoneCollectibleLayer(level);
+    if (!layer) {
+      return [];
+    }
+    if (activeWorldOneMobileCollectibleSignature !== layer.signature) {
+      ctx.save();
+      ctx.shadowBlur = 0;
+      ctx.drawImage(layer.canvas, 0, 0);
+      ctx.restore();
+    }
+    return layer.dynamic;
+  }
+
   function drawCollectibles() {
     const level = getCurrentLevel();
     const phonePortrait = isPhonePortraitView();
     const sheet = getMazeWorldSheet(level);
+    const iceV3Tileset = getReadyIceV3Tileset(level);
     ctx.save();
+    const collectibles = drawStaticPhoneCollectibleLayer(level) || [];
     ctx.shadowColor = level.bonusCollectibleColor || "rgba(255, 216, 74, 0.6)";
     ctx.shadowBlur = phonePortrait ? 3 : 8;
-    for (const collectible of state.collectibles.values()) {
+    for (const collectible of collectibles) {
       const pulse = phonePortrait ? 1 : 1 + Math.sin(state.clock * 5 + collectible.phase) * 0.18;
       const radius = collectible.radius * pulse;
       if (collectible.kind === "bonus-letter") {
@@ -14140,8 +24962,12 @@
         continue;
       }
       if (collectible.kind === "power") {
-        if (sheet) {
+        if (iceV3Tileset) {
+          drawIceV3Collectible(collectible, radius, iceV3Tileset, phonePortrait);
+        } else if (sheet) {
           drawReferenceCollectibleSprite(collectible.x, collectible.y, Math.max(15, radius * 3.4), sheet, true, collectible.phase, { reducedMotion: phonePortrait });
+        } else if (isWorldOneReimagined(level)) {
+          drawWorldOnePowerCollectible(collectible, radius, phonePortrait);
         } else {
           drawPowerSnowflakeCollectible(collectible.x, collectible.y, radius, collectible.phase);
         }
@@ -14155,6 +24981,11 @@
         ? Math.max(radius * 1.12, phonePortrait ? 4.6 : 4.4)
         : Math.max(radius * 0.82, phonePortrait ? 3.1 : 3.4);
       ctx.fillStyle = collectible.value > 10 ? level.bonusCollectibleColor : level.collectibleColor;
+
+      if (iceV3Tileset) {
+        drawIceV3Collectible(collectible, gemRadius, iceV3Tileset, phonePortrait);
+        continue;
+      }
 
       if (sheet && collectible.value > 10) {
         drawReferenceCollectibleSprite(
@@ -14178,31 +25009,22 @@
         drawDiamond(collectible.x, collectible.y, gemRadius + 3);
         ctx.stroke();
       } else {
-        ctx.globalAlpha = phonePortrait ? 0.78 : 0.9;
-        const gemGradient = ctx.createRadialGradient(
-          collectible.x - gemRadius * 0.25,
-          collectible.y - gemRadius * 0.35,
-          1,
-          collectible.x,
-          collectible.y,
-          gemRadius * 1.5
-        );
-        gemGradient.addColorStop(0, "#ffffff");
-        gemGradient.addColorStop(0.42, level.collectibleColor);
-        gemGradient.addColorStop(1, level.accent || level.collectibleColor);
-        ctx.fillStyle = gemGradient;
-        ctx.beginPath();
-        ctx.arc(collectible.x, collectible.y, gemRadius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = phonePortrait ? 0.28 : 0.38;
-        ctx.strokeStyle = "#ffffff";
-        ctx.lineWidth = phonePortrait ? 0.7 : 0.9;
-        ctx.beginPath();
-        ctx.arc(collectible.x, collectible.y, gemRadius * 1.18, 0, Math.PI * 2);
-        ctx.stroke();
+        if (isWorldOneReimagined(level)) {
+          drawWorldOneCollectible(collectible, gemRadius, phonePortrait);
+          continue;
+        }
+        if (getMazeWorldKey(level) === "ice") {
+          drawIceWorldCollectibleShard(collectible, gemRadius, phonePortrait);
+          continue;
+        }
+        drawPremiumWorldPathGem(collectible, gemRadius, phonePortrait);
       }
     }
-    drawArcadeBonusChest();
+    // World one draws the chest after the actors so its authored landmark
+    // stays in the foreground. Avoid drawing the exact same chest twice.
+    if (!isWorldOneReimagined(level)) {
+      drawArcadeBonusChest();
+    }
     ctx.restore();
   }
 
@@ -14236,6 +25058,21 @@
     const cx = px + TILE / 2;
     const cy = py + TILE / 2;
     const palette = getHazardVisualPalette(hazard);
+
+    if (isWorldOneReimagined() && (hazard.type === "boss-ice-trail" || hazard.type === "ice-slick")) {
+      drawWorldOneSlipHazardCell(px, py, hazard, index, visual);
+      return;
+    }
+
+    if (hazard.type === "boss-ice-trail") {
+      drawBossIceTrailCell(px, py, inset, hazard, index, visual, palette);
+      return;
+    }
+    if (hazard.type === "ice-slick") {
+      drawIceWorldSlickHazardCell(px, py, hazard, index, visual, palette);
+      return;
+    }
+
     const materialAlpha = visual.active
       ? 1
       : 0.42 + visual.telegraphProgress * 0.42;
@@ -14291,8 +25128,286 @@
     ctx.restore();
   }
 
+  function drawWorldOneSlipHazardCell(px, py, hazard, index, visual) {
+    const concept = getWorldOneConcept();
+    const theme = concept.theme;
+    const x = px + 2.2;
+    const y = py + 2.2;
+    const size = TILE - 4.4;
+    const cx = px + TILE * 0.5;
+    const cy = py + TILE * 0.5;
+    const activeAlpha = visual.active ? 0.98 : 0.42 + visual.telegraphProgress * 0.38;
+    const danger = visual.active ? "rgba(255, 93, 110, 0.92)" : theme.accent;
+    const shimmer = Math.sin(state.clock * 5.2 + index * 0.9 + hazard.phase) * 0.5 + 0.5;
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 0.42;
+    ctx.fillStyle = theme.wallShadow;
+    ctx.beginPath();
+    ctx.ellipse(cx, py + TILE * 0.78, TILE * 0.43, TILE * 0.14, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const channel = ctx.createLinearGradient(x, y, x + size, y + size);
+    channel.addColorStop(0, theme.floor[1]);
+    channel.addColorStop(0.5, theme.floor[0]);
+    channel.addColorStop(1, theme.floor[2]);
+    ctx.globalAlpha = activeAlpha;
+    ctx.fillStyle = channel;
+    ctx.strokeStyle = danger;
+    ctx.shadowColor = danger;
+    ctx.shadowBlur = visual.active ? 10 : 4;
+    ctx.lineWidth = visual.active ? 1.8 : 1.15;
+    roundedRect(x, y, size, size, concept.material === "workshop" ? 4 : 7);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.save();
+    roundedRect(x + 2, y + 2, size - 4, size - 4, concept.material === "workshop" ? 3 : 5);
+    ctx.clip();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (visual.active ? 0.68 : 0.34) + shimmer * 0.12;
+    ctx.strokeStyle = theme.floorGlow;
+    ctx.fillStyle = theme.floorGlow;
+    ctx.lineWidth = isPhonePortraitView() ? 1 : 1.3;
+
+    if (concept.material === "garden") {
+      for (const offset of [-5, 0, 5]) {
+        ctx.beginPath();
+        ctx.moveTo(x - 4, cy + offset);
+        ctx.bezierCurveTo(cx - 3, cy + offset - 3, cx + 3, cy + offset + 3, x + size + 4, cy + offset);
+        ctx.stroke();
+      }
+      ctx.fillStyle = "rgba(246, 189, 69, 0.72)";
+      ctx.beginPath();
+      ctx.arc(cx, cy, 2.2 + shimmer, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (concept.material === "workshop") {
+      ctx.strokeStyle = "rgba(241, 189, 85, 0.84)";
+      for (let stripe = -size; stripe < size * 2; stripe += 8) {
+        ctx.beginPath();
+        ctx.moveTo(x + stripe + state.clock * 8 % 8, y + size);
+        ctx.lineTo(x + stripe + size + state.clock * 8 % 8, y);
+        ctx.stroke();
+      }
+      ctx.fillStyle = "rgba(69, 199, 192, 0.8)";
+      ctx.beginPath();
+      ctx.arc(cx, cy, 2.4 + shimmer * 0.8, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.strokeStyle = "rgba(255, 248, 223, 0.82)";
+      for (let gust = 0; gust < 3; gust += 1) {
+        const gustY = y + size * (0.28 + gust * 0.22);
+        ctx.beginPath();
+        ctx.moveTo(x + 2, gustY);
+        ctx.quadraticCurveTo(cx + Math.sin(state.clock * 3 + gust) * 3, gustY - 4, x + size - 2, gustY);
+        ctx.stroke();
+      }
+      ctx.fillStyle = "rgba(255, 211, 92, 0.76)";
+      ctx.beginPath();
+      ctx.arc(cx, cy, 2.2 + shimmer, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    if (!visual.active) {
+      ctx.globalAlpha = 0.66;
+      ctx.setLineDash([3, 3]);
+      ctx.lineDashOffset = -state.clock * 8;
+      ctx.strokeStyle = theme.accent;
+      ctx.lineWidth = 1.2;
+      roundedRect(x - 0.6, y - 0.6, size + 1.2, size + 1.2, 7);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawIceWorldSlickHazardCell(px, py, hazard, index, visual, palette) {
+    const cx = px + TILE * 0.5;
+    const cy = py + TILE * 0.52;
+    const reveal = visual.active ? 1 : 0.82 + visual.telegraphProgress * 0.18;
+    const shimmer = Math.sin(state.clock * 4.2 + index * 0.8 + hazard.phase) * 0.5 + 0.5;
+    const half = TILE * 0.43 * reveal;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = visual.active ? 0.52 : 0.24 + visual.telegraphProgress * 0.22;
+    ctx.fillStyle = "rgba(0, 4, 18, 0.82)";
+    ctx.beginPath();
+    ctx.ellipse(cx, py + TILE * 0.78, TILE * 0.46, TILE * 0.15, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const blackIce = ctx.createLinearGradient(px + 2, py + 2, px + TILE - 2, py + TILE - 2);
+    blackIce.addColorStop(0, "rgba(111, 225, 232, 0.92)");
+    blackIce.addColorStop(0.26, "rgba(28, 105, 145, 0.96)");
+    blackIce.addColorStop(0.64, "rgba(11, 39, 78, 0.98)");
+    blackIce.addColorStop(1, "rgba(48, 29, 91, 0.98)");
+    ctx.globalAlpha = visual.active ? 0.96 : 0.46 + visual.telegraphProgress * 0.36;
+    ctx.fillStyle = blackIce;
+    ctx.strokeStyle = visual.active ? "rgba(255, 111, 135, 0.94)" : "rgba(255, 218, 101, 0.88)";
+    ctx.shadowColor = visual.active ? "rgba(255, 76, 113, 0.72)" : "rgba(255, 215, 91, 0.58)";
+    ctx.shadowBlur = visual.active ? 12 : 6;
+    ctx.lineWidth = visual.active ? 1.7 : 1.2;
+    ctx.beginPath();
+    ctx.moveTo(cx - half * 0.86, cy - half * 0.54);
+    ctx.lineTo(cx - half * 0.28, cy - half);
+    ctx.lineTo(cx + half * 0.68, cy - half * 0.72);
+    ctx.lineTo(cx + half, cy + half * 0.18);
+    ctx.lineTo(cx + half * 0.42, cy + half * 0.88);
+    ctx.lineTo(cx - half * 0.66, cy + half * 0.68);
+    ctx.lineTo(cx - half, cy - half * 0.08);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = (visual.active ? 0.66 : 0.34) + shimmer * 0.12;
+    ctx.strokeStyle = "rgba(181, 247, 250, 0.88)";
+    ctx.lineWidth = 0.95;
+    const cracks = [
+      [[-0.06, -0.08], [-0.38, -0.48], [-0.72, -0.3]],
+      [[-0.06, -0.08], [0.32, -0.58], [0.64, -0.42]],
+      [[-0.06, -0.08], [0.42, 0.3], [0.68, 0.58]],
+      [[-0.06, -0.08], [-0.24, 0.44], [-0.52, 0.68]]
+    ];
+    for (const crack of cracks) {
+      ctx.beginPath();
+      ctx.moveTo(cx + crack[0][0] * half, cy + crack[0][1] * half);
+      ctx.lineTo(cx + crack[1][0] * half, cy + crack[1][1] * half);
+      ctx.lineTo(cx + crack[2][0] * half, cy + crack[2][1] * half);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = visual.active ? 0.78 : 0.46;
+    ctx.strokeStyle = visual.active ? "rgba(255, 118, 148, 0.92)" : "rgba(255, 224, 119, 0.9)";
+    ctx.lineWidth = 1.15;
+    ctx.beginPath();
+    ctx.arc(cx, cy, TILE * (0.12 + shimmer * 0.018), 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fillStyle = visual.active ? "rgba(255, 118, 148, 0.94)" : "rgba(255, 224, 119, 0.92)";
+    ctx.font = `900 ${Math.round(TILE * 0.28)}px Assistant, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("!", cx, cy + 0.5);
+    ctx.restore();
+  }
+
+  function drawBossIceTrailCell(px, py, inset, hazard, index, visual, palette) {
+    const x = px + 0.8;
+    const y = py + 1.6;
+    const width = TILE - 1.6;
+    const height = TILE - 3.2;
+    const cx = px + TILE / 2;
+    const cy = py + TILE / 2;
+    const reveal = visual.active ? 1 : 0.78 + visual.telegraphProgress * 0.22;
+    const alpha = visual.active ? 0.98 : 0.38 + visual.telegraphProgress * 0.46;
+    const shimmer = Math.sin(state.clock * 5.2 + index * 0.85 + hazard.phase) * 0.5 + 0.5;
+    const direction = DIRS[hazard.slideDirection] ? hazard.slideDirection : "right";
+    const vector = DIRS[direction];
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = alpha * 0.5;
+    ctx.fillStyle = "rgba(0, 7, 18, 0.58)";
+    ctx.beginPath();
+    ctx.ellipse(cx, py + TILE * 0.77, TILE * 0.45, TILE * 0.16, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalAlpha = alpha;
+    ctx.shadowColor = palette.glow;
+    ctx.shadowBlur = visual.active ? 18 : 7;
+    const ice = ctx.createLinearGradient(x, y, x + width, y + height);
+    ice.addColorStop(0, "rgba(255, 255, 255, 0.96)");
+    ice.addColorStop(0.34, palette.fillA);
+    ice.addColorStop(0.64, palette.fillB);
+    ice.addColorStop(1, palette.fillC);
+    ctx.fillStyle = ice;
+    roundedRect(
+      x + (1 - reveal) * width * 0.5,
+      y + (1 - reveal) * height * 0.5,
+      width * reveal,
+      height * reveal,
+      7
+    );
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+    ctx.lineWidth = visual.active ? 2.6 : 1.55;
+    ctx.strokeStyle = palette.border;
+    roundedRect(x + 0.5, y + 0.5, width - 1, height - 1, 7);
+    ctx.stroke();
+    ctx.strokeStyle = "rgba(88, 225, 255, 0.74)";
+    ctx.lineWidth = 1.15;
+    roundedRect(x + 3.1, y + 3.1, width - 6.2, height - 6.2, 5);
+    ctx.stroke();
+
+    ctx.save();
+    roundedRect(x + 2, y + 2, width - 4, height - 4, 5.5);
+    ctx.clip();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.4 + shimmer * 0.22;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+    ctx.beginPath();
+    ctx.ellipse(cx - TILE * 0.14, cy - TILE * 0.16, TILE * 0.34, TILE * 0.085, -0.45, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalAlpha = visual.active ? 0.68 : 0.28 + visual.telegraphProgress * 0.24;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.78)";
+    ctx.lineWidth = 1.05;
+    ctx.beginPath();
+    ctx.moveTo(x + width * 0.18, y + height * 0.62);
+    ctx.quadraticCurveTo(x + width * 0.42, y + height * 0.46 - shimmer * 2.2, x + width * 0.76, y + height * 0.56);
+    ctx.moveTo(x + width * 0.38, y + height * 0.3);
+    ctx.lineTo(x + width * 0.5, y + height * 0.4);
+    ctx.lineTo(x + width * 0.62, y + height * 0.34);
+    ctx.moveTo(x + width * 0.56, y + height * 0.7);
+    ctx.lineTo(x + width * 0.68, y + height * 0.62);
+    ctx.stroke();
+    ctx.restore();
+
+    if (visual.active) {
+      ctx.save();
+      ctx.translate(cx, cy + 0.5);
+      const angle = Math.atan2(vector.y, vector.x);
+      ctx.rotate(angle);
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.44 + shimmer * 0.14;
+      ctx.strokeStyle = palette.highlight;
+      ctx.lineWidth = 1.35;
+      ctx.lineCap = "round";
+      for (const offset of [-8.5, -2.8, 2.8, 8.5]) {
+        ctx.beginPath();
+        ctx.moveTo(-TILE * 0.32, offset);
+        ctx.lineTo(TILE * 0.28, offset + Math.sin(state.clock * 4.2 + offset) * 0.8);
+        ctx.stroke();
+      }
+      ctx.restore();
+    } else {
+      drawHazardTelegraphCue(px, py, inset, palette, visual);
+    }
+
+    ctx.restore();
+  }
+
   function getHazardVisualPalette(hazard) {
     const palettes = {
+      "boss-ice-trail": {
+        fillA: "rgba(241, 255, 255, 0.78)",
+        fillB: "rgba(105, 231, 255, 0.58)",
+        fillC: "rgba(27, 101, 148, 0.72)",
+        border: "#f1ffff",
+        rim: "#9ef7ff",
+        highlight: "#ffffff",
+        danger: "#9ef7ff",
+        caution: "#dffcff",
+        dark: "#082033",
+        inner: "rgba(158, 247, 255, 0.62)",
+        alert: "#dffcff",
+        alertDark: "#24465c",
+        stripe: "rgba(255, 255, 255, 0.42)",
+        stripeDark: "rgba(33, 102, 142, 0.35)",
+        glow: "rgba(158, 247, 255, 0.82)"
+      },
       "ice-slick": {
         fillA: "rgba(199, 255, 255, 0.52)",
         fillB: "rgba(45, 185, 226, 0.42)",
@@ -15403,6 +26518,307 @@
     renderContext.restore();
   }
 
+  function drawSunGardenWarden(renderContext, displaySize, directionName, walkPhase, active) {
+    const sway = Math.sin(walkPhase * 0.82) * displaySize * 0.025;
+    const direction = DIRS[directionName] || DIRS.down;
+    renderContext.save();
+    renderContext.translate(direction.x * displaySize * 0.025, sway);
+    renderContext.lineJoin = "round";
+    renderContext.lineCap = "round";
+
+    // Root feet and leaf arms make the silhouette readable from every direction.
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.strokeStyle = "#315d3d";
+    renderContext.fillStyle = "#6fbf65";
+    renderContext.lineWidth = Math.max(1.4, displaySize * 0.016);
+    for (const side of [-1, 1]) {
+      renderContext.save();
+      renderContext.rotate(side * (0.56 + Math.sin(walkPhase + side) * 0.08));
+      renderContext.beginPath();
+      renderContext.moveTo(side * displaySize * 0.12, -displaySize * 0.08);
+      renderContext.bezierCurveTo(
+        side * displaySize * 0.35,
+        -displaySize * 0.18,
+        side * displaySize * 0.48,
+        -displaySize * 0.05,
+        side * displaySize * 0.54,
+        displaySize * 0.04
+      );
+      renderContext.bezierCurveTo(
+        side * displaySize * 0.38,
+        displaySize * 0.12,
+        side * displaySize * 0.22,
+        displaySize * 0.08,
+        side * displaySize * 0.12,
+        -displaySize * 0.08
+      );
+      renderContext.closePath();
+      renderContext.fill();
+      renderContext.stroke();
+      renderContext.restore();
+    }
+
+    const body = renderContext.createLinearGradient(0, -displaySize * 0.28, 0, displaySize * 0.34);
+    body.addColorStop(0, "#e2b978");
+    body.addColorStop(0.5, "#b87549");
+    body.addColorStop(1, "#60382b");
+    renderContext.fillStyle = body;
+    renderContext.strokeStyle = "rgba(55, 31, 28, 0.96)";
+    renderContext.lineWidth = Math.max(1.8, displaySize * 0.022);
+    renderContext.beginPath();
+    renderContext.moveTo(-displaySize * 0.34, -displaySize * 0.18);
+    renderContext.quadraticCurveTo(-displaySize * 0.31, displaySize * 0.26, -displaySize * 0.18, displaySize * 0.34);
+    renderContext.quadraticCurveTo(0, displaySize * 0.4, displaySize * 0.18, displaySize * 0.34);
+    renderContext.quadraticCurveTo(displaySize * 0.31, displaySize * 0.26, displaySize * 0.34, -displaySize * 0.18);
+    renderContext.closePath();
+    renderContext.fill();
+    renderContext.stroke();
+
+    renderContext.fillStyle = "#315d3d";
+    renderContext.beginPath();
+    renderContext.ellipse(0, -displaySize * 0.2, displaySize * 0.37, displaySize * 0.13, 0, 0, Math.PI * 2);
+    renderContext.fill();
+    renderContext.stroke();
+
+    const crownColors = ["#4f9f55", "#79ca71", "#2aa99e", "#f6bd45", "#6fbf65"];
+    for (let leaf = 0; leaf < crownColors.length; leaf += 1) {
+      const angle = -Math.PI + leaf * Math.PI / (crownColors.length - 1);
+      const lx = Math.cos(angle) * displaySize * 0.2;
+      const ly = -displaySize * 0.28 - Math.sin(angle) * displaySize * 0.16;
+      renderContext.save();
+      renderContext.translate(lx, ly);
+      renderContext.rotate(angle * 0.42);
+      renderContext.fillStyle = crownColors[leaf];
+      renderContext.strokeStyle = "rgba(45, 83, 48, 0.96)";
+      renderContext.beginPath();
+      renderContext.ellipse(0, 0, displaySize * 0.17, displaySize * 0.1, 0, 0, Math.PI * 2);
+      renderContext.fill();
+      renderContext.stroke();
+      renderContext.restore();
+    }
+
+    const faceY = -displaySize * 0.07;
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.fillStyle = "rgba(246, 189, 69, 0.3)";
+    renderContext.beginPath();
+    renderContext.arc(0, faceY, displaySize * 0.2, 0, Math.PI * 2);
+    renderContext.fill();
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.fillStyle = "#f6bd45";
+    renderContext.strokeStyle = "#5b3d2d";
+    renderContext.beginPath();
+    renderContext.arc(0, faceY, displaySize * 0.14, 0, Math.PI * 2);
+    renderContext.fill();
+    renderContext.stroke();
+
+    const lookX = direction.x * displaySize * 0.018;
+    const lookY = direction.y * displaySize * 0.012;
+    renderContext.fillStyle = "#273529";
+    for (const side of [-1, 1]) {
+      renderContext.beginPath();
+      renderContext.arc(side * displaySize * 0.052 + lookX, faceY - displaySize * 0.018 + lookY, displaySize * 0.018, 0, Math.PI * 2);
+      renderContext.fill();
+    }
+    renderContext.strokeStyle = active ? "#efffd2" : "#553428";
+    renderContext.lineWidth = Math.max(1.2, displaySize * 0.014);
+    renderContext.beginPath();
+    renderContext.arc(0, faceY + displaySize * 0.035, displaySize * 0.055, 0.12, Math.PI - 0.12);
+    renderContext.stroke();
+
+    renderContext.strokeStyle = "#315d3d";
+    renderContext.lineWidth = Math.max(2, displaySize * 0.025);
+    for (const side of [-1, 1]) {
+      renderContext.beginPath();
+      renderContext.moveTo(side * displaySize * 0.14, displaySize * 0.32);
+      renderContext.quadraticCurveTo(side * displaySize * 0.17, displaySize * 0.45, side * displaySize * 0.3, displaySize * 0.43);
+      renderContext.stroke();
+    }
+    renderContext.restore();
+  }
+
+  function drawBossEmergenceEffects() {
+    const cinematic = state.bossCinematic;
+    const boss = state.boss;
+    if (!cinematic || !boss) {
+      return;
+    }
+
+    const elapsed = cinematic.elapsed;
+    const emerge = clamp(
+      (elapsed - cinematic.emergeDelay) / Math.max(0.01, cinematic.emergeDuration),
+      0,
+      1
+    );
+    const pulse = Math.sin(emerge * Math.PI);
+    const radius = 34 + emerge * 96;
+    ctx.save();
+    ctx.translate(boss.x, boss.y + 8);
+
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = 0.82;
+    const crater = ctx.createRadialGradient(0, 0, 4, 0, 0, radius * 0.86);
+    crater.addColorStop(0, "rgba(0, 0, 0, 0.94)");
+    crater.addColorStop(0.52, "rgba(18, 8, 24, 0.76)");
+    crater.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = crater;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, radius, radius * 0.34, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = cinematic.accent;
+    ctx.shadowColor = cinematic.accent;
+    ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 7 : 18;
+    for (let ring = 0; ring < 3; ring += 1) {
+      ctx.globalAlpha = Math.max(0, pulse * (0.72 - ring * 0.16));
+      ctx.lineWidth = Math.max(1.4, 5 - ring);
+      ctx.beginPath();
+      ctx.ellipse(
+        0,
+        0,
+        28 + emerge * (72 + ring * 28),
+        10 + emerge * (23 + ring * 8),
+        0,
+        0,
+        Math.PI * 2
+      );
+      ctx.stroke();
+    }
+
+    const crackProgress = smoothCameraStep(emerge);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.strokeStyle = cinematic.accent;
+    ctx.lineCap = "round";
+    ctx.lineWidth = 2.2;
+    ctx.globalAlpha = 0.35 + pulse * 0.55;
+    for (let index = 0; index < 12; index += 1) {
+      const angle = index * Math.PI * 2 / 12 + 0.16;
+      const inner = 18 + (index % 3) * 3;
+      const outer = inner + crackProgress * (58 + (index % 4) * 13);
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(angle) * inner, Math.sin(angle) * inner * 0.36);
+      ctx.lineTo(Math.cos(angle + 0.09) * (inner + (outer - inner) * 0.54), Math.sin(angle + 0.09) * (inner + (outer - inner) * 0.54) * 0.36);
+      ctx.lineTo(Math.cos(angle - 0.05) * outer, Math.sin(angle - 0.05) * outer * 0.36);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawBossVanishingEnemies() {
+    const cinematic = state.bossCinematic;
+    if (!cinematic?.vanishingEnemies?.length) {
+      return;
+    }
+    const progress = smoothCameraStep(clamp(cinematic.elapsed / Math.max(0.01, cinematic.vanishDuration), 0, 1));
+    if (progress >= 1) {
+      return;
+    }
+    cinematic.vanishingEnemies.forEach((enemy, index) => {
+      const spiral = progress * (26 + (index % 3) * 9);
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, 1 - progress) * 0.92;
+      ctx.translate(enemy.x, enemy.y);
+      ctx.rotate((index % 2 ? -1 : 1) * progress * 0.42);
+      ctx.scale(1 - progress * 0.46, 1 + progress * 0.78);
+      ctx.translate(-enemy.x, -enemy.y - spiral);
+      drawEnemyCharacter(ctx, enemy, index, {
+        clock: state.clock,
+        spawning: false
+      });
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = (1 - progress) * 0.52;
+      ctx.strokeStyle = enemy.color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(enemy.x, enemy.y);
+      ctx.quadraticCurveTo(
+        enemy.x + Math.sin(index * 2.1) * 18,
+        enemy.y - 26 - spiral * 0.5,
+        enemy.x + Math.cos(index * 1.7) * 9,
+        enemy.y - 54 - spiral
+      );
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+
+  function drawBossCinematicOverlay() {
+    const cinematic = state.bossCinematic;
+    if (!cinematic) {
+      return;
+    }
+    const progress = clamp(cinematic.elapsed / Math.max(0.01, cinematic.totalDuration), 0, 1);
+    const titleIn = smoothCameraStep(clamp((progress - 0.18) / 0.25, 0, 1));
+    const titleOut = 1 - smoothCameraStep(clamp((progress - 0.78) / 0.22, 0, 1));
+    const titleAlpha = titleIn * titleOut;
+    const barHeight = isPhonePortraitView() ? 78 : 66;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = `rgba(2, 3, 12, ${0.18 + Math.sin(progress * Math.PI) * 0.42})`;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.fillStyle = `rgba(2, 2, 9, ${0.78 * titleAlpha})`;
+    ctx.fillRect(0, 0, WIDTH, barHeight);
+    ctx.fillRect(0, HEIGHT - barHeight, WIDTH, barHeight);
+
+    if (titleAlpha > 0.01) {
+      const accent = cinematic.accent || "#ffd84a";
+      ctx.globalAlpha = titleAlpha;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.shadowColor = accent;
+      ctx.shadowBlur = 18;
+      ctx.fillStyle = "#fff8dc";
+      ctx.font = `900 ${isPhonePortraitView() ? 34 : 38}px Assistant, system-ui, sans-serif`;
+      ctx.fillText(state.language === "en" ? "BOSS AWAKENS" : "הבוס מתעורר", WIDTH / 2, barHeight * 0.48);
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = accent;
+      ctx.font = `900 ${isPhonePortraitView() ? 28 : 31}px Assistant, system-ui, sans-serif`;
+      ctx.fillText(cinematic.bossName, WIDTH / 2, HEIGHT - barHeight * 0.62);
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "rgba(255,255,255,0.9)";
+      ctx.font = `800 ${isPhonePortraitView() ? 16 : 18}px Assistant, system-ui, sans-serif`;
+      ctx.fillText(
+        state.language === "en" ? "Survive the chase · conquer 3 ultimate questions" : "שורדים את המרדף · מנצחים 3 שאלות קצה",
+        WIDTH / 2,
+        HEIGHT - barHeight * 0.22
+      );
+    }
+    ctx.restore();
+  }
+
+  function drawBossDamageMarks(renderContext, boss, displaySize, definition) {
+    const damage = clamp(boss.damageLevel || 0, 0, CONFIG.bossQuestionsPerStage);
+    if (damage <= 0 && !(boss.hitFlash > 0)) {
+      return;
+    }
+    renderContext.save();
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.lineCap = "round";
+    for (let index = 0; index < CONFIG.bossQuestionsPerStage; index += 1) {
+      const start = -Math.PI * 0.82 + index * Math.PI * 0.54;
+      const active = index < damage;
+      renderContext.globalAlpha = active ? 0.92 : 0.22;
+      renderContext.strokeStyle = active ? "#fff7c6" : definition.accent;
+      renderContext.shadowColor = active ? "#ffffff" : definition.glow;
+      renderContext.shadowBlur = active ? 12 : 5;
+      renderContext.lineWidth = Math.max(2.2, displaySize * 0.026);
+      renderContext.beginPath();
+      renderContext.arc(0, -displaySize * 0.08, displaySize * 0.48, start, start + Math.PI * 0.34);
+      renderContext.stroke();
+    }
+    if (boss.hitFlash > 0) {
+      renderContext.globalAlpha = clamp(boss.hitFlash, 0, 1) * 0.48;
+      renderContext.fillStyle = "#ffffff";
+      renderContext.beginPath();
+      renderContext.arc(0, -displaySize * 0.08, displaySize * 0.42, 0, Math.PI * 2);
+      renderContext.fill();
+    }
+    renderContext.restore();
+  }
+
   function drawBoss() {
     const boss = state.boss;
     if (!boss) {
@@ -15423,7 +26839,7 @@
     const displaySize = actorBaseSize * mobileActorScale * chaseScale * (0.58 + progress * 0.42);
     const width = definition.width * chaseScale * (0.52 + progress * 0.48) * (1 + Math.sin(boss.wobble * 1.4) * 0.025);
     const height = definition.height * chaseScale * (0.48 + progress * 0.52) * (1 + Math.cos(boss.wobble * 1.2) * 0.025);
-    const lift = (1 - progress) * 34;
+    const lift = (1 - progress) * (MOBILE_RUNTIME.reducedEffects ? 38 : 92);
     const moving = (boss.lastMoveDistance || 0) > 0.04 && progress >= 0.78;
     const walkPhase = boss.walkCycle || boss.wobble;
     const footfall = Math.abs(Math.sin(walkPhase));
@@ -15433,6 +26849,7 @@
     const actorSheetReady = isImageReady(GAME_ASSETS.bossActorSheet);
 
     drawBossActorTrail(ctx, boss, displaySize, definition);
+    drawIceWorldActorContact(ctx, boss.x, boss.y + 3, displaySize, boss.wobble, false);
     drawBossActorBeacon(ctx, boss, displaySize, definition, introPulse);
     drawCharacterGroundShadow(ctx, boss.x, boss.y + 3, displaySize, definition.glow, {
       intensity: 0.68 + introPulse * 0.16,
@@ -15458,7 +26875,7 @@
 
     ctx.globalCompositeOperation = "source-over";
     ctx.globalAlpha = 1;
-    ctx.translate(boss.x, boss.y - lift + bob);
+    ctx.translate(boss.x, boss.y + lift + bob);
     const turnDirection = DIRS[boss.turnDirection] || direction;
     const directionLean = direction.x * 0.075 + direction.y * 0.026 + Math.sin(turnProgress * Math.PI) * turnDirection.x * 0.15;
     const walkSquash = moving ? footfall * 0.055 : 0;
@@ -15472,7 +26889,10 @@
 
     drawBossActorMotionArcs(ctx, displaySize, definition, direction, moving, footfall);
     drawBossActorStepPads(ctx, displaySize, definition, direction, walkPhase, moving);
-    if (actorSheetReady) {
+    if (definition.proceduralStyle === "sun-garden-warden") {
+      drawSunGardenWarden(ctx, displaySize, directionName, walkPhase, state.phase === "question" && state.currentEnemyId === boss.id);
+      drawBossActorCoreCue(ctx, displaySize, definition, directionName, state.phase === "question" && state.currentEnemyId === boss.id);
+    } else if (actorSheetReady) {
       drawBossActorSprite(ctx, definition, directionName, displaySize);
       drawCharacterRim(ctx, displaySize, definition.accent, {
         intensity: state.bossIntro ? 0.46 : 0.28
@@ -15486,6 +26906,7 @@
       drawBossCracks(ctx, width, height, definition, boss.wobble);
       drawBossEyes(ctx, width, height, definition);
     }
+    drawBossDamageMarks(ctx, boss, displaySize, definition);
     drawBossActorQuestionCue(ctx, boss, displaySize, definition);
     ctx.restore();
   }
@@ -15575,6 +26996,88 @@
     renderContext.restore();
   }
 
+  function drawWorldOneActorContact(renderContext, x, y, displaySize, phase = 0, player = false) {
+    const concept = getWorldOneConcept();
+    const palette = concept.actorContact;
+    const radiusX = displaySize * (player ? 0.34 : 0.4);
+    const radiusY = displaySize * (player ? 0.09 : 0.11);
+    renderContext.save();
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.globalAlpha = player ? 0.25 : 0.38;
+    renderContext.fillStyle = palette.fill;
+    renderContext.beginPath();
+    renderContext.ellipse(x, y + displaySize * 0.27, radiusX, radiusY, 0, 0, Math.PI * 2);
+    renderContext.fill();
+
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.globalAlpha = player ? 0.34 : 0.4;
+    renderContext.strokeStyle = player ? palette.ring : palette.spark;
+    renderContext.lineWidth = Math.max(0.75, displaySize * 0.011);
+    renderContext.beginPath();
+    renderContext.ellipse(x, y + displaySize * 0.27, radiusX * 0.82, radiusY * 0.72, 0, 0, Math.PI * 2);
+    renderContext.stroke();
+
+    const compactAuthoredMobile = isWorldOneAuthoredBoardReady()
+      && MOBILE_RUNTIME.coarse;
+    if (!MOBILE_RUNTIME.reducedEffects && !compactAuthoredMobile) {
+      renderContext.fillStyle = palette.spark;
+      for (let mark = 0; mark < 3; mark += 1) {
+        const angle = phase * 0.12 + mark * Math.PI * 2 / 3;
+        renderContext.globalAlpha = 0.22 + mark * 0.05;
+        renderContext.beginPath();
+        renderContext.arc(
+          x + Math.cos(angle) * radiusX * 0.72,
+          y + displaySize * 0.27 + Math.sin(angle) * radiusY * 0.7,
+          Math.max(0.6, displaySize * 0.012),
+          0,
+          Math.PI * 2
+        );
+        renderContext.fill();
+      }
+    }
+    renderContext.restore();
+  }
+
+  function drawIceWorldActorContact(renderContext, x, y, displaySize, phase = 0, player = false) {
+    if (isWorldOneReimagined()) {
+      drawWorldOneActorContact(renderContext, x, y, displaySize, phase, player);
+      return;
+    }
+    if (getMazeWorldKey() !== "ice") return;
+    const radiusX = displaySize * (player ? 0.36 : 0.42);
+    const radiusY = displaySize * (player ? 0.1 : 0.12);
+    renderContext.save();
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.globalAlpha = player ? 0.26 : 0.46;
+    renderContext.fillStyle = player ? "rgba(14, 78, 103, 0.68)" : "rgba(3, 5, 22, 0.86)";
+    renderContext.beginPath();
+    renderContext.ellipse(x, y + displaySize * 0.27, radiusX, radiusY, 0, 0, Math.PI * 2);
+    renderContext.fill();
+
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.globalAlpha = player ? 0.34 : 0.42;
+    renderContext.strokeStyle = player ? "rgba(80, 244, 219, 0.78)" : "rgba(147, 94, 238, 0.82)";
+    renderContext.lineWidth = Math.max(0.8, displaySize * 0.012);
+    renderContext.lineCap = "round";
+    for (let crack = 0; crack < 4; crack += 1) {
+      const angle = phase * 0.08 + crack * Math.PI / 2 + 0.25;
+      const startX = x + Math.cos(angle) * radiusX * 0.18;
+      const startY = y + displaySize * 0.27 + Math.sin(angle) * radiusY * 0.2;
+      renderContext.beginPath();
+      renderContext.moveTo(startX, startY);
+      renderContext.lineTo(
+        x + Math.cos(angle) * radiusX * 0.58,
+        y + displaySize * 0.27 + Math.sin(angle) * radiusY * 0.62
+      );
+      renderContext.lineTo(
+        x + Math.cos(angle + 0.12) * radiusX * 0.88,
+        y + displaySize * 0.27 + Math.sin(angle + 0.12) * radiusY * 0.94
+      );
+      renderContext.stroke();
+    }
+    renderContext.restore();
+  }
+
   function drawPlayerCharacter(renderContext, playerState) {
     if (!playerState) {
       return;
@@ -15586,10 +27089,13 @@
     const animation = getPlayerAnimationFrame(playerState);
     const sprite = playerAssets[animation.frame] || expressionAssets[animation.frame] || playerAssets.idle || expressionAssets.idle;
     const spriteReady = isImageReady(sprite);
-    const mobileCharacterScale = MOBILE_RUNTIME.coarse ? 1.34 : 1.08;
+    const authoredGardenScale = isWorldOneReimagined() && isWorldOneAuthoredBoardReady();
+    const compactAuthoredMobile = authoredGardenScale && MOBILE_RUNTIME.coarse;
+    const mobileCharacterScale = getPlayerCharacterVisualScale();
     const displaySize = playerState.radius * theme.renderScale * mobileCharacterScale;
     renderContext.save();
     drawPlayerTrail(renderContext, playerState, displaySize, theme);
+    drawIceWorldActorContact(renderContext, playerState.x, playerState.y, displaySize, state.clock, true);
 
     renderContext.globalAlpha = 1;
     const flicker = playerState.invulnerable > 0 && Math.floor(state.clock * 16) % 2 === 0;
@@ -15636,7 +27142,9 @@
       renderContext.rotate(Math.sin(angle) * 0.045 + directionLean - Math.sin(hitProgress * Math.PI) * 0.18);
     }
     renderContext.shadowColor = theme.glowColor;
-    renderContext.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 8 : 15;
+    renderContext.shadowBlur = compactAuthoredMobile
+      ? 4
+      : (MOBILE_RUNTIME.reducedEffects ? 8 : 15);
 
     drawPlayerEatEffect(renderContext, playerState, displaySize);
     drawPlayerMotionArcs(renderContext, playerState, displaySize, theme, moving, direction, footfall);
@@ -15646,16 +27154,44 @@
       if ((animation.active && playerState.eatDirection === "left") || (!animation.active && playerState.direction === "left")) {
         renderContext.scale(-1, 1);
       }
-      renderContext.drawImage(
-        sprite,
-        -displaySize / 2,
-        -displaySize / 2,
-        displaySize,
-        displaySize
-      );
       drawCharacterRim(renderContext, displaySize, theme.glowColor, {
-        intensity: animation.active ? 0.46 : 0.3
+        intensity: animation.active ? 0.28 : 0.18
       });
+      const sourceCrop = state.characterId === "nabatick"
+        ? { x: 56, y: 48, width: 400, height: 448 }
+        : { x: 24, y: 64, width: 464, height: 424 };
+      const sourceScaleX = sprite.naturalWidth / 512;
+      const sourceScaleY = sprite.naturalHeight / 512;
+      if (compactAuthoredMobile) {
+        const compactSprite = getCompactActorSprite(sprite, {
+          size: 96,
+          crop: {
+            x: sourceCrop.x * sourceScaleX,
+            y: sourceCrop.y * sourceScaleY,
+            width: sourceCrop.width * sourceScaleX,
+            height: sourceCrop.height * sourceScaleY
+          }
+        });
+        renderContext.drawImage(
+          compactSprite,
+          -displaySize / 2,
+          -displaySize * 0.54,
+          displaySize,
+          displaySize
+        );
+      } else {
+        renderContext.drawImage(
+          sprite,
+          sourceCrop.x * sourceScaleX,
+          sourceCrop.y * sourceScaleY,
+          sourceCrop.width * sourceScaleX,
+          sourceCrop.height * sourceScaleY,
+          -displaySize / 2,
+          -displaySize * 0.54,
+          displaySize,
+          displaySize
+        );
+      }
       drawCharacterActingDetails(renderContext, playerState, displaySize, theme, animation, moving, footfall, {
         hitProgress,
         rewardProgress,
@@ -15692,7 +27228,11 @@
 
     renderContext.save();
     renderContext.globalCompositeOperation = "screen";
-    for (let index = 0; index < playerState.trail.length; index += MOBILE_RUNTIME.reducedEffects ? 4 : 2) {
+    const compactAuthoredMobile = isWorldOneReimagined()
+      && isWorldOneAuthoredBoardReady()
+      && MOBILE_RUNTIME.coarse;
+    const trailStride = compactAuthoredMobile || MOBILE_RUNTIME.reducedEffects ? 4 : 2;
+    for (let index = 0; index < playerState.trail.length; index += trailStride) {
       const point = playerState.trail[index];
       const lifeRatio = Math.max(0, point.life / 0.34);
       const radius = displaySize * (0.16 + lifeRatio * 0.18);
@@ -15719,7 +27259,10 @@
   }
 
   function drawPlayerMotionArcs(renderContext, playerState, displaySize, theme, moving, direction, footfall) {
-    if (!moving || MOBILE_RUNTIME.reducedEffects) {
+    const compactAuthoredMobile = isWorldOneReimagined()
+      && isWorldOneAuthoredBoardReady()
+      && MOBILE_RUNTIME.coarse;
+    if (!moving || MOBILE_RUNTIME.reducedEffects || compactAuthoredMobile) {
       return;
     }
 
@@ -15749,23 +27292,6 @@
   function drawCharacterActingDetails(renderContext, playerState, displaySize, theme, animation, moving, footfall, motion = {}) {
     renderContext.save();
     renderContext.globalCompositeOperation = "screen";
-
-    const shine = renderContext.createRadialGradient(
-      -displaySize * 0.16,
-      -displaySize * 0.2,
-      displaySize * 0.02,
-      -displaySize * 0.16,
-      -displaySize * 0.2,
-      displaySize * 0.34
-    );
-    shine.addColorStop(0, "rgba(255, 255, 255, 0.36)");
-    shine.addColorStop(0.6, "rgba(255, 255, 255, 0.08)");
-    shine.addColorStop(1, "rgba(255, 255, 255, 0)");
-    renderContext.globalAlpha = animation.active ? 0.36 : 0.22;
-    renderContext.fillStyle = shine;
-    renderContext.beginPath();
-    renderContext.ellipse(-displaySize * 0.16, -displaySize * 0.2, displaySize * 0.25, displaySize * 0.16, -0.42, 0, Math.PI * 2);
-    renderContext.fill();
 
     if (moving) {
       renderContext.globalAlpha = 0.22 + footfall * 0.16;
@@ -15944,23 +27470,8 @@
       if ((playerState.hitAnimation || 0) > 0 && getPlayerAssets().hit) {
         return { frame: "hit", active: true };
       }
-      if ((playerState.questionAnimation || 0) > 0 && isImageReady(expressionAssets.tap)) {
-        return { frame: "tap", active: false };
-      }
       if (playerState.invulnerable > 0 && getPlayerAssets().hit) {
         return { frame: "hit", active: false };
-      }
-      if (playerState.blinkDuration > 0 && isImageReady(expressionAssets.blink)) {
-        return { frame: "blink", active: false };
-      }
-      if ((playerState.lastMoveDistance || 0) > 0.04) {
-        const phase = ((playerState.walkCycle || 0) % (Math.PI * 2)) / (Math.PI * 2);
-        if ((phase > 0.08 && phase < 0.2) || (phase > 0.58 && phase < 0.7)) {
-          return { frame: isImageReady(expressionAssets.tap) ? "tap" : "eatPrepare", active: false };
-        }
-        if ((phase > 0.32 && phase < 0.42) && isImageReady(expressionAssets.selected)) {
-          return { frame: "selected", active: false };
-        }
       }
       return { frame: "idle", active: false };
     }
@@ -16025,6 +27536,57 @@
     return image?.complete && image.naturalWidth > 0;
   }
 
+  const compactActorSpriteCache = new WeakMap();
+
+  function getCompactActorSprite(image, options = {}) {
+    if (!isImageReady(image)) {
+      return image;
+    }
+    const size = Math.max(32, Math.round(options.size || 64));
+    const crop = options.crop || null;
+    const cacheKey = crop
+      ? `${size}:${crop.x}:${crop.y}:${crop.width}:${crop.height}`
+      : `${size}:full`;
+    let imageCache = compactActorSpriteCache.get(image);
+    if (!imageCache) {
+      imageCache = new Map();
+      compactActorSpriteCache.set(image, imageCache);
+    }
+    if (imageCache.has(cacheKey)) {
+      return imageCache.get(cacheKey);
+    }
+
+    // Android WebView/Skia was downsampling every 512 px enemy texture to
+    // roughly 20 px on every frame. Rasterize once at a phone-appropriate
+    // source size so the per-frame draw is a cheap transform of the same art.
+    const spriteCanvas = document.createElement("canvas");
+    spriteCanvas.width = size;
+    spriteCanvas.height = size;
+    const spriteContext = spriteCanvas.getContext("2d", { alpha: true });
+    if (!spriteContext) {
+      return image;
+    }
+    spriteContext.imageSmoothingEnabled = true;
+    spriteContext.imageSmoothingQuality = "high";
+    if (crop) {
+      spriteContext.drawImage(
+        image,
+        crop.x,
+        crop.y,
+        crop.width,
+        crop.height,
+        0,
+        0,
+        size,
+        size
+      );
+    } else {
+      spriteContext.drawImage(image, 0, 0, size, size);
+    }
+    imageCache.set(cacheKey, spriteCanvas);
+    return spriteCanvas;
+  }
+
   function directionAngle(direction) {
     if (direction === "left") {
       return Math.PI;
@@ -16036,6 +27598,18 @@
       return Math.PI / 2;
     }
     return 0;
+  }
+
+  function getPlayerCharacterVisualScale() {
+    return MOBILE_RUNTIME.coarse
+      ? WORLD_ONE_AUTHORED_ACTOR_SCALE.playerPhone
+      : WORLD_ONE_AUTHORED_ACTOR_SCALE.playerWide;
+  }
+
+  function getEnemyCharacterVisualScale() {
+    return MOBILE_RUNTIME.coarse
+      ? WORLD_ONE_AUTHORED_ACTOR_SCALE.enemyPhone
+      : WORLD_ONE_AUTHORED_ACTOR_SCALE.enemyWide;
   }
 
   function drawEnemies() {
@@ -16053,13 +27627,16 @@
     const sprite = GAME_ASSETS.enemies[expression] || GAME_ASSETS.enemies.idle;
     const spriteReady = isImageReady(sprite);
     const sizeVariation = [1, 0.94, 1.04, 0.98][variant];
-    const mobileCharacterScale = MOBILE_RUNTIME.coarse ? 1.12 : 1;
+    const authoredGardenScale = isWorldOneReimagined() && isWorldOneAuthoredBoardReady();
+    const compactAuthoredMobile = authoredGardenScale && MOBILE_RUNTIME.coarse;
+    const mobileCharacterScale = getEnemyCharacterVisualScale();
     const displaySize = enemy.radius * GAME_THEME.enemies.renderScale * sizeVariation * mobileCharacterScale;
     const direction = DIRS[enemy.direction] || DIRS.none;
     const bob = Math.sin(enemy.wobble) * 1.9;
     const stretch = Math.sin(enemy.wobble * 1.6) * 0.035;
     const lean = direction.x * 0.11 + Math.sin(enemy.wobble * 0.55) * 0.035;
 
+    drawIceWorldActorContact(renderContext, enemy.x, enemy.y, displaySize, enemy.wobble + enemyIndex, false);
     drawCharacterGroundShadow(renderContext, enemy.x, enemy.y, displaySize, enemy.color, {
       intensity: enemyState.spawning ? 0.62 : 0.42,
       squash: 0.86 + Math.abs(direction.x) * 0.18
@@ -16072,12 +27649,24 @@
       1 + Math.abs(direction.y) * 0.04 - stretch * 0.5
     );
     renderContext.shadowColor = enemy.color;
-    renderContext.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 7 : 15;
-    drawEnemyAura(renderContext, displaySize, enemy, direction, enemyState);
+    // These sprites are ~20 px wide on a phone. A 15 px blur plus three aura
+    // strokes forced a large offscreen filter for every enemy and cut the
+    // authored-board renderer from ~55 fps to ~33 fps. The contact ring and rim
+    // preserve separation at this size; keep the cinematic aura for larger
+    // desktop/non-authored actors only.
+    renderContext.shadowBlur = compactAuthoredMobile
+      ? 0
+      : (MOBILE_RUNTIME.reducedEffects ? 7 : 15);
+    if (!compactAuthoredMobile) {
+      drawEnemyAura(renderContext, displaySize, enemy, direction, enemyState);
+    }
 
     if (spriteReady) {
+      const displaySprite = compactAuthoredMobile
+        ? getCompactActorSprite(sprite, { size: 64 })
+        : sprite;
       renderContext.drawImage(
-        sprite,
+        displaySprite,
         -displaySize / 2,
         -displaySize / 2,
         displaySize,
@@ -16174,13 +27763,19 @@
   }
 
   function drawParticles() {
+    const compactAuthoredMobile = isWorldOneReimagined()
+      && isWorldOneAuthoredBoardReady()
+      && MOBILE_RUNTIME.coarse;
     ctx.save();
-    for (const particle of state.particles) {
+    const visibleParticles = compactAuthoredMobile && state.particles.length > 18
+      ? state.particles.slice(-18)
+      : state.particles;
+    for (const particle of visibleParticles) {
       const alpha = clamp(particle.life / particle.maxLife, 0, 1);
       ctx.globalAlpha = alpha;
       ctx.fillStyle = particle.color;
       ctx.shadowColor = particle.color;
-      ctx.shadowBlur = 12;
+      ctx.shadowBlur = compactAuthoredMobile ? 0 : 12;
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.radius * (0.7 + alpha), 0, Math.PI * 2);
       ctx.fill();
@@ -16408,16 +28003,35 @@
     return state.phase === "start" && !els.startScreen.hidden;
   }
 
+  let simulationDebtSeconds = 0;
+
   function gameLoop(now) {
     if (shouldSkipGameplayFrame()) {
       state.lastTime = now;
+      simulationDebtSeconds = 0;
       requestAnimationFrame(gameLoop);
       return;
     }
 
-    const dt = Math.min(0.033, Math.max(0, (now - state.lastTime) / 1000 || 0));
+    const elapsed = Math.max(0, (now - state.lastTime) / 1000 || 0);
     state.lastTime = now;
-    update(dt);
+
+    simulationDebtSeconds = Math.min(
+      MAX_SIMULATION_DEBT_SECONDS,
+      simulationDebtSeconds + elapsed
+    );
+    let simulationSteps = 0;
+    while (
+      simulationDebtSeconds + 1e-9 >= SIMULATION_STEP_SECONDS
+      && simulationSteps < MAX_SIMULATION_STEPS_PER_FRAME
+    ) {
+      update(SIMULATION_STEP_SECONDS);
+      simulationDebtSeconds = Math.max(0, simulationDebtSeconds - SIMULATION_STEP_SECONDS);
+      simulationSteps += 1;
+    }
+    if (simulationSteps === 0) {
+      update(0);
+    }
     render();
     requestAnimationFrame(gameLoop);
   }
@@ -16553,7 +28167,7 @@
 
     const dx = event.clientX - pointerStart.x;
     const dy = event.clientY - pointerStart.y;
-    if (Math.hypot(dx, dy) < 28) {
+    if (Math.hypot(dx, dy) < SWIPE_DIRECTION_THRESHOLD) {
       return;
     }
 
@@ -16567,6 +28181,31 @@
 
   stage.addEventListener("pointercancel", () => {
     pointerStart = null;
+  });
+
+  els.numberPad?.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-keypad-digit], button[data-keypad-action]");
+    if (button instanceof HTMLButtonElement) {
+      handleNumberPadInput(button);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (state.phase !== "question" || state.answerLocked || !state.question) {
+      return;
+    }
+
+    if (/^\d$/.test(event.key)) {
+      event.preventDefault();
+      const button = els.numberPad?.querySelector(`[data-keypad-digit="${event.key}"]`);
+      handleNumberPadInput(button);
+    } else if (event.key === "Backspace" || event.key === "Delete") {
+      event.preventDefault();
+      handleNumberPadInput(els.numberPad?.querySelector('[data-keypad-action="delete"]'));
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      handleNumberPadInput(els.numberPad?.querySelector('[data-keypad-action="submit"]'));
+    }
   });
 
   els.answerForm.addEventListener("submit", (event) => {
@@ -16586,6 +28225,7 @@
     state.answerLocked = true;
     els.answerInput.disabled = true;
     els.submitAnswer.disabled = true;
+    setNumberPadDisabled(true);
     if (state.questionSource !== "reward") {
       recordFactResult(state.question, correct);
       SYSTEMS.recordMathAnswer(state.mathStats, { correct, responseMs });
@@ -16603,6 +28243,11 @@
         message: state.questionSource === "reward" ? uiRuntime("question.rewardWrong") : uiRuntime("question.wrongNote"),
         answer: state.question.answer
       });
+    if (correct) {
+      playCorrectSound();
+    } else {
+      playWrongSound();
+    }
     scheduleQuestionFinish(correct, { responseMs });
   });
 
@@ -16614,7 +28259,7 @@
     els.nameError.textContent = "";
   });
   els.answerInput.addEventListener("input", () => {
-    const digitsOnly = els.answerInput.value.replace(/\D/g, "");
+    const digitsOnly = els.answerInput.value.replace(/\D/g, "").slice(0, 4);
     if (els.answerInput.value !== digitsOnly) {
       els.answerInput.value = digitsOnly;
     }
@@ -16623,7 +28268,6 @@
     input.addEventListener("change", () => {
       if (input.checked) {
         setCharacter(input.value);
-        playHomeCharacterReaction(input.value, "selected");
         state.homeCharacterSelectionGuardUntil = window.performance.now() + 360;
         const characterCard = input.closest(".menu-character")?.querySelector(".character-card");
         playUiMotion(characterCard || input.closest("label"), "characterSelect");
@@ -16650,7 +28294,7 @@
       setMode(input.value);
       playUiMotion(input.closest("label"), "tabChange");
       playUiSound("modeSelected");
-      closeMenuSheets();
+      closeMenuSheets({ immediate: true });
     });
   });
   els.difficultyInputs.forEach((input) => {
@@ -16658,7 +28302,7 @@
       setDifficulty(input.value);
       playUiMotion(input.closest("label"), "tabChange");
       playUiSound("difficultySelected");
-      closeMenuSheets();
+      closeMenuSheets({ immediate: true });
     });
   });
   els.controlModeInputs.forEach((input) => {
@@ -16719,6 +28363,58 @@
     playUiSound("tabChange");
     focusHomeProgress();
   });
+  els.dailyChallengeOpen?.addEventListener("click", () => {
+    playUiSound("tabChange");
+    openMenuSheet(els.dailyChallengePanel, els.dailyChallengeOpen);
+  });
+  els.dailyChallengeStart?.addEventListener("click", startDailyChallenge);
+  els.duelPanelOpen?.addEventListener("click", () => {
+    playUiSound("tabChange");
+    openMenuSheet(els.duelPanel, els.duelPanelOpen);
+  });
+  els.duelCreateCode?.addEventListener("click", createDuelCode);
+  els.duelShareCode?.addEventListener("click", shareDuelCode);
+  els.duelValidateCode?.addEventListener("click", validateDuelCode);
+  els.duelStart?.addEventListener("click", startFriendDuel);
+  els.duelCodeInput?.addEventListener("input", () => {
+    state.duelChallenge = null;
+    els.duelCodeError.textContent = "";
+    els.duelOpponentPreview.hidden = true;
+    els.duelStart.hidden = true;
+  });
+  els.duelCodeInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      validateDuelCode();
+    }
+  });
+  els.leaguePanelOpen?.addEventListener("click", () => {
+    playUiSound("tabChange");
+    openMenuSheet(els.leaguePanel, els.leaguePanelOpen);
+  });
+  els.leagueCreate?.addEventListener("click", createPrivateLeague);
+  els.leagueJoin?.addEventListener("click", joinPrivateLeague);
+  els.leagueShareInvite?.addEventListener("click", () => shareLeagueCode("invite"));
+  els.leagueShareResult?.addEventListener("click", () => shareLeagueCode("result"));
+  els.leagueImportResult?.addEventListener("click", importLeagueResult);
+  els.leagueInviteInput?.addEventListener("input", () => {
+    els.leagueSetupStatus.textContent = "";
+  });
+  els.leagueInviteInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      joinPrivateLeague();
+    }
+  });
+  els.leagueResultInput?.addEventListener("input", () => {
+    els.leagueImportStatus.textContent = "";
+  });
+  els.leagueResultInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      importLeagueResult();
+    }
+  });
   els.homeNavChampions?.addEventListener("click", () => {
     playUiSound("tabChange");
     setHomeNavActive(els.homeNavChampions);
@@ -16743,6 +28439,19 @@
   }
   els.settingsSaveButton?.addEventListener("click", saveNicknameFromSettings);
   els.settingsSoundButton?.addEventListener("click", toggleSound);
+  [
+    [els.audioMasterVolume, "master"],
+    [els.audioMusicVolume, "music"],
+    [els.audioSfxVolume, "sfx"],
+    [els.audioVoicesVolume, "voices"]
+  ].forEach(([input, key]) => {
+    input?.addEventListener("input", () => updateAudioVolume(key, input.value, false));
+    input?.addEventListener("change", () => {
+      updateAudioVolume(key, input.value, true);
+      playUiSound("notification", { fromGesture: true, gain: 0.5 });
+    });
+  });
+  els.audioSafetyToggle?.addEventListener("click", toggleHeadphoneSafety);
   els.pauseResumeButton?.addEventListener("click", togglePause);
   els.pauseRetryButton?.addEventListener("click", retryGame);
   els.pauseSoundButton?.addEventListener("click", toggleSound);

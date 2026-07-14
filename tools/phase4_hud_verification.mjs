@@ -5,6 +5,7 @@ import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveStaticFile } from "./static-file-security.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputDir = path.join(root, "docs", "phase4-screenshots");
@@ -47,13 +48,7 @@ function startServer() {
   const server = createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", "http://127.0.0.1");
-      const decoded = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
-      const resolved = path.resolve(root, decoded.slice(1));
-      if (!resolved.startsWith(root)) {
-        response.writeHead(403);
-        response.end("Forbidden");
-        return;
-      }
+      const resolved = await resolveStaticFile(root, url.pathname);
       const bytes = await readFile(resolved);
       response.writeHead(200, { "content-type": contentType(resolved), "cache-control": "no-store" });
       response.end(bytes);
@@ -247,7 +242,7 @@ async function startGame(cdp, sessionId, appPort, search = "phase4-hud=1", settl
   await evaluate(cdp, sessionId, "localStorage.clear(); true;");
   await cdp.send("Page.reload", { ignoreCache: true }, sessionId);
   await wait(900);
-  await tapSelector(cdp, sessionId, "#start-button");
+  await evaluate(cdp, sessionId, "document.getElementById('start-button')?.click(); true;");
   await wait(settleMs);
 }
 
@@ -317,6 +312,44 @@ async function inspectHud(cdp, sessionId) {
     }
     const hud = rects[".hud"];
     const canvas = rects["#game-canvas"];
+    const hudElement = document.querySelector(".hud");
+    const hudBounds = hudElement?.getBoundingClientRect();
+    const visibleHudDescendants = hudElement
+      ? Array.from(hudElement.querySelectorAll("*")).map((element) => {
+          const style = getComputedStyle(element);
+          const box = element.getBoundingClientRect();
+          return style.display !== "none" && style.visibility !== "hidden" && box.width > 0 && box.height > 0
+            ? { element, box }
+            : null;
+        }).filter(Boolean)
+      : [];
+    const hudDescendantOverflow = hudBounds
+      ? visibleHudDescendants.filter(({ box }) => (
+          box.left < hudBounds.left - 1
+          || box.top < hudBounds.top - 1
+          || box.right > hudBounds.right + 1
+          || box.bottom > hudBounds.bottom + 1
+        )).map(({ element, box }) => ({
+          selector: element.id ? "#" + element.id : element.className || element.tagName.toLowerCase(),
+          rect: {
+            x: Math.round(box.x),
+            y: Math.round(box.y),
+            width: Math.round(box.width),
+            height: Math.round(box.height)
+          }
+        }))
+      : [{ selector: ".hud", rect: null }];
+    const hudEffectiveBottomPx = Math.round(Math.max(
+      hudBounds?.bottom || 0,
+      ...visibleHudDescendants.map(({ box }) => box.bottom)
+    ));
+    const hudCanvasOverlapWidth = hud && canvas
+      ? Math.max(0, Math.min(hud.x + hud.width, canvas.x + canvas.width) - Math.max(hud.x, canvas.x))
+      : 0;
+    const hudCanvasOverlapHeight = hud && canvas
+      ? Math.max(0, Math.min(hud.y + hud.height, canvas.y + canvas.height) - Math.max(hud.y, canvas.y))
+      : viewport.height;
+    const hudCanvasOverlapPx = hudCanvasOverlapWidth > 1 ? hudCanvasOverlapHeight : 0;
     const canvasAreaRatio = canvas ? (canvas.width * canvas.height) / (viewport.width * viewport.height) : 0;
     const hudHeightRatio = hud ? hud.height / viewport.height : 1;
     return {
@@ -334,6 +367,8 @@ async function inspectHud(cdp, sessionId) {
       },
       rects,
       outOfBounds,
+      hudDescendantOverflow,
+      hudEffectiveBottomPx,
       overflowingText,
       visibleRequired,
       secondaryHidden,
@@ -342,6 +377,7 @@ async function inspectHud(cdp, sessionId) {
       progressNow: document.querySelector(".progress-wrap")?.getAttribute("aria-valuenow"),
       pauseReadable: Boolean(document.querySelector("#pause-button [data-icon-label]")?.textContent.trim()),
       soundReadable: Boolean(document.querySelector("#sound-button [data-icon-label]")?.textContent.trim()),
+      hudCanvasOverlapPx,
       canvasAreaRatio,
       hudHeightRatio
     };
@@ -584,6 +620,8 @@ async function main() {
       || result.evaluation.scroll.xOverflow
       || result.evaluation.scroll.yOverflow
       || result.evaluation.outOfBounds.length > 0
+      || result.evaluation.hudDescendantOverflow.length > 0
+      || result.evaluation.hudEffectiveBottomPx > 72
       || result.evaluation.overflowingText.length > 0
       || result.evaluation.lang !== "he"
       || result.evaluation.dir !== "rtl"
@@ -596,6 +634,7 @@ async function main() {
       || result.evaluation.progressRole !== "progressbar"
       || !result.evaluation.pauseReadable
       || !result.evaluation.soundReadable
+      || result.evaluation.hudCanvasOverlapPx > 1
       || result.evaluation.canvasAreaRatio < 0.72
       || result.evaluation.hudHeightRatio > 0.16
       || result.fps < 30
@@ -625,9 +664,12 @@ async function main() {
         questionHidden: result.evaluation.questionHidden,
         overflow: result.evaluation.scroll,
         outOfBounds: result.evaluation.outOfBounds.length,
+        hudDescendantOverflow: result.evaluation.hudDescendantOverflow.length,
+        hudEffectiveBottomPx: result.evaluation.hudEffectiveBottomPx,
         overflowingText: result.evaluation.overflowingText.length,
         visibleRequired: result.evaluation.visibleRequired,
         secondaryHidden: result.evaluation.secondaryHidden,
+        hudCanvasOverlapPx: result.evaluation.hudCanvasOverlapPx,
         canvasAreaRatio: result.evaluation.canvasAreaRatio,
         hudHeightRatio: result.evaluation.hudHeightRatio,
         rtl: result.evaluation.dir === "rtl" && result.evaluation.lang === "he"

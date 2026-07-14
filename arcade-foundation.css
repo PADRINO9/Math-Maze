@@ -991,6 +991,18 @@ html[data-game-state="leaderboard"] .hud * {
   }
 }
 
+/* Gameplay stays safely paused while the stage-overview camera is running. */
+html.stage-intro-camera-active:not(.start-screen-open) #movement-joystick {
+  opacity: 0.34;
+  filter: grayscale(0.7) saturate(0.55);
+  pointer-events: none !important;
+  transition: opacity 220ms ease, filter 220ms ease;
+}
+
+html.stage-intro-camera-active:not(.start-screen-open) .stage {
+  cursor: progress;
+}
+
 @media (max-width: 600px) and (orientation: portrait) {
   html:not(.start-screen-open) .hud {
     inset:
@@ -1606,4 +1618,615 @@ html[data-game-state="results"] #movement-joystick.mobile-joystick {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+
+/* Keep the approved HUD compact before reserving its measured gameplay clearance. */
+html:not(.start-screen-open) .metric-lives #lives.hud-life-icons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+html:not(.start-screen-open) .hud-actions {
+  position: static;
+  inset: auto;
+  grid-template-columns: repeat(3, minmax(38px, auto));
+  grid-template-rows: 44px;
+  grid-auto-flow: column;
+  grid-auto-rows: 44px;
+  align-items: stretch;
+  transform: none;
+}
+
+html:not(.start-screen-open) .hud-actions .mobile-icon-button,
+html:not(.start-screen-open) .hud-actions .mobile-icon-button .ui-icon {
+  color: #f7fbff;
+  width: 18px;
+  height: 18px;
+}
+
+html:not(.start-screen-open) .metric-mission,
+html:not(.start-screen-open) .metric-mission .metric-copy,
+html:not(.start-screen-open) .metric-mission strong {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 601px) {
+  html:not(.start-screen-open) .hud {
+    grid-template-rows: 44px 8px;
+  }
+
+  html:not(.start-screen-open) .hud-group-main {
+    grid-template-rows: 44px;
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  html:not(.start-screen-open) .hud {
+    height: 65px;
+    min-height: 65px;
+    grid-template-rows: 62px 3px;
+    gap: 0 4px;
+  }
+
+  html:not(.start-screen-open) .hud-group-main {
+    height: 62px;
+    grid-template-rows: 37px 22px;
+    gap: 3px;
+  }
+
+  html:not(.start-screen-open) .hud-group-main > .metric:not(.metric-mission) {
+    height: 37px;
+    min-height: 37px;
+  }
+
+  html:not(.start-screen-open) .metric-mission {
+    height: 22px;
+    min-height: 22px;
+  }
+
+  html:not(.start-screen-open) .hud-actions {
+    height: 44px;
+    min-height: 44px;
+    grid-template-columns: repeat(2, minmax(44px, 1fr));
+    grid-template-rows: 44px;
+    grid-auto-rows: 44px;
+    align-self: start;
+  }
+
+  html:not(.start-screen-open) .hud-actions .icon-button {
+    width: 100%;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Keep the live maze below the measured HUD while preserving every approved metric. */
+html:not(.start-screen-open) .stage {
+  top: var(--gameplay-top-inset, 76px) !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  height: calc(var(--visual-viewport-height, 100dvh) - var(--gameplay-top-inset, 76px)) !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  align-self: stretch !important;
+  justify-self: stretch !important;
+}
+
+/* Arcade collection progress: fixed slots make every pickup legible at a glance. */
+.arcade-collection-hud {
+  position: relative;
+  min-width: 164px;
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: auto 1px auto;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 4px 8px;
+  border: 1px solid rgba(104, 231, 255, 0.22);
+  border-radius: 12px 9px 12px 9px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.022)),
+    rgba(2, 6, 18, 0.78);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.28),
+    inset 0 0 20px rgba(88, 232, 255, 0.045);
+  direction: rtl;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.arcade-collection-hud::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 72% 50%, rgba(255, 216, 74, 0.13), transparent 42%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.arcade-collection-hud.keys-complete::before {
+  opacity: 1;
+}
+
+.arcade-key-track,
+.arcade-word-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.arcade-key-track {
+  direction: rtl;
+}
+
+.arcade-collection-divider {
+  width: 1px;
+  height: 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, rgba(148, 184, 215, 0.38), transparent);
+}
+
+.arcade-key-slot {
+  position: relative;
+  width: 20px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(151, 169, 191, 0.16);
+  border-radius: 8px;
+  background: rgba(112, 128, 151, 0.075);
+  color: rgba(151, 169, 191, 0.38);
+  filter: grayscale(1);
+  transform: translateZ(0);
+  transition:
+    color 220ms ease,
+    filter 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.arcade-key-slot .ui-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.25;
+}
+
+.arcade-key-slot.is-collected {
+  border-color: rgba(255, 225, 112, 0.65);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 246, 184, 0.24), transparent 64%),
+    rgba(255, 216, 74, 0.13);
+  color: #ffd84a;
+  filter: none;
+  box-shadow:
+    0 0 12px rgba(255, 216, 74, 0.42),
+    inset 0 0 8px rgba(255, 245, 182, 0.14);
+}
+
+.arcade-key-slot.is-collected::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.arcade-letter-slot {
+  width: 19px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid rgba(151, 169, 191, 0.26);
+  color: rgba(151, 169, 191, 0.36);
+  font-family: var(--kf-font-display, "Fredoka", "Assistant", sans-serif);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: none;
+  filter: grayscale(1);
+  transition:
+    color 220ms ease,
+    filter 220ms ease,
+    border-color 220ms ease,
+    text-shadow 220ms ease;
+}
+
+.arcade-letter-slot.is-collected {
+  border-color: rgba(104, 231, 255, 0.78);
+  color: #d9fbff;
+  filter: none;
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.72),
+    0 0 12px rgba(104, 231, 255, 0.75),
+    0 0 22px rgba(104, 231, 255, 0.36);
+}
+
+.arcade-word-track.is-complete .arcade-letter-slot {
+  color: #fff7c6;
+  border-color: rgba(255, 216, 74, 0.76);
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.76),
+    0 0 13px rgba(255, 216, 74, 0.68);
+}
+
+.arcade-key-slot.is-just-collected,
+.arcade-letter-slot.is-just-collected {
+  animation: arcade-collection-slot-pop 880ms cubic-bezier(0.18, 0.88, 0.22, 1) both;
+}
+
+.arcade-key-track.is-complete-pulse,
+.arcade-word-track.is-complete-pulse {
+  animation: arcade-collection-complete 820ms cubic-bezier(0.16, 0.86, 0.22, 1) both;
+}
+
+.arcade-collection-hud.is-all-keys-pulse {
+  animation: arcade-collection-panel-complete 960ms cubic-bezier(0.16, 0.86, 0.22, 1) both;
+}
+
+@keyframes arcade-collection-slot-pop {
+  0% { transform: scale(0.62) rotate(-8deg); opacity: 0.45; }
+  38% { transform: scale(1.34) rotate(4deg); opacity: 1; }
+  64% { transform: scale(0.94) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes arcade-collection-complete {
+  0%, 100% { transform: scale(1); }
+  46% { transform: scale(1.12); filter: brightness(1.32); }
+}
+
+@keyframes arcade-collection-panel-complete {
+  0%, 100% { border-color: rgba(104, 231, 255, 0.22); }
+  46% {
+    border-color: rgba(255, 225, 112, 0.88);
+    box-shadow: 0 0 26px rgba(255, 216, 74, 0.46), inset 0 0 18px rgba(255, 216, 74, 0.13);
+  }
+}
+
+/* Three-key completion guidance. It is temporary and never changes the maze inset. */
+.chest-ready-guidance {
+  position: fixed;
+  top: calc(var(--gameplay-top-inset, 76px) + 9px);
+  left: 50%;
+  z-index: 42;
+  width: min(520px, calc(100vw - 22px));
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  padding: 9px 15px;
+  border: 1px solid rgba(255, 225, 112, 0.62);
+  border-radius: 18px 13px 18px 13px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(104, 231, 255, 0.15), transparent 38%),
+    linear-gradient(180deg, rgba(17, 28, 48, 0.97), rgba(3, 8, 20, 0.97));
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.56),
+    0 0 28px rgba(255, 216, 74, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+  color: #f7fbff;
+  direction: rtl;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -15px) scale(0.96);
+  transform-origin: 50% 0;
+  transition:
+    opacity 240ms ease,
+    transform 340ms cubic-bezier(0.16, 0.86, 0.22, 1);
+  isolation: isolate;
+  backdrop-filter: blur(12px);
+}
+
+.chest-ready-guidance[hidden] {
+  display: none !important;
+}
+
+.chest-ready-guidance.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.chest-ready-guidance.is-leaving {
+  opacity: 0;
+  transform: translate(-50%, -8px) scale(0.985);
+}
+
+.chest-ready-sheen {
+  position: absolute;
+  inset: -60% auto -60% -28%;
+  z-index: -1;
+  width: 22%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  opacity: 0;
+  transform: skewX(-18deg);
+}
+
+.chest-ready-guidance.is-visible .chest-ready-sheen {
+  animation: chest-ready-sheen 1150ms 420ms ease-out both;
+}
+
+.chest-ready-formula {
+  min-width: 158px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid rgba(104, 231, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(2, 7, 18, 0.55);
+  direction: ltr;
+}
+
+.chest-ready-key,
+.chest-ready-chest {
+  display: grid;
+  place-items: center;
+  color: #ffd84a;
+  filter: drop-shadow(0 0 7px rgba(255, 216, 74, 0.52));
+  opacity: 0;
+  transform: translateY(6px) scale(0.6);
+}
+
+.chest-ready-key .ui-icon {
+  width: 19px;
+  height: 19px;
+  stroke-width: 2.2;
+}
+
+.chest-ready-chest {
+  color: #68e7ff;
+  filter: drop-shadow(0 0 9px rgba(104, 231, 255, 0.58));
+}
+
+.chest-ready-chest .ui-icon {
+  width: 28px;
+  height: 28px;
+  stroke-width: 1.8;
+}
+
+.chest-ready-equals {
+  color: rgba(247, 251, 255, 0.78);
+  font-family: var(--kf-font-display, "Fredoka", sans-serif);
+  font-size: 18px;
+  font-weight: 800;
+  opacity: 0;
+}
+
+.chest-ready-guidance.is-visible .chest-ready-key,
+.chest-ready-guidance.is-visible .chest-ready-chest,
+.chest-ready-guidance.is-visible .chest-ready-equals {
+  animation: chest-ready-symbol 520ms cubic-bezier(0.18, 0.88, 0.22, 1) both;
+}
+
+.chest-ready-guidance.is-visible .chest-ready-key-one { animation-delay: 90ms; }
+.chest-ready-guidance.is-visible .chest-ready-key-two { animation-delay: 180ms; }
+.chest-ready-guidance.is-visible .chest-ready-key-three { animation-delay: 270ms; }
+.chest-ready-guidance.is-visible .chest-ready-equals { animation-delay: 360ms; }
+.chest-ready-guidance.is-visible .chest-ready-chest { animation-delay: 450ms; }
+
+.chest-ready-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  text-align: start;
+}
+
+.chest-ready-copy strong {
+  overflow: hidden;
+  color: #fff7c6;
+  font-family: var(--kf-font-display, "Fredoka", "Assistant", sans-serif);
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 800;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 0 14px rgba(255, 216, 74, 0.34);
+}
+
+.chest-ready-copy > span {
+  color: #d7e7f7;
+  font-size: clamp(12px, 1.5vw, 15px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@keyframes chest-ready-symbol {
+  0% { opacity: 0; transform: translateY(7px) scale(0.58); }
+  62% { opacity: 1; transform: translateY(-2px) scale(1.18); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes chest-ready-sheen {
+  0% { left: -28%; opacity: 0; }
+  22% { opacity: 0.65; }
+  100% { left: 112%; opacity: 0; }
+}
+
+@media (min-width: 821px) {
+  html:not(.start-screen-open) .hud-group-main {
+    grid-template-columns:
+      repeat(4, minmax(64px, max-content))
+      minmax(190px, 1fr)
+      minmax(164px, auto);
+  }
+}
+
+@media (min-width: 601px) and (max-width: 820px) {
+  html:not(.start-screen-open) .hud {
+    grid-template-rows: 71px 6px;
+  }
+
+  html:not(.start-screen-open) .hud-group-main {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 44px 24px;
+  }
+
+  html:not(.start-screen-open) .metric-mission {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    min-height: 24px;
+  }
+
+  html:not(.start-screen-open) .arcade-collection-hud {
+    grid-column: 3 / -1;
+    grid-row: 2;
+    min-width: 0;
+    min-height: 24px;
+    height: 24px;
+    padding: 1px 6px;
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  html:not(.start-screen-open) .metric-mission {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    height: 22px;
+    min-height: 22px;
+  }
+
+  html:not(.start-screen-open) .arcade-collection-hud {
+    grid-column: 3 / -1;
+    grid-row: 2;
+    min-width: 0;
+    width: 100%;
+    height: 22px;
+    min-height: 22px;
+    gap: 4px;
+    padding: 1px 4px;
+    border-radius: 8px;
+  }
+
+  html:not(.start-screen-open) .arcade-key-track,
+  html:not(.start-screen-open) .arcade-word-track {
+    gap: 1px;
+  }
+
+  html:not(.start-screen-open) .arcade-key-slot {
+    width: 15px;
+    height: 18px;
+    border-radius: 6px;
+  }
+
+  html:not(.start-screen-open) .arcade-key-slot .ui-icon {
+    width: 11px;
+    height: 11px;
+  }
+
+  html:not(.start-screen-open) .arcade-letter-slot {
+    width: 14px;
+    height: 19px;
+    font-size: 13px;
+  }
+
+  html:not(.start-screen-open) .arcade-collection-divider {
+    height: 15px;
+  }
+
+  .chest-ready-guidance {
+    top: calc(var(--gameplay-top-inset, 72px) + 7px);
+    width: min(356px, calc(100vw - 18px));
+    min-height: 64px;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px;
+    padding: 7px 9px;
+    border-radius: 15px 11px 15px 11px;
+  }
+
+  .chest-ready-formula {
+    min-width: 118px;
+    height: 40px;
+    gap: 3px;
+    padding: 4px 6px;
+  }
+
+  .chest-ready-key .ui-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .chest-ready-chest .ui-icon {
+    width: 23px;
+    height: 23px;
+  }
+
+  .chest-ready-copy strong {
+    font-size: 15px;
+  }
+
+  .chest-ready-copy > span {
+    font-size: 11px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  html:not(.start-screen-open) .hud-group-main {
+    grid-template-columns:
+      repeat(4, minmax(50px, max-content))
+      minmax(132px, 1fr)
+      minmax(140px, auto);
+    grid-template-rows: 34px;
+  }
+
+  html:not(.start-screen-open) .metric-mission,
+  html:not(.start-screen-open) .arcade-collection-hud {
+    grid-column: auto;
+    min-height: 34px;
+    height: 34px;
+  }
+
+  .chest-ready-guidance {
+    min-height: 58px;
+    padding-block: 6px;
+  }
+
+  .chest-ready-formula {
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-key-slot.is-just-collected,
+  .arcade-letter-slot.is-just-collected,
+  .arcade-key-track.is-complete-pulse,
+  .arcade-word-track.is-complete-pulse,
+  .arcade-collection-hud.is-all-keys-pulse,
+  .chest-ready-guidance.is-visible .chest-ready-sheen,
+  .chest-ready-guidance.is-visible .chest-ready-key,
+  .chest-ready-guidance.is-visible .chest-ready-chest,
+  .chest-ready-guidance.is-visible .chest-ready-equals {
+    animation: none;
+  }
+
+  .chest-ready-guidance,
+  .arcade-key-slot,
+  .arcade-letter-slot {
+    transition: none;
+  }
+
+  .chest-ready-guidance.is-visible .chest-ready-key,
+  .chest-ready-guidance.is-visible .chest-ready-chest,
+  .chest-ready-guidance.is-visible .chest-ready-equals {
+    opacity: 1;
+    transform: none;
+  }
 }

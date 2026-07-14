@@ -6,26 +6,26 @@
   const THEMES = {
     ice: {
       worldId: "ice",
-      displayName: "Ice World",
-      floorColors: ["#071b2d", "#0e3855", "#061627"],
-      wallColors: ["#5ab9d3", "#c9f4ff", "#2b769a"],
-      glowColors: ["#9ef7ff", "rgba(103, 215, 255, 0.12)", "rgba(158, 247, 255, 0.62)"],
+      displayName: "The Waking Sun Garden",
+      floorColors: ["#173c36", "#24574a", "#0c2625"],
+      wallColors: ["#a56842", "#e1b878", "#603829"],
+      glowColors: ["#f6bd45", "rgba(45, 212, 191, 0.12)", "rgba(246, 189, 69, 0.62)"],
       collectibleColors: {
-        regular: "#e9fdff",
-        bonus: "#9ef7ff"
+        regular: "#fff1a8",
+        bonus: "#f6bd45"
       },
       portalColors: {
-        primary: "#62e8ff",
-        glow: "rgba(98, 232, 255, 0.58)"
+        primary: "#2dd4bf",
+        glow: "rgba(45, 212, 191, 0.58)"
       },
       decor: {
-        style: "frosted ice spikes, frozen chips, snow dust",
+        style: "sun dials, oxidized copper, moss, waking flowers",
         density: 0.06,
         preferredAnchors: ["wall-top", "outer-border"]
       },
       particles: {
-        type: "snow",
-        color: "rgba(217, 250, 255, 0.28)",
+        type: "sun-motes",
+        color: "rgba(255, 222, 144, 0.28)",
         density: 0.24
       },
       runtime: {}

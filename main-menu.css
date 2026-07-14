@@ -5285,3 +5285,254 @@ html[data-language="en"] #start-screen .menu-character-nabatick .character-name-
     font-size: clamp(25px, 6.2vw, 35px);
   }
 }
+
+/* Premium home-character motion: restrained weight, personality, and clean settling. */
+#start-screen .menu-character .character-card {
+  transition:
+    transform 520ms cubic-bezier(0.22, 0.78, 0.24, 1),
+    filter 260ms ease;
+}
+
+#start-screen .menu-character img {
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 18px) scale(0.92);
+  animation: premiumCharacterRest 7.2s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  transition:
+    filter 280ms ease,
+    opacity 160ms ease;
+  will-change: transform;
+}
+
+#start-screen .menu-character-bifly img {
+  animation-delay: -1.1s;
+}
+
+#start-screen .menu-character-nabatick img {
+  animation-delay: -3.4s;
+}
+
+#start-screen .menu-character-bifly.is-character-live img {
+  animation: premiumBiflyIdle 6.4s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+#start-screen .menu-character-nabatick.is-character-live img {
+  animation: premiumNabatickIdle 7s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+#start-screen .menu-character.is-character-reacting {
+  animation: none;
+}
+
+#start-screen .menu-character-bifly .character-card[data-reaction="selected"] img {
+  animation: premiumBiflySelect 940ms cubic-bezier(0.16, 0.84, 0.24, 1) both;
+}
+
+#start-screen .menu-character-nabatick .character-card[data-reaction="selected"] img {
+  animation: premiumNabatickSelect 940ms cubic-bezier(0.16, 0.84, 0.24, 1) both;
+}
+
+#start-screen .menu-character-bifly .character-card[data-reaction="tap"] img {
+  animation: premiumBiflyTap 560ms cubic-bezier(0.2, 0.82, 0.24, 1) both;
+}
+
+#start-screen .menu-character-nabatick .character-card[data-reaction="tap"] img {
+  animation: premiumNabatickTap 560ms cubic-bezier(0.2, 0.82, 0.24, 1) both;
+}
+
+#start-screen .menu-character .character-card[data-reaction="blink"] img {
+  animation: premiumCharacterBlink 190ms ease-in-out both;
+}
+
+#start-screen .menu-character.is-character-reacting .character-card::before,
+#start-screen .menu-character .character-card[data-reaction="selected"]::before {
+  animation: premiumGroundResponse 820ms cubic-bezier(0.2, 0.78, 0.24, 1);
+}
+
+@keyframes premiumCharacterRest {
+  0%, 100% { transform: translate3d(0, 0, 18px) scale(0.92); }
+  48% { transform: translate3d(0, -2px, 21px) scale(0.923, 0.918); }
+  56% { transform: translate3d(0, -2.5px, 22px) scale(0.924, 0.918); }
+}
+
+@keyframes premiumBiflyIdle {
+  0%, 100% { transform: translate3d(0, -10px, 58px) rotateZ(0deg) scale(1.04); }
+  46% { transform: translate3d(0, -12.5px, 60px) rotateZ(-0.18deg) scale(1.044, 1.034); }
+  54% { transform: translate3d(0, -13px, 61px) rotateZ(0.12deg) scale(1.045, 1.033); }
+}
+
+@keyframes premiumNabatickIdle {
+  0%, 100% { transform: translate3d(0, -10px, 58px) rotateZ(0deg) scale(1.04); }
+  36% { transform: translate3d(-0.8px, -13px, 61px) rotateZ(-0.34deg) scale(1.042, 1.036); }
+  68% { transform: translate3d(0.8px, -11.5px, 60px) rotateZ(0.28deg) scale(1.043, 1.037); }
+}
+
+@keyframes premiumBiflySelect {
+  0% { transform: translate3d(0, 0, 18px) scale(0.92); }
+  20% { transform: translate3d(0, 3px, 24px) scale(0.96, 0.9); }
+  52% { transform: translate3d(0, -16px, 62px) rotateZ(-0.7deg) scale(1.052, 1.025); }
+  76% { transform: translate3d(0, -8px, 56px) rotateZ(0.28deg) scale(1.032, 1.046); }
+  100% { transform: translate3d(0, -10px, 58px) rotateZ(0deg) scale(1.04); }
+}
+
+@keyframes premiumNabatickSelect {
+  0% { transform: translate3d(0, 0, 18px) scale(0.92); }
+  18% { transform: translate3d(0, 2px, 24px) rotateZ(-0.45deg) scale(0.95, 0.91); }
+  50% { transform: translate3d(0, -14px, 62px) rotateZ(0.9deg) scale(1.046, 1.025); }
+  74% { transform: translate3d(-1px, -9px, 57px) rotateZ(-0.36deg) scale(1.036, 1.044); }
+  100% { transform: translate3d(0, -10px, 58px) rotateZ(0deg) scale(1.04); }
+}
+
+@keyframes premiumBiflyTap {
+  0%, 100% { transform: translate3d(0, -10px, 58px) scale(1.04); }
+  24% { transform: translate3d(0, -6px, 55px) scale(1.055, 1.018); }
+  58% { transform: translate3d(0, -13px, 61px) scale(1.03, 1.052); }
+}
+
+@keyframes premiumNabatickTap {
+  0%, 100% { transform: translate3d(0, -10px, 58px) rotateZ(0deg) scale(1.04); }
+  30% { transform: translate3d(-1px, -8px, 56px) rotateZ(-0.65deg) scale(1.045, 1.025); }
+  64% { transform: translate3d(1px, -12px, 60px) rotateZ(0.55deg) scale(1.035, 1.047); }
+}
+
+@keyframes premiumCharacterBlink {
+  0%, 100% { transform: translate3d(0, -10px, 58px) scale(1.04); filter: brightness(1); }
+  50% { transform: translate3d(0, -9px, 58px) scale(1.042, 1.032); filter: brightness(1.035); }
+}
+
+@keyframes premiumGroundResponse {
+  0% { opacity: 0.58; transform: translateX(-50%) perspective(520px) rotateX(70deg) scale(0.94); }
+  48% { opacity: 1; transform: translateX(-50%) perspective(520px) rotateX(70deg) scale(1.14, 1.08); }
+  100% { opacity: 1; transform: translateX(-50%) perspective(520px) rotateX(70deg) scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #start-screen .menu-character,
+  #start-screen .menu-character .character-card,
+  #start-screen .menu-character img,
+  #start-screen .menu-character .character-card::before {
+    animation: none !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+html.kf-reduced-motion #start-screen .menu-character,
+html.kf-reduced-motion #start-screen .menu-character .character-card,
+html.kf-reduced-motion #start-screen .menu-character img,
+html.kf-reduced-motion #start-screen .menu-character .character-card::before {
+  animation: none !important;
+  transition-duration: 1ms !important;
+}
+
+/* Daily maze lives with the other compact home actions. */
+#start-screen .menu-actions .daily-challenge-open {
+  --action-icon-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.15' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4h11l1 3v13H6Z'/%3E%3Cpath d='M9 9h6M9 13h6M9 17h4'/%3E%3C/svg%3E");
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  flex-shrink: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  color: #effdff;
+  transform: none;
+}
+
+#start-screen .menu-actions .daily-challenge-open:hover,
+#start-screen .menu-actions .daily-challenge-open:focus-visible {
+  outline: none;
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+#start-screen .menu-actions .daily-challenge-open:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+#start-screen .daily-challenge-icon {
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.42), transparent 30%),
+    linear-gradient(180deg, rgba(82, 237, 255, 0.42), rgba(76, 76, 218, 0.5)),
+    rgba(18, 24, 77, 0.9) !important;
+  color: #f5feff !important;
+  border-color: rgba(132, 240, 255, 0.7) !important;
+  box-shadow:
+    0 4px 0 rgba(5, 9, 48, 0.7),
+    0 0 18px rgba(68, 227, 255, 0.42),
+    inset 0 0 14px rgba(127, 231, 255, 0.16) !important;
+}
+
+#start-screen .daily-challenge-copy.kf-visually-hidden {
+  position: absolute !important;
+}
+
+#start-screen .daily-challenge-open em {
+  position: absolute;
+  z-index: 5;
+  top: -7px;
+  right: -7px;
+  min-width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  padding: 0 5px;
+  border: 2px solid #231250;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff36f, #ffc52a 60%, #ee8500);
+  color: #351500;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.42), 0 0 12px rgba(255, 216, 74, 0.4);
+  pointer-events: none;
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  #start-screen .home-player-bar {
+    grid-template-columns: minmax(124px, 38vw) minmax(0, 1fr) auto;
+    gap: 6px;
+  }
+
+  #start-screen .menu-best-card {
+    width: min(38vw, 164px);
+    min-width: 124px;
+  }
+
+  #start-screen .menu-actions {
+    gap: clamp(5px, 1.3vw, 7px);
+  }
+
+  #start-screen .menu-actions .menu-icon-button,
+  #start-screen #leaderboard-open.menu-icon-button {
+    flex-basis: clamp(42px, 10.8vw, 50px);
+    width: clamp(42px, 10.8vw, 50px);
+    height: clamp(42px, 10.8vw, 50px);
+    border-radius: clamp(13px, 3.5vw, 16px);
+  }
+
+  #start-screen .daily-challenge-open em {
+    top: -5px;
+    right: -5px;
+    min-width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) and (orientation: portrait) {
+  #start-screen .home-player-bar {
+    grid-template-columns: minmax(116px, 36vw) minmax(0, 1fr) auto;
+  }
+
+  #start-screen .menu-best-card {
+    width: min(36vw, 136px);
+    min-width: 116px;
+  }
+
+  #start-screen .menu-actions .menu-icon-button,
+  #start-screen #leaderboard-open.menu-icon-button {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+  }
+}

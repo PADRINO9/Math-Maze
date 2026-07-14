@@ -32,7 +32,6 @@
   <link rel="preload" href="assets/dark-enemy-surprised.png" as="image">
   <link rel="preload" href="assets/dark-enemy-sad.png" as="image">
   <link rel="preload" href="assets/math-maze-poster.png" as="image">
-  <link rel="preload" href="assets/reference/maze-worlds/world_ice.png" as="image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@500;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
@@ -40,10 +39,11 @@
   <link rel="stylesheet" href="ui/foundation.css?v=20260628-1">
   <link rel="stylesheet" href="ui/mobile-overrides.css?v=20260628-1">
   <link rel="stylesheet" href="leaderboard.css?v=20260622-1">
-  <link rel="stylesheet" href="arcade-foundation.css?v=20260705-feedback-1">
-  <link rel="stylesheet" href="main-menu.css?v=20260705-loading-1">
+  <link rel="stylesheet" href="arcade-foundation.css?v=20260712-stage-intro-2">
+  <link rel="stylesheet" href="main-menu.css?v=20260712-home-daily-icon-1">
   <link rel="stylesheet" href="ui/secondary-screens.css?v=20260628-1">
   <link rel="stylesheet" href="ui/motion/motion.css?v=20260630-1">
+  <link rel="stylesheet" href="ui/game-number-pad.css?v=20260711-1">
 </head>
 <body>
   <div id="app-loading-screen" class="app-loading-screen" role="status" aria-live="polite" aria-label="כפלול נטען">
@@ -99,7 +99,7 @@
           </span>
           <span class="metric-copy">
             <span id="hud-progress-stage" class="metric-label">גל 1</span>
-            <strong><span id="correct-answers">0</span><span id="target-correct" class="metric-muted">/25</span></strong>
+            <strong><span id="correct-answers">0</span><span id="target-correct" class="metric-muted">/24</span></strong>
           </span>
         </div>
         <div id="mission-card" class="metric metric-mission" data-hud-metric="mission">
@@ -110,6 +110,25 @@
             <span class="metric-label">משימה</span>
             <strong id="mission-title">ענה נכון על 10 שאלות</strong>
             <span id="mission-progress" class="mission-progress">0/10</span>
+          </span>
+        </div>
+        <div id="arcade-collection-hud" class="arcade-collection-hud" role="group" aria-label="מפתחות 0 מתוך 3; אותיות כפל 0 מתוך 3">
+          <span id="arcade-key-track" class="arcade-key-track" aria-hidden="true">
+            <span class="arcade-key-slot" data-key-slot="0">
+              <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#key"></use></svg>
+            </span>
+            <span class="arcade-key-slot" data-key-slot="1">
+              <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#key"></use></svg>
+            </span>
+            <span class="arcade-key-slot" data-key-slot="2">
+              <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#key"></use></svg>
+            </span>
+          </span>
+          <span class="arcade-collection-divider" aria-hidden="true"></span>
+          <span id="arcade-word-track" class="arcade-word-track" aria-hidden="true" dir="rtl">
+            <span class="arcade-letter-slot" data-bonus-letter="כ">כ</span>
+            <span class="arcade-letter-slot" data-bonus-letter="פ">פ</span>
+            <span class="arcade-letter-slot" data-bonus-letter="ל">ל</span>
           </span>
         </div>
       </div>
@@ -130,6 +149,21 @@
       </div>
     </div>
 
+    <div id="chest-ready-guidance" class="chest-ready-guidance" role="status" aria-live="assertive" aria-atomic="true" hidden>
+      <span class="chest-ready-sheen" aria-hidden="true"></span>
+      <span class="chest-ready-formula" aria-hidden="true">
+        <span class="chest-ready-key chest-ready-key-one"><svg class="ui-icon" focusable="false"><use href="ui/icons.svg#key"></use></svg></span>
+        <span class="chest-ready-key chest-ready-key-two"><svg class="ui-icon" focusable="false"><use href="ui/icons.svg#key"></use></svg></span>
+        <span class="chest-ready-key chest-ready-key-three"><svg class="ui-icon" focusable="false"><use href="ui/icons.svg#key"></use></svg></span>
+        <span class="chest-ready-equals">=</span>
+        <span class="chest-ready-chest"><svg class="ui-icon" focusable="false"><use href="ui/icons.svg#chest"></use></svg></span>
+      </span>
+      <span class="chest-ready-copy">
+        <strong id="chest-ready-title">שלושת המפתחות בידיך!</strong>
+        <span id="chest-ready-message">גש לתיבה ופתח את האוצר</span>
+      </span>
+    </div>
+
     <section class="stage" aria-label="לוח המשחק" tabindex="-1">
       <canvas id="game-canvas" width="960" height="720"></canvas>
 
@@ -138,7 +172,7 @@
           <header class="secondary-dialog-header">
             <span class="secondary-kicker">הפסקה בטוחה</span>
             <h2 id="pause-title">המשחק מושהה</h2>
-            <p id="pause-summary">ארקייד · רגיל · עולם הקרח</p>
+            <p id="pause-summary">ארקייד · רגיל · גן השמש</p>
           </header>
           <div class="pause-mission-card" aria-label="מצב המשחק בזמן ההשהיה">
             <span>
@@ -185,9 +219,30 @@
           </div>
           <h1 id="question-title" dir="ltr">8 × 7 = ?</h1>
           <form id="answer-form" autocomplete="off">
-            <input id="answer-input" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" aria-label="תשובה" required>
-            <button id="submit-answer" type="submit">שלח</button>
+            <label class="answer-display" for="answer-input">
+              <span id="answer-display-label">התשובה שלך</span>
+              <input id="answer-input" type="text" inputmode="none" pattern="[0-9]*" maxlength="4" aria-label="תשובה" readonly required>
+            </label>
+            <button id="submit-answer" class="answer-submit-fallback" type="submit">שלח</button>
           </form>
+          <div id="game-number-pad" class="game-number-pad mobile-number-pad" role="group" aria-label="מקלדת מספרים" dir="ltr">
+            <button type="button" data-keypad-digit="1" aria-label="1">1</button>
+            <button type="button" data-keypad-digit="2" aria-label="2">2</button>
+            <button type="button" data-keypad-digit="3" aria-label="3">3</button>
+            <button type="button" data-keypad-digit="4" aria-label="4">4</button>
+            <button type="button" data-keypad-digit="5" aria-label="5">5</button>
+            <button type="button" data-keypad-digit="6" aria-label="6">6</button>
+            <button type="button" data-keypad-digit="7" aria-label="7">7</button>
+            <button type="button" data-keypad-digit="8" aria-label="8">8</button>
+            <button type="button" data-keypad-digit="9" aria-label="9">9</button>
+            <button type="button" class="key-delete" data-keypad-action="delete" aria-label="מחיקת ספרה אחרונה">
+              <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#backspace"></use></svg>
+            </button>
+            <button type="button" data-keypad-digit="0" aria-label="0">0</button>
+            <button type="button" class="key-submit" data-keypad-action="submit" aria-label="שליחת תשובה">
+              <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#check"></use></svg>
+            </button>
+          </div>
           <p id="question-feedback" aria-live="assertive"></p>
         </div>
       </div>
@@ -224,6 +279,16 @@
             </button>
 
             <div class="menu-actions" aria-label="פעולות">
+              <button id="daily-challenge-open" class="menu-icon-button daily-challenge-open" type="button" aria-expanded="false" aria-controls="daily-challenge-panel" title="המבוך היומי">
+                <span class="daily-challenge-icon ui-icon-wrap" aria-hidden="true">
+                  <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#mission"></use></svg>
+                </span>
+                <span class="daily-challenge-copy kf-visually-hidden">
+                  <small>מבוך יומי אישי</small>
+                  <strong id="daily-home-status">מוכן · 10 תרגילים</strong>
+                </span>
+                <em id="daily-home-streak" aria-hidden="true">0</em>
+              </button>
               <button id="leaderboard-open" class="menu-icon-button home-podium-button leaderboard-open-button" type="button" aria-label="פתח היכל אלופי כפלול" title="היכל אלופים">
                 <span class="ui-icon-wrap" aria-hidden="true">
                   <svg class="ui-icon" focusable="false"><use href="ui/icons.svg?v=20260702-4#podium"></use></svg>
@@ -278,7 +343,7 @@
             </div>
 
             <div class="world-ribbon" aria-label="עולמות קיימים">
-              <span>קרח</span>
+              <span>גן השמש</span>
               <span>לבה</span>
               <span>עתיקות</span>
               <span>יהלומים</span>
@@ -329,6 +394,164 @@
               <strong>אלופים</strong>
             </button>
           </nav>
+
+          <section id="daily-challenge-panel" class="menu-sheet daily-challenge-panel" role="dialog" aria-modal="true" aria-labelledby="daily-challenge-title" hidden>
+            <div class="menu-sheet-inner daily-challenge-sheet">
+              <button class="sheet-close" type="button" data-close-panel aria-label="סגור מבוך יומי">
+                <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#close"></use></svg>
+              </button>
+              <header class="phase5-sheet-header">
+                <span class="secondary-kicker">המשימה של היום</span>
+                <h2 id="daily-challenge-title">המבוך האישי שלך</h2>
+                <p id="daily-challenge-copy">עשרה תרגילים שנבחרו לפי המקומות שבהם הכי כדאי להתחזק.</p>
+              </header>
+              <div class="daily-challenge-summary">
+                <div class="daily-streak-orb" aria-label="רצף ימים">
+                  <strong id="daily-panel-streak">0</strong>
+                  <small>ימי רצף</small>
+                </div>
+                <div class="daily-challenge-message">
+                  <span id="daily-date-label">האתגר של היום</span>
+                  <strong id="daily-panel-status">המבוך מוכן</strong>
+                  <p id="daily-panel-best">עוד אין תוצאה להיום.</p>
+                </div>
+              </div>
+              <section class="daily-focus-section" aria-labelledby="daily-focus-title">
+                <span>התרגילים שחוזרים היום</span>
+                <h3 id="daily-focus-title">המסלול האישי</h3>
+                <div id="daily-focus-facts" class="daily-focus-facts"></div>
+              </section>
+              <div class="daily-rules">
+                <span><small>מטרה</small><strong>10 תשובות נכונות</strong></span>
+                <span><small>קצב</small><strong>כ־3 דקות</strong></span>
+                <span><small>התאמה</small><strong>לפי המפה שלך</strong></span>
+              </div>
+              <div class="daily-challenge-actions">
+                <button id="daily-challenge-start" class="phase5-button phase5-button-primary daily-challenge-start" type="button">התחל את המבוך היומי</button>
+                <button id="duel-panel-open" class="phase5-button duel-panel-open" type="button">
+                  <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#combo"></use></svg>
+                  אתגר חבר על אותו מבוך
+                </button>
+                <button id="league-panel-open" class="phase5-button league-panel-open" type="button">
+                  <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#leaderboard"></use></svg>
+                  הליגה השבועית
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section id="duel-panel" class="menu-sheet duel-panel" role="dialog" aria-modal="true" aria-labelledby="duel-panel-title" hidden>
+            <div class="menu-sheet-inner duel-sheet">
+              <button class="sheet-close" type="button" data-close-panel aria-label="סגור דו־קרב חברים">
+                <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#close"></use></svg>
+              </button>
+              <header class="phase5-sheet-header">
+                <span class="secondary-kicker">אותו מבוך · אותן שאלות</span>
+                <h2 id="duel-panel-title">דו־קרב חברים</h2>
+                <p>קוד פרטי מעביר רק את המסלול והשיא שצריך לנצח. אין צ׳אט ואין פרטים אישיים.</p>
+              </header>
+              <section class="duel-create-card" aria-labelledby="duel-create-title">
+                <div>
+                  <span>שלח את המסלול שלך</span>
+                  <h3 id="duel-create-title">מי ינצח באותו מבוך?</h3>
+                  <p id="duel-create-status">סיימו את המבוך היומי כדי ליצור קוד עם שיא לניצחון.</p>
+                </div>
+                <button id="duel-create-code" class="phase5-button" type="button">צור קוד אתגר</button>
+                <div id="duel-share-box" class="duel-share-box" hidden>
+                  <output id="duel-code-output" aria-label="קוד האתגר" dir="ltr"></output>
+                  <button id="duel-share-code" class="phase5-button" type="button">העתק או שתף</button>
+                </div>
+                <p id="duel-share-status" class="duel-status" aria-live="polite"></p>
+              </section>
+              <div class="duel-divider"><span>או</span></div>
+              <section class="duel-join-card" aria-labelledby="duel-join-title">
+                <div>
+                  <span>קיבלת קוד?</span>
+                  <h3 id="duel-join-title">נכנסים לאתגר</h3>
+                </div>
+                <label for="duel-code-input">קוד חבר</label>
+                <div class="duel-code-entry" dir="ltr">
+                  <input id="duel-code-input" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="KF1-XXXXX-XXXXX">
+                  <button id="duel-validate-code" class="phase5-button" type="button">בדוק קוד</button>
+                </div>
+                <p id="duel-code-error" class="duel-status is-error" aria-live="assertive"></p>
+                <div id="duel-opponent-preview" class="duel-opponent-preview" hidden>
+                  <span><small>השיא לניצחון</small><strong id="duel-target-score">0</strong></span>
+                  <span><small>דיוק במסלול</small><strong id="duel-target-accuracy">0%</strong></span>
+                  <span><small>שאלות</small><strong>10 זהות</strong></span>
+                </div>
+                <button id="duel-start" class="phase5-button phase5-button-primary duel-start" type="button" hidden>התחל דו־קרב</button>
+              </section>
+            </div>
+          </section>
+
+          <section id="league-panel" class="menu-sheet league-panel" role="dialog" aria-modal="true" aria-labelledby="league-panel-title" hidden>
+            <div class="menu-sheet-inner league-sheet">
+              <button class="sheet-close" type="button" data-close-panel aria-label="סגור ליגה שבועית">
+                <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#close"></use></svg>
+              </button>
+              <header class="phase5-sheet-header">
+                <span class="secondary-kicker">ליגה פרטית · מתאפסת בכל יום שני</span>
+                <h2 id="league-panel-title">ליגת הכפל של השבוע</h2>
+                <p>צוברים נקודות מהמבוך היומי ומשווים עם חברים בעזרת קודים פרטיים. בלי חשבון, בלי צ׳אט ובלי שמות.</p>
+              </header>
+
+              <section id="league-setup" class="league-setup" aria-labelledby="league-setup-title">
+                <h3 id="league-setup-title">פותחים ליגה או מצטרפים</h3>
+                <div class="league-setup-actions">
+                  <button id="league-create" class="phase5-button" type="button">צור ליגה פרטית</button>
+                  <div class="league-code-entry" dir="ltr">
+                    <input id="league-invite-input" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="KL1-XXXXX-XXXXX" aria-label="קוד הזמנה לליגה">
+                    <button id="league-join" class="phase5-button" type="button">הצטרף</button>
+                  </div>
+                </div>
+                <p id="league-setup-status" class="league-status" aria-live="polite"></p>
+              </section>
+
+              <section id="league-active" class="league-active" hidden>
+                <div class="league-week-card">
+                  <span><small>השבוע שמתחיל</small><strong id="league-week-label">—</strong></span>
+                  <span><small>הכינוי שלי</small><strong id="league-my-alias">—</strong></span>
+                  <span><small>ניקוד שבועי</small><strong id="league-my-points">0</strong></span>
+                  <span><small>ימי משחק</small><strong id="league-my-days">0/7</strong></span>
+                </div>
+
+                <div class="league-share-card">
+                  <div>
+                    <span>קוד ההזמנה של הליגה</span>
+                    <output id="league-invite-output" dir="ltr"></output>
+                  </div>
+                  <button id="league-share-invite" class="phase5-button" type="button">העתק או שתף הזמנה</button>
+                  <div>
+                    <span>כרטיס התוצאה שלי</span>
+                    <output id="league-result-output" dir="ltr"></output>
+                  </div>
+                  <button id="league-share-result" class="phase5-button" type="button">העתק או שתף תוצאה</button>
+                  <p id="league-share-status" class="league-status" aria-live="polite"></p>
+                </div>
+
+                <section class="league-standings-card" aria-labelledby="league-standings-title">
+                  <div class="league-standings-header">
+                    <span>הטבלה הפרטית</span>
+                    <h3 id="league-standings-title">מי מוביל השבוע?</h3>
+                  </div>
+                  <ol id="league-standings" class="league-standings" aria-live="polite"></ol>
+                </section>
+
+                <section class="league-import-card" aria-labelledby="league-import-title">
+                  <div>
+                    <span>חבר שלח כרטיס תוצאה?</span>
+                    <h3 id="league-import-title">מעדכנים את הטבלה</h3>
+                  </div>
+                  <div class="league-code-entry" dir="ltr">
+                    <input id="league-result-input" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="KR1-XXXXX-XXXXX" aria-label="קוד תוצאה של חבר">
+                    <button id="league-import-result" class="phase5-button" type="button">הוסף לטבלה</button>
+                  </div>
+                  <p id="league-import-status" class="league-status" aria-live="polite"></p>
+                </section>
+              </section>
+            </div>
+          </section>
 
           <section id="hero-gallery" class="hero-gallery" role="dialog" aria-modal="true" aria-labelledby="hero-gallery-title" hidden>
             <div class="hero-gallery-shell">
@@ -431,7 +654,7 @@
                 </span>
                 <span>
                   <small>כלל חשוב</small>
-                  <strong id="pregame-important-rule">25 שניות לכל תרגיל</strong>
+                  <strong id="pregame-important-rule">24 שאלות ואז קרב בוס</strong>
                 </span>
               </div>
               <button id="pregame-start-button" class="phase5-button phase5-button-primary pregame-start-button" type="button">
@@ -466,7 +689,7 @@
                     <span>
                       <strong>הרפתקה</strong>
                       <small>שלבים מסודרים, התקדמות והשלמת עולמות.</small>
-                      <em>100 תשובות · עולמות · מסלול ברור</em>
+                      <em>24 שאלות + בוס בכל עולם</em>
                     </span>
                   </label>
                 </div>
@@ -528,6 +751,40 @@
                 <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#sound-on"></use></svg>
                 <span id="settings-sound-label" data-icon-label>צלילים פועלים</span>
               </button>
+              <section class="audio-mixer-card" aria-labelledby="audio-mixer-title">
+                <div class="audio-mixer-heading">
+                  <strong id="audio-mixer-title">מיקס שמע</strong>
+                  <small id="audio-mixer-note">מוזיקה שקטה יותר בזמן תרגילים</small>
+                </div>
+                <label class="audio-volume-row" for="audio-master-volume">
+                  <span id="audio-master-label">עוצמה כללית</span>
+                  <input id="audio-master-volume" type="range" min="0" max="100" step="1" value="78">
+                  <output id="audio-master-output" for="audio-master-volume">78%</output>
+                </label>
+                <label class="audio-volume-row" for="audio-music-volume">
+                  <span id="audio-music-label">מוזיקה</span>
+                  <input id="audio-music-volume" type="range" min="0" max="100" step="1" value="45">
+                  <output id="audio-music-output" for="audio-music-volume">45%</output>
+                </label>
+                <label class="audio-volume-row" for="audio-sfx-volume">
+                  <span id="audio-sfx-label">אפקטים</span>
+                  <input id="audio-sfx-volume" type="range" min="0" max="100" step="1" value="78">
+                  <output id="audio-sfx-output" for="audio-sfx-volume">78%</output>
+                </label>
+                <label class="audio-volume-row" for="audio-voices-volume">
+                  <span id="audio-voices-label">דמויות ובוסים</span>
+                  <input id="audio-voices-volume" type="range" min="0" max="100" step="1" value="82">
+                  <output id="audio-voices-output" for="audio-voices-volume">82%</output>
+                </label>
+                <button id="audio-safety-toggle" class="audio-safety-toggle" type="button" aria-pressed="true">
+                  <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#sound-on"></use></svg>
+                  <span id="audio-safety-label">מצב אוזניות בטוח: פועל</span>
+                </button>
+              </section>
+              <button id="time-limit-toggle" class="phase5-button" type="button" aria-pressed="true">
+                <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#timer"></use></svg>
+                <span>טיימר לתרגילים: <strong id="time-limit-state">פועל</strong></span>
+              </button>
               <section class="settings-game-card" aria-label="הגדרות משחק">
                 <strong>משחק</strong>
                 <p id="settings-selection-summary">ביפלי · רגיל ×1.5 · ארקייד</p>
@@ -588,10 +845,40 @@
                 <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#close"></use></svg>
               </button>
               <header class="phase5-sheet-header">
-                <span class="secondary-kicker">נתונים שמורים בלבד</span>
-                <h2 id="progress-panel-title">התקדמות</h2>
-                <p id="progress-panel-copy">מוצגים רק שיאים ופתיחות שקיימים בשמירה המקומית.</p>
+                <span class="secondary-kicker">מסע השליטה שלי</span>
+                <h2 id="progress-panel-title">מפת לוח הכפל</h2>
+                <p id="progress-panel-copy">כל תשובה צובעת את המפה ומראה בדיוק במה כדאי להתאמן.</p>
               </header>
+              <section class="mastery-dashboard" aria-labelledby="mastery-dashboard-title">
+                <div class="mastery-hero">
+                  <div id="mastery-progress-ring" class="mastery-progress-ring" role="img" aria-label="0 אחוזי שליטה">
+                    <strong id="mastery-progress-percent">0%</strong>
+                    <small>שליטה</small>
+                  </div>
+                  <div class="mastery-hero-copy">
+                    <span class="mastery-eyebrow">המסלול שלך</span>
+                    <h3 id="mastery-dashboard-title">כל תרגיל הוא חדר במבוך</h3>
+                    <p id="mastery-summary">עוד לא התחלנו לצבוע את המפה. משחק אחד קטן יפתח את הדרך.</p>
+                  </div>
+                </div>
+                <div class="mastery-focus-card">
+                  <span>
+                    <small>היעד הבא</small>
+                    <strong id="mastery-focus-title">שלושה תרגילים לחיזוק</strong>
+                  </span>
+                  <div id="mastery-focus-facts" class="mastery-focus-facts" aria-live="polite"></div>
+                </div>
+                <div class="mastery-map-wrap">
+                  <div id="mastery-map" class="mastery-map" role="grid" aria-label="מפת שליטה בלוח הכפל מאחת עד עשר"></div>
+                </div>
+                <div class="mastery-legend" aria-label="מקרא מפת השליטה">
+                  <span><i class="mastery-dot is-mastered"></i><b>שולט</b></span>
+                  <span><i class="mastery-dot is-practicing"></i><b>מתחזק</b></span>
+                  <span><i class="mastery-dot is-learning"></i><b>בלמידה</b></span>
+                  <span><i class="mastery-dot is-unpracticed"></i><b>חדש</b></span>
+                </div>
+              </section>
+              <h3 class="progress-scores-title">השיאים שלי</h3>
               <div class="progress-real-grid">
                 <span>
                   <small>רמות פתוחות</small>
@@ -770,16 +1057,18 @@
   <script src="ui/assets/asset-manifest.js?v=20260701-3"></script>
   <script src="ui/character-animation-adapter.js?v=20260628-1"></script>
   <script src="ui/motion/motion-system.js?v=20260630-1"></script>
-  <script src="ui/sounds/ui-sound-controller.js?v=20260629-1"></script>
+  <script src="ui/sounds/kaflul-audio-engine.js?v=20260712-audio-1"></script>
+  <script src="ui/sounds/ui-sound-controller.js?v=20260713-input-1"></script>
   <script src="poster-loader.js?v=20260705-loading-2"></script>
-  <script src="mobile-enhancements.js?v=20260701-2"></script>
+  <script src="mobile-enhancements.js?v=20260711-keypad-1"></script>
   <script src="mobile-screen-state.js?v=20260621-4"></script>
   <script src="mobile-question-state.js?v=20260621-5"></script>
-  <script src="mobile-native-answer.js?v=20260621-6"></script>
-  <script src="nabatick-directional.js?v=20260628-1"></script>
+  <script src="mobile-native-answer.js?v=20260711-keypad-1"></script>
   <script src="maze-enhancements.js?v=20260622-1"></script>
   <script src="maze-theme-system.js?v=20260703-1"></script>
   <script src="maze-decor-system.js?v=20260703-1"></script>
-  <script src="game.js?v=20260705-loading-1"></script>
+  <script src="maze-tile-topology.js?v=20260712-modular-v3-1"></script>
+  <script src="maze-axonometric-projection.js?v=20260712-axonometric-v1"></script>
+  <script src="game.js?v=20260713-stage1-style-all-worlds-4"></script>
 </body>
 </html>

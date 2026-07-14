@@ -1,0 +1,10 @@
+{
+  "generator": "tools/pack_ice_v3_runtime.py",
+  "atlasSha256": "c53eb5623e71d5abf4fc38991eca0ba5579a456c5a13c11cb7ce32fa2c3a4d52",
+  "manifestSha256": "2d811530b1bd11c8cab0678d7acf9dc0e561b24529ab6971425809f3c8c04cae",
+  "wallMasks": 16,
+  "floorVariants": 4,
+  "collectibleFrames": 8,
+  "powerFrames": 8,
+  "license": "project-original"
+}

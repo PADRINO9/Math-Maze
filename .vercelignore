@@ -1,0 +1,13 @@
+.env
+.env.*
+.android-sdk/
+.gradle-user-home/
+.pnpm-store/
+.tools/
+android/
+dist/
+node_modules/
+test-results/
+assets/blender/
+assets/generated/blender/
+*.apk

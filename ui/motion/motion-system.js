@@ -82,9 +82,10 @@
   }
 
   function clearTimer(element) {
-    const timer = timers.get(element);
-    if (timer) {
-      window.clearTimeout(timer);
+    const active = timers.get(element);
+    if (active) {
+      window.clearTimeout(active.timer);
+      element.classList.remove(active.className);
       timers.delete(element);
     }
   }
@@ -131,7 +132,7 @@
       }
       timers.delete(element);
     }, duration);
-    timers.set(element, timer);
+    timers.set(element, { timer, className });
 
     diagnostics.played += 1;
     diagnostics.lastEvent = normalizedEvent;

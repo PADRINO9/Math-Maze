@@ -5,6 +5,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveStaticFile } from "./static-file-security.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputDir = path.join(root, "docs", "phase5-screenshots");
@@ -55,13 +56,7 @@ function startServer() {
   const server = createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", "http://127.0.0.1");
-      const decoded = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
-      const resolved = path.resolve(root, decoded.slice(1));
-      if (!resolved.startsWith(root)) {
-        response.writeHead(403);
-        response.end("Forbidden");
-        return;
-      }
+      const resolved = await resolveStaticFile(root, url.pathname);
       const bytes = await readFile(resolved);
       response.writeHead(200, { "content-type": contentType(resolved), "cache-control": "no-store" });
       response.end(bytes);

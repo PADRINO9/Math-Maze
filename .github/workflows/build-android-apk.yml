@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: Check out current revision
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -48,7 +50,7 @@ jobs:
           java-version: 21
 
       - name: Install JavaScript dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Install Chromium for smoke validation
         run: npx playwright install --with-deps chromium
@@ -78,14 +80,22 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Rename APK
+        env:
+          REQUESTED_BUILD_LABEL: ${{ inputs.build_label || 'kaflul-debug' }}
         run: |
+          if [[ ! "$REQUESTED_BUILD_LABEL" =~ ^[A-Za-z0-9._-]{1,48}$ ]]; then
+            echo "Invalid build label. Use 1-48 letters, digits, dots, underscores or dashes." >&2
+            exit 1
+          fi
+          APK_ARTIFACT_NAME="${REQUESTED_BUILD_LABEL}-${GITHUB_RUN_NUMBER}"
           mkdir -p dist
-          cp android/app/build/outputs/apk/debug/app-debug.apk "dist/${{ inputs.build_label || 'kaflul-debug' }}-${{ github.run_number }}.apk"
+          cp android/app/build/outputs/apk/debug/app-debug.apk "dist/${APK_ARTIFACT_NAME}.apk"
+          echo "APK_ARTIFACT_NAME=$APK_ARTIFACT_NAME" >> "$GITHUB_ENV"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.build_label || 'kaflul-debug' }}-${{ github.run_number }}
+          name: ${{ env.APK_ARTIFACT_NAME }}
           path: dist/*.apk
           if-no-files-found: error
           retention-days: 14

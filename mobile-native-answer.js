@@ -6,13 +6,12 @@
 
   function configure() {
     if (!answerInput) return;
-    document.querySelectorAll(".mobile-number-pad").forEach((pad) => pad.remove());
-    answerInput.readOnly = false;
-    answerInput.inputMode = "numeric";
-    answerInput.setAttribute("inputmode", "numeric");
+    answerInput.readOnly = true;
+    answerInput.inputMode = "none";
+    answerInput.setAttribute("inputmode", "none");
     answerInput.setAttribute("pattern", "[0-9]*");
-    answerInput.setAttribute("enterkeyhint", "done");
-    answerInput.removeAttribute("aria-describedby");
+    answerInput.setAttribute("maxlength", "4");
+    answerInput.setAttribute("aria-describedby", "game-number-pad");
   }
 
   if (dialog) {

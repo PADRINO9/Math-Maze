@@ -125,8 +125,7 @@
     "assets/generated/nabatick-expression-idle.png",
     "assets/dark-enemy.png",
     "assets/dark-enemy-angry.png",
-    "assets/dark-enemy-surprised.png",
-    "assets/reference/maze-worlds/world_ice.png"
+    "assets/dark-enemy-surprised.png"
   ];
 
   function delay(ms) {

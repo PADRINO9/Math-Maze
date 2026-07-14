@@ -106,6 +106,11 @@ async function seedLocalLeaderboard(page) {
 
 async function seedHeroGalleryProgress(page) {
   await page.addInitScript(() => {
+    localStorage.setItem("mathMazeFactStats", JSON.stringify({
+      "7×8": { correct: 4, wrong: 0, streak: 4, lastAnsweredAt: "2026-06-29T00:00:00.000Z" },
+      "6×9": { correct: 1, wrong: 3, streak: 0, lastAnsweredAt: "2026-06-29T00:00:00.000Z" },
+      "4×4": { correct: 2, wrong: 0, streak: 2, lastAnsweredAt: "2026-06-29T00:00:00.000Z" }
+    }));
     localStorage.setItem("kaflulArcadeSave", JSON.stringify({
       schemaVersion: 2,
       gameVersion: "test",
@@ -255,6 +260,127 @@ test("start button enters a running game and visible blur does not pause it", as
   expect(errors).toEqual([]);
 });
 
+test("every world opens on the full maze then focuses the camera on the player", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceStageIntroForVerification === "function");
+
+  for (const levelIndex of [0, 1, 2, 3]) {
+    const overview = await page.evaluate((index) =>
+      window.__mathMazeRuntime.forceStageIntroForVerification(index), levelIndex
+    );
+
+    expect(overview.active).toBe(true);
+    expect(overview.levelIndex).toBe(levelIndex);
+    expect(overview.phase).toBe("overview");
+    expect(overview.zoom).toBeLessThan(overview.gameplayZoom * 0.9);
+    expect(overview.keyCount).toBe(3);
+    expect(overview.letterCount).toBe(3);
+    await expect(page.locator("html")).toHaveClass(/stage-intro-camera-active/);
+
+    const heldPlayer = { x: overview.playerX, y: overview.playerY };
+    await page.keyboard.press("ArrowLeft");
+    await page.waitForTimeout(180);
+    const duringOverview = await page.evaluate(() => window.__mathMazeRuntime.getStageIntroCameraSnapshot());
+    expect(duringOverview.playerX).toBeCloseTo(heldPlayer.x, 4);
+    expect(duringOverview.playerY).toBeCloseTo(heldPlayer.y, 4);
+
+    await page.evaluate(() => window.__mathMazeRuntime.setStageIntroProgressForVerification(0.995));
+    await page.waitForFunction(() => !window.__mathMazeRuntime.getStageIntroCameraSnapshot().active);
+    const focused = await page.evaluate(() => window.__mathMazeRuntime.getStageIntroCameraSnapshot());
+    expect(focused.phase).toBe("gameplay");
+    expect(focused.zoom).toBeCloseTo(focused.gameplayZoom, 2);
+    expect(focused.playerX).toBeCloseTo(heldPlayer.x, 4);
+    expect(focused.playerY).toBeCloseTo(heldPlayer.y, 4);
+    await expect(page.locator("html")).not.toHaveClass(/stage-intro-camera-active/);
+  }
+
+  expect(errors).toEqual([]);
+});
+
+test("24 correct answers trigger a three-question boss and cinematic next-stage transition", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => typeof window.__mathMazeRuntime?.getBossEncounterSnapshot === "function");
+  await page.evaluate(() => {
+    window.__mathMazeRuntime.forceLevelForVerification(0);
+    window.__mathMazeRuntime.setBossQuestionFeedbackDelayForVerification(120);
+    window.__mathMazeRuntime.forceBossChallenge();
+  });
+
+  const entrance = await page.evaluate(() => window.__mathMazeRuntime.getBossEncounterSnapshot());
+  expect(entrance.regularCorrect).toBe(24);
+  expect(entrance.bossCorrect).toBe(0);
+  expect(entrance.boss.configKey).toBe("stage1");
+  expect(entrance.boss.definitionId).toBe("magma-bastion");
+  expect(entrance.boss.name).toBe("לבת-הר");
+  expect(entrance.cinematic.vanishingEnemyCount).toBeGreaterThanOrEqual(6);
+  await expect(page.locator("#hud-progress-stage")).toContainText("בוס שלב 1");
+  await expect(page.locator("#target-correct")).toHaveText("/3");
+
+  await page.evaluate(() => window.__mathMazeRuntime.completeBossCinematicForVerification());
+  await page.waitForFunction(() => window.__mathMazeRuntime.getBossEncounterSnapshot().cinematic === null);
+  const questions = [];
+  for (let index = 0; index < 3; index += 1) {
+    const question = await page.evaluate(() => window.__mathMazeRuntime.openBossQuestionForVerification());
+    questions.push(question.text);
+    expect(question.bossQuestionNumber).toBe(index + 1);
+    expect(question.bossQuestionTotal).toBe(3);
+    expect(question.status).toContain(`${index + 1} מתוך 3`);
+    const snapshot = await page.evaluate(() => {
+      window.__mathMazeRuntime.answerCurrentQuestionForVerification(undefined, true);
+      return window.__mathMazeRuntime.getBossEncounterSnapshot();
+    });
+    expect(snapshot.bossCorrect).toBe(index + 1);
+    if (index < 2) {
+      expect(snapshot.boss).not.toBeNull();
+      expect(snapshot.boss.damageLevel).toBe(index + 1);
+    } else {
+      expect(snapshot.boss).toBeNull();
+      expect(snapshot.phase).toBe("victory");
+      expect(snapshot.defeatTransition).not.toBeNull();
+    }
+  }
+  expect(new Set(questions).size).toBe(3);
+
+  await page.waitForFunction(() => {
+    const snapshot = window.__mathMazeRuntime.getBossEncounterSnapshot();
+    return snapshot.levelIndex === 1 && snapshot.stageIntro;
+  });
+  const nextStage = await page.evaluate(() => window.__mathMazeRuntime.getBossEncounterSnapshot());
+  expect(nextStage.levelIndex).toBe(1);
+  expect(nextStage.stageCorrect).toBe(0);
+  expect(nextStage.stageIntro).toBe(true);
+  expect(errors).toEqual([]);
+});
+
+test("each stage keeps its own numbered boss identity", async ({ page }) => {
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceBossChallenge === "function");
+  const bosses = await page.evaluate(() => {
+    const identities = [];
+    for (let levelIndex = 0; levelIndex < 4; levelIndex += 1) {
+      window.__mathMazeRuntime.forceLevelForVerification(levelIndex);
+      window.__mathMazeRuntime.forceBossChallenge();
+      const boss = window.__mathMazeRuntime.getBossSnapshot();
+      identities.push({
+        levelIndex,
+        configKey: boss?.configKey,
+        definitionId: boss?.definitionId,
+        name: boss?.name
+      });
+    }
+    return identities;
+  });
+
+  expect(bosses).toEqual([
+    { levelIndex: 0, configKey: "stage1", definitionId: "magma-bastion", name: "לבת-הר" },
+    { levelIndex: 1, configKey: "stage2", definitionId: "frostmaw", name: "שן-הקרחון" },
+    { levelIndex: 2, configKey: "stage3", definitionId: "mire-tyrant", name: "מלך-הביצה" },
+    { levelIndex: 3, configKey: "stage4", definitionId: "eclipse-monarch", name: "כתר-הליקוי" }
+  ]);
+});
+
 test("gameplay HUD stays streamlined and uses SVG lives", async ({ page }, testInfo) => {
   const errors = collectRuntimeErrors(page);
   await startGame(page);
@@ -283,13 +409,46 @@ test("gameplay HUD stays streamlined and uses SVG lives", async ({ page }, testI
   expect(errors).toEqual([]);
 });
 
-test("mobile uses one native numeric input and starts without a stale overlay", async ({ page }, testInfo) => {
+test("arcade collection slots light independently and three keys reveal chest guidance", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceArcadeCollectionProgressForVerification === "function");
+
+  await page.evaluate(() => window.__mathMazeRuntime.forceArcadeCollectionProgressForVerification({
+    keysCollected: 0,
+    collectedLetters: []
+  }));
+  await page.evaluate(() => window.__mathMazeRuntime.collectArcadeBonusItemForVerification("letter", "ל"));
+  const partial = await page.evaluate(() => window.__mathMazeRuntime.collectArcadeBonusItemForVerification("key"));
+  expect(partial.keysCollected).toBe(1);
+  expect(partial.collectedLetters).toEqual(["ל"]);
+  await expect(page.locator(".arcade-key-slot.is-collected")).toHaveCount(1);
+  await expect(page.locator('.arcade-letter-slot[data-bonus-letter="ל"]')).toHaveClass(/is-collected/);
+  await expect(page.locator('.arcade-letter-slot[data-bonus-letter="כ"]')).not.toHaveClass(/is-collected/);
+  await expect(page.locator("#chest-ready-guidance")).toBeHidden();
+
+  await page.evaluate(() => window.__mathMazeRuntime.collectArcadeBonusItemForVerification("letter", "פ"));
+  await page.evaluate(() => window.__mathMazeRuntime.collectArcadeBonusItemForVerification("letter", "כ"));
+  await page.evaluate(() => window.__mathMazeRuntime.collectArcadeBonusItemForVerification("key"));
+  const complete = await page.evaluate(() => window.__mathMazeRuntime.collectArcadeBonusItemForVerification("key"));
+  expect(complete.chestReadyVisible).toBe(true);
+  await expect(page.locator(".arcade-key-slot.is-collected")).toHaveCount(3);
+  await expect(page.locator(".arcade-letter-slot.is-collected")).toHaveCount(3);
+  await expect(page.locator("#chest-ready-guidance")).toBeVisible();
+  await expect(page.locator("#chest-ready-title")).toHaveText("שלושת המפתחות בידיך!");
+  await expect(page.locator("#chest-ready-message")).toHaveText("גש לתיבה ופתח את האוצר");
+  expect(errors).toEqual([]);
+});
+
+test("mobile uses the in-game numeric keypad and starts without a stale overlay", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.includes("mobile"), "Mobile-only assertion");
   const errors = collectRuntimeErrors(page);
   await startGame(page, "נייד");
 
-  await expect(page.locator(".mobile-number-pad")).toHaveCount(0);
-  await expect(page.locator("#answer-input")).not.toHaveAttribute("readonly", "");
+  await expect(page.locator("#game-number-pad")).toHaveCount(1);
+  await expect(page.locator("#answer-input")).toHaveAttribute("readonly", "");
+  await expect(page.locator("#answer-input")).toHaveAttribute("inputmode", "none");
+  await expect(page.locator("#game-number-pad [data-keypad-digit]")).toHaveCount(10);
   await expect(page.locator("#start-screen")).toBeHidden();
 
   const hiddenStyle = await page.locator("#start-screen").evaluate((element) => ({
@@ -524,7 +683,12 @@ test("phase 8.8 hero gallery, home navigation and real progress data are complet
 
   await page.locator("#home-progress-button").click();
   await expect(page.locator("#progress-panel")).toBeVisible();
-  await expect(page.locator("#progress-panel-copy")).toContainText("שמירה המקומית");
+  await expect(page.locator("#progress-panel-copy")).toContainText("צובעת את המפה");
+  await expect(page.locator("#mastery-map")).toBeVisible();
+  await expect(page.locator("#mastery-map").locator("[role='gridcell']")).toHaveCount(100);
+  await expect(page.locator("#mastery-progress-percent")).not.toHaveText("0%");
+  await expect(page.locator("#mastery-focus-facts .mastery-focus-fact")).toHaveCount(3);
+  await expect(page.locator("#mastery-map .is-mastered")).toHaveCount(2);
   await expect(page.locator("#progress-best-list")).toContainText("3,400");
   const progressText = await page.locator("#progress-panel").innerText();
   expect(progressText).not.toMatch(/מטבע|פרס|תגמול|הישג/);
@@ -547,6 +711,180 @@ test("phase 8.8 hero gallery, home navigation and real progress data are complet
   await expect(page.locator("input[name='character'][value='nabatick']")).toBeChecked();
   await expect(page.locator("#selected-character-label")).toContainText("נבטיק");
 
+  expect(errors).toEqual([]);
+});
+
+test("personal daily maze uses a deterministic focus route and records completion", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.addInitScript(() => {
+    localStorage.setItem("mathMazeFactStats", JSON.stringify({
+      "7×8": { correct: 0, wrong: 4, streak: 0 },
+      "6×9": { correct: 1, wrong: 3, streak: 0 },
+      "4×6": { correct: 1, wrong: 2, streak: 0 }
+    }));
+  });
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#daily-challenge-open")).toBeVisible();
+  await expect(page.locator("#daily-home-status")).toContainText("10");
+  const dailyEntryLayout = await page.locator("#daily-challenge-open").evaluate((element) => {
+    const rect = element.getBoundingClientRect();
+    return {
+      parentClass: element.parentElement?.className || "",
+      width: Math.round(rect.width),
+      height: Math.round(rect.height)
+    };
+  });
+  expect(dailyEntryLayout.parentClass).toContain("menu-actions");
+  expect(dailyEntryLayout.width).toBeLessThanOrEqual(80);
+  expect(dailyEntryLayout.height).toBeLessThanOrEqual(80);
+
+  await page.locator("#daily-challenge-open").click();
+  await expect(page.locator("#daily-challenge-panel")).toBeVisible();
+  await expect(page.locator("#daily-focus-facts .daily-focus-fact")).toHaveCount(3);
+  await expect(page.locator("#daily-focus-facts")).toContainText("7×8");
+  await page.locator("#daily-challenge-start").click();
+  await expect(page.locator("#start-screen")).toBeHidden();
+
+  const daily = await page.evaluate(() => window.__mathMazeRuntime.getDailyChallengeSnapshot());
+  expect(daily.sessionKind).toBe("daily");
+  expect(daily.targetCorrect).toBe(10);
+  expect(daily.focusFacts).toEqual(["7×8", "6×9", "4×6"]);
+  await expect(page.locator("#hud-progress-stage")).toContainText("יומי");
+  await expect(page.locator("#target-correct")).toHaveText("/10");
+
+  const question = await page.evaluate(() => window.__mathMazeRuntime.openQuestionForVerification());
+  expect(question).not.toBeNull();
+  for (const digit of String(question.answer)) {
+    await page.locator(`#game-number-pad [data-keypad-digit="${digit}"]`).click();
+  }
+  await page.locator("#game-number-pad [data-keypad-action='submit']").click();
+  await expect.poll(() => page.evaluate(() => window.__mathMazeRuntime.getDailyChallengeSnapshot().correctAnswers)).toBe(1);
+
+  await page.evaluate(() => window.__mathMazeRuntime.forceDailyCompletionForVerification("אלוף יומי"));
+  await expect(page.locator("#end-screen")).toBeVisible();
+  await expect(page.locator("#end-title")).toContainText("המבוך היומי הושלם");
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("kaflulArcadeSave")));
+  expect(saved.dailyProgress.totalCompleted).toBe(1);
+  expect(saved.dailyProgress.streak).toBe(1);
+  expect(errors).toEqual([]);
+});
+
+test("friend duel shares one private route and records whether the target was beaten", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.addInitScript(() => {
+    const dateKey = (() => {
+      const now = new Date();
+      const pad = (value) => String(value).padStart(2, "0");
+      return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+    })();
+    localStorage.setItem("kaflulArcadeSave", JSON.stringify({
+      schemaVersion: 2,
+      player: { nickname: "בודק דו קרב" },
+      dailyProgress: {
+        currentStreak: 1,
+        streak: 1,
+        lastCompletedDate: dateKey,
+        totalCompleted: 1,
+        bestByDate: {
+          [dateKey]: {
+            score: 4200,
+            accuracy: 90,
+            correctAnswers: 10,
+            seed: 42,
+            completedAt: `${dateKey}T09:00:00.000Z`
+          }
+        }
+      }
+    }));
+  });
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.locator("#daily-challenge-open").click();
+  await page.locator("#duel-panel-open").click();
+  await expect(page.locator("#duel-panel")).toBeVisible();
+  await expect(page.locator("#duel-create-code")).toBeEnabled();
+
+  await page.locator("#duel-create-code").click();
+  const code = (await page.locator("#duel-code-output").textContent()).trim();
+  expect(code).toMatch(/^KF1-/);
+  await page.locator("#duel-code-input").fill(code);
+  await page.locator("#duel-validate-code").click();
+  await expect(page.locator("#duel-opponent-preview")).toBeVisible();
+  await expect(page.locator("#duel-target-score")).toContainText("4,200");
+  await page.locator("#duel-start").click();
+
+  const duel = await page.evaluate(() => window.__mathMazeRuntime.getDuelSnapshot());
+  expect(duel.sessionKind).toBe("duel");
+  expect(duel.targetCorrect).toBe(10);
+  expect(duel.targetScore).toBe(4200);
+  expect(duel.questions).toHaveLength(10);
+  await expect(page.locator("#hud-progress-stage")).toContainText("דו־קרב");
+  await expect(page.locator("#target-correct")).toHaveText("/10");
+
+  await page.evaluate(() => window.__mathMazeRuntime.forceDuelCompletionForVerification({
+    playerName: "אלוף דו קרב",
+    win: true
+  }));
+  await expect(page.locator("#end-screen")).toBeVisible();
+  await expect(page.locator("#end-kicker")).toContainText("ניצחת בדו־קרב");
+  await expect(page.locator("#result-mode")).toHaveText("דו־קרב חברים");
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("kaflulArcadeSave")));
+  expect(saved.duelProgress.history).toHaveLength(1);
+  expect(saved.duelProgress.history[0].won).toBe(true);
+  expect(errors).toEqual([]);
+});
+
+test("private weekly league creates an invite and imports anonymous friend results", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.addInitScript(() => {
+    const now = new Date();
+    const day = now.getDay() || 7;
+    const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - day + 1, 12);
+    const secondDay = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 2, 12);
+    const dateKey = (date) => {
+      const pad = (value) => String(value).padStart(2, "0");
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
+    localStorage.setItem("kaflulArcadeSave", JSON.stringify({
+      schemaVersion: 2,
+      player: { nickname: "בודק ליגה" },
+      dailyProgress: {
+        streak: 2,
+        totalCompleted: 2,
+        lastCompletedDate: dateKey(secondDay),
+        bestByDate: {
+          [dateKey(monday)]: { score: 3200, accuracy: 85, correctAnswers: 10 },
+          [dateKey(secondDay)]: { score: 4100, accuracy: 95, correctAnswers: 10 }
+        }
+      }
+    }));
+  });
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.locator("#daily-challenge-open").click();
+  await page.locator("#league-panel-open").click();
+  await expect(page.locator("#league-panel")).toBeVisible();
+  await page.locator("#league-create").click();
+  await expect(page.locator("#league-active")).toBeVisible();
+  await expect(page.locator("#league-invite-output")).toContainText("KL1-");
+  await expect(page.locator("#league-result-output")).toContainText("KR1-");
+  await expect(page.locator("#league-my-points")).toContainText("7,300");
+  await expect(page.locator("#league-standings li")).toHaveCount(1);
+
+  const friendCode = await page.evaluate(() => {
+    const snapshot = window.__mathMazeRuntime.getLeagueSnapshot();
+    return window.KaflulSystems.createWeeklyLeagueResultCode(snapshot.currentLeague, 4567, {
+      points: 9600,
+      daysPlayed: 4,
+      accuracy: 92
+    });
+  });
+  await page.locator("#league-result-input").fill(friendCode);
+  await page.locator("#league-import-result").click();
+  await expect(page.locator("#league-import-status")).toContainText("נוספה לטבלה");
+  await expect(page.locator("#league-standings li")).toHaveCount(2);
+  await expect(page.locator("#league-standings li").first()).toContainText("9,600");
+  const snapshot = await page.evaluate(() => window.__mathMazeRuntime.getLeagueSnapshot());
+  expect(snapshot.standings).toHaveLength(2);
+  expect(snapshot.standings[0].points).toBe(9600);
   expect(errors).toEqual([]);
 });
 

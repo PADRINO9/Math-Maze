@@ -1,15 +1,17 @@
 # Kaflul UI Sound Spec
 
-Date: 2026-06-29
-Phase: 6 UI audio system only
+Date: 2026-07-12
+Phase: production game audio
 
 ## Scope
 
-This document defines UI-audio behavior for the completed Kaflul interface. It does not replace gameplay tones for correct answer, wrong answer, item pickup, mission logic, or other gameplay feedback.
+This document defines the production audio behavior for the Kaflul interface and gameplay. UI, music, gameplay, character, enemy, and boss audio now share one WebAudio mixer.
 
 Production owners:
 
-- UI sound controller: `ui/sounds/ui-sound-controller.js`
+- Production audio engine: `ui/sounds/kaflul-audio-engine.js`
+- UI compatibility adapter: `ui/sounds/ui-sound-controller.js`
+- Original audio assets: `assets/audio/`
 - Integration points: `game.js`
 - Manifest metadata: `ui/assets/asset-manifest.js`
 - Verification: `tools/phase6_motion_audio_verification.mjs`
@@ -26,9 +28,7 @@ Production owners:
 
 ## Current Source Status
 
-Phase 6 uses generated WebAudio tones only. No external audio files were added.
-
-This is intentional because no approved branded audio pack exists yet. The controller provides named sound events now, so approved sound assets can replace generated tones later without changing game state paths.
+Kaflul now ships 107 original WAV assets generated from the reproducible source in `tools/generate_audio_assets.py`. The pack contains adaptive music stems for all four worlds, boss layers, UI/gameplay feedback, character voices, enemy voices, and five cues for every boss. No stock or externally licensed recordings are used.
 
 ## Event Map
 
@@ -57,7 +57,7 @@ This is intentional because no approved branded audio pack exists yet. The contr
 
 ## Phase 8.9 Stabilization Notes
 
-Phase 8.9 keeps the generated WebAudio approach and makes the existing production hooks explicit. The `data-ui-sound="primary-play"` hook used by the main play button now maps to a named generated event instead of falling through to a generic notification.
+The production engine keeps the Phase 8.9 event contract while replacing its oscillator tones with original decoded audio buffers. The `data-ui-sound="primary-play"` hook maps to the branded start cue.
 
 Verified UI sound events:
 
@@ -73,7 +73,7 @@ Verified UI sound events:
 - `reward`
 - `newRecord`
 
-These remain temporary generated tones. They must not be described as final branded Kaflul audio assets.
+These events now resolve through the production Kaflul asset pack.
 
 ## Autoplay Contract
 
@@ -101,11 +101,9 @@ The UI controller owns menu, sheet, modal, selection, reward, and record sounds.
 
 Future audio replacement must keep this separation unless a later approved phase intentionally unifies the whole audio engine.
 
-## Missing Audio Assets
+## Production Audio Assets
 
-No approved external UI sound files exist yet.
-
-Recommended future asset pack:
+The current pack includes:
 
 - button press
 - primary play

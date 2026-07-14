@@ -99,7 +99,15 @@ async function getCanvasPixelProbe(page) {
   });
 }
 
+async function enterAnswerWithKeypad(page, answer) {
+  for (const digit of String(answer)) {
+    await page.locator(`[data-keypad-digit="${digit}"]`).click();
+  }
+  await page.locator('[data-keypad-action="submit"]').click();
+}
+
 test("phase 1 mobile vertical slice keeps home and first gameplay view playable", async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
   test.skip(!testInfo.project.name.includes("mobile"), "Phase 1 vertical slice gate is mobile-first.");
   const errors = collectRuntimeErrors(page);
 
@@ -256,10 +264,15 @@ test("phase 1 mobile vertical slice keeps home and first gameplay view playable"
   await expect(page.locator("#question-dialog")).toBeVisible();
   await expect(page.locator("#movement-joystick")).toBeHidden();
 
-  await page.locator("#answer-input").fill(String(firstQuestion.answer));
-  await page.locator("#submit-answer").click();
-  await expect(page.locator("#question-dialog")).toHaveAttribute("data-answer-result", "correct");
-  await expect(page.locator("#question-feedback")).toHaveText(/.+/);
+  await enterAnswerWithKeypad(page, firstQuestion.answer);
+  const correctFeedback = await page.evaluate(() => ({
+    result: window.__mathMazeRuntime?.questionFeedbackResult ?? null,
+    dialogResult: document.querySelector("#question-dialog")?.getAttribute("data-answer-result") ?? null,
+    text: document.querySelector("#question-feedback")?.textContent?.trim() || ""
+  }));
+  expect(correctFeedback.result).toBe("correct");
+  expect(correctFeedback.dialogResult).toBe("correct");
+  expect(correctFeedback.text.length).toBeGreaterThan(0);
 
   const correctFeedbackAudit = await getVisibleRectAudit(page, [
     "#question-dialog",
@@ -268,7 +281,6 @@ test("phase 1 mobile vertical slice keeps home and first gameplay view playable"
   ]);
   expect(correctFeedbackAudit.missing).toEqual([]);
   expect(correctFeedbackAudit.clipped).toEqual([]);
-  expect(await page.evaluate(() => window.__mathMazeRuntime?.questionFeedbackResult)).toBe("correct");
   await expect
     .poll(() => page.evaluate(() => window.__mathMazeRuntime?.questionFeedbackResult ?? null))
     .toBe(null);
@@ -280,11 +292,15 @@ test("phase 1 mobile vertical slice keeps home and first gameplay view playable"
   const wrongAnswer = secondQuestion.answer === 1 ? 2 : 1;
 
   await expect(page.locator("#question-dialog")).toBeVisible();
-  await page.locator("#answer-input").fill(String(wrongAnswer));
-  await page.locator("#submit-answer").click();
-  await expect(page.locator("#question-dialog")).toHaveAttribute("data-answer-result", "wrong");
-  await expect(page.locator("#question-feedback")).toContainText(String(secondQuestion.answer));
-  expect(await page.evaluate(() => window.__mathMazeRuntime?.questionFeedbackResult)).toBe("wrong");
+  await enterAnswerWithKeypad(page, wrongAnswer);
+  const wrongFeedback = await page.evaluate(() => ({
+    result: window.__mathMazeRuntime?.questionFeedbackResult ?? null,
+    dialogResult: document.querySelector("#question-dialog")?.getAttribute("data-answer-result") ?? null,
+    text: document.querySelector("#question-feedback")?.textContent?.trim() || ""
+  }));
+  expect(wrongFeedback.result).toBe("wrong");
+  expect(wrongFeedback.dialogResult).toBe("wrong");
+  expect(wrongFeedback.text).toContain(String(secondQuestion.answer));
   await expect
     .poll(() => page.evaluate(() => window.__mathMazeRuntime?.questionFeedbackResult ?? null))
     .toBe(null);

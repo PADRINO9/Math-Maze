@@ -1,6 +1,54 @@
 (() => {
   "use strict";
 
+  if (window.KaflulAudio) {
+    const audio = window.KaflulAudio;
+    const UI_EVENTS = Object.freeze([
+      "buttonPress", "primary-play", "panelOpen", "panelClose", "tabChange",
+      "characterSelected", "modeSelected", "difficultySelected", "lockedAction",
+      "notification", "reward", "newRecord"
+    ]);
+
+    function controlFromTarget(target) {
+      const element = target instanceof Element ? target : null;
+      if (!element) return null;
+      const direct = element.closest("button, [role='button'], input[type='button'], input[type='submit']");
+      if (direct instanceof HTMLElement) return direct;
+      const label = element.closest("label");
+      return label?.querySelector?.("input[type='radio'], input[type='checkbox']") ? label : null;
+    }
+
+    function isDisabled(element) {
+      if (!(element instanceof HTMLElement)) return true;
+      if (element.matches("button:disabled, input:disabled")) return true;
+      return Boolean(element.querySelector?.("input")?.disabled);
+    }
+
+    function playControl(target) {
+      const control = controlFromTarget(target);
+      if (!control || isDisabled(control)) return;
+      // KaflulAudio already owns the document-level gesture unlock. Avoid a
+      // second synchronous unlock/preload pass on every gameplay swipe.
+      audio.unlockFromGesture();
+      const requestedSound = control.dataset.uiSound || "buttonPress";
+      if (requestedSound !== "none") audio.play(requestedSound, { fromGesture: true });
+    }
+
+    document.addEventListener("pointerdown", (event) => playControl(event.target), { capture: true, passive: true });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") playControl(event.target);
+    }, { capture: true });
+
+    window.KaflulUiSound = Object.freeze({
+      events: UI_EVENTS,
+      setEnabled: audio.setEnabled,
+      unlockFromGesture: audio.unlockFromGesture,
+      play: audio.play,
+      getDiagnostics: audio.getDiagnostics
+    });
+    return;
+  }
+
   const EVENT_LIBRARY = {
     buttonPress: {
       gain: 0.012,

@@ -153,6 +153,12 @@ button {
   padding-inline-start: 2px;
 }
 
+.metric-progress strong,
+.mission-progress {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 .metric-lives strong {
   color: var(--red);
   letter-spacing: 0;

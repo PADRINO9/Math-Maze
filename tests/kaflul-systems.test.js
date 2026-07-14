@@ -153,6 +153,187 @@ test("math performance tracks accuracy, average time, fastest answer and streak"
   assert.equal(systems.getAverageAnswerTime(stats), 2567);
 });
 
+test("multiplication mastery combines commutative facts and classifies progress", () => {
+  const mastery = systems.buildMultiplicationMastery({
+    "7×8": { correct: 3, wrong: 0, streak: 3 },
+    "8×7": { correct: 1, wrong: 1, streak: 1 },
+    "6×9": { correct: 2, wrong: 2, streak: 1 },
+    "4×4": { correct: 2, wrong: 0, streak: 2 }
+  });
+
+  const sevenByEight = mastery.cells.find((cell) => cell.a === 7 && cell.b === 8);
+  const eightBySeven = mastery.cells.find((cell) => cell.a === 8 && cell.b === 7);
+  const sixByNine = mastery.cells.find((cell) => cell.a === 6 && cell.b === 9);
+  const fourSquared = mastery.cells.find((cell) => cell.a === 4 && cell.b === 4);
+
+  assert.equal(sevenByEight.level, systems.MASTERY_LEVELS.mastered);
+  assert.equal(sevenByEight.correct, 4);
+  assert.equal(sevenByEight.wrong, 1);
+  assert.deepEqual(eightBySeven, { ...sevenByEight, a: 8, b: 7 });
+  assert.equal(sixByNine.level, systems.MASTERY_LEVELS.learning);
+  assert.equal(fourSquared.level, systems.MASTERY_LEVELS.practicing);
+  assert.equal(mastery.total, 100);
+  assert.equal(mastery.counts.mastered, 2);
+  assert.equal(mastery.counts.practicing, 1);
+  assert.equal(mastery.counts.learning, 2);
+});
+
+test("multiplication mastery recommends weak facts before untouched facts", () => {
+  const mastery = systems.buildMultiplicationMastery({
+    "7×8": { correct: 0, wrong: 3, streak: 0 },
+    "4×6": { correct: 1, wrong: 1, streak: 0 }
+  }, { focusLimit: 2 });
+
+  assert.deepEqual(
+    mastery.focusFacts.map((cell) => `${cell.a}×${cell.b}`),
+    ["7×8", "4×6"]
+  );
+  assert.equal(mastery.progressPercent > 0, true);
+});
+
+test("daily challenge is personalized, deterministic and repeats focus facts", () => {
+  const stats = {
+    "7×8": { correct: 0, wrong: 4, streak: 0 },
+    "6×9": { correct: 1, wrong: 3, streak: 0 },
+    "4×6": { correct: 1, wrong: 2, streak: 0 }
+  };
+  const first = systems.createDailyChallenge(stats, "2026-07-12");
+  const second = systems.createDailyChallenge(stats, "2026-07-12");
+  const tomorrow = systems.createDailyChallenge(stats, "2026-07-13");
+
+  assert.deepEqual(first, second);
+  assert.notEqual(first.seed, tomorrow.seed);
+  assert.equal(first.questions.length, 10);
+  assert.deepEqual(first.focusFacts.map((fact) => `${fact.a}×${fact.b}`), ["7×8", "6×9", "4×6"]);
+  for (const focus of first.focusFacts) {
+    const appearances = first.questions.filter((question) => (
+      question.a === focus.a && question.b === focus.b
+    )).length;
+    assert.equal(appearances, 2);
+  }
+});
+
+test("daily completion tracks one completion per day and consecutive streaks", () => {
+  const save = systems.createDefaultSave();
+  const first = systems.recordDailyCompletion(save, {
+    score: 1200,
+    accuracy: 80,
+    correctAnswers: 10,
+    seed: 44,
+    completedAt: "2026-07-12T08:00:00.000Z"
+  }, "2026-07-12");
+  assert.equal(first.firstCompletionToday, true);
+  assert.equal(save.dailyProgress.streak, 1);
+  assert.equal(save.dailyProgress.totalCompleted, 1);
+
+  const retry = systems.recordDailyCompletion(save, {
+    score: 1500,
+    accuracy: 90,
+    correctAnswers: 10,
+    seed: 44,
+    completedAt: "2026-07-12T09:00:00.000Z"
+  }, "2026-07-12");
+  assert.equal(retry.firstCompletionToday, false);
+  assert.equal(retry.improved, true);
+  assert.equal(save.dailyProgress.totalCompleted, 1);
+  assert.equal(save.dailyProgress.bestByDate["2026-07-12"].score, 1500);
+
+  systems.recordDailyCompletion(save, { score: 900, accuracy: 70, correctAnswers: 10 }, "2026-07-13");
+  assert.equal(save.dailyProgress.streak, 2);
+  assert.equal(save.dailyProgress.totalCompleted, 2);
+});
+
+test("friend challenge code round-trips the same questions and score target", () => {
+  const daily = systems.createDailyChallenge({
+    "7×8": { correct: 0, wrong: 4, streak: 0 }
+  }, "2026-07-12");
+  const code = systems.createFriendChallenge(daily, { score: 54321, accuracy: 91 });
+  const decoded = systems.decodeFriendChallenge(code);
+
+  assert.match(code, /^KF1-(?:[A-Za-z0-9_-]{1,5}-?)+$/);
+  assert.equal(decoded.seed, daily.seed);
+  assert.equal(decoded.targetScore, 54321);
+  assert.equal(decoded.targetAccuracy, 91);
+  assert.deepEqual(
+    decoded.questions.map(({ a, b, answer }) => ({ a, b, answer })),
+    daily.questions.map(({ a, b, answer }) => ({ a, b, answer }))
+  );
+  const replacement = code.endsWith("A") ? "B" : "A";
+  assert.throws(() => systems.decodeFriendChallenge(`${code.slice(0, -1)}${replacement}`), /invalid_duel_checksum/);
+});
+
+test("duel history records whether the shared score was beaten", () => {
+  const save = systems.createDefaultSave();
+  const won = systems.recordDuelResult(save, {
+    id: "duel-one",
+    seed: 99,
+    score: 1200,
+    targetScore: 1100,
+    accuracy: 90,
+    playedAt: "2026-07-12T10:00:00.000Z"
+  });
+  const lost = systems.recordDuelResult(save, {
+    id: "duel-two",
+    seed: 100,
+    score: 900,
+    targetScore: 1100,
+    accuracy: 80,
+    playedAt: "2026-07-12T11:00:00.000Z"
+  });
+  assert.equal(won.won, true);
+  assert.equal(lost.won, false);
+  assert.equal(save.duelProgress.history.length, 2);
+});
+
+test("weekly league score counts only daily mazes from the current Monday-to-Sunday week", () => {
+  const progress = {
+    bestByDate: {
+      "2026-07-05": { score: 9000, accuracy: 99 },
+      "2026-07-06": { score: 1200, accuracy: 80 },
+      "2026-07-08": { score: 1800, accuracy: 90 },
+      "2026-07-13": { score: 5000, accuracy: 100 }
+    }
+  };
+  assert.equal(systems.getWeekKey("2026-07-12"), "2026-07-06");
+  const summary = systems.buildWeeklyLeagueScore(progress, "2026-07-12");
+  assert.equal(summary.weekKey, "2026-07-06");
+  assert.equal(summary.points, 3000);
+  assert.equal(summary.daysPlayed, 2);
+  assert.equal(summary.accuracy, 85);
+});
+
+test("private weekly league invite and result codes create sorted local standings", () => {
+  const save = systems.createDefaultSave();
+  const inviteCode = systems.createPrivateLeagueInvite("2026-07-06", "owner-one");
+  const league = systems.joinPrivateLeague(save, inviteCode);
+  assert.equal(league.weekKey, "2026-07-06");
+  assert.equal(systems.decodePrivateLeagueInvite(inviteCode).id, league.id);
+
+  const firstCode = systems.createWeeklyLeagueResultCode(league, 101, {
+    points: 3500,
+    daysPlayed: 3,
+    accuracy: 88
+  });
+  const secondCode = systems.createWeeklyLeagueResultCode(league, 202, {
+    points: 4200,
+    daysPlayed: 4,
+    accuracy: 84
+  });
+  const first = systems.decodeWeeklyLeagueResultCode(firstCode);
+  const second = systems.decodeWeeklyLeagueResultCode(secondCode);
+  systems.recordWeeklyLeagueEntry(save, first, { isLocal: true });
+  systems.recordWeeklyLeagueEntry(save, second);
+  const standings = systems.getWeeklyLeagueStandings(save.leagueProgress, league.weekKey);
+  assert.deepEqual(standings.map((entry) => entry.points), [4200, 3500]);
+  assert.equal(standings[1].isLocal, true);
+
+  const replacement = secondCode.endsWith("A") ? "B" : "A";
+  assert.throws(
+    () => systems.decodeWeeklyLeagueResultCode(`${secondCode.slice(0, -1)}${replacement}`),
+    /invalid_league_checksum/
+  );
+});
+
 test("leaderboard entries sort and filter by mode and difficulty", () => {
   const save = systems.createDefaultSave();
   const low = systems.createLeaderboardEntry({
@@ -244,6 +425,28 @@ test("champions API capability check stays HTTP 200 when backend is unconfigured
       publicAvailable: false,
       code: "leaderboard_not_configured",
       message: "טבלת השיאים עדיין לא הוגדרה."
+    });
+  });
+});
+
+test("champions API keeps public score submissions disabled until server verification exists", async () => {
+  await withLeaderboardEnv({
+    SUPABASE_URL: "https://example.invalid",
+    SUPABASE_SERVICE_ROLE_KEY: "placeholder"
+  }, async () => {
+    const response = createMockResponse();
+    await championsHandler({
+      method: "POST",
+      url: "/api/champions",
+      headers: { host: "math-maze.example", origin: "https://math-maze.example" },
+      socket: { remoteAddress: "127.0.0.1" },
+      body: { score: 50000000 }
+    }, response);
+
+    assert.equal(response.statusCode, 403);
+    assert.deepEqual(JSON.parse(response.body), {
+      code: "score_submission_disabled",
+      message: "פרסום שיאים ציבורי יופעל לאחר הוספת אימות משחק בצד השרת."
     });
   });
 });
@@ -391,6 +594,23 @@ test("permanent gameplay HUD contains only approved metrics", () => {
   assert.match(hudMarkup, /ui\/icons\.svg#mission/);
 });
 
+test("arcade collection HUD keeps three persistent key slots and the full כפל word", () => {
+  const html = readRepoFile("index.html");
+  const hudMatch = html.match(/<div class="hud"[\s\S]*?<section class="stage"/);
+  assert.ok(hudMatch, "index.html should contain the gameplay HUD before the stage");
+  const hudMarkup = hudMatch[0];
+
+  assert.match(hudMarkup, /id="arcade-collection-hud"/);
+  assert.equal((hudMarkup.match(/data-key-slot="[0-2]"/g) || []).length, 3);
+  assert.deepEqual(
+    [...hudMarkup.matchAll(/data-bonus-letter="([כפל])"/g)].map((match) => match[1]),
+    ["כ", "פ", "ל"]
+  );
+  assert.match(hudMarkup, /ui\/icons\.svg#key/);
+  assert.match(hudMarkup, /id="chest-ready-guidance"/);
+  assert.match(hudMarkup, /גש לתיבה ופתח את האוצר/);
+});
+
 test("mobile HUD overrides do not hide approved permanent metrics", () => {
   const mobileOverrides = readRepoFile("ui/mobile-overrides.css");
   const hiddenApprovedMetricRules = [];
@@ -441,6 +661,8 @@ test("state machine allows start, pause, resume and rejects invalid skips", () =
   assert.equal(systems.transitionState("mainMenu", "playing"), "playing");
   assert.equal(systems.transitionState("playing", "paused"), "paused");
   assert.equal(systems.transitionState("paused", "playing"), "playing");
+  assert.equal(systems.transitionState("question", "paused"), "paused");
+  assert.equal(systems.transitionState("paused", "question"), "question");
   assert.throws(() => systems.transitionState("mainMenu", "results"), /Invalid game state transition/);
 });
 

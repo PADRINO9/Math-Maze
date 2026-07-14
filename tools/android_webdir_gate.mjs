@@ -22,13 +22,14 @@ const rootFiles = [
   "kaflul-systems.js",
   "maze-theme-system.js",
   "maze-decor-system.js",
+  "maze-tile-topology.js",
+  "maze-axonometric-projection.js",
   "game.js",
   "maze-enhancements.js",
   "mobile-enhancements.js",
   "mobile-screen-state.js",
   "mobile-question-state.js",
   "mobile-native-answer.js",
-  "nabatick-directional.js",
   "poster-loader.js"
 ];
 
@@ -39,7 +40,23 @@ const directories = [
 
 const excludedBundlePatterns = [
   /^assets\/blender\//,
-  /^assets\/generated\/blender\//
+  /^assets\/generated\/blender\//,
+  /^assets\/generated\/blender-preview\//,
+  /^assets\/generated\/(?:bifly|nabatick)-expression-sheet(?:-source)?\.png$/,
+  /^assets\/generated\/expression-frames-preview\.jpg$/,
+  /^assets\/generated\/kaflul-(?:arcade-chests-v1-source|champion-trophy-source-v2)\.png$/,
+  // Authoring/reference images are kept in the repository but are not loaded
+  // by the production runtime. Excluding them keeps the installable APK below
+  // Telegram's 50 MiB Bot API limit without reducing playable asset quality.
+  /^assets\/maze\/world1\/sun-garden\/board-v1\.png$/,
+  /^assets\/maze\/ice\/v3\/contact-sheet\.png$/,
+  /^assets\/maze\/ice\/v3\/validation-failure\.json$/,
+  /^assets\/bosses\/stage-[1-4]-boss\.png$/,
+  /^assets\/bosses\/tar-heavy-boss-sheet\.jpg$/,
+  /^assets\/reference\/(?:bifly-character-sheet|nabatick-character-sheet)\.jpg$/,
+  /^assets\/reference\/boss-actor-animation-reference\.png$/,
+  /^assets\/poster-parts\//,
+  /^assets\/maze\/README\.md$/
 ];
 
 function fail(message) {

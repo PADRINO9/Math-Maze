@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Check out current revision
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -25,7 +27,7 @@ jobs:
           node-version: 22
 
       - name: Install test dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

@@ -34,6 +34,7 @@ const syntaxFiles = [
   "tools/phase5_secondary_verification.mjs",
   "tools/phase6_motion_audio_verification.mjs",
   "tools/phase7_final_qa_verification.mjs",
+  "tools/world1_collision_proof.mjs",
   "tools/release_gate.mjs",
   "tests/phase1_vertical_slice.spec.js"
 ];
@@ -57,6 +58,12 @@ const steps = [
 ];
 
 if (!skipBrowser) {
+  steps.push({
+    name: "proof:world1-collision",
+    command: node,
+    args: ["tools/world1_collision_proof.mjs"]
+  });
+
   steps.push({
     name: "android:smoke",
     command: node,

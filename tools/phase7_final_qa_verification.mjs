@@ -5,6 +5,7 @@ import { mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveStaticFile } from "./static-file-security.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputDir = path.join(root, "docs", "phase7-screenshots");
@@ -110,13 +111,7 @@ function startServer() {
         response.end("Phase 7 asset fallback probe");
         return;
       }
-      const decoded = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
-      const resolved = path.resolve(root, decoded.slice(1));
-      if (!resolved.startsWith(root)) {
-        response.writeHead(403);
-        response.end("Forbidden");
-        return;
-      }
+      const resolved = await resolveStaticFile(root, url.pathname);
       const bytes = await readFile(resolved);
       response.writeHead(200, { "content-type": contentType(resolved), "cache-control": "no-store" });
       response.end(bytes);
@@ -363,12 +358,34 @@ async function sendKey(cdp, sessionId, key, code = key, keyCode = 0) {
   await wait(160);
 }
 
+async function waitForAppReady(cdp, sessionId, timeoutMs = 15_000) {
+  const startedAt = Date.now();
+  while (Date.now() - startedAt < timeoutMs) {
+    const ready = await evaluate(cdp, sessionId, `(() => {
+      const loading = document.getElementById("app-loading-screen");
+      const loadingHidden = !loading
+        || loading.hidden
+        || loading.getAttribute("aria-hidden") === "true"
+        || getComputedStyle(loading).display === "none"
+        || getComputedStyle(loading).visibility === "hidden"
+        || Number(getComputedStyle(loading).opacity || 1) <= 0.01;
+      return Boolean(window.__mathMazeRuntime?.gameReady && loadingHidden);
+    })()`);
+    if (ready) {
+      await wait(180);
+      return true;
+    }
+    await wait(100);
+  }
+  throw new Error(`App did not become ready within ${timeoutMs}ms`);
+}
+
 async function navigateClean(cdp, sessionId, appPort, search = "phase7=clean") {
   await cdp.send("Page.navigate", { url: `http://127.0.0.1:${appPort}/?${search}` }, sessionId);
   await wait(850);
   await evaluate(cdp, sessionId, "localStorage.clear(); true;");
   await cdp.send("Page.reload", { ignoreCache: true }, sessionId);
-  await wait(950);
+  await waitForAppReady(cdp, sessionId);
 }
 
 async function seedReturningPlayer(cdp, sessionId, appPort, search = "phase7=returning") {
@@ -376,7 +393,7 @@ async function seedReturningPlayer(cdp, sessionId, appPort, search = "phase7=ret
     source: returningPlayerSeedScript()
   }, sessionId);
   await cdp.send("Page.navigate", { url: `http://127.0.0.1:${appPort}/?${search}` }, sessionId);
-  await wait(950);
+  await waitForAppReady(cdp, sessionId);
 }
 
 async function capture(cdp, sessionId, viewport, name) {
@@ -814,7 +831,7 @@ async function runFunctionalFlow(cdp, appPort) {
     return true;
   })()`);
   await cdp.send("Page.reload", { ignoreCache: true }, sessionId);
-  await wait(900);
+  await waitForAppReady(cdp, sessionId);
   await activateSelector(cdp, sessionId, viewport, "#start-button");
   await wait(260);
   await answerQuestionIfVisible(cdp, sessionId);
@@ -995,7 +1012,7 @@ async function runAssetFallbackProbe(cdp, appPort) {
   const { targetId, sessionId } = await createPage(cdp, viewport);
   const { events, off } = collectEvents(cdp, sessionId, { ignoreResourceErrors: true });
   await cdp.send("Page.navigate", { url: `http://127.0.0.1:${appPort}/?phase7-assets=fail` }, sessionId);
-  await wait(1100);
+  await waitForAppReady(cdp, sessionId);
   const result = await evaluate(cdp, sessionId, `(() => ({
     startVisible: document.getElementById("start-screen")?.hidden === false,
     startButtonVisible: document.getElementById("start-button")?.offsetParent !== null,
