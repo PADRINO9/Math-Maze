@@ -1,5 +1,29 @@
 apply plugin: 'com.android.application'
 
+def releaseProperties = new Properties()
+def releasePropertiesFile = rootProject.file('keystore.properties')
+if (releasePropertiesFile.exists()) {
+    releasePropertiesFile.withInputStream { releaseProperties.load(it) }
+}
+
+def releaseValue = { String key ->
+    project.findProperty(key) ?: System.getenv(key) ?: releaseProperties.getProperty(key)
+}
+
+def kaflulVersionCode = (releaseValue('KAFLUL_VERSION_CODE') ?: '1').toInteger()
+def kaflulVersionName = releaseValue('KAFLUL_VERSION_NAME') ?: '1.0'
+def releaseStoreFile = releaseValue('KAFLUL_RELEASE_STORE_FILE')
+def releaseStorePassword = releaseValue('KAFLUL_RELEASE_STORE_PASSWORD')
+def releaseKeyAlias = releaseValue('KAFLUL_RELEASE_KEY_ALIAS')
+def releaseKeyPassword = releaseValue('KAFLUL_RELEASE_KEY_PASSWORD')
+def releaseSigningValues = [releaseStoreFile, releaseStorePassword, releaseKeyAlias, releaseKeyPassword]
+def releaseSigningConfigured = releaseSigningValues.every { it != null && !it.toString().trim().isEmpty() }
+def releaseSigningPartiallyConfigured = releaseSigningValues.any { it != null && !it.toString().trim().isEmpty() } && !releaseSigningConfigured
+
+if (releaseSigningPartiallyConfigured) {
+    throw new GradleException('Incomplete Google Play signing configuration. Set all KAFLUL_RELEASE_* values or none of them.')
+}
+
 android {
     namespace = "com.kaflul.mathmaze"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -7,13 +31,23 @@ android {
         applicationId "com.kaflul.mathmaze"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode kaflulVersionCode
+        versionName kaflulVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
              // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    signingConfigs {
+        if (releaseSigningConfigured) {
+            playRelease {
+                storeFile rootProject.file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
         }
     }
     buildTypes {
@@ -24,8 +58,31 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (releaseSigningConfigured) {
+                signingConfig signingConfigs.playRelease
+            }
         }
     }
+}
+
+tasks.register('verifyPlayReleaseConfig') {
+    group = 'verification'
+    description = 'Fails unless Google Play upload signing and release version values are configured.'
+    doLast {
+        if (!releaseSigningConfigured) {
+            throw new GradleException('Google Play signing is not configured. Copy keystore.properties.example to keystore.properties and provide the upload-key values.')
+        }
+        if (!rootProject.file(releaseStoreFile).isFile()) {
+            throw new GradleException("Google Play upload keystore was not found at ${rootProject.file(releaseStoreFile)}")
+        }
+        logger.lifecycle("Google Play release configuration is ready: versionCode=${kaflulVersionCode}, versionName=${kaflulVersionName}")
+    }
+}
+
+tasks.register('bundlePlayRelease') {
+    group = 'build'
+    description = 'Builds the signed Android App Bundle intended for Google Play.'
+    dependsOn 'verifyPlayReleaseConfig', 'bundleRelease'
 }
 
 repositories {

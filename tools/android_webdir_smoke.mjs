@@ -89,9 +89,27 @@ try {
     fail(`manifest did not load correctly: ${JSON.stringify(manifest)}`);
   }
 
+  const privacyResponse = await page.request.get(`${baseUrl}/privacy.html`);
+  const privacyBody = await privacyResponse.text();
+  if (!privacyResponse.ok() || !privacyBody.includes("מדיניות פרטיות") || !privacyBody.includes("PADRINO9/Math-Maze")) {
+    fail("bundled privacy policy is missing or incomplete");
+  }
+
+  await page.locator("#menu-settings-button").click();
+  const privacyLink = page.locator(".settings-privacy-link");
+  await privacyLink.waitFor({ state: "visible" });
+  if (await privacyLink.getAttribute("href") !== "privacy.html") {
+    fail("settings privacy link does not target the bundled policy");
+  }
+  await page.locator("#settings-panel [data-close-panel]").click();
+  await page.locator("#settings-panel").waitFor({ state: "hidden" });
+
   await page.locator("#start-button").click();
   await page.locator("#game-canvas").waitFor({ state: "visible" });
-  await page.waitForTimeout(500);
+  // Opening a menu sheet before starting can delay the first painted frame on
+  // software-rendered CI/WebView environments even though the game state has
+  // already advanced to `playing`.
+  await page.waitForTimeout(2500);
 
   const gameplay = await page.evaluate(() => {
     const canvas = document.querySelector("#game-canvas");

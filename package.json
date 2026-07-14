@@ -27,6 +27,7 @@
     "proof:audio": "node tools/audio_production_proof.mjs",
     "android:webdir": "node tools/android_webdir_gate.mjs",
     "android:smoke": "node tools/android_webdir_gate.mjs && node tools/android_webdir_smoke.mjs",
+    "android:play-bundle": "cd android && ./gradlew bundlePlayRelease",
     "telegram:check": "node tools/telegram_agent.mjs whoami",
     "telegram:chat-id": "node tools/telegram_agent.mjs chat-id",
     "telegram:inbox": "node tools/telegram_agent.mjs inbox",

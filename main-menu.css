@@ -2275,6 +2275,27 @@ html[data-character="nabatick"] #start-screen .menu-character-bifly {
   box-shadow: 0 0 0 4px rgba(255, 216, 74, 0.15);
 }
 
+.settings-privacy-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #bceeff;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(188, 238, 255, 0.52);
+  text-underline-offset: 4px;
+}
+
+.settings-privacy-link:hover,
+.settings-privacy-link:focus-visible {
+  color: #fff6c6;
+  outline: 2px solid rgba(255, 216, 74, 0.6);
+  outline-offset: 2px;
+}
+
 .menu-save-button {
   min-height: 48px;
   border: 1px solid rgba(164, 245, 45, 0.52);

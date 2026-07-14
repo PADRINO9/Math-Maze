@@ -14,6 +14,7 @@ const outDir = join(rootDir, "dist", "android-www");
 
 const rootFiles = [
   "index.html",
+  "privacy.html",
   "app.webmanifest",
   "styles.css",
   "arcade-foundation.css",
