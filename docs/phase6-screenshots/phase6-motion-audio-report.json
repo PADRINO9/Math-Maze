@@ -1,9 +1,13 @@
 {
   "phase": 6,
-  "capturedAt": "2026-06-29T18:15:20.895Z",
-  "chrome": "Chrome/149.0.7827.197",
-  "ok": true,
-  "failures": [],
+  "capturedAt": "2026-07-12T14:48:48.724Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "ok": false,
+  "failures": [
+    "844x390-landscape: motion profiling FPS below safety floor",
+    "1280x720-desktop: motion profiling FPS below safety floor",
+    "1440x900-desktop: motion profiling FPS below safety floor"
+  ],
   "results": [
     {
       "name": "390x844-portrait",
@@ -20,25 +24,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 3,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "sheetOpen",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "suspended",
-          "played": 2,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "panelOpen",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -46,7 +64,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 10,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -57,25 +75,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 17,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "lockedFeedback",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 12,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "lockedAction",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -83,7 +115,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 14,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -94,25 +126,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 29,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "characterSelect",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 19,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "characterSelected",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -120,7 +166,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 2,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -135,7 +181,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 34,
+          "played": 2,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
@@ -145,15 +191,29 @@
         },
         "sound": {
           "enabled": false,
+          "musicEnabled": false,
           "unlocked": true,
           "contextState": "running",
-          "played": 22,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
           "mutedSkips": 1,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "buttonPress",
-          "lastReason": "muted"
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -161,7 +221,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -169,12 +229,12 @@
         "runtimeErrors": []
       },
       "profile": {
-        "frames": 103,
-        "avgFrameMs": 8.742718446601941,
-        "avgFps": 114.38089950027764,
-        "longFramesOver50ms": 0,
+        "frames": 31,
+        "avgFrameMs": 30.67096774193546,
+        "avgFps": 32.60412284392093,
+        "longFramesOver50ms": 8,
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -187,7 +247,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -197,15 +257,29 @@
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 23,
-          "mutedSkips": 3,
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "notification",
-          "lastReason": "played"
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -213,7 +287,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 7,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -252,25 +326,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 3,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "sheetOpen",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "suspended",
-          "played": 2,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "panelOpen",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -278,7 +366,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 2,
+        "runningAnimations": 10,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -289,25 +377,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 17,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "lockedFeedback",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 12,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "lockedAction",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -315,7 +417,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 14,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -326,25 +428,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 29,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "characterSelect",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 19,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "characterSelected",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -352,7 +468,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 3,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -367,7 +483,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 34,
+          "played": 2,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
@@ -377,15 +493,29 @@
         },
         "sound": {
           "enabled": false,
+          "musicEnabled": false,
           "unlocked": true,
           "contextState": "running",
-          "played": 22,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
           "mutedSkips": 1,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "buttonPress",
-          "lastReason": "muted"
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -393,7 +523,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -401,12 +531,12 @@
         "runtimeErrors": []
       },
       "profile": {
-        "frames": 101,
-        "avgFrameMs": 8.907920792079207,
-        "avgFps": 112.25964210292321,
-        "longFramesOver50ms": 0,
+        "frames": 33,
+        "avgFrameMs": 27.563636363636373,
+        "avgFps": 36.27968337730869,
+        "longFramesOver50ms": 5,
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -419,7 +549,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -429,15 +559,29 @@
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 23,
-          "mutedSkips": 3,
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "notification",
-          "lastReason": "played"
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -445,7 +589,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 7,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -484,25 +628,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 3,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "sheetOpen",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "suspended",
-          "played": 2,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "panelOpen",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -510,7 +668,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 2,
+        "runningAnimations": 10,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -521,25 +679,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 17,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "lockedFeedback",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 12,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "lockedAction",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -547,7 +719,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -558,25 +730,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 29,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "characterSelect",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 19,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "characterSelected",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -584,7 +770,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 2,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -599,7 +785,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 34,
+          "played": 2,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
@@ -609,15 +795,29 @@
         },
         "sound": {
           "enabled": false,
+          "musicEnabled": false,
           "unlocked": true,
           "contextState": "running",
-          "played": 22,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
           "mutedSkips": 1,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "buttonPress",
-          "lastReason": "muted"
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -625,7 +825,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -633,12 +833,12 @@
         "runtimeErrors": []
       },
       "profile": {
-        "frames": 35,
-        "avgFrameMs": 27.145714285714295,
-        "avgFps": 36.8382275549942,
-        "longFramesOver50ms": 3,
+        "frames": 15,
+        "avgFrameMs": 65,
+        "avgFps": 15.384615384615385,
+        "longFramesOver50ms": 8,
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -651,7 +851,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -661,15 +861,29 @@
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 23,
-          "mutedSkips": 3,
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "notification",
-          "lastReason": "played"
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -677,7 +891,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 1,
+        "runningAnimations": 6,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -716,25 +930,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 3,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "sheetOpen",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 2,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "panelOpen",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -753,25 +981,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 17,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "lockedFeedback",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 12,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "lockedAction",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -779,7 +1021,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 12,
+        "runningAnimations": 13,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -790,25 +1032,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 29,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "characterSelect",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 19,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "characterSelected",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -816,7 +1072,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 16,
+        "runningAnimations": 17,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -831,7 +1087,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 34,
+          "played": 2,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
@@ -841,15 +1097,29 @@
         },
         "sound": {
           "enabled": false,
+          "musicEnabled": false,
           "unlocked": true,
           "contextState": "running",
-          "played": 22,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
           "mutedSkips": 1,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "buttonPress",
-          "lastReason": "muted"
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -857,7 +1127,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 12,
+        "runningAnimations": 9,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -865,12 +1135,12 @@
         "runtimeErrors": []
       },
       "profile": {
-        "frames": 65,
-        "avgFrameMs": 13.97384615384615,
-        "avgFps": 71.56225916547398,
-        "longFramesOver50ms": 0,
+        "frames": 16,
+        "avgFrameMs": 54.77499999999998,
+        "avgFps": 18.256503879507083,
+        "longFramesOver50ms": 9,
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -883,7 +1153,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -893,15 +1163,29 @@
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 23,
-          "mutedSkips": 3,
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "notification",
-          "lastReason": "played"
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -909,7 +1193,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 12,
+        "runningAnimations": 10,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -948,25 +1232,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 3,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "sheetOpen",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 2,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "panelOpen",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -974,7 +1272,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 14,
+        "runningAnimations": 17,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -985,25 +1283,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 17,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "lockedFeedback",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 12,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "lockedAction",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -1022,25 +1334,39 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 29,
+          "played": 0,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
-          "lastEvent": "characterSelect",
+          "lastEvent": "",
           "reducedMotion": false,
           "maxParticleLimit": 10
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 19,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
           "mutedSkips": 0,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
-          "lastEvent": "characterSelected",
-          "lastReason": "played"
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -1063,7 +1389,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 34,
+          "played": 2,
           "skippedHidden": 0,
           "particlesCreated": 0,
           "activeParticles": 0,
@@ -1073,15 +1399,29 @@
         },
         "sound": {
           "enabled": false,
+          "musicEnabled": false,
           "unlocked": true,
           "contextState": "running",
-          "played": 22,
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
           "mutedSkips": 1,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "buttonPress",
-          "lastReason": "muted"
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -1089,7 +1429,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 12,
+        "runningAnimations": 9,
         "documentOverflow": {
           "x": false,
           "y": false
@@ -1097,12 +1437,12 @@
         "runtimeErrors": []
       },
       "profile": {
-        "frames": 67,
-        "avgFrameMs": 13.682089552238804,
-        "avgFps": 73.08825133631505,
-        "longFramesOver50ms": 0,
+        "frames": 14,
+        "avgFrameMs": 73.20714285714287,
+        "avgFps": 13.659869255537123,
+        "longFramesOver50ms": 9,
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -1115,7 +1455,7 @@
         "lang": "he",
         "dir": "rtl",
         "motion": {
-          "played": 37,
+          "played": 5,
           "skippedHidden": 0,
           "particlesCreated": 10,
           "activeParticles": 0,
@@ -1125,15 +1465,29 @@
         },
         "sound": {
           "enabled": true,
+          "musicEnabled": true,
           "unlocked": true,
           "contextState": "running",
-          "played": 23,
-          "mutedSkips": 3,
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
           "autoplayBlocks": 1,
-          "unavailableSkips": 0,
           "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
           "lastEvent": "notification",
-          "lastReason": "played"
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
         },
         "controllers": {
           "motion": true,
@@ -1141,7 +1495,7 @@
           "adapter": true
         },
         "hiddenAnimations": 0,
-        "runningAnimations": 12,
+        "runningAnimations": 10,
         "documentOverflow": {
           "x": false,
           "y": false

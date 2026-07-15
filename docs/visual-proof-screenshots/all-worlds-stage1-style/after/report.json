@@ -1,0 +1,561 @@
+{
+  "createdAt": "2026-07-13T19:02:25.325Z",
+  "renderer": "orthographic-3/4",
+  "camera": {
+    "azimuthDegrees": 10,
+    "elevationDegrees": 56,
+    "tiltFromVerticalDegrees": 34
+  },
+  "captures": [
+    {
+      "world": "ice",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ice-desktop-1280x720.png",
+      "sha256": "da6575d35a19bce758aa59e133ce4292258c54cac8d3127a3d9796f950c46eb8",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ice",
+        "concept": "sun-garden",
+        "visualRenderer": "world1-authored-environment-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": false
+      },
+      "visual": {
+        "levelIndex": 0,
+        "worldId": "ice",
+        "concept": "sun-garden",
+        "renderer": "world1-authored-environment-v2",
+        "layersDrawn": [
+          "world1-authored-sandstone-board",
+          "world1-authored-guidance-cleanup",
+          "world1-ambient",
+          "world1-focal-light",
+          "world1-goal-cue",
+          "world1-authored-depth-sorted-actors"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/maze/world1/sun-garden/board-v3.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "authoredGuidanceLineRemoved": true,
+        "goalCue": true,
+        "landmarkCount": 3,
+        "gateStyle": "seed",
+        "collectibleStyle": "garden",
+        "actorContactStyle": "garden",
+        "hazardType": "ice-slick",
+        "hazardVisualStyle": "garden",
+        "bossTrailVisualStyle": "garden",
+        "legacyIceAssetsRequested": false
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 618,
+        "walkableCellCount": 582,
+        "openTransitions": 1816,
+        "blockedTransitions": 512,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 11
+    },
+    {
+      "world": "ice",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ice-mobile-390x844.png",
+      "sha256": "6353c4ba783a1c7b1708598265110ea4f812bfcfe953f15cbfbec3a9bdde3088",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ice",
+        "concept": "sun-garden",
+        "visualRenderer": "world1-authored-environment-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": false
+      },
+      "visual": {
+        "levelIndex": 0,
+        "worldId": "ice",
+        "concept": "sun-garden",
+        "renderer": "world1-authored-environment-v2",
+        "layersDrawn": [
+          "world1-authored-sandstone-board",
+          "world1-authored-guidance-cleanup",
+          "world1-ambient",
+          "world1-focal-light",
+          "world1-goal-cue",
+          "world1-authored-depth-sorted-actors"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/maze/world1/sun-garden/board-v3.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "authoredGuidanceLineRemoved": true,
+        "goalCue": true,
+        "landmarkCount": 3,
+        "gateStyle": "seed",
+        "collectibleStyle": "garden",
+        "actorContactStyle": "garden",
+        "hazardType": "ice-slick",
+        "hazardVisualStyle": "garden",
+        "bossTrailVisualStyle": "garden",
+        "legacyIceAssetsRequested": false
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 618,
+        "walkableCellCount": 582,
+        "openTransitions": 1816,
+        "blockedTransitions": 512,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 57
+    },
+    {
+      "world": "lava",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/lava-desktop-1280x720.png",
+      "sha256": "1be083b4418beb6a92b31d4df48dc4331d2571f74aa03aebbfdb9f44d4d9e814",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "lava",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 1,
+        "worldId": "lava",
+        "concept": "stage2-forge-caldera",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_lava.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "lava-spill",
+        "hazardVisualStyle": "lava",
+        "bossTrailVisualStyle": "lava",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 587,
+        "walkableCellCount": 613,
+        "openTransitions": 2002,
+        "blockedTransitions": 450,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 11
+    },
+    {
+      "world": "lava",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/lava-mobile-390x844.png",
+      "sha256": "452cd25bee66e6657d5f0d6db8c3d12f7f9db2aa4482b9396696928c23455e7a",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "lava",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 1,
+        "worldId": "lava",
+        "concept": "stage2-forge-caldera",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_lava.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "lava-spill",
+        "hazardVisualStyle": "lava",
+        "bossTrailVisualStyle": "lava",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 587,
+        "walkableCellCount": 613,
+        "openTransitions": 2002,
+        "blockedTransitions": 450,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 44
+    },
+    {
+      "world": "ancient",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ancient-desktop-1280x720.png",
+      "sha256": "d76c1d4b8021f8ebbc221a8717c701b7871a9937b544329b24abd352593e1466",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ancient",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 2,
+        "worldId": "ancient",
+        "concept": "stage3-sunken-temple",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_ancient.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "rune-trap",
+        "hazardVisualStyle": "ancient",
+        "bossTrailVisualStyle": "ancient",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 582,
+        "walkableCellCount": 618,
+        "openTransitions": 2036,
+        "blockedTransitions": 436,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 24
+    },
+    {
+      "world": "ancient",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ancient-mobile-390x844.png",
+      "sha256": "e78b0bec948ee34b8c7d4bb8b174cbaf7d1e9bf022de9b0020d4b42e1b77825a",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ancient",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 2,
+        "worldId": "ancient",
+        "concept": "stage3-sunken-temple",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_ancient.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "rune-trap",
+        "hazardVisualStyle": "ancient",
+        "bossTrailVisualStyle": "ancient",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 582,
+        "walkableCellCount": 618,
+        "openTransitions": 2036,
+        "blockedTransitions": 436,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 58
+    },
+    {
+      "world": "diamond",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/diamond-desktop-1280x720.png",
+      "sha256": "f0631ad5d2b45d987e47f725e3f97593fc639af44f2ea28bc0a3be129240a3d7",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "diamond",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 3,
+        "worldId": "diamond",
+        "concept": "stage4-prism-sanctum",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_diamond.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "crystal-burst",
+        "hazardVisualStyle": "diamond",
+        "bossTrailVisualStyle": "diamond",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 626,
+        "walkableCellCount": 574,
+        "openTransitions": 1848,
+        "blockedTransitions": 448,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 26
+    },
+    {
+      "world": "diamond",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/diamond-mobile-390x844.png",
+      "sha256": "88a3f929e476eed2e71cef7e37fff26a6d5b65681eccc85fa3d9bc26cdb3b24b",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "diamond",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 3,
+        "worldId": "diamond",
+        "concept": "stage4-prism-sanctum",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_diamond.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "crystal-burst",
+        "hazardVisualStyle": "diamond",
+        "bossTrailVisualStyle": "diamond",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 626,
+        "walkableCellCount": 574,
+        "openTransitions": 1848,
+        "blockedTransitions": 448,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 62
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

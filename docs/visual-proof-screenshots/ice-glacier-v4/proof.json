@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-07-12T06:28:22.669Z",
+  "world": "ice",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "file": "docs/visual-proof-screenshots/ice-glacier-v4/ice-glacier-v4-desktop-1280x720.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "forcedState": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "gameState": {
+        "documentState": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "clientWidth": 1280,
+          "clientHeight": 651
+        },
+        "hud": {
+          "top": 8,
+          "bottom": 65,
+          "height": 57,
+          "canvasOverlapPx": 0
+        },
+        "frameRate": 36,
+        "gameScript": "game.js?v=20260712-glacier-sanctuary-4"
+      }
+    },
+    {
+      "key": "mobile",
+      "file": "docs/visual-proof-screenshots/ice-glacier-v4/ice-glacier-v4-mobile-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "forcedState": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "gameState": {
+        "documentState": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "clientWidth": 390,
+          "clientHeight": 768
+        },
+        "hud": {
+          "top": 6,
+          "bottom": 71,
+          "height": 65,
+          "canvasOverlapPx": 0
+        },
+        "frameRate": 89,
+        "gameScript": "game.js?v=20260712-glacier-sanctuary-4"
+      }
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2026-07-12T09:28:52.456Z",
+  "world": "ice",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "file": "docs/visual-proof-screenshots/ice-modular-v3-slice-1/ice-modular-v3-slice-1-desktop-1280x720.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "forcedState": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "video": null,
+      "gameState": {
+        "documentState": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "clientWidth": 1280,
+          "clientHeight": 651
+        },
+        "hud": {
+          "top": 8,
+          "bottom": 65,
+          "height": 57,
+          "canvasOverlapPx": 0
+        },
+        "frameRate": 40,
+        "gameScript": "game.js?v=20260712-ice-modular-v3-1",
+        "tileset": {
+          "world": "ice",
+          "mode": "hybrid",
+          "renderer": "modular-v3",
+          "schemaVersion": 3,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "loaded",
+          "imageSrc": "http://127.0.0.1:57320/assets/maze/ice/v3/tileset.png",
+          "metadataSrc": "http://127.0.0.1:57320/assets/maze/ice/v3/tileset.json",
+          "fallbackMode": "modular-v3",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "bonusCollectible",
+            "wallMask0",
+            "wallMask1",
+            "wallMask2",
+            "wallMask3",
+            "wallMask4",
+            "wallMask5",
+            "wallMask6",
+            "wallMask7",
+            "wallMask8",
+            "wallMask9",
+            "wallMask10",
+            "wallMask11",
+            "wallMask12",
+            "wallMask13",
+            "wallMask14",
+            "wallMask15",
+            "floor0",
+            "floor1",
+            "floor2",
+            "floor3",
+            "collectible0",
+            "collectible1",
+            "collectible2",
+            "powerCollectible"
+          ]
+        }
+      }
+    },
+    {
+      "key": "mobile",
+      "file": "docs/visual-proof-screenshots/ice-modular-v3-slice-1/ice-modular-v3-slice-1-mobile-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "forcedState": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "video": {
+        "file": "docs/visual-proof-screenshots/ice-modular-v3-slice-1/ice-modular-v3-slice-1-mobile-390x844.webm",
+        "inspectedFrames": [
+          "docs/visual-proof-screenshots/ice-modular-v3-slice-1/ice-modular-v3-slice-1-video-start.png",
+          "docs/visual-proof-screenshots/ice-modular-v3-slice-1/ice-modular-v3-slice-1-video-middle.png",
+          "docs/visual-proof-screenshots/ice-modular-v3-slice-1/ice-modular-v3-slice-1-video-end.png"
+        ],
+        "mimeType": "video/webm;codecs=vp8",
+        "durationMs": 4500,
+        "finalPlayer": {
+          "x": 492,
+          "y": 636,
+          "direction": "left",
+          "desiredDirection": "left",
+          "phase": "playing",
+          "controlMode": "swipe"
+        }
+      },
+      "gameState": {
+        "documentState": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "left",
+          "desiredDirection": "left",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "clientWidth": 390,
+          "clientHeight": 768
+        },
+        "hud": {
+          "top": 6,
+          "bottom": 71,
+          "height": 65,
+          "canvasOverlapPx": 0
+        },
+        "frameRate": 99,
+        "gameScript": "game.js?v=20260712-ice-modular-v3-1",
+        "tileset": {
+          "world": "ice",
+          "mode": "hybrid",
+          "renderer": "modular-v3",
+          "schemaVersion": 3,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "loaded",
+          "imageSrc": "http://127.0.0.1:57320/assets/maze/ice/v3/tileset.png",
+          "metadataSrc": "http://127.0.0.1:57320/assets/maze/ice/v3/tileset.json",
+          "fallbackMode": "modular-v3",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "bonusCollectible",
+            "wallMask0",
+            "wallMask1",
+            "wallMask2",
+            "wallMask3",
+            "wallMask4",
+            "wallMask5",
+            "wallMask6",
+            "wallMask7",
+            "wallMask8",
+            "wallMask9",
+            "wallMask10",
+            "wallMask11",
+            "wallMask12",
+            "wallMask13",
+            "wallMask14",
+            "wallMask15",
+            "floor0",
+            "floor1",
+            "floor2",
+            "floor3",
+            "collectible0",
+            "collectible1",
+            "collectible2",
+            "powerCollectible"
+          ]
+        }
+      }
+    }
+  ]
+}

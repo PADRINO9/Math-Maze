@@ -1,8 +1,8 @@
 {
   "phase": 3,
-  "capturedAt": "2026-06-29T17:56:45.341Z",
-  "chrome": "Chrome/149.0.7827.197",
-  "ok": true,
+  "capturedAt": "2026-07-10T16:00:25.492Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "ok": false,
   "results": [
     {
       "name": "390x844-portrait",
@@ -16,15 +16,12 @@
         "lang": "he",
         "dir": "rtl",
         "selectedCharacter": "bifly",
-        "previewCharacter": "bifly",
-        "heroHidden": false,
+        "previewCharacter": null,
+        "heroHidden": true,
         "adapterLoaded": true,
         "manifestLoaded": true,
         "supportedStates": [
           "idle",
-          "eat"
-        ],
-        "missingStates": [
           "blink",
           "tap",
           "selected",
@@ -32,8 +29,10 @@
           "worried",
           "victory",
           "defeat",
+          "eat",
           "hit"
         ],
+        "missingStates": [],
         "runtimeErrors": [],
         "scroll": {
           "width": 390,
@@ -50,74 +49,74 @@
             "visible": true
           },
           "#hero-gallery": {
-            "x": 7,
-            "y": 6,
-            "width": 376,
-            "height": 830,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-header": {
-            "x": 15,
-            "y": 15,
-            "width": 360,
-            "height": 106,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-stage": {
-            "x": 15,
-            "y": 127,
-            "width": 360,
-            "height": 596,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-card": {
-            "x": 62,
-            "y": 165,
-            "width": 266,
-            "height": 520,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-art-button": {
-            "x": 73,
-            "y": 176,
-            "width": 244,
-            "height": 295,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-animation-mount": {
-            "x": 73,
-            "y": 176,
-            "width": 244,
-            "height": 295,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-animation-image": {
-            "x": 73,
-            "y": 227,
-            "width": 244,
-            "height": 244,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-name": {
-            "x": 148,
-            "y": 471,
-            "width": 95,
-            "height": 51,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-select": {
-            "x": 15,
-            "y": 729,
-            "width": 360,
-            "height": 46,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-actions": {
-            "x": 15,
-            "y": 729,
-            "width": 360,
-            "height": 98,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           }
         },
         "outOfBounds": [],
@@ -126,8 +125,8 @@
           "complete": true,
           "naturalWidth": 512,
           "naturalHeight": 512,
-          "renderedWidth": 244,
-          "renderedHeight": 244,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
           "ratioDelta": 0,
           "imageInMount": true
         }
@@ -145,15 +144,12 @@
         "lang": "he",
         "dir": "rtl",
         "selectedCharacter": "bifly",
-        "previewCharacter": "bifly",
-        "heroHidden": false,
+        "previewCharacter": null,
+        "heroHidden": true,
         "adapterLoaded": true,
         "manifestLoaded": true,
         "supportedStates": [
           "idle",
-          "eat"
-        ],
-        "missingStates": [
           "blink",
           "tap",
           "selected",
@@ -161,8 +157,10 @@
           "worried",
           "victory",
           "defeat",
+          "eat",
           "hit"
         ],
+        "missingStates": [],
         "runtimeErrors": [],
         "scroll": {
           "width": 430,
@@ -179,74 +177,74 @@
             "visible": true
           },
           "#hero-gallery": {
-            "x": 7,
-            "y": 6,
-            "width": 416,
-            "height": 918,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-header": {
-            "x": 15,
-            "y": 15,
-            "width": 400,
-            "height": 109,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-stage": {
-            "x": 15,
-            "y": 130,
-            "width": 400,
-            "height": 681,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-card": {
-            "x": 62,
-            "y": 200,
-            "width": 306,
-            "height": 540,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-art-button": {
-            "x": 73,
-            "y": 211,
-            "width": 284,
-            "height": 310,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-animation-mount": {
-            "x": 73,
-            "y": 211,
-            "width": 284,
-            "height": 310,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-animation-image": {
-            "x": 73,
-            "y": 237,
-            "width": 284,
-            "height": 284,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-name": {
-            "x": 163,
-            "y": 521,
-            "width": 104,
-            "height": 56,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-select": {
-            "x": 15,
-            "y": 817,
-            "width": 400,
-            "height": 46,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-actions": {
-            "x": 15,
-            "y": 817,
-            "width": 400,
-            "height": 98,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           }
         },
         "outOfBounds": [],
@@ -255,8 +253,8 @@
           "complete": true,
           "naturalWidth": 512,
           "naturalHeight": 512,
-          "renderedWidth": 284,
-          "renderedHeight": 284,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
           "ratioDelta": 0,
           "imageInMount": true
         }
@@ -274,15 +272,12 @@
         "lang": "he",
         "dir": "rtl",
         "selectedCharacter": "bifly",
-        "previewCharacter": "bifly",
-        "heroHidden": false,
+        "previewCharacter": null,
+        "heroHidden": true,
         "adapterLoaded": true,
         "manifestLoaded": true,
         "supportedStates": [
           "idle",
-          "eat"
-        ],
-        "missingStates": [
           "blink",
           "tap",
           "selected",
@@ -290,8 +285,10 @@
           "worried",
           "victory",
           "defeat",
+          "eat",
           "hit"
         ],
+        "missingStates": [],
         "runtimeErrors": [],
         "scroll": {
           "width": 844,
@@ -308,74 +305,74 @@
             "visible": true
           },
           "#hero-gallery": {
-            "x": 8,
-            "y": 6,
-            "width": 828,
-            "height": 378,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-header": {
-            "x": 16,
-            "y": 13,
-            "width": 812,
-            "height": 53,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-stage": {
-            "x": 16,
-            "y": 71,
-            "width": 812,
-            "height": 259,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-card": {
-            "x": 187,
-            "y": 64,
-            "width": 470,
-            "height": 272,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-art-button": {
-            "x": 198,
-            "y": 73,
-            "width": 448,
-            "height": 164,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-animation-mount": {
-            "x": 307,
-            "y": 73,
-            "width": 230,
-            "height": 220,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-animation-image": {
-            "x": 312,
-            "y": 73,
-            "width": 220,
-            "height": 220,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-name": {
-            "x": 378,
-            "y": 237,
-            "width": 88,
-            "height": 47,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-select": {
-            "x": 150,
-            "y": 335,
-            "width": 678,
-            "height": 42,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-actions": {
-            "x": 16,
-            "y": 335,
-            "width": 812,
-            "height": 42,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           }
         },
         "outOfBounds": [],
@@ -384,8 +381,8 @@
           "complete": true,
           "naturalWidth": 512,
           "naturalHeight": 512,
-          "renderedWidth": 220,
-          "renderedHeight": 220,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
           "ratioDelta": 0,
           "imageInMount": true
         }
@@ -403,15 +400,12 @@
         "lang": "he",
         "dir": "rtl",
         "selectedCharacter": "bifly",
-        "previewCharacter": "bifly",
-        "heroHidden": false,
+        "previewCharacter": null,
+        "heroHidden": true,
         "adapterLoaded": true,
         "manifestLoaded": true,
         "supportedStates": [
           "idle",
-          "eat"
-        ],
-        "missingStates": [
           "blink",
           "tap",
           "selected",
@@ -419,8 +413,10 @@
           "worried",
           "victory",
           "defeat",
+          "eat",
           "hit"
         ],
+        "missingStates": [],
         "runtimeErrors": [],
         "scroll": {
           "width": 1280,
@@ -437,74 +433,74 @@
             "visible": true
           },
           "#hero-gallery": {
-            "x": 12,
-            "y": 12,
-            "width": 1256,
-            "height": 696,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-header": {
-            "x": 26,
-            "y": 24,
-            "width": 1228,
-            "height": 65,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-stage": {
-            "x": 26,
-            "y": 103,
-            "width": 1228,
-            "height": 521,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-card": {
-            "x": 260,
-            "y": 82,
-            "width": 760,
-            "height": 562,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-art-button": {
-            "x": 370,
-            "y": 107,
-            "width": 540,
-            "height": 317,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-animation-mount": {
-            "x": 405,
-            "y": 107,
-            "width": 470,
-            "height": 440,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-animation-image": {
-            "x": 420,
-            "y": 106,
-            "width": 441,
-            "height": 441,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-name": {
-            "x": 567,
-            "y": 424,
-            "width": 147,
-            "height": 79,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-select": {
-            "x": 184,
-            "y": 638,
-            "width": 1070,
-            "height": 58,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-actions": {
-            "x": 26,
-            "y": 638,
-            "width": 1228,
-            "height": 58,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           }
         },
         "outOfBounds": [],
@@ -513,9 +509,9 @@
           "complete": true,
           "naturalWidth": 512,
           "naturalHeight": 512,
-          "renderedWidth": 441,
-          "renderedHeight": 441,
-          "ratioDelta": 6.925822160219752e-8,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
+          "ratioDelta": 0,
           "imageInMount": true
         }
       }
@@ -532,15 +528,12 @@
         "lang": "he",
         "dir": "rtl",
         "selectedCharacter": "bifly",
-        "previewCharacter": "bifly",
-        "heroHidden": false,
+        "previewCharacter": null,
+        "heroHidden": true,
         "adapterLoaded": true,
         "manifestLoaded": true,
         "supportedStates": [
           "idle",
-          "eat"
-        ],
-        "missingStates": [
           "blink",
           "tap",
           "selected",
@@ -548,8 +541,10 @@
           "worried",
           "victory",
           "defeat",
+          "eat",
           "hit"
         ],
+        "missingStates": [],
         "runtimeErrors": [],
         "scroll": {
           "width": 1440,
@@ -566,74 +561,74 @@
             "visible": true
           },
           "#hero-gallery": {
-            "x": 18,
-            "y": 18,
-            "width": 1404,
-            "height": 864,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-header": {
-            "x": 32,
-            "y": 30,
-            "width": 1376,
-            "height": 69,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-stage": {
-            "x": 32,
-            "y": 113,
-            "width": 1376,
-            "height": 685,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-card": {
-            "x": 340,
-            "y": 130,
-            "width": 760,
-            "height": 651,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-art-button": {
-            "x": 450,
-            "y": 155,
-            "width": 540,
-            "height": 396,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-animation-mount": {
-            "x": 485,
-            "y": 155,
-            "width": 470,
-            "height": 440,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-animation-image": {
-            "x": 500,
-            "y": 154,
-            "width": 441,
-            "height": 441,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-name": {
-            "x": 638,
-            "y": 551,
-            "width": 163,
-            "height": 87,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           "#hero-gallery-select": {
-            "x": 190,
-            "y": 812,
-            "width": 1218,
-            "height": 58,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           },
           ".hero-gallery-actions": {
-            "x": 32,
-            "y": 812,
-            "width": 1376,
-            "height": 58,
-            "visible": true
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
           }
         },
         "outOfBounds": [],
@@ -642,8 +637,8 @@
           "complete": true,
           "naturalWidth": 512,
           "naturalHeight": 512,
-          "renderedWidth": 441,
-          "renderedHeight": 441,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
           "ratioDelta": 0,
           "imageInMount": true
         }
@@ -651,24 +646,24 @@
     }
   ],
   "acceptance": {
-    "ok": true,
+    "ok": false,
     "checks": {
-      "opened": true,
+      "opened": false,
       "initialName": true,
-      "nextControl": true,
-      "tapReaction": true,
-      "selectedNabatick": true,
+      "nextControl": false,
+      "tapReaction": false,
+      "selectedNabatick": false,
       "returnedHome": true,
-      "persistedSelection": true,
+      "persistedSelection": false,
       "keyboardNavigation": true,
       "keyboardSelection": true,
-      "touchNavigation": true,
+      "touchNavigation": false,
       "noRuntimeErrors": true,
       "noConsoleErrors": true
     },
     "persisted": {
-      "character": "nabatick",
-      "label": "נבטיק"
+      "character": "bifly",
+      "label": "ביפלי"
     },
     "events": [],
     "runtimeErrors": []

@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "inspections": [
+    {
+      "key": "stage-1-ice",
+      "file": "stage-1-ice-boss-24x3-390x844.webm",
+      "source": "http://127.0.0.1:55964/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-24x3-390x844.webm",
+      "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/video-inspection/stage-1-ice-contact-sheet.png",
+      "duration": 21.4,
+      "width": 390,
+      "height": 844,
+      "frameCount": 5
+    },
+    {
+      "key": "stage-2-lava",
+      "file": "stage-2-lava-boss-24x3-390x844.webm",
+      "source": "http://127.0.0.1:55964/docs/visual-proof-screenshots/boss-24x3/after/stage-2-lava-boss-24x3-390x844.webm",
+      "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/video-inspection/stage-2-lava-contact-sheet.png",
+      "duration": 19.2,
+      "width": 390,
+      "height": 844,
+      "frameCount": 5
+    },
+    {
+      "key": "stage-3-ancient",
+      "file": "stage-3-ancient-boss-24x3-390x844.webm",
+      "source": "http://127.0.0.1:55964/docs/visual-proof-screenshots/boss-24x3/after/stage-3-ancient-boss-24x3-390x844.webm",
+      "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/video-inspection/stage-3-ancient-contact-sheet.png",
+      "duration": 19.08,
+      "width": 390,
+      "height": 844,
+      "frameCount": 5
+    },
+    {
+      "key": "stage-4-diamond",
+      "file": "stage-4-diamond-boss-24x3-390x844.webm",
+      "source": "http://127.0.0.1:55964/docs/visual-proof-screenshots/boss-24x3/after/stage-4-diamond-boss-24x3-390x844.webm",
+      "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/video-inspection/stage-4-diamond-contact-sheet.png",
+      "duration": 17.12,
+      "width": 390,
+      "height": 844,
+      "frameCount": 5
+    }
+  ]
+}

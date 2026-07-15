@@ -1,0 +1,305 @@
+{
+  "generatedAt": "2026-07-12T20:24:03.497Z",
+  "label": "after-continuous",
+  "concept": "dawn-islands",
+  "world": "world-1",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after-continuous/dawn-islands/after-continuous-dawn-islands-desktop-1280x720.png",
+      "sha256": "eedd818664431de6104657df0de64bec2a4dcaf8cd0bed665abfb6cc3e8a3b00",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "dawn-islands",
+          "visualRenderer": "world1-continuous-2.5d",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 6.7103148416489615,
+          "eastDepth": 2.147300749327668,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "dawn-islands",
+          "mode": "authored-procedural",
+          "renderer": "world1-continuous-2.5d",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "not-requested",
+          "metadataStatus": "not-requested",
+          "imageSrc": null,
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "continuous-floor",
+            "continuous-wall",
+            "macro-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "dawn-islands",
+          "renderer": "world1-continuous-2.5d",
+          "layersDrawn": [
+            "world1-backdrop",
+            "world1-continuous-floor",
+            "world1-floor-inlay",
+            "world1-contact-shadows",
+            "world1-continuous-walls",
+            "world1-wall-edge-details",
+            "world1-macro-set-pieces",
+            "world1-landmarks",
+            "world1-static-lighting",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "star",
+          "collectibleStyle": "islands",
+          "actorContactStyle": "islands",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "islands",
+          "bossTrailVisualStyle": "islands",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "top": 69
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after-continuous/dawn-islands/after-continuous-dawn-islands-mobile-390x844.png",
+      "sha256": "6790c12fb6a6b52f3dc137c978fa43b7da1f0c77012570abb765be4616e5fa32",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "dawn-islands",
+          "visualRenderer": "world1-continuous-2.5d",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 6.7103148416489615,
+          "eastDepth": 2.147300749327668,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "dawn-islands",
+          "mode": "authored-procedural",
+          "renderer": "world1-continuous-2.5d",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "not-requested",
+          "metadataStatus": "not-requested",
+          "imageSrc": null,
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "continuous-floor",
+            "continuous-wall",
+            "macro-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "dawn-islands",
+          "renderer": "world1-continuous-2.5d",
+          "layersDrawn": [
+            "world1-backdrop",
+            "world1-continuous-floor",
+            "world1-floor-inlay",
+            "world1-contact-shadows",
+            "world1-continuous-walls",
+            "world1-wall-edge-details",
+            "world1-macro-set-pieces",
+            "world1-landmarks",
+            "world1-static-lighting",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "star",
+          "collectibleStyle": "islands",
+          "actorContactStyle": "islands",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "islands",
+          "bossTrailVisualStyle": "islands",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after-continuous/dawn-islands/after-continuous-dawn-islands-mobile-question-390x844.png",
+      "sha256": "8bb36a1b422884ad32b453a865e57c33da555507a277c81eb49e9e6d9007e5f5",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "diagnostics": {
+        "state": "question",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "question",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "dawn-islands",
+          "visualRenderer": "world1-continuous-2.5d",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 6.7103148416489615,
+          "eastDepth": 2.147300749327668,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "dawn-islands",
+          "mode": "authored-procedural",
+          "renderer": "world1-continuous-2.5d",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "not-requested",
+          "metadataStatus": "not-requested",
+          "imageSrc": null,
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "continuous-floor",
+            "continuous-wall",
+            "macro-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "dawn-islands",
+          "renderer": "world1-continuous-2.5d",
+          "layersDrawn": [
+            "world1-backdrop",
+            "world1-continuous-floor",
+            "world1-floor-inlay",
+            "world1-contact-shadows",
+            "world1-continuous-walls",
+            "world1-wall-edge-details",
+            "world1-macro-set-pieces",
+            "world1-landmarks",
+            "world1-static-lighting",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "star",
+          "collectibleStyle": "islands",
+          "actorContactStyle": "islands",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "islands",
+          "bossTrailVisualStyle": "islands",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": true
+      }
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

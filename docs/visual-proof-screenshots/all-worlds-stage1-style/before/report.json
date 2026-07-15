@@ -1,0 +1,261 @@
+{
+  "createdAt": "2026-07-13T05:57:38.093Z",
+  "renderer": "orthographic-3/4",
+  "camera": {
+    "azimuthDegrees": 10,
+    "elevationDegrees": 56,
+    "tiltFromVerticalDegrees": 34
+  },
+  "captures": [
+    {
+      "world": "ice",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ice-desktop-1280x720.png",
+      "sha256": "6381af662920f83957c9333e49947c4bdddb9d94d2236b786478025fa024d81c",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ice",
+        "concept": "sun-garden",
+        "visualRenderer": "world1-authored-environment-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": false
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 14
+    },
+    {
+      "world": "ice",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ice-mobile-390x844.png",
+      "sha256": "6b86799bc6534804faef0e34d2e508ade9589d499a59b645f09873e302c99d9e",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ice",
+        "concept": "sun-garden",
+        "visualRenderer": "world1-authored-environment-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": false
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 56
+    },
+    {
+      "world": "lava",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/lava-desktop-1280x720.png",
+      "sha256": "753300a0cef04dc1c4a258dd053d3c90ffe84e014253b2035562abee15747f4a",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "lava",
+        "concept": null,
+        "visualRenderer": "axonometric-atlas",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 6.7103148416489615,
+        "eastDepth": 2.147300749327668,
+        "blenderAtlasReady": true
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 11
+    },
+    {
+      "world": "lava",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/lava-mobile-390x844.png",
+      "sha256": "372c688470acbb260ae8d74472958661eedfbe6272bea09f4683a8786cfe58dc",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "lava",
+        "concept": null,
+        "visualRenderer": "axonometric-atlas",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 6.7103148416489615,
+        "eastDepth": 2.147300749327668,
+        "blenderAtlasReady": true
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 45
+    },
+    {
+      "world": "ancient",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ancient-desktop-1280x720.png",
+      "sha256": "efdc036a97f3a27ab686b5bd3fdf7b70e8343e680f0f6e32523512225c78289b",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ancient",
+        "concept": null,
+        "visualRenderer": "axonometric-atlas",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 6.7103148416489615,
+        "eastDepth": 2.147300749327668,
+        "blenderAtlasReady": true
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 25
+    },
+    {
+      "world": "ancient",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ancient-mobile-390x844.png",
+      "sha256": "ebb1a1f2ac6b4c74ec2629b4d1fb86922af8aac37d7798c783e5bb6f44493856",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ancient",
+        "concept": null,
+        "visualRenderer": "axonometric-atlas",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 6.7103148416489615,
+        "eastDepth": 2.147300749327668,
+        "blenderAtlasReady": true
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 59
+    },
+    {
+      "world": "diamond",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/diamond-desktop-1280x720.png",
+      "sha256": "230d735dd5657a24ebadaefd3d961ac215a4946367a4103a2c3b7f4e1ddfba22",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "diamond",
+        "concept": null,
+        "visualRenderer": "axonometric-atlas",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 6.7103148416489615,
+        "eastDepth": 2.147300749327668,
+        "blenderAtlasReady": true
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 26
+    },
+    {
+      "world": "diamond",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/diamond-mobile-390x844.png",
+      "sha256": "e49849edb9aa69d36f0c5d7c622e7e3c315ae9b4266420168446cce2392727df",
+      "browserErrors": [],
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "diamond",
+        "concept": null,
+        "visualRenderer": "axonometric-atlas",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 6.7103148416489615,
+        "eastDepth": 2.147300749327668,
+        "blenderAtlasReady": true
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 63
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

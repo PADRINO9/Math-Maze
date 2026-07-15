@@ -1,0 +1,271 @@
+{
+  "generatedAt": "2026-07-12T19:52:35.821Z",
+  "label": "before",
+  "concept": "current",
+  "world": "world-1",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "file": "docs/visual-proof-screenshots/world1-reimagine/before/current/before-current-desktop-1280x720.png",
+      "sha256": "1903c96618248167b11c1b2139b93146ad8f0056d14dfdf14a80b4558ca03516",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "browserErrors": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 6.7103148416489615,
+          "eastDepth": 2.147300749327668,
+          "blenderAtlasReady": true
+        },
+        "tileset": {
+          "world": "ice",
+          "mode": "hybrid",
+          "renderer": "modular-v3",
+          "schemaVersion": 3,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "loaded",
+          "imageSrc": "http://127.0.0.1:60773/assets/maze/ice/v3/tileset.png",
+          "metadataSrc": "http://127.0.0.1:60773/assets/maze/ice/v3/tileset.json",
+          "fallbackMode": "modular-v3",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "bonusCollectible",
+            "wallMask0",
+            "wallMask1",
+            "wallMask2",
+            "wallMask3",
+            "wallMask4",
+            "wallMask5",
+            "wallMask6",
+            "wallMask7",
+            "wallMask8",
+            "wallMask9",
+            "wallMask10",
+            "wallMask11",
+            "wallMask12",
+            "wallMask13",
+            "wallMask14",
+            "wallMask15",
+            "floor0",
+            "floor1",
+            "floor2",
+            "floor3",
+            "collectible0",
+            "collectible1",
+            "collectible2",
+            "powerCollectible"
+          ]
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "top": 69
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "docs/visual-proof-screenshots/world1-reimagine/before/current/before-current-mobile-390x844.png",
+      "sha256": "266ec64c975bca4ac87651862d3dcb59a38fbc9696263752cb6f4c030c63b18f",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "browserErrors": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 6.7103148416489615,
+          "eastDepth": 2.147300749327668,
+          "blenderAtlasReady": true
+        },
+        "tileset": {
+          "world": "ice",
+          "mode": "hybrid",
+          "renderer": "modular-v3",
+          "schemaVersion": 3,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "loaded",
+          "imageSrc": "http://127.0.0.1:60773/assets/maze/ice/v3/tileset.png",
+          "metadataSrc": "http://127.0.0.1:60773/assets/maze/ice/v3/tileset.json",
+          "fallbackMode": "modular-v3",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "bonusCollectible",
+            "wallMask0",
+            "wallMask1",
+            "wallMask2",
+            "wallMask3",
+            "wallMask4",
+            "wallMask5",
+            "wallMask6",
+            "wallMask7",
+            "wallMask8",
+            "wallMask9",
+            "wallMask10",
+            "wallMask11",
+            "wallMask12",
+            "wallMask13",
+            "wallMask14",
+            "wallMask15",
+            "floor0",
+            "floor1",
+            "floor2",
+            "floor3",
+            "collectible0",
+            "collectible1",
+            "collectible2",
+            "powerCollectible"
+          ]
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "docs/visual-proof-screenshots/world1-reimagine/before/current/before-current-mobile-question-390x844.png",
+      "sha256": "2e5f605a85551910953085f86384b22047121d0c2f60a3be8d916df68ecde5f8",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "browserErrors": [],
+      "diagnostics": {
+        "state": "question",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "question",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 6.7103148416489615,
+          "eastDepth": 2.147300749327668,
+          "blenderAtlasReady": true
+        },
+        "tileset": {
+          "world": "ice",
+          "mode": "hybrid",
+          "renderer": "modular-v3",
+          "schemaVersion": 3,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "loaded",
+          "imageSrc": "http://127.0.0.1:60773/assets/maze/ice/v3/tileset.png",
+          "metadataSrc": "http://127.0.0.1:60773/assets/maze/ice/v3/tileset.json",
+          "fallbackMode": "modular-v3",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "bonusCollectible",
+            "wallMask0",
+            "wallMask1",
+            "wallMask2",
+            "wallMask3",
+            "wallMask4",
+            "wallMask5",
+            "wallMask6",
+            "wallMask7",
+            "wallMask8",
+            "wallMask9",
+            "wallMask10",
+            "wallMask11",
+            "wallMask12",
+            "wallMask13",
+            "wallMask14",
+            "wallMask15",
+            "floor0",
+            "floor1",
+            "floor2",
+            "floor3",
+            "collectible0",
+            "collectible1",
+            "collectible2",
+            "powerCollectible"
+          ]
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": true
+      }
+    }
+  ],
+  "failures": [
+    {
+      "capture": "mobile",
+      "issue": "not-playing"
+    }
+  ],
+  "passed": false
+}
