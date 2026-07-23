@@ -61,12 +61,13 @@
     firework: { files: ["sfx/bonus-collectible.wav"], bus: "sfx", gain: 0.36, cooldown: 320, detune: 80 }
   });
 
+  const SELECTED_GAMEPLAY_MUSIC = "music/kaflul-afropop-gameplay.m4a";
   const MUSIC = Object.freeze({
-    menu: { files: { base: "music/menu.wav" }, gains: { base: 0.82 } },
-    ice: { files: { base: "music/ice-base.wav", pulse: "music/ice-pulse.wav", melody: "music/ice-melody.wav", boss: "music/ice-boss.wav" } },
-    lava: { files: { base: "music/lava-base.wav", pulse: "music/lava-pulse.wav", melody: "music/lava-melody.wav", boss: "music/lava-boss.wav" } },
-    ancient: { files: { base: "music/ancient-base.wav", pulse: "music/ancient-pulse.wav", melody: "music/ancient-melody.wav", boss: "music/ancient-boss.wav" } },
-    diamond: { files: { base: "music/diamond-base.wav", pulse: "music/diamond-pulse.wav", melody: "music/diamond-melody.wav", boss: "music/diamond-boss.wav" } }
+    menu: { files: { base: SELECTED_GAMEPLAY_MUSIC } },
+    ice: { files: { base: SELECTED_GAMEPLAY_MUSIC } },
+    lava: { files: { base: SELECTED_GAMEPLAY_MUSIC } },
+    ancient: { files: { base: SELECTED_GAMEPLAY_MUSIC } },
+    diamond: { files: { base: SELECTED_GAMEPLAY_MUSIC } }
   });
 
   const CHARACTER_CUES = new Set(["select", "eat", "correct", "hit", "victory", "idle"]);
@@ -224,7 +225,7 @@
     const files = [
       "sfx/button-press.wav", "sfx/primary-play.wav", "sfx/question-open.wav",
       "sfx/answer-correct-1.wav", "sfx/answer-wrong-1.wav", "sfx/life-lost.wav",
-      "music/menu.wav"
+      SELECTED_GAMEPLAY_MUSIC
     ];
     for (const file of files) loadBuffer(file).catch(() => {});
   }
@@ -374,11 +375,13 @@
   }
 
   function stemTarget(stem, scene) {
-    if (scene === "menu") return 0.82;
-    if (stem === "base") return 0.72;
-    if (stem === "pulse") return 0.25 + musicIntensity * 0.42;
-    if (stem === "melody") return questionDucked ? 0.08 : 0.42 + musicIntensity * 0.22;
-    if (stem === "boss") return bossActive ? 0.68 : 0.0001;
+    // Keep the score supportive during longer learning sessions. Event/SFX
+    // buses retain their original levels so answers and rewards stay clear.
+    if (scene === "menu") return 0.52;
+    if (stem === "base") return bossActive ? 0.9 : 0.78 + musicIntensity * 0.08;
+    if (stem === "pulse") return 0.16 + musicIntensity * 0.28;
+    if (stem === "melody") return questionDucked ? 0.05 : 0.30 + musicIntensity * 0.16;
+    if (stem === "boss") return bossActive ? 0.58 : 0.0001;
     return 0.4;
   }
 

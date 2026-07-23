@@ -1,8 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "sampleRate": 24000,
-  "license": "Original Kaflul procedural production audio; generated in-repository.",
-  "fileCount": 107,
+  "license": "Mixed audio library: original Kaflul production audio plus the licensed gameplay track documented below.",
+  "licenses": [
+    {
+      "scope": "All files except music/kaflul-afropop-gameplay.m4a",
+      "license": "Original Kaflul procedural production audio; generated in-repository."
+    },
+    {
+      "scope": "music/kaflul-afropop-gameplay.m4a",
+      "title": "Celestial Pulse (Comet Joy) [Instrumental - 113 BPM - One-Stop]",
+      "creator": "DjOldCatz",
+      "source": "https://pixabay.com/music/afrobeat-celestial-pulse-comet-joy-instrumental-113-bpm-one-stop-460494/",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "adaptation": "24-bar 113 BPM seamless gameplay loop, level-matched for Kaflul."
+    }
+  ],
+  "fileCount": 108,
   "files": [
     "sfx/button-press.wav",
     "sfx/primary-play.wav",
@@ -91,6 +106,7 @@
     "bosses/stage4/hit.wav",
     "bosses/stage4/defeat.wav",
     "music/menu.wav",
+    "music/kaflul-afropop-gameplay.m4a",
     "music/ice-base.wav",
     "music/ice-pulse.wav",
     "music/ice-melody.wav",

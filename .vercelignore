@@ -5,9 +5,15 @@
 .pnpm-store/
 .tools/
 android/
+artifacts/
 dist/
 node_modules/
 test-results/
+tests/
+tools/
 assets/blender/
 assets/generated/blender/
+art-src/
+docs/
+store-assets/
 *.apk

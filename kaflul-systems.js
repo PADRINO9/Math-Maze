@@ -40,81 +40,97 @@
     }
   };
 
+  const OPERATION_MODES = Object.freeze({
+    multiplication: Object.freeze({
+      id: "multiplication",
+      label: "כפל בלבד"
+    }),
+    mixed: Object.freeze({
+      id: "mixed",
+      label: "כפל וחילוק"
+    })
+  });
+
   const DIFFICULTIES = {
     beginner: {
       id: "beginner",
-      label: "מתחילים",
-      enemyCount: 8,
-      enemySpeedMultiplier: 0.86,
-      enemyAiAggressiveness: 0.78,
-      answerTimeLimit: 30,
-      questionMode: "table",
-      availableHints: 2,
-      initialLives: 4,
-      comboTolerance: 1,
+      label: "קל",
+      enemyCount: 6,
+      enemySpeedMultiplier: 0.75,
+      enemyAiAggressiveness: 0.7,
+      answerTimeLimit: 25,
+      questionMode: "easyTable",
+      availableHints: 3,
+      initialLives: 3,
+      comboTolerance: 2,
       scoreMultiplierPct: 100,
-      progressionSpeed: 0.72,
-      mistakePenalty: 0.6
+      progressionSpeed: 0.55,
+      mistakePenalty: 0.4,
+      adaptiveQuestionChance: 0.15
     },
     normal: {
       id: "normal",
-      label: "רגיל",
-      enemyCount: 10,
-      enemySpeedMultiplier: 1,
-      enemyAiAggressiveness: 1,
+      label: "בינוני",
+      enemyCount: 7,
+      enemySpeedMultiplier: 0.84,
+      enemyAiAggressiveness: 0.82,
       answerTimeLimit: 25,
-      questionMode: "filteredTable",
-      availableHints: 1,
+      questionMode: "table",
+      availableHints: 2,
       initialLives: 3,
-      comboTolerance: 0,
+      comboTolerance: 1,
       scoreMultiplierPct: 150,
-      progressionSpeed: 1,
-      mistakePenalty: 1
+      progressionSpeed: 0.7,
+      mistakePenalty: 0.7,
+      adaptiveQuestionChance: 0.25
     },
     advanced: {
       id: "advanced",
-      label: "מתקדם",
-      enemyCount: 11,
-      enemySpeedMultiplier: 1.12,
-      enemyAiAggressiveness: 1.12,
-      answerTimeLimit: 20,
-      questionMode: "twoByOne",
-      availableHints: 0,
+      label: "קשה",
+      enemyCount: 8,
+      enemySpeedMultiplier: 0.94,
+      enemyAiAggressiveness: 0.94,
+      answerTimeLimit: 25,
+      questionMode: "hardTable",
+      availableHints: 1,
       initialLives: 3,
       comboTolerance: 0,
       scoreMultiplierPct: 200,
-      progressionSpeed: 1.18,
-      mistakePenalty: 1.2
+      progressionSpeed: 0.88,
+      mistakePenalty: 0.9,
+      adaptiveQuestionChance: 0.35
     },
     expert: {
       id: "expert",
       label: "מומחה",
-      enemyCount: 12,
-      enemySpeedMultiplier: 1.25,
-      enemyAiAggressiveness: 1.24,
-      answerTimeLimit: 16,
-      questionMode: "twoByTwo",
+      enemyCount: 9,
+      enemySpeedMultiplier: 1.02,
+      enemyAiAggressiveness: 1.02,
+      answerTimeLimit: 25,
+      questionMode: "extendedTable",
       availableHints: 0,
-      initialLives: 2,
+      initialLives: 3,
       comboTolerance: 0,
       scoreMultiplierPct: 300,
-      progressionSpeed: 1.38,
-      mistakePenalty: 1.5
+      progressionSpeed: 1,
+      mistakePenalty: 1,
+      adaptiveQuestionChance: 0.45
     },
     legendary: {
       id: "legendary",
       label: "אגדי",
-      enemyCount: 14,
-      enemySpeedMultiplier: 1.42,
-      enemyAiAggressiveness: 1.42,
-      answerTimeLimit: 12,
-      questionMode: "legendary",
+      enemyCount: 10,
+      enemySpeedMultiplier: 1.1,
+      enemyAiAggressiveness: 1.08,
+      answerTimeLimit: 25,
+      questionMode: "masteryTable",
       availableHints: 0,
-      initialLives: 1,
+      initialLives: 3,
       comboTolerance: 0,
       scoreMultiplierPct: 500,
-      progressionSpeed: 1.7,
-      mistakePenalty: 2
+      progressionSpeed: 1.12,
+      mistakePenalty: 1.2,
+      adaptiveQuestionChance: 0.55
     }
   };
 
@@ -148,7 +164,11 @@
     accuracyGood: 900,
     timeBonusMax: 1200,
     complexity: {
+      easyTable: 0,
       table: 0,
+      hardTable: 80,
+      extendedTable: 130,
+      masteryTable: 200,
       filteredTable: 60,
       twoByOne: 150,
       twoByTwo: 290,
@@ -211,6 +231,49 @@
     return GAME_MODES[value] ? value : "arcade";
   }
 
+  function normalizeOperationMode(value) {
+    return OPERATION_MODES[value] ? value : "multiplication";
+  }
+
+  function createArithmeticQuestion(a, b, options = {}) {
+    const leftFactor = Math.max(1, Math.floor(Number(a) || 1));
+    const rightFactor = Math.max(1, Math.floor(Number(b) || 1));
+    const product = leftFactor * rightFactor;
+    const operation = options.operation === "division" ? "division" : "multiplication";
+    const key = `${leftFactor}×${rightFactor}`;
+
+    if (operation === "division") {
+      const useSecondFactorAsDivisor = options.divisionVariant === "second";
+      const divisor = useSecondFactorAsDivisor ? rightFactor : leftFactor;
+      const answer = useSecondFactorAsDivisor ? leftFactor : rightFactor;
+      return {
+        key,
+        a: leftFactor,
+        b: rightFactor,
+        operation,
+        left: product,
+        operator: "÷",
+        right: divisor,
+        dividend: product,
+        divisor,
+        answer,
+        text: `${product} ÷ ${divisor} = ?`
+      };
+    }
+
+    return {
+      key,
+      a: leftFactor,
+      b: rightFactor,
+      operation,
+      left: leftFactor,
+      operator: "×",
+      right: rightFactor,
+      answer: product,
+      text: `${leftFactor} × ${rightFactor} = ?`
+    };
+  }
+
   function normalizeDifficulty(value) {
     const mapped = LEGACY_DIFFICULTY_MAP[value] || value;
     return DIFFICULTIES[mapped] ? mapped : "normal";
@@ -266,6 +329,7 @@
         selectedCharacter: "bifly",
         selectedDifficulty: "normal",
         selectedMode: "arcade",
+        operationMode: "multiplication",
         soundEnabled: true,
         musicEnabled: true,
         audioVolumes: {
@@ -349,6 +413,7 @@
     save.gameVersion = GAME_VERSION;
     save.player.nickname = safeNickname(save.player.nickname);
     save.settings.selectedMode = normalizeGameMode(save.settings.selectedMode);
+    save.settings.operationMode = normalizeOperationMode(save.settings.operationMode);
     save.settings.selectedCharacter = normalizeCharacterId(save.settings.selectedCharacter);
     save.settings.selectedDifficulty = normalizeDifficulty(save.settings.selectedDifficulty);
     save.settings.soundEnabled = save.settings.soundEnabled !== false;
@@ -1529,6 +1594,7 @@
     MASTERY_RANGE,
     MASTERY_LEVELS,
     GAME_MODES,
+    OPERATION_MODES,
     DIFFICULTIES,
     LEGENDARY_UNLOCK_RULE,
     PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE,
@@ -1536,8 +1602,10 @@
     GAME_STATES,
     STATE_TRANSITIONS,
     normalizeGameMode,
+    normalizeOperationMode,
     normalizeDifficulty,
     normalizeCharacterId,
+    createArithmeticQuestion,
     validateNickname,
     safeNickname,
     createDefaultSave,

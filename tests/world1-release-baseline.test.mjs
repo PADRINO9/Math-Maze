@@ -9,7 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const gameSource = await readFile(path.join(root, "game.js"), "utf8");
 
 const EXPECTED = Object.freeze({
-  baselineId: "world1-sun-garden-approved-v1",
+  baselineId: "world1-sun-garden-approved-v2",
   authoredBoardSrc: "assets/maze/world1/sun-garden/board-v3.png",
   authoredBoardSha256: "f114291caf2ccf0f62db575be3809b750439d61fa07db65fbf086c3c8cd7bd63",
   navigationVersion: "world1-canonical-semantic-layout-v5",
@@ -19,10 +19,10 @@ const EXPECTED = Object.freeze({
   walkableCellCount: 582,
   chestCell: { x: 23, y: 18 },
   actorScale: {
-    playerPhone: 0.84,
-    playerWide: 0.82,
-    enemyPhone: 0.66,
-    enemyWide: 0.64
+    playerPhone: 0.9,
+    playerWide: 0.88,
+    enemyPhone: 0.72,
+    enemyWide: 0.7
   },
   gameplayZoom: {
     desktop: 1.06,
@@ -89,4 +89,19 @@ test("approved world one identity, chest, and actor scale remain locked", () => 
     gameSource,
     /let zoom = WORLD_ONE_RELEASE_BASELINE\.gameplayZoom\.desktop;/
   );
+});
+
+test("regular ghosts omit the redundant question badge while the boss cue remains", () => {
+  const overlayBlock = gameSource.match(
+    /function drawFirstMazeQuestionGateOverlays\(\) \{([\s\S]*?)\n  \}/
+  );
+  assert.ok(overlayBlock, "question cue overlay must remain declared");
+  assert.match(overlayBlock[1], /const actors = state\.boss \? \[state\.boss\] : \[\];/);
+  assert.doesNotMatch(overlayBlock[1], /state\.enemies/);
+
+  const bossCueBlock = gameSource.match(
+    /function drawBossActorQuestionCue\([\s\S]*?\n  \}/
+  );
+  assert.ok(bossCueBlock, "boss question cue must remain declared");
+  assert.match(bossCueBlock[0], /fillText\("\?"/);
 });

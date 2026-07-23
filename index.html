@@ -40,10 +40,11 @@
   <link rel="stylesheet" href="ui/mobile-overrides.css?v=20260628-1">
   <link rel="stylesheet" href="leaderboard.css?v=20260622-1">
   <link rel="stylesheet" href="arcade-foundation.css?v=20260712-stage-intro-2">
-  <link rel="stylesheet" href="main-menu.css?v=20260712-home-daily-icon-1">
+  <link rel="stylesheet" href="main-menu.css?v=20260723-difficulty-1">
   <link rel="stylesheet" href="ui/secondary-screens.css?v=20260628-1">
   <link rel="stylesheet" href="ui/motion/motion.css?v=20260630-1">
   <link rel="stylesheet" href="ui/game-number-pad.css?v=20260711-1">
+  <link rel="stylesheet" href="ui/tutorial.css?v=20260720-1">
 </head>
 <body>
   <div id="app-loading-screen" class="app-loading-screen" role="status" aria-live="polite" aria-label="כפלול נטען">
@@ -172,7 +173,7 @@
           <header class="secondary-dialog-header">
             <span class="secondary-kicker">הפסקה בטוחה</span>
             <h2 id="pause-title">המשחק מושהה</h2>
-            <p id="pause-summary">ארקייד · רגיל · גן השמש</p>
+            <p id="pause-summary">ארקייד · בינוני · גן השמש</p>
           </header>
           <div class="pause-mission-card" aria-label="מצב המשחק בזמן ההשהיה">
             <span>
@@ -644,7 +645,7 @@
                 <button id="pregame-difficulty-button" class="pregame-choice-card" type="button">
                   <span class="ui-icon-wrap" aria-hidden="true"><svg class="ui-icon" focusable="false"><use href="ui/icons.svg#difficulty"></use></svg></span>
                   <small>קושי</small>
-                  <strong id="pregame-difficulty-label">רגיל ×1.5</strong>
+                  <strong id="pregame-difficulty-label">בינוני ×1.5</strong>
                 </button>
               </div>
               <div class="pregame-rule-card">
@@ -703,32 +704,32 @@
                 <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#close"></use></svg>
               </button>
               <header class="phase5-sheet-header">
-                <span class="secondary-kicker">כמה חזק המרדף?</span>
+                <span class="secondary-kicker">חוקים אחידים, אתגר עולה</span>
                 <h2 id="difficulty-panel-title">בחרו רמת קושי</h2>
-                <p>הקושי משפיע על זמן לתרגיל, חיים, מהירות אויבים ומכפיל ניקוד.</p>
+                <p>בכל הרמות יש 3 חיים ו־25 שניות. הקושי עולה דרך התרגילים ועוצמת המרדף.</p>
               </header>
               <fieldset class="difficulty-field">
-                <legend>מוצגים רק ההבדלים החשובים לשחקן</legend>
+                <legend>חמש רמות ברורות — מקל ועד אגדי</legend>
                 <div class="difficulty-options" role="radiogroup" aria-label="רמת קושי">
                   <label>
                     <input type="radio" name="difficulty" value="beginner">
-                    <span><strong>מתחילים</strong><em>×1</em><small>4 חיים, 30 שניות, מרדף רגוע ורמזים.</small></span>
+                    <span><strong>קל</strong><em>×1</em><small>3 חיים, 25 שניות, כפולות 1–5 ו־10, מרדף רגוע.</small></span>
                   </label>
                   <label>
                     <input type="radio" name="difficulty" value="normal" checked>
-                    <span><strong>רגיל</strong><em>×1.5</em><small>3 חיים, 25 שניות, איזון טוב לאימון יומי.</small></span>
+                    <span><strong>בינוני</strong><em>×1.5</em><small>3 חיים, 25 שניות, כל לוח הכפל 1–10.</small></span>
                   </label>
                   <label>
                     <input type="radio" name="difficulty" value="advanced">
-                    <span><strong>מתקדם</strong><em>×2</em><small>3 חיים, 20 שניות, אויבים מהירים יותר.</small></span>
+                    <span><strong>קשה</strong><em>×2</em><small>3 חיים, 25 שניות, התרגילים המאתגרים עד 10.</small></span>
                   </label>
                   <label>
                     <input type="radio" name="difficulty" value="expert">
-                    <span><strong>מומחה</strong><em>×3</em><small>2 חיים, 16 שניות, שאלות מורכבות ומרדף חד.</small></span>
+                    <span><strong>מומחה</strong><em>×3</em><small>3 חיים, 25 שניות, לוח מורחב עד 12.</small></span>
                   </label>
                   <label>
                     <input type="radio" name="difficulty" value="legendary">
-                    <span><strong>אגדי</strong><em>×5</em><small>1 חיים, 12 שניות, אתגר קצה לשיאים גדולים.</small><small class="difficulty-lock-copy"></small></span>
+                    <span><strong>אגדי</strong><em>×5</em><small>3 חיים, 25 שניות, תרגילים מאתגרים עד 15×15.</small><small class="difficulty-lock-copy"></small></span>
                   </label>
                 </div>
               </fieldset>
@@ -743,7 +744,7 @@
               <header class="phase5-sheet-header">
                 <span class="secondary-kicker">פרופיל מקומי</span>
                 <h2 id="settings-panel-title">הגדרות שחקן</h2>
-                <p>הכינוי והצלילים נשמרים על המכשיר הזה.</p>
+                <p>הכינוי, סוגי התרגילים והצלילים נשמרים על המכשיר הזה.</p>
               </header>
               <label for="player-name-input">כינוי השחקן</label>
               <input id="player-name-input" type="text" maxlength="14" placeholder="אלוף כפלול" autocomplete="nickname" required>
@@ -785,9 +786,29 @@
                 <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#timer"></use></svg>
                 <span>טיימר לתרגילים: <strong id="time-limit-state">פועל</strong></span>
               </button>
+              <fieldset class="settings-operation-mode" aria-label="בחירת סוגי תרגילים">
+                <legend id="operation-mode-legend">אילו תרגילים יופיעו?</legend>
+                <p id="operation-mode-copy">תרגילי החילוק בנויים מאותן עובדות של לוח הכפל, תמיד ללא שארית.</p>
+                <div class="operation-mode-options">
+                  <label>
+                    <input type="radio" name="operation-mode" value="multiplication" checked>
+                    <span>
+                      <strong id="operation-mode-multiplication-title">כפל בלבד</strong>
+                      <small id="operation-mode-multiplication-copy">רק תרגילי לוח הכפל.</small>
+                    </span>
+                  </label>
+                  <label>
+                    <input type="radio" name="operation-mode" value="mixed">
+                    <span>
+                      <strong id="operation-mode-mixed-title">כפל וחילוק</strong>
+                      <small id="operation-mode-mixed-copy">שילוב מאוזן של כפל וחילוק מדויק.</small>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
               <section class="settings-game-card" aria-label="הגדרות משחק">
                 <strong>משחק</strong>
-                <p id="settings-selection-summary">ביפלי · רגיל ×1.5 · ארקייד</p>
+                <p id="settings-selection-summary">ביפלי · בינוני ×1.5 · ארקייד</p>
                 <div class="menu-control-strip home-pregame-summary settings-pregame-summary" aria-label="בחירות לפני משחק">
                   <button id="character-control-button" class="menu-control-button" type="button" aria-label="פתיחת גלריית דמויות" aria-expanded="false" aria-controls="hero-gallery">
                     <span class="ui-icon-wrap" aria-hidden="true">
@@ -808,7 +829,7 @@
                       <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#difficulty"></use></svg>
                     </span>
                     <small>קושי</small>
-                    <strong id="selected-difficulty-label">רגיל</strong>
+                    <strong id="selected-difficulty-label">בינוני</strong>
                   </button>
                 </div>
                 <button id="pregame-open-button" class="menu-text-button pregame-open-button" type="button" aria-expanded="false" aria-controls="pregame-panel">סקירה לפני משחק</button>
@@ -835,6 +856,10 @@
                   <span>ג׳ויסטיק</span>
                 </label>
               </fieldset>
+              <button id="tutorial-replay-button" class="phase5-button tutorial-replay-button" type="button">
+                <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#play"></use></svg>
+                <span>הדרכה: איך משחקים?</span>
+              </button>
               <a class="settings-privacy-link" href="privacy.html" aria-label="פתיחת מדיניות הפרטיות של כפלול">
                 מדיניות פרטיות
               </a>
@@ -885,7 +910,7 @@
               <div class="progress-real-grid">
                 <span>
                   <small>רמות פתוחות</small>
-                  <strong id="progress-unlocked-difficulties">מתחילים, רגיל, מתקדם, מומחה</strong>
+                  <strong id="progress-unlocked-difficulties">קל, בינוני, קשה, מומחה</strong>
                 </span>
                 <span>
                   <small>שיא בקטגוריה הנוכחית</small>
@@ -950,7 +975,7 @@
           </div>
           <div class="results-grid" aria-label="סיכום ביצועים">
             <span>מצב <strong id="result-mode">ארקייד</strong></span>
-            <span>קושי <strong id="result-difficulty">רגיל</strong></span>
+            <span>קושי <strong id="result-difficulty">בינוני</strong></span>
             <span id="result-stage-label">גל <strong id="result-stage">1</strong></span>
             <span>נכונות <strong id="final-correct">0</strong></span>
             <span>טעויות <strong id="final-incorrect">0</strong></span>
@@ -1024,9 +1049,9 @@
               <span>קושי</span>
               <select id="leaderboard-difficulty-filter">
                 <option value="all">כל הקשיים</option>
-                <option value="beginner">מתחילים</option>
-                <option value="normal">רגיל</option>
-                <option value="advanced">מתקדם</option>
+                <option value="beginner">קל</option>
+                <option value="normal">בינוני</option>
+                <option value="advanced">קשה</option>
                 <option value="expert">מומחה</option>
                 <option value="legendary">אגדי</option>
               </select>
@@ -1056,11 +1081,56 @@
     </div>
   </main>
 
-  <script src="kaflul-systems.js?v=20260701-1"></script>
+  <section id="first-run-tutorial" class="kf-coach" role="region" aria-label="הדרכת כפלול אינטראקטיבית" hidden>
+    <div class="kf-coach-shades" aria-hidden="true">
+      <span data-coach-shade="top"></span>
+      <span data-coach-shade="right"></span>
+      <span data-coach-shade="bottom"></span>
+      <span data-coach-shade="left"></span>
+    </div>
+
+    <div id="tutorial-target-ring" class="kf-coach-target-ring" aria-hidden="true"></div>
+
+    <div id="tutorial-hand" class="kf-coach-hand-wrap" aria-hidden="true">
+      <span class="kf-coach-tap-ripple"></span>
+      <svg class="kf-coach-hand" viewBox="0 0 448 512" focusable="false">
+        <path d="M448 240c0-26.5-21.5-48-48-48-8.8 0-17.1 2.4-24.3 6.6C371.2 176.5 351.6 160 328 160c-15.9 0-30 7.7-38.7 19.5C280.5 167.7 266.4 160 250.5 160c-8.8 0-17.1 2.4-24.3 6.6L224 64c0-35.3-28.7-64-64-64S96 28.7 96 64v241.5l-10.1-10.1c-25-25-65.5-25-90.5 0s-25 65.5 0 90.5l86.6 86.6c25 25 58.9 39 94.2 39H336c61.9 0 112-50.1 112-112V240z"></path>
+      </svg>
+    </div>
+
+    <div id="tutorial-action-pill" class="kf-coach-action-pill" aria-live="polite">
+      <span class="kf-coach-action-dot" aria-hidden="true"></span>
+      <strong id="tutorial-title">לחצו על הכפתור המואר</strong>
+    </div>
+
+    <aside id="tutorial-speech-bubble" class="kf-coach-speech" role="status" aria-live="polite" hidden>
+      <span class="kf-coach-check" aria-hidden="true">
+        <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#check"></use></svg>
+      </span>
+      <p id="tutorial-lead"></p>
+    </aside>
+
+    <div id="tutorial-lock-message" class="kf-coach-lock-message" role="status" aria-live="polite" hidden>
+      לחצו רק על הכפתור שהיד מצביעה עליו
+    </div>
+
+    <header id="tutorial-coach-status" class="kf-coach-status" data-edge="top">
+      <div class="kf-coach-status-copy">
+        <strong id="tutorial-step-label">הדרכה 1 מתוך 13</strong>
+        <span id="tutorial-step-name">הגדרות</span>
+      </div>
+      <div class="kf-coach-progress" role="progressbar" aria-label="התקדמות בהדרכה" aria-valuemin="1" aria-valuemax="13" aria-valuenow="1">
+        <span id="tutorial-progress-fill"></span>
+      </div>
+      <button id="tutorial-skip-button" class="kf-coach-skip" type="button">דלג</button>
+    </header>
+  </section>
+
+  <script src="kaflul-systems.js?v=20260723-difficulty-2"></script>
   <script src="ui/assets/asset-manifest.js?v=20260701-3"></script>
   <script src="ui/character-animation-adapter.js?v=20260628-1"></script>
   <script src="ui/motion/motion-system.js?v=20260630-1"></script>
-  <script src="ui/sounds/kaflul-audio-engine.js?v=20260712-audio-1"></script>
+  <script src="ui/sounds/kaflul-audio-engine.js?v=20260720-mobile-sync-1"></script>
   <script src="ui/sounds/ui-sound-controller.js?v=20260713-input-1"></script>
   <script src="poster-loader.js?v=20260705-loading-2"></script>
   <script src="mobile-enhancements.js?v=20260711-keypad-1"></script>
@@ -1072,6 +1142,7 @@
   <script src="maze-decor-system.js?v=20260703-1"></script>
   <script src="maze-tile-topology.js?v=20260712-modular-v3-1"></script>
   <script src="maze-axonometric-projection.js?v=20260712-axonometric-v1"></script>
-  <script src="game.js?v=20260713-stage1-style-all-worlds-4"></script>
+  <script src="game.js?v=20260723-difficulty-2"></script>
+  <script src="ui/tutorial.js?v=20260723-difficulty-2"></script>
 </body>
 </html>

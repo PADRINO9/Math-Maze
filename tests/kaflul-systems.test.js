@@ -70,16 +70,74 @@ function readRepoFile(file) {
 }
 
 test("difficulty configuration exposes five stable Hebrew difficulties", () => {
-  assert.deepEqual(Object.keys(systems.DIFFICULTIES), [
+  const ids = [
     "beginner",
     "normal",
     "advanced",
     "expert",
     "legendary"
+  ];
+  assert.deepEqual(Object.keys(systems.DIFFICULTIES), ids);
+  assert.deepEqual(ids.map((id) => systems.DIFFICULTIES[id].label), [
+    "קל",
+    "בינוני",
+    "קשה",
+    "מומחה",
+    "אגדי"
   ]);
-  assert.equal(systems.DIFFICULTIES.beginner.label, "מתחילים");
-  assert.equal(systems.DIFFICULTIES.legendary.scoreMultiplierPct, 500);
+  assert.deepEqual(ids.map((id) => systems.DIFFICULTIES[id].questionMode), [
+    "easyTable",
+    "table",
+    "hardTable",
+    "extendedTable",
+    "masteryTable"
+  ]);
+  assert.deepEqual(ids.map((id) => systems.DIFFICULTIES[id].answerTimeLimit), [25, 25, 25, 25, 25]);
+  assert.deepEqual(ids.map((id) => systems.DIFFICULTIES[id].initialLives), [3, 3, 3, 3, 3]);
+  assert.deepEqual(ids.map((id) => systems.DIFFICULTIES[id].enemyCount), [6, 7, 8, 9, 10]);
+  assert.deepEqual(ids.map((id) => systems.DIFFICULTIES[id].scoreMultiplierPct), [100, 150, 200, 300, 500]);
+  assert.ok(systems.DIFFICULTIES.legendary.enemySpeedMultiplier <= 1.1);
+  assert.equal(systems.LEGENDARY_UNLOCK_RULE.expertArcadeScore, 75000);
   assert.equal(systems.normalizeDifficulty("veryHard"), "expert");
+});
+
+test("operation mode defaults to multiplication and safely normalizes saved choices", () => {
+  assert.deepEqual(Object.keys(systems.OPERATION_MODES), ["multiplication", "mixed"]);
+  assert.equal(systems.createDefaultSave().settings.operationMode, "multiplication");
+  assert.equal(systems.normalizeOperationMode("mixed"), "mixed");
+  assert.equal(systems.normalizeOperationMode("unexpected"), "multiplication");
+
+  const restored = systems.loadSave(memoryStorage({
+    [systems.SAVE_KEY]: JSON.stringify({
+      schemaVersion: systems.SAVE_SCHEMA_VERSION,
+      settings: { operationMode: "mixed" }
+    })
+  }));
+  assert.equal(restored.settings.operationMode, "mixed");
+});
+
+test("division table is the exact inverse of every multiplication fact", () => {
+  for (let a = 1; a <= 10; a += 1) {
+    for (let b = 1; b <= 10; b += 1) {
+      const first = systems.createArithmeticQuestion(a, b, {
+        operation: "division",
+        divisionVariant: "first"
+      });
+      const second = systems.createArithmeticQuestion(a, b, {
+        operation: "division",
+        divisionVariant: "second"
+      });
+
+      assert.equal(first.operation, "division");
+      assert.equal(first.dividend % first.divisor, 0);
+      assert.equal(first.answer, b);
+      assert.equal(first.dividend / first.divisor, first.answer);
+      assert.equal(second.dividend % second.divisor, 0);
+      assert.equal(second.answer, a);
+      assert.equal(second.dividend / second.divisor, second.answer);
+      assert.equal(first.key, `${a}×${b}`);
+    }
+  }
 });
 
 test("default save locks legendary until a configured achievement", () => {
@@ -133,6 +191,9 @@ test("combo progression and reset are centralized", () => {
   assert.equal(combo.multiplierPct, 150);
 
   systems.applyComboEvent(combo, "lifeLost", systems.DIFFICULTIES.normal);
+  assert.equal(combo.count, 3);
+  assert.equal(combo.multiplierPct, 120);
+  systems.applyComboEvent(combo, "lifeLost", systems.DIFFICULTIES.advanced);
   assert.equal(combo.count, 0);
   assert.equal(combo.multiplierPct, 100);
   assert.equal(combo.max, 5);

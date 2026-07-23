@@ -46,6 +46,10 @@ const excludedBundlePatterns = [
   /^assets\/generated\/(?:bifly|nabatick)-expression-sheet(?:-source)?\.png$/,
   /^assets\/generated\/expression-frames-preview\.jpg$/,
   /^assets\/generated\/kaflul-(?:arcade-chests-v1-source|champion-trophy-source-v2)\.png$/,
+  // The 113 BPM Afropop loop is now the only runtime gameplay music bed.
+  // Keep the legacy procedural stems in the repository for source/history,
+  // but do not ship their unused ~17 MB in the Android package.
+  /^assets\/audio\/music\/(?:menu|(?:ice|lava|ancient|diamond)-(?:base|pulse|melody|boss))\.wav$/,
   // Authoring/reference images are kept in the repository but are not loaded
   // by the production runtime. Excluding them keeps the installable APK below
   // Telegram's 50 MiB Bot API limit without reducing playable asset quality.

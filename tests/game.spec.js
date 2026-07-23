@@ -1,5 +1,11 @@
 const { test, expect } = require("@playwright/test");
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("kaflulFirstRunTutorialV1", "complete");
+  });
+});
+
 function collectRuntimeErrors(page) {
   const errors = [];
   page.on("pageerror", (error) => errors.push(String(error)));
@@ -314,19 +320,35 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   expect(entrance.boss.configKey).toBe("stage1");
   expect(entrance.boss.definitionId).toBe("magma-bastion");
   expect(entrance.boss.name).toBe("לבת-הר");
+  expect(entrance.boss.speedRatio).toBeGreaterThanOrEqual(1.12);
+  expect(entrance.boss.healthRemaining).toBe(3);
+  expect(entrance.boss.healthTotal).toBe(3);
+  expect(entrance.guideText).toContain("תשובה נכונה = פגיעה");
   expect(entrance.cinematic.vanishingEnemyCount).toBeGreaterThanOrEqual(6);
   await expect(page.locator("#hud-progress-stage")).toContainText("בוס שלב 1");
   await expect(page.locator("#target-correct")).toHaveText("/3");
 
   await page.evaluate(() => window.__mathMazeRuntime.completeBossCinematicForVerification());
   await page.waitForFunction(() => window.__mathMazeRuntime.getBossEncounterSnapshot().cinematic === null);
+  await page.waitForTimeout(900);
+  const chaseCamera = await page.evaluate(() => window.__mathMazeRuntime.getBossCameraSnapshotForVerification());
+  expect(chaseCamera.player.onScreen).toBe(true);
+  expect(chaseCamera.boss.onScreen).toBe(true);
+  const chaseMotion = await page.evaluate(() => window.__mathMazeRuntime.getBossSnapshot());
+  expect(chaseMotion.moving).toBe(true);
+  expect(chaseMotion.walkBlend).toBeGreaterThan(0.75);
+  expect(chaseMotion.walkCycle).toBeGreaterThan(0);
   const questions = [];
   for (let index = 0; index < 3; index += 1) {
-    const question = await page.evaluate(() => window.__mathMazeRuntime.openBossQuestionForVerification());
+    const playerBefore = await page.evaluate(() => window.__mathMazeRuntime.getPlayerSnapshot());
+    const question = index === 0
+      ? await page.evaluate(() => window.__mathMazeRuntime.forceBossContactForVerification().question)
+      : await page.evaluate(() => window.__mathMazeRuntime.openBossQuestionForVerification());
     questions.push(question.text);
     expect(question.bossQuestionNumber).toBe(index + 1);
     expect(question.bossQuestionTotal).toBe(3);
     expect(question.status).toContain(`${index + 1} מתוך 3`);
+    expect(question.status).toContain("פגיעה");
     const snapshot = await page.evaluate(() => {
       window.__mathMazeRuntime.answerCurrentQuestionForVerification(undefined, true);
       return window.__mathMazeRuntime.getBossEncounterSnapshot();
@@ -335,6 +357,9 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
     if (index < 2) {
       expect(snapshot.boss).not.toBeNull();
       expect(snapshot.boss.damageLevel).toBe(index + 1);
+      expect(snapshot.boss.healthRemaining).toBe(2 - index);
+      const playerAfter = await page.evaluate(() => window.__mathMazeRuntime.getPlayerSnapshot());
+      expect(Math.hypot(playerAfter.x - playerBefore.x, playerAfter.y - playerBefore.y)).toBeLessThan(12);
     } else {
       expect(snapshot.boss).toBeNull();
       expect(snapshot.phase).toBe("victory");
@@ -354,6 +379,36 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   expect(errors).toEqual([]);
 });
 
+test("one correct collision answer blasts every nearby ghost and awards each defeat", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceGhostBlastQuestionForVerification === "function");
+
+  const before = await page.evaluate(() => {
+    window.__mathMazeRuntime.setGhostBlastEffectDurationForVerification(3);
+    return window.__mathMazeRuntime.forceGhostBlastQuestionForVerification(4);
+  });
+  expect(before.phase).toBe("question");
+  expect(before.enemyCount).toBe(4);
+  expect(before.capturedEnemyIds).toHaveLength(4);
+  expect(before.question.status).toContain("4 רוחות");
+
+  const after = await page.evaluate(() => {
+    window.__mathMazeRuntime.answerCurrentQuestionForVerification(undefined, true);
+    return window.__mathMazeRuntime.getGhostBlastSnapshotForVerification();
+  });
+  expect(after.phase).toBe("playing");
+  expect(after.enemyCount).toBe(0);
+  expect(after.pendingSpawnCount).toBeGreaterThanOrEqual(4);
+  expect(after.effect).not.toBeNull();
+  expect(after.effect.count).toBe(4);
+  expect(after.effect.perGhostAward).toBeGreaterThan(0);
+  expect(after.effect.totalAward).toBe(after.effect.perGhostAward * 4);
+  expect(after.effect.bonusAward).toBe(after.effect.perGhostAward * 3);
+  expect(after.score - before.score).toBe(after.effect.totalAward);
+  expect(errors).toEqual([]);
+});
+
 test("each stage keeps its own numbered boss identity", async ({ page }) => {
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceBossChallenge === "function");
@@ -367,17 +422,28 @@ test("each stage keeps its own numbered boss identity", async ({ page }) => {
         levelIndex,
         configKey: boss?.configKey,
         definitionId: boss?.definitionId,
-        name: boss?.name
+        name: boss?.name,
+        actorFacing: boss?.actorFacing,
+        directionalFacing: ["down", "right", "up", "left"].map((direction) => {
+          const pose = window.__mathMazeRuntime.setBossWalkPoseForVerification(Math.PI / 2, direction, 0.4);
+          return { direction: pose?.direction, actorFacing: pose?.actorFacing };
+        })
       });
     }
     return identities;
   });
 
   expect(bosses).toEqual([
-    { levelIndex: 0, configKey: "stage1", definitionId: "magma-bastion", name: "לבת-הר" },
-    { levelIndex: 1, configKey: "stage2", definitionId: "frostmaw", name: "שן-הקרחון" },
-    { levelIndex: 2, configKey: "stage3", definitionId: "mire-tyrant", name: "מלך-הביצה" },
-    { levelIndex: 3, configKey: "stage4", definitionId: "eclipse-monarch", name: "כתר-הליקוי" }
+    ...[
+      { levelIndex: 0, configKey: "stage1", definitionId: "magma-bastion", name: "לבת-הר" },
+      { levelIndex: 1, configKey: "stage2", definitionId: "frostmaw", name: "שן-הקרחון" },
+      { levelIndex: 2, configKey: "stage3", definitionId: "mire-tyrant", name: "מלך-הביצה" },
+      { levelIndex: 3, configKey: "stage4", definitionId: "eclipse-monarch", name: "כתר-הליקוי" }
+    ].map((boss) => ({
+      ...boss,
+      actorFacing: "down",
+      directionalFacing: ["down", "right", "up", "left"].map((direction) => ({ direction, actorFacing: direction }))
+    }))
   ]);
 });
 
@@ -404,7 +470,7 @@ test("gameplay HUD stays streamlined and uses SVG lives", async ({ page }, testI
     await page.locator("#pause-button").evaluate((button) => button.click());
     await expect(page.locator("#pause-screen")).toBeVisible();
     await expect(page.locator("#pause-summary")).toContainText("ארקייד");
-    await expect(page.locator("#pause-summary")).toContainText("רגיל");
+    await expect(page.locator("#pause-summary")).toContainText("בינוני");
   }
   expect(errors).toEqual([]);
 });
@@ -1029,7 +1095,7 @@ test("menu selections, nickname and sound state persist across reloads", async (
   await expect(page.locator("input[name='game-mode'][value='adventure']")).toBeChecked();
 
   await openDifficultyPanelFromSettings(page);
-  await page.locator("#difficulty-panel label", { hasText: "מתקדם" }).click();
+  await page.locator("#difficulty-panel label", { hasText: "קשה" }).click();
   await expect(page.locator("input[name='difficulty'][value='advanced']")).toBeChecked();
 
   await page.locator("#menu-settings-button").click();

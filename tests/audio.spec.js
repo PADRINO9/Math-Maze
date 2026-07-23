@@ -1,5 +1,11 @@
 const { test, expect } = require("@playwright/test");
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("kaflulFirstRunTutorialV1", "complete");
+  });
+});
+
 async function startAudioGame(page) {
   await page.addInitScript(() => {
     window.__kaflulAudioEvents = [];

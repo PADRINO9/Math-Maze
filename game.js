@@ -98,6 +98,17 @@
     }
   };
 
+  // Maze-only presentation tuning. Character cards on the home screen use
+  // their own layout, so this boost and motion profile never changes them.
+  const PLAYER_MAZE_PRESENTATION = Object.freeze({
+    scaleBoost: 1.06,
+    movingBouncePx: 0.72,
+    idleFloatPx: 0.32,
+    squashAmount: 0.028,
+    horizontalStretch: 0.018,
+    verticalStretch: 0.014
+  });
+
   const HERO_GALLERY_ORDER = ["bifly", "nabatick"];
   const HERO_GALLERY_COPY = {
     bifly: {
@@ -567,16 +578,16 @@
 
   const DEFAULT_WORLD_ONE_CONCEPT = "sun-garden";
   const WORLD_ONE_RELEASE_BASELINE = Object.freeze({
-    id: "world1-sun-garden-approved-v1",
+    id: "world1-sun-garden-approved-v2",
     locked: true,
     authoredBoardSrc: "assets/maze/world1/sun-garden/board-v3.png",
     navigationVersion: "world1-canonical-semantic-layout-v5",
     chestCell: Object.freeze({ x: 23, y: 18 }),
     actorScale: Object.freeze({
-      playerPhone: 0.84,
-      playerWide: 0.82,
-      enemyPhone: 0.66,
-      enemyWide: 0.64
+      playerPhone: 0.9,
+      playerWide: 0.88,
+      enemyPhone: 0.72,
+      enemyWide: 0.7
     }),
     gameplayZoom: Object.freeze({
       desktop: 1.06,
@@ -1058,7 +1069,7 @@
       width: 148,
       height: 112,
       collisionRadius: 24,
-      speedMultiplier: 0.64,
+      speedMultiplier: 1.34,
       spriteBlendMode: "multiply",
       overlayDetails: false
     },
@@ -1081,7 +1092,7 @@
       width: 124,
       height: 148,
       collisionRadius: 23,
-      speedMultiplier: 0.76,
+      speedMultiplier: 1.38,
       spriteBlendMode: "multiply",
       overlayDetails: false
     },
@@ -1104,7 +1115,7 @@
       width: 154,
       height: 126,
       collisionRadius: 25,
-      speedMultiplier: 0.68,
+      speedMultiplier: 1.36,
       spriteBlendMode: "multiply",
       overlayDetails: false
     },
@@ -1127,7 +1138,7 @@
       width: 124,
       height: 152,
       collisionRadius: 23,
-      speedMultiplier: 0.78,
+      speedMultiplier: 1.42,
       spriteBlendMode: "multiply",
       overlayDetails: false
     }
@@ -1240,6 +1251,24 @@
   const CONFIG = {
     regularAnswersPerStage: 24,
     bossQuestionsPerStage: 3,
+    bossEncounter: {
+      minSpeedRatio: 1.12,
+      maxSpeedRatio: 1.44,
+      catchupStartTiles: 3.5,
+      catchupMaxBoost: 0.24,
+      spawnDistanceTiles: 8.5,
+      knockbackDistanceTiles: 5,
+      camera: {
+        phoneMinZoom: 0.62,
+        wideMinZoom: 0.78,
+        phoneMaxZoom: 0.78,
+        wideMaxZoom: 0.92,
+        horizontalPadding: 170,
+        verticalPadding: 190,
+        followRate: 4.4,
+        zoomRate: 3.8
+      }
+    },
     answersPerLevel: 27,
     targetCorrect: 108,
     initialLives: 3,
@@ -1251,6 +1280,10 @@
     questionFeedbackDelay: {
       correct: 900,
       wrong: 1300
+    },
+    ghostBlast: {
+      radiusTiles: 2.35,
+      effectDuration: 0.72
     },
     rewardPower: {
       durationSeconds: 10,
@@ -1502,11 +1535,11 @@
         }
       },
       difficulties: {
-        beginner: { label: "מתחילים", description: "4 חיים, 30 שניות, מרדף רגוע ורמזים." },
-        normal: { label: "רגיל", description: "3 חיים, 25 שניות, איזון טוב לאימון יומי." },
-        advanced: { label: "מתקדם", description: "3 חיים, 20 שניות, אויבים מהירים יותר." },
-        expert: { label: "מומחה", description: "2 חיים, 16 שניות, שאלות מורכבות ומרדף חד." },
-        legendary: { label: "אגדי", description: "1 חיים, 12 שניות, אתגר קצה לשיאים גדולים." }
+        beginner: { label: "קל", description: "3 חיים, 25 שניות, כפולות 1–5 ו־10, מרדף רגוע." },
+        normal: { label: "בינוני", description: "3 חיים, 25 שניות, כל לוח הכפל 1–10." },
+        advanced: { label: "קשה", description: "3 חיים, 25 שניות, התרגילים המאתגרים עד 10." },
+        expert: { label: "מומחה", description: "3 חיים, 25 שניות, לוח מורחב עד 12." },
+        legendary: { label: "אגדי", description: "3 חיים, 25 שניות, תרגילים מאתגרים עד 15×15." }
       },
       levels: {
         ice: "גן השמש המתעורר",
@@ -1552,16 +1585,23 @@
         modeCopy: "שני המצבים משתמשים באותו מבוך כפל, אבל המטרה והלחץ שונים.",
         modeLegend: "בחרו את החוויה שמתאימה לסיבוב הקרוב",
         difficultyClose: "סגור בחירת קושי",
-        difficultyKicker: "כמה חזק המרדף?",
+        difficultyKicker: "חוקים אחידים, אתגר עולה",
         difficultyTitle: "בחרו רמת קושי",
-        difficultyCopy: "הקושי משפיע על זמן לתרגיל, חיים, מהירות אויבים ומכפיל ניקוד.",
-        difficultyLegend: "מוצגים רק ההבדלים החשובים לשחקן",
+        difficultyCopy: "בכל הרמות יש 3 חיים ו־25 שניות. הקושי עולה דרך התרגילים ועוצמת המרדף.",
+        difficultyLegend: "חמש רמות ברורות — מקל ועד אגדי",
         settingsClose: "סגור הגדרות",
         settingsKicker: "פרופיל מקומי",
         settingsTitle: "הגדרות שחקן",
-        settingsCopy: "הכינוי והצלילים נשמרים על המכשיר הזה.",
+        settingsCopy: "הכינוי, סוגי התרגילים והצלילים נשמרים על המכשיר הזה.",
         nickname: "כינוי השחקן",
         nicknamePlaceholder: "אלוף כפלול",
+        operationModeLegend: "אילו תרגילים יופיעו?",
+        operationModeChoice: "בחירת סוגי תרגילים",
+        operationModeCopy: "תרגילי החילוק בנויים מאותן עובדות של לוח הכפל, תמיד ללא שארית.",
+        multiplicationOnly: "כפל בלבד",
+        multiplicationOnlyCopy: "רק תרגילי לוח הכפל.",
+        mixedOperations: "כפל וחילוק",
+        mixedOperationsCopy: "שילוב מאוזן של כפל וחילוק מדויק.",
         game: "משחק",
         openCharacterGallery: "פתיחת גלריית דמויות",
         pregameReview: "סקירה לפני משחק",
@@ -1737,11 +1777,11 @@
         }
       },
       difficulties: {
-        beginner: { label: "Beginner", description: "4 lives, 30 seconds, calmer chase, and hints." },
-        normal: { label: "Normal", description: "3 lives, 25 seconds, balanced for daily practice." },
-        advanced: { label: "Advanced", description: "3 lives, 20 seconds, faster enemies." },
-        expert: { label: "Expert", description: "2 lives, 16 seconds, sharper chase and harder facts." },
-        legendary: { label: "Legendary", description: "1 life, 12 seconds, a high-score challenge." }
+        beginner: { label: "Easy", description: "3 lives, 25 seconds, facts 1–5 and 10, calmer chase." },
+        normal: { label: "Medium", description: "3 lives, 25 seconds, the full 1–10 times table." },
+        advanced: { label: "Hard", description: "3 lives, 25 seconds, the harder facts up to 10." },
+        expert: { label: "Expert", description: "3 lives, 25 seconds, extended tables up to 12." },
+        legendary: { label: "Legendary", description: "3 lives, 25 seconds, challenging facts up to 15×15." }
       },
       levels: {
         ice: "The Waking Sun Garden",
@@ -1787,16 +1827,23 @@
         modeCopy: "Both modes use the same multiplication maze, but the goal and pressure are different.",
         modeLegend: "Choose the experience for this round",
         difficultyClose: "Close difficulty selection",
-        difficultyKicker: "How intense is the chase?",
+        difficultyKicker: "Consistent rules, rising challenge",
         difficultyTitle: "Choose Difficulty",
-        difficultyCopy: "Difficulty changes question time, lives, enemy speed, and score multiplier.",
-        difficultyLegend: "Only the important gameplay differences are shown",
+        difficultyCopy: "Every level gives 3 lives and 25 seconds. Difficulty rises through the facts and chase pressure.",
+        difficultyLegend: "Five clear levels — from Easy to Legendary",
         settingsClose: "Close settings",
         settingsKicker: "Local profile",
         settingsTitle: "Player Settings",
-        settingsCopy: "Your nickname and sound preference are saved on this device.",
+        settingsCopy: "Your nickname, exercise types, and sound preferences are saved on this device.",
         nickname: "Player nickname",
         nicknamePlaceholder: "Kaflul Champion",
+        operationModeLegend: "Which exercises should appear?",
+        operationModeChoice: "Choose exercise types",
+        operationModeCopy: "Division questions use the same multiplication facts and always divide evenly.",
+        multiplicationOnly: "Multiplication only",
+        multiplicationOnlyCopy: "Only multiplication-table questions.",
+        mixedOperations: "Multiply and divide",
+        mixedOperationsCopy: "A balanced mix of multiplication and exact division.",
         game: "Game",
         openCharacterGallery: "Open character gallery",
         pregameReview: "Pre-game summary",
@@ -1970,6 +2017,9 @@
   // actors and deepening the stall that caused the missed frame.
   const MAX_SIMULATION_STEPS_PER_FRAME = 2;
   const MAX_SIMULATION_DEBT_SECONDS = 0.12;
+  const EASY_TABLE_FACTORS = [1, 2, 3, 4, 5, 10];
+  const HARD_TABLE_FACTORS = [3, 4, 6, 7, 8, 9];
+  const MASTERY_TABLE_FACTORS = [3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 15];
   const NON_EASY_FACTORS = [3, 4, 5, 6, 7, 8, 9];
   const LEGACY_DIFFICULTY_MAP = {
     easy: "beginner",
@@ -2053,6 +2103,7 @@
     difficultyInputs: Array.from(document.querySelectorAll("input[name='difficulty']")),
     timeLimitToggle: document.getElementById("time-limit-toggle"),
     timeLimitState: document.getElementById("time-limit-state"),
+    operationModeInputs: Array.from(document.querySelectorAll("input[name='operation-mode']")),
     nameError: document.getElementById("name-error"),
     startButton: document.getElementById("start-button"),
     bestScore: document.getElementById("best-score"),
@@ -2622,6 +2673,13 @@
     setText("#settings-panel .phase5-sheet-header p", text.settingsCopy);
     setText("label[for='player-name-input']", text.nickname);
     els.playerNameInput?.setAttribute("placeholder", text.nicknamePlaceholder);
+    setAttr(".settings-operation-mode", "aria-label", text.operationModeChoice);
+    setText("#operation-mode-legend", text.operationModeLegend);
+    setText("#operation-mode-copy", text.operationModeCopy);
+    setText("#operation-mode-multiplication-title", text.multiplicationOnly);
+    setText("#operation-mode-multiplication-copy", text.multiplicationOnlyCopy);
+    setText("#operation-mode-mixed-title", text.mixedOperations);
+    setText("#operation-mode-mixed-copy", text.mixedOperationsCopy);
     setText(".settings-game-card > strong", text.game);
     setAttr("#character-control-button", "aria-label", text.openCharacterGallery);
     setText("#character-control-button small", text.character);
@@ -2783,6 +2841,7 @@
     bossCinematic: null,
     bossDefeatTransition: null,
     finalBossExplosion: null,
+    ghostBlastEffect: null,
     hazards: [],
     nextHazardAt: 0,
     particles: [],
@@ -2814,6 +2873,8 @@
       CONFIG.storageKeys.timeLimit,
       localSave.settings.timeLimitEnabled === false ? "off" : "on"
     ) !== "off",
+    operationMode: SYSTEMS.normalizeOperationMode(localSave.settings.operationMode),
+    operationQuestionIndex: 0,
     factStats: loadFactStats(),
     sessionKind: "standard",
     dailyChallenge: null,
@@ -2827,6 +2888,7 @@
     questionFeedbackTimerId: null,
     lastQuestionTimerSecond: null,
     currentEnemyId: null,
+    questionEnemyIds: [],
     questionSource: null,
     answerLocked: false,
     nextEnemyId: 1,
@@ -3115,6 +3177,86 @@
     return clamp(Math.min(widthFit, heightFit) * framingScale, 0.3, 0.92);
   }
 
+  function getBossArenaCameraFraming(player = state.player, boss = state.boss) {
+    if (!player || !boss) {
+      return null;
+    }
+
+    const cameraSettings = CONFIG.bossEncounter.camera;
+    const projectionWidth = MOBILE_RUNTIME.projectionWidth || WIDTH;
+    const projectionHeight = MOBILE_RUNTIME.projectionHeight || HEIGHT;
+    const horizontalPadding = cameraSettings.horizontalPadding + (boss.collisionRadius || boss.radius || 0) * 2;
+    const verticalPadding = cameraSettings.verticalPadding + (boss.collisionRadius || boss.radius || 0) * 1.5;
+    const requiredWidth = Math.max(TILE * 7, Math.abs(player.x - boss.x) + horizontalPadding);
+    const requiredHeight = Math.max(TILE * 7, Math.abs(player.y - boss.y) + verticalPadding);
+    const fitZoom = Math.min(projectionWidth / requiredWidth, projectionHeight / requiredHeight);
+    const minZoom = Math.max(
+      getStageOverviewZoom(),
+      isPhonePortraitView() ? cameraSettings.phoneMinZoom : cameraSettings.wideMinZoom
+    );
+    const maxZoom = Math.min(
+      MOBILE_RUNTIME.zoom,
+      isPhonePortraitView() ? cameraSettings.phoneMaxZoom : cameraSettings.wideMaxZoom
+    );
+    const zoom = clamp(fitZoom, minZoom, Math.max(minZoom, maxZoom));
+    const midpointX = (player.x + boss.x) / 2;
+    const midpointY = (player.y + boss.y) / 2;
+    const target = getClampedCameraTarget(midpointX, midpointY, zoom);
+
+    return {
+      x: target.x,
+      y: target.y,
+      zoom,
+      requiredWidth,
+      requiredHeight
+    };
+  }
+
+  function getBossArenaCameraSnapshot() {
+    const framing = getBossArenaCameraFraming();
+    const player = state.player;
+    const boss = state.boss;
+    if (!framing || !player || !boss) {
+      return null;
+    }
+
+    const projectionWidth = MOBILE_RUNTIME.projectionWidth || WIDTH;
+    const projectionHeight = MOBILE_RUNTIME.projectionHeight || HEIGHT;
+    const viewport = {
+      left: (WIDTH - projectionWidth) / 2,
+      right: (WIDTH + projectionWidth) / 2,
+      top: (HEIGHT - projectionHeight) / 2,
+      bottom: (HEIGHT + projectionHeight) / 2
+    };
+    const projectActor = (actor, margin) => {
+      const x = WIDTH / 2 + (actor.x - CAMERA.x) * CAMERA.zoom;
+      const y = HEIGHT / 2 + (actor.y - CAMERA.y) * CAMERA.zoom;
+      const scaledMargin = margin * CAMERA.zoom;
+      return {
+        x,
+        y,
+        onScreen: x - scaledMargin >= viewport.left
+          && x + scaledMargin <= viewport.right
+          && y - scaledMargin >= viewport.top
+          && y + scaledMargin <= viewport.bottom
+      };
+    };
+
+    return {
+      active: true,
+      zoom: CAMERA.zoom,
+      targetZoom: framing.zoom,
+      cameraX: CAMERA.x,
+      cameraY: CAMERA.y,
+      targetX: framing.x,
+      targetY: framing.y,
+      projectionWidth,
+      projectionHeight,
+      player: projectActor(player, 34),
+      boss: projectActor(boss, 66)
+    };
+  }
+
   function isStageIntroCameraActive() {
     return Boolean(state.stageIntroCamera);
   }
@@ -3252,8 +3394,16 @@
       return;
     }
 
+    const player = state.player;
+    const bossFraming = state.boss
+      && player
+      && (state.phase === "playing" || state.phase === "question")
+      ? getBossArenaCameraFraming(player, state.boss)
+      : null;
     let targetZoom = MOBILE_RUNTIME.zoom;
-    if (state.phase === "victory" && state.bossDefeatTransition) {
+    if (bossFraming) {
+      targetZoom = bossFraming.zoom;
+    } else if (state.phase === "victory" && state.bossDefeatTransition) {
       const transitionProgress = clamp(
         state.bossDefeatTransition.elapsed / Math.max(0.01, state.bossDefeatTransition.duration),
         0,
@@ -3263,29 +3413,36 @@
       targetZoom = MOBILE_RUNTIME.zoom
         + (getStageOverviewZoom() - MOBILE_RUNTIME.zoom) * zoomOutProgress;
     }
-    const zoomEase = dt > 0 ? 1 - Math.exp(-dt * 10) : 1;
+    const zoomRate = bossFraming ? CONFIG.bossEncounter.camera.zoomRate : 10;
+    const zoomEase = dt > 0 ? 1 - Math.exp(-dt * zoomRate) : 1;
     CAMERA.zoom += (targetZoom - CAMERA.zoom) * zoomEase;
 
-    const player = state.player;
     let targetX = player?.x ?? WIDTH / 2;
     let targetY = player?.y ?? HEIGHT / 2;
-    if (state.finalBossExplosion && state.phase === "victory") {
+    if (bossFraming) {
+      targetX = bossFraming.x;
+      targetY = bossFraming.y;
+    } else if (state.finalBossExplosion && state.phase === "victory") {
       targetX = state.finalBossExplosion.x;
       targetY = state.finalBossExplosion.y;
-    } else if (state.boss && player && state.phase === "playing") {
-      if (state.bossIntro || state.boss.spawnProgress < 0.95) {
-        targetX = state.boss.x;
-        targetY = state.boss.y;
-      } else {
-        targetX = player.x * 0.42 + state.boss.x * 0.58;
-        targetY = player.y * 0.42 + state.boss.y * 0.58;
-      }
     }
     const target = getClampedCameraTarget(targetX, targetY, CAMERA.zoom);
-    const followEase = dt > 0 ? 1 - Math.exp(-dt * 7.5) : 1;
+    const followRate = bossFraming ? CONFIG.bossEncounter.camera.followRate : 7.5;
+    const followEase = dt > 0 ? 1 - Math.exp(-dt * followRate) : 1;
 
     CAMERA.x += (target.x - CAMERA.x) * followEase;
     CAMERA.y += (target.y - CAMERA.y) * followEase;
+
+    if (bossFraming) {
+      const safetySnapshot = getBossArenaCameraSnapshot();
+      if (!safetySnapshot?.player?.onScreen || !safetySnapshot?.boss?.onScreen) {
+        // Boss encounters must never crop either combatant. Zooming out is a
+        // safety operation, while subsequent zoom-in and tracking stay eased.
+        CAMERA.zoom = Math.min(CAMERA.zoom, bossFraming.zoom);
+        CAMERA.x = bossFraming.x;
+        CAMERA.y = bossFraming.y;
+      }
+    }
   }
 
   function applyCameraTransform(renderContext) {
@@ -4138,6 +4295,29 @@
       && Boolean(getBossConfigForCurrentLevel());
   }
 
+  function chooseBossSpawnCell(player = state.player) {
+    if (!player || state.reachableList.length === 0) {
+      return normalizeTargetCell(CENTER_CELL);
+    }
+    const playerCell = toCell(player.x, player.y);
+    const targetDistance = CONFIG.bossEncounter.spawnDistanceTiles;
+    const candidates = state.reachableList.filter((cell) => {
+      const dx = cell.x - playerCell.x;
+      const dy = cell.y - playerCell.y;
+      const distance = Math.hypot(dx, dy);
+      return distance >= targetDistance - 1.5 && distance <= targetDistance + 1.5;
+    });
+    if (candidates.length === 0) {
+      return normalizeTargetCell(CENTER_CELL);
+    }
+    return candidates.reduce((best, cell) => {
+      const distance = Math.hypot(cell.x - playerCell.x, cell.y - playerCell.y);
+      const centerDistance = distanceCells(cell, CENTER_CELL);
+      const score = Math.abs(distance - targetDistance) * 10 + centerDistance * 0.08;
+      return !best || score < best.score ? { cell, score } : best;
+    }, null).cell;
+  }
+
   function startBossChallenge() {
     const bossDefinition = getBossConfigForCurrentLevel();
     if (!bossDefinition || state.boss) {
@@ -4162,13 +4342,19 @@
       }
     }
 
-    const pos = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const bossSpawnCell = chooseBossSpawnCell(state.player);
+    const pos = centerOfCell(bossSpawnCell.x, bossSpawnCell.y);
     const difficulty = getDifficultySettings();
-    const speed = CONFIG.speed.enemyBase
+    const requestedSpeed = CONFIG.speed.enemyBase
       * difficulty.enemySpeedMultiplier
       * (getCurrentLevel().enemySpeedMultiplier || 1)
       * bossDefinition.speedMultiplier
       * getArcadePressureMultiplier();
+    const speed = clamp(
+      Math.max(requestedSpeed, CONFIG.speed.player * CONFIG.bossEncounter.minSpeedRatio),
+      CONFIG.speed.player * CONFIG.bossEncounter.minSpeedRatio,
+      CONFIG.speed.player * CONFIG.bossEncounter.maxSpeedRatio
+    );
 
     state.boss = {
       id: `boss-${state.levelIndex}-${state.correctAnswers}`,
@@ -4182,6 +4368,7 @@
       radius: 9.6,
       collisionRadius: bossDefinition.collisionRadius,
       speed,
+      pursuitSpeed: speed,
       direction: "down",
       turnDirection: "down",
       color: bossDefinition.accent,
@@ -4192,14 +4379,26 @@
       iceTrailAnnounced: false,
       stuckTime: 0,
       walkCycle: 0,
+      walkBlend: 0,
+      stepImpact: 0,
+      stepFoot: 1,
+      renderMoveX: 0,
+      renderMoveY: 1,
       lastMoveDistance: 0,
       nextStepSoundAt: 0,
       turnAnimation: 0,
       questionsCorrect: getBossQuestionCorrectCount(),
       damageLevel: getBossQuestionCorrectCount(),
       hitFlash: 0,
+      contactCount: 0,
       trail: []
     };
+    const initialBossFraming = getBossArenaCameraFraming(state.player, state.boss);
+    if (initialBossFraming) {
+      CAMERA.zoom = initialBossFraming.zoom;
+      CAMERA.x = initialBossFraming.x;
+      CAMERA.y = initialBossFraming.y;
+    }
     state.bossCinematic = {
       elapsed: 0,
       totalDuration: MOBILE_RUNTIME.reducedEffects ? 1.35 : 2.85,
@@ -4216,6 +4415,8 @@
       maxLife: state.bossCinematic.totalDuration
     };
     state.shake = Math.max(state.shake, 0.58);
+    document.documentElement.classList.add("boss-encounter-active");
+    document.documentElement.dataset.bossHealthRemaining = String(CONFIG.bossQuestionsPerStage);
     if (state.player) {
       state.player.invulnerable = Math.max(state.player.invulnerable, state.bossCinematic.totalDuration + 0.55);
     }
@@ -4239,6 +4440,9 @@
     state.bossCinematic = null;
     state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
+    state.ghostBlastEffect = null;
+    document.documentElement.classList.remove("boss-encounter-active");
+    document.documentElement.removeAttribute("data-boss-health-remaining");
     state.hazards = [];
     state.nextHazardAt = state.clock + 6 + Math.random() * 4;
     state.pendingSpawns = [];
@@ -4305,17 +4509,20 @@
     state.incorrectAnswers = 0;
     state.mathStats = SYSTEMS.createMathStats();
     state.recentQuestionKeys = [];
+    state.operationQuestionIndex = 0;
     state.question = null;
     state.questionStartedAt = null;
     state.questionTimeRemaining = null;
     state.questionDeadline = null;
     state.currentEnemyId = null;
+    state.questionEnemyIds = [];
     state.questionSource = null;
     state.boss = null;
     state.bossIntro = null;
     state.bossCinematic = null;
     state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
+    state.ghostBlastEffect = null;
     state.hazards = [];
     state.nextHazardAt = 0;
     state.answerLocked = false;
@@ -4490,6 +4697,7 @@
     state.save.settings.audioVolumes = { ...state.audioVolumes };
     state.save.settings.headphoneSafetyMode = state.headphoneSafetyMode;
     state.save.settings.timeLimitEnabled = state.timeLimitEnabled;
+    state.save.settings.operationMode = state.operationMode;
     state.save.settings.controlMode = state.controlMode;
     state.save.settings.language = state.language;
     SYSTEMS.persistSave(window.localStorage, state.save, { key: CONFIG.storageKeys.save });
@@ -4512,7 +4720,8 @@
 
   function scoreMultiplierLabel(difficulty = getDifficultySettings()) {
     const multiplier = Math.max(0, Number(difficulty.scoreMultiplierPct) || 100) / 100;
-    return `×${Number.isInteger(multiplier) ? multiplier : multiplier.toFixed(1)}`;
+    const rounded = Number(multiplier.toFixed(2));
+    return `×${rounded}`;
   }
 
   function modeRuleText(modeId = state.mode) {
@@ -4524,6 +4733,13 @@
     return state.language === "en"
       ? `${difficulty.answerTimeLimit} ${runtime.secondsPerQuestion} · ${difficulty.initialLives} ${runtime.lives}`
       : `${difficulty.answerTimeLimit} ${runtime.secondsPerQuestion} · ${difficulty.initialLives} ${runtime.lives}`;
+  }
+
+  function operationModeLabel(operationMode = state.operationMode) {
+    const text = getUiCopy().static;
+    return SYSTEMS.normalizeOperationMode(operationMode) === "mixed"
+      ? text.mixedOperations
+      : text.multiplicationOnly;
   }
 
   function getUnlockedDifficultyLabels() {
@@ -4550,7 +4766,7 @@
       els.pregameMultiplierLabel.textContent = scoreMultiplierLabel(difficulty);
     }
     if (els.pregameRuleCopy) {
-      els.pregameRuleCopy.textContent = modeRuleText(mode.id);
+      els.pregameRuleCopy.textContent = `${modeRuleText(mode.id)} · ${operationModeLabel()}`;
     }
     if (els.pregameImportantRule) {
       els.pregameImportantRule.textContent = difficultyRuleText(difficulty);
@@ -5405,7 +5621,7 @@
       els.menuSelectionSummary.hidden = true;
     }
     if (els.settingsSelectionSummary) {
-      els.settingsSelectionSummary.textContent = `${characterLabel()} · ${difficultyLabel(difficulty.id)} ${scoreMultiplierLabel(difficulty)} · ${modeLabel(mode.id)}`;
+      els.settingsSelectionSummary.textContent = `${characterLabel()} · ${difficultyLabel(difficulty.id)} ${scoreMultiplierLabel(difficulty)} · ${modeLabel(mode.id)} · ${operationModeLabel()}`;
     }
     updatePlayerGreeting();
     updateBestScorePreview();
@@ -5496,6 +5712,22 @@
       input.checked = input.value === state.difficulty;
     }
     updateDifficultyLockCopy();
+  }
+
+  function setOperationMode(value, persist = true) {
+    state.operationMode = SYSTEMS.normalizeOperationMode(value);
+    document.documentElement.dataset.operationMode = state.operationMode;
+    if (persist) {
+      persistSave();
+    }
+    syncOperationModeInputs();
+    syncMenuSummary();
+  }
+
+  function syncOperationModeInputs() {
+    for (const input of els.operationModeInputs) {
+      input.checked = SYSTEMS.normalizeOperationMode(input.value) === state.operationMode;
+    }
   }
 
   function setControlMode(value, persist = true) {
@@ -5617,7 +5849,9 @@
       "aria-label",
       enabled
         ? (state.language === "en" ? "Turn off the question timer" : "בטל הגבלת זמן לכל תרגיל")
-        : (state.language === "en" ? "Turn on the question timer" : "הפעל הגבלת זמן של 25 שניות לכל תרגיל")
+        : (state.language === "en"
+          ? `Turn on the ${getQuestionTimeLimit()}-second question timer`
+          : `הפעל הגבלת זמן של ${getQuestionTimeLimit()} שניות לכל תרגיל`)
     );
     els.timeLimitState.textContent = state.mode === "arcade"
       ? `${getQuestionTimeLimit()} ${uiRuntime("arcadeSeconds")}`
@@ -6358,12 +6592,55 @@
       startTransitions: 0
     };
 
+    const getQuestionVerificationSnapshot = () => state.question ? {
+      answer: state.question.answer,
+      text: state.question.text,
+      operation: state.question.operation,
+      a: state.question.a,
+      b: state.question.b,
+      dividend: state.question.dividend ?? null,
+      divisor: state.question.divisor ?? null
+    } : null;
+
+    runtime.getDifficultyBalanceForVerification = (samplesPerDifficulty = 80) => {
+      const sampleCount = clamp(Math.floor(Number(samplesPerDifficulty) || 80), 10, 200);
+      return Object.keys(CONFIG.difficulty).map((difficultyId) => {
+        const difficulty = getDifficultySettingsForId(difficultyId);
+        const samples = Array.from({ length: sampleCount }, () => {
+          const pair = createFactorPair(difficulty);
+          return {
+            a: pair.a,
+            b: pair.b,
+            answer: pair.a * pair.b
+          };
+        });
+        const bossQuestions = Array.from({ length: CONFIG.bossQuestionsPerStage }, (_, index) => {
+          const question = createHardestQuestion(difficulty, index);
+          return {
+            a: question.a,
+            b: question.b,
+            answer: question.answer
+          };
+        });
+        return {
+          id: difficulty.id,
+          label: difficultyLabel(difficulty.id),
+          enemyCount: difficulty.enemyCount,
+          enemySpeedMultiplier: difficulty.enemySpeedMultiplier,
+          answerTimeLimit: difficulty.answerTimeLimit,
+          initialLives: difficulty.initialLives,
+          availableHints: difficulty.availableHints,
+          scoreMultiplierPct: difficulty.scoreMultiplierPct,
+          questionMode: difficulty.questionMode,
+          samples,
+          bossQuestions
+        };
+      });
+    };
+
     runtime.openQuestionForVerification = () => {
       if (state.phase === "question" && state.question) {
-        return {
-          answer: state.question.answer,
-          text: state.question.text
-        };
+        return getQuestionVerificationSnapshot();
       }
 
       if (state.phase !== "playing") {
@@ -6372,10 +6649,7 @@
 
       if (state.boss) {
         openQuestion(state.boss);
-        return {
-          answer: state.question?.answer,
-          text: state.question?.text
-        };
+        return getQuestionVerificationSnapshot();
       }
 
       if (state.enemies.length === 0) {
@@ -6388,10 +6662,7 @@
       }
 
       openQuestion(enemy);
-      return {
-        answer: state.question?.answer,
-        text: state.question?.text
-      };
+      return getQuestionVerificationSnapshot();
     };
 
     runtime.extendQuestionFeedbackDelayForVerification = (delayMs = 1200) => {
@@ -6411,6 +6682,160 @@
       phase: state.phase,
       controlMode: state.controlMode
     } : null;
+
+    runtime.getPlayerMazeAnimationSnapshotForVerification = () => {
+      if (!state.player) return null;
+      const animation = getPlayerAnimationFrame(state.player);
+      return {
+        characterId: state.characterId,
+        frame: animation.frame,
+        eating: state.player.eatAnimation > 0,
+        eatAnimation: state.player.eatAnimation,
+        rewardAnimation: state.player.rewardAnimation || 0,
+        moving: (state.player.lastMoveDistance || 0) > 0.04,
+        walkCycle: state.player.walkCycle || 0,
+        lastMoveDistance: state.player.lastMoveDistance || 0,
+        displayScaleBoost: PLAYER_MAZE_PRESENTATION.scaleBoost,
+        maximumMovingBouncePx: PLAYER_MAZE_PRESENTATION.movingBouncePx,
+        maximumSquash: PLAYER_MAZE_PRESENTATION.squashAmount
+      };
+    };
+
+    runtime.getPlayerCanvasPointForVerification = () => {
+      if (!state.player) return null;
+      const transform = ctx.getTransform();
+      const logicalX = WIDTH / 2 + (state.player.x - CAMERA.x) * CAMERA.zoom;
+      const logicalY = HEIGHT / 2 + (state.player.y - CAMERA.y) * CAMERA.zoom;
+      return {
+        x: logicalX * transform.a + transform.e,
+        y: logicalY * transform.d + transform.f,
+        canvasWidth: canvas.width,
+        canvasHeight: canvas.height,
+        zoom: CAMERA.zoom
+      };
+    };
+
+    runtime.setPlayerCharacterForVerification = (characterId = "bifly") => {
+      setCharacter(normalizeCharacterId(characterId), false);
+      if (state.player) {
+        state.player.eatAnimation = 0;
+        state.player.eatEffect = null;
+        state.player.rewardAnimation = 0;
+      }
+      return runtime.getPlayerMazeAnimationSnapshotForVerification();
+    };
+
+    runtime.setPlayerInvulnerabilityForVerification = (seconds = 0) => {
+      if (!state.player) return null;
+      state.player.invulnerable = Math.max(0, Number(seconds) || 0);
+      return runtime.getPlayerMazeAnimationSnapshotForVerification();
+    };
+
+    runtime.collectPlayerItemNowForVerification = (kind = "standard") => {
+      if (!state.player) return null;
+      state.player.eatAnimation = 0;
+      state.player.eatEffect = null;
+      state.player.rewardAnimation = 0;
+      state.collectibles.clear();
+      const collectible = {
+        x: state.player.x,
+        y: state.player.y,
+        radius: kind === "bonus-key" ? 7.4 : 2.6,
+        kind,
+        value: kind === "bonus-letter"
+          ? CONFIG.arcadeBonus.letterScoreValue
+          : kind === "bonus-key"
+            ? CONFIG.arcadeBonus.keyScoreValue
+            : 1,
+        letter: kind === "bonus-letter" ? "כ" : undefined
+      };
+      state.collectibles.set(`verification-pickup-${kind}`, collectible);
+      collectItems();
+      return runtime.getPlayerMazeAnimationSnapshotForVerification();
+    };
+
+    runtime.stagePlayerCollectibleForVerification = (kind = "standard", x = 5, y = 23) => {
+      const cell = {
+        x: clamp(Math.floor(Number(x) || 0), 0, COLS - 1),
+        y: clamp(Math.floor(Number(y) || 0), 0, ROWS - 1)
+      };
+      if (isWallCell(cell.x, cell.y)) {
+        return { staged: false, reason: "wall", cell };
+      }
+      const center = centerOfCell(cell.x, cell.y);
+      state.collectibles.clear();
+      state.collectibles.set(`verification-staged-${kind}`, {
+        x: center.x,
+        y: center.y,
+        radius: 2.6,
+        kind,
+        value: 1
+      });
+      state.collectiblesRevision += 1;
+      return { staged: true, kind, cell, x: center.x, y: center.y };
+    };
+
+    runtime.beginDeterministicPlayerCaptureForVerification = () => {
+      if (!state.player) return null;
+      deterministicVerificationCaptureActive = true;
+      simulationDebtSeconds = 0;
+      cancelStageIntroCamera();
+      setPhase("playing", { force: true });
+      state.visualVerificationMode = true;
+      state.player.invulnerable = 0;
+      state.hazards = [];
+      state.nextHazardAt = Number.POSITIVE_INFINITY;
+      state.enemies = [];
+      state.pendingSpawns = [];
+      return runtime.getPlayerMazeAnimationSnapshotForVerification();
+    };
+
+    runtime.advancePlayerAnimationFrameForVerification = (direction = "none", dt = 1 / 30) => {
+      if (!state.player) return null;
+      if (!deterministicVerificationCaptureActive) {
+        runtime.beginDeterministicPlayerCaptureForVerification();
+      }
+      const stepSeconds = clamp(Number(dt) || 0, 1 / 120, 1 / 15);
+      const beforeX = state.player.x;
+      const beforeY = state.player.y;
+      state.player.direction = DIRS[direction] ? direction : "none";
+      state.player.desiredDirection = state.player.direction;
+      state.player.directionRequestTime = state.clock;
+      state.clock += stepSeconds;
+      updatePlayer(stepSeconds);
+      collectItems();
+      updateParticles(stepSeconds);
+      updateFloatingTexts(stepSeconds);
+      updateCamera(stepSeconds);
+      render();
+      return {
+        player: runtime.getPlayerSnapshot(),
+        animation: runtime.getPlayerMazeAnimationSnapshotForVerification(),
+        stepPx: Math.hypot(state.player.x - beforeX, state.player.y - beforeY)
+      };
+    };
+
+    runtime.endDeterministicPlayerCaptureForVerification = () => {
+      deterministicVerificationCaptureActive = false;
+      simulationDebtSeconds = 0;
+      state.lastTime = performance.now();
+      return runtime.getPlayerMazeAnimationSnapshotForVerification();
+    };
+
+    runtime.getPresentedPlayerSnapshot = () => lastPresentedPlayerPosition ? {
+      ...lastPresentedPlayerPosition,
+      phase: state.phase,
+      controlMode: state.controlMode
+    } : runtime.getPlayerSnapshot();
+
+    runtime.getMovementPresentationDiagnostics = () => ({
+      simulationStepSeconds: SIMULATION_STEP_SECONDS,
+      simulationDebtSeconds,
+      interpolationAlpha: lastPresentationInterpolationAlpha,
+      simulationStepsLastFrame: lastSimulationStepsPerFrame,
+      player: runtime.getPlayerSnapshot(),
+      presentedPlayer: runtime.getPresentedPlayerSnapshot()
+    });
 
     runtime.profileRenderForVerification = (iterations = 12) => {
       const sampleCount = clamp(Math.floor(Number(iterations) || 0), 1, 60);
@@ -6604,6 +7029,96 @@
         rejected,
         actors: runtime.getActorCollisionSnapshotForVerification()
       };
+    };
+
+    runtime.getGhostBlastSnapshotForVerification = () => ({
+      phase: state.phase,
+      radius: getGhostBlastRadius(),
+      capturedEnemyIds: [...state.questionEnemyIds],
+      enemyCount: state.enemies.length,
+      pendingSpawnCount: state.pendingSpawns.length,
+      score: state.score,
+      scoreBreakdown: { ...state.scoreState.breakdown },
+      effect: state.ghostBlastEffect ? { ...state.ghostBlastEffect } : null,
+      question: state.question ? {
+        answer: state.question.answer,
+        text: state.question.text,
+        status: els.questionStatus.textContent
+      } : null
+    });
+
+    runtime.setGhostBlastEffectDurationForVerification = (seconds = 2.4) => {
+      CONFIG.ghostBlast.effectDuration = clamp(Number(seconds) || 2.4, 0.4, 6);
+      return CONFIG.ghostBlast.effectDuration;
+    };
+
+    runtime.forceGhostBlastQuestionForVerification = (count = 3) => {
+      const requestedCount = clamp(Math.floor(Number(count) || 3), 2, 6);
+      state.visualVerificationMode = true;
+      runtime.forceLevelForVerification(0);
+      cancelStageIntroCamera({ snapToGameplay: true });
+      setPhase("playing", { force: true });
+      els.startScreen.hidden = true;
+      els.startScreen.classList.remove("screen-visible");
+      els.endScreen.hidden = true;
+      els.questionDialog.hidden = true;
+      hidePauseScreen({ restoreFocus: false, sound: false });
+      updatePauseButton();
+      state.enemies = [];
+      state.pendingSpawns = [];
+      state.ghostBlastEffect = null;
+      state.player.invulnerable = 0;
+      state.mission = {
+        ...CONFIG.missions.find((mission) => mission.type === "correct"),
+        progress: 0,
+        startScore: state.score
+      };
+
+      const radiusCells = CONFIG.ghostBlast.radiusTiles - 0.1;
+      const hub = state.reachableList
+        .map((cell) => ({
+          cell,
+          neighbors: state.reachableList.filter((candidate) => {
+            if (candidate.x === cell.x && candidate.y === cell.y) return false;
+            return Math.hypot(candidate.x - cell.x, candidate.y - cell.y) <= radiusCells;
+          })
+        }))
+        .sort((a, b) => b.neighbors.length - a.neighbors.length)[0];
+      const playerCell = hub?.cell || PLAYER_START;
+      const playerPosition = centerOfCell(playerCell.x, playerCell.y);
+      state.player.x = playerPosition.x;
+      state.player.y = playerPosition.y;
+      state.player.direction = "right";
+      state.player.desiredDirection = "right";
+
+      for (let index = 0; index < requestedCount; index += 1) {
+        const enemy = createEnemy(index);
+        enemy.id = `ghost-blast-verification-${index}`;
+        if (index === 0) {
+          enemy.x = playerPosition.x + Math.max(8, state.player.radius + enemy.radius - 3);
+          enemy.y = playerPosition.y;
+        } else {
+          const cell = hub?.neighbors[index - 1];
+          const fallbackAngle = (index / requestedCount) * Math.PI * 2;
+          const fallbackDistance = TILE * (1.05 + (index % 2) * 0.42);
+          const position = cell
+            ? centerOfCell(cell.x, cell.y)
+            : {
+              x: playerPosition.x + Math.cos(fallbackAngle) * fallbackDistance,
+              y: playerPosition.y + Math.sin(fallbackAngle) * fallbackDistance
+            };
+          enemy.x = position.x;
+          enemy.y = position.y;
+        }
+        enemy.direction = "none";
+        enemy.spawnFlash = 0;
+        enemy.lastMoveDistance = 0;
+        state.enemies.push(enemy);
+      }
+
+      openQuestion(state.enemies[0]);
+      stage.focus({ preventScroll: true });
+      return runtime.getGhostBlastSnapshotForVerification();
     };
 
     runtime.setEnemyMotionStateForVerification = (index = 0, options = {}) => {
@@ -7561,8 +8076,13 @@
       x: state.boss.x,
       y: state.boss.y,
       direction: state.boss.direction,
+      actorFacing: state.boss.direction && state.boss.direction !== "none"
+        ? state.boss.direction
+        : (state.boss.turnDirection || "down"),
       moving: (state.boss.lastMoveDistance || 0) > 0.04,
       walkCycle: state.boss.walkCycle || 0,
+      walkBlend: state.boss.walkBlend || 0,
+      stepImpact: state.boss.stepImpact || 0,
       lastMoveDistance: state.boss.lastMoveDistance || 0,
       actorSheetReady: isImageReady(GAME_ASSETS.bossActorSheet),
       spawnProgress: state.boss.spawnProgress,
@@ -7570,8 +8090,15 @@
       enemyCount: state.enemies.length,
       iceTrailReady: isIceTrailBossMechanicActive(state.boss),
       iceTrailCount: state.hazards.filter((hazard) => hazard.type === "boss-ice-trail").length,
+      speed: state.boss.speed,
+      pursuitSpeed: state.boss.pursuitSpeed || state.boss.speed,
+      playerSpeed: CONFIG.speed.player,
+      speedRatio: (state.boss.pursuitSpeed || state.boss.speed) / CONFIG.speed.player,
+      contactCount: state.boss.contactCount || 0,
       questionsCorrect: state.boss.questionsCorrect || 0,
       questionsTotal: CONFIG.bossQuestionsPerStage,
+      healthRemaining: Math.max(0, CONFIG.bossQuestionsPerStage - (state.boss.questionsCorrect || 0)),
+      healthTotal: CONFIG.bossQuestionsPerStage,
       damageLevel: state.boss.damageLevel || 0,
       cinematicProgress: state.bossCinematic
         ? clamp(state.bossCinematic.elapsed / state.bossCinematic.totalDuration, 0, 1)
@@ -7586,6 +8113,10 @@
       regularCorrect: getStageRegularCorrectCount(),
       bossCorrect: getBossQuestionCorrectCount(),
       boss: runtime.getBossSnapshot(),
+      camera: getBossArenaCameraSnapshot(),
+      guideText: state.language === "en"
+        ? "The boss catches you · correct answer = hit"
+        : "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
       cinematic: state.bossCinematic ? {
         elapsed: state.bossCinematic.elapsed,
         totalDuration: state.bossCinematic.totalDuration,
@@ -7603,6 +8134,78 @@
       updateBoss(0);
       return runtime.getBossEncounterSnapshot();
     };
+
+    runtime.setBossCellForVerification = (x, y) => {
+      if (!state.boss) return null;
+      const cell = {
+        x: clamp(Math.floor(Number(x) || 0), 0, COLS - 1),
+        y: clamp(Math.floor(Number(y) || 0), 0, ROWS - 1)
+      };
+      if (isWallCell(cell.x, cell.y)) {
+        return { moved: false, reason: "wall", cell };
+      }
+      const center = centerOfCell(cell.x, cell.y);
+      Object.assign(state.boss, {
+        x: center.x,
+        y: center.y,
+        direction: "none",
+        turnDirection: "down",
+        pathCooldown: 0,
+        stuckTime: 0,
+        lastMoveDistance: 0,
+        walkBlend: 0,
+        stepImpact: 0,
+        trail: []
+      });
+      return { moved: true, cell, x: center.x, y: center.y };
+    };
+
+    runtime.setBossWalkPoseForVerification = (phase = 0, direction = "right", impact = 0) => {
+      if (!state.boss) return null;
+      state.visualVerificationMode = true;
+      setBossDirection(state.boss, DIRS[direction] && direction !== "none" ? direction : "right");
+      state.boss.walkCycle = ((Number(phase) || 0) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+      state.boss.walkBlend = 1;
+      state.boss.stepImpact = clamp(Number(impact) || 0, 0, 1);
+      state.boss.lastMoveDistance = 2;
+      return runtime.getBossSnapshot();
+    };
+
+    runtime.clearFloatingTextsForVerification = () => {
+      state.floatingTexts = [];
+      return state.floatingTexts.length;
+    };
+
+    runtime.forceBossContactForVerification = () => {
+      if (!state.boss) {
+        runtime.forceBossChallenge();
+      }
+      if (!state.boss || !state.player) {
+        return null;
+      }
+      if (state.bossCinematic) {
+        runtime.completeBossCinematicForVerification();
+      }
+      state.visualVerificationMode = false;
+      setPhase("playing", { force: true });
+      state.player.invulnerable = 0;
+      state.boss.spawnProgress = 1;
+      state.boss.x = state.player.x;
+      state.boss.y = state.player.y;
+      checkEnemyCollision();
+      return {
+        encounter: runtime.getBossEncounterSnapshot(),
+        question: state.question ? {
+          answer: state.question.answer,
+          text: state.question.text,
+          status: els.questionStatus.textContent,
+          bossQuestionNumber: state.question.bossQuestionNumber,
+          bossQuestionTotal: state.question.bossQuestionTotal
+        } : null
+      };
+    };
+
+    runtime.getBossCameraSnapshotForVerification = () => getBossArenaCameraSnapshot();
 
     runtime.getMazeScatterSnapshot = () => {
       prepareMazeScatterDecor();
@@ -7975,6 +8578,7 @@
       state.victoryEndTimerId = null;
     }
     state.finalBossExplosion = null;
+    state.ghostBlastEffect = null;
     els.endScreen.hidden = true;
     els.endScreen.classList.remove("final-trophy-screen");
     renderVictoryConfetti(false);
@@ -7998,6 +8602,7 @@
     syncModeInputs();
     syncCharacterInputs();
     syncDifficultyInputs();
+    syncOperationModeInputs();
     syncTimeLimitToggle();
     syncMenuSummary();
     closeHeroGallery({ restoreFocus: false });
@@ -8790,6 +9395,7 @@
       state.activePlayTimeMs += dt * 1000;
     }
     state.shake = Math.max(0, state.shake - dt);
+    updateGhostBlastEffect(dt);
     updateCamera(dt);
 
     if (state.phase === "playing") {
@@ -9489,6 +10095,7 @@
   function collectItems() {
     const player = state.player;
     let collected = 0;
+    let edibleCollected = 0;
 
     for (const [key, collectible] of state.collectibles) {
       const dx = collectible.x - player.x;
@@ -9519,12 +10126,10 @@
           return;
         }
         if (collectible.kind === "boss-core") {
-          player.eatAnimation = GAME_THEME.player.eatAnimationDuration;
-          player.eatDirection = player.direction;
+          player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.42);
           addBurst(collectible.x, collectible.y, "#c7a6ff", 30, 130);
           addFloatingText(collectible.x, collectible.y - 22, "ליבת הבוס", "#c7a6ff");
           playGameSound("bossCore");
-          playCharacterSound("eat", { gain: 0.46 });
           if (state.boss) {
             openQuestion(state.boss);
           }
@@ -9545,6 +10150,7 @@
           value: collectible.value
         });
         collected += 1;
+        edibleCollected += 1;
         player.eatAnimation = GAME_THEME.player.eatAnimationDuration;
         player.eatDirection = player.direction;
         player.eatEffect = {
@@ -9569,7 +10175,9 @@
 
     if (collected > 0) {
       playGameSound(collected > 1 ? "bonusCollectible" : "collectible");
-      playCharacterSound("eat", { gain: 0.26 });
+      if (edibleCollected > 0) {
+        playCharacterSound("eat", { gain: 0.26 });
+      }
       updateMission("score");
       updateHud();
     }
@@ -9588,8 +10196,6 @@
       state.arcadeBonus.collectedLetters.push(letter);
     }
 
-    player.eatAnimation = GAME_THEME.player.eatAnimationDuration;
-    player.eatDirection = player.direction;
     player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.38);
     addBurst(collectible.x, collectible.y, "#ffd84a", 18, 90);
     addFloatingText(collectible.x, collectible.y - 18, `${letter} +${award.total}`, "#ffd84a");
@@ -9631,8 +10237,6 @@
       CONFIG.arcadeBonus.keysRequired
     );
 
-    player.eatAnimation = GAME_THEME.player.eatAnimationDuration;
-    player.eatDirection = player.direction;
     player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.44);
     addBurst(collectible.x, collectible.y, "#ffd84a", 20, 100);
     addFloatingText(
@@ -9874,6 +10478,19 @@
     boss.direction = direction;
   }
 
+  function getBossPursuitSpeed(boss, player = state.player) {
+    if (!boss || !player) {
+      return boss?.speed || 0;
+    }
+    const distanceTiles = Math.hypot(boss.x - player.x, boss.y - player.y) / TILE;
+    const catchupProgress = clamp(
+      (distanceTiles - CONFIG.bossEncounter.catchupStartTiles) / 7,
+      0,
+      1
+    );
+    return boss.speed * (1 + catchupProgress * CONFIG.bossEncounter.catchupMaxBoost);
+  }
+
   function updateBoss(dt) {
     const boss = state.boss;
     if (!boss || !state.player) {
@@ -9881,6 +10498,7 @@
     }
 
     boss.hitFlash = Math.max(0, (boss.hitFlash || 0) - dt * 2.8);
+    boss.stepImpact = Math.max(0, (boss.stepImpact || 0) - dt * 4.6);
     boss.wobble += dt * 3.15;
     boss.turnAnimation = Math.max(0, (boss.turnAnimation || 0) - dt);
     if (state.bossCinematic) {
@@ -9900,7 +10518,7 @@
         Math.sin(emergeProgress * Math.PI) * (MOBILE_RUNTIME.reducedEffects ? 0.08 : 0.24)
       );
       boss.lastMoveDistance = 0;
-      boss.walkCycle = ((boss.walkCycle || 0) + dt * 1.35) % (Math.PI * 2);
+      boss.walkBlend = Math.max(0, (boss.walkBlend || 0) - dt * 4.5);
       boss.trail = (boss.trail || []).filter((point) => {
         point.life -= dt;
         return point.life > 0;
@@ -9909,7 +10527,14 @@
         state.bossCinematic = null;
         state.bossIntro = null;
         boss.spawnProgress = 1;
-        addFloatingText(boss.x, boss.y - 58, `${boss.name} יוצא למרדף!`, boss.color);
+        addFloatingText(
+          boss.x,
+          boss.y - 58,
+          state.language === "en"
+            ? "The boss will catch you — answer to attack!"
+            : "הבוס ישיג אותך — עונים נכון ותוקפים!",
+          boss.color
+        );
         addBurst(boss.x, boss.y, boss.color, 44, 155);
       }
       return;
@@ -9922,21 +10547,23 @@
     const beforeY = boss.y;
     const cell = toCell(boss.x, boss.y);
     const center = centerOfCell(cell.x, cell.y);
+    const pursuitSpeed = getBossPursuitSpeed(boss, state.player);
+    boss.pursuitSpeed = pursuitSpeed;
     boss.pathCooldown -= dt;
 
-    const centerTolerance = Math.max(2.8, boss.speed * dt + 0.9);
+    const centerTolerance = Math.max(2.2, pursuitSpeed * dt * 0.45 + 0.8);
     const nearCenter = Math.abs(boss.x - center.x) <= centerTolerance
       && Math.abs(boss.y - center.y) <= centerTolerance;
-    const blocked = !canMove(boss, boss.direction, Math.max(3.2, boss.speed * dt + 1));
+    const blocked = !canMove(boss, boss.direction, Math.max(3.2, pursuitSpeed * dt + 1));
 
     if (blocked || (nearCenter && boss.pathCooldown <= 0)) {
       boss.x = center.x;
       boss.y = center.y;
       setBossDirection(boss, findNextDirection(cell, normalizeTargetCell(playerCell), boss.direction));
-      boss.pathCooldown = Math.max(0.1, (TILE * 0.48) / Math.max(boss.speed, 1));
+      boss.pathCooldown = Math.max(0.08, (TILE * 0.44) / Math.max(pursuitSpeed, 1));
     }
 
-    moveActor(boss, boss.direction, boss.speed * dt);
+    moveActor(boss, boss.direction, pursuitSpeed * dt);
 
     let movedDistance = Math.hypot(boss.x - beforeX, boss.y - beforeY);
     boss.stuckTime = movedDistance < 0.05 ? (boss.stuckTime || 0) + dt : 0;
@@ -9957,7 +10584,26 @@
 
     boss.lastMoveDistance = movedDistance;
     if (movedDistance > 0.04) {
-      boss.walkCycle = ((boss.walkCycle || 0) + movedDistance * 0.16) % (Math.PI * 2);
+      const moveX = (boss.x - beforeX) / Math.max(movedDistance, 0.001);
+      const moveY = (boss.y - beforeY) / Math.max(movedDistance, 0.001);
+      const directionBlend = clamp(dt * 11, 0, 1);
+      boss.renderMoveX = interpolatePresentationValue(boss.renderMoveX || 0, moveX, directionBlend);
+      boss.renderMoveY = interpolatePresentationValue(boss.renderMoveY || 0, moveY, directionBlend);
+      boss.walkBlend = Math.min(1, (boss.walkBlend || 0) + dt * 5.8);
+
+      // Tie the gait to travelled distance so the feet keep their weight even
+      // when catch-up speed changes. A full left/right stride spans roughly
+      // one and a half maze tiles instead of accelerating like a looping GIF.
+      const previousWalkPhase = boss.walkCycle || 0;
+      const authoredStrideDistance = Math.max(boss.definition?.actor?.size || 120, TILE * 4.5);
+      const phaseAdvance = movedDistance * Math.PI * 2 / authoredStrideDistance;
+      boss.walkCycle = (previousWalkPhase + phaseAdvance) % (Math.PI * 2);
+      const crossedFootfall = boss.walkCycle < previousWalkPhase
+        || Math.floor(previousWalkPhase / Math.PI) !== Math.floor(boss.walkCycle / Math.PI);
+      if (crossedFootfall) {
+        boss.stepFoot = Math.floor((previousWalkPhase + phaseAdvance) / Math.PI) % 2 === 0 ? 1 : -1;
+        boss.stepImpact = 1;
+      }
       boss.trail = boss.trail || [];
       boss.trail.unshift({ x: beforeX, y: beforeY, life: 0.42, direction: boss.direction });
       if (state.clock >= (boss.nextStepSoundAt || 0)) {
@@ -9965,7 +10611,7 @@
         boss.nextStepSoundAt = state.clock + 0.76 + Math.random() * 0.18;
       }
     } else {
-      boss.walkCycle = ((boss.walkCycle || 0) + dt * 1.15) % (Math.PI * 2);
+      boss.walkBlend = Math.max(0, (boss.walkBlend || 0) - dt * 7.5);
     }
     boss.trail = (boss.trail || []).filter((point) => {
       point.life -= dt;
@@ -10156,6 +10802,7 @@
       const dy = state.boss.y - player.y;
       const radius = (state.boss.collisionRadius || state.boss.radius) + player.radius - 2;
       if (dx * dx + dy * dy < radius * radius) {
+        state.boss.contactCount = (state.boss.contactCount || 0) + 1;
         openQuestion(state.boss);
         return;
       }
@@ -10171,6 +10818,34 @@
     if (enemy) {
       openQuestion(enemy);
     }
+  }
+
+  function getGhostBlastRadius() {
+    return TILE * CONFIG.ghostBlast.radiusTiles;
+  }
+
+  function getEnemiesWithinGhostBlastRadius(player = state.player) {
+    if (!player) {
+      return [];
+    }
+    const radius = getGhostBlastRadius();
+    const radiusSquared = radius * radius;
+    return state.enemies.filter((enemy) => {
+      const dx = enemy.x - player.x;
+      const dy = enemy.y - player.y;
+      return dx * dx + dy * dy <= radiusSquared;
+    });
+  }
+
+  function captureQuestionGhostCluster(enemy) {
+    if (!enemy || enemy.type === "boss") {
+      state.questionEnemyIds = [];
+      return;
+    }
+    const nearbyIds = getEnemiesWithinGhostBlastRadius().map((candidate) => candidate.id);
+    state.questionEnemyIds = nearbyIds.includes(enemy.id)
+      ? nearbyIds
+      : [enemy.id, ...nearbyIds];
   }
 
   function checkEnvironmentHazardCollision() {
@@ -10290,53 +10965,37 @@
       const source = shortChallenge.questions[cursor % shortChallenge.questions.length];
       shortChallenge.questionCursor = cursor + 1;
       const question = makeMultiplicationQuestion(source.a, source.b);
-      rememberQuestionKey(question.key);
-      return {
-        ...question,
+      return finalizeQuestion(question, {
         daily: state.sessionKind === "daily",
         duel: state.sessionKind === "duel",
         challengeSeed: shortChallenge.seed
-      };
+      });
     }
     const difficulty = getDifficultySettings();
     const reviewQuestion = Math.random() < getAdaptiveQuestionChance() ? createReviewQuestion(difficulty) : null;
     const question = reviewQuestion || createRandomQuestion();
-    rememberQuestionKey(question.key);
-    return question;
+    return finalizeQuestion(question);
   }
 
   function generateRewardQuestion() {
     const difficulty = getDifficultySettings();
-    let pair;
-    if (difficulty.questionMode === "table") {
-      pair = { a: randomInt(1, 8), b: randomInt(1, 8) };
-    } else if (difficulty.questionMode === "filteredTable") {
-      pair = { a: randomInt(2, 9), b: randomInt(2, 8) };
-    } else {
-      pair = { a: randomInt(11, 24), b: randomInt(2, 6) };
-    }
+    let pair = createRewardFactorPair(difficulty);
 
     for (let attempt = 0; attempt < 8 && hasRecentQuestion(factKey(pair.a, pair.b)); attempt += 1) {
-      pair = difficulty.questionMode === "table"
-        ? { a: randomInt(1, 8), b: randomInt(1, 8) }
-        : { a: randomInt(2, 12), b: randomInt(2, 6) };
+      pair = createRewardFactorPair(difficulty);
     }
 
     const question = makeMultiplicationQuestion(pair.a, pair.b);
-    rememberQuestionKey(question.key);
-    return {
-      ...question,
+    return finalizeQuestion(question, {
       reward: true
-    };
+    });
   }
 
   function generatePeakQuestion() {
     const question = createHardestQuestion(getDifficultySettings());
-    rememberQuestionKey(question.key);
-    return {
-      ...question,
+    return finalizeQuestion(question, {
       peak: true
-    };
+    });
   }
 
   function generateBossQuestion(boss = state.boss) {
@@ -10346,14 +11005,36 @@
       CONFIG.bossQuestionsPerStage - 1
     );
     const question = createHardestQuestion(getDifficultySettings(), questionIndex);
-    rememberQuestionKey(question.key);
-    return {
-      ...question,
+    return finalizeQuestion(question, {
       peak: true,
       boss: true,
       bossQuestionNumber: questionIndex + 1,
       bossQuestionTotal: CONFIG.bossQuestionsPerStage
+    });
+  }
+
+  function finalizeQuestion(question, details = {}) {
+    const selectedQuestion = selectQuestionOperation(question);
+    rememberQuestionKey(selectedQuestion.key);
+    return {
+      ...selectedQuestion,
+      ...details
     };
+  }
+
+  function selectQuestionOperation(question) {
+    if (!question || state.operationMode !== "mixed") {
+      return question;
+    }
+
+    const sequenceIndex = state.operationQuestionIndex;
+    state.operationQuestionIndex += 1;
+    if (sequenceIndex % 2 === 1) {
+      return question;
+    }
+
+    const divisionVariant = Math.floor(sequenceIndex / 2) % 2 === 0 ? "first" : "second";
+    return makeDivisionQuestion(question.a, question.b, divisionVariant);
   }
 
   function createRandomQuestion() {
@@ -10369,7 +11050,11 @@
 
   function createHardestQuestion(difficulty, sequenceIndex = 0) {
     const sequences = {
+      easyTable: [[10, 5], [5, 5], [4, 5]],
       table: [[9, 9], [8, 9], [8, 8]],
+      hardTable: [[9, 8], [8, 7], [9, 7]],
+      extendedTable: [[12, 12], [12, 11], [11, 11]],
+      masteryTable: [[15, 15], [15, 14], [14, 13]],
       filteredTable: [[9, 9], [9, 8], [8, 8]],
       twoByOne: [[97, 9], [96, 9], [89, 8]],
       legendary: [[99, 98], [97, 96], [94, 93]],
@@ -10380,11 +11065,82 @@
     return makeMultiplicationQuestion(a, b);
   }
 
+  function createRewardFactorPair(difficulty) {
+    if (difficulty.questionMode === "easyTable") {
+      return {
+        a: randomItem(EASY_TABLE_FACTORS),
+        b: randomItem(EASY_TABLE_FACTORS)
+      };
+    }
+
+    if (difficulty.questionMode === "table") {
+      return {
+        a: randomInt(1, 8),
+        b: randomInt(1, 8)
+      };
+    }
+
+    if (difficulty.questionMode === "hardTable") {
+      return {
+        a: randomInt(2, 9),
+        b: randomInt(2, 9)
+      };
+    }
+
+    if (difficulty.questionMode === "extendedTable"
+      || difficulty.questionMode === "masteryTable") {
+      return {
+        a: randomInt(2, 10),
+        b: randomInt(2, 10)
+      };
+    }
+
+    if (difficulty.questionMode === "filteredTable") {
+      return {
+        a: randomInt(2, 9),
+        b: randomInt(2, 8)
+      };
+    }
+
+    return {
+      a: randomInt(11, 24),
+      b: randomInt(2, 6)
+    };
+  }
+
   function createFactorPair(difficulty) {
+    if (difficulty.questionMode === "easyTable") {
+      return {
+        a: randomItem(EASY_TABLE_FACTORS),
+        b: randomItem(EASY_TABLE_FACTORS)
+      };
+    }
+
     if (difficulty.questionMode === "table") {
       return {
         a: randomInt(1, 10),
         b: randomInt(1, 10)
+      };
+    }
+
+    if (difficulty.questionMode === "hardTable") {
+      return {
+        a: randomItem(HARD_TABLE_FACTORS),
+        b: randomItem(HARD_TABLE_FACTORS)
+      };
+    }
+
+    if (difficulty.questionMode === "extendedTable") {
+      return {
+        a: randomInt(2, 12),
+        b: randomInt(2, 12)
+      };
+    }
+
+    if (difficulty.questionMode === "masteryTable") {
+      return {
+        a: randomItem(MASTERY_TABLE_FACTORS),
+        b: randomItem(MASTERY_TABLE_FACTORS)
       };
     }
 
@@ -10441,8 +11197,24 @@
   }
 
   function isFactAllowedForDifficulty(a, b, difficulty) {
+    if (difficulty.questionMode === "easyTable") {
+      return EASY_TABLE_FACTORS.includes(a) && EASY_TABLE_FACTORS.includes(b);
+    }
+
     if (difficulty.questionMode === "table") {
       return isBetween(a, 1, 10) && isBetween(b, 1, 10);
+    }
+
+    if (difficulty.questionMode === "hardTable") {
+      return HARD_TABLE_FACTORS.includes(a) && HARD_TABLE_FACTORS.includes(b);
+    }
+
+    if (difficulty.questionMode === "extendedTable") {
+      return isBetween(a, 2, 12) && isBetween(b, 2, 12);
+    }
+
+    if (difficulty.questionMode === "masteryTable") {
+      return MASTERY_TABLE_FACTORS.includes(a) && MASTERY_TABLE_FACTORS.includes(b);
     }
 
     if (difficulty.questionMode === "filteredTable") {
@@ -10465,10 +11237,21 @@
   }
 
   function makeMultiplicationQuestion(a, b) {
+    const question = SYSTEMS.createArithmeticQuestion(a, b, { operation: "multiplication" });
     return {
-      key: factKey(a, b),
-      text: formatQuestion(a, "×", b),
-      answer: a * b
+      ...question,
+      text: formatQuestion(question.left, question.operator, question.right)
+    };
+  }
+
+  function makeDivisionQuestion(a, b, divisionVariant = "first") {
+    const question = SYSTEMS.createArithmeticQuestion(a, b, {
+      operation: "division",
+      divisionVariant
+    });
+    return {
+      ...question,
+      text: formatQuestion(question.left, question.operator, question.right)
     };
   }
 
@@ -10645,11 +11428,16 @@
         (enemy?.questionsCorrect || 0) + 1
       );
       return state.language === "en"
-        ? `${bossTitle} · ultimate question ${current} of ${CONFIG.bossQuestionsPerStage}`
-        : `${bossTitle} · שאלת בוס ${current} מתוך ${CONFIG.bossQuestionsPerStage}`;
+        ? `Attack ${bossTitle} · hit ${current} of ${CONFIG.bossQuestionsPerStage}`
+        : `תקיפה נגד ${bossTitle} · פגיעה ${current} מתוך ${CONFIG.bossQuestionsPerStage}`;
     }
     if (isRewardQuestion) {
       return questionCopy.rewardStatus;
+    }
+    if (state.questionEnemyIds.length > 1) {
+      return state.language === "en"
+        ? `${state.questionEnemyIds.length} ghosts surrounded you · one correct answer blasts them all`
+        : `${state.questionEnemyIds.length} רוחות הקיפו אותך · תשובה נכונה תפוצץ את כולן`;
     }
     return isPeakQuestion ? questionCopy.transitionStatus : questionCopy.enemyStatus;
   }
@@ -10734,6 +11522,11 @@
     resetJoystick();
     const isBossQuestion = enemy?.type === "boss";
     const isRewardQuestion = options.source === "reward";
+    if (isBossQuestion || isRewardQuestion) {
+      state.questionEnemyIds = [];
+    } else {
+      captureQuestionGhostCluster(enemy);
+    }
     const isPeakQuestion = isBossQuestion || isFinalQuestionInStage();
     state.question = isRewardQuestion
       ? generateRewardQuestion()
@@ -10750,6 +11543,7 @@
     state.answerLocked = false;
     els.questionDialog.classList.toggle("question-boss", isBossQuestion);
     els.questionDialog.classList.toggle("question-reward", isRewardQuestion);
+    els.questionDialog.dataset.operation = state.question.operation || "multiplication";
     els.questionStatus.textContent = getQuestionStatusText(enemy, isBossQuestion, isRewardQuestion, isPeakQuestion);
     els.questionTitle.dir = "ltr";
     els.questionTitle.textContent = state.question.text;
@@ -10955,8 +11749,11 @@
     state.boss = null;
     state.bossIntro = null;
     state.bossCinematic = null;
+    document.documentElement.classList.remove("boss-encounter-active");
+    document.documentElement.removeAttribute("data-boss-health-remaining");
     state.pendingSpawns = [];
     state.currentEnemyId = null;
+    state.questionEnemyIds = [];
     state.question = null;
     state.questionSource = null;
     state.shake = Math.max(state.shake, 0.92);
@@ -10993,21 +11790,35 @@
     }, duration * 1000);
   }
 
+  function chooseBossKnockbackCell(playerCell) {
+    const targetDistance = CONFIG.bossEncounter.knockbackDistanceTiles;
+    const candidates = state.reachableList.filter((cell) => {
+      const distance = distanceCells(cell, playerCell);
+      return distance >= targetDistance - 1 && distance <= targetDistance + 2;
+    });
+    if (candidates.length === 0) {
+      return normalizeTargetCell(CENTER_CELL);
+    }
+    return candidates.reduce((best, cell) => {
+      const distance = distanceCells(cell, playerCell);
+      const centerDistance = distanceCells(cell, CENTER_CELL);
+      const score = Math.abs(distance - targetDistance) * 10 + centerDistance * 0.05;
+      return !best || score < best.score ? { cell, score } : best;
+    }, null).cell;
+  }
+
   function resetPositionsAfterBossRound() {
     if (!state.player || !state.boss) {
       return;
     }
-    const playerPos = centerOfCell(PLAYER_START.x, PLAYER_START.y);
-    const bossPos = centerOfCell(CENTER_CELL.x, CENTER_CELL.y);
+    const playerCell = normalizeTargetCell(toCell(state.player.x, state.player.y));
+    const bossCell = chooseBossKnockbackCell(playerCell);
+    const bossPos = centerOfCell(bossCell.x, bossCell.y);
     Object.assign(state.player, {
-      x: playerPos.x,
-      y: playerPos.y,
-      direction: "right",
-      desiredDirection: "right",
       directionRequestTime: state.clock,
       rewardAnimation: 0.78,
       questionAnimation: 0,
-      invulnerable: Math.max(state.player.invulnerable || 0, 1.35),
+      invulnerable: Math.max(state.player.invulnerable || 0, 1.15),
       trail: []
     });
     Object.assign(state.boss, {
@@ -11020,6 +11831,7 @@
       lastMoveDistance: 0,
       trail: []
     });
+    addBurst(bossPos.x, bossPos.y, state.boss.color, 24, 120);
   }
 
   function finishQuestion(correct, answerContext = {}) {
@@ -11044,6 +11856,79 @@
     }
 
     updateHud();
+  }
+
+  function resolveGhostBlast(enemy, primaryAward, answerContext = {}) {
+    const capturedIds = new Set(state.questionEnemyIds);
+    capturedIds.add(enemy.id);
+    const blastedEnemies = state.enemies.filter((candidate) => capturedIds.has(candidate.id));
+    if (blastedEnemies.length === 0) {
+      return {
+        count: 0,
+        totalAward: primaryAward.total,
+        bonusAward: 0
+      };
+    }
+
+    let totalAward = primaryAward.total;
+    let bonusAward = 0;
+    for (let index = 1; index < blastedEnemies.length; index += 1) {
+      const extraAward = awardScore({
+        type: "correctAnswer",
+        responseMs: answerContext.responseMs,
+        timeLimitMs: isQuestionTimerEnabled() ? getQuestionTimeLimit() * 1000 : 0,
+        questionMode: getDifficultySettings().questionMode,
+        enemyDefeated: true
+      });
+      totalAward += extraAward.total;
+      bonusAward += extraAward.total;
+    }
+
+    const player = state.player;
+    const centerX = player?.x ?? enemy.x;
+    const centerY = player?.y ?? enemy.y;
+    const accent = getCurrentLevel().accent;
+    for (const blastedEnemy of blastedEnemies) {
+      addBurst(blastedEnemy.x, blastedEnemy.y, blastedEnemy.color, 38, 175);
+      addBurst(blastedEnemy.x, blastedEnemy.y, "#fff7c6", 16, 125);
+    }
+    addBurst(centerX, centerY, accent, 52, 220);
+    state.ghostBlastEffect = {
+      x: centerX,
+      y: centerY,
+      radius: getGhostBlastRadius(),
+      accent,
+      count: blastedEnemies.length,
+      perGhostAward: primaryAward.total,
+      totalAward,
+      bonusAward,
+      life: CONFIG.ghostBlast.effectDuration,
+      maxLife: CONFIG.ghostBlast.effectDuration
+    };
+    state.enemies = state.enemies.filter((candidate) => !capturedIds.has(candidate.id));
+    blastedEnemies.forEach((_, index) => scheduleEnemySpawn(0.9 + index * 0.16));
+    updateMission("enemyDefeated", blastedEnemies.length);
+    state.shake = Math.max(state.shake, blastedEnemies.length > 1 ? 0.46 : 0.12);
+    if (player) {
+      player.rewardAnimation = Math.max(player.rewardAnimation || 0, 0.72);
+      addFloatingText(
+        centerX,
+        centerY - 72,
+        blastedEnemies.length > 1
+          ? `${blastedEnemies.length} רוחות התפוצצו! · +${totalAward}`
+          : `+${totalAward}`,
+        "#fff7c6"
+      );
+    }
+    playGameSound("enemyDefeated");
+    if (blastedEnemies.length > 1) {
+      playGameSound("rewardPower", { gain: 0.72 });
+    }
+    return {
+      count: blastedEnemies.length,
+      totalAward,
+      bonusAward
+    };
   }
 
   function applyCorrectAnswer(answerContext = {}) {
@@ -11075,6 +11960,9 @@
       boss.questionsCorrect = bossQuestionNumber;
       boss.damageLevel = bossQuestionNumber;
       boss.hitFlash = 1;
+      document.documentElement.dataset.bossHealthRemaining = String(
+        Math.max(0, CONFIG.bossQuestionsPerStage - bossQuestionNumber)
+      );
       state.shake = Math.max(state.shake, defeatsBoss ? 0.88 : 0.38);
       addBurst(boss.x, boss.y, defeatsBoss ? "#fff7c6" : boss.color, defeatsBoss ? 118 : 58, defeatsBoss ? 360 : 190);
       if (defeatsBoss) {
@@ -11098,15 +11986,10 @@
         playBossSound(boss.configKey, "attack", { gain: 0.56 });
       }
     } else if (enemy) {
-      addBurst(enemy.x, enemy.y, enemy.color, 36, 150);
-      addFloatingText(enemy.x, enemy.y - 24, `+${award.total}`, "#67f08b");
-      state.enemies = state.enemies.filter((candidate) => candidate.id !== enemy.id);
-      playGameSound("enemyDefeated");
-      scheduleEnemySpawn(0.9);
-      updateMission("enemyDefeated");
+      resolveGhostBlast(enemy, award, answerContext);
     }
 
-    if (state.player) {
+    if (state.player && !enemy) {
       addFloatingText(state.player.x, state.player.y - 44, positiveFeedback(), getCurrentLevel().accent);
     }
 
@@ -11115,6 +11998,7 @@
     if (boss && !defeatsBoss) {
       setPhase("playing");
       state.currentEnemyId = null;
+      state.questionEnemyIds = [];
       state.question = null;
       state.questionSource = null;
       resetPositionsAfterBossRound();
@@ -11152,6 +12036,7 @@
     const nextLevelIndex = getLevelIndexForAnswers(state.correctAnswers);
     setPhase("playing");
     state.currentEnemyId = null;
+    state.questionEnemyIds = [];
     state.question = null;
     state.questionSource = null;
 
@@ -11185,6 +12070,7 @@
     updateMission("score");
     setPhase("playing");
     state.currentEnemyId = null;
+    state.questionEnemyIds = [];
     state.questionSource = null;
     state.question = null;
     updateHud();
@@ -11198,6 +12084,7 @@
       playGameSound("notification", { gain: 0.5 });
       setPhase("playing");
       state.currentEnemyId = null;
+      state.questionEnemyIds = [];
       state.questionSource = null;
       state.question = null;
       return;
@@ -11218,6 +12105,7 @@
       }
       setPhase("playing");
       state.currentEnemyId = null;
+      state.questionEnemyIds = [];
       state.questionSource = null;
       state.question = null;
       return;
@@ -11244,6 +12132,7 @@
     state.player.invulnerable = 2.6;
     setPhase("playing");
     state.currentEnemyId = null;
+    state.questionEnemyIds = [];
     state.questionSource = null;
     state.question = null;
   }
@@ -11272,6 +12161,11 @@
       state.boss.spawnProgress = 1;
       state.boss.stuckTime = 0;
       state.boss.walkCycle = 0;
+      state.boss.walkBlend = 0;
+      state.boss.stepImpact = 0;
+      state.boss.stepFoot = 1;
+      state.boss.renderMoveX = 0;
+      state.boss.renderMoveY = 1;
       state.boss.lastMoveDistance = 0;
       state.boss.turnAnimation = 0;
       state.boss.trail = [];
@@ -11512,7 +12406,7 @@
       [uiRuntime("scoreBreakdown.noHit"), breakdown.noHit],
       [uiRuntime("scoreBreakdown.accuracy"), breakdown.accuracy],
       [uiRuntime("scoreBreakdown.time"), breakdown.time],
-      [`${uiRuntime("scoreBreakdown.difficulty")} ×${(getDifficultySettings().scoreMultiplierPct / 100).toFixed(1)}`, breakdown.difficulty],
+      [`${uiRuntime("scoreBreakdown.difficulty")} ${scoreMultiplierLabel(getDifficultySettings())}`, breakdown.difficulty],
       [uiRuntime("scoreBreakdown.combo"), breakdown.combo]
     ];
 
@@ -12118,6 +13012,7 @@
     setPhase("ended");
     resetJoystick();
     state.currentEnemyId = null;
+    state.questionEnemyIds = [];
     state.questionSource = null;
     state.question = null;
     state.boss = null;
@@ -12125,6 +13020,7 @@
     state.bossCinematic = null;
     state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
+    state.ghostBlastEffect = null;
     els.questionDialog.hidden = true;
     hidePauseScreen();
     renderResults(result);
@@ -12213,6 +13109,16 @@
     state.finalBossExplosion.life -= dt;
     if (state.finalBossExplosion.life <= 0) {
       state.finalBossExplosion = null;
+    }
+  }
+
+  function updateGhostBlastEffect(dt) {
+    if (!state.ghostBlastEffect) {
+      return;
+    }
+    state.ghostBlastEffect.life -= dt;
+    if (state.ghostBlastEffect.life <= 0) {
+      state.ghostBlastEffect = null;
     }
   }
 
@@ -12323,6 +13229,42 @@
       ctx.restore();
     }
 
+    ctx.restore();
+  }
+
+  function drawGhostBlastEffect() {
+    const explosion = state.ghostBlastEffect;
+    if (!explosion) {
+      return;
+    }
+    const progress = 1 - clamp(explosion.life / explosion.maxLife, 0, 1);
+    const fade = 1 - progress;
+    const pulse = Math.sin(progress * Math.PI);
+    ctx.save();
+    ctx.translate(explosion.x, explosion.y);
+    ctx.globalCompositeOperation = "lighter";
+
+    const flashRadius = explosion.radius * (0.38 + progress * 0.76);
+    const flash = ctx.createRadialGradient(0, 0, 2, 0, 0, flashRadius);
+    flash.addColorStop(0, `rgba(255, 255, 255, ${0.8 * fade})`);
+    flash.addColorStop(0.34, `rgba(255, 216, 74, ${0.56 * pulse})`);
+    flash.addColorStop(0.72, explosion.accent);
+    flash.addColorStop(1, "rgba(255, 95, 215, 0)");
+    ctx.globalAlpha = Math.max(0.16, fade * 0.72);
+    ctx.fillStyle = flash;
+    ctx.beginPath();
+    ctx.arc(0, 0, flashRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    for (let ring = 0; ring < 2; ring += 1) {
+      const radius = explosion.radius * (0.25 + progress * (0.72 + ring * 0.18));
+      ctx.globalAlpha = Math.max(0, fade * (0.9 - ring * 0.22));
+      ctx.strokeStyle = ring === 0 ? "#fff7c6" : explosion.accent;
+      ctx.lineWidth = Math.max(2, 6 - ring * 2 - progress * 2);
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.stroke();
+    }
     ctx.restore();
   }
 
@@ -12446,6 +13388,7 @@
       drawArcadeBonusChest();
     }
     drawFinalBossExplosion();
+    drawGhostBlastEffect();
     drawParticles();
     drawFloatingTexts();
     if (!usingReferenceMazeArt) {
@@ -12454,6 +13397,7 @@
     ctx.restore();
 
     drawBossCinematicOverlay();
+    drawBossBattleHud();
     drawBossDefeatTransitionOverlay();
     drawArcadeRewardBanner();
     drawLevelBanner();
@@ -19436,13 +20380,10 @@
     if (!style || state.phase === "start") {
       return;
     }
-    const actors = [];
-    if (state.boss) {
-      actors.push(state.boss);
-    }
-    for (const enemy of state.enemies) {
-      actors.push(enemy);
-    }
+    // Regular ghosts are already visually distinct and open their exercise on
+    // contact. Keep the question cue reserved for the boss so the maze is not
+    // cluttered with a redundant badge above every normal ghost.
+    const actors = state.boss ? [state.boss] : [];
     if (!actors.length) {
       return;
     }
@@ -26346,6 +27287,9 @@
   }
 
   function drawBossActorBeacon(renderContext, boss, displaySize, definition, introPulse) {
+    if (introPulse <= 0.02) {
+      return;
+    }
     renderContext.save();
     renderContext.translate(boss.x, boss.y + displaySize * 0.32);
     renderContext.globalCompositeOperation = "screen";
@@ -26364,26 +27308,26 @@
   }
 
   function drawBossActorMotionArcs(renderContext, displaySize, definition, direction, moving, footfall) {
-    if (!moving || MOBILE_RUNTIME.reducedEffects) {
+    if (!moving || MOBILE_RUNTIME.reducedEffects || footfall < 0.72) {
       return;
     }
 
     renderContext.save();
-    renderContext.globalCompositeOperation = "screen";
+    renderContext.globalCompositeOperation = "source-over";
     renderContext.lineCap = "round";
-    renderContext.lineWidth = Math.max(1.6, displaySize * 0.026);
+    renderContext.lineWidth = Math.max(1.2, displaySize * 0.015);
     for (const side of [-1, 1]) {
-      renderContext.globalAlpha = 0.16 + footfall * 0.16;
-      renderContext.strokeStyle = side === 1 ? definition.accent : (definition.actor?.motionColor || definition.eyeColor);
-      const sideX = direction.y * side * displaySize * 0.22 - direction.x * displaySize * 0.42;
-      const sideY = -direction.x * side * displaySize * 0.12 - direction.y * displaySize * 0.28;
+      renderContext.globalAlpha = (footfall - 0.72) * 0.32;
+      renderContext.strokeStyle = "rgba(221, 174, 105, 0.82)";
+      const sideX = direction.y * side * displaySize * 0.21 - direction.x * displaySize * 0.3;
+      const sideY = -direction.x * side * displaySize * 0.06 - direction.y * displaySize * 0.18 + displaySize * 0.28;
       renderContext.beginPath();
-      renderContext.moveTo(sideX, sideY + displaySize * 0.12);
+      renderContext.moveTo(sideX, sideY);
       renderContext.quadraticCurveTo(
-        sideX - direction.x * displaySize * 0.2,
-        sideY - direction.y * displaySize * 0.24,
-        sideX - direction.x * displaySize * 0.5,
-        sideY - direction.y * displaySize * 0.36
+        sideX - direction.x * displaySize * 0.08 + side * displaySize * 0.03,
+        sideY - direction.y * displaySize * 0.06 - displaySize * 0.035,
+        sideX - direction.x * displaySize * 0.17 + side * displaySize * 0.05,
+        sideY - direction.y * displaySize * 0.11
       );
       renderContext.stroke();
     }
@@ -26391,33 +27335,82 @@
   }
 
   function drawBossActorStepPads(renderContext, displaySize, definition, direction, walkPhase, moving) {
-    const stride = moving ? Math.sin(walkPhase) : Math.sin(state.clock * 2.2) * 0.26;
+    if (!moving) {
+      return;
+    }
+    const stride = Math.sin(walkPhase);
     const actor = definition.actor || {};
     renderContext.save();
-    renderContext.globalCompositeOperation = "screen";
-    renderContext.fillStyle = actor.footColor || definition.accent;
-    renderContext.strokeStyle = actor.motionColor || definition.accent;
-    renderContext.lineWidth = Math.max(1.2, displaySize * 0.018);
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.lineWidth = Math.max(0.9, displaySize * 0.011);
     for (const side of [-1, 1]) {
       const step = Math.sin(walkPhase + (side > 0 ? 0 : Math.PI));
-      const sideAxisX = direction.y !== 0 ? side * displaySize * 0.19 : side * displaySize * 0.1;
-      const sideAxisY = direction.x !== 0 ? side * displaySize * 0.035 : 0;
-      const forwardX = direction.x * step * displaySize * 0.1;
-      const forwardY = direction.y * step * displaySize * 0.045;
-      renderContext.globalAlpha = moving ? 0.28 + Math.max(0, step) * 0.2 : 0.16;
+      const sideAxisX = -direction.y * side * displaySize * 0.17;
+      const sideAxisY = direction.x * side * displaySize * 0.045;
+      const forwardX = direction.x * step * displaySize * 0.09;
+      const forwardY = direction.y * step * displaySize * 0.048;
+      const planted = clamp(1 - Math.max(0, -step) * 0.6, 0.35, 1);
+      renderContext.globalAlpha = 0.16 + planted * 0.16;
+      const gradient = renderContext.createRadialGradient(
+        sideAxisX + forwardX,
+        displaySize * 0.32 + sideAxisY + forwardY,
+        0,
+        sideAxisX + forwardX,
+        displaySize * 0.32 + sideAxisY + forwardY,
+        displaySize * 0.16
+      );
+      gradient.addColorStop(0, actor.footColor || definition.accent);
+      gradient.addColorStop(0.34, actor.motionColor || definition.accent);
+      gradient.addColorStop(1, "rgba(30, 18, 12, 0)");
+      renderContext.fillStyle = gradient;
+      renderContext.strokeStyle = "rgba(255, 225, 168, 0.38)";
       renderContext.beginPath();
       renderContext.ellipse(
         sideAxisX + forwardX,
-        displaySize * 0.32 + sideAxisY + forwardY + Math.abs(stride) * 1.2,
-        displaySize * (direction.x !== 0 ? 0.11 : 0.15),
-        displaySize * 0.042,
-        direction.x !== 0 ? 0.14 * direction.x : 0,
+        displaySize * 0.32 + sideAxisY + forwardY + Math.abs(stride) * displaySize * 0.008,
+        displaySize * (direction.x !== 0 ? 0.13 : 0.145),
+        displaySize * 0.035,
+        direction.x !== 0 ? 0.08 * direction.x : 0,
         0,
         Math.PI * 2
       );
       renderContext.fill();
       renderContext.stroke();
     }
+    renderContext.restore();
+  }
+
+  function drawBossFootfallDust(renderContext, boss, displaySize, definition, direction) {
+    const impact = clamp(boss.stepImpact || 0, 0, 1);
+    if (impact <= 0.02 || MOBILE_RUNTIME.reducedEffects) {
+      return;
+    }
+    const side = boss.stepFoot || 1;
+    const sideX = -direction.y * side * displaySize * 0.17;
+    const sideY = direction.x * side * displaySize * 0.045;
+    const spread = (1 - impact) * displaySize * 0.16;
+    renderContext.save();
+    renderContext.translate(
+      boss.x + sideX - direction.x * displaySize * 0.04,
+      boss.y + displaySize * 0.31 + sideY - direction.y * displaySize * 0.025
+    );
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.fillStyle = "rgba(231, 187, 119, 0.9)";
+    for (let index = 0; index < 4; index += 1) {
+      const fan = (index - 1.5) * displaySize * 0.055;
+      const x = -direction.x * spread + direction.y * fan;
+      const y = -direction.y * spread * 0.34 - direction.x * fan * 0.32;
+      renderContext.globalAlpha = impact * (0.22 - index * 0.025);
+      renderContext.beginPath();
+      renderContext.arc(x, y, displaySize * (0.018 + (1 - impact) * 0.015), 0, Math.PI * 2);
+      renderContext.fill();
+    }
+    renderContext.globalAlpha = impact * 0.18;
+    renderContext.strokeStyle = definition.accent;
+    renderContext.lineWidth = Math.max(1, displaySize * 0.01);
+    renderContext.beginPath();
+    renderContext.ellipse(0, 0, displaySize * (0.1 + (1 - impact) * 0.13), displaySize * 0.025, 0, 0, Math.PI * 2);
+    renderContext.stroke();
     renderContext.restore();
   }
 
@@ -26472,6 +27465,13 @@
 
   function drawBossActorSprite(renderContext, definition, directionName, displaySize) {
     const frame = getBossActorFrame(definition, directionName);
+    const mirrorHorizontally = directionName === "right";
+    renderContext.save();
+    if (mirrorHorizontally) {
+      // The authored side cells both look left. Mirror the right-facing cell so
+      // the face, shoulders and feet actually point along the travel vector.
+      renderContext.scale(-1, 1);
+    }
     renderContext.drawImage(
       GAME_ASSETS.bossActorSheet,
       frame.x,
@@ -26483,6 +27483,102 @@
       displaySize,
       displaySize
     );
+    renderContext.restore();
+  }
+
+  function drawBossWalkingSprite(renderContext, definition, directionName, displaySize, gait) {
+    const frame = getBossActorFrame(definition, directionName);
+    const sourceSplitY = 190;
+    const sourceLegY = 170;
+    const sourceLowerHeight = frame.height - sourceLegY;
+    const destinationTop = -displaySize * 0.62;
+    const scale = displaySize / frame.height;
+    const destinationSplitY = destinationTop + sourceLegY * scale;
+    const lowerHeight = sourceLowerHeight * scale;
+    const bodySway = gait.sideWave * displaySize * 0.012 * gait.blend;
+    const frontFacingArt = directionName === "down" || directionName === "up";
+    const mirrorHorizontally = directionName === "right";
+    const localDirection = {
+      x: mirrorHorizontally ? -gait.direction.x : gait.direction.x,
+      y: gait.direction.y
+    };
+    renderContext.save();
+    // A shadow applied separately to cropped torso/boot rectangles creates a
+    // visible horizontal seam. The encounter already has a grounded shadow,
+    // rim and core glow, so keep the articulated sprite itself seam-free.
+    renderContext.shadowBlur = 0;
+    renderContext.shadowColor = "transparent";
+    if (mirrorHorizontally) {
+      renderContext.scale(-1, 1);
+    }
+
+    const drawBootSlice = (side, alpha) => {
+      const step = gait.strideWave * side;
+      const strideDistance = step * displaySize * (frontFacingArt ? 0.046 : 0.075) * gait.blend;
+      const sideProfileStagger = frontFacingArt ? 0 : side * displaySize * 0.025 * gait.blend;
+      const forward = strideDistance + sideProfileStagger;
+      const lift = Math.max(0, step) * displaySize * (frontFacingArt ? 0.036 : 0.032) * gait.blend;
+      const sideSeparation = frontFacingArt ? side * displaySize * 0.014 : side * displaySize * 0.024;
+      const offsetX = localDirection.x * forward - localDirection.y * sideSeparation;
+      const offsetY = localDirection.y * forward * 0.72
+        + localDirection.x * sideSeparation * 0.16
+        - lift;
+      const sourceHalfWidth = frontFacingArt ? frame.width / 2 : 84;
+      const sourceX = frontFacingArt
+        ? frame.x + (side > 0 ? frame.width / 2 : 0)
+        : frame.x + 72;
+      const destinationWidth = sourceHalfWidth * scale;
+      const destinationX = frontFacingArt
+        ? (side > 0 ? 0 : -displaySize / 2)
+        : -displaySize / 2 + 72 * scale;
+
+      renderContext.save();
+      renderContext.globalAlpha = alpha;
+      renderContext.translate(offsetX, offsetY);
+      renderContext.drawImage(
+        GAME_ASSETS.bossActorSheet,
+        sourceX,
+        frame.y + sourceLegY,
+        sourceHalfWidth,
+        sourceLowerHeight,
+        destinationX,
+        destinationSplitY,
+        destinationWidth,
+        lowerHeight
+      );
+      renderContext.restore();
+    };
+
+    // One foot stays planted while the opposite foot advances. Side-facing
+    // cells contain a single profile leg, so that authored leg is drawn twice
+    // with opposing phases; this keeps two distinct boots under the body.
+    if (frontFacingArt) {
+      drawBootSlice(gait.strideWave >= 0 ? -1 : 1, 0.9);
+      drawBootSlice(gait.strideWave >= 0 ? 1 : -1, 1);
+    } else {
+      const recedingSide = gait.strideWave >= 0 ? -1 : 1;
+      drawBootSlice(recedingSide, 0.86);
+      drawBootSlice(-recedingSide, 1);
+    }
+
+    // The torso pivots at the hips but never bobs upward. All vertical motion
+    // belongs to the swinging foot, so the planted boot keeps the boss rooted.
+    renderContext.save();
+    renderContext.translate(bodySway, destinationTop + sourceSplitY * scale);
+    renderContext.rotate(-gait.strideWave * localDirection.x * 0.018 * gait.blend);
+    renderContext.drawImage(
+      GAME_ASSETS.bossActorSheet,
+      frame.x,
+      frame.y,
+      frame.width,
+      sourceSplitY,
+      -displaySize / 2,
+      -sourceSplitY * scale,
+      displaySize,
+      sourceSplitY * scale
+    );
+    renderContext.restore();
+    renderContext.restore();
   }
 
   function drawBossLegacySprite(renderContext, sprite, definition, width, height, progress) {
@@ -26781,11 +27877,100 @@
       ctx.fillStyle = "rgba(255,255,255,0.9)";
       ctx.font = `800 ${isPhonePortraitView() ? 16 : 18}px Assistant, system-ui, sans-serif`;
       ctx.fillText(
-        state.language === "en" ? "Survive the chase · conquer 3 ultimate questions" : "שורדים את המרדף · מנצחים 3 שאלות קצה",
+        state.language === "en"
+          ? "No need to chase — the boss catches you · answer to attack"
+          : "לא צריך לרדוף — הבוס יתפוס אותך · עונים נכון ותוקפים",
         WIDTH / 2,
         HEIGHT - barHeight * 0.22
       );
     }
+    ctx.restore();
+  }
+
+  function drawBossBattleHud() {
+    const boss = state.boss;
+    if (!boss || state.bossCinematic || state.phase === "victory") {
+      return;
+    }
+
+    const totalHealth = CONFIG.bossQuestionsPerStage;
+    const remainingHealth = Math.max(0, totalHealth - (boss.questionsCorrect || 0));
+    const projectionWidth = MOBILE_RUNTIME.projectionWidth || WIDTH;
+    const projectionHeight = MOBILE_RUNTIME.projectionHeight || HEIGHT;
+    const viewportLeft = (WIDTH - projectionWidth) / 2;
+    const viewportTop = (HEIGHT - projectionHeight) / 2;
+    const panelWidth = Math.min(isPhonePortraitView() ? 430 : 520, Math.max(280, projectionWidth - 28));
+    const panelHeight = isPhonePortraitView() ? 92 : 86;
+    const panelX = viewportLeft + (projectionWidth - panelWidth) / 2;
+    const panelY = viewportTop + 14;
+    const innerX = panelX + 18;
+    const innerWidth = panelWidth - 36;
+    const barY = panelY + 52;
+    const barHeight = 18;
+    const accent = boss.color || boss.definition?.accent || "#ff7a45";
+    const hitPulse = clamp(boss.hitFlash || 0, 0, 1);
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.shadowColor = "rgba(0,0,0,0.72)";
+    ctx.shadowBlur = 18;
+    drawRoundedRect(ctx, panelX, panelY, panelWidth, panelHeight, 20);
+    ctx.fillStyle = "rgba(5, 8, 18, 0.91)";
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.lineWidth = hitPulse > 0 ? 3.5 : 2;
+    ctx.strokeStyle = hitPulse > 0 ? "#fff7c6" : accent;
+    ctx.globalAlpha = 0.84 + hitPulse * 0.16;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#fff8dc";
+    ctx.font = `900 ${isPhonePortraitView() ? 20 : 22}px Assistant, system-ui, sans-serif`;
+    ctx.textAlign = state.language === "en" ? "left" : "right";
+    ctx.fillText(
+      state.language === "en" ? `${boss.name} · BOSS` : `${boss.name} · בוס`,
+      state.language === "en" ? innerX : innerX + innerWidth,
+      panelY + 23
+    );
+
+    ctx.fillStyle = "rgba(255,255,255,0.82)";
+    ctx.font = `800 ${isPhonePortraitView() ? 13 : 14}px Assistant, system-ui, sans-serif`;
+    ctx.textAlign = state.language === "en" ? "right" : "left";
+    ctx.fillText(
+      state.language === "en" ? "Correct answer = hit" : "תשובה נכונה = פגיעה",
+      state.language === "en" ? innerX + innerWidth : innerX,
+      panelY + 23
+    );
+
+    drawRoundedRect(ctx, innerX, barY, innerWidth, barHeight, 9);
+    ctx.fillStyle = "rgba(255,255,255,0.12)";
+    ctx.fill();
+
+    const segmentGap = 5;
+    const segmentWidth = (innerWidth - segmentGap * (totalHealth - 1)) / totalHealth;
+    for (let index = 0; index < totalHealth; index += 1) {
+      const x = innerX + index * (segmentWidth + segmentGap);
+      drawRoundedRect(ctx, x, barY, segmentWidth, barHeight, 7);
+      const active = index < remainingHealth;
+      ctx.fillStyle = active ? accent : "rgba(255,255,255,0.09)";
+      ctx.globalAlpha = active ? 0.96 : 1;
+      ctx.fill();
+      if (active) {
+        ctx.strokeStyle = "rgba(255,255,255,0.34)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 12px Assistant, system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(
+      state.language === "en" ? `${remainingHealth}/${totalHealth} HP` : `חיים ${remainingHealth}/${totalHealth}`,
+      panelX + panelWidth / 2,
+      barY + barHeight / 2
+    );
     ctx.restore();
   }
 
@@ -26831,8 +28016,13 @@
     const introPulse = state.bossIntro
       ? clamp(state.bossIntro.life / state.bossIntro.maxLife, 0, 1)
       : 0;
-    const directionName = boss.direction || "down";
-    const direction = DIRS[directionName] || DIRS.down;
+    const movementDirectionName = boss.direction && boss.direction !== "none"
+      ? boss.direction
+      : (boss.turnDirection || "down");
+    // The actor art follows the same cardinal direction as pathfinding: the
+    // face, shoulders, torso and feet all turn together with the movement.
+    const actorDirectionName = movementDirectionName;
+    const direction = DIRS[movementDirectionName] || DIRS.down;
     const chaseScale = state.bossIntro || progress < 0.95 ? 1 : 0.9;
     const actorBaseSize = definition.actor?.size || Math.max(definition.width, definition.height);
     const mobileActorScale = MOBILE_RUNTIME.coarse ? 1.06 : 1;
@@ -26841,48 +28031,57 @@
     const height = definition.height * chaseScale * (0.48 + progress * 0.52) * (1 + Math.cos(boss.wobble * 1.2) * 0.025);
     const lift = (1 - progress) * (MOBILE_RUNTIME.reducedEffects ? 38 : 92);
     const moving = (boss.lastMoveDistance || 0) > 0.04 && progress >= 0.78;
-    const walkPhase = boss.walkCycle || boss.wobble;
-    const footfall = Math.abs(Math.sin(walkPhase));
-    const walkBounce = moving ? footfall * 3.8 : Math.sin(boss.wobble * 0.82) * 1.2;
+    const walkPhase = Number.isFinite(boss.walkCycle) ? boss.walkCycle : 0;
+    const walkBlend = moving ? clamp(boss.walkBlend || 0, 0, 1) : 0;
+    const strideWave = Math.sin(walkPhase);
+    const sideWave = Math.cos(walkPhase);
+    const doubleStep = Math.abs(Math.sin(walkPhase * 2));
+    const footfall = clamp(boss.stepImpact || 0, 0, 1);
     const turnProgress = boss.turnAnimation > 0 ? clamp(boss.turnAnimation / 0.22, 0, 1) : 0;
-    const bob = Math.sin(boss.wobble) * 1.2 - walkBounce;
+    const idleBreath = moving ? 0 : Math.sin(boss.wobble * 0.82) * 0.8;
+    const groundedLift = moving ? 0 : idleBreath;
     const actorSheetReady = isImageReady(GAME_ASSETS.bossActorSheet);
 
-    drawBossActorTrail(ctx, boss, displaySize, definition);
+    if (state.bossIntro) {
+      drawBossActorTrail(ctx, boss, displaySize, definition);
+    }
     drawIceWorldActorContact(ctx, boss.x, boss.y + 3, displaySize, boss.wobble, false);
     drawBossActorBeacon(ctx, boss, displaySize, definition, introPulse);
+    drawBossFootfallDust(ctx, boss, displaySize, definition, direction);
     drawCharacterGroundShadow(ctx, boss.x, boss.y + 3, displaySize, definition.glow, {
       intensity: 0.68 + introPulse * 0.16,
-      squash: 1.16 + footfall * 0.22 + Math.abs(direction.x) * 0.16
+      squash: 1.12 + footfall * 0.09 + Math.abs(direction.x) * 0.1
     });
 
     ctx.save();
-    ctx.globalCompositeOperation = "screen";
-    ctx.globalAlpha = 0.18 + introPulse * 0.28;
-    ctx.strokeStyle = definition.accent;
-    ctx.lineWidth = Math.max(2.6, displaySize * 0.032);
-    ctx.beginPath();
-    ctx.ellipse(
-      boss.x,
-      boss.y + displaySize * 0.31,
-      displaySize * (0.46 + introPulse * 0.28),
-      displaySize * (0.13 + introPulse * 0.08),
-      0,
-      0,
-      Math.PI * 2
-    );
-    ctx.stroke();
+    if (introPulse > 0.02) {
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.18 + introPulse * 0.28;
+      ctx.strokeStyle = definition.accent;
+      ctx.lineWidth = Math.max(2.6, displaySize * 0.032);
+      ctx.beginPath();
+      ctx.ellipse(
+        boss.x,
+        boss.y + displaySize * 0.31,
+        displaySize * (0.46 + introPulse * 0.28),
+        displaySize * (0.13 + introPulse * 0.08),
+        0,
+        0,
+        Math.PI * 2
+      );
+      ctx.stroke();
+    }
 
     ctx.globalCompositeOperation = "source-over";
     ctx.globalAlpha = 1;
-    ctx.translate(boss.x, boss.y + lift + bob);
+    ctx.translate(boss.x, boss.y + lift + groundedLift);
     const turnDirection = DIRS[boss.turnDirection] || direction;
-    const directionLean = direction.x * 0.075 + direction.y * 0.026 + Math.sin(turnProgress * Math.PI) * turnDirection.x * 0.15;
-    const walkSquash = moving ? footfall * 0.055 : 0;
-    ctx.rotate(directionLean + Math.sin(boss.wobble * 0.45) * 0.02);
+    const directionLean = direction.x * 0.018 + Math.sin(turnProgress * Math.PI) * turnDirection.x * 0.025;
+    const landingSquash = footfall * 0.018 * walkBlend;
+    ctx.rotate(directionLean);
     ctx.scale(
-      1 + Math.abs(direction.x) * 0.03 + walkSquash,
-      1 + Math.abs(direction.y) * 0.025 - walkSquash * 0.45
+      1 + landingSquash * 0.55,
+      1 - landingSquash
     );
     ctx.shadowColor = definition.glow;
     ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 11 : 24;
@@ -26890,14 +28089,26 @@
     drawBossActorMotionArcs(ctx, displaySize, definition, direction, moving, footfall);
     drawBossActorStepPads(ctx, displaySize, definition, direction, walkPhase, moving);
     if (definition.proceduralStyle === "sun-garden-warden") {
-      drawSunGardenWarden(ctx, displaySize, directionName, walkPhase, state.phase === "question" && state.currentEnemyId === boss.id);
-      drawBossActorCoreCue(ctx, displaySize, definition, directionName, state.phase === "question" && state.currentEnemyId === boss.id);
+      drawSunGardenWarden(ctx, displaySize, actorDirectionName, walkPhase, state.phase === "question" && state.currentEnemyId === boss.id);
+      drawBossActorCoreCue(ctx, displaySize, definition, actorDirectionName, state.phase === "question" && state.currentEnemyId === boss.id);
     } else if (actorSheetReady) {
-      drawBossActorSprite(ctx, definition, directionName, displaySize);
-      drawCharacterRim(ctx, displaySize, definition.accent, {
-        intensity: state.bossIntro ? 0.46 : 0.28
-      });
-      drawBossActorCoreCue(ctx, displaySize, definition, directionName, state.phase === "question" && state.currentEnemyId === boss.id);
+      if (moving) {
+        drawBossWalkingSprite(ctx, definition, actorDirectionName, displaySize, {
+          blend: walkBlend,
+          strideWave,
+          sideWave,
+          doubleStep,
+          direction
+        });
+      } else {
+        drawBossActorSprite(ctx, definition, actorDirectionName, displaySize);
+      }
+      if (state.bossIntro || boss.hitFlash > 0 || (state.phase === "question" && state.currentEnemyId === boss.id)) {
+        drawCharacterRim(ctx, displaySize, definition.accent, {
+          intensity: state.bossIntro ? 0.46 : 0.3
+        });
+      }
+      drawBossActorCoreCue(ctx, displaySize, definition, actorDirectionName, state.phase === "question" && state.currentEnemyId === boss.id);
     } else {
       drawBossLegacySprite(ctx, sprite, definition, width, height, progress);
     }
@@ -27114,11 +28325,17 @@
     const moving = (playerState.lastMoveDistance || 0) > 0.04;
     const walkPhase = playerState.walkCycle || 0;
     const footfall = Math.abs(Math.sin(walkPhase));
-    const walkBounce = moving ? footfall * 3.8 : Math.sin(state.clock * 2.6) * 0.8;
-    const walkSquash = moving ? footfall * 0.082 : 0;
+    const walkBounce = moving
+      ? footfall * PLAYER_MAZE_PRESENTATION.movingBouncePx
+      : Math.sin(state.clock * 2.2) * PLAYER_MAZE_PRESENTATION.idleFloatPx;
+    const walkSquash = moving ? footfall * PLAYER_MAZE_PRESENTATION.squashAmount : 0;
     const directionLean = direction.x * 0.11 + direction.y * 0.06 + Math.sin(turnProgress * Math.PI) * direction.x * 0.24;
-    const horizontalStretch = moving && direction.x !== 0 ? 0.055 + walkSquash : 0;
-    const verticalStretch = moving && direction.y !== 0 ? 0.04 + walkSquash * 0.5 : 0;
+    const horizontalStretch = moving && direction.x !== 0
+      ? PLAYER_MAZE_PRESENTATION.horizontalStretch + walkSquash * 0.4
+      : 0;
+    const verticalStretch = moving && direction.y !== 0
+      ? PLAYER_MAZE_PRESENTATION.verticalStretch + walkSquash * 0.25
+      : 0;
     const hitSquash = Math.sin(hitProgress * Math.PI) * 0.18;
     const rewardLift = Math.sin((1 - rewardProgress) * Math.PI) * 8;
     const rewardScale = Math.sin((1 - rewardProgress) * Math.PI) * 0.12;
@@ -27129,6 +28346,7 @@
       intensity: playerState.invulnerable > 0 ? 0.72 : 0.52,
       squash: animation.active ? 1.14 : 1 + walkSquash * 1.8 + rewardScale * 2 - hitSquash
     });
+    drawPlayerGroundSteps(renderContext, playerState, displaySize, theme, moving, direction, walkPhase);
     renderContext.translate(playerState.x, playerState.y);
     renderContext.translate(
       direction.x * walkSquash * 7 - direction.x * questionBrake * 8 + Math.sin(hitProgress * Math.PI * 2) * hitProgress * 4,
@@ -27254,6 +28472,36 @@
         Math.PI * 2
       );
       renderContext.fill();
+    }
+    renderContext.restore();
+  }
+
+  function drawPlayerGroundSteps(renderContext, playerState, displaySize, theme, moving, direction, walkPhase) {
+    if (!moving) {
+      return;
+    }
+
+    const perpendicular = { x: -direction.y, y: direction.x };
+    const pace = Math.sin(walkPhase);
+    renderContext.save();
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.lineCap = "round";
+    renderContext.lineWidth = Math.max(1.1, displaySize * 0.03);
+
+    for (const side of [-1, 1]) {
+      const planted = clamp(0.34 + (side === 1 ? pace : -pace) * 0.34, 0.08, 0.68);
+      const sideOffset = side * displaySize * 0.18;
+      const travelOffset = -displaySize * (0.07 + planted * 0.055);
+      const x = playerState.x + perpendicular.x * sideOffset + direction.x * travelOffset;
+      const y = playerState.y + displaySize * 0.31 + perpendicular.y * sideOffset + direction.y * travelOffset * 0.34;
+      renderContext.globalAlpha = 0.12 + planted * 0.24;
+      renderContext.strokeStyle = side === 1
+        ? (theme.motionAccent || theme.detailColor || "#ffffff")
+        : theme.glowColor;
+      renderContext.beginPath();
+      renderContext.moveTo(x - perpendicular.x * displaySize * 0.06, y - perpendicular.y * displaySize * 0.06);
+      renderContext.lineTo(x + perpendicular.x * displaySize * 0.06, y + perpendicular.y * displaySize * 0.06);
+      renderContext.stroke();
     }
     renderContext.restore();
   }
@@ -27493,10 +28741,8 @@
     const progress = 1 - effect.life / effect.maxLife;
     const startDistance = displaySize * 0.78;
     const direction = DIRS[playerState.eatDirection] || DIRS.right;
-    const mouthX = playerState.eatDirection === "left"
-      ? -displaySize * 0.2
-      : displaySize * 0.2;
-    const mouthY = 0;
+    const mouthX = direction.x * displaySize * 0.06;
+    const mouthY = displaySize * 0.08 + direction.y * displaySize * 0.035;
     const startX = direction.x * startDistance;
     const startY = direction.y * startDistance;
     const x = startX + (mouthX - startX) * progress;
@@ -27601,9 +28847,10 @@
   }
 
   function getPlayerCharacterVisualScale() {
-    return MOBILE_RUNTIME.coarse
+    const viewportScale = MOBILE_RUNTIME.coarse
       ? WORLD_ONE_AUTHORED_ACTOR_SCALE.playerPhone
       : WORLD_ONE_AUTHORED_ACTOR_SCALE.playerWide;
+    return viewportScale * PLAYER_MAZE_PRESENTATION.scaleBoost;
   }
 
   function getEnemyCharacterVisualScale() {
@@ -28004,11 +29251,167 @@
   }
 
   let simulationDebtSeconds = 0;
+  let deterministicVerificationCaptureActive = false;
+  let previousPresentationClock = state.clock;
+  let previousCameraPresentation = null;
+  let lastPresentedPlayerPosition = null;
+  let lastPresentationInterpolationAlpha = 1;
+  let lastSimulationStepsPerFrame = 0;
+  const previousActorPresentation = new WeakMap();
+  const lastActorPresentation = new WeakMap();
+
+  function capturePresentationStateBeforeSimulationStep() {
+    previousPresentationClock = state.clock;
+    previousCameraPresentation = {
+      x: CAMERA.x,
+      y: CAMERA.y,
+      zoom: CAMERA.zoom
+    };
+
+    const actors = [state.player, ...state.enemies, state.boss];
+    for (const actor of actors) {
+      if (!actor) {
+        continue;
+      }
+      previousActorPresentation.set(actor, {
+        x: actor.x,
+        y: actor.y,
+        walkCycle: actor.walkCycle,
+        wobble: actor.wobble,
+        visualPulse: actor.visualPulse
+      });
+    }
+  }
+
+  function interpolatePresentationValue(previous, current, alpha) {
+    if (!Number.isFinite(previous) || !Number.isFinite(current)) {
+      return current;
+    }
+    return previous + (current - previous) * alpha;
+  }
+
+  function interpolatePresentationCycle(previous, current, alpha) {
+    if (!Number.isFinite(previous) || !Number.isFinite(current)) {
+      return current;
+    }
+    let delta = current - previous;
+    if (delta > Math.PI) {
+      delta -= Math.PI * 2;
+    } else if (delta < -Math.PI) {
+      delta += Math.PI * 2;
+    }
+    return previous + delta * alpha;
+  }
+
+  function applyInterpolatedActorPresentation(actor, alpha) {
+    const previous = actor ? previousActorPresentation.get(actor) : null;
+    if (!actor || !previous) {
+      return null;
+    }
+
+    const restore = {
+      actor,
+      x: actor.x,
+      y: actor.y,
+      walkCycle: actor.walkCycle,
+      wobble: actor.wobble,
+      visualPulse: actor.visualPulse
+    };
+    const distance = Math.hypot(actor.x - previous.x, actor.y - previous.y);
+    const continuousDistanceLimit = Math.max(
+      TILE * 0.65,
+      (Number(actor.speed) || CONFIG.speed.player) * SIMULATION_STEP_SECONDS * 2.5 + 3
+    );
+
+    // Do not smear teleports, respawns or verification repositioning across
+    // the maze. Normal movement and turn snapping stay well below this guard.
+    const continuousMovement = distance <= continuousDistanceLimit;
+    if (continuousMovement) {
+      actor.x = interpolatePresentationValue(previous.x, restore.x, alpha);
+      actor.y = interpolatePresentationValue(previous.y, restore.y, alpha);
+    }
+
+    const lastPresented = lastActorPresentation.get(actor);
+    const lastPresentationStillContinuous = lastPresented
+      && Math.hypot(lastPresented.x - previous.x, lastPresented.y - previous.y) <= continuousDistanceLimit * 2;
+    if (continuousMovement && lastPresentationStillContinuous) {
+      const presentedDistance = Math.hypot(actor.x - lastPresented.x, actor.y - lastPresented.y);
+      const maximumPresentedStep = Math.max(
+        TILE * 0.18,
+        (Number(actor.speed) || CONFIG.speed.player) * SIMULATION_STEP_SECONDS * 2 + 0.35
+      );
+      if (presentedDistance > maximumPresentedStep) {
+        const ratio = maximumPresentedStep / presentedDistance;
+        actor.x = lastPresented.x + (actor.x - lastPresented.x) * ratio;
+        actor.y = lastPresented.y + (actor.y - lastPresented.y) * ratio;
+      }
+    }
+    lastActorPresentation.set(actor, { x: actor.x, y: actor.y });
+    actor.walkCycle = interpolatePresentationCycle(previous.walkCycle, restore.walkCycle, alpha);
+    actor.wobble = interpolatePresentationValue(previous.wobble, restore.wobble, alpha);
+    actor.visualPulse = interpolatePresentationValue(previous.visualPulse, restore.visualPulse, alpha);
+    return restore;
+  }
+
+  function renderInterpolatedFrame(alpha) {
+    const interpolationAlpha = clamp(alpha, 0, 1);
+    const simulationClock = state.clock;
+    const simulationCamera = {
+      x: CAMERA.x,
+      y: CAMERA.y,
+      zoom: CAMERA.zoom
+    };
+    const actorRestores = [state.player, ...state.enemies, state.boss]
+      .map((actor) => applyInterpolatedActorPresentation(actor, interpolationAlpha))
+      .filter(Boolean);
+
+    if (
+      previousCameraPresentation
+      && Math.hypot(
+        CAMERA.x - previousCameraPresentation.x,
+        CAMERA.y - previousCameraPresentation.y
+      ) <= TILE * 5
+    ) {
+      CAMERA.x = interpolatePresentationValue(previousCameraPresentation.x, simulationCamera.x, interpolationAlpha);
+      CAMERA.y = interpolatePresentationValue(previousCameraPresentation.y, simulationCamera.y, interpolationAlpha);
+      if (Math.abs(CAMERA.zoom - previousCameraPresentation.zoom) <= 0.22) {
+        CAMERA.zoom = interpolatePresentationValue(previousCameraPresentation.zoom, simulationCamera.zoom, interpolationAlpha);
+      }
+    }
+    if (Math.abs(simulationClock - previousPresentationClock) <= MAX_SIMULATION_DEBT_SECONDS + 1e-6) {
+      state.clock = interpolatePresentationValue(previousPresentationClock, simulationClock, interpolationAlpha);
+    }
+
+    lastPresentationInterpolationAlpha = interpolationAlpha;
+    lastPresentedPlayerPosition = state.player ? {
+      x: state.player.x,
+      y: state.player.y,
+      simulationX: actorRestores.find((item) => item.actor === state.player)?.x ?? state.player.x,
+      simulationY: actorRestores.find((item) => item.actor === state.player)?.y ?? state.player.y
+    } : null;
+
+    try {
+      render();
+    } finally {
+      state.clock = simulationClock;
+      CAMERA.x = simulationCamera.x;
+      CAMERA.y = simulationCamera.y;
+      CAMERA.zoom = simulationCamera.zoom;
+      for (const restore of actorRestores) {
+        restore.actor.x = restore.x;
+        restore.actor.y = restore.y;
+        restore.actor.walkCycle = restore.walkCycle;
+        restore.actor.wobble = restore.wobble;
+        restore.actor.visualPulse = restore.visualPulse;
+      }
+    }
+  }
 
   function gameLoop(now) {
-    if (shouldSkipGameplayFrame()) {
+    if (shouldSkipGameplayFrame() || deterministicVerificationCaptureActive) {
       state.lastTime = now;
       simulationDebtSeconds = 0;
+      lastSimulationStepsPerFrame = 0;
       requestAnimationFrame(gameLoop);
       return;
     }
@@ -28025,14 +29428,13 @@
       simulationDebtSeconds + 1e-9 >= SIMULATION_STEP_SECONDS
       && simulationSteps < MAX_SIMULATION_STEPS_PER_FRAME
     ) {
+      capturePresentationStateBeforeSimulationStep();
       update(SIMULATION_STEP_SECONDS);
       simulationDebtSeconds = Math.max(0, simulationDebtSeconds - SIMULATION_STEP_SECONDS);
       simulationSteps += 1;
     }
-    if (simulationSteps === 0) {
-      update(0);
-    }
-    render();
+    lastSimulationStepsPerFrame = simulationSteps;
+    renderInterpolatedFrame(simulationDebtSeconds / SIMULATION_STEP_SECONDS);
     requestAnimationFrame(gameLoop);
   }
 
@@ -28325,6 +29727,16 @@
       playUiSound("tabChange");
     });
   });
+  els.operationModeInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!input.checked) {
+        return;
+      }
+      setOperationMode(input.value);
+      playUiMotion(input.closest("label"), "tabChange");
+      playUiSound("tabChange");
+    });
+  });
   els.difficultyPanel?.addEventListener("click", (event) => {
     const label = event.target?.closest?.(".difficulty-options label");
     const input = label?.querySelector?.("input[name='difficulty']");
@@ -28541,6 +29953,7 @@
   setMode(state.mode, false);
   setCharacter(state.characterId, false);
   syncDifficultyInputs();
+  setOperationMode(state.operationMode, false);
   setControlMode(state.controlMode, false);
   setLanguage(state.language, false);
   syncTimeLimitToggle();
