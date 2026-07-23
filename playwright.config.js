@@ -2,11 +2,12 @@ const { defineConfig, devices } = require("@playwright/test");
 
 const testPort = Number(process.env.KAFLUL_PLAYWRIGHT_PORT) || 4173;
 const testBaseURL = `http://127.0.0.1:${testPort}`;
+const isCI = Boolean(process.env.CI);
 
 module.exports = defineConfig({
   testDir: "./tests",
-  timeout: 30_000,
-  expect: { timeout: 8_000 },
+  timeout: isCI ? 90_000 : 30_000,
+  expect: { timeout: isCI ? 20_000 : 8_000 },
   retries: 1,
   workers: 1,
   reporter: "list",

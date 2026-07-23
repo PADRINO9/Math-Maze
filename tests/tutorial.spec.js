@@ -32,7 +32,7 @@ async function waitForNextStep(page, step) {
 }
 
 test("a new player must follow the pointing hand and every required click explains the game", async ({ page }) => {
-  test.setTimeout(70_000);
+  test.setTimeout(process.env.CI ? 120_000 : 70_000);
   const errors = collectRuntimeErrors(page);
   await page.addInitScript(() => {
     if (sessionStorage.getItem("kaflulCoachTutorialTestInitialized") === "yes") {
