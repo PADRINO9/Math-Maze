@@ -310,13 +310,21 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   const errors = collectRuntimeErrors(page);
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => typeof window.__mathMazeRuntime?.getBossEncounterSnapshot === "function");
-  await page.evaluate(() => {
+  const entrance = await page.evaluate(() => {
     window.__mathMazeRuntime.forceLevelForVerification(0);
     window.__mathMazeRuntime.setBossQuestionFeedbackDelayForVerification(120);
     window.__mathMazeRuntime.forceBossChallenge();
+    // Keep the live chase animation, but cap repaint pressure so state and DOM
+    // assertions remain responsive on single-core CI runners.
+    window.requestAnimationFrame = (callback) =>
+      window.setTimeout(() => callback(performance.now()), 50);
+    return {
+      ...window.__mathMazeRuntime.getBossEncounterSnapshot(),
+      hudStageText: document.getElementById("hud-progress-stage")?.textContent || "",
+      targetCorrectText: document.getElementById("target-correct")?.textContent || ""
+    };
   });
 
-  const entrance = await page.evaluate(() => window.__mathMazeRuntime.getBossEncounterSnapshot());
   expect(entrance.regularCorrect).toBe(24);
   expect(entrance.bossCorrect).toBe(0);
   expect(entrance.boss.configKey).toBe("stage1");
@@ -327,8 +335,8 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   expect(entrance.boss.healthTotal).toBe(3);
   expect(entrance.guideText).toContain("תשובה נכונה = פגיעה");
   expect(entrance.cinematic.vanishingEnemyCount).toBeGreaterThanOrEqual(6);
-  await expect(page.locator("#hud-progress-stage")).toContainText("בוס שלב 1");
-  await expect(page.locator("#target-correct")).toHaveText("/3");
+  expect(entrance.hudStageText).toContain("בוס שלב 1");
+  expect(entrance.targetCorrectText).toBe("/3");
 
   await page.evaluate(() => window.__mathMazeRuntime.completeBossCinematicForVerification());
   await page.waitForFunction(() => window.__mathMazeRuntime.getBossEncounterSnapshot().cinematic === null);

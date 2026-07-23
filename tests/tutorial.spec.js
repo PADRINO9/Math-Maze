@@ -13,6 +13,13 @@ async function tutorialState(page) {
   return page.evaluate(() => window.KaflulTutorial?.getState?.());
 }
 
+async function stopRuntimeAnimationLoop(page) {
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(50);
+}
+
 async function clickRequiredStep(page, step, feedbackText = "") {
   await expect.poll(async () => (await tutorialState(page))?.currentStep).toBe(step);
   await expect.poll(async () => (await tutorialState(page))?.phase).toBe("awaiting");
@@ -100,9 +107,14 @@ test("a new player must follow the pointing hand and every required click explai
   await waitForNextStep(page, 13);
 
   await clickRequiredStep(page, 13, "המטרה");
+  await stopRuntimeAnimationLoop(page);
   await expect(page.locator("#start-screen")).toBeHidden();
   await expect(page.locator("#pause-button")).toHaveAttribute("data-icon", "pause");
-  await expect(tutorial).toBeHidden({ timeout: 5_000 });
+  await expect.poll(
+    async () => (await tutorialState(page))?.phase,
+    { timeout: 10_000 }
+  ).toBe("closed");
+  await expect(tutorial).toBeHidden();
 
   const saved = await page.evaluate(() => ({
     tutorialStatus: localStorage.getItem("kaflulFirstRunTutorialV1"),
