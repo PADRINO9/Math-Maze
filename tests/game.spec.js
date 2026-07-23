@@ -334,6 +334,10 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   const chaseCamera = await page.evaluate(() => window.__mathMazeRuntime.getBossCameraSnapshotForVerification());
   expect(chaseCamera.player.onScreen).toBe(true);
   expect(chaseCamera.boss.onScreen).toBe(true);
+  await page.waitForFunction(() => {
+    const boss = window.__mathMazeRuntime.getBossSnapshot();
+    return boss?.moving && boss.walkBlend > 0.75 && boss.walkCycle > 0;
+  });
   const chaseMotion = await page.evaluate(() => window.__mathMazeRuntime.getBossSnapshot());
   expect(chaseMotion.moving).toBe(true);
   expect(chaseMotion.walkBlend).toBeGreaterThan(0.75);
