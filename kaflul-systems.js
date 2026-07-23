@@ -637,6 +637,31 @@
     return `KF1-${compact.match(/.{1,5}/g)?.join("-") || ""}`;
   }
 
+  function parseDuelCodePayload(value) {
+    const payload = String(value || "");
+    const expectedLength = 28;
+    if (payload.length === expectedLength) {
+      return payload;
+    }
+
+    let compact = "";
+    let cursor = 0;
+    while (cursor < payload.length) {
+      compact += payload.slice(cursor, cursor + 5);
+      cursor += 5;
+      if (cursor < payload.length) {
+        if (payload[cursor] !== "-") {
+          throw new Error("invalid_duel_format");
+        }
+        cursor += 1;
+      }
+    }
+    if (compact.length !== expectedLength) {
+      throw new Error("invalid_duel_payload");
+    }
+    return compact;
+  }
+
   function createFriendChallenge(challenge, result = {}) {
     const questions = Array.isArray(challenge?.questions) ? challenge.questions.slice(0, 10) : [];
     if (questions.length !== 10) {
@@ -668,7 +693,7 @@
     if (!/^KF1-/i.test(normalized)) {
       throw new Error("invalid_duel_prefix");
     }
-    const compact = normalized.slice(4).replace(/-/g, "");
+    const compact = parseDuelCodePayload(normalized.slice(4));
     const bytes = base64UrlToBytes(compact);
     if (bytes.length !== 21 || bytes[0] !== 1) {
       throw new Error("invalid_duel_payload");

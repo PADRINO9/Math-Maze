@@ -323,6 +323,23 @@ test("friend challenge code round-trips the same questions and score target", ()
   assert.throws(() => systems.decodeFriendChallenge(`${code.slice(0, -1)}${replacement}`), /invalid_duel_checksum/);
 });
 
+test("friend challenge decoder preserves payload hyphens that look like group separators", () => {
+  const daily = systems.createDailyChallenge({
+    "7×8": { correct: 0, wrong: 4, streak: 0 }
+  }, "2026-07-25");
+  const code = systems.createFriendChallenge(daily, { score: 4200, accuracy: 90 });
+  const formattedPayload = code.slice(4);
+  const rawPayload = Array.from(formattedPayload)
+    .filter((_, index) => (index + 1) % 6 !== 0)
+    .join("");
+
+  assert.match(rawPayload, /-/);
+  const decoded = systems.decodeFriendChallenge(code);
+  assert.equal(decoded.seed, daily.seed);
+  assert.equal(decoded.targetScore, 4200);
+  assert.equal(decoded.targetAccuracy, 90);
+});
+
 test("duel history records whether the shared score was beaten", () => {
   const save = systems.createDefaultSave();
   const won = systems.recordDuelResult(save, {
