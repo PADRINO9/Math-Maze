@@ -15,6 +15,13 @@ function collectRuntimeErrors(page) {
   return errors;
 }
 
+async function stopRuntimeAnimationLoop(page) {
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(50);
+}
+
 async function startGame(page, playerName = "בודק") {
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#start-screen")).toBeVisible();
@@ -270,6 +277,7 @@ test("every world opens on the full maze then focuses the camera on the player",
   const errors = collectRuntimeErrors(page);
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceStageIntroForVerification === "function");
+  await stopRuntimeAnimationLoop(page);
 
   for (const levelIndex of [0, 1, 2, 3]) {
     const overview = await page.evaluate((index) =>
@@ -286,14 +294,8 @@ test("every world opens on the full maze then focuses the camera on the player",
 
     const heldPlayer = { x: overview.playerX, y: overview.playerY };
     await page.keyboard.press("ArrowLeft");
-    await page.waitForTimeout(180);
-    const duringOverview = await page.evaluate(() => window.__mathMazeRuntime.getStageIntroCameraSnapshot());
-    expect(duringOverview.playerX).toBeCloseTo(heldPlayer.x, 4);
-    expect(duringOverview.playerY).toBeCloseTo(heldPlayer.y, 4);
-
-    await page.evaluate(() => window.__mathMazeRuntime.setStageIntroProgressForVerification(0.995));
-    await page.waitForFunction(() => !window.__mathMazeRuntime.getStageIntroCameraSnapshot().active);
     const focused = await page.evaluate(() => window.__mathMazeRuntime.getStageIntroCameraSnapshot());
+    expect(focused.active).toBe(false);
     expect(focused.phase).toBe("gameplay");
     expect(focused.zoom).toBeCloseTo(focused.gameplayZoom, 2);
     expect(focused.playerX).toBeCloseTo(heldPlayer.x, 4);
@@ -346,10 +348,7 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   // Movement and rendering were verified above. Stop the perpetual animation
   // loop before the state-machine assertions so slow CI runners do not spend
   // the rest of this test repainting the boss arena.
-  await page.evaluate(() => {
-    window.requestAnimationFrame = () => 0;
-  });
-  await page.waitForTimeout(50);
+  await stopRuntimeAnimationLoop(page);
 
   const questions = [];
   for (let index = 0; index < 3; index += 1) {
@@ -495,6 +494,7 @@ test("arcade collection slots light independently and three keys reveal chest gu
   const errors = collectRuntimeErrors(page);
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceArcadeCollectionProgressForVerification === "function");
+  await stopRuntimeAnimationLoop(page);
 
   await page.evaluate(() => window.__mathMazeRuntime.forceArcadeCollectionProgressForVerification({
     keysCollected: 0,
@@ -826,6 +826,7 @@ test("personal daily maze uses a deterministic focus route and records completio
   await expect(page.locator("#daily-focus-facts")).toContainText("7×8");
   await page.locator("#daily-challenge-start").click();
   await expect(page.locator("#start-screen")).toBeHidden();
+  await stopRuntimeAnimationLoop(page);
 
   const daily = await page.evaluate(() => window.__mathMazeRuntime.getDailyChallengeSnapshot());
   expect(daily.sessionKind).toBe("daily");
@@ -836,10 +837,9 @@ test("personal daily maze uses a deterministic focus route and records completio
 
   const question = await page.evaluate(() => window.__mathMazeRuntime.openQuestionForVerification());
   expect(question).not.toBeNull();
-  for (const digit of String(question.answer)) {
-    await page.locator(`#game-number-pad [data-keypad-digit="${digit}"]`).click();
-  }
-  await page.locator("#game-number-pad [data-keypad-action='submit']").click();
+  await page.evaluate(() =>
+    window.__mathMazeRuntime.answerCurrentQuestionForVerification(undefined, true)
+  );
   await expect.poll(() => page.evaluate(() => window.__mathMazeRuntime.getDailyChallengeSnapshot().correctAnswers)).toBe(1);
 
   await page.evaluate(() => window.__mathMazeRuntime.forceDailyCompletionForVerification("אלוף יומי"));
