@@ -412,6 +412,28 @@ test("private weekly league invite and result codes create sorted local standing
   );
 });
 
+test("private weekly league codes preserve base64url hyphens inside their payloads", () => {
+  const inviteCode = systems.createPrivateLeagueInvite("2026-07-20", "league-owner-4");
+  assert.match(inviteCode, /--/);
+  const invite = systems.decodePrivateLeagueInvite(inviteCode);
+  assert.equal(invite.weekKey, "2026-07-20");
+  assert.equal(invite.code, inviteCode);
+
+  const league = systems.decodePrivateLeagueInvite(
+    systems.createPrivateLeagueInvite("2026-07-20", "owner-one")
+  );
+  const resultCode = systems.createWeeklyLeagueResultCode(league, 10, {
+    points: 7300,
+    daysPlayed: 4,
+    accuracy: 91
+  });
+  assert.match(resultCode, /--/);
+  const result = systems.decodeWeeklyLeagueResultCode(resultCode);
+  assert.equal(result.memberId, 10);
+  assert.equal(result.points, 7300);
+  assert.equal(result.code, resultCode);
+});
+
 test("leaderboard entries sort and filter by mode and difficulty", () => {
   const save = systems.createDefaultSave();
   const low = systems.createLeaderboardEntry({

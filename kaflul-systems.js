@@ -786,12 +786,41 @@
     return `${prefix}-${raw.match(/.{1,5}/g)?.join("-") || ""}`;
   }
 
+  function parseLeagueCodePayload(value, expectedByteLength) {
+    const payload = String(value || "");
+    const expectedRawLength = Math.ceil((expectedByteLength * 8) / 6);
+    if (payload.length === expectedRawLength) {
+      return payload;
+    }
+
+    let compact = "";
+    let cursor = 0;
+    while (compact.length < expectedRawLength) {
+      const chunkLength = Math.min(5, expectedRawLength - compact.length);
+      if (cursor + chunkLength > payload.length) {
+        throw new Error("invalid_league_payload");
+      }
+      compact += payload.slice(cursor, cursor + chunkLength);
+      cursor += chunkLength;
+      if (compact.length < expectedRawLength) {
+        if (payload[cursor] !== "-") {
+          throw new Error("invalid_league_format");
+        }
+        cursor += 1;
+      }
+    }
+    if (cursor !== payload.length) {
+      throw new Error("invalid_league_payload");
+    }
+    return compact;
+  }
+
   function parseLeagueCode(code, prefix, expectedLength) {
     const normalized = String(code || "").trim();
     if (!new RegExp(`^${prefix}-`, "i").test(normalized)) {
       throw new Error("invalid_league_prefix");
     }
-    const compact = normalized.slice(prefix.length + 1).replace(/-/g, "");
+    const compact = parseLeagueCodePayload(normalized.slice(prefix.length + 1), expectedLength);
     const bytes = base64UrlToBytes(compact);
     if (bytes.length !== expectedLength || bytes[0] !== 1) {
       throw new Error("invalid_league_payload");
