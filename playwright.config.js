@@ -13,7 +13,8 @@ module.exports = defineConfig({
   reporter: "list",
   use: {
     baseURL: testBaseURL,
-    trace: "retain-on-failure",
+    reducedMotion: isCI ? "reduce" : "no-preference",
+    trace: isCI ? "off" : "retain-on-failure",
     screenshot: "only-on-failure"
   },
   projects: [

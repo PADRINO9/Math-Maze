@@ -15,6 +15,12 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - desktop-chromium
+          - mobile-chromium
     steps:
       - name: Check out current revision
         uses: actions/checkout@v4
@@ -44,8 +50,8 @@ jobs:
           node --check maze-enhancements.js
           node --check tests/game.spec.js
 
-      - name: Run desktop and mobile browser tests
-        run: npm run test:smoke
+      - name: Run browser tests
+        run: npm run test:smoke -- --project=${{ matrix.project }}
 
       - name: Verify clean patch formatting
         run: git diff --check
