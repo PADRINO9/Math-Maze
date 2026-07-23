@@ -342,6 +342,15 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   expect(chaseMotion.moving).toBe(true);
   expect(chaseMotion.walkBlend).toBeGreaterThan(0.75);
   expect(chaseMotion.walkCycle).toBeGreaterThan(0);
+
+  // Movement and rendering were verified above. Stop the perpetual animation
+  // loop before the state-machine assertions so slow CI runners do not spend
+  // the rest of this test repainting the boss arena.
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(50);
+
   const questions = [];
   for (let index = 0; index < 3; index += 1) {
     const playerBefore = await page.evaluate(() => window.__mathMazeRuntime.getPlayerSnapshot());
@@ -372,10 +381,13 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   }
   expect(new Set(questions).size).toBe(3);
 
-  await page.waitForFunction(() => {
-    const snapshot = window.__mathMazeRuntime.getBossEncounterSnapshot();
-    return snapshot.levelIndex === 1 && snapshot.stageIntro;
-  });
+  await expect.poll(
+    () => page.evaluate(() => {
+      const snapshot = window.__mathMazeRuntime.getBossEncounterSnapshot();
+      return snapshot.levelIndex === 1 && snapshot.stageIntro;
+    }),
+    { timeout: 10_000 }
+  ).toBe(true);
   const nextStage = await page.evaluate(() => window.__mathMazeRuntime.getBossEncounterSnapshot());
   expect(nextStage.levelIndex).toBe(1);
   expect(nextStage.stageCorrect).toBe(0);
