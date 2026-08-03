@@ -1,0 +1,841 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "world": {
+        "index": 0,
+        "key": "ice",
+        "name": "גן השמש"
+      },
+      "passed": true,
+      "desktop": {
+        "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-entrance-1280x720.png",
+        "snapshot": {
+          "phase": "playing",
+          "levelIndex": 0,
+          "correctAnswers": 24,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-0-24",
+            "name": "שומר הזריחה",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.934999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.753809992078142,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": true,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.502923976608187
+          },
+          "cinematic": {
+            "elapsed": 1.4333333333333331,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "errors": []
+      },
+      "mobile": {
+        "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-24x3-390x844.webm",
+        "entranceScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-entrance-390x844.png",
+        "questionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-question-1-390x844.png",
+        "explosionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-explosion-390x844.png",
+        "entrance": {
+          "phase": "playing",
+          "levelIndex": 0,
+          "correctAnswers": 24,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-0-24",
+            "name": "שומר הזריחה",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.934999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.753809992078142,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": true,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.502923976608187
+          },
+          "cinematic": {
+            "elapsed": 1.4333333333333331,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "questions": [
+          {
+            "answer": 81,
+            "text": "⁦9 × 9 = ?⁩",
+            "status": "בוס גן השמש · שאלת בוס 1 מתוך 3",
+            "bossQuestionNumber": 1,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 72,
+            "text": "⁦9 × 8 = ?⁩",
+            "status": "בוס גן השמש · שאלת בוס 2 מתוך 3",
+            "bossQuestionNumber": 2,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 64,
+            "text": "⁦8 × 8 = ?⁩",
+            "status": "בוס גן השמש · שאלת בוס 3 מתוך 3",
+            "bossQuestionNumber": 3,
+            "bossQuestionTotal": 3
+          }
+        ],
+        "damageSnapshots": [
+          {
+            "phase": "playing",
+            "levelIndex": 0,
+            "correctAnswers": 25,
+            "stageCorrect": 25,
+            "regularCorrect": 24,
+            "bossCorrect": 1,
+            "boss": {
+              "id": "boss-0-24",
+              "name": "שומר הזריחה",
+              "x": 492,
+              "y": 369.264,
+              "direction": "up",
+              "moving": true,
+              "walkCycle": 2.7400946928204073,
+              "lastMoveDistance": 1.367999999999995,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": true,
+              "iceTrailCount": 0,
+              "questionsCorrect": 1,
+              "questionsTotal": 3,
+              "damageLevel": 1,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "playing",
+            "levelIndex": 0,
+            "correctAnswers": 26,
+            "stageCorrect": 26,
+            "regularCorrect": 24,
+            "bossCorrect": 2,
+            "boss": {
+              "id": "boss-0-24",
+              "name": "שומר הזריחה",
+              "x": 492,
+              "y": 369.264,
+              "direction": "up",
+              "moving": true,
+              "walkCycle": 2.047949385640817,
+              "lastMoveDistance": 1.367999999999995,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": true,
+              "iceTrailCount": 0,
+              "questionsCorrect": 2,
+              "questionsTotal": 3,
+              "damageLevel": 2,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "victory",
+            "levelIndex": 0,
+            "correctAnswers": 27,
+            "stageCorrect": 27,
+            "regularCorrect": 24,
+            "bossCorrect": 3,
+            "boss": null,
+            "cinematic": null,
+            "defeatTransition": {
+              "elapsed": 0.03333333333333333,
+              "duration": 1.72,
+              "accent": "#f6bd45",
+              "bossName": "שומר הזריחה",
+              "fromLevelIndex": 0,
+              "nextLevelIndex": 1,
+              "isFinalAdventureBoss": false,
+              "awardedLife": true
+            },
+            "stageIntro": false
+          }
+        ],
+        "finalSnapshot": {
+          "phase": "playing",
+          "levelIndex": 1,
+          "correctAnswers": 27,
+          "stageCorrect": 0,
+          "regularCorrect": 0,
+          "bossCorrect": 0,
+          "boss": null,
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "world": {
+        "index": 1,
+        "key": "lava",
+        "name": "עולם הלבה"
+      },
+      "passed": true,
+      "desktop": {
+        "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-2-lava-boss-entrance-1280x720.png",
+        "snapshot": {
+          "phase": "playing",
+          "levelIndex": 1,
+          "correctAnswers": 51,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-1-51",
+            "name": "לבת-הר",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.934999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.753809992078142,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": false,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.502923976608187
+          },
+          "cinematic": {
+            "elapsed": 1.4333333333333331,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "errors": []
+      },
+      "mobile": {
+        "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-2-lava-boss-24x3-390x844.webm",
+        "entranceScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-2-lava-boss-entrance-390x844.png",
+        "questionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-2-lava-boss-question-1-390x844.png",
+        "explosionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-2-lava-boss-explosion-390x844.png",
+        "entrance": {
+          "phase": "playing",
+          "levelIndex": 1,
+          "correctAnswers": 51,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-1-51",
+            "name": "לבת-הר",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.934999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.753809992078142,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": false,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.502923976608187
+          },
+          "cinematic": {
+            "elapsed": 1.4333333333333331,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "questions": [
+          {
+            "answer": 81,
+            "text": "⁦9 × 9 = ?⁩",
+            "status": "בוס עולם הלבה · שאלת בוס 1 מתוך 3",
+            "bossQuestionNumber": 1,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 72,
+            "text": "⁦9 × 8 = ?⁩",
+            "status": "בוס עולם הלבה · שאלת בוס 2 מתוך 3",
+            "bossQuestionNumber": 2,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 64,
+            "text": "⁦8 × 8 = ?⁩",
+            "status": "בוס עולם הלבה · שאלת בוס 3 מתוך 3",
+            "bossQuestionNumber": 3,
+            "bossQuestionTotal": 3
+          }
+        ],
+        "damageSnapshots": [
+          {
+            "phase": "playing",
+            "levelIndex": 1,
+            "correctAnswers": 52,
+            "stageCorrect": 25,
+            "regularCorrect": 24,
+            "bossCorrect": 1,
+            "boss": {
+              "id": "boss-1-51",
+              "name": "לבת-הר",
+              "x": 492,
+              "y": 374.48832000000004,
+              "direction": "down",
+              "moving": true,
+              "walkCycle": 4.412798692820462,
+              "lastMoveDistance": 1.2441600000000221,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": false,
+              "iceTrailCount": 0,
+              "questionsCorrect": 1,
+              "questionsTotal": 3,
+              "damageLevel": 1,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "playing",
+            "levelIndex": 1,
+            "correctAnswers": 53,
+            "stageCorrect": 26,
+            "regularCorrect": 24,
+            "bossCorrect": 2,
+            "boss": {
+              "id": "boss-1-51",
+              "name": "לבת-הר",
+              "x": 492,
+              "y": 374.48832000000004,
+              "direction": "down",
+              "moving": true,
+              "walkCycle": 5.552794185640939,
+              "lastMoveDistance": 1.2441600000000221,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": false,
+              "iceTrailCount": 0,
+              "questionsCorrect": 2,
+              "questionsTotal": 3,
+              "damageLevel": 2,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "victory",
+            "levelIndex": 1,
+            "correctAnswers": 54,
+            "stageCorrect": 27,
+            "regularCorrect": 24,
+            "bossCorrect": 3,
+            "boss": null,
+            "cinematic": null,
+            "defeatTransition": {
+              "elapsed": 0.03333333333333333,
+              "duration": 1.72,
+              "accent": "#ff7a1a",
+              "bossName": "לבת-הר",
+              "fromLevelIndex": 1,
+              "nextLevelIndex": 2,
+              "isFinalAdventureBoss": false,
+              "awardedLife": true
+            },
+            "stageIntro": false
+          }
+        ],
+        "finalSnapshot": {
+          "phase": "playing",
+          "levelIndex": 2,
+          "correctAnswers": 54,
+          "stageCorrect": 0,
+          "regularCorrect": 0,
+          "bossCorrect": 0,
+          "boss": null,
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "world": {
+        "index": 2,
+        "key": "ancient",
+        "name": "עולם העתיקות"
+      },
+      "passed": true,
+      "desktop": {
+        "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-3-ancient-boss-entrance-1280x720.png",
+        "snapshot": {
+          "phase": "playing",
+          "levelIndex": 2,
+          "correctAnswers": 78,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-2-78",
+            "name": "מלך-הביצה",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.979999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.7855537228027191,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": false,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.5146198830409355
+          },
+          "cinematic": {
+            "elapsed": 1.4666666666666663,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "errors": []
+      },
+      "mobile": {
+        "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-3-ancient-boss-24x3-390x844.webm",
+        "entranceScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-3-ancient-boss-entrance-390x844.png",
+        "questionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-3-ancient-boss-question-1-390x844.png",
+        "explosionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-3-ancient-boss-explosion-390x844.png",
+        "entrance": {
+          "phase": "playing",
+          "levelIndex": 2,
+          "correctAnswers": 78,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-2-78",
+            "name": "מלך-הביצה",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.912499999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.7374424931459935,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": false,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.4970760233918128
+          },
+          "cinematic": {
+            "elapsed": 1.4166666666666665,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "questions": [
+          {
+            "answer": 81,
+            "text": "⁦9 × 9 = ?⁩",
+            "status": "בוס שלב 3 · שאלת בוס 1 מתוך 3",
+            "bossQuestionNumber": 1,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 72,
+            "text": "⁦9 × 8 = ?⁩",
+            "status": "בוס שלב 3 · שאלת בוס 2 מתוך 3",
+            "bossQuestionNumber": 2,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 64,
+            "text": "⁦8 × 8 = ?⁩",
+            "status": "בוס שלב 3 · שאלת בוס 3 מתוך 3",
+            "bossQuestionNumber": 3,
+            "bossQuestionTotal": 3
+          }
+        ],
+        "damageSnapshots": [
+          {
+            "phase": "playing",
+            "levelIndex": 2,
+            "correctAnswers": 79,
+            "stageCorrect": 25,
+            "regularCorrect": 24,
+            "bossCorrect": 1,
+            "boss": {
+              "id": "boss-2-78",
+              "name": "מלך-הביצה",
+              "x": 492,
+              "y": 374.83968000000004,
+              "direction": "down",
+              "moving": true,
+              "walkCycle": 3.925733092820448,
+              "lastMoveDistance": 1.419840000000022,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": false,
+              "iceTrailCount": 0,
+              "questionsCorrect": 1,
+              "questionsTotal": 3,
+              "damageLevel": 1,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "playing",
+            "levelIndex": 2,
+            "correctAnswers": 80,
+            "stageCorrect": 26,
+            "regularCorrect": 24,
+            "bossCorrect": 2,
+            "boss": {
+              "id": "boss-2-78",
+              "name": "מלך-הביצה",
+              "x": 492,
+              "y": 374.83968000000004,
+              "direction": "down",
+              "moving": true,
+              "walkCycle": 1.7654552784613182,
+              "lastMoveDistance": 1.419840000000022,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": false,
+              "iceTrailCount": 0,
+              "questionsCorrect": 2,
+              "questionsTotal": 3,
+              "damageLevel": 2,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "victory",
+            "levelIndex": 2,
+            "correctAnswers": 81,
+            "stageCorrect": 27,
+            "regularCorrect": 24,
+            "bossCorrect": 3,
+            "boss": null,
+            "cinematic": null,
+            "defeatTransition": {
+              "elapsed": 0.03333333333333333,
+              "duration": 1.72,
+              "accent": "#9bd846",
+              "bossName": "מלך-הביצה",
+              "fromLevelIndex": 2,
+              "nextLevelIndex": 3,
+              "isFinalAdventureBoss": false,
+              "awardedLife": true
+            },
+            "stageIntro": false
+          }
+        ],
+        "finalSnapshot": {
+          "phase": "playing",
+          "levelIndex": 3,
+          "correctAnswers": 81,
+          "stageCorrect": 0,
+          "regularCorrect": 0,
+          "bossCorrect": 0,
+          "boss": null,
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "world": {
+        "index": 3,
+        "key": "diamond",
+        "name": "עולם היהלומים"
+      },
+      "passed": true,
+      "desktop": {
+        "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-4-diamond-boss-entrance-1280x720.png",
+        "snapshot": {
+          "phase": "playing",
+          "levelIndex": 3,
+          "correctAnswers": 105,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-3-105",
+            "name": "כתר-הליקוי",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.979999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.7855537228027191,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": false,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.5146198830409355
+          },
+          "cinematic": {
+            "elapsed": 1.4666666666666663,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "errors": []
+      },
+      "mobile": {
+        "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-4-diamond-boss-24x3-390x844.webm",
+        "entranceScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-4-diamond-boss-entrance-390x844.png",
+        "questionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-4-diamond-boss-question-1-390x844.png",
+        "explosionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-4-diamond-boss-explosion-390x844.png",
+        "entrance": {
+          "phase": "playing",
+          "levelIndex": 3,
+          "correctAnswers": 105,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-3-105",
+            "name": "כתר-הליקוי",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.912499999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.7374424931459935,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": false,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.4970760233918128
+          },
+          "cinematic": {
+            "elapsed": 1.4166666666666665,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "questions": [
+          {
+            "answer": 81,
+            "text": "⁦9 × 9 = ?⁩",
+            "status": "בוס שלב 4 · שאלת בוס 1 מתוך 3",
+            "bossQuestionNumber": 1,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 72,
+            "text": "⁦9 × 8 = ?⁩",
+            "status": "בוס שלב 4 · שאלת בוס 2 מתוך 3",
+            "bossQuestionNumber": 2,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 64,
+            "text": "⁦8 × 8 = ?⁩",
+            "status": "בוס שלב 4 · שאלת בוס 3 מתוך 3",
+            "bossQuestionNumber": 3,
+            "bossQuestionTotal": 3
+          }
+        ],
+        "damageSnapshots": [
+          {
+            "phase": "playing",
+            "levelIndex": 3,
+            "correctAnswers": 106,
+            "stageCorrect": 25,
+            "regularCorrect": 24,
+            "bossCorrect": 1,
+            "boss": {
+              "id": "boss-3-105",
+              "name": "כתר-הליקוי",
+              "x": 492,
+              "y": 368.49,
+              "direction": "up",
+              "moving": true,
+              "walkCycle": 0.9492293856408178,
+              "lastMoveDistance": 1.7549999999999955,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": false,
+              "iceTrailCount": 0,
+              "questionsCorrect": 1,
+              "questionsTotal": 3,
+              "damageLevel": 1,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "playing",
+            "levelIndex": 3,
+            "correctAnswers": 107,
+            "stageCorrect": 26,
+            "regularCorrect": 24,
+            "bossCorrect": 2,
+            "boss": {
+              "id": "boss-3-105",
+              "name": "כתר-הליקוי",
+              "x": 492,
+              "y": 368.49,
+              "direction": "up",
+              "moving": true,
+              "walkCycle": 0.05207553591999137,
+              "lastMoveDistance": 1.7549999999999955,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": false,
+              "iceTrailCount": 0,
+              "questionsCorrect": 2,
+              "questionsTotal": 3,
+              "damageLevel": 2,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "victory",
+            "levelIndex": 3,
+            "correctAnswers": 108,
+            "stageCorrect": 27,
+            "regularCorrect": 24,
+            "bossCorrect": 3,
+            "boss": null,
+            "cinematic": null,
+            "defeatTransition": {
+              "elapsed": 0.03333333333333333,
+              "duration": 1.72,
+              "accent": "#a66bff",
+              "bossName": "כתר-הליקוי",
+              "fromLevelIndex": 3,
+              "nextLevelIndex": 3,
+              "isFinalAdventureBoss": true,
+              "awardedLife": true
+            },
+            "stageIntro": false
+          }
+        ],
+        "finalSnapshot": {
+          "phase": "ended",
+          "levelIndex": 3,
+          "correctAnswers": 108,
+          "stageCorrect": 27,
+          "regularCorrect": 24,
+          "bossCorrect": 3,
+          "boss": null,
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "errors": []
+      }
+    }
+  ]
+}

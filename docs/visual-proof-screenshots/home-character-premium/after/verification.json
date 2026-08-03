@@ -1,0 +1,50 @@
+[
+  {
+    "viewport": "desktop-1280x720",
+    "passed": true,
+    "nabatickReaction": {
+      "checked": true,
+      "selectedCharacter": "nabatick",
+      "reaction": "selected",
+      "imageState": "selected",
+      "animationName": "premiumNabatickSelect"
+    },
+    "biflyReaction": {
+      "checked": true,
+      "selectedCharacter": "bifly",
+      "reaction": "selected",
+      "imageState": "selected",
+      "animationName": "premiumBiflySelect"
+    },
+    "settled": {
+      "reaction": "idle",
+      "imageState": "idle",
+      "animationName": "premiumBiflyIdle"
+    },
+    "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/home-character-premium/after/desktop-1280x720-selection.webm"
+  },
+  {
+    "viewport": "mobile-390x844",
+    "passed": true,
+    "nabatickReaction": {
+      "checked": true,
+      "selectedCharacter": "nabatick",
+      "reaction": "selected",
+      "imageState": "selected",
+      "animationName": "premiumNabatickSelect"
+    },
+    "biflyReaction": {
+      "checked": true,
+      "selectedCharacter": "bifly",
+      "reaction": "selected",
+      "imageState": "selected",
+      "animationName": "premiumBiflySelect"
+    },
+    "settled": {
+      "reaction": "idle",
+      "imageState": "idle",
+      "animationName": "premiumBiflyIdle"
+    },
+    "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/home-character-premium/after/mobile-390x844-selection.webm"
+  }
+]

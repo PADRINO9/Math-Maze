@@ -1,0 +1,13 @@
+{
+  "worldId": "lava",
+  "displayName": "Lava World",
+  "primaryColor": "#ff8a24",
+  "secondaryColor": "#5b0904",
+  "wallColor": "#8f4630",
+  "floorColor": "#171311",
+  "collectibleColor": "#fff2cf",
+  "glowColor": "rgba(255, 122, 26, 0.62)",
+  "particleType": "embers",
+  "decorStyle": "basalt chips, cooled lava cracks, ash marks",
+  "portalStyle": "molten ring arch"
+}

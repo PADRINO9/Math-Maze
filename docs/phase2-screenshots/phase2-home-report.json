@@ -1,0 +1,732 @@
+{
+  "phase": 2,
+  "capturedAt": "2026-07-12T19:11:44.831Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "ok": false,
+  "results": [
+    {
+      "name": "390x844-portrait",
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "file": "docs/phase2-screenshots/phase2-home-390x844-portrait.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "manifestLoaded": true,
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 390,
+          "height": 844,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "visible": true
+          },
+          ".home-player-bar": {
+            "x": 24,
+            "y": 18,
+            "width": 342,
+            "height": 55,
+            "visible": true
+          },
+          ".home-player-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".menu-best-card": {
+            "x": 24,
+            "y": 23,
+            "width": 148,
+            "height": 57,
+            "visible": true
+          },
+          "#leaderboard-open": {
+            "x": 279,
+            "y": 30,
+            "width": 42,
+            "height": 42,
+            "visible": true
+          },
+          ".menu-actions": {
+            "x": 184,
+            "y": 24,
+            "width": 182,
+            "height": 55,
+            "visible": true
+          },
+          "#menu-sound-button": {
+            "x": 231,
+            "y": 30,
+            "width": 42,
+            "height": 42,
+            "visible": true
+          },
+          "#menu-settings-button": {
+            "x": 184,
+            "y": 30,
+            "width": 42,
+            "height": 42,
+            "visible": true
+          },
+          ".menu-logo": {
+            "x": 12,
+            "y": 98,
+            "width": 366,
+            "height": 138,
+            "visible": true
+          },
+          ".home-hero-scene": {
+            "x": 12,
+            "y": 211,
+            "width": 366,
+            "height": 517,
+            "visible": true
+          },
+          ".home-progress-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#start-button": {
+            "x": 12,
+            "y": 737,
+            "width": 366,
+            "height": 74,
+            "visible": true
+          },
+          ".home-pregame-summary": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".home-bottom-nav": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "selector": ".menu-best-copy strong",
+            "text": "0",
+            "clientWidth": 15,
+            "scrollWidth": 15,
+            "clientHeight": 26,
+            "scrollHeight": 29
+          }
+        ]
+      }
+    },
+    {
+      "name": "430x932-portrait",
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "file": "docs/phase2-screenshots/phase2-home-430x932-portrait.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "manifestLoaded": true,
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 430,
+          "height": 932,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932,
+            "visible": true
+          },
+          ".home-player-bar": {
+            "x": 24,
+            "y": 18,
+            "width": 382,
+            "height": 61,
+            "visible": true
+          },
+          ".home-player-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".menu-best-card": {
+            "x": 24,
+            "y": 24,
+            "width": 163,
+            "height": 61,
+            "visible": true
+          },
+          "#leaderboard-open": {
+            "x": 308,
+            "y": 31,
+            "width": 46,
+            "height": 46,
+            "visible": true
+          },
+          ".menu-actions": {
+            "x": 204,
+            "y": 24,
+            "width": 202,
+            "height": 61,
+            "visible": true
+          },
+          "#menu-sound-button": {
+            "x": 256,
+            "y": 31,
+            "width": 46,
+            "height": 46,
+            "visible": true
+          },
+          "#menu-settings-button": {
+            "x": 204,
+            "y": 31,
+            "width": 46,
+            "height": 46,
+            "visible": true
+          },
+          ".menu-logo": {
+            "x": 12,
+            "y": 108,
+            "width": 406,
+            "height": 151,
+            "visible": true
+          },
+          ".home-hero-scene": {
+            "x": 12,
+            "y": 232,
+            "width": 406,
+            "height": 575,
+            "visible": true
+          },
+          ".home-progress-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#start-button": {
+            "x": 12,
+            "y": 817,
+            "width": 406,
+            "height": 82,
+            "visible": true
+          },
+          ".home-pregame-summary": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".home-bottom-nav": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "selector": ".menu-best-copy strong",
+            "text": "0",
+            "clientWidth": 17,
+            "scrollWidth": 17,
+            "clientHeight": 29,
+            "scrollHeight": 32
+          }
+        ]
+      }
+    },
+    {
+      "name": "844x390-landscape",
+      "width": 844,
+      "height": 390,
+      "mobile": true,
+      "file": "docs/phase2-screenshots/phase2-home-844x390-landscape.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "manifestLoaded": true,
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 844,
+          "height": 390,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390,
+            "visible": true
+          },
+          ".home-player-bar": {
+            "x": 34,
+            "y": 22,
+            "width": 776,
+            "height": 77,
+            "visible": true
+          },
+          ".home-player-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".menu-best-card": {
+            "x": 34,
+            "y": 24,
+            "width": 180,
+            "height": 66,
+            "visible": true
+          },
+          "#leaderboard-open": {
+            "x": 712,
+            "y": 47,
+            "width": 52,
+            "height": 52,
+            "visible": true
+          },
+          ".menu-actions": {
+            "x": 577,
+            "y": 33,
+            "width": 233,
+            "height": 52,
+            "visible": true
+          },
+          "#menu-sound-button": {
+            "x": 637,
+            "y": 33,
+            "width": 52,
+            "height": 52,
+            "visible": true
+          },
+          "#menu-settings-button": {
+            "x": 577,
+            "y": 33,
+            "width": 52,
+            "height": 52,
+            "visible": true
+          },
+          ".menu-logo": {
+            "x": 199,
+            "y": 81,
+            "width": 445,
+            "height": 74,
+            "visible": true
+          },
+          ".home-hero-scene": {
+            "x": 199,
+            "y": 158,
+            "width": 445,
+            "height": 160,
+            "visible": true
+          },
+          ".home-progress-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#start-button": {
+            "x": 199,
+            "y": 305,
+            "width": 445,
+            "height": 90,
+            "visible": true
+          },
+          ".home-pregame-summary": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".home-bottom-nav": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [
+          {
+            "selector": "#start-button",
+            "rect": {
+              "x": 199,
+              "y": 305,
+              "width": 445,
+              "height": 90,
+              "visible": true
+            }
+          }
+        ],
+        "overflowingText": []
+      }
+    },
+    {
+      "name": "1280x720-desktop",
+      "width": 1280,
+      "height": 720,
+      "mobile": false,
+      "file": "docs/phase2-screenshots/phase2-home-1280x720-desktop.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "manifestLoaded": true,
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 1280,
+          "height": 720,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "visible": true
+          },
+          ".home-player-bar": {
+            "x": 60,
+            "y": 40,
+            "width": 1160,
+            "height": 99,
+            "visible": true
+          },
+          ".home-player-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".menu-best-card": {
+            "x": 60,
+            "y": 43,
+            "width": 256,
+            "height": 85,
+            "visible": true
+          },
+          "#leaderboard-open": {
+            "x": 1118,
+            "y": 68,
+            "width": 52,
+            "height": 52,
+            "visible": true
+          },
+          ".menu-actions": {
+            "x": 976,
+            "y": 54,
+            "width": 244,
+            "height": 52,
+            "visible": true
+          },
+          "#menu-sound-button": {
+            "x": 1040,
+            "y": 54,
+            "width": 52,
+            "height": 52,
+            "visible": true
+          },
+          "#menu-settings-button": {
+            "x": 976,
+            "y": 54,
+            "width": 52,
+            "height": 52,
+            "visible": true
+          },
+          ".menu-logo": {
+            "x": 230,
+            "y": 124,
+            "width": 820,
+            "height": 122,
+            "visible": true
+          },
+          ".home-hero-scene": {
+            "x": 230,
+            "y": 244,
+            "width": 820,
+            "height": 330,
+            "visible": true
+          },
+          ".home-progress-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#start-button": {
+            "x": 335,
+            "y": 582,
+            "width": 610,
+            "height": 91,
+            "visible": true
+          },
+          ".home-pregame-summary": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".home-bottom-nav": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": []
+      }
+    },
+    {
+      "name": "1440x900-desktop",
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "file": "docs/phase2-screenshots/phase2-home-1440x900-desktop.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "manifestLoaded": true,
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 1440,
+          "height": 900,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "visible": true
+          },
+          ".home-player-bar": {
+            "x": 66,
+            "y": 46,
+            "width": 1308,
+            "height": 105,
+            "visible": true
+          },
+          ".home-player-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".menu-best-card": {
+            "x": 66,
+            "y": 46,
+            "width": 276,
+            "height": 91,
+            "visible": true
+          },
+          "#leaderboard-open": {
+            "x": 1263,
+            "y": 74,
+            "width": 57,
+            "height": 57,
+            "visible": true
+          },
+          ".menu-actions": {
+            "x": 1111,
+            "y": 60,
+            "width": 263,
+            "height": 57,
+            "visible": true
+          },
+          "#menu-sound-button": {
+            "x": 1180,
+            "y": 60,
+            "width": 57,
+            "height": 57,
+            "visible": true
+          },
+          "#menu-settings-button": {
+            "x": 1111,
+            "y": 60,
+            "width": 57,
+            "height": 57,
+            "visible": true
+          },
+          ".menu-logo": {
+            "x": 310,
+            "y": 130,
+            "width": 820,
+            "height": 153,
+            "visible": true
+          },
+          ".home-hero-scene": {
+            "x": 310,
+            "y": 279,
+            "width": 820,
+            "height": 463,
+            "visible": true
+          },
+          ".home-progress-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#start-button": {
+            "x": 415,
+            "y": 749,
+            "width": 610,
+            "height": 99,
+            "visible": true
+          },
+          ".home-pregame-summary": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".home-bottom-nav": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": []
+      }
+    }
+  ],
+  "acceptance": {
+    "ok": false,
+    "checks": {
+      "characterSelected": true,
+      "modeSheetOpened": false,
+      "difficultySheetOpened": false,
+      "settingsOpened": true,
+      "settingsClosed": false,
+      "soundPersistedBeforeReload": true,
+      "progressFocused": false,
+      "characterGalleryOpened": false,
+      "gameFocused": false,
+      "keyboardReachedControl": true,
+      "leaderboardOpened": false,
+      "persistedCharacter": true,
+      "persistedMode": true,
+      "persistedDifficulty": true,
+      "persistedNickname": true,
+      "persistedSound": true,
+      "gameStarted": false,
+      "returnedToMenu": true,
+      "noRuntimeErrors": true,
+      "noConsoleErrors": true
+    },
+    "persisted": {
+      "character": "nabatick",
+      "mode": "adventure",
+      "difficulty": "advanced",
+      "nickname": "בודק בית",
+      "soundIcon": "sound-off"
+    },
+    "probes": {
+      "settingsProbe": {
+        "selector": "#menu-settings-button",
+        "point": {
+          "x": 227,
+          "y": 54
+        },
+        "hitTag": "SPAN",
+        "hitId": null,
+        "hitClass": "ui-icon-wrap",
+        "actionableId": "menu-settings-button",
+        "actionableClass": "menu-icon-button"
+      },
+      "soundProbe": {
+        "selector": "#menu-sound-button",
+        "point": {
+          "x": 279,
+          "y": 54
+        },
+        "hitTag": "SPAN",
+        "hitId": null,
+        "hitClass": "ui-icon-wrap",
+        "actionableId": "menu-sound-button",
+        "actionableClass": "menu-icon-button"
+      }
+    },
+    "events": [],
+    "runtimeErrors": []
+  }
+}

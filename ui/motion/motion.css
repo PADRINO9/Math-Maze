@@ -1,0 +1,222 @@
+/* Phase 6: shared Kaflul motion language. Layout-neutral: transform, opacity, and bounded particles only. */
+
+:root {
+  --kf-motion-duration-instant: 80ms;
+  --kf-motion-duration-press: 110ms;
+  --kf-motion-duration-release: 150ms;
+  --kf-motion-duration-enter: 240ms;
+  --kf-motion-duration-exit: 120ms;
+  --kf-motion-duration-feedback: 620ms;
+  --kf-motion-duration-reward: 860ms;
+  --kf-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --kf-motion-ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --kf-motion-ease-overshoot: cubic-bezier(0.2, 1.22, 0.22, 1);
+  --kf-motion-scale-press: 0.982;
+  --kf-motion-scale-release: 1.012;
+  --kf-motion-scale-overshoot: 1.035;
+  --kf-motion-particle-limit: 10;
+}
+
+.kf-motion-press {
+  animation: kfMotionPress var(--kf-motion-duration-press) var(--kf-motion-ease-out) both;
+  will-change: transform;
+}
+
+.kf-motion-release {
+  animation: kfMotionRelease var(--kf-motion-duration-release) var(--kf-motion-ease-overshoot) both;
+  will-change: transform;
+}
+
+.kf-motion-screen-enter,
+.kf-motion-modal-open,
+.kf-motion-sheet-open {
+  animation: kfMotionEnter var(--kf-motion-duration-enter) var(--kf-motion-ease-overshoot) both;
+  will-change: opacity, transform;
+}
+
+.kf-motion-screen-exit,
+.kf-motion-modal-close,
+.kf-motion-sheet-close {
+  animation: kfMotionExit var(--kf-motion-duration-exit) var(--kf-motion-ease-in) both;
+  will-change: opacity, transform;
+}
+
+.kf-motion-tab-change,
+.kf-motion-badge,
+.kf-motion-score-count,
+.kf-motion-mission-complete {
+  animation: kfMotionPop var(--kf-motion-duration-feedback) var(--kf-motion-ease-overshoot) both;
+  will-change: transform;
+}
+
+.kf-motion-combo-milestone,
+.kf-motion-reward,
+.kf-motion-new-record {
+  animation: kfMotionReward var(--kf-motion-duration-reward) var(--kf-motion-ease-overshoot) both;
+  will-change: transform, opacity;
+}
+
+.kf-motion-life-lost,
+.kf-motion-locked {
+  animation: kfMotionDeny var(--kf-motion-duration-feedback) var(--kf-motion-ease-out) both;
+  will-change: transform;
+}
+
+.kf-motion-character-select {
+  animation: kfCharacterSelect 520ms var(--kf-motion-ease-overshoot) both;
+  will-change: transform, opacity;
+}
+
+.kf-motion-character-tap {
+  animation: kfCharacterTap 420ms var(--kf-motion-ease-overshoot) both;
+  will-change: transform;
+}
+
+.kf-motion-world-transition {
+  animation: kfWorldTransition 760ms var(--kf-motion-ease-out) both;
+  will-change: transform, opacity;
+}
+
+.kf-motion-particle {
+  position: fixed;
+  z-index: 220;
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 999px;
+  background: var(--kf-motion-particle-color, var(--kf-color-gold, #ffd84a));
+  box-shadow: 0 0 12px currentColor;
+  color: var(--kf-motion-particle-color, var(--kf-color-gold, #ffd84a));
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  animation: kfMotionParticle 560ms var(--kf-motion-ease-out) both;
+}
+
+@media (hover: none), (pointer: coarse) {
+  #start-screen .menu-particle,
+  #start-screen .hero-route {
+    animation: none;
+  }
+}
+
+[data-kf-motion-state="closing"] {
+  pointer-events: none;
+}
+
+@keyframes kfMotionPress {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(1px) scale(var(--kf-motion-scale-press)); }
+}
+
+@keyframes kfMotionRelease {
+  0% { transform: translateY(1px) scale(var(--kf-motion-scale-press)); }
+  58% { transform: translateY(-1px) scale(var(--kf-motion-scale-release)); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes kfMotionEnter {
+  0% { opacity: 0; transform: translateY(12px) scale(0.985); }
+  70% { opacity: 1; transform: translateY(-1px) scale(1.006); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes kfMotionExit {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(8px) scale(0.99); }
+}
+
+@keyframes kfMotionPop {
+  0% { transform: scale(1); }
+  42% { transform: scale(var(--kf-motion-scale-overshoot)); }
+  100% { transform: scale(1); }
+}
+
+@keyframes kfMotionReward {
+  0% { opacity: 0.92; transform: translateY(0) scale(1); }
+  32% { opacity: 1; transform: translateY(-3px) scale(1.045); }
+  64% { transform: translateY(1px) scale(0.992); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes kfMotionDeny {
+  0%, 100% { transform: translateX(0); }
+  18% { transform: translateX(-5px); }
+  36% { transform: translateX(5px); }
+  54% { transform: translateX(-3px); }
+  72% { transform: translateX(2px); }
+}
+
+@keyframes kfCharacterSelect {
+  0% { opacity: 0.96; transform: translateY(0) scale(1); }
+  42% { opacity: 1; transform: translateY(-8px) scale(1.045); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes kfCharacterTap {
+  0%, 100% { transform: translateY(0) scale(1); }
+  42% { transform: translateY(7px) scale(0.972, 1.028); }
+  72% { transform: translateY(-5px) scale(1.018, 0.992); }
+}
+
+@keyframes kfWorldTransition {
+  0% { opacity: 0.94; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.012); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes kfMotionParticle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.65);
+  }
+  24% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform:
+      translate3d(var(--kf-motion-particle-x, 0), var(--kf-motion-particle-y, -28px), 0)
+      scale(0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --kf-motion-duration-instant: 1ms;
+    --kf-motion-duration-press: 1ms;
+    --kf-motion-duration-release: 1ms;
+    --kf-motion-duration-enter: 1ms;
+    --kf-motion-duration-exit: 1ms;
+    --kf-motion-duration-feedback: 1ms;
+    --kf-motion-duration-reward: 1ms;
+  }
+
+  .menu-enemy,
+  .menu-particle,
+  .hero-enemy,
+  .hero-route,
+  .hero-animation-image,
+  .hero-animation-layer,
+  .hero-animation-sheet,
+  .hero-animation-rig {
+    animation: none !important;
+  }
+
+  .kf-motion-particle {
+    display: none;
+  }
+}
+
+html.kf-reduced-motion .menu-enemy,
+html.kf-reduced-motion .menu-particle,
+html.kf-reduced-motion .hero-enemy,
+html.kf-reduced-motion .hero-route,
+html.kf-reduced-motion .hero-animation-image,
+html.kf-reduced-motion .hero-animation-layer,
+html.kf-reduced-motion .hero-animation-sheet,
+html.kf-reduced-motion .hero-animation-rig {
+  animation: none !important;
+}
+
+html.kf-reduced-motion .kf-motion-particle {
+  display: none;
+}

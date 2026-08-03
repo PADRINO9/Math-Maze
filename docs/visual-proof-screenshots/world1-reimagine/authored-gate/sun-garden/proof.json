@@ -1,0 +1,406 @@
+{
+  "generatedAt": "2026-07-13T03:04:13.471Z",
+  "label": "authored-gate",
+  "concept": "sun-garden",
+  "world": "world-1",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "playing",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/authored-gate/sun-garden/authored-gate-sun-garden-desktop-1280x720.png",
+      "sha256": "027df59ca3c17f88e897a2af8c884147609bc66aec3152b3ec86eeb7d549e1fb",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "top": 69
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false,
+        "boss": null
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "playing",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/authored-gate/sun-garden/authored-gate-sun-garden-mobile-390x844.png",
+      "sha256": "23c9ddcba8ba6e0eb7506597d80f18535ad86cab08b24a34011737c62d579ada",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false,
+        "boss": null
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "question",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/authored-gate/sun-garden/authored-gate-sun-garden-mobile-question-390x844.png",
+      "sha256": "f5977ff559e584f7ac7a0390ecb428d8cdb7909f12b10fed0f72d8c167b59075",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "question",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "question",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": true,
+        "boss": null
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "boss",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/authored-gate/sun-garden/authored-gate-sun-garden-mobile-boss-390x844.png",
+      "sha256": "a0e8eaf813070a64c9ae8a9ab9f1d0b74ab77d41d4dfc54a206b39b6b0e1c5ce",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 586.3000000000003,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false,
+        "boss": {
+          "id": "boss-0-24",
+          "name": "שומר הזריחה",
+          "x": 492,
+          "y": 372,
+          "direction": "down",
+          "moving": false,
+          "walkCycle": 0.7704450000000009,
+          "lastMoveDistance": 0,
+          "actorSheetReady": true,
+          "spawnProgress": 0.46797400000000056,
+          "phase": "playing",
+          "enemyCount": 0,
+          "iceTrailReady": true,
+          "iceTrailCount": 0
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

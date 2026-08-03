@@ -153,6 +153,12 @@ button {
   padding-inline-start: 2px;
 }
 
+.metric-progress strong,
+.mission-progress {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 .metric-lives strong {
   color: var(--red);
   letter-spacing: 0;
@@ -866,10 +872,875 @@ button {
 }
 
 .winner-trophy {
-  font-size: clamp(56px, 10vw, 94px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(150px, 22vmin, 210px);
+  height: clamp(166px, 24vmin, 236px);
+  margin: 0 0 8px;
+  isolation: isolate;
+  perspective: 800px;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.34)) drop-shadow(0 0 22px rgba(255, 216, 74, 0.44));
+}
+
+.winner-trophy[hidden] {
+  display: none !important;
+}
+
+.trophy-stage-glow,
+.trophy-ground-shadow {
+  position: absolute;
+  inset-inline: 8%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.trophy-stage-glow {
+  inset-block-start: 5%;
+  height: 58%;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255, 237, 142, 0.44), rgba(255, 216, 74, 0.14) 42%, transparent 72%),
+    radial-gradient(circle at 50% 60%, rgba(85, 255, 214, 0.2), transparent 66%);
+  filter: blur(3px);
+  animation: trophyAura 2600ms ease-in-out infinite;
+}
+
+.trophy-ground-shadow {
+  inset-block-end: 1%;
+  height: 15%;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 216, 74, 0.28), rgba(85, 255, 214, 0.11) 42%, transparent 74%);
+  filter: blur(5px);
+}
+
+.trophy-cup-3d {
+  position: absolute;
+  inset-block-start: 12%;
+  width: 62%;
+  height: 42%;
+  border: 2px solid rgba(255, 247, 196, 0.72);
+  border-radius: 46% 46% 36% 36% / 20% 20% 66% 66%;
+  background:
+    linear-gradient(112deg, rgba(255, 255, 255, 0.74) 0 9%, transparent 10% 25%, rgba(255, 255, 255, 0.32) 30%, transparent 45%),
+    radial-gradient(circle at 30% 22%, #fff9c8 0 12%, transparent 25%),
+    linear-gradient(100deg, #6d3300 0%, #df840f 13%, #fff0a4 34%, #ffd84a 52%, #c66f0b 73%, #5b2700 100%);
+  box-shadow:
+    inset 11px 0 20px rgba(255, 255, 255, 0.18),
+    inset -16px -12px 24px rgba(72, 30, 0, 0.46),
+    inset 0 -8px 12px rgba(107, 55, 0, 0.34),
+    0 12px 24px rgba(0, 0, 0, 0.26);
+  transform: rotateX(8deg) translateZ(16px);
+}
+
+.trophy-cup-3d::after {
+  content: "";
+  position: absolute;
+  inset: 5% 8% auto;
+  height: 36%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.trophy-rim {
+  position: absolute;
+  inset-block-start: -9%;
+  inset-inline: -9%;
+  height: 22%;
+  border: 1px solid rgba(255, 253, 211, 0.8);
+  border-radius: 50%;
+  background:
+    linear-gradient(92deg, #693000 0%, #e99a19 18%, #fff7bd 47%, #f7b52b 72%, #753800 100%);
+  box-shadow:
+    inset 0 -6px 10px rgba(91, 39, 0, 0.34),
+    0 4px 10px rgba(0, 0, 0, 0.24);
+}
+
+.trophy-handle {
+  position: absolute;
+  inset-block-start: 23%;
+  width: 34%;
+  height: 50%;
+  z-index: -1;
+  border: clamp(8px, 1.6vmin, 16px) solid #d98712;
+  border-block-start-color: #fff0a4;
+  border-block-end-color: #71400a;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.24),
+    0 7px 12px rgba(0, 0, 0, 0.24);
+}
+
+.trophy-handle-left {
+  inset-inline-start: -24%;
+  border-inline-end-color: transparent;
+  transform: rotate(-8deg);
+}
+
+.trophy-handle-right {
+  inset-inline-end: -24%;
+  border-inline-start-color: transparent;
+  transform: rotate(8deg);
+}
+
+.trophy-logo-gold {
+  position: absolute;
+  inset-block-start: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(4deg);
+  direction: rtl;
+  color: #5f2c00;
+  font-size: clamp(22px, 4.1vmin, 40px);
+  font-weight: 1000;
   line-height: 1;
-  margin-bottom: 8px;
-  filter: drop-shadow(0 0 22px rgba(255, 216, 74, 0.55));
+  letter-spacing: 0;
+  text-shadow:
+    0 1px 0 rgba(255, 252, 196, 0.72),
+    0 3px 8px rgba(90, 38, 0, 0.54);
+  background: linear-gradient(180deg, #fff8c8, #ffd84a 46%, #9a5306 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.trophy-shine {
+  position: absolute;
+  inset-block-start: 4%;
+  inset-inline-start: 15%;
+  width: 18%;
+  height: 72%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), transparent 74%);
+  filter: blur(1px);
+  opacity: 0.82;
+  transform: rotate(14deg);
+  animation: trophyShine 2400ms ease-in-out infinite;
+}
+
+.trophy-stem-3d {
+  position: absolute;
+  inset-block-start: 52%;
+  width: 16%;
+  height: 24%;
+  border-radius: 8px 8px 14px 14px;
+  background:
+    linear-gradient(90deg, #704000, #ffd84a 22%, #fff4af 47%, #c56d09 71%, #4d2200);
+  box-shadow:
+    inset -8px 0 11px rgba(68, 28, 0, 0.36),
+    0 8px 14px rgba(0, 0, 0, 0.26);
+}
+
+.trophy-base-3d {
+  position: absolute;
+  inset-block-start: 71%;
+  width: 72%;
+  height: 20%;
+  display: grid;
+  place-items: center;
+  padding: 0 10%;
+  border: 1px solid rgba(255, 233, 139, 0.7);
+  border-radius: 14px 14px 18px 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 230, 125, 0.96), rgba(187, 95, 10, 0.94) 37%, rgba(75, 34, 8, 0.98) 100%);
+  box-shadow:
+    inset 0 7px 9px rgba(255, 255, 255, 0.22),
+    inset 0 -12px 16px rgba(31, 12, 2, 0.52),
+    0 12px 22px rgba(0, 0, 0, 0.34);
+}
+
+.trophy-base-3d::before {
+  content: "";
+  position: absolute;
+  inset: 22% 9% 27%;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(30, 12, 3, 0.62), rgba(114, 55, 5, 0.58));
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.42),
+    0 1px 0 rgba(255, 242, 178, 0.22);
+}
+
+.trophy-engraved-name {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  overflow: hidden;
+  color: #fff2ad;
+  font-size: clamp(13px, 2.4vmin, 22px);
+  font-weight: 1000;
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28),
+    0 -1px 0 rgba(47, 18, 0, 0.88);
+  white-space: nowrap;
+}
+
+.champion-trophy-art {
+  width: clamp(220px, 32vmin, 340px);
+  height: clamp(220px, 32vmin, 340px);
+  overflow: visible;
+}
+
+.champion-trophy-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter:
+    drop-shadow(0 18px 22px rgba(0, 0, 0, 0.36))
+    drop-shadow(0 0 28px rgba(255, 216, 74, 0.38));
+  transform-origin: 50% 64%;
+  will-change: transform, filter;
+}
+
+.champion-trophy-art::before,
+.champion-trophy-art::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.champion-trophy-art::before {
+  inset: 7% 9% 10%;
+  z-index: 2;
+  border-radius: 38% 38% 28% 28%;
+  background:
+    linear-gradient(105deg, transparent 0 35%, rgba(255, 255, 255, 0.62) 45%, rgba(255, 246, 184, 0.36) 50%, transparent 60% 100%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateX(-72%) skewX(-10deg);
+}
+
+.champion-trophy-art::after {
+  inset: 0;
+  z-index: 4;
+  background:
+    radial-gradient(circle at 74% 25%, rgba(255, 255, 255, 0.96) 0 2px, rgba(255, 216, 74, 0.5) 3px, transparent 9px),
+    radial-gradient(circle at 50% 49%, rgba(255, 255, 255, 0.9) 0 2px, rgba(255, 216, 74, 0.42) 3px, transparent 8px),
+    radial-gradient(circle at 35% 66%, rgba(255, 255, 255, 0.86) 0 2px, rgba(255, 216, 74, 0.42) 3px, transparent 7px);
+  opacity: 0;
+}
+
+.champion-trophy-art .trophy-stage-glow {
+  inset: 9% 9% auto;
+  height: 62%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255, 246, 184, 0.46), rgba(255, 216, 74, 0.16) 38%, transparent 72%),
+    radial-gradient(circle at 50% 65%, rgba(85, 255, 214, 0.2), transparent 67%);
+}
+
+.champion-trophy-art .trophy-ground-shadow {
+  inset-inline: 18%;
+  inset-block-end: 3%;
+  height: 12%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.34), transparent 72%);
+  filter: blur(5px);
+}
+
+.champion-trophy-art .trophy-logo-gold {
+  position: absolute;
+  top: 30.85%;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
+  left: 50%;
+  z-index: 1;
+  width: 34%;
+  height: 11.2%;
+  overflow: visible;
+  transform: translateX(-50%);
+  transform-origin: center center;
+  will-change: transform, filter;
+  pointer-events: none;
+}
+
+.champion-trophy-art .trophy-logo-plaque {
+  fill: url(#trophy-logo-plaque-gradient);
+  filter: url(#trophy-logo-plaque-shadow);
+  stroke: rgba(255, 237, 139, 0.62);
+  stroke-width: 2.6px;
+}
+
+.champion-trophy-art .trophy-logo-text {
+  fill: #ffdc3f;
+  filter:
+    drop-shadow(0 2px 1px rgba(74, 31, 0, 0.72))
+    drop-shadow(0 0 4px rgba(255, 246, 184, 0.46));
+  font-family: Assistant, Arial, sans-serif;
+  font-size: 54px;
+  font-weight: 900;
+  letter-spacing: 0;
+  paint-order: stroke fill;
+  stroke: rgba(76, 32, 0, 0.62);
+  stroke-width: 4px;
+}
+
+.champion-trophy-art .trophy-engraved-name {
+  position: absolute;
+  top: 76.55%;
+  left: 50.05%;
+  z-index: 1;
+  width: 43%;
+  max-width: 43%;
+  height: 5%;
+  display: grid;
+  place-items: center;
+  transform: translateX(-50%);
+  color: #ffe99b;
+  font-size: clamp(14px, 2.8vmin, 28px);
+  font-weight: 1000;
+  line-height: 0.95;
+  text-align: center;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.26),
+    0 2px 4px rgba(0, 0, 0, 0.68),
+    0 -1px 0 rgba(59, 22, 0, 0.9);
+  white-space: nowrap;
+  will-change: transform, filter;
+}
+
+.trophy-share-button {
+  position: fixed;
+  inset-block-start: calc(env(safe-area-inset-top, 0px) + 14px);
+  inset-inline-end: calc(env(safe-area-inset-right, 0px) + 14px);
+  z-index: 5;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08)),
+    rgba(4, 12, 31, 0.86);
+  color: #f8ffff;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.36),
+    0 0 18px rgba(85, 255, 214, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.trophy-share-button[hidden] {
+  display: none;
+}
+
+.trophy-share-button .ui-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.trophy-share-status {
+  min-height: 20px;
+  color: #dffcff;
+  font-weight: 800;
+}
+
+.victory-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.victory-confetti i,
+.victory-confetti b,
+.victory-confetti em {
+  position: absolute;
+  pointer-events: none;
+}
+
+.victory-confetti i {
+  top: -12vh;
+  width: var(--confetti-w, 9px);
+  height: var(--confetti-h, 18px);
+  border-radius: 3px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent 42%),
+    var(--confetti-color, #ffd84a);
+  opacity: 0;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--confetti-color, #ffd84a) 55%, transparent);
+  transform: translate3d(0, -12vh, 0) rotate(var(--confetti-start-rotate, 0deg));
+}
+
+.victory-confetti i[data-shape="circle"] {
+  border-radius: 50%;
+  height: var(--confetti-w, 9px);
+}
+
+.victory-confetti i[data-shape="diamond"] {
+  border-radius: 2px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.victory-confetti i[data-shape="star"] {
+  border-radius: 0;
+  clip-path: polygon(50% 0, 61% 34%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 34%);
+}
+
+.victory-confetti i[data-shape="ribbon"] {
+  width: calc(var(--confetti-w, 9px) * 1.8);
+  height: calc(var(--confetti-h, 18px) * 0.42);
+  border-radius: 999px;
+}
+
+.victory-confetti b {
+  left: var(--burst-x, 50%);
+  top: var(--burst-y, 24%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+  background: var(--burst-color, #ffd84a);
+  box-shadow:
+    0 -52px 0 -1px var(--burst-color, #ffd84a),
+    37px -37px 0 -1px #55ffd6,
+    52px 0 0 -1px #ff5fd7,
+    37px 37px 0 -1px #fff7c6,
+    0 52px 0 -1px #9d7cff,
+    -37px 37px 0 -1px #67f08b,
+    -52px 0 0 -1px #ffd84a,
+    -37px -37px 0 -1px #ff9f1c;
+  transform: translate(-50%, -50%) scale(0.1);
+}
+
+.victory-confetti em {
+  top: -10vh;
+  width: 34px;
+  height: 26px;
+  border: 4px solid var(--confetti-color, #ffd84a);
+  border-inline-start-color: transparent;
+  border-block-end-color: transparent;
+  border-radius: 50%;
+  opacity: 0;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--confetti-color, #ffd84a) 46%, transparent));
+  transform: translate3d(0, -12vh, 0) rotate(0deg);
+}
+
+.final-trophy-screen .victory-confetti::before,
+.final-trophy-screen .victory-confetti::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: min(76vw, 520px);
+  height: min(76vw, 520px);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.35);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 247, 198, 0.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 24%, rgba(85, 255, 214, 0.9) 0 3px, transparent 4px),
+    radial-gradient(circle at 74% 84%, rgba(255, 95, 215, 0.9) 0 3px, transparent 4px),
+    radial-gradient(circle at 18% 76%, rgba(255, 216, 74, 0.9) 0 3px, transparent 4px),
+    radial-gradient(circle at 11% 32%, rgba(157, 124, 255, 0.9) 0 3px, transparent 4px);
+}
+
+.final-trophy-screen .victory-confetti::after {
+  top: 28%;
+  width: min(86vw, 620px);
+  height: min(86vw, 620px);
+  animation-delay: 760ms;
+}
+
+.final-trophy-screen {
+  overflow: hidden;
+  padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 216, 74, 0.2), transparent 30%),
+    radial-gradient(circle at 18% 42%, rgba(255, 95, 215, 0.2), transparent 28%),
+    radial-gradient(circle at 84% 34%, rgba(85, 255, 214, 0.2), transparent 26%),
+    linear-gradient(180deg, rgba(4, 8, 24, 0.54), rgba(2, 3, 12, 0.9)),
+    #05070b;
+  backdrop-filter: blur(4px);
+}
+
+.final-trophy-screen .victory-confetti i {
+  opacity: var(--confetti-opacity, 0.96);
+  animation: victoryConfettiFall var(--confetti-duration, 3.8s) linear var(--confetti-delay, 0s) infinite;
+}
+
+.final-trophy-screen .victory-confetti b {
+  animation: victoryConfettiBurst 1900ms ease-out var(--burst-delay, 0s) infinite;
+}
+
+.final-trophy-screen .victory-confetti em {
+  animation: victoryStreamerFall var(--confetti-duration, 5.2s) ease-in var(--confetti-delay, 0s) infinite;
+}
+
+.final-trophy-screen .victory-confetti::before,
+.final-trophy-screen .victory-confetti::after {
+  animation: trophyFireworkRing 2400ms ease-out infinite;
+}
+
+.final-trophy-screen .results-panel {
+  z-index: 4;
+  width: min(900px, calc(100vw - 20px));
+  max-height: calc(100dvh - 20px);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(8px, 1.2dvh, 14px);
+  padding: clamp(16px, 2.3vmin, 32px);
+  overflow: hidden;
+  border-color: rgba(255, 216, 74, 0.62);
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(18, 22, 56, 0.96), rgba(5, 8, 26, 0.98));
+  box-shadow:
+    0 24px 90px rgba(0, 0, 0, 0.62),
+    0 0 52px rgba(255, 216, 74, 0.22),
+    inset 0 0 58px rgba(104, 231, 255, 0.12);
+}
+
+.final-trophy-screen .results-panel::before {
+  border-color: rgba(255, 216, 74, 0.32);
+}
+
+.final-trophy-screen .winner-trophy {
+  width: clamp(250px, 34vmin, 360px);
+  height: clamp(250px, 34vmin, 360px);
+  margin: 0;
+  transform-style: preserve-3d;
+  animation:
+    trophyEntrance 950ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    trophyGlow 2600ms ease-in-out 820ms infinite;
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.44)) drop-shadow(0 0 32px rgba(255, 216, 74, 0.5));
+}
+
+.final-trophy-screen .champion-trophy-image {
+  animation: trophyFloat 3600ms ease-in-out 920ms infinite;
+}
+
+.final-trophy-screen .champion-trophy-art::before {
+  animation: trophySweep 3300ms ease-in-out 520ms infinite;
+}
+
+.final-trophy-screen .champion-trophy-art::after {
+  animation: trophySparkle 2600ms ease-in-out 360ms infinite;
+}
+
+.final-trophy-screen .trophy-cup-3d {
+  border-width: 3px;
+}
+
+.final-trophy-screen .champion-trophy-art .trophy-logo-gold {
+  animation:
+    trophyLogoReveal 680ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both,
+    trophyLogoPulse 2500ms ease-in-out 950ms infinite;
+}
+
+.final-trophy-screen .champion-trophy-art .trophy-engraved-name {
+  font-size: clamp(15px, 3vmin, 28px);
+  animation:
+    engravedNameReveal 620ms cubic-bezier(0.16, 1, 0.3, 1) 280ms both,
+    engravedNameGlow 2800ms ease-in-out 1020ms infinite;
+}
+
+.final-trophy-screen #end-kicker {
+  margin: 0;
+  color: #86fff1;
+  font-size: clamp(15px, 2.1vmin, 20px);
+  text-shadow: 0 0 14px rgba(85, 255, 214, 0.34);
+  animation: victoryTextRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+}
+
+.final-trophy-screen #end-title {
+  max-width: min(900px, 24ch);
+  margin: 0;
+  color: #fff7c6;
+  font-size: clamp(34px, 7.3vmin, 64px);
+  line-height: 0.98;
+  text-wrap: balance;
+  text-shadow:
+    0 5px 0 rgba(94, 48, 0, 0.55),
+    0 0 24px rgba(255, 216, 74, 0.34);
+  animation: victoryTitlePop 650ms cubic-bezier(0.16, 1, 0.3, 1) 360ms both;
+}
+
+.final-trophy-screen #end-copy {
+  max-width: min(600px, 90vw);
+  color: #eefcff;
+  font-size: clamp(17px, 2.7vmin, 24px);
+  font-weight: 900;
+  line-height: 1.18;
+  animation: victoryTextRise 560ms cubic-bezier(0.16, 1, 0.3, 1) 500ms both;
+}
+
+.final-trophy-screen .screen-stats {
+  margin: 0;
+  gap: 7px;
+  animation: victoryTextRise 560ms cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
+}
+
+.final-trophy-screen .screen-stats span,
+.final-trophy-screen .results-grid span {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.final-trophy-screen .results-grid,
+.final-trophy-screen .score-breakdown,
+.final-trophy-screen #publish-score-panel {
+  display: none;
+}
+
+.final-trophy-screen .result-actions {
+  margin: 4px 0 0;
+  animation: victoryTextRise 560ms cubic-bezier(0.16, 1, 0.3, 1) 760ms both;
+}
+
+@keyframes trophyEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.62) rotate(-10deg);
+  }
+  64% {
+    opacity: 1;
+    transform: translateY(-7px) scale(1.07) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes trophyGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.44)) drop-shadow(0 0 30px rgba(255, 216, 74, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.44)) drop-shadow(0 0 52px rgba(85, 255, 214, 0.42));
+  }
+}
+
+@keyframes trophyFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    filter:
+      drop-shadow(0 18px 22px rgba(0, 0, 0, 0.36))
+      drop-shadow(0 0 28px rgba(255, 216, 74, 0.38));
+  }
+  50% {
+    transform: translate3d(0, -7px, 0) rotate(0.7deg);
+    filter:
+      drop-shadow(0 23px 26px rgba(0, 0, 0, 0.32))
+      drop-shadow(0 0 42px rgba(255, 216, 74, 0.52));
+  }
+}
+
+@keyframes trophySweep {
+  0%,
+  28% {
+    opacity: 0;
+    transform: translateX(-72%) skewX(-10deg);
+  }
+  42% {
+    opacity: 0.82;
+  }
+  58% {
+    opacity: 0;
+    transform: translateX(82%) skewX(-10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(82%) skewX(-10deg);
+  }
+}
+
+@keyframes trophySparkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.96) rotate(0deg);
+    filter: blur(0);
+  }
+  28% {
+    opacity: 0.92;
+    transform: scale(1.04) rotate(6deg);
+  }
+  42% {
+    opacity: 0.25;
+  }
+  68% {
+    opacity: 0.72;
+    transform: scale(1.02) rotate(-5deg);
+  }
+}
+
+@keyframes trophyLogoReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.72);
+    filter: blur(4px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes trophyLogoPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(255, 216, 74, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255, 246, 184, 0.46));
+  }
+}
+
+@keyframes engravedNameReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px) scale(0.84);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes engravedNameGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(255, 216, 74, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(255, 216, 74, 0.42));
+  }
+}
+
+@keyframes trophyAura {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes trophyShine {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: translateX(0) rotate(14deg);
+  }
+  50% {
+    opacity: 0.92;
+    transform: translateX(55%) rotate(14deg);
+  }
+}
+
+@keyframes victoryTextRise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes victoryTitlePop {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.9);
+    filter: blur(4px);
+  }
+  68% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes victoryConfettiFall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(var(--confetti-start-rotate, 0deg));
+  }
+  52% {
+    transform: translate3d(calc(var(--confetti-drift, 18px) * 0.55), 54vh, 0) rotate(calc(var(--confetti-rotate, 680deg) * 0.52));
+  }
+  100% {
+    transform: translate3d(var(--confetti-drift, 18px), 118vh, 0) rotate(var(--confetti-rotate, 680deg));
+  }
+}
+
+@keyframes victoryConfettiBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.08) rotate(0deg);
+  }
+  14% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(var(--burst-scale, 1)) rotate(28deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(calc(var(--burst-scale, 1) * 1.35)) rotate(54deg);
+  }
+}
+
+@keyframes victoryStreamerFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+  12% {
+    opacity: 0.88;
+  }
+  100% {
+    opacity: 0.74;
+    transform: translate3d(var(--confetti-drift, 18px), 116vh, 0) rotate(var(--streamer-rotate, 520deg));
+  }
+}
+
+@keyframes trophyFireworkRing {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.28) rotate(0deg);
+  }
+  18% {
+    opacity: 0.92;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.12) rotate(18deg);
+  }
 }
 
 .primary-button {
@@ -988,6 +1859,59 @@ button {
 
   .primary-button {
     min-height: 44px;
+  }
+}
+
+@media (max-width: 720px), (max-height: 760px) {
+  .final-trophy-screen .results-panel {
+    gap: 7px;
+    padding: 14px 12px;
+  }
+
+  .final-trophy-screen .winner-trophy {
+    width: clamp(260px, 72vw, 330px);
+    height: clamp(260px, 72vw, 330px);
+  }
+
+  .final-trophy-screen .champion-trophy-art .trophy-logo-gold {
+    font-size: clamp(26px, 7.4vw, 48px);
+  }
+
+  .final-trophy-screen .champion-trophy-art .trophy-engraved-name {
+    font-size: clamp(15px, 4vw, 23px);
+  }
+
+  .final-trophy-screen #end-title {
+    max-width: 13ch;
+    font-size: clamp(30px, 8.4vw, 48px);
+  }
+
+  .final-trophy-screen #end-copy {
+    font-size: clamp(15px, 4vw, 19px);
+  }
+
+  .final-trophy-screen .screen-stats span {
+    min-width: 88px;
+    padding: 7px 9px;
+  }
+
+  .final-trophy-screen .results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .final-trophy-screen .results-grid span {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .final-trophy-screen .results-grid strong {
+    font-size: 15px;
+  }
+
+  .trophy-share-button {
+    width: 42px;
+    height: 42px;
   }
 }
 

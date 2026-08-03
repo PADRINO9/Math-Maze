@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "ice-v3-art-direction.png",
+      "purpose": "non-shipping art-direction reference for the original ice maze v3 kit",
+      "sourceType": "project-generated",
+      "generator": "Codex built-in image generation",
+      "generatedAt": "2026-07-12",
+      "sha256": "4b3c6675523e87934d59e76ff64beef1a1c462d50279396fa14b4567f86658f5",
+      "referencePolicy": "The user-supplied maze sheet was used only as a high-level quality and modular-layout reference. No reference pixels are shipped or copied into production assets.",
+      "prompt": "Original premium modular ICE WORLD kit focused on maze walls, floor, and edible collectible gems; polished 3D-stylized mobile game render; consistent orthographic camera, cool studio lighting, carved glacier material, no gates, characters, HUD, text, logos, watermarks, random props, or decorative clutter.",
+      "shipsInGame": false
+    }
+  ]
+}

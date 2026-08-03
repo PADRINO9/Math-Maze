@@ -1,15 +1,20 @@
 const { defineConfig, devices } = require("@playwright/test");
 
+const testPort = Number(process.env.KAFLUL_PLAYWRIGHT_PORT) || 4173;
+const testBaseURL = `http://127.0.0.1:${testPort}`;
+const isCI = Boolean(process.env.CI);
+
 module.exports = defineConfig({
   testDir: "./tests",
-  timeout: 30_000,
-  expect: { timeout: 8_000 },
+  timeout: isCI ? 90_000 : 30_000,
+  expect: { timeout: isCI ? 20_000 : 8_000 },
   retries: 1,
   workers: 1,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:4173",
-    trace: "retain-on-failure",
+    baseURL: testBaseURL,
+    reducedMotion: isCI ? "reduce" : "no-preference",
+    trace: isCI ? "off" : "retain-on-failure",
     screenshot: "only-on-failure"
   },
   projects: [
@@ -23,9 +28,9 @@ module.exports = defineConfig({
     }
   ],
   webServer: {
-    command: "python3 -m http.server 4173 --bind 127.0.0.1",
-    url: "http://127.0.0.1:4173",
-    reuseExistingServer: false,
+    command: "node tools/playwright_test_server.mjs",
+    url: testBaseURL,
+    reuseExistingServer: process.env.KAFLUL_PLAYWRIGHT_REUSE_SERVER === "1",
     timeout: 15_000
   }
 });

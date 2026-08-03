@@ -1,0 +1,13 @@
+{
+  "worldId": "diamond",
+  "displayName": "Diamond World",
+  "primaryColor": "#55ffd6",
+  "secondaryColor": "#6b56dd",
+  "wallColor": "#9df0ff",
+  "floorColor": "#171d55",
+  "collectibleColor": "#f8ffff",
+  "glowColor": "rgba(104, 226, 255, 0.56)",
+  "particleType": "crystal-glints",
+  "decorStyle": "small crystals, gem chips, prism fragments",
+  "portalStyle": "refractive crystal arch"
+}

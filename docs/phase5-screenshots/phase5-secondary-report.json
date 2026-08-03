@@ -1,0 +1,1554 @@
+{
+  "phase": 5,
+  "capturedAt": "2026-06-28T21:43:52.126Z",
+  "chrome": "Chrome/149.0.7827.197",
+  "ok": true,
+  "failures": [],
+  "results": [
+    {
+      "name": "390x844-portrait",
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "events": [],
+      "screenshots": [
+        {
+          "name": "pregame",
+          "selector": "#pregame-panel",
+          "file": "docs/phase5-screenshots/phase5-pregame-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pregame-mode-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "mode",
+          "selector": "#mode-panel",
+          "file": "docs/phase5-screenshots/phase5-mode-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "difficulty",
+          "selector": "#difficulty-panel",
+          "file": "docs/phase5-screenshots/phase5-difficulty-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "settings",
+          "selector": "#settings-panel",
+          "file": "docs/phase5-screenshots/phase5-settings-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "settings-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "progress",
+          "selector": "#progress-panel",
+          "file": "docs/phase5-screenshots/phase5-progress-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "leaderboard",
+          "selector": "#leaderboard-dialog",
+          "file": "docs/phase5-screenshots/phase5-leaderboard-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "leaderboard-difficulty-filter",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "pause",
+          "selector": "#pause-screen",
+          "file": "docs/phase5-screenshots/phase5-pause-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pause-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "results",
+          "selector": "#end-screen",
+          "file": "docs/phase5-screenshots/phase5-results-390x844-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 390,
+              "height": 844,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "end-leaderboard-button",
+            "runtimeErrors": []
+          }
+        }
+      ],
+      "closeChecks": [
+        {
+          "screen": "pregame",
+          "closed": true
+        },
+        {
+          "screen": "mode",
+          "closed": true
+        },
+        {
+          "screen": "difficulty",
+          "closed": true
+        },
+        {
+          "screen": "settings",
+          "closed": true
+        },
+        {
+          "screen": "progress",
+          "closed": true
+        },
+        {
+          "screen": "leaderboard",
+          "closed": true
+        },
+        {
+          "screen": "pause",
+          "closed": true
+        },
+        {
+          "screen": "results",
+          "closed": true
+        }
+      ],
+      "focusChecks": [
+        {
+          "screen": "pregame",
+          "ok": true
+        },
+        {
+          "screen": "mode",
+          "ok": true
+        },
+        {
+          "screen": "difficulty",
+          "ok": true
+        },
+        {
+          "screen": "settings",
+          "ok": true
+        },
+        {
+          "screen": "progress",
+          "ok": true
+        },
+        {
+          "screen": "leaderboard",
+          "ok": true
+        },
+        {
+          "screen": "pause",
+          "ok": true
+        },
+        {
+          "screen": "results",
+          "ok": true
+        }
+      ],
+      "persistence": {
+        "nickname": "בודק שמירה",
+        "greeting": "בודק שמירה",
+        "soundIcon": "sound-on",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick"
+      },
+      "gameOver": true,
+      "postRun": {
+        "lang": "he",
+        "dir": "rtl",
+        "runtimeErrors": [],
+        "currentHighlightExists": false,
+        "legendaryLocked": true
+      }
+    },
+    {
+      "name": "430x932-portrait",
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "events": [],
+      "screenshots": [
+        {
+          "name": "pregame",
+          "selector": "#pregame-panel",
+          "file": "docs/phase5-screenshots/phase5-pregame-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pregame-mode-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "mode",
+          "selector": "#mode-panel",
+          "file": "docs/phase5-screenshots/phase5-mode-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "difficulty",
+          "selector": "#difficulty-panel",
+          "file": "docs/phase5-screenshots/phase5-difficulty-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "settings",
+          "selector": "#settings-panel",
+          "file": "docs/phase5-screenshots/phase5-settings-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "settings-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "progress",
+          "selector": "#progress-panel",
+          "file": "docs/phase5-screenshots/phase5-progress-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "leaderboard",
+          "selector": "#leaderboard-dialog",
+          "file": "docs/phase5-screenshots/phase5-leaderboard-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "leaderboard-difficulty-filter",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "pause",
+          "selector": "#pause-screen",
+          "file": "docs/phase5-screenshots/phase5-pause-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pause-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "results",
+          "selector": "#end-screen",
+          "file": "docs/phase5-screenshots/phase5-results-430x932-portrait.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 430,
+              "height": 932,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "end-leaderboard-button",
+            "runtimeErrors": []
+          }
+        }
+      ],
+      "closeChecks": [
+        {
+          "screen": "pregame",
+          "closed": true
+        },
+        {
+          "screen": "mode",
+          "closed": true
+        },
+        {
+          "screen": "difficulty",
+          "closed": true
+        },
+        {
+          "screen": "settings",
+          "closed": true
+        },
+        {
+          "screen": "progress",
+          "closed": true
+        },
+        {
+          "screen": "leaderboard",
+          "closed": true
+        },
+        {
+          "screen": "pause",
+          "closed": true
+        },
+        {
+          "screen": "results",
+          "closed": true
+        }
+      ],
+      "focusChecks": [
+        {
+          "screen": "pregame",
+          "ok": true
+        },
+        {
+          "screen": "mode",
+          "ok": true
+        },
+        {
+          "screen": "difficulty",
+          "ok": true
+        },
+        {
+          "screen": "settings",
+          "ok": true
+        },
+        {
+          "screen": "progress",
+          "ok": true
+        },
+        {
+          "screen": "leaderboard",
+          "ok": true
+        },
+        {
+          "screen": "pause",
+          "ok": true
+        },
+        {
+          "screen": "results",
+          "ok": true
+        }
+      ],
+      "persistence": {
+        "nickname": "בודק שמירה",
+        "greeting": "בודק שמירה",
+        "soundIcon": "sound-on",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick"
+      },
+      "gameOver": true,
+      "postRun": {
+        "lang": "he",
+        "dir": "rtl",
+        "runtimeErrors": [],
+        "currentHighlightExists": false,
+        "legendaryLocked": true
+      }
+    },
+    {
+      "name": "844x390-landscape",
+      "width": 844,
+      "height": 390,
+      "mobile": true,
+      "events": [],
+      "screenshots": [
+        {
+          "name": "pregame",
+          "selector": "#pregame-panel",
+          "file": "docs/phase5-screenshots/phase5-pregame-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pregame-mode-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "mode",
+          "selector": "#mode-panel",
+          "file": "docs/phase5-screenshots/phase5-mode-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "difficulty",
+          "selector": "#difficulty-panel",
+          "file": "docs/phase5-screenshots/phase5-difficulty-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "settings",
+          "selector": "#settings-panel",
+          "file": "docs/phase5-screenshots/phase5-settings-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "settings-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "progress",
+          "selector": "#progress-panel",
+          "file": "docs/phase5-screenshots/phase5-progress-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "leaderboard",
+          "selector": "#leaderboard-dialog",
+          "file": "docs/phase5-screenshots/phase5-leaderboard-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "leaderboard-difficulty-filter",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "pause",
+          "selector": "#pause-screen",
+          "file": "docs/phase5-screenshots/phase5-pause-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pause-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "results",
+          "selector": "#end-screen",
+          "file": "docs/phase5-screenshots/phase5-results-844x390-landscape.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 844,
+              "height": 390
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 844,
+              "height": 390,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "end-leaderboard-button",
+            "runtimeErrors": []
+          }
+        }
+      ],
+      "closeChecks": [
+        {
+          "screen": "pregame",
+          "closed": true
+        },
+        {
+          "screen": "mode",
+          "closed": true
+        },
+        {
+          "screen": "difficulty",
+          "closed": true
+        },
+        {
+          "screen": "settings",
+          "closed": true
+        },
+        {
+          "screen": "progress",
+          "closed": true
+        },
+        {
+          "screen": "leaderboard",
+          "closed": true
+        },
+        {
+          "screen": "pause",
+          "closed": true
+        },
+        {
+          "screen": "results",
+          "closed": true
+        }
+      ],
+      "focusChecks": [
+        {
+          "screen": "pregame",
+          "ok": true
+        },
+        {
+          "screen": "mode",
+          "ok": true
+        },
+        {
+          "screen": "difficulty",
+          "ok": true
+        },
+        {
+          "screen": "settings",
+          "ok": true
+        },
+        {
+          "screen": "progress",
+          "ok": true
+        },
+        {
+          "screen": "leaderboard",
+          "ok": true
+        },
+        {
+          "screen": "pause",
+          "ok": true
+        },
+        {
+          "screen": "results",
+          "ok": true
+        }
+      ],
+      "persistence": {
+        "nickname": "בודק שמירה",
+        "greeting": "בודק שמירה",
+        "soundIcon": "sound-on",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick"
+      },
+      "gameOver": true,
+      "postRun": {
+        "lang": "he",
+        "dir": "rtl",
+        "runtimeErrors": [],
+        "currentHighlightExists": false,
+        "legendaryLocked": true
+      }
+    },
+    {
+      "name": "1280x720-desktop",
+      "width": 1280,
+      "height": 720,
+      "mobile": false,
+      "events": [],
+      "screenshots": [
+        {
+          "name": "pregame",
+          "selector": "#pregame-panel",
+          "file": "docs/phase5-screenshots/phase5-pregame-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pregame-mode-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "mode",
+          "selector": "#mode-panel",
+          "file": "docs/phase5-screenshots/phase5-mode-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "difficulty",
+          "selector": "#difficulty-panel",
+          "file": "docs/phase5-screenshots/phase5-difficulty-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "settings",
+          "selector": "#settings-panel",
+          "file": "docs/phase5-screenshots/phase5-settings-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "settings-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "progress",
+          "selector": "#progress-panel",
+          "file": "docs/phase5-screenshots/phase5-progress-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "leaderboard",
+          "selector": "#leaderboard-dialog",
+          "file": "docs/phase5-screenshots/phase5-leaderboard-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "leaderboard-difficulty-filter",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "pause",
+          "selector": "#pause-screen",
+          "file": "docs/phase5-screenshots/phase5-pause-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pause-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "results",
+          "selector": "#end-screen",
+          "file": "docs/phase5-screenshots/phase5-results-1280x720-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 720
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1280,
+              "height": 720,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "end-leaderboard-button",
+            "runtimeErrors": []
+          }
+        }
+      ],
+      "closeChecks": [
+        {
+          "screen": "pregame",
+          "closed": true
+        },
+        {
+          "screen": "mode",
+          "closed": true
+        },
+        {
+          "screen": "difficulty",
+          "closed": true
+        },
+        {
+          "screen": "settings",
+          "closed": true
+        },
+        {
+          "screen": "progress",
+          "closed": true
+        },
+        {
+          "screen": "leaderboard",
+          "closed": true
+        },
+        {
+          "screen": "pause",
+          "closed": true
+        },
+        {
+          "screen": "results",
+          "closed": true
+        }
+      ],
+      "focusChecks": [
+        {
+          "screen": "pregame",
+          "ok": true
+        },
+        {
+          "screen": "mode",
+          "ok": true
+        },
+        {
+          "screen": "difficulty",
+          "ok": true
+        },
+        {
+          "screen": "settings",
+          "ok": true
+        },
+        {
+          "screen": "progress",
+          "ok": true
+        },
+        {
+          "screen": "leaderboard",
+          "ok": true
+        },
+        {
+          "screen": "pause",
+          "ok": true
+        },
+        {
+          "screen": "results",
+          "ok": true
+        }
+      ],
+      "persistence": {
+        "nickname": "בודק שמירה",
+        "greeting": "בודק שמירה",
+        "soundIcon": "sound-on",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick"
+      },
+      "gameOver": true,
+      "postRun": {
+        "lang": "he",
+        "dir": "rtl",
+        "runtimeErrors": [],
+        "currentHighlightExists": false,
+        "legendaryLocked": true
+      }
+    },
+    {
+      "name": "1440x900-desktop",
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "events": [],
+      "screenshots": [
+        {
+          "name": "pregame",
+          "selector": "#pregame-panel",
+          "file": "docs/phase5-screenshots/phase5-pregame-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pregame-mode-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "mode",
+          "selector": "#mode-panel",
+          "file": "docs/phase5-screenshots/phase5-mode-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "difficulty",
+          "selector": "#difficulty-panel",
+          "file": "docs/phase5-screenshots/phase5-difficulty-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "settings",
+          "selector": "#settings-panel",
+          "file": "docs/phase5-screenshots/phase5-settings-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "settings-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "progress",
+          "selector": "#progress-panel",
+          "file": "docs/phase5-screenshots/phase5-progress-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "leaderboard",
+          "selector": "#leaderboard-dialog",
+          "file": "docs/phase5-screenshots/phase5-leaderboard-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "leaderboard-difficulty-filter",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "pause",
+          "selector": "#pause-screen",
+          "file": "docs/phase5-screenshots/phase5-pause-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "pause-sound-button",
+            "runtimeErrors": []
+          }
+        },
+        {
+          "name": "results",
+          "selector": "#end-screen",
+          "file": "docs/phase5-screenshots/phase5-results-1440x900-desktop.png",
+          "evaluation": {
+            "lang": "he",
+            "dir": "rtl",
+            "visible": true,
+            "focusInside": true,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 900
+            },
+            "outOfBounds": false,
+            "overflowingText": [],
+            "scroll": {
+              "width": 1440,
+              "height": 900,
+              "xOverflow": false,
+              "yOverflow": false
+            },
+            "activeId": "end-leaderboard-button",
+            "runtimeErrors": []
+          }
+        }
+      ],
+      "closeChecks": [
+        {
+          "screen": "pregame",
+          "closed": true
+        },
+        {
+          "screen": "mode",
+          "closed": true
+        },
+        {
+          "screen": "difficulty",
+          "closed": true
+        },
+        {
+          "screen": "settings",
+          "closed": true
+        },
+        {
+          "screen": "progress",
+          "closed": true
+        },
+        {
+          "screen": "leaderboard",
+          "closed": true
+        },
+        {
+          "screen": "pause",
+          "closed": true
+        },
+        {
+          "screen": "results",
+          "closed": true
+        }
+      ],
+      "focusChecks": [
+        {
+          "screen": "pregame",
+          "ok": true
+        },
+        {
+          "screen": "mode",
+          "ok": true
+        },
+        {
+          "screen": "difficulty",
+          "ok": true
+        },
+        {
+          "screen": "settings",
+          "ok": true
+        },
+        {
+          "screen": "progress",
+          "ok": true
+        },
+        {
+          "screen": "leaderboard",
+          "ok": true
+        },
+        {
+          "screen": "pause",
+          "ok": true
+        },
+        {
+          "screen": "results",
+          "ok": true
+        }
+      ],
+      "persistence": {
+        "nickname": "בודק שמירה",
+        "greeting": "בודק שמירה",
+        "soundIcon": "sound-on",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick"
+      },
+      "gameOver": true,
+      "postRun": {
+        "lang": "he",
+        "dir": "rtl",
+        "runtimeErrors": [],
+        "currentHighlightExists": false,
+        "legendaryLocked": true
+      }
+    }
+  ]
+}

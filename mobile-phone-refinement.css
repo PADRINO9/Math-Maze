@@ -69,28 +69,16 @@
     line-height: 1;
   }
 
-  .metric-answers::before,
-  .metric-score::before,
-  .metric-lives::before {
+  .metric-icon {
     flex: 0 0 auto;
-    font-size: 15px;
-    font-weight: 900;
-    line-height: 1;
+    width: 18px;
+    height: 18px;
+    border-radius: 7px;
   }
 
-  .metric-answers::before {
-    content: "✓";
-    color: var(--green);
-  }
-
-  .metric-score::before {
-    content: "★";
-    color: var(--gold);
-  }
-
-  .metric-lives::before {
-    content: "♥";
-    color: var(--red);
+  .metric-icon .ui-icon {
+    width: 1em;
+    height: 1em;
   }
 
   .metric-lives strong {

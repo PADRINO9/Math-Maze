@@ -1,0 +1,30 @@
+{
+  "renderer": "orthographic-3/4",
+  "camera": {
+    "azimuthDegrees": 10,
+    "elevationDegrees": 56
+  },
+  "worlds": {
+    "ice": {
+      "atlas": "assets/maze/ice/v4/walls.png",
+      "atlasSha256": "d16b897a8ce6afbd115533539f918d466f74e8233ae55946835328ab6889d41a",
+      "manifestSha256": "fcd839432ff5501d0633ab08dcc94542797f6ec1b530e7c87e3f5ec3e1c7b318"
+    },
+    "lava": {
+      "atlas": "assets/maze/lava/v4/walls.png",
+      "atlasSha256": "c5a6e25a961e82378098133977625defbbb3a750eb7991a735e267b618f40f83",
+      "manifestSha256": "3bee35f62337d4f6b1558b382dfae142c2de72c929766cebff384ee8a8bc3dd9"
+    },
+    "ancient": {
+      "atlas": "assets/maze/ancient/v4/walls.png",
+      "atlasSha256": "8b1c61b05ab6aa1b6206538448c0b7d5900fbb2bdd32b089b166b9c1e84d237d",
+      "manifestSha256": "8b656c0e2c019e18f3df255555c0dee8961b6bd6ff1f6b99cbc91a5a04361acb"
+    },
+    "diamond": {
+      "atlas": "assets/maze/diamond/v4/walls.png",
+      "atlasSha256": "af0f634465faab774a970b1f9871ebcb4ca3630102f33a4f6097d19e652a45c4",
+      "manifestSha256": "7f23b0adb27aa4d8d5d6f1f3a429160832bfeb5f461d248dc726bef047aa2557"
+    }
+  },
+  "license": "project-original"
+}

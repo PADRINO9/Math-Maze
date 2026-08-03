@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07121f">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="כפלול הוא משחק מבוך בעברית לתרגול לוח הכפל: בוחרים דמות, פוגשים אויבים, פותרים תרגילים וצוברים ניקוד בדרך למקום הראשון באלוף האלופים.">
+  <meta name="robots" content="index, follow">
+  <meta name="application-name" content="כפלול">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="כפלול — הכפל רודף אחריכם">
+  <meta property="og:description" content="מבוך. שאלה. ניצחון. שחקו בחינם וטפסו לראש טבלת אלוף האלופים.">
+  <meta property="og:url" content="https://math-maze-il.vercel.app/landing.html">
+  <meta property="og:image" content="https://math-maze-il.vercel.app/assets/landing/og-kaflul.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ביפלי ונבטיק במשחק המבוך כפלול">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="כפלול — הכפל רודף אחריכם">
+  <meta name="twitter:description" content="מבוך. שאלה. ניצחון. שחקו בחינם וטפסו לראש טבלת אלוף האלופים.">
+  <meta name="twitter:image" content="https://math-maze-il.vercel.app/assets/landing/og-kaflul.jpg">
+  <link rel="canonical" href="https://math-maze-il.vercel.app/landing.html">
+  <link rel="icon" href="assets/bifly-player.png">
+  <link rel="apple-touch-icon" href="assets/bifly-player.png">
+  <link rel="manifest" href="app.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&amp;family=Fredoka:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/landing/hero-maze-chase-v2.png" as="image">
+  <link rel="preload" href="assets/generated/bifly-expression-victory.png" as="image">
+  <link rel="preload" href="assets/generated/nabatick-expression-victory.png" as="image">
+  <link rel="stylesheet" href="landing.css?v=20260803-final">
+  <title>כפלול — משחק מבוך ללימוד לוח הכפל</title>
+  <script>document.documentElement.classList.add("js");</script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "כפלול – מבוך הכפל",
+      "alternateName": "Math Maze",
+      "description": "משחק מבוך חינוכי בעברית לתרגול לוח הכפל והחילוק, עם משחק בדפדפן והורדה ל-Android.",
+      "url": "https://math-maze-il.vercel.app/",
+      "image": "https://math-maze-il.vercel.app/assets/landing/og-kaflul.jpg",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Web, Android",
+      "downloadUrl": "https://math-maze-il.vercel.app/dist/kaflul-updated-20260729.apk",
+      "inLanguage": "he-IL",
+      "audience": { "@type": "PeopleAudience", "suggestedMinAge": 6, "suggestedMaxAge": 12 },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ILS" }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">דלגו לתוכן המרכזי</a>
+
+  <header class="site-header" data-site-header>
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="כפלול — חזרה לראש הדף">
+        <img src="assets/kaflul-logo-official.png" width="1065" height="489" alt="כפלול">
+        <span>מבוך הכפל</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתיחת תפריט הניווט">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="ניווט ראשי">
+        <a href="#how">איך משחקים</a>
+        <a href="#gameplay">המשחק מבפנים</a>
+        <a href="#champions">אלוף האלופים</a>
+        <a href="#parents">להורים</a>
+        <a href="#faq">שאלות</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button" type="button" data-share aria-label="שיתוף הדף של כפלול">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .53 1.7L8.9 9.25A3 3 0 0 0 7 8.5a3 3 0 1 0 1.9 5.32l6.62 3.56A3 3 0 0 0 15 19a3 3 0 1 0 .93-2.17L9.3 13.27A3 3 0 0 0 10 11.5c0-.2-.02-.4-.06-.58l6.62-3.55A3 3 0 0 0 18 8Z"/></svg>
+        </button>
+        <a class="header-play" href="index.html?source=landing&amp;campaign=final_header">שחקו עכשיו</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <img class="hero-background" src="assets/landing/hero-maze-chase-v2.png" width="1672" height="941" alt="" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="hero-characters" role="img" aria-label="ביפלי ונבטיק בורחים מרוחות בתוך מבוך כפלול">
+        <img class="hero-ghost hero-ghost-one" src="assets/dark-enemy-angry.png" width="512" height="512" alt="">
+        <img class="hero-ghost hero-ghost-two" src="assets/dark-enemy-sad.png" width="512" height="512" alt="">
+        <img class="hero-nabatick" src="assets/generated/nabatick-expression-victory.png" width="512" height="512" alt="">
+        <img class="hero-bifly" src="assets/generated/bifly-expression-victory.png" width="512" height="512" alt="">
+      </div>
+
+      <div class="shell hero-layout">
+        <div class="hero-copy" data-enter>
+          <p class="eyebrow"><span aria-hidden="true"></span> משחק הכפל שהופך תרגול להרפתקה</p>
+          <h1 id="hero-title">הכפל רודף אחריכם.<br><strong>טוב שיש מבוך לברוח אליו.</strong></h1>
+          <p class="hero-rhythm" aria-label="מבוך, שאלה, ניצחון">מבוך. <b>שאלה.</b> ניצחון.</p>
+          <p class="hero-lead">בוחרים דמות, מתחמקים מאויבים ופותרים תרגילי כפל כדי להתקדם, לצבור ניקוד ולטפס עד למקום הראשון.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="index.html?source=landing&amp;campaign=final_hero">נכנסים למשחק <span aria-hidden="true">←</span></a>
+            <a class="download-link" href="dist/kaflul-updated-20260729.apk" download="kaflul-math-maze-android.apk">הורדה ל-Android <span aria-hidden="true">↓</span></a>
+          </div>
+          <ul class="trust-list" aria-label="מידע חשוב על המשחק">
+            <li><span aria-hidden="true">✓</span> חינם</li>
+            <li><span aria-hidden="true">✓</span> בלי פרסומות</li>
+            <li><span aria-hidden="true">✓</span> בלי הרשמה</li>
+          </ul>
+        </div>
+      </div>
+      <a class="hero-scroll" href="#how">גלו איך משחקים <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section id="how" class="how-section section-pad" aria-labelledby="how-title">
+      <div class="shell">
+        <div class="section-heading compact-heading" data-enter>
+          <p class="section-kicker">ככה זה באמת עובד</p>
+          <h2 id="how-title">שלושה צעדים. <span>עוד סיבוב אחד.</span></h2>
+          <p>לא שיעור שמתחפש למשחק — המשחק עצמו דורש מהילדים לשלוף את התשובה ולהמשיך בתנועה.</p>
+        </div>
+
+        <div class="flow-and-challenge">
+          <ol class="play-flow" aria-label="שלבי המשחק">
+            <li class="flow-card" data-enter>
+              <span class="step-number" aria-hidden="true">1</span>
+              <div class="flow-visual character-choice" aria-hidden="true">
+                <img src="assets/generated/bifly-expression-victory.png" width="512" height="512" alt="">
+                <img src="assets/generated/nabatick-expression-victory.png" width="512" height="512" alt="">
+              </div>
+              <div>
+                <h3>בוחרים דמות, מצב ורמה</h3>
+                <p>ארקייד למרדף אחרי שיא, או הרפתקה בין ארבעה עולמות.</p>
+              </div>
+            </li>
+
+            <li class="flow-card" data-enter>
+              <span class="step-number" aria-hidden="true">2</span>
+              <div class="flow-visual question-visual" aria-hidden="true">
+                <img src="assets/landing/screen-question.jpg" width="562" height="1000" alt="">
+                <span>8 × 7 = ?</span>
+              </div>
+              <div>
+                <h3>נוגעים באויב ועונים על כפל</h3>
+                <p>המבוך נעצר, תרגיל נפתח, ותשובה נכונה מחזירה אתכם למרדף.</p>
+              </div>
+            </li>
+
+            <li class="flow-card" data-enter>
+              <span class="step-number" aria-hidden="true">3</span>
+              <div class="flow-visual score-visual" aria-hidden="true">
+                <img src="assets/generated/kaflul-champion-trophy-v2.png" width="1254" height="1254" alt="">
+                <strong>+500</strong>
+              </div>
+              <div>
+                <h3>צוברים ניקוד ומטפסים בדירוג</h3>
+                <p>תשובות, פריטים, משימות ובוסים מוסיפים נקודות; קומבו ורמה קשה מכפילים אותן.</p>
+              </div>
+            </li>
+          </ol>
+
+          <aside class="rank-challenge" aria-labelledby="rank-challenge-title" data-enter>
+            <div class="rank-crown" aria-hidden="true">#1</div>
+            <img src="assets/generated/kaflul-champion-trophy-v2.png" width="1254" height="1254" alt="">
+            <p>טבלת אלוף האלופים</p>
+            <h3 id="rank-challenge-title">חושבים שתגיעו לראש הטבלה?</h3>
+            <p class="rank-copy">רק השיא הגבוה ביותר של כל שחקן מופיע. מתחילים בסיבוב אחד — ולא עוצרים עד שמופיע <b>#1</b>.</p>
+            <div class="rank-status" data-leaderboard-status role="status" aria-live="polite">
+              <span aria-hidden="true"></span>
+              <strong>בודקים את הדירוג העולמי…</strong>
+            </div>
+            <a class="button button-lime" href="index.html?source=landing&amp;campaign=champion_challenge">קחו את המקום הראשון <span aria-hidden="true">←</span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="gameplay" class="gameplay-section section-pad" aria-labelledby="gameplay-title">
+      <div class="shell">
+        <div class="section-heading" data-enter>
+          <p class="section-kicker">המשחק מבפנים</p>
+          <h2 id="gameplay-title">לא מדמיינים למידה.<br><span>רואים אותה בתוך המשחק.</span></h2>
+          <p>אלה מסכים אמיתיים מתוך כפלול: המבוך ממשיך לזוז, התרגיל מגיע ברגע הנכון, והעולמות משתנים ככל שמתקדמים.</p>
+        </div>
+
+        <div class="screens-grid" aria-label="צילומי מסך אמיתיים מתוך כפלול">
+          <figure class="screen-card screen-card-main" data-enter>
+            <img src="assets/landing/screen-gameplay.jpg" width="562" height="1000" loading="lazy" alt="ביפלי נע במבוך גן השמש ובורח מאויבים">
+            <figcaption><span>01</span><strong>נעים במבוך</strong><small>היגוי במגע או במקלדת</small></figcaption>
+          </figure>
+          <figure class="screen-card" data-enter>
+            <img src="assets/landing/screen-question.jpg" width="562" height="1000" loading="lazy" alt="מסך תרגיל כפל שנפתח לאחר מפגש עם אויב">
+            <figcaption><span>02</span><strong>פותרים בזמן אמת</strong><small>המשחק נעצר כדי לאפשר ריכוז</small></figcaption>
+          </figure>
+          <figure class="screen-card" data-enter>
+            <img src="assets/landing/screen-lava.jpg" width="562" height="1000" loading="lazy" alt="ביפלי ונבטיק בעולם הלבה של כפלול">
+            <figcaption><span>03</span><strong>פותחים עולם חדש</strong><small>ארבעה עולמות ומפגשי בוס</small></figcaption>
+          </figure>
+        </div>
+
+        <div class="world-strip" aria-label="ארבעת העולמות במשחק" data-enter>
+          <figure><img src="assets/landing/world-ancient.jpg" width="562" height="1000" loading="lazy" alt="עולם גן השמש"><figcaption>גן השמש</figcaption></figure>
+          <figure><img src="assets/landing/world-ice.jpg" width="562" height="1000" loading="lazy" alt="עולם הקרח"><figcaption>מערות הקרח</figcaption></figure>
+          <figure><img src="assets/landing/world-lava.jpg" width="562" height="1000" loading="lazy" alt="עולם הלבה"><figcaption>הר הגעש</figcaption></figure>
+          <figure><img src="assets/landing/world-diamond.jpg" width="562" height="1000" loading="lazy" alt="עולם היהלומים"><figcaption>מכרה היהלומים</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="champions" class="champions-section section-pad" aria-labelledby="champions-title">
+      <div class="shell champions-layout">
+        <div class="champions-copy" data-enter>
+          <p class="section-kicker">הדירוג העולמי של כפלול</p>
+          <h2 id="champions-title">אלוף האלופים<br><span>מחכה לשיא הבא.</span></h2>
+          <p>כל שחקן מופיע פעם אחת עם השיא הגבוה ביותר שלו. בוחרים מצב ורמה, משפרים קומבו וחוזרים לנסות לעקוף את עצמכם — ואת כולם.</p>
+          <ul class="champion-points">
+            <li><span>01</span><strong>השיא נשמר במכשיר</strong><small>כך כל סיבוב מתחיל מהיעד האישי האמיתי שלכם.</small></li>
+            <li><span>02</span><strong>הדירוג מסתנכרן אוטומטית</strong><small>כשיש חיבור, השיא יכול לעלות לטבלה העולמית.</small></li>
+            <li><span>03</span><strong>רק התוצאה הטובה ביותר קובעת</strong><small>לא מספר המשחקים — כמה רחוק הצלחתם להגיע.</small></li>
+          </ul>
+          <a class="button button-primary" href="index.html?source=landing&amp;campaign=champions">שחקו על המקום הראשון <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="champions-visual" data-enter>
+          <span class="champion-number" aria-hidden="true">1</span>
+          <img src="assets/generated/kaflul-champion-trophy-v2.png" width="1254" height="1254" loading="lazy" alt="גביע אלוף האלופים של כפלול">
+          <div class="champion-banner"><small>היעד הבא שלכם</small><strong>#1</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="parents" class="parents-section section-pad" aria-labelledby="parents-title">
+      <div class="shell parents-layout">
+        <div class="parents-copy" data-enter>
+          <p class="section-kicker">להורים שרוצים פחות מאבק</p>
+          <h2 id="parents-title">הם באים בשביל המבוך.<br><span>לוח הכפל מגיע איתם.</span></h2>
+          <p>במקום לבקש “עוד דף”, מציבים יעד משחקי ברור. החזרה על התרגילים מתרחשת בתוך סיבובים קצרים, עם משוב מיידי וקושי שאפשר לבחור.</p>
+        </div>
+
+        <div class="parent-grid">
+          <article data-enter><strong>5</strong><h3>רמות קושי</h3><p>מתחילים בקצב נוח ומתקדמים למהיר ומתגמל יותר.</p></article>
+          <article data-enter><strong>4</strong><h3>עולמות בהרפתקה</h3><p>בכל עולם יש 24 תרגילים ועוד 3 שאלות בוס.</p></article>
+          <article data-enter><strong>0</strong><h3>פרסומות ורכישות</h3><p>אין פרסומות, אין רכישות בתוך המשחק ואין צורך בחשבון.</p></article>
+        </div>
+
+        <div class="parent-note" data-enter>
+          <div>
+            <h3>גם בלי אינטרנט</h3>
+            <p>המשחק עצמו ממשיך לעבוד. השיא נשמר במכשיר ומסתנכרן עם אלוף האלופים כשהחיבור חוזר.</p>
+          </div>
+          <div>
+            <h3>גם בכפל וגם בחילוק</h3>
+            <p>אפשר לתרגל כפל בלבד, או להוסיף חילוק מדויק מתוך הגדרות המשחק.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="download-section section-pad" aria-labelledby="download-title">
+      <div class="shell download-card" data-enter>
+        <div class="download-art" aria-hidden="true">
+          <img class="download-ghost" src="assets/dark-enemy-surprised.png" width="512" height="512" alt="">
+          <img class="download-character" src="assets/generated/bifly-expression-victory.png" width="512" height="512" alt="">
+        </div>
+        <div class="download-copy">
+          <p class="section-kicker">הסיבוב הראשון מתחיל כאן</p>
+          <h2 id="download-title">מי יהיה אלוף האלופים הבא?</h2>
+          <p>משחקים מיד בדפדפן, או מורידים את קובץ ה-Android למכשיר.</p>
+          <div class="download-actions">
+            <a class="button button-primary" href="index.html?source=landing&amp;campaign=final_download">שחקו עכשיו בחינם <span aria-hidden="true">←</span></a>
+            <a class="button button-outline" href="dist/kaflul-updated-20260729.apk" download="kaflul-math-maze-android.apk">הורידו ל-Android <span aria-hidden="true">↓</span></a>
+            <button class="button button-share" type="button" data-share>שתפו את האתגר <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="download-meta">ללא פרסומות · ללא רכישות · אפשר בלי חשבון</p>
+        </div>
+        <figure class="qr-card">
+          <img src="assets/qr-kaflul.png" width="512" height="512" loading="lazy" alt="קוד QR לפתיחת המשחק כפלול">
+          <figcaption>סרקו ופתחו בטלפון</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="faq" class="faq-section section-pad" aria-labelledby="faq-title">
+      <div class="shell faq-layout">
+        <div class="section-heading" data-enter>
+          <p class="section-kicker">לפני שמתחילים</p>
+          <h2 id="faq-title">שאלות שהורים שואלים</h2>
+        </div>
+        <div class="faq-list" data-enter>
+          <details>
+            <summary>לאילו גילאים כפלול מתאים?<span aria-hidden="true">+</span></summary>
+            <p>לילדים שמתחילים להכיר את לוח הכפל ולמי שרוצה לשפר מהירות וביטחון בשליפה. אפשר לבחור רמת קושי בכל משחק.</p>
+          </details>
+          <details>
+            <summary>צריך להירשם או למסור פרטים?<span aria-hidden="true">+</span></summary>
+            <p>לא. אפשר להתחיל לשחק בלי חשבון. הכינוי לטבלת אלוף האלופים נשמר במכשיר ומיועד להצגת השיא בלבד.</p>
+          </details>
+          <details>
+            <summary>איך המשחק עוזר לתרגל כפל?<span aria-hidden="true">+</span></summary>
+            <p>מפגש עם אויב פותח תרגיל ועוצר את המבוך, כך שהילד מקבל רגע מרוכז לענות. תשובות נכונות ממשיכות את המשחק ומוסיפות ניקוד.</p>
+          </details>
+          <details>
+            <summary>אפשר לשחק גם במחשב?<span aria-hidden="true">+</span></summary>
+            <p>כן. כפלול פועל בדפדפן בטלפון ובמחשב, וכולל גם קובץ התקנה ל-Android.</p>
+          </details>
+          <details>
+            <summary>יש במשחק פרסומות או רכישות?<span aria-hidden="true">+</span></summary>
+            <p>לא. המשחק חינמי, ללא פרסומות וללא רכישות בתוך המשחק.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="accessibility" class="accessibility-section" aria-labelledby="accessibility-title">
+      <div class="shell accessibility-card" data-enter>
+        <div>
+          <p class="section-kicker">נגישות היא חלק מהמשחק</p>
+          <h2 id="accessibility-title">הדף נבנה כדי שכמה שיותר אנשים יוכלו להשתמש בו.</h2>
+        </div>
+        <div class="accessibility-copy">
+          <p>יישמנו מבנה סמנטי, ניווט מלא במקלדת, סימון מיקוד ברור, טקסט חלופי לתמונות משמעותיות, תמיכה בקוראי מסך, ניגודיות גבוהה והתאמה להפחתת תנועה ולהגדלת טקסט.</p>
+          <p>נתקלתם בקושי? כתבו לנו מה ניסיתם לעשות, באיזה מכשיר ובאיזו טכנולוגיה מסייעת השתמשתם.</p>
+          <a href="mailto:kaflul.support@gmail.com?subject=%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%91%D7%9B%D7%A4%D7%9C%D7%95%D7%9C">דיווח על בעיית נגישות</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="footer-brand" href="#top"><img src="assets/kaflul-logo-official.png" width="1065" height="489" alt="כפלול"><span>מבוך הכפל</span></a>
+      <nav aria-label="ניווט תחתון">
+        <a href="#how">איך משחקים</a>
+        <a href="#parents">להורים</a>
+        <a href="#accessibility">נגישות</a>
+        <a href="privacy.html">פרטיות</a>
+      </nav>
+      <p>© <span data-current-year></span> כפלול. נבנה בישראל.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-playbar" aria-label="גישה מהירה למשחק">
+    <a href="index.html?source=landing&amp;campaign=mobile_sticky">שחקו עכשיו בחינם <span aria-hidden="true">←</span></a>
+  </div>
+
+  <div class="toast" data-share-toast role="status" aria-live="polite" aria-atomic="true" hidden>
+    <span data-share-message></span>
+    <button type="button" data-toast-close aria-label="סגירת ההודעה">×</button>
+  </div>
+
+  <noscript><div class="noscript-note">אפשר לצפות בדף גם ללא JavaScript. כדי לשחק בכפלול יש להפעיל JavaScript בדפדפן.</div></noscript>
+  <script src="landing.js?v=20260803-final" defer></script>
+</body>
+</html>

@@ -1,0 +1,3023 @@
+{
+  "createdAt": "2026-07-13T20:01:36.255Z",
+  "renderer": "orthographic-3/4",
+  "camera": {
+    "azimuthDegrees": 10,
+    "elevationDegrees": 56,
+    "tiltFromVerticalDegrees": 34
+  },
+  "captures": [
+    {
+      "world": "ice",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ice-desktop-1280x720.png",
+      "sha256": "e898a3e3091928dc3f11eb3e1fc638fc766d28ab74d58ac9c429e0df287eed78",
+      "browserErrors": [],
+      "questionFlow": null,
+      "deepQa": null,
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ice",
+        "concept": "sun-garden",
+        "visualRenderer": "world1-authored-environment-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": false
+      },
+      "visual": {
+        "levelIndex": 0,
+        "worldId": "ice",
+        "concept": "sun-garden",
+        "renderer": "world1-authored-environment-v2",
+        "layersDrawn": [
+          "world1-authored-sandstone-board",
+          "world1-authored-guidance-cleanup",
+          "world1-ambient",
+          "world1-focal-light",
+          "world1-goal-cue",
+          "world1-authored-depth-sorted-actors"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/maze/world1/sun-garden/board-v3.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "authoredGuidanceLineRemoved": true,
+        "goalCue": true,
+        "landmarkCount": 3,
+        "gateStyle": "seed",
+        "collectibleStyle": "garden",
+        "actorContactStyle": "garden",
+        "hazardType": "ice-slick",
+        "hazardVisualStyle": "garden",
+        "bossTrailVisualStyle": "garden",
+        "legacyIceAssetsRequested": false
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 618,
+        "walkableCellCount": 582,
+        "openTransitions": 1816,
+        "blockedTransitions": 512,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 10
+    },
+    {
+      "world": "ice",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ice-mobile-390x844.png",
+      "sha256": "a78a8da8e3b9ad3d6bb54f8592c32162f1551979980ed48d8fc3464a646a0fed",
+      "browserErrors": [],
+      "questionFlow": {
+        "opened": true,
+        "text": "⁦9 × 4 = ?⁩",
+        "answer": 36,
+        "inputValue": "36",
+        "feedbackResult": "correct",
+        "status": "רוח תפסה אותך · ענה כדי לברוח",
+        "returnedToPlaying": true
+      },
+      "deepQa": {
+        "collision": {
+          "passed": true,
+          "wallCellCount": 618,
+          "walkableCellCount": 582,
+          "openTransitions": 1816,
+          "blockedTransitions": 512,
+          "failures": []
+        },
+        "traversal": {
+          "passed": true,
+          "navigationVersion": "world1-canonical-semantic-layout-v5",
+          "walkableCellCount": 582,
+          "visitedCellCount": 582,
+          "routeEdgeCount": 1162,
+          "simulatedFrames": 11620,
+          "traveledDistance": 27888.000000002594,
+          "overlapSamples": 0,
+          "maxTurnResponseFrames": 1,
+          "playerSpeed": 148,
+          "playerWallCollisionRadius": 7.343999999999999,
+          "inputBufferMode": "until-next-input",
+          "failures": []
+        },
+        "wallStops": {
+          "passed": true,
+          "scenarioCount": 11448,
+          "legalTurnCount": 954,
+          "driftOffsets": [
+            0,
+            2.8,
+            4.2
+          ],
+          "stepDistances": [
+            1.2333333333333334,
+            2.466666666666667,
+            4.933333333333334,
+            14.8
+          ],
+          "maxStopCenterError": 0,
+          "maxTurnCrossAxisError": 0,
+          "failures": []
+        },
+        "actorVisuals": {
+          "authoredWorldOne": true,
+          "coarsePointer": true,
+          "player": {
+            "radius": 10.2,
+            "scale": 0.84,
+            "displaySize": 21.848399999999998
+          },
+          "enemies": []
+        },
+        "initialActors": {
+          "player": {
+            "kind": "player",
+            "index": 0,
+            "x": 492,
+            "y": 636,
+            "speed": 148,
+            "direction": "right",
+            "lastMoveDistance": 0,
+            "stuckTime": 0,
+            "pathCooldown": 0,
+            "cell": {
+              "x": 20,
+              "y": 26
+            },
+            "collisionRadius": 7.343999999999999,
+            "overlapsWall": false
+          },
+          "enemies": [
+            {
+              "kind": "enemy",
+              "index": 0,
+              "x": 492,
+              "y": 324,
+              "speed": 108,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 13
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 1,
+              "x": 540,
+              "y": 372,
+              "speed": 113,
+              "direction": "left",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 22,
+                "y": 15
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 2,
+              "x": 60,
+              "y": 660,
+              "speed": 118,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 2,
+                "y": 27
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 3,
+              "x": 492,
+              "y": 372,
+              "speed": 123,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 15
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 4,
+              "x": 492,
+              "y": 420,
+              "speed": 108,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 17
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            }
+          ],
+          "boss": null
+        },
+        "enemyMotion": {
+          "frameCount": 360,
+          "maxStepDistance": 2.0500000000000114,
+          "wallOverlapFrames": 0,
+          "actors": {
+            "player": {
+              "kind": "player",
+              "index": 0,
+              "x": 492,
+              "y": 636,
+              "speed": 148,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 26
+              },
+              "collisionRadius": 7.343999999999999,
+              "overlapsWall": false
+            },
+            "enemies": [
+              {
+                "kind": "enemy",
+                "index": 0,
+                "x": 108,
+                "y": 60,
+                "speed": 108,
+                "direction": "left",
+                "lastMoveDistance": 1.799999999999713,
+                "stuckTime": 0,
+                "pathCooldown": 0.12222222222222223,
+                "cell": {
+                  "x": 4,
+                  "y": 2
+                },
+                "collisionRadius": 7.4879999999999995,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 1,
+                "x": 900,
+                "y": 65.99999999999777,
+                "speed": 113,
+                "direction": "down",
+                "lastMoveDistance": 1.88333333333334,
+                "stuckTime": 0,
+                "pathCooldown": 0.07,
+                "cell": {
+                  "x": 37,
+                  "y": 2
+                },
+                "collisionRadius": 7.4879999999999995,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 2,
+                "x": 60,
+                "y": 649.0000000000209,
+                "speed": 118,
+                "direction": "down",
+                "lastMoveDistance": 1.966666666666697,
+                "stuckTime": 0,
+                "pathCooldown": 0.020000000000000014,
+                "cell": {
+                  "x": 2,
+                  "y": 27
+                },
+                "collisionRadius": 7.4879999999999995,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 3,
+                "x": 876,
+                "y": 581.999999999992,
+                "speed": 123,
+                "direction": "down",
+                "lastMoveDistance": 2.0499999999999545,
+                "stuckTime": 0,
+                "pathCooldown": -0.013333333333333319,
+                "cell": {
+                  "x": 36,
+                  "y": 24
+                },
+                "collisionRadius": 7.4879999999999995,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 4,
+                "x": 204,
+                "y": 60,
+                "speed": 108,
+                "direction": "left",
+                "lastMoveDistance": 1.7999999999995566,
+                "stuckTime": 0,
+                "pathCooldown": 0.12222222222222223,
+                "cell": {
+                  "x": 8,
+                  "y": 2
+                },
+                "collisionRadius": 7.4879999999999995,
+                "overlapsWall": false
+              }
+            ],
+            "boss": null
+          }
+        },
+        "hazard": {
+          "levelIndex": 0,
+          "type": "ice-slick",
+          "origin": {
+            "x": 24,
+            "y": 23
+          },
+          "cells": [
+            {
+              "x": 24,
+              "y": 23
+            },
+            {
+              "x": 25,
+              "y": 23
+            },
+            {
+              "x": 23,
+              "y": 23
+            },
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 24,
+              "y": 22
+            },
+            {
+              "x": 25,
+              "y": 24
+            },
+            {
+              "x": 23,
+              "y": 22
+            }
+          ]
+        },
+        "chestClosed": {
+          "levelIndex": 0,
+          "mode": "closed",
+          "keysCollected": 0,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 9,
+                "y": 8
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 3,
+                "y": 5
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 36,
+                "y": 5
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 33,
+                "y": 20
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 22,
+                "y": 8
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 7,
+                "y": 9
+              }
+            }
+          ]
+        },
+        "chestReady": {
+          "levelIndex": 0,
+          "mode": "ready",
+          "keysCollected": 3,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 19,
+                "y": 2
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 31,
+                "y": 12
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 22,
+                "y": 11
+              }
+            }
+          ]
+        },
+        "chestOpened": {
+          "levelIndex": 0,
+          "mode": "opened",
+          "keysCollected": 3,
+          "chestOpened": true,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 14,
+                "y": 24
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 27,
+                "y": 5
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 28,
+                "y": 17
+              }
+            }
+          ]
+        },
+        "intro": {
+          "start": {
+            "active": true,
+            "levelIndex": 0,
+            "elapsed": 0,
+            "progress": 0,
+            "travelProgress": 0,
+            "phase": "overview",
+            "zoom": 0.35800781249999997,
+            "cameraX": 480,
+            "cameraY": 360,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "mid": {
+            "active": true,
+            "levelIndex": 0,
+            "elapsed": 1.5950000000000002,
+            "progress": 0.5,
+            "travelProgress": 0.026226740740740825,
+            "phase": "focus",
+            "zoom": 0.37615651219618057,
+            "cameraX": 480.31472088888887,
+            "cameraY": 360.44960126984125,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "end": {
+            "active": true,
+            "levelIndex": 0,
+            "elapsed": 3.1740500000000003,
+            "progress": 0.995,
+            "travelProgress": 1,
+            "phase": "settle",
+            "zoom": 1.05,
+            "cameraX": 492,
+            "cameraY": 377.14285714285717,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          }
+        },
+        "renderProfile": {
+          "sampleCount": 12,
+          "fullFrame": {
+            "averageMs": 0.22500000024835268,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.30000000447034836,
+            "maxMs": 0.30000000447034836
+          },
+          "boardAndAmbient": {
+            "averageMs": 0.19166666641831398,
+            "medianMs": 0.19999999552965164,
+            "p95Ms": 0.30000000447034836,
+            "maxMs": 0.30000000447034836
+          },
+          "collectiblesAndChest": {
+            "averageMs": 0.008333333457509676,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "questionGates": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "actors": {
+            "averageMs": 0.03333333320915699,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "extraChestPass": {
+            "averageMs": 0.016666666915019352,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "particlesAndText": {
+            "averageMs": 0.008333333457509676,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          }
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v2",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-authored-guidance-cleanup",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue",
+            "world1-authored-depth-sorted-actors"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v3.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "authoredGuidanceLineRemoved": true,
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        }
+      },
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ice",
+        "concept": "sun-garden",
+        "visualRenderer": "world1-authored-environment-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": false
+      },
+      "visual": {
+        "levelIndex": 0,
+        "worldId": "ice",
+        "concept": "sun-garden",
+        "renderer": "world1-authored-environment-v2",
+        "layersDrawn": [
+          "world1-authored-sandstone-board",
+          "world1-authored-guidance-cleanup",
+          "world1-ambient",
+          "world1-focal-light",
+          "world1-goal-cue",
+          "world1-authored-depth-sorted-actors"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/maze/world1/sun-garden/board-v3.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "authoredGuidanceLineRemoved": true,
+        "goalCue": true,
+        "landmarkCount": 3,
+        "gateStyle": "seed",
+        "collectibleStyle": "garden",
+        "actorContactStyle": "garden",
+        "hazardType": "ice-slick",
+        "hazardVisualStyle": "garden",
+        "bossTrailVisualStyle": "garden",
+        "legacyIceAssetsRequested": false
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 618,
+        "walkableCellCount": 582,
+        "openTransitions": 1816,
+        "blockedTransitions": 512,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 51
+    },
+    {
+      "world": "lava",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/lava-desktop-1280x720.png",
+      "sha256": "3f6ea97bf198b5914d12dc8e72e4a031222f77f4e87924aaacf02044e72f8d29",
+      "browserErrors": [],
+      "questionFlow": null,
+      "deepQa": null,
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "lava",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 1,
+        "worldId": "lava",
+        "concept": "stage2-forge-caldera",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_lava.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "lava-spill",
+        "hazardVisualStyle": "lava",
+        "bossTrailVisualStyle": "lava",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 587,
+        "walkableCellCount": 613,
+        "openTransitions": 2002,
+        "blockedTransitions": 450,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 11
+    },
+    {
+      "world": "lava",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/lava-mobile-390x844.png",
+      "sha256": "8cb403e48f4a1204f2d705e69366ac338bcbd4ba4331890f1f94f47f488f00aa",
+      "browserErrors": [],
+      "questionFlow": {
+        "opened": true,
+        "text": "⁦6 × 5 = ?⁩",
+        "answer": 30,
+        "inputValue": "30",
+        "feedbackResult": "correct",
+        "status": "רוח תפסה אותך · ענה כדי לברוח",
+        "returnedToPlaying": true
+      },
+      "deepQa": {
+        "collision": {
+          "passed": true,
+          "wallCellCount": 587,
+          "walkableCellCount": 613,
+          "openTransitions": 2002,
+          "blockedTransitions": 450,
+          "failures": []
+        },
+        "traversal": {
+          "passed": true,
+          "navigationVersion": "world1-canonical-semantic-layout-v5",
+          "walkableCellCount": 613,
+          "visitedCellCount": 613,
+          "routeEdgeCount": 1224,
+          "simulatedFrames": 12240,
+          "traveledDistance": 29376.000000003412,
+          "overlapSamples": 0,
+          "maxTurnResponseFrames": 1,
+          "playerSpeed": 148,
+          "playerWallCollisionRadius": 10.2,
+          "inputBufferMode": "until-next-input",
+          "failures": []
+        },
+        "wallStops": {
+          "passed": true,
+          "scenarioCount": 9648,
+          "legalTurnCount": 804,
+          "driftOffsets": [
+            0,
+            2.8,
+            4.2
+          ],
+          "stepDistances": [
+            1.2333333333333334,
+            2.466666666666667,
+            4.933333333333334,
+            14.8
+          ],
+          "maxStopCenterError": 0,
+          "maxTurnCrossAxisError": 0,
+          "failures": []
+        },
+        "actorVisuals": {
+          "authoredWorldOne": false,
+          "coarsePointer": true,
+          "player": {
+            "radius": 10.2,
+            "scale": 0.84,
+            "displaySize": 21.848399999999998
+          },
+          "enemies": []
+        },
+        "initialActors": {
+          "player": {
+            "kind": "player",
+            "index": 0,
+            "x": 492,
+            "y": 636,
+            "speed": 148,
+            "direction": "right",
+            "lastMoveDistance": 0,
+            "stuckTime": 0,
+            "pathCooldown": 0,
+            "cell": {
+              "x": 20,
+              "y": 26
+            },
+            "collisionRadius": 10.2,
+            "overlapsWall": false
+          },
+          "enemies": [
+            {
+              "kind": "enemy",
+              "index": 0,
+              "x": 444,
+              "y": 372,
+              "speed": 135.43200000000002,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 18,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 1,
+              "x": 900,
+              "y": 60,
+              "speed": 141.075,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 37,
+                "y": 2
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 2,
+              "x": 444,
+              "y": 372,
+              "speed": 146.718,
+              "direction": "down",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 18,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 3,
+              "x": 492,
+              "y": 324,
+              "speed": 152.361,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 13
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 4,
+              "x": 540,
+              "y": 372,
+              "speed": 135.43200000000002,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 22,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            }
+          ],
+          "boss": null
+        },
+        "enemyMotion": {
+          "frameCount": 360,
+          "maxStepDistance": 2.539350000000013,
+          "wallOverlapFrames": 0,
+          "actors": {
+            "player": {
+              "kind": "player",
+              "index": 0,
+              "x": 492,
+              "y": 636,
+              "speed": 148,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 26
+              },
+              "collisionRadius": 10.2,
+              "overlapsWall": false
+            },
+            "enemies": [
+              {
+                "kind": "enemy",
+                "index": 0,
+                "x": 60,
+                "y": 80.59200000000257,
+                "speed": 135.43200000000002,
+                "direction": "down",
+                "lastMoveDistance": 2.2571999999999974,
+                "stuckTime": 0,
+                "pathCooldown": -0.029999999999999985,
+                "cell": {
+                  "x": 2,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 1,
+                "x": 900,
+                "y": 77.55000000000196,
+                "speed": 141.075,
+                "direction": "up",
+                "lastMoveDistance": 2.351249999999993,
+                "stuckTime": 0,
+                "pathCooldown": 0.08666666666666667,
+                "cell": {
+                  "x": 37,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 2,
+                "x": 60,
+                "y": 643.6920000000068,
+                "speed": 146.718,
+                "direction": "up",
+                "lastMoveDistance": 2.4452999999999747,
+                "stuckTime": 0,
+                "pathCooldown": 0.020000000000000014,
+                "cell": {
+                  "x": 2,
+                  "y": 26
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 3,
+                "x": 900,
+                "y": 638.1660000000047,
+                "speed": 152.361,
+                "direction": "down",
+                "lastMoveDistance": 1.7926500000094165,
+                "stuckTime": 0,
+                "pathCooldown": 0.12,
+                "cell": {
+                  "x": 37,
+                  "y": 26
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 4,
+                "x": 60,
+                "y": 80.59200000000317,
+                "speed": 135.43200000000002,
+                "direction": "down",
+                "lastMoveDistance": 2.2571999999999974,
+                "stuckTime": 0,
+                "pathCooldown": -0.029999999999999985,
+                "cell": {
+                  "x": 2,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              }
+            ],
+            "boss": null
+          }
+        },
+        "hazard": {
+          "levelIndex": 1,
+          "type": "lava-spill",
+          "origin": {
+            "x": 24,
+            "y": 23
+          },
+          "cells": [
+            {
+              "x": 24,
+              "y": 23
+            },
+            {
+              "x": 24,
+              "y": 24
+            },
+            {
+              "x": 24,
+              "y": 25
+            },
+            {
+              "x": 24,
+              "y": 26
+            },
+            {
+              "x": 24,
+              "y": 27
+            },
+            {
+              "x": 24,
+              "y": 22
+            },
+            {
+              "x": 24,
+              "y": 21
+            },
+            {
+              "x": 24,
+              "y": 20
+            }
+          ]
+        },
+        "chestClosed": {
+          "levelIndex": 1,
+          "mode": "closed",
+          "keysCollected": 0,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 2,
+                "y": 23
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 21,
+                "y": 11
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 8,
+                "y": 20
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 7,
+                "y": 19
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 22,
+                "y": 3
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 33,
+                "y": 26
+              }
+            }
+          ]
+        },
+        "chestReady": {
+          "levelIndex": 1,
+          "mode": "ready",
+          "keysCollected": 3,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 29,
+                "y": 16
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 15,
+                "y": 15
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 37,
+                "y": 6
+              }
+            }
+          ]
+        },
+        "chestOpened": {
+          "levelIndex": 1,
+          "mode": "opened",
+          "keysCollected": 3,
+          "chestOpened": true,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 28,
+                "y": 15
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 17,
+                "y": 11
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 22,
+                "y": 9
+              }
+            }
+          ]
+        },
+        "intro": {
+          "start": {
+            "active": true,
+            "levelIndex": 1,
+            "elapsed": 0,
+            "progress": 0,
+            "travelProgress": 0,
+            "phase": "overview",
+            "zoom": 0.35800781249999997,
+            "cameraX": 480,
+            "cameraY": 360,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "mid": {
+            "active": true,
+            "levelIndex": 1,
+            "elapsed": 1.5950000000000002,
+            "progress": 0.5,
+            "travelProgress": 0.026226740740740825,
+            "phase": "focus",
+            "zoom": 0.37615651219618057,
+            "cameraX": 480.31472088888887,
+            "cameraY": 360.44960126984125,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "end": {
+            "active": true,
+            "levelIndex": 1,
+            "elapsed": 3.1740500000000003,
+            "progress": 0.995,
+            "travelProgress": 1,
+            "phase": "settle",
+            "zoom": 1.05,
+            "cameraX": 492,
+            "cameraY": 377.14285714285717,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          }
+        },
+        "renderProfile": {
+          "sampleCount": 12,
+          "fullFrame": {
+            "averageMs": 0.0666666670391957,
+            "medianMs": 0.10000000149011612,
+            "p95Ms": 0.20000000298023224,
+            "maxMs": 0.20000000298023224
+          },
+          "boardAndAmbient": {
+            "averageMs": 0.07499999987582366,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.30000000447034836,
+            "maxMs": 0.30000000447034836
+          },
+          "collectiblesAndChest": {
+            "averageMs": 0.024999999751647312,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "questionGates": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "actors": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "extraChestPass": {
+            "averageMs": 0.008333333457509676,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "particlesAndText": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          }
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "lava",
+          "concept": null,
+          "visualRenderer": "stage1-style-themed-continuous-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": true
+        },
+        "visual": {
+          "levelIndex": 1,
+          "worldId": "lava",
+          "concept": "stage2-forge-caldera",
+          "renderer": "stage1-style-themed-continuous-v1",
+          "layersDrawn": [
+            "continuous-themed-backdrop",
+            "continuous-themed-floor",
+            "authored-macro-floor-material",
+            "topology-contact-shadows",
+            "continuous-themed-walls",
+            "authored-macro-wall-material",
+            "continuous-axonometric-wall-faces",
+            "theme-material-accents",
+            "wall-clipped-authored-landmarks",
+            "static-theme-lighting"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/reference/maze-worlds/world_lava.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "canonicalCollisionMask": true,
+          "misleadingRouteLineDrawn": false,
+          "landmarkCount": 6,
+          "actorScaleBaseline": "world1-sun-garden-approved-v1",
+          "hazardType": "lava-spill",
+          "hazardVisualStyle": "lava",
+          "bossTrailVisualStyle": "lava",
+          "legacyIceAssetsRequested": null
+        }
+      },
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "lava",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 1,
+        "worldId": "lava",
+        "concept": "stage2-forge-caldera",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_lava.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "lava-spill",
+        "hazardVisualStyle": "lava",
+        "bossTrailVisualStyle": "lava",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 587,
+        "walkableCellCount": 613,
+        "openTransitions": 2002,
+        "blockedTransitions": 450,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 44
+    },
+    {
+      "world": "ancient",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ancient-desktop-1280x720.png",
+      "sha256": "ded3ef429d9cb8456d974926c1a387bf967390d67fc6acc352d6dbf4587fd37d",
+      "browserErrors": [],
+      "questionFlow": null,
+      "deepQa": null,
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ancient",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 2,
+        "worldId": "ancient",
+        "concept": "stage3-sunken-temple",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_ancient.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "rune-trap",
+        "hazardVisualStyle": "ancient",
+        "bossTrailVisualStyle": "ancient",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 582,
+        "walkableCellCount": 618,
+        "openTransitions": 2036,
+        "blockedTransitions": 436,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 25
+    },
+    {
+      "world": "ancient",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/ancient-mobile-390x844.png",
+      "sha256": "45c2febf023e1eecb61636d39505cbe68cd2e986cd2f7b2360483f6083575324",
+      "browserErrors": [],
+      "questionFlow": {
+        "opened": true,
+        "text": "⁦6 × 8 = ?⁩",
+        "answer": 48,
+        "inputValue": "48",
+        "feedbackResult": "correct",
+        "status": "רוח תפסה אותך · ענה כדי לברוח",
+        "returnedToPlaying": true
+      },
+      "deepQa": {
+        "collision": {
+          "passed": true,
+          "wallCellCount": 582,
+          "walkableCellCount": 618,
+          "openTransitions": 2036,
+          "blockedTransitions": 436,
+          "failures": []
+        },
+        "traversal": {
+          "passed": true,
+          "navigationVersion": "world1-canonical-semantic-layout-v5",
+          "walkableCellCount": 618,
+          "visitedCellCount": 618,
+          "routeEdgeCount": 1234,
+          "simulatedFrames": 12340,
+          "traveledDistance": 29616.000000003165,
+          "overlapSamples": 0,
+          "maxTurnResponseFrames": 1,
+          "playerSpeed": 148,
+          "playerWallCollisionRadius": 10.2,
+          "inputBufferMode": "until-next-input",
+          "failures": []
+        },
+        "wallStops": {
+          "passed": true,
+          "scenarioCount": 9552,
+          "legalTurnCount": 796,
+          "driftOffsets": [
+            0,
+            2.8,
+            4.2
+          ],
+          "stepDistances": [
+            1.2333333333333334,
+            2.466666666666667,
+            4.933333333333334,
+            14.8
+          ],
+          "maxStopCenterError": 0,
+          "maxTurnCrossAxisError": 0,
+          "failures": []
+        },
+        "actorVisuals": {
+          "authoredWorldOne": false,
+          "coarsePointer": true,
+          "player": {
+            "radius": 10.2,
+            "scale": 0.84,
+            "displaySize": 21.848399999999998
+          },
+          "enemies": []
+        },
+        "initialActors": {
+          "player": {
+            "kind": "player",
+            "index": 0,
+            "x": 492,
+            "y": 636,
+            "speed": 148,
+            "direction": "right",
+            "lastMoveDistance": 0,
+            "stuckTime": 0,
+            "pathCooldown": 0,
+            "cell": {
+              "x": 20,
+              "y": 26
+            },
+            "collisionRadius": 10.2,
+            "overlapsWall": false
+          },
+          "enemies": [
+            {
+              "kind": "enemy",
+              "index": 0,
+              "x": 540,
+              "y": 372,
+              "speed": 166.90079999999998,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 22,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 1,
+              "x": 444,
+              "y": 372,
+              "speed": 173.2228,
+              "direction": "left",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 18,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 2,
+              "x": 60,
+              "y": 660,
+              "speed": 179.5448,
+              "direction": "left",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 2,
+                "y": 27
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 3,
+              "x": 900,
+              "y": 660,
+              "speed": 185.86679999999998,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 37,
+                "y": 27
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 4,
+              "x": 492,
+              "y": 324,
+              "speed": 166.90079999999998,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 13
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            }
+          ],
+          "boss": null
+        },
+        "enemyMotion": {
+          "frameCount": 360,
+          "maxStepDistance": 3.0977799999999434,
+          "wallOverlapFrames": 0,
+          "actors": {
+            "player": {
+              "kind": "player",
+              "index": 0,
+              "x": 492,
+              "y": 636,
+              "speed": 148,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 26
+              },
+              "collisionRadius": 10.2,
+              "overlapsWall": false
+            },
+            "enemies": [
+              {
+                "kind": "enemy",
+                "index": 0,
+                "x": 60,
+                "y": 77.40479999999867,
+                "speed": 166.90079999999998,
+                "direction": "down",
+                "lastMoveDistance": 2.7816799999999944,
+                "stuckTime": 0,
+                "pathCooldown": 0.020000000000000014,
+                "cell": {
+                  "x": 2,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 1,
+                "x": 900,
+                "y": 76.66319999999371,
+                "speed": 173.2228,
+                "direction": "up",
+                "lastMoveDistance": 2.887046666666663,
+                "stuckTime": 0,
+                "pathCooldown": 0.08666666666666667,
+                "cell": {
+                  "x": 37,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 2,
+                "x": 60,
+                "y": 637.2561199999691,
+                "speed": 179.5448,
+                "direction": "up",
+                "lastMoveDistance": 2.9924133333333884,
+                "stuckTime": 0,
+                "pathCooldown": 0.003333333333333348,
+                "cell": {
+                  "x": 2,
+                  "y": 26
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 3,
+                "x": 900,
+                "y": 636.7198800000031,
+                "speed": 185.86679999999998,
+                "direction": "up",
+                "lastMoveDistance": 3.0977799999999434,
+                "stuckTime": 0,
+                "pathCooldown": 0.003333333333333348,
+                "cell": {
+                  "x": 37,
+                  "y": 26
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 4,
+                "x": 60,
+                "y": 77.40479999999815,
+                "speed": 166.90079999999998,
+                "direction": "down",
+                "lastMoveDistance": 2.7816799999999944,
+                "stuckTime": 0,
+                "pathCooldown": 0.020000000000000014,
+                "cell": {
+                  "x": 2,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              }
+            ],
+            "boss": null
+          }
+        },
+        "hazard": {
+          "levelIndex": 2,
+          "type": "rune-trap",
+          "origin": {
+            "x": 16,
+            "y": 23
+          },
+          "cells": [
+            {
+              "x": 16,
+              "y": 23
+            },
+            {
+              "x": 18,
+              "y": 23
+            },
+            {
+              "x": 16,
+              "y": 25
+            },
+            {
+              "x": 16,
+              "y": 21
+            },
+            {
+              "x": 17,
+              "y": 24
+            }
+          ]
+        },
+        "chestClosed": {
+          "levelIndex": 2,
+          "mode": "closed",
+          "keysCollected": 0,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 14,
+                "y": 13
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 2,
+                "y": 22
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 27,
+                "y": 19
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 3,
+                "y": 25
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 2,
+                "y": 9
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 33,
+                "y": 14
+              }
+            }
+          ]
+        },
+        "chestReady": {
+          "levelIndex": 2,
+          "mode": "ready",
+          "keysCollected": 3,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 23,
+                "y": 9
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 3,
+                "y": 22
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 8,
+                "y": 24
+              }
+            }
+          ]
+        },
+        "chestOpened": {
+          "levelIndex": 2,
+          "mode": "opened",
+          "keysCollected": 3,
+          "chestOpened": true,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 28,
+                "y": 12
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 15,
+                "y": 25
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 6,
+                "y": 17
+              }
+            }
+          ]
+        },
+        "intro": {
+          "start": {
+            "active": true,
+            "levelIndex": 2,
+            "elapsed": 0,
+            "progress": 0,
+            "travelProgress": 0,
+            "phase": "overview",
+            "zoom": 0.35800781249999997,
+            "cameraX": 480,
+            "cameraY": 360,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "mid": {
+            "active": true,
+            "levelIndex": 2,
+            "elapsed": 1.5950000000000002,
+            "progress": 0.5,
+            "travelProgress": 0.026226740740740825,
+            "phase": "focus",
+            "zoom": 0.37615651219618057,
+            "cameraX": 480.31472088888887,
+            "cameraY": 360.44960126984125,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "end": {
+            "active": true,
+            "levelIndex": 2,
+            "elapsed": 3.1740500000000003,
+            "progress": 0.995,
+            "travelProgress": 1,
+            "phase": "settle",
+            "zoom": 1.05,
+            "cameraX": 492,
+            "cameraY": 377.14285714285717,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          }
+        },
+        "renderProfile": {
+          "sampleCount": 12,
+          "fullFrame": {
+            "averageMs": 0.08333333333333333,
+            "medianMs": 0.10000000149011612,
+            "p95Ms": 0.29999999701976776,
+            "maxMs": 0.29999999701976776
+          },
+          "boardAndAmbient": {
+            "averageMs": 0.041666666666666664,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "collectiblesAndChest": {
+            "averageMs": 0.008333333457509676,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "questionGates": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "actors": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "extraChestPass": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "particlesAndText": {
+            "averageMs": 0.00833333283662796,
+            "medianMs": 0,
+            "p95Ms": 0.09999999403953552,
+            "maxMs": 0.09999999403953552
+          }
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ancient",
+          "concept": null,
+          "visualRenderer": "stage1-style-themed-continuous-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": true
+        },
+        "visual": {
+          "levelIndex": 2,
+          "worldId": "ancient",
+          "concept": "stage3-sunken-temple",
+          "renderer": "stage1-style-themed-continuous-v1",
+          "layersDrawn": [
+            "continuous-themed-backdrop",
+            "continuous-themed-floor",
+            "authored-macro-floor-material",
+            "topology-contact-shadows",
+            "continuous-themed-walls",
+            "authored-macro-wall-material",
+            "continuous-axonometric-wall-faces",
+            "theme-material-accents",
+            "wall-clipped-authored-landmarks",
+            "static-theme-lighting"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/reference/maze-worlds/world_ancient.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "canonicalCollisionMask": true,
+          "misleadingRouteLineDrawn": false,
+          "landmarkCount": 6,
+          "actorScaleBaseline": "world1-sun-garden-approved-v1",
+          "hazardType": "rune-trap",
+          "hazardVisualStyle": "ancient",
+          "bossTrailVisualStyle": "ancient",
+          "legacyIceAssetsRequested": null
+        }
+      },
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "ancient",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 2,
+        "worldId": "ancient",
+        "concept": "stage3-sunken-temple",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_ancient.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "rune-trap",
+        "hazardVisualStyle": "ancient",
+        "bossTrailVisualStyle": "ancient",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 582,
+        "walkableCellCount": 618,
+        "openTransitions": 2036,
+        "blockedTransitions": 436,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 59
+    },
+    {
+      "world": "diamond",
+      "viewport": "desktop-1280x720",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/diamond-desktop-1280x720.png",
+      "sha256": "faa2d73c6347603f48e5dfe133aa07ca9a588edbcec3d1782285a6a3fbd354a5",
+      "browserErrors": [],
+      "questionFlow": null,
+      "deepQa": null,
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "diamond",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 3,
+        "worldId": "diamond",
+        "concept": "stage4-prism-sanctum",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_diamond.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "crystal-burst",
+        "hazardVisualStyle": "diamond",
+        "bossTrailVisualStyle": "diamond",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 626,
+        "walkableCellCount": 574,
+        "openTransitions": 1848,
+        "blockedTransitions": 448,
+        "failures": []
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 651,
+        "top": 69
+      },
+      "hud": {
+        "height": 57,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 26
+    },
+    {
+      "world": "diamond",
+      "viewport": "mobile-390x844",
+      "file": "docs/visual-proof-screenshots/axonometric-worlds-v1/diamond-mobile-390x844.png",
+      "sha256": "c18fd350aa7cb5fe7b519e2fc54a12f6eb674fae1052d39c6706cad7f318697f",
+      "browserErrors": [],
+      "questionFlow": {
+        "opened": true,
+        "text": "⁦3 × 9 = ?⁩",
+        "answer": 27,
+        "inputValue": "27",
+        "feedbackResult": "correct",
+        "status": "רוח תפסה אותך · ענה כדי לברוח",
+        "returnedToPlaying": true
+      },
+      "deepQa": {
+        "collision": {
+          "passed": true,
+          "wallCellCount": 626,
+          "walkableCellCount": 574,
+          "openTransitions": 1848,
+          "blockedTransitions": 448,
+          "failures": []
+        },
+        "traversal": {
+          "passed": true,
+          "navigationVersion": "world1-canonical-semantic-layout-v5",
+          "walkableCellCount": 574,
+          "visitedCellCount": 574,
+          "routeEdgeCount": 1146,
+          "simulatedFrames": 11460,
+          "traveledDistance": 27504.000000002696,
+          "overlapSamples": 0,
+          "maxTurnResponseFrames": 1,
+          "playerSpeed": 148,
+          "playerWallCollisionRadius": 10.2,
+          "inputBufferMode": "until-next-input",
+          "failures": []
+        },
+        "wallStops": {
+          "passed": true,
+          "scenarioCount": 9360,
+          "legalTurnCount": 780,
+          "driftOffsets": [
+            0,
+            2.8,
+            4.2
+          ],
+          "stepDistances": [
+            1.2333333333333334,
+            2.466666666666667,
+            4.933333333333334,
+            14.8
+          ],
+          "maxStopCenterError": 0,
+          "maxTurnCrossAxisError": 0,
+          "failures": []
+        },
+        "actorVisuals": {
+          "authoredWorldOne": false,
+          "coarsePointer": true,
+          "player": {
+            "radius": 10.2,
+            "scale": 0.84,
+            "displaySize": 21.848399999999998
+          },
+          "enemies": []
+        },
+        "initialActors": {
+          "player": {
+            "kind": "player",
+            "index": 0,
+            "x": 492,
+            "y": 636,
+            "speed": 148,
+            "direction": "right",
+            "lastMoveDistance": 0,
+            "stuckTime": 0,
+            "pathCooldown": 0,
+            "cell": {
+              "x": 20,
+              "y": 26
+            },
+            "collisionRadius": 10.2,
+            "overlapsWall": false
+          },
+          "enemies": [
+            {
+              "kind": "enemy",
+              "index": 0,
+              "x": 444,
+              "y": 372,
+              "speed": 204.3,
+              "direction": "down",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 18,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 1,
+              "x": 492,
+              "y": 324,
+              "speed": 211.39375,
+              "direction": "left",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 13
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 2,
+              "x": 540,
+              "y": 372,
+              "speed": 218.4875,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 22,
+                "y": 15
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 3,
+              "x": 900,
+              "y": 660,
+              "speed": 225.58125,
+              "direction": "up",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 37,
+                "y": 27
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 4,
+              "x": 492,
+              "y": 324,
+              "speed": 204.3,
+              "direction": "down",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 13
+              },
+              "collisionRadius": 10.4,
+              "overlapsWall": false
+            }
+          ],
+          "boss": null
+        },
+        "enemyMotion": {
+          "frameCount": 360,
+          "maxStepDistance": 3.759687500000041,
+          "wallOverlapFrames": 0,
+          "actors": {
+            "player": {
+              "kind": "player",
+              "index": 0,
+              "x": 492,
+              "y": 636,
+              "speed": 148,
+              "direction": "right",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 0,
+              "cell": {
+                "x": 20,
+                "y": 26
+              },
+              "collisionRadius": 10.2,
+              "overlapsWall": false
+            },
+            "enemies": [
+              {
+                "kind": "enemy",
+                "index": 0,
+                "x": 60,
+                "y": 104.50500000000434,
+                "speed": 204.3,
+                "direction": "up",
+                "lastMoveDistance": 3.405000000000001,
+                "stuckTime": 0,
+                "pathCooldown": 0.10333333333333333,
+                "cell": {
+                  "x": 2,
+                  "y": 4
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 1,
+                "x": 900,
+                "y": 80.36249999999629,
+                "speed": 211.39375,
+                "direction": "down",
+                "lastMoveDistance": 3.523229166666667,
+                "stuckTime": 0,
+                "pathCooldown": 0.03666666666666668,
+                "cell": {
+                  "x": 37,
+                  "y": 3
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 2,
+                "x": 540,
+                "y": 309.0750000000003,
+                "speed": 218.4875,
+                "direction": "up",
+                "lastMoveDistance": 3.6414583333333326,
+                "stuckTime": 0,
+                "pathCooldown": 0.053333333333333344,
+                "cell": {
+                  "x": 22,
+                  "y": 12
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 3,
+                "x": 900,
+                "y": 648.6524999999774,
+                "speed": 225.58125,
+                "direction": "up",
+                "lastMoveDistance": 3.759687500000041,
+                "stuckTime": 0,
+                "pathCooldown": 0.07,
+                "cell": {
+                  "x": 37,
+                  "y": 27
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              },
+              {
+                "kind": "enemy",
+                "index": 4,
+                "x": 60,
+                "y": 104.50500000000434,
+                "speed": 204.3,
+                "direction": "up",
+                "lastMoveDistance": 3.405000000000001,
+                "stuckTime": 0,
+                "pathCooldown": 0.10333333333333333,
+                "cell": {
+                  "x": 2,
+                  "y": 4
+                },
+                "collisionRadius": 10.4,
+                "overlapsWall": false
+              }
+            ],
+            "boss": null
+          }
+        },
+        "hazard": {
+          "levelIndex": 3,
+          "type": "crystal-burst",
+          "origin": {
+            "x": 16,
+            "y": 23
+          },
+          "cells": [
+            {
+              "x": 16,
+              "y": 23
+            },
+            {
+              "x": 16,
+              "y": 24
+            },
+            {
+              "x": 16,
+              "y": 25
+            },
+            {
+              "x": 16,
+              "y": 26
+            },
+            {
+              "x": 16,
+              "y": 27
+            },
+            {
+              "x": 16,
+              "y": 22
+            },
+            {
+              "x": 16,
+              "y": 21
+            },
+            {
+              "x": 16,
+              "y": 20
+            }
+          ]
+        },
+        "chestClosed": {
+          "levelIndex": 3,
+          "mode": "closed",
+          "keysCollected": 0,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 10,
+                "y": 27
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 36,
+                "y": 26
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 15,
+                "y": 8
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 29,
+                "y": 19
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 21,
+                "y": 10
+              }
+            },
+            {
+              "kind": "bonus-key",
+              "letter": null,
+              "cell": {
+                "x": 4,
+                "y": 18
+              }
+            }
+          ]
+        },
+        "chestReady": {
+          "levelIndex": 3,
+          "mode": "ready",
+          "keysCollected": 3,
+          "chestOpened": false,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 3,
+                "y": 5
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 7,
+                "y": 8
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 21,
+                "y": 10
+              }
+            }
+          ]
+        },
+        "chestOpened": {
+          "levelIndex": 3,
+          "mode": "opened",
+          "keysCollected": 3,
+          "chestOpened": true,
+          "chest": {
+            "cell": {
+              "x": 23,
+              "y": 18
+            },
+            "reachable": true,
+            "center": {
+              "x": 564,
+              "y": 444
+            }
+          },
+          "letters": [],
+          "bonusItems": [
+            {
+              "kind": "bonus-letter",
+              "letter": "כ",
+              "cell": {
+                "x": 4,
+                "y": 15
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "פ",
+              "cell": {
+                "x": 8,
+                "y": 17
+              }
+            },
+            {
+              "kind": "bonus-letter",
+              "letter": "ל",
+              "cell": {
+                "x": 4,
+                "y": 24
+              }
+            }
+          ]
+        },
+        "intro": {
+          "start": {
+            "active": true,
+            "levelIndex": 3,
+            "elapsed": 0,
+            "progress": 0,
+            "travelProgress": 0,
+            "phase": "overview",
+            "zoom": 0.35800781249999997,
+            "cameraX": 480,
+            "cameraY": 360,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "mid": {
+            "active": true,
+            "levelIndex": 3,
+            "elapsed": 1.5950000000000002,
+            "progress": 0.5,
+            "travelProgress": 0.026226740740740825,
+            "phase": "focus",
+            "zoom": 0.37615651219618057,
+            "cameraX": 480.31472088888887,
+            "cameraY": 360.44960126984125,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          },
+          "end": {
+            "active": true,
+            "levelIndex": 3,
+            "elapsed": 3.1740500000000003,
+            "progress": 0.995,
+            "travelProgress": 1,
+            "phase": "settle",
+            "zoom": 1.05,
+            "cameraX": 492,
+            "cameraY": 377.14285714285717,
+            "gameplayZoom": 1.05,
+            "playerX": 492,
+            "playerY": 636,
+            "keyCount": 3,
+            "letterCount": 3
+          }
+        },
+        "renderProfile": {
+          "sampleCount": 12,
+          "fullFrame": {
+            "averageMs": 0.0666666670391957,
+            "medianMs": 0.10000000149011612,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "boardAndAmbient": {
+            "averageMs": 0.03333333320915699,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "collectiblesAndChest": {
+            "averageMs": 0.008333333457509676,
+            "medianMs": 0,
+            "p95Ms": 0.10000000149011612,
+            "maxMs": 0.10000000149011612
+          },
+          "questionGates": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "actors": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "extraChestPass": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          },
+          "particlesAndText": {
+            "averageMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0,
+            "maxMs": 0
+          }
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "diamond",
+          "concept": null,
+          "visualRenderer": "stage1-style-themed-continuous-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": true
+        },
+        "visual": {
+          "levelIndex": 3,
+          "worldId": "diamond",
+          "concept": "stage4-prism-sanctum",
+          "renderer": "stage1-style-themed-continuous-v1",
+          "layersDrawn": [
+            "continuous-themed-backdrop",
+            "continuous-themed-floor",
+            "authored-macro-floor-material",
+            "topology-contact-shadows",
+            "continuous-themed-walls",
+            "authored-macro-wall-material",
+            "continuous-axonometric-wall-faces",
+            "theme-material-accents",
+            "wall-clipped-authored-landmarks",
+            "static-theme-lighting"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/reference/maze-worlds/world_diamond.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "canonicalCollisionMask": true,
+          "misleadingRouteLineDrawn": false,
+          "landmarkCount": 6,
+          "actorScaleBaseline": "world1-sun-garden-approved-v1",
+          "hazardType": "crystal-burst",
+          "hazardVisualStyle": "diamond",
+          "bossTrailVisualStyle": "diamond",
+          "legacyIceAssetsRequested": null
+        }
+      },
+      "phase": "playing",
+      "projection": {
+        "renderer": "orthographic-3/4",
+        "world": "diamond",
+        "concept": null,
+        "visualRenderer": "stage1-style-themed-continuous-v1",
+        "azimuthDegrees": 10,
+        "elevationDegrees": 56,
+        "tiltFromVerticalDegrees": 34,
+        "tileSize": 24,
+        "southDepth": 8.16,
+        "eastDepth": 2.52,
+        "blenderAtlasReady": true
+      },
+      "visual": {
+        "levelIndex": 3,
+        "worldId": "diamond",
+        "concept": "stage4-prism-sanctum",
+        "renderer": "stage1-style-themed-continuous-v1",
+        "layersDrawn": [
+          "continuous-themed-backdrop",
+          "continuous-themed-floor",
+          "authored-macro-floor-material",
+          "topology-contact-shadows",
+          "continuous-themed-walls",
+          "authored-macro-wall-material",
+          "continuous-axonometric-wall-faces",
+          "theme-material-accents",
+          "wall-clipped-authored-landmarks",
+          "static-theme-lighting"
+        ],
+        "assetUrlsActuallyDrawn": [
+          "assets/reference/maze-worlds/world_diamond.png"
+        ],
+        "legacyIceLayersDrawn": [],
+        "canonicalCollisionMask": true,
+        "misleadingRouteLineDrawn": false,
+        "landmarkCount": 6,
+        "actorScaleBaseline": "world1-sun-garden-approved-v1",
+        "hazardType": "crystal-burst",
+        "hazardVisualStyle": "diamond",
+        "bossTrailVisualStyle": "diamond",
+        "legacyIceAssetsRequested": null
+      },
+      "collisionAudit": {
+        "passed": true,
+        "wallCellCount": 626,
+        "walkableCellCount": 574,
+        "openTransitions": 1848,
+        "blockedTransitions": 448,
+        "failures": []
+      },
+      "canvas": {
+        "width": 390,
+        "height": 768,
+        "top": 76
+      },
+      "hud": {
+        "height": 65,
+        "canvasOverlapPx": 0
+      },
+      "frameRate": 62
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

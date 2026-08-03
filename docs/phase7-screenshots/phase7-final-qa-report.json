@@ -1,0 +1,3680 @@
+{
+  "phase": 7,
+  "capturedAt": "2026-07-13T19:41:29.843Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "localPreviewUrl": "http://127.0.0.1:56286/",
+  "ok": false,
+  "failures": [
+    "390x844-portrait/first: Hebrew/text overflow",
+    "390x844-portrait/first: icon alignment issue",
+    "390x844-portrait/after: Hebrew/text overflow",
+    "390x844-portrait/after: icon alignment issue",
+    "390x844-portrait: pre-game focus/Escape behavior failed",
+    "390x844-portrait: orientation-change layout failed",
+    "430x932-portrait/first: Hebrew/text overflow",
+    "430x932-portrait/first: icon alignment issue",
+    "430x932-portrait/after: Hebrew/text overflow",
+    "430x932-portrait/after: icon alignment issue",
+    "430x932-portrait: pre-game focus/Escape behavior failed",
+    "844x390-landscape/first: visible element out of bounds",
+    "844x390-landscape/first: Hebrew/text overflow",
+    "844x390-landscape/first: icon alignment issue",
+    "844x390-landscape/after: visible element out of bounds",
+    "844x390-landscape/after: Hebrew/text overflow",
+    "844x390-landscape/after: icon alignment issue",
+    "844x390-landscape: pre-game focus/Escape behavior failed",
+    "844x390-landscape: home FPS below threshold",
+    "1280x720-desktop/first: Hebrew/text overflow",
+    "1280x720-desktop/first: icon alignment issue",
+    "1280x720-desktop/first: image distortion",
+    "1280x720-desktop/after: Hebrew/text overflow",
+    "1280x720-desktop/after: icon alignment issue",
+    "1280x720-desktop/after: image distortion",
+    "1280x720-desktop: pre-game focus/Escape behavior failed",
+    "1280x720-desktop: home FPS below threshold",
+    "1440x900-desktop/first: Hebrew/text overflow",
+    "1440x900-desktop/first: icon alignment issue",
+    "1440x900-desktop/after: Hebrew/text overflow",
+    "1440x900-desktop/after: icon alignment issue",
+    "1440x900-desktop: pre-game focus/Escape behavior failed",
+    "1440x900-desktop: home FPS below threshold",
+    "functional: started failed",
+    "functional: paused failed",
+    "functional: questionSeen failed",
+    "functional: correctAnswer failed",
+    "functional: wrongAnswer failed",
+    "functional: timeoutObserved failed",
+    "functional: gameOver failed",
+    "functional: retryStarted failed",
+    "functional: returnedMenu failed",
+    "functional: leaderboard failed",
+    "victory: accelerated adventure victory path failed"
+  ],
+  "warnings": [
+    "390x844-portrait: duplicate resource entries observed",
+    "430x932-portrait: duplicate resource entries observed",
+    "844x390-landscape: duplicate resource entries observed",
+    "1280x720-desktop: duplicate resource entries observed",
+    "1440x900-desktop: duplicate resource entries observed",
+    "leaderboard: final QA did not exercise the public capability check"
+  ],
+  "assets": {
+    "files": [
+      {
+        "asset": "assets/kaflul-logo-official.png",
+        "size": 893698
+      },
+      {
+        "asset": "assets/bifly-menu.png",
+        "size": 219118
+      },
+      {
+        "asset": "assets/bifly-player.png",
+        "size": 245339
+      },
+      {
+        "asset": "assets/bifly-eat-prepare.png",
+        "size": 233951
+      },
+      {
+        "asset": "assets/bifly-eat.png",
+        "size": 239505
+      },
+      {
+        "asset": "assets/nabatick-idle-reference.png",
+        "size": 205812
+      },
+      {
+        "asset": "assets/nabatick-eat-prepare-reference.png",
+        "size": 170357
+      },
+      {
+        "asset": "assets/nabatick-eat-reference.png",
+        "size": 180983
+      },
+      {
+        "asset": "assets/dark-enemy.png",
+        "size": 161699
+      },
+      {
+        "asset": "assets/dark-enemy-angry.png",
+        "size": 154538
+      },
+      {
+        "asset": "assets/dark-enemy-surprised.png",
+        "size": 161277
+      },
+      {
+        "asset": "assets/dark-enemy-sad.png",
+        "size": 163143
+      },
+      {
+        "asset": "assets/math-maze-poster.png",
+        "size": 1849524
+      }
+    ],
+    "totalBytes": 4878944,
+    "largest": [
+      {
+        "asset": "assets/math-maze-poster.png",
+        "size": 1849524
+      },
+      {
+        "asset": "assets/kaflul-logo-official.png",
+        "size": 893698
+      },
+      {
+        "asset": "assets/bifly-player.png",
+        "size": 245339
+      },
+      {
+        "asset": "assets/bifly-eat.png",
+        "size": 239505
+      },
+      {
+        "asset": "assets/bifly-eat-prepare.png",
+        "size": 233951
+      }
+    ]
+  },
+  "viewportResults": [
+    {
+      "name": "390x844-portrait",
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "events": [],
+      "screenshots": {
+        "before": "docs/phase7-screenshots/phase7-before-home-390x844-portrait.png",
+        "after": "docs/phase7-screenshots/phase7-after-pregame-390x844-portrait.png"
+      },
+      "firstLoad": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 24,
+            "y": 18,
+            "width": 342,
+            "height": 55
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 12,
+            "y": 98,
+            "width": 366,
+            "height": 138
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 12,
+            "y": 211,
+            "width": 366,
+            "height": 517
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 12,
+            "y": 737,
+            "width": 366,
+            "height": 74
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "חדש",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 22,
+            "clientHeight": 1,
+            "scrollHeight": 15
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-on",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 14,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "music-enabled",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "returning": {
+        "nickname": "בודק שלב 7",
+        "character": "nabatick",
+        "mode": "adventure",
+        "difficulty": "advanced",
+        "soundIcon": "sound-off",
+        "startVisible": true
+      },
+      "lockedDifficulty": {
+        "legendaryDisabled": true,
+        "copy": "נעול: סיימו הרפתקה במומחה או הגיעו ל-75,000 נקודות בארקייד מומחה"
+      },
+      "pregameFocus": false,
+      "pregameClosed": true,
+      "afterInspection": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 24,
+            "y": 18,
+            "width": 342,
+            "height": 55
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 12,
+            "y": 98,
+            "width": 366,
+            "height": 138
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 12,
+            "y": 211,
+            "width": 366,
+            "height": 517
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 12,
+            "y": 737,
+            "width": 366,
+            "height": 74
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 6,
+            "clientHeight": 1,
+            "scrollHeight": 15
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "firstPerf": {
+        "navigation": {
+          "domContentLoadedMs": 225.80000000447035,
+          "loadMs": 255.30000000447035,
+          "transferSize": 68379,
+          "decodedBodySize": 68079
+        },
+        "resourceCount": 83,
+        "totalTransferSize": 23023566,
+        "totalDecodedBodySize": 23104806,
+        "duplicateResources": [
+          [
+            "loading/kaflul-loading-background-v1.webp",
+            3
+          ],
+          [
+            "assets/bifly-player.png",
+            3
+          ],
+          [
+            "v4/walls.png",
+            3
+          ]
+        ],
+        "largestResources": [
+          {
+            "name": "sun-garden/board-v3.png",
+            "initiatorType": "img",
+            "transferSize": 3163100,
+            "encodedBodySize": 3162800,
+            "decodedBodySize": 3162800,
+            "duration": 60.899999998509884
+          },
+          {
+            "name": "assets/math-maze-poster.png",
+            "initiatorType": "link",
+            "transferSize": 1849824,
+            "encodedBodySize": 1849524,
+            "decodedBodySize": 1849524,
+            "duration": 33.100000001490116
+          },
+          {
+            "name": "generated/kaflul-champion-trophy-v2.png",
+            "initiatorType": "img",
+            "transferSize": 1236645,
+            "encodedBodySize": 1236345,
+            "decodedBodySize": 1236345,
+            "duration": 32.100000001490116
+          },
+          {
+            "name": "127.0.0.1:56286/game.js?v=20260713-stage1-style-all-worlds-4",
+            "initiatorType": "script",
+            "transferSize": 1062163,
+            "encodedBodySize": 1061863,
+            "decodedBodySize": 1061863,
+            "duration": 23.600000001490116
+          },
+          {
+            "name": "bosses/boss-actor-direction-sheet.png",
+            "initiatorType": "img",
+            "transferSize": 1024521,
+            "encodedBodySize": 1024221,
+            "decodedBodySize": 1024221,
+            "duration": 23.399999998509884
+          },
+          {
+            "name": "assets/kaflul-logo-official.png",
+            "initiatorType": "link",
+            "transferSize": 893998,
+            "encodedBodySize": 893698,
+            "decodedBodySize": 893698,
+            "duration": 4.0999999940395355
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 788929,
+            "encodedBodySize": 788629,
+            "decodedBodySize": 788629,
+            "duration": 34.19999999552965
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 752121,
+            "encodedBodySize": 751821,
+            "decodedBodySize": 751821,
+            "duration": 34.099999994039536
+          }
+        ],
+        "memory": {
+          "usedJSHeapSize": 3782111,
+          "totalJSHeapSize": 7269879
+        }
+      },
+      "homeFps": {
+        "frames": 32,
+        "avgFrameMs": 29.953124999999986,
+        "avgFps": 33.385498174230584,
+        "longFramesOver50ms": 8
+      },
+      "orientation": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 34,
+            "y": 22,
+            "width": 776,
+            "height": 77
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 199,
+            "y": 81,
+            "width": 445,
+            "height": 74
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 199,
+            "y": 158,
+            "width": 445,
+            "height": 160
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 199,
+            "y": 305,
+            "width": 445,
+            "height": 90
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390
+          }
+        },
+        "outOfBounds": [
+          {
+            "selector": "#start-button",
+            "rect": {
+              "visible": true,
+              "x": 199,
+              "y": 305,
+              "width": 445,
+              "height": 90
+            }
+          }
+        ],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 8,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      }
+    },
+    {
+      "name": "430x932-portrait",
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "events": [],
+      "screenshots": {
+        "before": "docs/phase7-screenshots/phase7-before-home-430x932-portrait.png",
+        "after": "docs/phase7-screenshots/phase7-after-pregame-430x932-portrait.png"
+      },
+      "firstLoad": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 24,
+            "y": 18,
+            "width": 382,
+            "height": 61
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 12,
+            "y": 108,
+            "width": 406,
+            "height": 151
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 12,
+            "y": 232,
+            "width": 406,
+            "height": 575
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 12,
+            "y": 817,
+            "width": 406,
+            "height": 82
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "חדש",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 22,
+            "clientHeight": 1,
+            "scrollHeight": 15
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-on",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 14,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "music-enabled",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "returning": {
+        "nickname": "בודק שלב 7",
+        "character": "nabatick",
+        "mode": "adventure",
+        "difficulty": "advanced",
+        "soundIcon": "sound-off",
+        "startVisible": true
+      },
+      "lockedDifficulty": {
+        "legendaryDisabled": true,
+        "copy": "נעול: סיימו הרפתקה במומחה או הגיעו ל-75,000 נקודות בארקייד מומחה"
+      },
+      "pregameFocus": false,
+      "pregameClosed": true,
+      "afterInspection": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 24,
+            "y": 18,
+            "width": 382,
+            "height": 61
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 12,
+            "y": 108,
+            "width": 406,
+            "height": 151
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 12,
+            "y": 232,
+            "width": 406,
+            "height": 575
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 12,
+            "y": 817,
+            "width": 406,
+            "height": 82
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 6,
+            "clientHeight": 1,
+            "scrollHeight": 15
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 23.75,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "firstPerf": {
+        "navigation": {
+          "domContentLoadedMs": 276.5,
+          "loadMs": 323.59999999403954,
+          "transferSize": 68379,
+          "decodedBodySize": 68079
+        },
+        "resourceCount": 82,
+        "totalTransferSize": 23018104,
+        "totalDecodedBodySize": 23099644,
+        "duplicateResources": [
+          [
+            "loading/kaflul-loading-background-v1.webp",
+            3
+          ],
+          [
+            "assets/bifly-player.png",
+            3
+          ],
+          [
+            "v4/walls.png",
+            3
+          ]
+        ],
+        "largestResources": [
+          {
+            "name": "sun-garden/board-v3.png",
+            "initiatorType": "img",
+            "transferSize": 3163100,
+            "encodedBodySize": 3162800,
+            "decodedBodySize": 3162800,
+            "duration": 109.29999999701977
+          },
+          {
+            "name": "assets/math-maze-poster.png",
+            "initiatorType": "link",
+            "transferSize": 1849824,
+            "encodedBodySize": 1849524,
+            "decodedBodySize": 1849524,
+            "duration": 21.600000001490116
+          },
+          {
+            "name": "generated/kaflul-champion-trophy-v2.png",
+            "initiatorType": "img",
+            "transferSize": 1236645,
+            "encodedBodySize": 1236345,
+            "decodedBodySize": 1236345,
+            "duration": 20.5
+          },
+          {
+            "name": "127.0.0.1:56286/game.js?v=20260713-stage1-style-all-worlds-4",
+            "initiatorType": "script",
+            "transferSize": 1062163,
+            "encodedBodySize": 1061863,
+            "decodedBodySize": 1061863,
+            "duration": 13.700000002980232
+          },
+          {
+            "name": "bosses/boss-actor-direction-sheet.png",
+            "initiatorType": "img",
+            "transferSize": 1024521,
+            "encodedBodySize": 1024221,
+            "decodedBodySize": 1024221,
+            "duration": 84.29999999701977
+          },
+          {
+            "name": "assets/kaflul-logo-official.png",
+            "initiatorType": "link",
+            "transferSize": 893998,
+            "encodedBodySize": 893698,
+            "decodedBodySize": 893698,
+            "duration": 5.199999995529652
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 788929,
+            "encodedBodySize": 788629,
+            "decodedBodySize": 788629,
+            "duration": 96.20000000298023
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 752121,
+            "encodedBodySize": 751821,
+            "decodedBodySize": 751821,
+            "duration": 93.80000000447035
+          }
+        ],
+        "memory": {
+          "usedJSHeapSize": 3788440,
+          "totalJSHeapSize": 6745616
+        }
+      },
+      "homeFps": {
+        "frames": 35,
+        "avgFrameMs": 26.66571428571429,
+        "avgFps": 37.50133933354762,
+        "longFramesOver50ms": 5
+      },
+      "orientation": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 932,
+          "height": 430
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 932,
+            "height": 430
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 34,
+            "y": 22,
+            "width": 864,
+            "height": 80
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 219,
+            "y": 82,
+            "width": 495,
+            "height": 74
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 219,
+            "y": 158,
+            "width": 495,
+            "height": 192
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 219,
+            "y": 337,
+            "width": 495,
+            "height": 90
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 932,
+            "height": 430
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 8,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      }
+    },
+    {
+      "name": "844x390-landscape",
+      "width": 844,
+      "height": 390,
+      "mobile": true,
+      "events": [],
+      "screenshots": {
+        "before": "docs/phase7-screenshots/phase7-before-home-844x390-landscape.png",
+        "after": "docs/phase7-screenshots/phase7-after-pregame-844x390-landscape.png"
+      },
+      "firstLoad": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 34,
+            "y": 22,
+            "width": 776,
+            "height": 77
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 199,
+            "y": 81,
+            "width": 445,
+            "height": 74
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 199,
+            "y": 158,
+            "width": 445,
+            "height": 160
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 199,
+            "y": 305,
+            "width": 445,
+            "height": 90
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390
+          }
+        },
+        "outOfBounds": [
+          {
+            "selector": "#start-button",
+            "rect": {
+              "visible": true,
+              "x": 199,
+              "y": 305,
+              "width": 445,
+              "height": 90
+            }
+          }
+        ],
+        "overflowingText": [
+          {
+            "text": "חדש",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 30,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-on",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 14,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "music-enabled",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "returning": {
+        "nickname": "בודק שלב 7",
+        "character": "nabatick",
+        "mode": "adventure",
+        "difficulty": "advanced",
+        "soundIcon": "sound-off",
+        "startVisible": true
+      },
+      "lockedDifficulty": {
+        "legendaryDisabled": true,
+        "copy": "נעול: סיימו הרפתקה במומחה או הגיעו ל-75,000 נקודות בארקייד מומחה"
+      },
+      "pregameFocus": false,
+      "pregameClosed": true,
+      "afterInspection": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 34,
+            "y": 22,
+            "width": 776,
+            "height": 77
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 199,
+            "y": 81,
+            "width": 445,
+            "height": 74
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 199,
+            "y": 158,
+            "width": 445,
+            "height": 160
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 199,
+            "y": 305,
+            "width": 445,
+            "height": 90
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390
+          }
+        },
+        "outOfBounds": [
+          {
+            "selector": "#start-button",
+            "rect": {
+              "visible": true,
+              "x": 199,
+              "y": 305,
+              "width": 445,
+              "height": 90
+            }
+          }
+        ],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 8,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "firstPerf": {
+        "navigation": {
+          "domContentLoadedMs": 187.89999999850988,
+          "loadMs": 237.60000000149012,
+          "transferSize": 68379,
+          "decodedBodySize": 68079
+        },
+        "resourceCount": 83,
+        "totalTransferSize": 23023566,
+        "totalDecodedBodySize": 23104806,
+        "duplicateResources": [
+          [
+            "loading/kaflul-loading-background-v1.webp",
+            3
+          ],
+          [
+            "assets/bifly-player.png",
+            3
+          ],
+          [
+            "v4/walls.png",
+            3
+          ]
+        ],
+        "largestResources": [
+          {
+            "name": "sun-garden/board-v3.png",
+            "initiatorType": "img",
+            "transferSize": 3163100,
+            "encodedBodySize": 3162800,
+            "decodedBodySize": 3162800,
+            "duration": 19.80000000447035
+          },
+          {
+            "name": "assets/math-maze-poster.png",
+            "initiatorType": "link",
+            "transferSize": 1849824,
+            "encodedBodySize": 1849524,
+            "decodedBodySize": 1849524,
+            "duration": 20.700000002980232
+          },
+          {
+            "name": "generated/kaflul-champion-trophy-v2.png",
+            "initiatorType": "img",
+            "transferSize": 1236645,
+            "encodedBodySize": 1236345,
+            "decodedBodySize": 1236345,
+            "duration": 20.900000005960464
+          },
+          {
+            "name": "127.0.0.1:56286/game.js?v=20260713-stage1-style-all-worlds-4",
+            "initiatorType": "script",
+            "transferSize": 1062163,
+            "encodedBodySize": 1061863,
+            "decodedBodySize": 1061863,
+            "duration": 12.399999998509884
+          },
+          {
+            "name": "bosses/boss-actor-direction-sheet.png",
+            "initiatorType": "img",
+            "transferSize": 1024521,
+            "encodedBodySize": 1024221,
+            "decodedBodySize": 1024221,
+            "duration": 7.899999998509884
+          },
+          {
+            "name": "assets/kaflul-logo-official.png",
+            "initiatorType": "link",
+            "transferSize": 893998,
+            "encodedBodySize": 893698,
+            "decodedBodySize": 893698,
+            "duration": 3.7000000029802322
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 788929,
+            "encodedBodySize": 788629,
+            "decodedBodySize": 788629,
+            "duration": 14.199999995529652
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 752121,
+            "encodedBodySize": 751821,
+            "decodedBodySize": 751821,
+            "duration": 13.199999995529652
+          }
+        ],
+        "memory": {
+          "usedJSHeapSize": 3791280,
+          "totalJSHeapSize": 7532128
+        }
+      },
+      "homeFps": {
+        "frames": 15,
+        "avgFrameMs": 57.226666666666645,
+        "avgFps": 17.47437092264679,
+        "longFramesOver50ms": 9
+      },
+      "orientation": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 24,
+            "y": 18,
+            "width": 342,
+            "height": 55
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 12,
+            "y": 98,
+            "width": 366,
+            "height": 138
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 12,
+            "y": 211,
+            "width": 366,
+            "height": 517
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 12,
+            "y": 737,
+            "width": 366,
+            "height": 74
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 6,
+            "clientHeight": 1,
+            "scrollHeight": 15
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 21.328125,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      }
+    },
+    {
+      "name": "1280x720-desktop",
+      "width": 1280,
+      "height": 720,
+      "mobile": false,
+      "events": [],
+      "screenshots": {
+        "before": "docs/phase7-screenshots/phase7-before-home-1280x720-desktop.png",
+        "after": "docs/phase7-screenshots/phase7-after-pregame-1280x720-desktop.png"
+      },
+      "firstLoad": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 60,
+            "y": 40,
+            "width": 1160,
+            "height": 99
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 230,
+            "y": 124,
+            "width": 820,
+            "height": 122
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 230,
+            "y": 244,
+            "width": 820,
+            "height": 330
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 335,
+            "y": 582,
+            "width": 610,
+            "height": 91
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 352,
+            "y": 8,
+            "width": 920,
+            "height": 57
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 4,
+            "width": 1280,
+            "height": 716
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "חדש",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 30,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [
+          {
+            "src": "assets/generated/bifly-expression-idle.png",
+            "naturalRatio": 1,
+            "renderedRatio": 1.4
+          },
+          {
+            "src": "assets/generated/nabatick-expression-idle.png",
+            "naturalRatio": 1,
+            "renderedRatio": 1.44
+          }
+        ],
+        "iconIssues": [
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-on",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 17,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "music-enabled",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "returning": {
+        "nickname": "בודק שלב 7",
+        "character": "nabatick",
+        "mode": "adventure",
+        "difficulty": "advanced",
+        "soundIcon": "sound-off",
+        "startVisible": true
+      },
+      "lockedDifficulty": {
+        "legendaryDisabled": true,
+        "copy": "נעול: סיימו הרפתקה במומחה או הגיעו ל-75,000 נקודות בארקייד מומחה"
+      },
+      "pregameFocus": false,
+      "pregameClosed": true,
+      "afterInspection": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 60,
+            "y": 40,
+            "width": 1160,
+            "height": 99
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 230,
+            "y": 124,
+            "width": 820,
+            "height": 122
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 230,
+            "y": 244,
+            "width": 820,
+            "height": 330
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 335,
+            "y": 585,
+            "width": 610,
+            "height": 91
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 352,
+            "y": 8,
+            "width": 920,
+            "height": 57
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 4,
+            "width": 1280,
+            "height": 716
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 8,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [
+          {
+            "src": "assets/generated/bifly-expression-idle.png",
+            "naturalRatio": 1,
+            "renderedRatio": 1.4
+          },
+          {
+            "src": "assets/generated/nabatick-expression-idle.png",
+            "naturalRatio": 1,
+            "renderedRatio": 1.45
+          }
+        ],
+        "iconIssues": [
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 26.875,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 9,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "firstPerf": {
+        "navigation": {
+          "domContentLoadedMs": 299.1000000014901,
+          "loadMs": 386.70000000298023,
+          "transferSize": 68379,
+          "decodedBodySize": 68079
+        },
+        "resourceCount": 82,
+        "totalTransferSize": 23023566,
+        "totalDecodedBodySize": 22998966,
+        "duplicateResources": [
+          [
+            "loading/kaflul-loading-background-v1.webp",
+            2
+          ],
+          [
+            "assets/bifly-player.png",
+            3
+          ],
+          [
+            "v4/walls.png",
+            3
+          ]
+        ],
+        "largestResources": [
+          {
+            "name": "sun-garden/board-v3.png",
+            "initiatorType": "img",
+            "transferSize": 3163100,
+            "encodedBodySize": 3162800,
+            "decodedBodySize": 3162800,
+            "duration": 125.30000000447035
+          },
+          {
+            "name": "assets/math-maze-poster.png",
+            "initiatorType": "link",
+            "transferSize": 1849824,
+            "encodedBodySize": 1849524,
+            "decodedBodySize": 1849524,
+            "duration": 21.700000002980232
+          },
+          {
+            "name": "generated/kaflul-champion-trophy-v2.png",
+            "initiatorType": "img",
+            "transferSize": 1236645,
+            "encodedBodySize": 1236345,
+            "decodedBodySize": 1236345,
+            "duration": 20.80000000447035
+          },
+          {
+            "name": "127.0.0.1:56286/game.js?v=20260713-stage1-style-all-worlds-4",
+            "initiatorType": "script",
+            "transferSize": 1062163,
+            "encodedBodySize": 1061863,
+            "decodedBodySize": 1061863,
+            "duration": 15.5
+          },
+          {
+            "name": "bosses/boss-actor-direction-sheet.png",
+            "initiatorType": "img",
+            "transferSize": 1024521,
+            "encodedBodySize": 1024221,
+            "decodedBodySize": 1024221,
+            "duration": 31.400000005960464
+          },
+          {
+            "name": "assets/kaflul-logo-official.png",
+            "initiatorType": "link",
+            "transferSize": 893998,
+            "encodedBodySize": 893698,
+            "decodedBodySize": 893698,
+            "duration": 2.7999999970197678
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 788929,
+            "encodedBodySize": 788629,
+            "decodedBodySize": 788629,
+            "duration": 44
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 752121,
+            "encodedBodySize": 751821,
+            "decodedBodySize": 751821,
+            "duration": 41.399999998509884
+          }
+        ],
+        "memory": {
+          "usedJSHeapSize": 4046251,
+          "totalJSHeapSize": 7007903
+        }
+      },
+      "homeFps": {
+        "frames": 18,
+        "avgFrameMs": 49.94444444444447,
+        "avgFps": 20.022246941045594,
+        "longFramesOver50ms": 10
+      },
+      "orientation": null
+    },
+    {
+      "name": "1440x900-desktop",
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "events": [],
+      "screenshots": {
+        "before": "docs/phase7-screenshots/phase7-before-home-1440x900-desktop.png",
+        "after": "docs/phase7-screenshots/phase7-after-pregame-1440x900-desktop.png"
+      },
+      "firstLoad": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 66,
+            "y": 46,
+            "width": 1308,
+            "height": 105
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 310,
+            "y": 130,
+            "width": 820,
+            "height": 153
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 310,
+            "y": 279,
+            "width": 820,
+            "height": 463
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 415,
+            "y": 749,
+            "width": 610,
+            "height": 99
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 512,
+            "y": 8,
+            "width": 920,
+            "height": 57
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 4,
+            "width": 1440,
+            "height": 896
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "חדש",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 30,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-on",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 17,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "music-enabled",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "returning": {
+        "nickname": "בודק שלב 7",
+        "character": "nabatick",
+        "mode": "adventure",
+        "difficulty": "advanced",
+        "soundIcon": "sound-off",
+        "startVisible": true
+      },
+      "lockedDifficulty": {
+        "legendaryDisabled": true,
+        "copy": "נעול: סיימו הרפתקה במומחה או הגיעו ל-75,000 נקודות בארקייד מומחה"
+      },
+      "pregameFocus": false,
+      "pregameClosed": true,
+      "afterInspection": {
+        "lang": "he",
+        "dir": "rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "rects": {
+          "#start-screen": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900
+          },
+          ".home-player-bar": {
+            "visible": true,
+            "x": 66,
+            "y": 46,
+            "width": 1308,
+            "height": 105
+          },
+          ".menu-logo": {
+            "visible": true,
+            "x": 310,
+            "y": 130,
+            "width": 820,
+            "height": 153
+          },
+          ".home-hero-scene": {
+            "visible": true,
+            "x": 310,
+            "y": 279,
+            "width": 820,
+            "height": 463
+          },
+          "#start-button": {
+            "visible": true,
+            "x": 415,
+            "y": 752,
+            "width": 610,
+            "height": 99
+          },
+          ".home-bottom-nav": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pregame-panel": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#hero-gallery": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#leaderboard-dialog": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#pause-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "#end-screen": {
+            "visible": false,
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          ".hud": {
+            "visible": false,
+            "x": 512,
+            "y": 8,
+            "width": 920,
+            "height": 57
+          },
+          "#game-canvas": {
+            "visible": true,
+            "x": 0,
+            "y": 4,
+            "width": 1440,
+            "height": 896
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [
+          {
+            "text": "1",
+            "tag": "SPAN",
+            "id": "menu-rank-value",
+            "className": "kf-visually-hidden",
+            "clientWidth": 1,
+            "scrollWidth": 8,
+            "clientHeight": 1,
+            "scrollHeight": 21
+          }
+        ],
+        "missingNames": [],
+        "smallTargets": [],
+        "distortedImages": [],
+        "iconIssues": [
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#mission",
+            "parent": "daily-challenge-icon ui-icon-wrap",
+            "grandparent": "daily-challenge-open"
+          },
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg?v=20260702-4#podium",
+            "parent": "ui-icon-wrap",
+            "grandparent": "leaderboard-open"
+          },
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#sound-off",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-sound-button"
+          },
+          {
+            "width": 29.5,
+            "height": 84,
+            "id": "",
+            "className": "ui-icon",
+            "href": "ui/icons.svg#settings",
+            "parent": "ui-icon-wrap",
+            "grandparent": "menu-settings-button"
+          }
+        ],
+        "hiddenAnimations": 0,
+        "runningAnimations": 9,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "primaryActionDominant": true,
+        "runtimeErrors": [],
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": false,
+          "contextState": "none",
+          "loaded": 0,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 2,
+          "autoplayBlocks": 0,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        }
+      },
+      "firstPerf": {
+        "navigation": {
+          "domContentLoadedMs": 184.29999999701977,
+          "loadMs": 188.39999999850988,
+          "transferSize": 68379,
+          "decodedBodySize": 68079
+        },
+        "resourceCount": 81,
+        "totalTransferSize": 23018104,
+        "totalDecodedBodySize": 22993804,
+        "duplicateResources": [
+          [
+            "loading/kaflul-loading-background-v1.webp",
+            2
+          ],
+          [
+            "assets/bifly-player.png",
+            3
+          ],
+          [
+            "v4/walls.png",
+            3
+          ]
+        ],
+        "largestResources": [
+          {
+            "name": "sun-garden/board-v3.png",
+            "initiatorType": "img",
+            "transferSize": 3163100,
+            "encodedBodySize": 3162800,
+            "decodedBodySize": 3162800,
+            "duration": 19.200000002980232
+          },
+          {
+            "name": "assets/math-maze-poster.png",
+            "initiatorType": "link",
+            "transferSize": 1849824,
+            "encodedBodySize": 1849524,
+            "decodedBodySize": 1849524,
+            "duration": 23.600000001490116
+          },
+          {
+            "name": "generated/kaflul-champion-trophy-v2.png",
+            "initiatorType": "img",
+            "transferSize": 1236645,
+            "encodedBodySize": 1236345,
+            "decodedBodySize": 1236345,
+            "duration": 22.100000001490116
+          },
+          {
+            "name": "127.0.0.1:56286/game.js?v=20260713-stage1-style-all-worlds-4",
+            "initiatorType": "script",
+            "transferSize": 1062163,
+            "encodedBodySize": 1061863,
+            "decodedBodySize": 1061863,
+            "duration": 15.700000002980232
+          },
+          {
+            "name": "bosses/boss-actor-direction-sheet.png",
+            "initiatorType": "img",
+            "transferSize": 1024521,
+            "encodedBodySize": 1024221,
+            "decodedBodySize": 1024221,
+            "duration": 7.600000001490116
+          },
+          {
+            "name": "assets/kaflul-logo-official.png",
+            "initiatorType": "link",
+            "transferSize": 893998,
+            "encodedBodySize": 893698,
+            "decodedBodySize": 893698,
+            "duration": 6.799999997019768
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 788929,
+            "encodedBodySize": 788629,
+            "decodedBodySize": 788629,
+            "duration": 12
+          },
+          {
+            "name": "v4/walls.png",
+            "initiatorType": "img",
+            "transferSize": 752121,
+            "encodedBodySize": 751821,
+            "decodedBodySize": 751821,
+            "duration": 12.899999998509884
+          }
+        ],
+        "memory": {
+          "usedJSHeapSize": 3762285,
+          "totalJSHeapSize": 7007761
+        }
+      },
+      "homeFps": {
+        "frames": 15,
+        "avgFrameMs": 62.15333333333334,
+        "avgFps": 16.089241660409737,
+        "longFramesOver50ms": 10
+      },
+      "orientation": null
+    }
+  ],
+  "functional": {
+    "events": [],
+    "screenshots": {
+      "gameplayShot": "docs/phase7-screenshots/phase7-gameplay-430x932-portrait.png",
+      "questionShot": null,
+      "gameOverShot": null
+    },
+    "gameplayFps": {
+      "frames": 34,
+      "avgFrameMs": 27.952941176470592,
+      "avgFps": 35.77441077441077,
+      "longFramesOver50ms": 4
+    },
+    "checks": {
+      "started": false,
+      "paused": false,
+      "resumed": true,
+      "questionSeen": false,
+      "correctAnswer": false,
+      "wrongAnswer": false,
+      "timeoutObserved": false,
+      "gameOver": false,
+      "retryStarted": false,
+      "returnedMenu": false,
+      "leaderboard": false
+    },
+    "postRun": {
+      "lang": "he",
+      "dir": "rtl",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "rects": {
+        "#start-screen": {
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932
+        },
+        ".home-player-bar": {
+          "visible": true,
+          "x": 24,
+          "y": 18,
+          "width": 382,
+          "height": 61
+        },
+        ".menu-logo": {
+          "visible": true,
+          "x": 12,
+          "y": 108,
+          "width": 406,
+          "height": 151
+        },
+        ".home-hero-scene": {
+          "visible": true,
+          "x": 12,
+          "y": 232,
+          "width": 406,
+          "height": 575
+        },
+        "#start-button": {
+          "visible": true,
+          "x": 12,
+          "y": 817,
+          "width": 406,
+          "height": 82
+        },
+        ".home-bottom-nav": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "#pregame-panel": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "#hero-gallery": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "#leaderboard-dialog": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "#pause-screen": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "#end-screen": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        ".hud": {
+          "visible": false,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "#game-canvas": {
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932
+        }
+      },
+      "outOfBounds": [],
+      "overflowingText": [
+        {
+          "text": "חדש",
+          "tag": "SPAN",
+          "id": "menu-rank-value",
+          "className": "kf-visually-hidden",
+          "clientWidth": 1,
+          "scrollWidth": 22,
+          "clientHeight": 1,
+          "scrollHeight": 15
+        }
+      ],
+      "missingNames": [],
+      "smallTargets": [],
+      "distortedImages": [],
+      "iconIssues": [
+        {
+          "width": 23.75,
+          "height": 84,
+          "id": "",
+          "className": "ui-icon",
+          "href": "ui/icons.svg#mission",
+          "parent": "daily-challenge-icon ui-icon-wrap",
+          "grandparent": "daily-challenge-open"
+        },
+        {
+          "width": 23.75,
+          "height": 84,
+          "id": "",
+          "className": "ui-icon",
+          "href": "ui/icons.svg?v=20260702-4#podium",
+          "parent": "ui-icon-wrap",
+          "grandparent": "leaderboard-open"
+        },
+        {
+          "width": 23.75,
+          "height": 84,
+          "id": "",
+          "className": "ui-icon",
+          "href": "ui/icons.svg#sound-on",
+          "parent": "ui-icon-wrap",
+          "grandparent": "menu-sound-button"
+        },
+        {
+          "width": 23.75,
+          "height": 84,
+          "id": "",
+          "className": "ui-icon",
+          "href": "ui/icons.svg#settings",
+          "parent": "ui-icon-wrap",
+          "grandparent": "menu-settings-button"
+        }
+      ],
+      "hiddenAnimations": 0,
+      "runningAnimations": 6,
+      "documentOverflow": {
+        "x": false,
+        "y": false
+      },
+      "primaryActionDominant": true,
+      "runtimeErrors": [],
+      "motion": {
+        "played": 0,
+        "skippedHidden": 0,
+        "particlesCreated": 0,
+        "activeParticles": 0,
+        "lastEvent": "",
+        "reducedMotion": false,
+        "maxParticleLimit": 10
+      },
+      "sound": {
+        "enabled": true,
+        "musicEnabled": true,
+        "unlocked": true,
+        "contextState": "running",
+        "loaded": 7,
+        "loadErrors": 0,
+        "played": 0,
+        "mutedSkips": 0,
+        "autoplayBlocks": 0,
+        "throttledSkips": 0,
+        "voiceSteals": 0,
+        "currentScene": "ice",
+        "questionDucked": false,
+        "bossActive": false,
+        "lastEvent": "",
+        "lastReason": "unlocked",
+        "volumes": {
+          "master": 0.4368000000000001,
+          "music": 0.45,
+          "sfx": 0.78,
+          "voices": 0.82,
+          "ui": 0.68
+        },
+        "activeShots": 0
+      }
+    }
+  },
+  "victory": {
+    "events": [],
+    "question": true,
+    "victory": {
+      "visible": false,
+      "title": "ניצחון!",
+      "mode": "ארקייד"
+    },
+    "screenshot": null
+  },
+  "reducedMotion": {
+    "events": [],
+    "reduced": {
+      "mediaMatches": true,
+      "classPresent": true,
+      "reduced": true,
+      "emitted": 0,
+      "particleDelta": 0,
+      "runningAnimations": 0,
+      "hiddenAnimations": 0
+    }
+  },
+  "assetFallback": {
+    "events": [],
+    "result": {
+      "startVisible": true,
+      "startButtonVisible": true,
+      "runtimeErrors": [],
+      "brokenImages": [
+        "assets/bifly-menu.png"
+      ],
+      "overflow": {
+        "x": false,
+        "y": false
+      }
+    },
+    "screenshot": "docs/phase7-screenshots/phase7-asset-fallback-390x844-portrait.png"
+  },
+  "memory": {
+    "events": [],
+    "before": {
+      "nodes": 1013,
+      "heap": 3433206
+    },
+    "after": {
+      "nodes": 1017,
+      "heap": 3041242,
+      "particles": 0,
+      "hiddenAnimations": 0
+    }
+  },
+  "leaderboardApiRequests": []
+}

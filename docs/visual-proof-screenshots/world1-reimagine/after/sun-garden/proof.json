@@ -1,0 +1,618 @@
+{
+  "generatedAt": "2026-07-13T07:37:49.043Z",
+  "label": "after",
+  "concept": "sun-garden",
+  "world": "world-1",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "playing",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after/sun-garden/after-sun-garden-desktop-1280x720.png",
+      "sha256": "61690d1531dbdc2b1affa629bb838fb23cd7419b342ba973a1ef8e2096338aee",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue",
+            "world1-authored-depth-sorted-occlusion"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "collision": {
+          "cols": 40,
+          "rows": 30,
+          "tile": 24,
+          "geometrySource": "sun-garden-board-v1-depth-navigation",
+          "grid": [
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111000000000000000000000000000111",
+            "1111111111111001110001110001111111100111",
+            "1111111111111001110001110001111111100111",
+            "1111111111101001111111110000011100000111",
+            "1110110011100001111111110000011110000111",
+            "1110111000000000001111000000000011100111",
+            "1110011001111111001111011111110011100111",
+            "1110011001111111000110011111110011100111",
+            "1110011001111101000110011110010011100111",
+            "1110011000000001100000011100000010000111",
+            "1110000000000111100000011100000000000111",
+            "1110000000010111000000011110000000000111",
+            "1110011111111111000000011111111111100111",
+            "1110011111111111000000011111111111100111",
+            "1110000000000111000000011110000000000111",
+            "1110001111110111100000011110111110000111",
+            "1110001111110111111110111110111110000111",
+            "1110000000000000001111000000000000000111",
+            "1110011111111100001111000011111111100111",
+            "1110011111111100001111000011111111100111",
+            "1110000000000000000000000000000000000111",
+            "1110000000000000000000000000000000000111",
+            "1110000111111110000000001111111110000111",
+            "1110000111111110000000001111111110010111",
+            "1110000000000000000000001000000000100111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111"
+          ],
+          "playerCell": {
+            "x": 20,
+            "y": 26
+          },
+          "playerWallCollisionRadius": 7.343999999999999,
+          "playerOverlapsWall": false
+        },
+        "collisionAudit": {
+          "passed": true,
+          "wallCellCount": 720,
+          "walkableCellCount": 480,
+          "openTransitions": 1440,
+          "blockedTransitions": 480,
+          "failures": []
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "top": 69
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false,
+        "boss": null
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "playing",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after/sun-garden/after-sun-garden-mobile-390x844.png",
+      "sha256": "1efb00ea67a608cf0f58213a4d27cfc02e3770fb3a9ec750ad8506aed2b40acb",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue",
+            "world1-authored-depth-sorted-occlusion"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "collision": {
+          "cols": 40,
+          "rows": 30,
+          "tile": 24,
+          "geometrySource": "sun-garden-board-v1-depth-navigation",
+          "grid": [
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111000000000000000000000000000111",
+            "1111111111111001110001110001111111100111",
+            "1111111111111001110001110001111111100111",
+            "1111111111101001111111110000011100000111",
+            "1110110011100001111111110000011110000111",
+            "1110111000000000001111000000000011100111",
+            "1110011001111111001111011111110011100111",
+            "1110011001111111000110011111110011100111",
+            "1110011001111101000110011110010011100111",
+            "1110011000000001100000011100000010000111",
+            "1110000000000111100000011100000000000111",
+            "1110000000010111000000011110000000000111",
+            "1110011111111111000000011111111111100111",
+            "1110011111111111000000011111111111100111",
+            "1110000000000111000000011110000000000111",
+            "1110001111110111100000011110111110000111",
+            "1110001111110111111110111110111110000111",
+            "1110000000000000001111000000000000000111",
+            "1110011111111100001111000011111111100111",
+            "1110011111111100001111000011111111100111",
+            "1110000000000000000000000000000000000111",
+            "1110000000000000000000000000000000000111",
+            "1110000111111110000000001111111110000111",
+            "1110000111111110000000001111111110010111",
+            "1110000000000000000000001000000000100111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111"
+          ],
+          "playerCell": {
+            "x": 20,
+            "y": 26
+          },
+          "playerWallCollisionRadius": 7.343999999999999,
+          "playerOverlapsWall": false
+        },
+        "collisionAudit": {
+          "passed": true,
+          "wallCellCount": 720,
+          "walkableCellCount": 480,
+          "openTransitions": 1440,
+          "blockedTransitions": 480,
+          "failures": []
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false,
+        "boss": null
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "question",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after/sun-garden/after-sun-garden-mobile-question-390x844.png",
+      "sha256": "73fe351bce460551f9b440ab2202763fabf298b40657760cacee96b70660b567",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "question",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "question",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue",
+            "world1-authored-depth-sorted-occlusion"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "collision": {
+          "cols": 40,
+          "rows": 30,
+          "tile": 24,
+          "geometrySource": "sun-garden-board-v1-depth-navigation",
+          "grid": [
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111000000000000000000000000000111",
+            "1111111111111001110001110001111111100111",
+            "1111111111111001110001110001111111100111",
+            "1111111111101001111111110000011100000111",
+            "1110110011100001111111110000011110000111",
+            "1110111000000000001111000000000011100111",
+            "1110011001111111001111011111110011100111",
+            "1110011001111111000110011111110011100111",
+            "1110011001111101000110011110010011100111",
+            "1110011000000001100000011100000010000111",
+            "1110000000000111100000011100000000000111",
+            "1110000000010111000000011110000000000111",
+            "1110011111111111000000011111111111100111",
+            "1110011111111111000000011111111111100111",
+            "1110000000000111000000011110000000000111",
+            "1110001111110111100000011110111110000111",
+            "1110001111110111111110111110111110000111",
+            "1110000000000000001111000000000000000111",
+            "1110011111111100001111000011111111100111",
+            "1110011111111100001111000011111111100111",
+            "1110000000000000000000000000000000000111",
+            "1110000000000000000000000000000000000111",
+            "1110000111111110000000001111111110000111",
+            "1110000111111110000000001111111110010111",
+            "1110000000000000000000001000000000100111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111"
+          ],
+          "playerCell": {
+            "x": 20,
+            "y": 26
+          },
+          "playerWallCollisionRadius": 7.343999999999999,
+          "playerOverlapsWall": false
+        },
+        "collisionAudit": {
+          "passed": true,
+          "wallCellCount": 720,
+          "walkableCellCount": 480,
+          "openTransitions": 1440,
+          "blockedTransitions": 480,
+          "failures": []
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": true,
+        "boss": null
+      }
+    },
+    {
+      "key": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "boss",
+      "file": "docs/visual-proof-screenshots/world1-reimagine/after/sun-garden/after-sun-garden-mobile-boss-390x844.png",
+      "sha256": "bf9cb841499cbaf78563b3853e3dc9f1efa9648162fc143ac8104dd58a57ab52",
+      "forced": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": false
+      },
+      "browserErrors": [],
+      "legacyVisualRequests": [],
+      "diagnostics": {
+        "state": "playing",
+        "player": {
+          "x": 568.1392000000001,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "projection": {
+          "renderer": "orthographic-3/4",
+          "world": "ice",
+          "concept": "sun-garden",
+          "visualRenderer": "world1-authored-environment-v1",
+          "azimuthDegrees": 10,
+          "elevationDegrees": 56,
+          "tiltFromVerticalDegrees": 34,
+          "tileSize": 24,
+          "southDepth": 8.16,
+          "eastDepth": 2.52,
+          "blenderAtlasReady": false
+        },
+        "tileset": {
+          "world": "ice",
+          "concept": "sun-garden",
+          "mode": "authored-raster",
+          "renderer": "world1-authored-environment-v1",
+          "schemaVersion": 1,
+          "ready": true,
+          "imageStatus": "loaded",
+          "metadataStatus": "not-requested",
+          "imageSrc": "assets/maze/world1/sun-garden/board-v1.png",
+          "metadataSrc": null,
+          "fallbackMode": "not-applicable",
+          "missingRequiredRoles": [],
+          "availableRoles": [
+            "authored-floor",
+            "authored-wall",
+            "authored-landmarks",
+            "goal-cue"
+          ]
+        },
+        "visual": {
+          "levelIndex": 0,
+          "worldId": "ice",
+          "concept": "sun-garden",
+          "renderer": "world1-authored-environment-v1",
+          "layersDrawn": [
+            "world1-authored-sandstone-board",
+            "world1-ambient",
+            "world1-focal-light",
+            "world1-goal-cue",
+            "world1-authored-depth-sorted-occlusion"
+          ],
+          "assetUrlsActuallyDrawn": [
+            "assets/maze/world1/sun-garden/board-v1.png"
+          ],
+          "legacyIceLayersDrawn": [],
+          "goalCue": true,
+          "landmarkCount": 3,
+          "gateStyle": "seed",
+          "collectibleStyle": "garden",
+          "actorContactStyle": "garden",
+          "hazardType": "ice-slick",
+          "hazardVisualStyle": "garden",
+          "bossTrailVisualStyle": "garden",
+          "legacyIceAssetsRequested": false
+        },
+        "collision": {
+          "cols": 40,
+          "rows": 30,
+          "tile": 24,
+          "geometrySource": "sun-garden-board-v1-depth-navigation",
+          "grid": [
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111000000000000000000000000000111",
+            "1111111111111001110001110001111111100111",
+            "1111111111111001110001110001111111100111",
+            "1111111111101001111111110000011100000111",
+            "1110110011100001111111110000011110000111",
+            "1110111000000000001111000000000011100111",
+            "1110011001111111001111011111110011100111",
+            "1110011001111111000110011111110011100111",
+            "1110011001111101000110011110010011100111",
+            "1110011000000001100000011100000010000111",
+            "1110000000000111100000011100000000000111",
+            "1110000000010111000000011110000000000111",
+            "1110011111111111000000011111111111100111",
+            "1110011111111111000000011111111111100111",
+            "1110000000000111000000011110000000000111",
+            "1110001111110111100000011110111110000111",
+            "1110001111110111111110111110111110000111",
+            "1110000000000000001111000000000000000111",
+            "1110011111111100001111000011111111100111",
+            "1110011111111100001111000011111111100111",
+            "1110000000000000000000000000000000000111",
+            "1110000000000000000000000000000000000111",
+            "1110000111111110000000001111111110000111",
+            "1110000111111110000000001111111110010111",
+            "1110000000000000000000001000000000100111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111",
+            "1111111111111111111111111111111111111111"
+          ],
+          "playerCell": {
+            "x": 23,
+            "y": 26
+          },
+          "playerWallCollisionRadius": 7.343999999999999,
+          "playerOverlapsWall": false
+        },
+        "collisionAudit": {
+          "passed": true,
+          "wallCellCount": 720,
+          "walkableCellCount": 480,
+          "openTransitions": 1440,
+          "blockedTransitions": 480,
+          "failures": []
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 76
+        },
+        "hudOverlapPx": 0,
+        "questionVisible": false,
+        "boss": {
+          "id": "boss-0-24",
+          "name": "שומר הזריחה",
+          "x": 492,
+          "y": 372,
+          "direction": "down",
+          "moving": false,
+          "walkCycle": 0.9099000000000003,
+          "lastMoveDistance": 0,
+          "actorSheetReady": true,
+          "spawnProgress": 0.5526800000000002,
+          "phase": "playing",
+          "enemyCount": 0,
+          "iceTrailReady": true,
+          "iceTrailCount": 0
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

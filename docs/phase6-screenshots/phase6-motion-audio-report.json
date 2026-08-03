@@ -1,0 +1,1523 @@
+{
+  "phase": 6,
+  "capturedAt": "2026-07-12T14:48:48.724Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "ok": false,
+  "failures": [
+    "844x390-landscape: motion profiling FPS below safety floor",
+    "1280x720-desktop: motion profiling FPS below safety floor",
+    "1440x900-desktop: motion profiling FPS below safety floor"
+  ],
+  "results": [
+    {
+      "name": "390x844-portrait",
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "events": [],
+      "screenshot": "docs/phase6-screenshots/phase6-motion-audio-390x844-portrait.png",
+      "autoplayBeforeGesture": {
+        "ok": false,
+        "reason": "not-unlocked"
+      },
+      "pregameMotion": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "suspended",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 10,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "lockedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 14,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "characterState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "mutedPlayResult": {
+        "ok": false,
+        "reason": "muted"
+      },
+      "mutedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 2,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "buttonRelease",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
+          "mutedSkips": 1,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "profile": {
+        "frames": 31,
+        "avgFrameMs": 30.67096774193546,
+        "avgFps": 32.60412284392093,
+        "longFramesOver50ms": 8,
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        }
+      },
+      "postProfile": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "notification",
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 7,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "reducedState": {
+        "mediaMatches": true,
+        "classPresent": true,
+        "reduced": true,
+        "emitted": 0,
+        "particleDelta": 0,
+        "diagnostics": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": true,
+          "maxParticleLimit": 10
+        }
+      }
+    },
+    {
+      "name": "430x932-portrait",
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "events": [],
+      "screenshot": "docs/phase6-screenshots/phase6-motion-audio-430x932-portrait.png",
+      "autoplayBeforeGesture": {
+        "ok": false,
+        "reason": "not-unlocked"
+      },
+      "pregameMotion": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "suspended",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 10,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "lockedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 14,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "characterState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "mutedPlayResult": {
+        "ok": false,
+        "reason": "muted"
+      },
+      "mutedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 2,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "buttonRelease",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
+          "mutedSkips": 1,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "profile": {
+        "frames": 33,
+        "avgFrameMs": 27.563636363636373,
+        "avgFps": 36.27968337730869,
+        "longFramesOver50ms": 5,
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        }
+      },
+      "postProfile": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "notification",
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 7,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "reducedState": {
+        "mediaMatches": true,
+        "classPresent": true,
+        "reduced": true,
+        "emitted": 0,
+        "particleDelta": 0,
+        "diagnostics": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": true,
+          "maxParticleLimit": 10
+        }
+      }
+    },
+    {
+      "name": "844x390-landscape",
+      "width": 844,
+      "height": 390,
+      "mobile": true,
+      "events": [],
+      "screenshot": "docs/phase6-screenshots/phase6-motion-audio-844x390-landscape.png",
+      "autoplayBeforeGesture": {
+        "ok": false,
+        "reason": "not-unlocked"
+      },
+      "pregameMotion": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "suspended",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 10,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "lockedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "characterState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "mutedPlayResult": {
+        "ok": false,
+        "reason": "muted"
+      },
+      "mutedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 2,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "buttonRelease",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
+          "mutedSkips": 1,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "profile": {
+        "frames": 15,
+        "avgFrameMs": 65,
+        "avgFps": 15.384615384615385,
+        "longFramesOver50ms": 8,
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        }
+      },
+      "postProfile": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "notification",
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 6,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "reducedState": {
+        "mediaMatches": true,
+        "classPresent": true,
+        "reduced": true,
+        "emitted": 0,
+        "particleDelta": 0,
+        "diagnostics": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": true,
+          "maxParticleLimit": 10
+        }
+      }
+    },
+    {
+      "name": "1280x720-desktop",
+      "width": 1280,
+      "height": 720,
+      "mobile": false,
+      "events": [],
+      "screenshot": "docs/phase6-screenshots/phase6-motion-audio-1280x720-desktop.png",
+      "autoplayBeforeGesture": {
+        "ok": false,
+        "reason": "not-unlocked"
+      },
+      "pregameMotion": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 17,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "lockedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 13,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "characterState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 17,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "mutedPlayResult": {
+        "ok": false,
+        "reason": "muted"
+      },
+      "mutedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 2,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "buttonRelease",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
+          "mutedSkips": 1,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 9,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "profile": {
+        "frames": 16,
+        "avgFrameMs": 54.77499999999998,
+        "avgFps": 18.256503879507083,
+        "longFramesOver50ms": 9,
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        }
+      },
+      "postProfile": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "notification",
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 10,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "reducedState": {
+        "mediaMatches": true,
+        "classPresent": true,
+        "reduced": true,
+        "emitted": 0,
+        "particleDelta": 0,
+        "diagnostics": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": true,
+          "maxParticleLimit": 10
+        }
+      }
+    },
+    {
+      "name": "1440x900-desktop",
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "events": [],
+      "screenshot": "docs/phase6-screenshots/phase6-motion-audio-1440x900-desktop.png",
+      "autoplayBeforeGesture": {
+        "ok": false,
+        "reason": "not-unlocked"
+      },
+      "pregameMotion": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "loaded",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 17,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "lockedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 13,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "characterState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 0,
+          "mutedSkips": 0,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "unlocked",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 16,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "mutedPlayResult": {
+        "ok": false,
+        "reason": "muted"
+      },
+      "mutedState": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 2,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "buttonRelease",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": false,
+          "musicEnabled": false,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 7,
+          "loadErrors": 0,
+          "played": 1,
+          "mutedSkips": 1,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "buttonPress",
+          "lastReason": "muted",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 9,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "profile": {
+        "frames": 14,
+        "avgFrameMs": 73.20714285714287,
+        "avgFps": 13.659869255537123,
+        "longFramesOver50ms": 9,
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        }
+      },
+      "postProfile": {
+        "lang": "he",
+        "dir": "rtl",
+        "motion": {
+          "played": 5,
+          "skippedHidden": 0,
+          "particlesCreated": 10,
+          "activeParticles": 0,
+          "lastEvent": "reward",
+          "reducedMotion": false,
+          "maxParticleLimit": 10
+        },
+        "sound": {
+          "enabled": true,
+          "musicEnabled": true,
+          "unlocked": true,
+          "contextState": "running",
+          "loaded": 8,
+          "loadErrors": 0,
+          "played": 2,
+          "mutedSkips": 4,
+          "autoplayBlocks": 1,
+          "throttledSkips": 0,
+          "voiceSteals": 0,
+          "currentScene": "ice",
+          "questionDucked": false,
+          "bossActive": false,
+          "lastEvent": "notification",
+          "lastReason": "played",
+          "volumes": {
+            "master": 0.4368000000000001,
+            "music": 0.45,
+            "sfx": 0.78,
+            "voices": 0.82,
+            "ui": 0.68
+          },
+          "activeShots": 0
+        },
+        "controllers": {
+          "motion": true,
+          "sound": true,
+          "adapter": true
+        },
+        "hiddenAnimations": 0,
+        "runningAnimations": 10,
+        "documentOverflow": {
+          "x": false,
+          "y": false
+        },
+        "runtimeErrors": []
+      },
+      "reducedState": {
+        "mediaMatches": true,
+        "classPresent": true,
+        "reduced": true,
+        "emitted": 0,
+        "particleDelta": 0,
+        "diagnostics": {
+          "played": 0,
+          "skippedHidden": 0,
+          "particlesCreated": 0,
+          "activeParticles": 0,
+          "lastEvent": "",
+          "reducedMotion": true,
+          "maxParticleLimit": 10
+        }
+      }
+    }
+  ]
+}

@@ -2,6 +2,8 @@
   "use strict";
 
   const root = document.documentElement;
+  const loadingScreen = document.getElementById("app-loading-screen");
+  const loadingProgress = loadingScreen?.querySelector(".loading-progress");
   const startScreen = document.getElementById("start-screen");
   const endScreen = document.getElementById("end-screen");
   const pauseButton = document.getElementById("pause-button");
@@ -108,13 +110,136 @@
   // return because the player may expect the game to remain safely paused.
   document.addEventListener("visibilitychange", () => {
     const gameIsOpen = Boolean(startScreen?.hidden && (!endScreen || endScreen.hidden));
-    const isRunning = pauseButton?.textContent.trim() === "Ⅱ";
+    const isRunning = pauseButton?.dataset.icon !== "play";
     if (document.hidden && gameIsOpen && isRunning) {
       pauseButton.click();
     }
   });
 
   syncStartScreenState();
+
+  const loadingAssets = [
+    "assets/loading/kaflul-loading-background-v1.webp",
+    "assets/kaflul-logo-official.png",
+    "assets/generated/bifly-expression-idle.png",
+    "assets/generated/nabatick-expression-idle.png",
+    "assets/dark-enemy.png",
+    "assets/dark-enemy-angry.png",
+    "assets/dark-enemy-surprised.png"
+  ];
+
+  function delay(ms) {
+    return new Promise((resolve) => window.setTimeout(resolve, ms));
+  }
+
+  function setLoadingProgress(value) {
+    if (!loadingProgress) {
+      return;
+    }
+
+    const progress = Math.max(8, Math.min(100, Math.round(value)));
+    loadingProgress.style.setProperty("--loading-progress", `${progress}%`);
+    loadingProgress.setAttribute("aria-valuenow", String(progress));
+  }
+
+  function preloadLoadingImage(source) {
+    return new Promise((resolve) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.onload = () => resolve({ source, ok: true });
+      image.onerror = () => resolve({ source, ok: false });
+      image.src = source;
+    });
+  }
+
+  function waitForDomReady() {
+    if (document.readyState !== "loading") {
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+      document.addEventListener("DOMContentLoaded", resolve, { once: true });
+    });
+  }
+
+  function waitForGameReady() {
+    if (runtime.gameReady) {
+      return Promise.resolve();
+    }
+
+    return Promise.race([
+      new Promise((resolve) => {
+        window.addEventListener("kaflul:game-ready", resolve, { once: true });
+      }),
+      delay(2600)
+    ]);
+  }
+
+  function waitForFonts() {
+    if (!document.fonts?.ready) {
+      return Promise.resolve();
+    }
+
+    return Promise.race([
+      document.fonts.ready.catch(() => undefined),
+      delay(1300)
+    ]);
+  }
+
+  async function waitForNextPaint() {
+    await new Promise((resolve) => window.requestAnimationFrame(resolve));
+    await new Promise((resolve) => window.requestAnimationFrame(resolve));
+  }
+
+  async function prepareInitialLoadingScreen() {
+    if (!loadingScreen) {
+      root.classList.remove("loading-screen-active");
+      return;
+    }
+
+    const startedAt = performance.now();
+    const params = new URLSearchParams(window.location.search);
+    const minVisibleMs = params.get("verify") === "loading-proof" ? 3200 : 2800;
+    runtime.loadingStartedAt = startedAt;
+    setLoadingProgress(12);
+
+    let completedAssets = 0;
+    const assetWork = Promise.allSettled(
+      loadingAssets.map((source) => preloadLoadingImage(source).then((result) => {
+        completedAssets += 1;
+        setLoadingProgress(12 + (completedAssets / loadingAssets.length) * 58);
+        return result;
+      }))
+    );
+
+    const readiness = Promise.allSettled([
+      waitForDomReady().then(() => setLoadingProgress(76)),
+      assetWork,
+      waitForFonts().then(() => setLoadingProgress(86)),
+      waitForGameReady().then(() => setLoadingProgress(94))
+    ]);
+
+    await Promise.race([readiness, delay(5200)]);
+    await waitForNextPaint();
+
+    const elapsed = performance.now() - startedAt;
+    if (elapsed < minVisibleMs) {
+      await delay(minVisibleMs - elapsed);
+    }
+
+    setLoadingProgress(100);
+    runtime.loadingFinishedAt = performance.now();
+    loadingScreen.setAttribute("aria-hidden", "true");
+    root.classList.remove("loading-screen-active");
+    root.classList.add("loading-screen-complete");
+
+    window.setTimeout(() => {
+      loadingScreen.hidden = true;
+      root.classList.remove("loading-screen-complete");
+    }, 520);
+  }
+
+  prepareInitialLoadingScreen();
 
   if (!poster) {
     return;

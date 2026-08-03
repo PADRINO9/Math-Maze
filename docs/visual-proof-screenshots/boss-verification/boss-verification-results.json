@@ -1,0 +1,466 @@
+[
+  {
+    "stage": "stage-1-ice",
+    "viewport": "desktop-1280x720",
+    "forced": {
+      "id": "boss-0-24",
+      "name": "לבת-הר",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-0-24",
+      "name": "לבת-הר",
+      "x": 510.24767999999995,
+      "y": 372,
+      "direction": "right",
+      "moving": true,
+      "walkCycle": 4.167028799999992,
+      "lastMoveDistance": 2.280959999999993,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9741599999999994,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-0-24",
+      "name": "לבת-הר",
+      "x": 538.8096000000005,
+      "y": 348,
+      "direction": "right",
+      "moving": true,
+      "walkCycle": 6.006244504695962,
+      "lastMoveDistance": 2.28096000000005,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 37.30661166718886,
+    "walkCycleDelta": 1.8392157046959703,
+    "directionChanged": false,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-1-ice-boss-desktop-1280x720-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-1-ice-boss-desktop-1280x720-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-2-lava",
+    "viewport": "desktop-1280x720",
+    "forced": {
+      "id": "boss-1-49",
+      "name": "שן-הקרחון",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-1-49",
+      "name": "שן-הקרחון",
+      "x": 513.3987977280001,
+      "y": 372,
+      "direction": "right",
+      "moving": true,
+      "walkCycle": 4.687137636475992,
+      "lastMoveDistance": 3.056971104000013,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9567759999975556,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-1-49",
+      "name": "שן-הקרחון",
+      "x": 516,
+      "y": 453.17091331200004,
+      "direction": "down",
+      "moving": true,
+      "walkCycle": 5.261220427689656,
+      "lastMoveDistance": 3.056971104000013,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 81.21258166789234,
+    "walkCycleDelta": 0.5740827912136641,
+    "directionChanged": true,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-2-lava-boss-desktop-1280x720-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-2-lava-boss-desktop-1280x720-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-3-ancient",
+    "viewport": "desktop-1280x720",
+    "forced": {
+      "id": "boss-2-74",
+      "name": "מלך-הביצה",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-2-74",
+      "name": "מלך-הביצה",
+      "x": 516,
+      "y": 375.064298688,
+      "direction": "down",
+      "moving": true,
+      "walkCycle": 5.317250136633942,
+      "lastMoveDistance": 3.9864725379620802,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9741599999999994,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-2-74",
+      "name": "מלך-הביצה",
+      "x": 525.192896064,
+      "y": 444,
+      "direction": "right",
+      "moving": true,
+      "walkCycle": 4.991017448988711,
+      "lastMoveDistance": 3.064298688000008,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 69.54595785105548,
+    "walkCycleDelta": 0.3262326876452306,
+    "directionChanged": true,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-3-ancient-boss-desktop-1280x720-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-3-ancient-boss-desktop-1280x720-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-4-diamond",
+    "viewport": "desktop-1280x720",
+    "forced": {
+      "id": "boss-3-99",
+      "name": "כתר-הליקוי",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-3-99",
+      "name": "כתר-הליקוי",
+      "x": 527.8320345,
+      "y": 372,
+      "direction": "right",
+      "moving": true,
+      "walkCycle": 0.6973402128204088,
+      "lastMoveDistance": 3.944011499999988,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9741599999999994,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-3-99",
+      "name": "כתר-הליקוי",
+      "x": 540,
+      "y": 264.16796550000004,
+      "direction": "up",
+      "moving": true,
+      "walkCycle": 0.6631617476590604,
+      "lastMoveDistance": 3.944011499999988,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 108.51639069199811,
+    "walkCycleDelta": 0.03417846516134837,
+    "directionChanged": true,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-4-diamond-boss-desktop-1280x720-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-4-diamond-boss-desktop-1280x720-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-1-ice",
+    "viewport": "mobile-pixel7",
+    "forced": {
+      "id": "boss-0-24",
+      "name": "לבת-הר",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-0-24",
+      "name": "לבת-הר",
+      "x": 492,
+      "y": 356.03328000000005,
+      "direction": "up",
+      "moving": true,
+      "walkCycle": 3.8224601999999925,
+      "lastMoveDistance": 2.280959999999993,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9594819999999994,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-0-24",
+      "name": "לבת-הר",
+      "x": 516,
+      "y": 295.43808,
+      "direction": "up",
+      "moving": true,
+      "walkCycle": 4.503815397516296,
+      "lastMoveDistance": 2.280959999999993,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 65.17498187985942,
+    "walkCycleDelta": 0.6813551975163032,
+    "directionChanged": false,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-1-ice-boss-mobile-pixel7-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-1-ice-boss-mobile-pixel7-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-2-lava",
+    "viewport": "mobile-pixel7",
+    "forced": {
+      "id": "boss-1-49",
+      "name": "שן-הקרחון",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-1-49",
+      "name": "שן-הקרחון",
+      "x": 492,
+      "y": 393.3987977280001,
+      "direction": "down",
+      "moving": true,
+      "walkCycle": 4.684977636482027,
+      "lastMoveDistance": 3.056971104000013,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9554640000012212,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-1-49",
+      "name": "שן-הקרחון",
+      "x": 492,
+      "y": 513.3987977280001,
+      "direction": "down",
+      "moving": true,
+      "walkCycle": 5.035421714943267,
+      "lastMoveDistance": 3.056971104000013,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 120,
+    "walkCycleDelta": 0.3504440784612397,
+    "directionChanged": false,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-2-lava-boss-mobile-pixel7-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-2-lava-boss-mobile-pixel7-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-3-ancient",
+    "viewport": "mobile-pixel7",
+    "forced": {
+      "id": "boss-2-74",
+      "name": "מלך-הביצה",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-2-74",
+      "name": "מלך-הביצה",
+      "x": 492,
+      "y": 393.45009081600006,
+      "direction": "down",
+      "moving": true,
+      "walkCycle": 4.7010145305610145,
+      "lastMoveDistance": 3.064298688000008,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9602200000006103,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-2-74",
+      "name": "מלך-הביצה",
+      "x": 492,
+      "y": 513.450090816,
+      "direction": "down",
+      "moving": true,
+      "walkCycle": 5.0514586090222515,
+      "lastMoveDistance": 3.064298688000008,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 120,
+    "walkCycleDelta": 0.35044407846123704,
+    "directionChanged": false,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-3-ancient-boss-mobile-pixel7-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-3-ancient-boss-mobile-pixel7-b.png"
+    ],
+    "errors": []
+  },
+  {
+    "stage": "stage-4-diamond",
+    "viewport": "mobile-pixel7",
+    "forced": {
+      "id": "boss-3-99",
+      "name": "כתר-הליקוי",
+      "x": 492,
+      "y": 372,
+      "direction": "down",
+      "moving": false,
+      "walkCycle": 0,
+      "lastMoveDistance": 0,
+      "actorSheetReady": true,
+      "spawnProgress": 0,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "before": {
+      "id": "boss-3-99",
+      "name": "כתר-הליקוי",
+      "x": 492,
+      "y": 340.111977,
+      "direction": "up",
+      "moving": true,
+      "walkCycle": 0.08492837281839893,
+      "lastMoveDistance": 3.944011499999988,
+      "actorSheetReady": true,
+      "spawnProgress": 0.9584159999987774,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "after": {
+      "id": "boss-3-99",
+      "name": "כתר-הליקוי",
+      "x": 540,
+      "y": 208.27994250000006,
+      "direction": "up",
+      "moving": true,
+      "walkCycle": 2.186822489609685,
+      "lastMoveDistance": 3.944011499999988,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0
+    },
+    "movedDistance": 140.29855779874995,
+    "walkCycleDelta": 2.101894116791286,
+    "directionChanged": false,
+    "canvasChanged": true,
+    "actorSheetResources": [
+      "http://127.0.0.1:4173/assets/bosses/boss-actor-direction-sheet.png"
+    ],
+    "screenshots": [
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-4-diamond-boss-mobile-pixel7-a.png",
+      "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-verification/stage-4-diamond-boss-mobile-pixel7-b.png"
+    ],
+    "errors": []
+  }
+]

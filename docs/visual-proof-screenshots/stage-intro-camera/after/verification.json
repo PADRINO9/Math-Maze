@@ -1,0 +1,148 @@
+[
+  {
+    "viewport": "desktop",
+    "overview": {
+      "active": true,
+      "levelIndex": 0,
+      "elapsed": 0.6380000000000001,
+      "progress": 0.2,
+      "travelProgress": 0,
+      "phase": "overview",
+      "zoom": 0.86,
+      "cameraX": 480,
+      "cameraY": 360,
+      "gameplayZoom": 1.06,
+      "playerX": 492,
+      "playerY": 636,
+      "keyCount": 3,
+      "letterCount": 3
+    },
+    "focus": {
+      "active": true,
+      "levelIndex": 0,
+      "elapsed": 2.1692000000000005,
+      "progress": 0.68,
+      "travelProgress": 0.46921731443674125,
+      "phase": "focus",
+      "zoom": 0.9538434628873482,
+      "cameraX": 485.6306077732409,
+      "cameraY": 369.56140942625814,
+      "gameplayZoom": 1.06,
+      "playerX": 492,
+      "playerY": 636,
+      "keyCount": 3,
+      "letterCount": 3
+    },
+    "settled": {
+      "active": false,
+      "levelIndex": 0,
+      "elapsed": null,
+      "progress": 1,
+      "travelProgress": 1,
+      "phase": "gameplay",
+      "zoom": 1.06,
+      "cameraX": 492,
+      "cameraY": 380.37735849056605,
+      "gameplayZoom": 1.06,
+      "playerX": 492,
+      "playerY": 636,
+      "keyCount": 3,
+      "letterCount": 3
+    },
+    "layout": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "canvas": {
+        "x": 0,
+        "y": 69,
+        "width": 1280,
+        "height": 731
+      },
+      "stage": {
+        "x": 0,
+        "y": 69,
+        "width": 1280,
+        "height": 731
+      },
+      "horizontalOverflow": 0,
+      "verticalOverflow": 0
+    },
+    "errors": [],
+    "passed": true
+  },
+  {
+    "viewport": "mobile",
+    "overview": {
+      "active": true,
+      "levelIndex": 0,
+      "elapsed": 0.6380000000000001,
+      "progress": 0.2,
+      "travelProgress": 0,
+      "phase": "overview",
+      "zoom": 0.35800781249999997,
+      "cameraX": 480,
+      "cameraY": 360,
+      "gameplayZoom": 1.05,
+      "playerX": 492,
+      "playerY": 636,
+      "keyCount": 3,
+      "letterCount": 3
+    },
+    "focus": {
+      "active": true,
+      "levelIndex": 0,
+      "elapsed": 2.1692000000000005,
+      "progress": 0.68,
+      "travelProgress": 0.46921731443674125,
+      "phase": "focus",
+      "zoom": 0.6827025283299559,
+      "cameraX": 485.6306077732409,
+      "cameraY": 368.04372539034415,
+      "gameplayZoom": 1.05,
+      "playerX": 492,
+      "playerY": 636,
+      "keyCount": 3,
+      "letterCount": 3
+    },
+    "settled": {
+      "active": false,
+      "levelIndex": 0,
+      "elapsed": null,
+      "progress": 1,
+      "travelProgress": 1,
+      "phase": "gameplay",
+      "zoom": 1.05,
+      "cameraX": 492,
+      "cameraY": 377.14285714285717,
+      "gameplayZoom": 1.05,
+      "playerX": 492,
+      "playerY": 636,
+      "keyCount": 3,
+      "letterCount": 3
+    },
+    "layout": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "canvas": {
+        "x": 0,
+        "y": 76,
+        "width": 390,
+        "height": 768
+      },
+      "stage": {
+        "x": 0,
+        "y": 76,
+        "width": 390,
+        "height": 768
+      },
+      "horizontalOverflow": 0,
+      "verticalOverflow": 0
+    },
+    "errors": [],
+    "passed": true
+  }
+]

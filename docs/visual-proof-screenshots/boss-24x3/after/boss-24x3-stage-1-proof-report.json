@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "world": {
+        "index": 0,
+        "key": "ice",
+        "name": "גן השמש"
+      },
+      "passed": true,
+      "desktop": {
+        "screenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-entrance-1280x720.png",
+        "snapshot": {
+          "phase": "playing",
+          "levelIndex": 0,
+          "correctAnswers": 24,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-0-24",
+            "configKey": "stage1",
+            "definitionId": "magma-bastion",
+            "name": "לבת-הר",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.934999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.753809992078142,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": true,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.502923976608187
+          },
+          "cinematic": {
+            "elapsed": 1.4333333333333331,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "errors": []
+      },
+      "mobile": {
+        "video": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-24x3-390x844.webm",
+        "entranceScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-entrance-390x844.png",
+        "questionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-question-1-390x844.png",
+        "explosionScreenshot": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-24x3/after/stage-1-ice-boss-explosion-390x844.png",
+        "entrance": {
+          "phase": "playing",
+          "levelIndex": 0,
+          "correctAnswers": 24,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-0-24",
+            "configKey": "stage1",
+            "definitionId": "magma-bastion",
+            "name": "לבת-הר",
+            "x": 492,
+            "y": 372,
+            "direction": "down",
+            "moving": false,
+            "walkCycle": 1.934999999999998,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 0.753809992078142,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": true,
+            "iceTrailCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 0.502923976608187
+          },
+          "cinematic": {
+            "elapsed": 1.4333333333333331,
+            "totalDuration": 2.85,
+            "vanishingEnemyCount": 7
+          },
+          "defeatTransition": null,
+          "stageIntro": false
+        },
+        "questions": [
+          {
+            "answer": 81,
+            "text": "⁦9 × 9 = ?⁩",
+            "status": "בוס שלב 1 · שאלת בוס 1 מתוך 3",
+            "bossQuestionNumber": 1,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 72,
+            "text": "⁦9 × 8 = ?⁩",
+            "status": "בוס שלב 1 · שאלת בוס 2 מתוך 3",
+            "bossQuestionNumber": 2,
+            "bossQuestionTotal": 3
+          },
+          {
+            "answer": 64,
+            "text": "⁦8 × 8 = ?⁩",
+            "status": "בוס שלב 1 · שאלת בוס 3 מתוך 3",
+            "bossQuestionNumber": 3,
+            "bossQuestionTotal": 3
+          }
+        ],
+        "damageSnapshots": [
+          {
+            "phase": "playing",
+            "levelIndex": 0,
+            "correctAnswers": 25,
+            "stageCorrect": 25,
+            "regularCorrect": 24,
+            "bossCorrect": 1,
+            "boss": {
+              "id": "boss-0-24",
+              "configKey": "stage1",
+              "definitionId": "magma-bastion",
+              "name": "לבת-הר",
+              "x": 492,
+              "y": 369.696,
+              "direction": "up",
+              "moving": true,
+              "walkCycle": 2.348414692820398,
+              "lastMoveDistance": 1.1519999999999868,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": true,
+              "iceTrailCount": 0,
+              "questionsCorrect": 1,
+              "questionsTotal": 3,
+              "damageLevel": 1,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "playing",
+            "levelIndex": 0,
+            "correctAnswers": 26,
+            "stageCorrect": 26,
+            "regularCorrect": 24,
+            "bossCorrect": 2,
+            "boss": {
+              "id": "boss-0-24",
+              "configKey": "stage1",
+              "definitionId": "magma-bastion",
+              "name": "לבת-הר",
+              "x": 492,
+              "y": 369.696,
+              "direction": "up",
+              "moving": true,
+              "walkCycle": 0.8268293856408007,
+              "lastMoveDistance": 1.1519999999999868,
+              "actorSheetReady": true,
+              "spawnProgress": 1,
+              "phase": "playing",
+              "enemyCount": 0,
+              "iceTrailReady": true,
+              "iceTrailCount": 0,
+              "questionsCorrect": 2,
+              "questionsTotal": 3,
+              "damageLevel": 2,
+              "cinematicProgress": 1
+            },
+            "cinematic": null,
+            "defeatTransition": null,
+            "stageIntro": false
+          },
+          {
+            "phase": "victory",
+            "levelIndex": 0,
+            "correctAnswers": 27,
+            "stageCorrect": 27,
+            "regularCorrect": 24,
+            "bossCorrect": 3,
+            "boss": null,
+            "cinematic": null,
+            "defeatTransition": {
+              "elapsed": 0.03333333333333333,
+              "duration": 1.72,
+              "accent": "#ff7a1a",
+              "bossName": "לבת-הר",
+              "fromLevelIndex": 0,
+              "nextLevelIndex": 1,
+              "isFinalAdventureBoss": false,
+              "awardedLife": true
+            },
+            "stageIntro": false
+          }
+        ],
+        "finalSnapshot": {
+          "phase": "playing",
+          "levelIndex": 1,
+          "correctAnswers": 27,
+          "stageCorrect": 0,
+          "regularCorrect": 0,
+          "bossCorrect": 0,
+          "boss": null,
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": true
+        },
+        "errors": []
+      }
+    }
+  ]
+}

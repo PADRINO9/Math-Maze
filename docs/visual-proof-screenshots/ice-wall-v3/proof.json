@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-07-12T05:52:17.565Z",
+  "world": "ice",
+  "levelIndex": 0,
+  "captures": [
+    {
+      "key": "desktop",
+      "file": "docs/visual-proof-screenshots/ice-wall-v3/ice-wall-v3-desktop-1280x720.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "forcedState": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "gameState": {
+        "documentState": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 651,
+          "clientWidth": 1280,
+          "clientHeight": 651
+        },
+        "gameScript": "game.js?v=20260712-glacier-sanctuary-4"
+      }
+    },
+    {
+      "key": "mobile",
+      "file": "docs/visual-proof-screenshots/ice-wall-v3/ice-wall-v3-mobile-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "forcedState": {
+        "levelIndex": 0,
+        "world": "ice",
+        "phase": "playing",
+        "referenceLoaded": true
+      },
+      "gameState": {
+        "documentState": "playing",
+        "player": {
+          "x": 492,
+          "y": 636,
+          "direction": "right",
+          "desiredDirection": "right",
+          "phase": "playing",
+          "controlMode": "swipe"
+        },
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "clientWidth": 390,
+          "clientHeight": 768
+        },
+        "gameScript": "game.js?v=20260712-glacier-sanctuary-4"
+      }
+    }
+  ]
+}

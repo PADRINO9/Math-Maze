@@ -1,0 +1,180 @@
+{
+  "desktop": {
+    "file": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-ice-trail/boss-ice-trail-desktop-1280x900.png",
+    "canvasFile": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-ice-trail/boss-ice-trail-desktop-1280x900-canvas.png",
+    "snapshot": {
+      "levelIndex": 0,
+      "boss": {
+        "id": "boss-0-24",
+        "name": "לבת-הר",
+        "x": 520.8,
+        "y": 372,
+        "direction": "right",
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "actorSheetReady": true,
+        "spawnProgress": 1,
+        "phase": "playing",
+        "enemyCount": 0,
+        "iceTrailReady": true,
+        "iceTrailCount": 1
+      },
+      "hazard": {
+        "type": "boss-ice-trail",
+        "cells": [
+          {
+            "x": 20,
+            "y": 15
+          },
+          {
+            "x": 19,
+            "y": 15
+          },
+          {
+            "x": 18,
+            "y": 15
+          }
+        ],
+        "hitEffect": "slide",
+        "slideDirection": "right"
+      }
+    },
+    "metrics": {
+      "phase": "playing",
+      "startHidden": true,
+      "boss": {
+        "id": "boss-0-24",
+        "name": "לבת-הר",
+        "x": 564,
+        "y": 338.87616,
+        "direction": "up",
+        "moving": true,
+        "walkCycle": 5.784875998758194,
+        "lastMoveDistance": 2.280959999999993,
+        "actorSheetReady": true,
+        "spawnProgress": 1,
+        "phase": "playing",
+        "enemyCount": 0,
+        "iceTrailReady": true,
+        "iceTrailCount": 1
+      },
+      "overflow": {
+        "x": false,
+        "y": false
+      }
+    },
+    "canvasBytes": 1147166
+  },
+  "mobile": {
+    "file": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-ice-trail/boss-ice-trail-mobile-430x932.png",
+    "canvasFile": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-ice-trail/boss-ice-trail-mobile-430x932-canvas.png",
+    "snapshot": {
+      "levelIndex": 0,
+      "boss": {
+        "id": "boss-0-24",
+        "name": "לבת-הר",
+        "x": 520.8,
+        "y": 372,
+        "direction": "right",
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "actorSheetReady": true,
+        "spawnProgress": 1,
+        "phase": "playing",
+        "enemyCount": 0,
+        "iceTrailReady": true,
+        "iceTrailCount": 1
+      },
+      "hazard": {
+        "type": "boss-ice-trail",
+        "cells": [
+          {
+            "x": 20,
+            "y": 15
+          },
+          {
+            "x": 19,
+            "y": 15
+          },
+          {
+            "x": 18,
+            "y": 15
+          }
+        ],
+        "hitEffect": "slide",
+        "slideDirection": "right"
+      }
+    },
+    "metrics": {
+      "phase": "playing",
+      "startHidden": true,
+      "boss": {
+        "id": "boss-0-24",
+        "name": "לבת-הר",
+        "x": 540,
+        "y": 293.15712,
+        "direction": "up",
+        "moving": true,
+        "walkCycle": 2.998650041149017,
+        "lastMoveDistance": 2.280959999999993,
+        "actorSheetReady": true,
+        "spawnProgress": 1,
+        "phase": "playing",
+        "enemyCount": 0,
+        "iceTrailReady": true,
+        "iceTrailCount": 1
+      },
+      "overflow": {
+        "x": false,
+        "y": false
+      }
+    },
+    "canvasBytes": 1139654
+  },
+  "video": {
+    "file": "/Users/eliran/math-pacman/docs/visual-proof-screenshots/boss-ice-trail/boss-ice-trail-mobile-canvas.webm",
+    "mimeType": "video/webm;codecs=vp8",
+    "snapshot": {
+      "levelIndex": 0,
+      "boss": {
+        "id": "boss-0-24",
+        "name": "לבת-הר",
+        "x": 520.8,
+        "y": 372,
+        "direction": "right",
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "actorSheetReady": true,
+        "spawnProgress": 1,
+        "phase": "playing",
+        "enemyCount": 0,
+        "iceTrailReady": true,
+        "iceTrailCount": 1
+      },
+      "hazard": {
+        "type": "boss-ice-trail",
+        "cells": [
+          {
+            "x": 20,
+            "y": 15
+          },
+          {
+            "x": 19,
+            "y": 15
+          },
+          {
+            "x": 18,
+            "y": 15
+          }
+        ],
+        "hitEffect": "slide",
+        "slideDirection": "right"
+      }
+    },
+    "size": 469958
+  },
+  "createdAt": "2026-07-07T10:16:46.541Z"
+}

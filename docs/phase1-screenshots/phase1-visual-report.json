@@ -1,0 +1,609 @@
+{
+  "phase": 1,
+  "capturedAt": "2026-07-10T13:08:45.740Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "diffThreshold": 0.12,
+  "acceptance": {
+    "ok": true,
+    "checks": {
+      "characterPersisted": true,
+      "modePersisted": true,
+      "difficultyPersisted": true,
+      "nicknamePersisted": true,
+      "soundPersisted": true,
+      "modeSheetOpened": true,
+      "difficultySheetOpened": true,
+      "settingsSheetOpened": true,
+      "leaderboardOpened": true,
+      "gameStarted": true,
+      "pauseResume": true,
+      "returnedToMenu": true,
+      "noRuntimeErrors": true,
+      "noConsoleErrors": true
+    },
+    "before": {
+      "character": "nabatick",
+      "mode": "adventure",
+      "difficulty": "advanced",
+      "nickname": "בודק יסוד",
+      "soundIcon": "sound-off",
+      "modeSheetOpened": true,
+      "difficultySheetOpened": true,
+      "settingsSheetOpened": true,
+      "leaderboardOpened": true,
+      "runtimeErrors": []
+    },
+    "after": {
+      "persisted": {
+        "character": "nabatick",
+        "mode": "adventure",
+        "difficulty": "advanced",
+        "nickname": "בודק יסוד",
+        "soundIcon": "sound-off"
+      },
+      "gameStarted": true,
+      "paused": true,
+      "resumed": true,
+      "returnedToMenu": true,
+      "runtimeErrors": []
+    },
+    "events": []
+  },
+  "results": [
+    {
+      "name": "390x844-portrait",
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "file": "docs/phase1-screenshots/phase1-home-390x844-portrait.png",
+      "baseline": "docs/baseline-screenshots/phase0-home-390x844-portrait.png",
+      "comparison": {
+        "dimensionMismatch": false,
+        "width": 390,
+        "height": 844,
+        "baselineWidth": 390,
+        "baselineHeight": 844,
+        "diffPixels": 242822,
+        "diffRatio": 0.7377020294081905,
+        "meanDelta": 42.40155623405031
+      },
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "dir": "rtl",
+        "lang": "he",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "pauseIcon": "pause",
+        "runtimeErrors": [],
+        "manifestLoaded": true,
+        "scroll": {
+          "width": 390,
+          "height": 844,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "startScreen": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "logo": {
+            "x": 12,
+            "y": 98,
+            "width": 366,
+            "height": 138,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "hero": {
+            "x": 12,
+            "y": 211,
+            "width": 366,
+            "height": 517,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "bifly": {
+            "x": 23,
+            "y": 441,
+            "width": 190,
+            "height": 251,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "nabatick": {
+            "x": 200,
+            "y": 499,
+            "width": 143,
+            "height": 189,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "cta": {
+            "x": 12,
+            "y": 737,
+            "width": 366,
+            "height": 74,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "leaderboard": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "none",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "controlStrip": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          }
+        }
+      }
+    },
+    {
+      "name": "430x932-portrait",
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "file": "docs/phase1-screenshots/phase1-home-430x932-portrait.png",
+      "baseline": "docs/baseline-screenshots/phase0-home-430x932-portrait.png",
+      "comparison": {
+        "dimensionMismatch": false,
+        "width": 430,
+        "height": 932,
+        "baselineWidth": 430,
+        "baselineHeight": 932,
+        "diffPixels": 298383,
+        "diffRatio": 0.7445428685497555,
+        "meanDelta": 42.513953488372096
+      },
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "dir": "rtl",
+        "lang": "he",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "pauseIcon": "pause",
+        "runtimeErrors": [],
+        "manifestLoaded": true,
+        "scroll": {
+          "width": 430,
+          "height": 932,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "startScreen": {
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932,
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "logo": {
+            "x": 12,
+            "y": 108,
+            "width": 406,
+            "height": 151,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "hero": {
+            "x": 12,
+            "y": 232,
+            "width": 406,
+            "height": 575,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "bifly": {
+            "x": 31,
+            "y": 492,
+            "width": 198,
+            "height": 278,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "nabatick": {
+            "x": 226,
+            "y": 557,
+            "width": 149,
+            "height": 209,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "cta": {
+            "x": 12,
+            "y": 817,
+            "width": 406,
+            "height": 82,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "leaderboard": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "none",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "controlStrip": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          }
+        }
+      }
+    },
+    {
+      "name": "844x390-landscape",
+      "width": 844,
+      "height": 390,
+      "mobile": true,
+      "file": "docs/phase1-screenshots/phase1-home-844x390-landscape.png",
+      "baseline": "docs/baseline-screenshots/phase0-home-844x390-landscape.png",
+      "comparison": {
+        "dimensionMismatch": false,
+        "width": 844,
+        "height": 390,
+        "baselineWidth": 844,
+        "baselineHeight": 390,
+        "diffPixels": 193148,
+        "diffRatio": 0.586790618544173,
+        "meanDelta": 34.581144428241586
+      },
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "dir": "rtl",
+        "lang": "he",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "pauseIcon": "pause",
+        "runtimeErrors": [],
+        "manifestLoaded": true,
+        "scroll": {
+          "width": 844,
+          "height": 390,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "startScreen": {
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "logo": {
+            "x": 199,
+            "y": 81,
+            "width": 445,
+            "height": 74,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "hero": {
+            "x": 199,
+            "y": 158,
+            "width": 445,
+            "height": 160,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "bifly": {
+            "x": 217,
+            "y": 9,
+            "width": 241,
+            "height": 281,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "nabatick": {
+            "x": 414,
+            "y": 77,
+            "width": 186,
+            "height": 216,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "cta": {
+            "x": 199,
+            "y": 305,
+            "width": 445,
+            "height": 90,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "leaderboard": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "none",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "controlStrip": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          }
+        }
+      }
+    },
+    {
+      "name": "1280x720-desktop",
+      "width": 1280,
+      "height": 720,
+      "mobile": false,
+      "file": "docs/phase1-screenshots/phase1-home-1280x720-desktop.png",
+      "baseline": "docs/baseline-screenshots/phase0-home-1280x720-desktop.png",
+      "comparison": {
+        "dimensionMismatch": false,
+        "width": 1280,
+        "height": 720,
+        "baselineWidth": 1280,
+        "baselineHeight": 720,
+        "diffPixels": 513143,
+        "diffRatio": 0.5567957899305556,
+        "meanDelta": 31.81703830295139
+      },
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "dir": "rtl",
+        "lang": "he",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "pauseIcon": "pause",
+        "runtimeErrors": [],
+        "manifestLoaded": true,
+        "scroll": {
+          "width": 1280,
+          "height": 720,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "startScreen": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "logo": {
+            "x": 230,
+            "y": 124,
+            "width": 820,
+            "height": 122,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "hero": {
+            "x": 230,
+            "y": 244,
+            "width": 820,
+            "height": 330,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "bifly": {
+            "x": 301,
+            "y": 215,
+            "width": 366,
+            "height": 325,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "nabatick": {
+            "x": 655,
+            "y": 300,
+            "width": 282,
+            "height": 244,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "cta": {
+            "x": 335,
+            "y": 582,
+            "width": 610,
+            "height": 91,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "leaderboard": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "none",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "controlStrip": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          }
+        }
+      }
+    },
+    {
+      "name": "1440x900-desktop",
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "file": "docs/phase1-screenshots/phase1-home-1440x900-desktop.png",
+      "baseline": "docs/baseline-screenshots/phase0-home-1440x900-desktop.png",
+      "comparison": {
+        "dimensionMismatch": false,
+        "width": 1440,
+        "height": 900,
+        "baselineWidth": 1440,
+        "baselineHeight": 900,
+        "diffPixels": 712344,
+        "diffRatio": 0.5496481481481481,
+        "meanDelta": 30.246126157407407
+      },
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "dir": "rtl",
+        "lang": "he",
+        "selectedCharacter": "bifly",
+        "selectedMode": "arcade",
+        "selectedDifficulty": "normal",
+        "soundIcon": "sound-on",
+        "pauseIcon": "pause",
+        "runtimeErrors": [],
+        "manifestLoaded": true,
+        "scroll": {
+          "width": 1440,
+          "height": 900,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "startScreen": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "logo": {
+            "x": 310,
+            "y": 130,
+            "width": 820,
+            "height": 153,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "hero": {
+            "x": 310,
+            "y": 279,
+            "width": 820,
+            "height": 463,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "bifly": {
+            "x": 358,
+            "y": 305,
+            "width": 412,
+            "height": 397,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "nabatick": {
+            "x": 717,
+            "y": 406,
+            "width": 317,
+            "height": 298,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "cta": {
+            "x": 415,
+            "y": 749,
+            "width": 610,
+            "height": 99,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "leaderboard": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "none",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "controlStrip": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "grid",
+            "visibility": "visible",
+            "opacity": "1"
+          }
+        }
+      }
+    }
+  ]
+}

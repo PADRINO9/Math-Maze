@@ -1,0 +1,29 @@
+{
+  "id": "/",
+  "name": "כפלול - משחק לוח הכפל",
+  "short_name": "כפלול",
+  "description": "משחק מובייל לילדים לתרגול לוח הכפל בתוך מבוך ארקייד.",
+  "lang": "he-IL",
+  "dir": "rtl",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "fullscreen",
+  "orientation": "portrait-primary",
+  "background_color": "#05070b",
+  "theme_color": "#05070b",
+  "categories": ["games", "education"],
+  "icons": [
+    {
+      "src": "assets/bifly-player.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/bifly-player.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

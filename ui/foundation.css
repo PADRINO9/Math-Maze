@@ -1,0 +1,251 @@
+@layer kaflul.tokens, kaflul.a11y, kaflul.components, kaflul.motion;
+
+@layer kaflul.tokens {
+  :root {
+    color-scheme: dark;
+
+    --kf-color-bg-page: #05070b;
+    --kf-color-bg-stage: #02040a;
+    --kf-color-surface: rgba(8, 13, 24, 0.8);
+    --kf-color-surface-strong: rgba(7, 10, 20, 0.94);
+    --kf-color-line: rgba(113, 224, 255, 0.3);
+    --kf-color-line-strong: #68e7ff;
+    --kf-color-text: #f7fbff;
+    --kf-color-muted: #93a6bd;
+    --kf-color-gold: #ffd84a;
+    --kf-color-green: #67f08b;
+    --kf-color-danger: #ff4c5f;
+    --kf-color-cyan: #55edf0;
+    --kf-color-purple: #9d7cff;
+
+    --kf-font-body: "Assistant", "Noto Sans Hebrew", Arial, sans-serif;
+    --kf-font-display: "Fredoka", "Assistant", "Noto Sans Hebrew", Arial, sans-serif;
+
+    --kf-space-1: 4px;
+    --kf-space-2: 8px;
+    --kf-space-3: 12px;
+    --kf-space-4: 16px;
+    --kf-space-5: 20px;
+    --kf-space-6: 24px;
+    --kf-space-8: 32px;
+
+    --kf-radius-xs: 6px;
+    --kf-radius-sm: 8px;
+    --kf-radius-md: 12px;
+    --kf-radius-lg: 18px;
+    --kf-radius-xl: 24px;
+    --kf-radius-pill: 999px;
+
+    --kf-border-thin: 1px solid var(--kf-color-line);
+    --kf-border-strong: 1px solid rgba(255, 255, 255, 0.18);
+
+    --kf-shadow-panel: 0 18px 46px rgba(0, 0, 0, 0.34);
+    --kf-shadow-modal: 0 30px 90px rgba(0, 0, 0, 0.68);
+    --kf-shadow-focus: 0 0 0 3px rgba(104, 231, 255, 0.18);
+    --kf-glow-cyan: 0 0 24px rgba(104, 231, 255, 0.28);
+    --kf-glow-gold: 0 0 24px rgba(255, 216, 74, 0.42);
+
+    --kf-motion-duration-fast: 120ms;
+    --kf-motion-duration-medium: 180ms;
+    --kf-motion-duration-slow: 320ms;
+    --kf-motion-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --kf-motion-ease-emphasis: cubic-bezier(0.2, 1, 0.22, 1);
+
+    --kf-z-hud: 9;
+    --kf-z-screen: 14;
+    --kf-z-dialog: 120;
+    --kf-z-leaderboard: 160;
+
+    --kf-touch-target: 44px;
+    --kf-safe-top: max(14px, env(safe-area-inset-top));
+    --kf-safe-right: max(14px, env(safe-area-inset-right));
+    --kf-safe-bottom: max(14px, env(safe-area-inset-bottom));
+    --kf-safe-left: max(14px, env(safe-area-inset-left));
+  }
+}
+
+@layer kaflul.a11y {
+  :where(.kf-visually-hidden) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  :where(.ui-icon) {
+    inline-size: 1em;
+    block-size: 1em;
+    display: block;
+    flex: 0 0 auto;
+    color: currentColor;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  :where(.ui-icon-wrap) {
+    display: grid;
+    place-items: center;
+  }
+
+  :where(.icon-button, .leaderboard-icon-button, .sheet-close) {
+    display: grid;
+    place-items: center;
+  }
+}
+
+@layer kaflul.components {
+  :where(.kf-button) {
+    min-block-size: var(--kf-touch-target);
+    display: inline-grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--kf-space-2);
+    border: var(--kf-border-strong);
+    border-radius: var(--kf-radius-md);
+    background: var(--kf-color-surface);
+    color: var(--kf-color-text);
+    font-family: var(--kf-font-display);
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+      transform var(--kf-motion-duration-fast) var(--kf-motion-ease-standard),
+      border-color var(--kf-motion-duration-fast) var(--kf-motion-ease-standard),
+      box-shadow var(--kf-motion-duration-fast) var(--kf-motion-ease-standard);
+  }
+
+  :where(.kf-button:hover, .kf-button:focus-visible) {
+    outline: none;
+    border-color: var(--kf-color-line-strong);
+    box-shadow: var(--kf-shadow-focus);
+  }
+
+  :where(.kf-button:active) {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  :where(.kf-button[disabled], .kf-button[aria-disabled="true"]) {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  :where(.kf-button--primary-play) {
+    border-color: rgba(255, 232, 115, 0.92);
+    background: linear-gradient(180deg, #fff45c, #ffd324 42%, #ff9c00 100%);
+    color: #6e2600;
+    box-shadow: var(--kf-glow-gold), inset 0 2px rgba(255, 255, 255, 0.5);
+  }
+
+  :where(.kf-button--secondary) {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)), var(--kf-color-surface);
+  }
+
+  :where(.kf-button--icon) {
+    inline-size: var(--kf-touch-target);
+    padding: 0;
+  }
+
+  :where(.kf-button--danger) {
+    border-color: rgba(255, 76, 95, 0.48);
+    color: #ffd8dd;
+  }
+
+  :where(.kf-panel, .kf-dialog, .kf-sheet) {
+    border: var(--kf-border-thin);
+    border-radius: var(--kf-radius-lg);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+      var(--kf-color-surface);
+    box-shadow: var(--kf-shadow-panel), inset 0 0 26px rgba(56, 228, 255, 0.08);
+    color: var(--kf-color-text);
+  }
+
+  :where(.kf-dialog, .kf-sheet) {
+    box-shadow: var(--kf-shadow-modal), inset 0 0 42px rgba(37, 213, 255, 0.05);
+  }
+
+  :where(.kf-badge) {
+    min-block-size: 28px;
+    display: inline-grid;
+    place-items: center;
+    padding-inline: var(--kf-space-3);
+    border: 1px solid rgba(255, 216, 74, 0.42);
+    border-radius: var(--kf-radius-pill);
+    background: rgba(5, 10, 32, 0.78);
+    color: var(--kf-color-gold);
+    font-weight: 900;
+  }
+
+  :where(.kf-nav) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--kf-space-2);
+  }
+
+  :where(.kf-nav__item) {
+    min-block-size: var(--kf-touch-target);
+    min-inline-size: var(--kf-touch-target);
+    display: grid;
+    place-items: center;
+  }
+
+  :where(.kf-progress) {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--kf-radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  :where(.kf-progress__bar) {
+    block-size: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--kf-color-cyan), var(--kf-color-gold));
+    transition: inline-size var(--kf-motion-duration-medium) var(--kf-motion-ease-standard);
+  }
+
+  :where(.kf-hud) {
+    display: grid;
+    gap: var(--kf-space-2);
+    color: var(--kf-color-text);
+  }
+
+  :where(.kf-hud__metric) {
+    min-inline-size: 68px;
+    padding: var(--kf-space-2);
+    border: var(--kf-border-strong);
+    border-radius: var(--kf-radius-sm);
+    background: rgba(2, 6, 14, 0.62);
+  }
+}
+
+@layer kaflul.motion {
+  :where([data-motion="pressable"]) {
+    transition: transform var(--kf-motion-duration-fast) var(--kf-motion-ease-standard);
+  }
+
+  :where([data-motion="pressable"]:active) {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --kf-motion-duration-fast: 1ms;
+      --kf-motion-duration-medium: 1ms;
+      --kf-motion-duration-slow: 1ms;
+    }
+
+    :where(.kf-motion, [data-motion], .ui-motion) {
+      animation-duration: 1ms;
+      animation-iteration-count: 1;
+      scroll-behavior: auto;
+      transition-duration: 1ms;
+    }
+  }
+}

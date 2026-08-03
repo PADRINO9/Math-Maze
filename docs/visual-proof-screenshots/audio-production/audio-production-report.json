@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "diagnostics": {
+    "enabled": true,
+    "musicEnabled": true,
+    "unlocked": true,
+    "contextState": "running",
+    "loaded": 28,
+    "loadErrors": 0,
+    "played": 21,
+    "mutedSkips": 0,
+    "autoplayBlocks": 0,
+    "throttledSkips": 0,
+    "voiceSteals": 0,
+    "currentScene": "lava",
+    "questionDucked": false,
+    "bossActive": false,
+    "lastEvent": "character:bifly:victory",
+    "lastReason": "played",
+    "volumes": {
+      "master": 0.4368000000000001,
+      "music": 0.45,
+      "sfx": 0.78,
+      "voices": 0.82,
+      "ui": 0.68
+    },
+    "activeShots": 5
+  },
+  "files": [
+    "audio-boss-desktop-1280x800.png",
+    "audio-question-desktop-1280x800.png",
+    "audio-mixer-mobile-390x844.png",
+    "kaflul-audio-gameplay-proof.webm",
+    "audio-proof-frame-1.png",
+    "audio-proof-frame-2.png"
+  ]
+}

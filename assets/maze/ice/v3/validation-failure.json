@@ -1,0 +1,425 @@
+{
+  "passed": false,
+  "floorSeamPass": true,
+  "wallConnectionPass": false,
+  "floorSeams": [
+    {
+      "maxHorizontal": 0,
+      "maxVertical": 0
+    },
+    {
+      "maxHorizontal": 0,
+      "maxVertical": 0
+    },
+    {
+      "maxHorizontal": 0,
+      "maxVertical": 0
+    },
+    {
+      "maxHorizontal": 0,
+      "maxVertical": 0
+    }
+  ],
+  "wallConnections": [
+    {
+      "mask": 0,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 1,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 2,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 3,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 4,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 5,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 6,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 7,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": false,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "mask": 8,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 9,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 10,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 11,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": false,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 12,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 13,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": false,
+          "alpha": 47
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 14,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": false,
+          "alpha": 0
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "mask": 15,
+      "checks": [
+        {
+          "direction": "north",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "east",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "south",
+          "expectedConnected": true,
+          "alpha": 255
+        },
+        {
+          "direction": "west",
+          "expectedConnected": true,
+          "alpha": 255
+        }
+      ]
+    }
+  ]
+}

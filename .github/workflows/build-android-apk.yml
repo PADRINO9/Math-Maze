@@ -1,0 +1,101 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_label:
+        description: Optional label for the artifact name
+        required: false
+        default: kaflul-debug
+  push:
+    branches:
+      - codex/ui-next-level-release
+    paths:
+      - ".github/workflows/build-android-apk.yml"
+      - "android/**"
+      - "assets/**"
+      - "ui/**"
+      - "*.css"
+      - "*.html"
+      - "*.js"
+      - "*.json"
+      - "app.webmanifest"
+      - "package*.json"
+      - "tools/android_*.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  debug-apk:
+    name: Build debug APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Check out current revision
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install JavaScript dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Chromium for smoke validation
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Android SDK packages
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then
+            SDKMANAGER="$(command -v sdkmanager)"
+          fi
+          yes | "$SDKMANAGER" --licenses >/dev/null
+          "$SDKMANAGER" "platform-tools" "platforms;android-36" "build-tools;36.1.0"
+
+      - name: Validate project scripts
+        run: |
+          npm run build
+          npm run test:node
+
+      - name: Prepare Android web bundle
+        run: npm run android:smoke
+
+      - name: Sync Capacitor Android project
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      - name: Rename APK
+        env:
+          REQUESTED_BUILD_LABEL: ${{ inputs.build_label || 'kaflul-debug' }}
+        run: |
+          if [[ ! "$REQUESTED_BUILD_LABEL" =~ ^[A-Za-z0-9._-]{1,48}$ ]]; then
+            echo "Invalid build label. Use 1-48 letters, digits, dots, underscores or dashes." >&2
+            exit 1
+          fi
+          APK_ARTIFACT_NAME="${REQUESTED_BUILD_LABEL}-${GITHUB_RUN_NUMBER}"
+          mkdir -p dist
+          cp android/app/build/outputs/apk/debug/app-debug.apk "dist/${APK_ARTIFACT_NAME}.apk"
+          echo "APK_ARTIFACT_NAME=$APK_ARTIFACT_NAME" >> "$GITHUB_ENV"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APK_ARTIFACT_NAME }}
+          path: dist/*.apk
+          if-no-files-found: error
+          retention-days: 14

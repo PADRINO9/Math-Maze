@@ -1,0 +1,671 @@
+{
+  "phase": 3,
+  "capturedAt": "2026-07-10T16:00:25.492Z",
+  "chrome": "Chrome/149.0.7827.201",
+  "ok": false,
+  "results": [
+    {
+      "name": "390x844-portrait",
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "file": "docs/phase3-screenshots/phase3-hero-390x844-portrait.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "previewCharacter": null,
+        "heroHidden": true,
+        "adapterLoaded": true,
+        "manifestLoaded": true,
+        "supportedStates": [
+          "idle",
+          "blink",
+          "tap",
+          "selected",
+          "excited",
+          "worried",
+          "victory",
+          "defeat",
+          "eat",
+          "hit"
+        ],
+        "missingStates": [],
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 390,
+          "height": 844,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "visible": true
+          },
+          "#hero-gallery": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-header": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-stage": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-art-button": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-animation-mount": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-animation-image": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-name": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-select": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-actions": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [],
+        "image": {
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
+          "ratioDelta": 0,
+          "imageInMount": true
+        }
+      }
+    },
+    {
+      "name": "430x932-portrait",
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "file": "docs/phase3-screenshots/phase3-hero-430x932-portrait.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "previewCharacter": null,
+        "heroHidden": true,
+        "adapterLoaded": true,
+        "manifestLoaded": true,
+        "supportedStates": [
+          "idle",
+          "blink",
+          "tap",
+          "selected",
+          "excited",
+          "worried",
+          "victory",
+          "defeat",
+          "eat",
+          "hit"
+        ],
+        "missingStates": [],
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 430,
+          "height": 932,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 932,
+            "visible": true
+          },
+          "#hero-gallery": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-header": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-stage": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-art-button": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-animation-mount": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-animation-image": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-name": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-select": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-actions": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [],
+        "image": {
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
+          "ratioDelta": 0,
+          "imageInMount": true
+        }
+      }
+    },
+    {
+      "name": "844x390-landscape",
+      "width": 844,
+      "height": 390,
+      "mobile": true,
+      "file": "docs/phase3-screenshots/phase3-hero-844x390-landscape.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "previewCharacter": null,
+        "heroHidden": true,
+        "adapterLoaded": true,
+        "manifestLoaded": true,
+        "supportedStates": [
+          "idle",
+          "blink",
+          "tap",
+          "selected",
+          "excited",
+          "worried",
+          "victory",
+          "defeat",
+          "eat",
+          "hit"
+        ],
+        "missingStates": [],
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 844,
+          "height": 390,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 844,
+            "height": 390,
+            "visible": true
+          },
+          "#hero-gallery": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-header": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-stage": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-art-button": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-animation-mount": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-animation-image": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-name": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-select": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-actions": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [],
+        "image": {
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
+          "ratioDelta": 0,
+          "imageInMount": true
+        }
+      }
+    },
+    {
+      "name": "1280x720-desktop",
+      "width": 1280,
+      "height": 720,
+      "mobile": false,
+      "file": "docs/phase3-screenshots/phase3-hero-1280x720-desktop.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "previewCharacter": null,
+        "heroHidden": true,
+        "adapterLoaded": true,
+        "manifestLoaded": true,
+        "supportedStates": [
+          "idle",
+          "blink",
+          "tap",
+          "selected",
+          "excited",
+          "worried",
+          "victory",
+          "defeat",
+          "eat",
+          "hit"
+        ],
+        "missingStates": [],
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 1280,
+          "height": 720,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "visible": true
+          },
+          "#hero-gallery": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-header": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-stage": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-art-button": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-animation-mount": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-animation-image": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-name": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-select": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-actions": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [],
+        "image": {
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
+          "ratioDelta": 0,
+          "imageInMount": true
+        }
+      }
+    },
+    {
+      "name": "1440x900-desktop",
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "file": "docs/phase3-screenshots/phase3-hero-1440x900-desktop.png",
+      "events": [],
+      "evaluation": {
+        "title": "כפלול | משחק לוח הכפל",
+        "lang": "he",
+        "dir": "rtl",
+        "selectedCharacter": "bifly",
+        "previewCharacter": null,
+        "heroHidden": true,
+        "adapterLoaded": true,
+        "manifestLoaded": true,
+        "supportedStates": [
+          "idle",
+          "blink",
+          "tap",
+          "selected",
+          "excited",
+          "worried",
+          "victory",
+          "defeat",
+          "eat",
+          "hit"
+        ],
+        "missingStates": [],
+        "runtimeErrors": [],
+        "scroll": {
+          "width": 1440,
+          "height": 900,
+          "xOverflow": false,
+          "yOverflow": false
+        },
+        "rects": {
+          "#start-screen": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "visible": true
+          },
+          "#hero-gallery": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-header": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-stage": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-card": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-art-button": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-animation-mount": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-animation-image": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-name": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          "#hero-gallery-select": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          },
+          ".hero-gallery-actions": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "visible": false
+          }
+        },
+        "outOfBounds": [],
+        "overflowingText": [],
+        "image": {
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512,
+          "renderedWidth": 0,
+          "renderedHeight": 0,
+          "ratioDelta": 0,
+          "imageInMount": true
+        }
+      }
+    }
+  ],
+  "acceptance": {
+    "ok": false,
+    "checks": {
+      "opened": false,
+      "initialName": true,
+      "nextControl": false,
+      "tapReaction": false,
+      "selectedNabatick": false,
+      "returnedHome": true,
+      "persistedSelection": false,
+      "keyboardNavigation": true,
+      "keyboardSelection": true,
+      "touchNavigation": false,
+      "noRuntimeErrors": true,
+      "noConsoleErrors": true
+    },
+    "persisted": {
+      "character": "bifly",
+      "label": "ביפלי"
+    },
+    "events": [],
+    "runtimeErrors": []
+  }
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "viewport": "desktop-1280x720",
+    "question": {
+      "answer": 35,
+      "text": "⁦5 × 7 = ?⁩"
+    },
+    "keypadCount": 0,
+    "inputValue": "",
+    "submitted": false,
+    "feedbackResult": null,
+    "snapshot": {
+      "inputMode": "numeric",
+      "readOnly": false,
+      "keypadVisible": false,
+      "digitKeys": 0,
+      "nonNumericVisualLabels": []
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile-390x844",
+    "question": {
+      "answer": 42,
+      "text": "⁦6 × 7 = ?⁩"
+    },
+    "keypadCount": 0,
+    "inputValue": "",
+    "submitted": false,
+    "feedbackResult": null,
+    "snapshot": {
+      "inputMode": "numeric",
+      "readOnly": false,
+      "keypadVisible": false,
+      "digitKeys": 0,
+      "nonNumericVisualLabels": []
+    },
+    "errors": []
+  }
+]
