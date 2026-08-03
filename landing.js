@@ -1,175 +1,100 @@
-(function initKaflulLanding() {
+(() => {
   "use strict";
 
-  const documentElement = document.documentElement;
   const body = document.body;
   const header = document.querySelector("[data-site-header]");
-  const progressBar = document.querySelector(".page-progress");
-  const mobilePlayBar = document.querySelector(".mobile-play-bar");
+  const nav = document.getElementById("site-nav");
   const navToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector("#site-nav");
-  const cursorAura = document.querySelector(".cursor-aura");
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const navLinks = Array.from(document.querySelectorAll(".site-nav a[href^='#']"));
   const enterElements = Array.from(document.querySelectorAll("[data-enter]"));
-  const revealZones = Array.from(document.querySelectorAll("[data-reveal-zone]"));
-  const journeySteps = Array.from(document.querySelectorAll("[data-journey-step]"));
-  const journeyScreens = Array.from(document.querySelectorAll("[data-screen]"));
-  const deviceCaption = document.querySelector("[data-device-caption]");
-  const currentYear = document.querySelector("[data-current-year]");
-  const installButton = document.querySelector("[data-install-button]");
-  const installToast = document.querySelector("[data-install-toast]");
+  const shareButtons = Array.from(document.querySelectorAll("[data-share]"));
+  const shareToast = document.querySelector("[data-share-toast]");
+  const shareMessage = document.querySelector("[data-share-message]");
+  const toastClose = document.querySelector("[data-toast-close]");
+  const leaderboardStatus = document.querySelector("[data-leaderboard-status]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileNav = window.matchMedia("(max-width: 860px)");
+  let toastTimer = 0;
 
-  let scrollTicking = false;
-  let cursorTicking = false;
-  let latestCursor = { x: -100, y: -100 };
-  let installPrompt = null;
-  let toastTimer = null;
-
-  function clamp(value, minimum, maximum) {
-    return Math.min(Math.max(value, minimum), maximum);
+  function setHeaderState() {
+    header?.classList.toggle("is-scrolled", window.scrollY > 18);
   }
 
-  function updateScrollState() {
-    const scrollTop = window.scrollY || documentElement.scrollTop;
-    const scrollable = Math.max(documentElement.scrollHeight - window.innerHeight, 1);
-    const progress = clamp(scrollTop / scrollable, 0, 1);
-
-    documentElement.style.setProperty("--page-progress", progress.toFixed(4));
-    progressBar?.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
-    header?.classList.toggle("is-scrolled", scrollTop > 24);
-
-    if (mobilePlayBar) {
-      const downloadSection = document.querySelector("#download");
-      const downloadTop = downloadSection?.getBoundingClientRect().top ?? Infinity;
-      const shouldShow = scrollTop > Math.min(window.innerHeight * 0.72, 620) && downloadTop > window.innerHeight * 0.72;
-      mobilePlayBar.classList.toggle("is-visible", shouldShow);
-    }
-
-    scrollTicking = false;
+  function closeNavigation({ restoreFocus = false } = {}) {
+    if (!nav || !navToggle) return;
+    nav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "פתיחת תפריט הניווט");
+    body.classList.remove("nav-open");
+    if (restoreFocus) navToggle.focus();
   }
 
-  function requestScrollUpdate() {
-    if (scrollTicking) return;
-    scrollTicking = true;
-    window.requestAnimationFrame(updateScrollState);
+  function openNavigation() {
+    if (!nav || !navToggle) return;
+    nav.classList.add("is-open");
+    navToggle.setAttribute("aria-expanded", "true");
+    navToggle.setAttribute("aria-label", "סגירת תפריט הניווט");
+    body.classList.add("nav-open");
+    nav.querySelector("a")?.focus();
   }
 
-  function updateCursor() {
-    cursorAura?.style.setProperty("--cursor-x", `${latestCursor.x}px`);
-    cursorAura?.style.setProperty("--cursor-y", `${latestCursor.y}px`);
-    cursorTicking = false;
-  }
-
-  function handlePointerMove(event) {
-    latestCursor = { x: event.clientX, y: event.clientY };
-    cursorAura?.classList.add("is-visible");
-    if (!cursorTicking) {
-      cursorTicking = true;
-      window.requestAnimationFrame(updateCursor);
-    }
-
-    const interactive = event.target.closest("a, button, summary, .world-card, .qr-card");
-    cursorAura?.classList.toggle("is-over-action", Boolean(interactive));
-  }
-
-  function setRevealPosition(zone, clientX, clientY, activateClass = "is-pointer-active") {
-    const bounds = zone.getBoundingClientRect();
-    if (!bounds.width || !bounds.height) return;
-
-    const x = clamp(clientX - bounds.left, 0, bounds.width);
-    const y = clamp(clientY - bounds.top, 0, bounds.height);
-    zone.style.setProperty("--reveal-x", `${x}px`);
-    zone.style.setProperty("--reveal-y", `${y}px`);
-    zone.classList.add(activateClass);
-  }
-
-  function setupRevealZones() {
-    revealZones.forEach((zone) => {
-      zone.addEventListener("pointerenter", (event) => {
-        if (event.pointerType === "mouse" || event.pointerType === "pen") {
-          setRevealPosition(zone, event.clientX, event.clientY);
-        }
-      });
-
-      zone.addEventListener("pointermove", (event) => {
-        if (event.pointerType === "mouse" || event.pointerType === "pen") {
-          setRevealPosition(zone, event.clientX, event.clientY);
-        }
-      });
-
-      zone.addEventListener("pointerleave", () => {
-        zone.classList.remove("is-pointer-active");
-      });
-
-      zone.addEventListener("pointerdown", (event) => {
-        if (event.pointerType === "touch") {
-          setRevealPosition(zone, event.clientX, event.clientY, "is-touch-active");
-        }
-      }, { passive: true });
-
-      zone.addEventListener("pointerup", () => {
-        window.setTimeout(() => zone.classList.remove("is-touch-active"), 900);
-      }, { passive: true });
-    });
-  }
-
-  function setJourneyStep(key) {
-    const selectedStep = journeySteps.find((step) => step.dataset.journeyStep === key);
-    if (!selectedStep) return;
-
-    journeySteps.forEach((step) => {
-      step.classList.toggle("is-active", step === selectedStep);
+  function setupNavigation() {
+    navToggle?.addEventListener("click", () => {
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeNavigation({ restoreFocus: true });
+      else openNavigation();
     });
 
-    journeyScreens.forEach((screen) => {
-      screen.classList.toggle("is-active", screen.dataset.screen === key);
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => closeNavigation());
     });
 
-    if (deviceCaption) {
-      deviceCaption.textContent = selectedStep.dataset.caption || "בתוך המשחק";
-    }
-  }
-
-  function setupJourneyObserver() {
-    if (!("IntersectionObserver" in window)) {
-      journeySteps.forEach((step) => step.classList.add("is-active"));
-      return;
-    }
-
-    const visibleSteps = new Map();
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          visibleSteps.set(entry.target, entry.intersectionRatio);
-        } else {
-          visibleSteps.delete(entry.target);
-        }
-      });
-
-      let mostVisible = null;
-      let bestRatio = -1;
-      visibleSteps.forEach((ratio, step) => {
-        if (ratio > bestRatio) {
-          mostVisible = step;
-          bestRatio = ratio;
-        }
-      });
-
-      if (mostVisible?.dataset.journeyStep) {
-        setJourneyStep(mostVisible.dataset.journeyStep);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navToggle?.getAttribute("aria-expanded") === "true") {
+        event.preventDefault();
+        closeNavigation({ restoreFocus: true });
       }
-    }, {
-      root: null,
-      rootMargin: "-22% 0px -28% 0px",
-      threshold: [0.05, 0.2, 0.4, 0.62]
     });
 
-    journeySteps.forEach((step) => observer.observe(step));
+    document.addEventListener("pointerdown", (event) => {
+      if (navToggle?.getAttribute("aria-expanded") !== "true") return;
+      if (nav?.contains(event.target) || navToggle?.contains(event.target)) return;
+      closeNavigation();
+    });
+
+    mobileNav.addEventListener?.("change", (event) => {
+      if (!event.matches) closeNavigation();
+    });
   }
 
-  function setupEntranceObserver() {
-    if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) {
+  function setupActiveNavigation() {
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    if (!("IntersectionObserver" in window) || sections.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      const activeEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!activeEntry) return;
+      navLinks.forEach((link) => {
+        const active = link.getAttribute("href") === `#${activeEntry.target.id}`;
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }, {
+      rootMargin: "-32% 0px -58% 0px",
+      threshold: [0, 0.2, 0.5]
+    });
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  function setupEntranceMotion() {
+    if (reducedMotion.matches || !("IntersectionObserver" in window)) {
       enterElements.forEach((element) => element.classList.add("is-visible"));
       return;
     }
@@ -181,156 +106,140 @@
         observer.unobserve(entry.target);
       });
     }, {
-      rootMargin: "0px 0px -9% 0px",
-      threshold: 0.12
+      rootMargin: "0px 0px -8% 0px",
+      threshold: 0.08
     });
 
-    enterElements.forEach((element, index) => {
-      element.style.transitionDelay = `${Math.min(index % 3, 2) * 65}ms`;
-      observer.observe(element);
-    });
+    enterElements.forEach((element) => observer.observe(element));
   }
 
-  function setupNavigation() {
-    navToggle?.addEventListener("click", () => {
-      const willOpen = !body.classList.contains("nav-open");
-      body.classList.toggle("nav-open", willOpen);
-      navToggle.setAttribute("aria-expanded", String(willOpen));
-      navToggle.setAttribute("aria-label", willOpen ? "סגירת תפריט" : "פתיחת תפריט");
-    });
-
-    nav?.addEventListener("click", (event) => {
-      if (!event.target.closest("a")) return;
-      body.classList.remove("nav-open");
-      navToggle?.setAttribute("aria-expanded", "false");
-      navToggle?.setAttribute("aria-label", "פתיחת תפריט");
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || !body.classList.contains("nav-open")) return;
-      body.classList.remove("nav-open");
-      navToggle?.setAttribute("aria-expanded", "false");
-      navToggle?.focus();
-    });
-
-    const navLinks = Array.from(document.querySelectorAll(".site-nav a[href^='#']"));
-    const sections = navLinks
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
-
-    if (!("IntersectionObserver" in window) || sections.length === 0) return;
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-
-      navLinks.forEach((link) => {
-        const active = link.getAttribute("href") === `#${visible.target.id}`;
-        link.classList.toggle("is-active", active);
-        if (active) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    }, {
-      rootMargin: "-35% 0px -52% 0px",
-      threshold: [0, 0.2, 0.5]
-    });
-
-    sections.forEach((section) => sectionObserver.observe(section));
+  function getShareUrl() {
+    const canonical = document.querySelector('link[rel="canonical"]')?.href;
+    const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    return isLocal && canonical ? canonical : `${window.location.origin}${window.location.pathname}`;
   }
 
-  function setupFaq() {
-    const details = Array.from(document.querySelectorAll(".faq-list details"));
-    details.forEach((item) => {
-      item.addEventListener("toggle", () => {
-        if (!item.open) return;
-        details.forEach((other) => {
-          if (other !== item) other.open = false;
-        });
-      });
-    });
+  async function copyText(value) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+
+    const helper = document.createElement("textarea");
+    helper.value = value;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand("copy");
+    helper.remove();
+    if (!copied) throw new Error("copy_failed");
   }
 
-  function showInstallToast() {
-    if (!installToast) return;
-    installToast.hidden = false;
+  function hideToast() {
+    if (!shareToast) return;
+    shareToast.hidden = true;
+    shareToast.classList.remove("is-error");
     window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => {
-      installToast.hidden = true;
-    }, 5200);
   }
 
-  function setupInstallPrompt() {
-    window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault();
-      installPrompt = event;
-      if (installButton) installButton.hidden = false;
+  function showToast(message, isError = false) {
+    if (!shareToast || !shareMessage) return;
+    shareMessage.textContent = message;
+    shareToast.classList.toggle("is-error", isError);
+    shareToast.hidden = false;
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(hideToast, 5600);
+  }
+
+  function setupSharing() {
+    shareButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const shareData = {
+          title: "כפלול — הכפל רודף אחריכם",
+          text: "מבוך. שאלה. ניצחון. משחקים בכפלול ומנסים להגיע למקום הראשון באלוף האלופים.",
+          url: getShareUrl()
+        };
+
+        try {
+          if (navigator.share) {
+            await navigator.share(shareData);
+            showToast("האתגר שותף בהצלחה.");
+          } else {
+            await copyText(shareData.url);
+            showToast("הקישור הועתק. עכשיו אפשר לשלוח את האתגר.");
+          }
+        } catch (error) {
+          if (error?.name === "AbortError") return;
+          showToast(`לא הצלחנו לפתוח שיתוף. אפשר להעתיק ידנית: ${shareData.url}`, true);
+        }
+      });
     });
 
-    installButton?.addEventListener("click", async () => {
-      if (!installPrompt) {
-        showInstallToast();
-        return;
+    toastClose?.addEventListener("click", hideToast);
+  }
+
+  function setLeaderboardStatus(message, state) {
+    if (!leaderboardStatus) return;
+    leaderboardStatus.classList.remove("is-online", "is-local");
+    leaderboardStatus.classList.add(state);
+    const text = leaderboardStatus.querySelector("strong");
+    if (text) text.textContent = message;
+  }
+
+  async function checkLeaderboard() {
+    if (!leaderboardStatus) return;
+
+    const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    const endpoint = isLocal
+      ? "https://math-maze-il.vercel.app/api/champions?capability=1"
+      : "/api/champions?capability=1";
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 5000);
+
+    try {
+      const response = await fetch(endpoint, {
+        headers: { Accept: "application/json" },
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error(`leaderboard_${response.status}`);
+      const payload = await response.json();
+      if (payload?.publicAvailable) {
+        setLeaderboardStatus("הדירוג העולמי פעיל — השיא הבא יכול להיות שלכם", "is-online");
+      } else {
+        setLeaderboardStatus("השיא נשמר במכשיר ויסתנכרן כשהדירוג זמין", "is-local");
       }
-
-      installPrompt.prompt();
-      await installPrompt.userChoice;
-      installPrompt = null;
-      installButton.hidden = true;
-    });
-
-    window.addEventListener("appinstalled", () => {
-      installPrompt = null;
-      if (installButton) installButton.hidden = true;
-    });
+    } catch (_error) {
+      setLeaderboardStatus("השיא נשמר במכשיר גם בלי חיבור", "is-local");
+    } finally {
+      window.clearTimeout(timeout);
+    }
   }
 
   function exposeVerificationApi() {
     window.__kaflulLanding = {
       ready: true,
-      setJourneyStep,
-      revealAt(selector, xRatio = 0.5, yRatio = 0.5) {
-        const zone = document.querySelector(selector);
-        if (!zone) return false;
-        const bounds = zone.getBoundingClientRect();
-        setRevealPosition(
-          zone,
-          bounds.left + bounds.width * clamp(xRatio, 0, 1),
-          bounds.top + bounds.height * clamp(yRatio, 0, 1)
-        );
-        return true;
-      },
-      getActiveJourneyStep() {
-        return document.querySelector("[data-journey-step].is-active")?.dataset.journeyStep || null;
+      closeNavigation,
+      getShareUrl,
+      reducedMotion: reducedMotion.matches,
+      getLeaderboardStatus() {
+        return leaderboardStatus?.textContent?.replace(/\s+/g, " ").trim() || "";
       }
     };
   }
 
-  if (currentYear) currentYear.textContent = String(new Date().getFullYear());
-
-  setupRevealZones();
-  setupJourneyObserver();
-  setupEntranceObserver();
-  setupNavigation();
-  setupFaq();
-  setupInstallPrompt();
-  exposeVerificationApi();
-
-  window.addEventListener("scroll", requestScrollUpdate, { passive: true });
-  window.addEventListener("resize", requestScrollUpdate, { passive: true });
-
-  if (hasFinePointer.matches && cursorAura) {
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    document.addEventListener("mouseleave", () => cursorAura.classList.remove("is-visible"));
-  }
-
-  prefersReducedMotion.addEventListener?.("change", (event) => {
-    if (event.matches) {
-      enterElements.forEach((element) => element.classList.add("is-visible"));
-    }
+  document.querySelectorAll("[data-current-year]").forEach((element) => {
+    element.textContent = String(new Date().getFullYear());
   });
 
-  updateScrollState();
+  setupNavigation();
+  setupActiveNavigation();
+  setupEntranceMotion();
+  setupSharing();
+  checkLeaderboard();
+  exposeVerificationApi();
+  setHeaderState();
+  window.addEventListener("scroll", setHeaderState, { passive: true });
   body.dataset.landingReady = "true";
 })();

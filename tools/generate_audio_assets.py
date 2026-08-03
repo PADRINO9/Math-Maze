@@ -326,11 +326,41 @@ def make_boss_pack(key: str, base_freq: float, material: str) -> list[str]:
 
 
 WORLD_SPECS = {
-    "ice": {"bpm": 96, "root": 62, "lead": "bell", "boss": "stage2"},
-    "lava": {"bpm": 108, "root": 57, "lead": "wood", "boss": "stage1"},
-    "ancient": {"bpm": 100, "root": 55, "lead": "pluck", "boss": "stage3"},
-    "diamond": {"bpm": 112, "root": 64, "lead": "crystal", "boss": "stage4"},
+    # The background score deliberately stays below 92 BPM.  The old pack ran
+    # at 96-112 BPM with a drum hit every half beat, which made a long practice
+    # session feel hurried.  These four timbres keep the worlds recognisable
+    # while sharing the same calm, major/pentatonic musical language.
+    "ice": {"bpm": 84, "root": 62, "lead": "bell", "boss": "stage2"},
+    "lava": {"bpm": 88, "root": 57, "lead": "wood", "boss": "stage1"},
+    "ancient": {"bpm": 82, "root": 55, "lead": "pluck", "boss": "stage3"},
+    "diamond": {"bpm": 90, "root": 64, "lead": "crystal", "boss": "stage4"},
 }
+
+
+# Diatonic I-V-vi-IV / I-IV-ii-V progression.  Keeping the chord quality in
+# the recipe avoids the unrelated all-major chords that previously fought the
+# melody in some bars.
+GENTLE_PROGRESSION = (
+    (0, (0, 4, 7)),
+    (7, (0, 4, 7)),
+    (9, (0, 3, 7)),
+    (5, (0, 4, 7)),
+    (0, (0, 4, 7)),
+    (5, (0, 4, 7)),
+    (2, (0, 3, 7)),
+    (7, (0, 4, 7)),
+)
+
+GENTLE_MELODY = (
+    (0, 2, 4),
+    (7, 9),
+    (9, 7, 4),
+    (5, 4),
+    (0, 4, 7),
+    (5, 7),
+    (2, 4, 5),
+    (7, 4, 2),
+)
 
 
 def make_music_world(world: str, spec: dict) -> list[str]:
@@ -338,47 +368,45 @@ def make_music_world(world: str, spec: dict) -> list[str]:
     bars = 8
     duration = bars * 4 * beat
     root = spec["root"]
-    progression = (0, 5, 3, 7, 0, 5, 8, 7)
     base = blank(duration)
     pulse = blank(duration)
     melody = blank(duration)
     boss = blank(duration)
 
-    for bar, offset in enumerate(progression):
+    for bar, ((offset, chord), phrase) in enumerate(zip(GENTLE_PROGRESSION, GENTLE_MELODY)):
         start = bar * 4 * beat
         chord_root = root + offset
-        for note in (chord_root, chord_root + 4, chord_root + 7):
-            add_tone(base, start, 4 * beat, midi(note - 12), .043, "sine", .18, .32, .18,
-                     ((2, .18),))
-        add_tone(base, start, 2 * beat, midi(chord_root - 24), .075, "triangle", .03, .22, 1.4)
-        add_tone(base, start + 2 * beat, 2 * beat, midi(chord_root - 17), .055, "triangle", .03, .22, 1.5)
+        # Warm pad: long attacks and a quiet fundamental leave room for the
+        # multiplication prompts and reward sounds.
+        for interval in chord:
+            add_tone(base, start, 4 * beat, midi(chord_root + interval - 12), .033,
+                     "sine", .34, .48, .12, ((2, .10),))
+        add_tone(base, start, 4 * beat, midi(chord_root - 24), .038,
+                 "sine", .22, .52, .35)
 
-        for step in range(8):
-            at = start + step * beat / 2
-            if step in (0, 4):
-                add_kick(pulse, at, .10 if world != "lava" else .13)
-            if step in (2, 6):
-                add_tick(pulse, at, .055 if world != "ancient" else .075, wooden=world in ("lava", "ancient"))
-            if world in ("ice", "diamond") and step in (3, 7):
-                add_bell(pulse, at, midi(root + 19), .025, .25)
+        # Two soft accents per bar replace the previous eight-step drum loop.
+        add_pluck(pulse, start + .15 * beat, midi(chord_root - 12), .035, beat * .72)
+        add_pluck(pulse, start + 2.15 * beat, midi(chord_root - 5), .027, beat * .65)
+        if world in ("ice", "diamond"):
+            add_bell(pulse, start + 3.1 * beat, midi(root + 12), .018, beat * .62)
 
-        motif = (0, 4, 5, 7)
-        if bar % 2 == 0:
-            for idx, interval in enumerate(motif):
-                at = start + (idx * .5 + .25) * beat
-                note = midi(root + 12 + interval)
-                if spec["lead"] in ("bell", "crystal"):
-                    add_bell(melody, at, note, .07 if world == "ice" else .075, beat * 1.25)
-                else:
-                    add_pluck(melody, at, note, .08, beat * .8)
-        else:
-            for idx, interval in enumerate((7, 5, 4, 0)):
-                add_pluck(melody, start + (idx * .5 + .3) * beat, midi(root + 12 + interval), .055, beat * .7)
+        # A short call or response with a full-beat gap between notes is much
+        # less tiring than a constantly repeating four-note figure.
+        spacing = 1.15 if len(phrase) == 3 else 1.6
+        for idx, interval in enumerate(phrase):
+            at = start + (.68 + idx * spacing) * beat
+            note = midi(root + 12 + interval)
+            if spec["lead"] in ("bell", "crystal"):
+                add_bell(melody, at, note, .042, beat * 1.35)
+            else:
+                add_pluck(melody, at, note, .047, beat * 1.05)
 
-        add_kick(boss, start, .17)
-        add_kick(boss, start + 2 * beat, .14)
-        add_tone(boss, start, 4 * beat, midi(root - 24), .085, "saw", .04, .3, .7)
-        add_noise(boss, start, beat * .6, .035, 18 if world != "diamond" else 7, release=.15, decay=4)
+        # Boss intensity remains available, but uses rounded low tones rather
+        # than the old saw/noise layer.  Gameplay and boss event SFX are kept.
+        add_tone(boss, start, 1.2 * beat, midi(root - 24), .064,
+                 "triangle", .025, .24, 1.5)
+        add_tone(boss, start + 2 * beat, 1.0 * beat, midi(root - 17), .048,
+                 "triangle", .025, .22, 1.7)
 
     created = []
     for stem, data in (("base", base), ("pulse", pulse), ("melody", melody), ("boss", boss)):
@@ -389,26 +417,24 @@ def make_music_world(world: str, spec: dict) -> list[str]:
 
 
 def make_menu_music() -> list[str]:
-    bpm = 94
+    bpm = 80
     beat = 60 / bpm
     duration = 8 * 4 * beat
     data = blank(duration)
-    progression = (0, 5, 3, 7, 0, 5, 8, 7)
     root = 60
-    for bar, offset in enumerate(progression):
+    for bar, ((offset, chord), phrase) in enumerate(zip(GENTLE_PROGRESSION, GENTLE_MELODY)):
         start = bar * 4 * beat
-        for note in (root + offset - 12, root + offset - 8, root + offset - 5):
-            add_tone(data, start, 4 * beat, midi(note), .055, "sine", .18, .3, .2, ((2, .14),))
-        for step in range(8):
-            at = start + step * beat / 2
-            if step in (0, 4):
-                add_kick(data, at, .075)
-            if step in (2, 6):
-                add_tick(data, at, .045, wooden=True)
-        motif = (0, 4, 5, 7)
-        for idx, interval in enumerate(motif):
-            add_pluck(data, start + (.35 + idx * .55) * beat, midi(root + 12 + interval), .07, beat * .85)
-    write_wav("music/menu.wav", data, .68)
+        chord_root = root + offset
+        for interval in chord:
+            add_tone(data, start, 4 * beat, midi(chord_root + interval - 12), .038,
+                     "sine", .38, .52, .10, ((2, .08),))
+        add_tone(data, start, 4 * beat, midi(chord_root - 24), .035,
+                 "sine", .25, .55, .3)
+        spacing = 1.15 if len(phrase) == 3 else 1.6
+        for idx, interval in enumerate(phrase):
+            add_bell(data, start + (.72 + idx * spacing) * beat,
+                     midi(root + 12 + interval), .035, beat * 1.4)
+    write_wav("music/menu.wav", data, .58)
     return ["music/menu.wav"]
 
 
@@ -448,7 +474,7 @@ def main() -> None:
         files += make_music_world(world, spec)
     files += make_stingers()
     manifest = {
-        "version": 1,
+        "version": 2,
         "sampleRate": SR,
         "license": "Original Kaflul procedural production audio; generated in-repository.",
         "fileCount": len(files),

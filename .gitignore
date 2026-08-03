@@ -9,6 +9,9 @@
 .telegram-agent-state.json
 node_modules/
 dist/
+!dist/
+dist/*
+!dist/kaflul-updated-20260729.apk
 test-results/
 playwright-report/
 docs/release-gates/latest.json

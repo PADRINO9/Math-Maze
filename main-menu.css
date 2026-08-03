@@ -615,6 +615,19 @@ html.loading-screen-complete .app-loading-screen {
   line-height: 1.12;
 }
 
+.home-player-card.is-missing-nickname {
+  border-color: rgba(255, 216, 74, 0.72);
+  background: linear-gradient(180deg, rgba(255, 216, 74, 0.15), rgba(3, 11, 31, 0.9));
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.34),
+    inset 0 0 24px rgba(255, 216, 74, 0.09),
+    0 0 20px rgba(255, 216, 74, 0.12);
+}
+
+.home-player-card.is-missing-nickname strong {
+  color: #ffe77d;
+}
+
 .menu-best-card {
   appearance: none;
   grid-area: best;
@@ -2353,7 +2366,53 @@ html[data-character="nabatick"] #start-screen .menu-character-bifly {
   color: #f8fbff;
   font-size: 20px;
   font-weight: 800;
-  text-align: right;
+  text-align: start;
+}
+
+.settings-nickname-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(123, 227, 255, 0.3);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(9, 27, 58, 0.82), rgba(2, 7, 24, 0.9));
+  box-shadow: inset 0 0 20px rgba(88, 232, 255, 0.05);
+}
+
+.settings-nickname-card.has-error {
+  border-color: rgba(255, 114, 132, 0.76);
+  box-shadow:
+    inset 0 0 20px rgba(255, 114, 132, 0.07),
+    0 0 0 3px rgba(255, 114, 132, 0.08);
+}
+
+.settings-nickname-hint,
+.settings-name-error {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.settings-nickname-hint {
+  color: #b9d9ee;
+}
+
+.settings-name-error {
+  min-height: 0;
+  color: #ff9aa8;
+}
+
+.settings-name-error:empty {
+  display: none;
+}
+
+.arcade-play-button.needs-nickname .arcade-play-label {
+  max-width: min(88%, 540px);
+  font-size: clamp(26px, 4vw, 48px);
+  line-height: 1.08;
+  white-space: normal;
+  text-align: center;
 }
 
 #player-name-input:focus {
@@ -2391,6 +2450,19 @@ html[data-character="nabatick"] #start-screen .menu-character-bifly {
   color: #dfff8b;
   cursor: pointer;
   font-weight: 900;
+}
+
+.settings-nickname-card .menu-save-button {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 2px;
+  border-color: rgba(190, 255, 82, 0.68);
+  background:
+    linear-gradient(180deg, rgba(190, 255, 82, 0.24), rgba(84, 211, 107, 0.1)),
+    rgba(8, 25, 35, 0.94);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 @keyframes menuFloat {
@@ -3750,6 +3822,8 @@ html[data-character="bifly"] #start-screen .menu-character-nabatick {
 
 #start-screen .character-name-badge,
 #start-screen .menu-character input:checked + .character-card .character-name-badge {
+  position: relative;
+  z-index: 18;
   min-width: min(82%, 220px);
   max-width: min(88%, 260px);
   opacity: 1;
@@ -4801,6 +4875,38 @@ html.start-screen-open .mobile-joystick {
     drop-shadow(0 4px 0 rgba(112, 48, 0, 0.24));
 }
 
+#start-screen #leaderboard-open .home-world-rank-badge {
+  position: absolute;
+  z-index: 6;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  max-width: calc(100% - 4px);
+  padding: 2px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(31, 12, 64, 0.94);
+  color: #fff6a4;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.45);
+  line-height: 1;
+  pointer-events: none;
+}
+
+#start-screen #leaderboard-open .home-world-rank-badge small {
+  font-size: 7px;
+  font-weight: 850;
+}
+
+#start-screen #leaderboard-open .home-world-rank-badge strong {
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 950;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 #start-screen .menu-actions .menu-icon-button::after {
   content: "";
   position: absolute;
@@ -5628,6 +5734,16 @@ html.kf-reduced-motion #start-screen .menu-character .character-card::before {
     height: 20px;
     font-size: 10px;
   }
+
+  #start-screen #leaderboard-open .home-world-rank-badge {
+    right: 1px;
+    bottom: 1px;
+    padding-inline: 4px;
+  }
+
+  #start-screen #leaderboard-open .home-world-rank-badge small {
+    display: none;
+  }
 }
 
 @media (max-width: 380px) and (orientation: portrait) {
@@ -5645,5 +5761,160 @@ html.kf-reduced-motion #start-screen .menu-character .character-card::before {
     flex-basis: 40px;
     width: 40px;
     height: 40px;
+  }
+}
+
+/* Research-informed character nameplates: the heroes stay dominant and names stay crisp. */
+#start-screen .menu-character-bifly {
+  --character-name-accent: #72e8ff;
+  --character-name-accent-rgb: 114, 232, 255;
+}
+
+#start-screen .menu-character-nabatick {
+  --character-name-accent: #cbff4d;
+  --character-name-accent-rgb: 203, 255, 77;
+}
+
+#start-screen .character-nameplate,
+#start-screen .menu-character input:checked + .character-card .character-nameplate {
+  position: relative;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  min-width: clamp(104px, 10vw, 142px);
+  max-width: min(90%, 260px);
+  min-height: 48px;
+  margin-top: clamp(5px, 0.8dvh, 10px);
+  padding: 7px 18px 9px;
+  border: 1px solid rgba(var(--character-name-accent-rgb), 0.62);
+  border-radius: 15px;
+  background: rgba(6, 11, 31, 0.94);
+  box-shadow:
+    inset 0 -3px 0 rgba(var(--character-name-accent-rgb), 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 8px 18px rgba(0, 0, 0, 0.46),
+    0 0 16px rgba(var(--character-name-accent-rgb), 0.18);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+  isolation: isolate;
+}
+
+#start-screen .character-name-badge,
+#start-screen .menu-character input:checked + .character-card .character-name-badge,
+html[data-language="en"] #start-screen .character-name-badge,
+html[data-language="en"] #start-screen .menu-character input:checked + .character-card .character-name-badge {
+  display: block;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: #f8fbff;
+  -webkit-text-fill-color: currentColor;
+  -webkit-text-stroke: 0;
+  paint-order: normal;
+  font-family: "Rubik", "Assistant", "Noto Sans Hebrew", Arial, sans-serif;
+  font-size: clamp(25px, 2.25vw, 33px);
+  font-weight: 900;
+  font-synthesis: none;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.72);
+  filter: none;
+  opacity: 1;
+  transform: none;
+}
+
+#start-screen .menu-character input:checked + .character-card .character-nameplate {
+  border-color: #ffe674;
+  background: rgba(9, 17, 42, 0.98);
+  box-shadow:
+    inset 0 -3px 0 var(--character-name-accent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 9px 20px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(255, 223, 84, 0.24),
+    0 0 22px rgba(var(--character-name-accent-rgb), 0.22);
+  transform: translateY(-1px) scale(1.02);
+}
+
+#start-screen .menu-character input:focus-visible + .character-card .character-nameplate {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+html[data-character="bifly"] #start-screen .menu-character-nabatick,
+html[data-character="nabatick"] #start-screen .menu-character-bifly {
+  opacity: 1;
+  filter: none;
+}
+
+html[data-character="bifly"] #start-screen .menu-character-nabatick img,
+html[data-character="nabatick"] #start-screen .menu-character-bifly img {
+  opacity: 0.66;
+  filter:
+    saturate(0.88)
+    brightness(0.78)
+    drop-shadow(0 24px 26px rgba(0, 0, 0, 0.52));
+}
+
+html[data-character="bifly"] #start-screen .menu-character-nabatick .character-nameplate,
+html[data-character="nabatick"] #start-screen .menu-character-bifly .character-nameplate {
+  opacity: 0.9;
+  transform: translateY(-1px) scale(1.12);
+}
+
+html[data-language="en"] #start-screen .character-name-badge,
+html[data-language="en"] #start-screen .menu-character input:checked + .character-card .character-name-badge {
+  font-family: "Fredoka", "Assistant", "Segoe UI", Arial, sans-serif;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  #start-screen .character-nameplate,
+  #start-screen .menu-character input:checked + .character-card .character-nameplate {
+    min-width: clamp(96px, 28vw, 124px);
+    min-height: 44px;
+    margin-top: 4px;
+    padding: 6px 14px 8px;
+    border-radius: 14px;
+  }
+
+  #start-screen .character-name-badge,
+  #start-screen .menu-character input:checked + .character-card .character-name-badge,
+  html[data-language="en"] #start-screen .character-name-badge,
+  html[data-language="en"] #start-screen .menu-character input:checked + .character-card .character-name-badge {
+    font-size: clamp(23px, 6.5vw, 28px);
+    letter-spacing: -0.04em;
+  }
+
+  html[data-language="en"] #start-screen .character-name-badge,
+  html[data-language="en"] #start-screen .menu-character input:checked + .character-card .character-name-badge {
+    font-size: clamp(20px, 5.7vw, 25px);
+    letter-spacing: -0.02em;
+  }
+
+  html[data-character="bifly"] #start-screen .menu-character-nabatick .character-nameplate,
+  html[data-character="nabatick"] #start-screen .menu-character-bifly .character-nameplate {
+    transform: translateY(-1px) scale(1.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #start-screen .character-nameplate {
+    transition: none;
   }
 }

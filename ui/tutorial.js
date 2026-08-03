@@ -10,6 +10,7 @@
   const skipButton = document.getElementById("tutorial-skip-button");
   const targetRing = document.getElementById("tutorial-target-ring");
   const hand = document.getElementById("tutorial-hand");
+  const coachCard = document.getElementById("tutorial-coach-card");
   const actionPill = document.getElementById("tutorial-action-pill");
   const actionText = document.getElementById("tutorial-title");
   const speechBubble = document.getElementById("tutorial-speech-bubble");
@@ -20,17 +21,15 @@
   const progressFill = document.getElementById("tutorial-progress-fill");
   const statusBar = document.getElementById("tutorial-coach-status");
   const lockMessage = document.getElementById("tutorial-lock-message");
-  const shades = {
-    top: tutorial?.querySelector('[data-coach-shade="top"]'),
-    right: tutorial?.querySelector('[data-coach-shade="right"]'),
-    bottom: tutorial?.querySelector('[data-coach-shade="bottom"]'),
-    left: tutorial?.querySelector('[data-coach-shade="left"]')
-  };
+  const dimLayer = document.getElementById("tutorial-dim-layer");
+  const dimContext = dimLayer instanceof HTMLCanvasElement
+    ? dimLayer.getContext("2d", { alpha: true })
+    : null;
 
   if (
-    !tutorial || !skipButton || !targetRing || !hand || !actionPill || !actionText
+    !tutorial || !skipButton || !targetRing || !hand || !coachCard || !actionPill || !actionText
     || !speechBubble || !speechCopy || !stepLabel || !stepName || !progress || !progressFill
-    || !statusBar || !lockMessage || Object.values(shades).some((shade) => !shade)
+    || !statusBar || !lockMessage || !dimLayer || !dimContext
   ) {
     return;
   }
@@ -39,10 +38,15 @@
     .querySelector(`input[name="${name}"][value="${value}"]`)
     ?.closest("label");
 
-  const alternateRadioLabel = (name, preferredValue, alternateValue) => {
-    const preferred = document.querySelector(`input[name="${name}"][value="${preferredValue}"]`);
-    return radioLabel(name, preferred?.checked ? alternateValue : preferredValue);
-  };
+  const checkedRadioLabel = (name) => document
+    .querySelector(`input[name="${name}"]:checked`)
+    ?.closest("label");
+
+  const FEEDBACK_DELAY_MS = Object.freeze({
+    standard: 1050,
+    detailed: 1250,
+    startGame: 1450
+  });
 
   const STEPS = [
     {
@@ -56,7 +60,7 @@
       en: {
         name: "Settings",
         action: "Tap the settings gear",
-        feedback: "This is where you change the game mode, difficulty, questions, sound, and controls."
+        feedback: "Change the game mode, difficulty, questions, sound, and controls here."
       }
     },
     {
@@ -65,96 +69,74 @@
       he: {
         name: "מצב המשחק",
         action: "לחצו על מצב המשחק",
-        feedback: "ארקייד הוא מרדף אינסופי אחרי שיא; הרפתקה היא מסע בין עולמות."
+        feedback: "ארקייד הוא מרדף אחרי שיא; הרפתקה היא מסע של ארבעה עולמות."
       },
       en: {
         name: "Game mode",
         action: "Tap Game Mode",
-        feedback: "Arcade is an endless high-score chase; Adventure is a journey through worlds."
+        feedback: "Arcade is a high-score chase; Adventure is a journey across four worlds."
       }
     },
     {
-      id: "choose-adventure",
-      target: () => alternateRadioLabel("game-mode", "adventure", "arcade"),
+      id: "choose-mode",
+      target: () => checkedRadioLabel("game-mode") || radioLabel("game-mode", "arcade"),
+      feedbackMs: FEEDBACK_DELAY_MS.detailed,
+      afterFeedback: () => openSettingsForTutorial(),
       he: {
         name: "בחירת מצב",
-        action: "בחרו את המצב המואר",
-        feedback: "בהרפתקה יש 4 עולמות: 24 תרגילים ו־3 שאלות בוס בכל עולם — 108 בסך הכול. ארקייד אינסופי."
+        action: "אשרו את מצב המשחק",
+        feedback: "בהרפתקה יש 4 עולמות, 24 תרגילים ובוס בכל עולם."
       },
       en: {
         name: "Choose a mode",
-        action: "Choose the highlighted mode",
-        feedback: "Adventure has 4 worlds with 24 facts and 3 boss questions each — 108 total. Arcade is endless."
-      }
-    },
-    {
-      id: "reopen-settings-difficulty",
-      target: () => document.getElementById("menu-settings-button"),
-      he: {
-        name: "בחירת רמה",
-        action: "חזרו להגדרות",
-        feedback: "עכשיו נבחר רמה שמתאימה למשחק הראשון."
-      },
-      en: {
-        name: "Choose difficulty",
-        action: "Open Settings again",
-        feedback: "Now we will choose a comfortable difficulty for the first game."
+        action: "Confirm the game mode",
+        feedback: "Adventure has 4 worlds, 24 facts, and a boss in every world."
       }
     },
     {
       id: "open-difficulty",
       target: () => document.getElementById("difficulty-control-button"),
+      feedbackMs: FEEDBACK_DELAY_MS.detailed,
       he: {
         name: "רמת קושי",
         action: "לחצו על רמת הקושי",
-        feedback: "בכל הרמות יש 3 חיים ו־25 שניות. הרמה משנה את סוג התרגילים, מהירות האויבים ומכפיל הניקוד."
+        feedback: "בכל רמה יש 3 חיים ו־25 שניות. הקושי משנה תרגילים ומהירות."
       },
       en: {
         name: "Difficulty",
         action: "Tap Difficulty",
-        feedback: "Every level gives 3 lives and 25 seconds. Difficulty changes the facts, enemy speed, and score multiplier."
+        feedback: "Every level gives 3 lives and 25 seconds. Difficulty changes facts and speed."
       }
     },
     {
-      id: "choose-beginner",
-      target: () => alternateRadioLabel("difficulty", "beginner", "normal"),
+      id: "choose-difficulty",
+      target: () => checkedRadioLabel("difficulty") || radioLabel("difficulty", "normal"),
+      feedbackMs: FEEDBACK_DELAY_MS.detailed,
+      afterFeedback: () => openSettingsForTutorial(),
       he: {
         name: "בחירת רמה",
-        action: "בחרו את הרמה המוארת",
-        feedback: "נקודות מקבלים מתשובות נכונות, פריטים, משימות ובוסים. קומבו ורמה גבוהה מכפילים אותן."
+        action: "אשרו את רמת הקושי",
+        feedback: "תשובות, פריטים ובוסים נותנים נקודות; קומבו מכפיל אותן."
       },
       en: {
         name: "Choose a difficulty",
-        action: "Choose the highlighted level",
-        feedback: "Correct answers, items, missions, and bosses earn points. Combos and harder levels multiply them."
+        action: "Confirm the difficulty",
+        feedback: "Answers, items, and bosses earn points; combos multiply them."
       }
     },
     {
-      id: "reopen-settings-control",
-      target: () => document.getElementById("menu-settings-button"),
-      he: {
-        name: "איך זזים",
-        action: "פתחו שוב את ההגדרות",
-        feedback: "נשאר לבחור דרך תנועה ודמות."
-      },
-      en: {
-        name: "How to move",
-        action: "Open Settings once more",
-        feedback: "Only movement controls and a character remain."
-      }
-    },
-    {
-      id: "choose-joystick",
-      target: () => alternateRadioLabel("control-mode", "joystick", "swipe"),
+      id: "choose-control",
+      target: () => checkedRadioLabel("control-mode") || radioLabel("control-mode", "swipe"),
+      feedbackMs: FEEDBACK_DELAY_MS.detailed,
       he: {
         name: "שליטה במשחק",
-        action: "בחרו את השליטה המוארת",
-        feedback: "זזים בהחלקה או בגרירת הג׳ויסטיק. במפגש עם אויב המשחק נעצר ונפתח תרגיל."
+        action: "אשרו את דרך התנועה",
+        feedback: "זזים בהחלקה או בג׳ויסטיק. נגיעה באויב עוצרת את המבוך ופותחת תרגיל."
       },
       en: {
         name: "Game controls",
-        action: "Choose the highlighted control",
-        feedback: "Move by swiping or dragging the joystick. Meeting an enemy pauses the game and opens a question."
+        action: "Confirm how to move",
+        feedback: "Move by swiping or using the joystick. Touching an enemy pauses the maze and opens a question."
       }
     },
     {
@@ -163,88 +145,96 @@
       he: {
         name: "בחירת דמות",
         action: "לחצו על דמות",
-        feedback: "לביפלי ולנבטיק יש אותו כוח במשחק — בוחרים את מי שהכי אוהבים."
+        feedback: "לכל הדמויות אותו כוח במשחק — בוחרים את מי שהכי אוהבים."
       },
       en: {
         name: "Choose a character",
         action: "Tap Character",
-        feedback: "Bifly and Nabatik are equally strong — choose the hero you like best."
+        feedback: "Every character is equally strong — choose the hero you like best."
       }
     },
     {
-      id: "preview-nabatick",
-      target: () => document.getElementById("hero-gallery-next"),
+      id: "preview-character",
+      target: () => document.getElementById("hero-gallery-prev"),
       he: {
         name: "הכירו את הדמויות",
-        action: "עברו לדמות הבאה",
-        feedback: "זאת הדמות השנייה. אפשר לעבור בין הדמויות לפני שבוחרים."
+        action: "עברו לדמות השנייה",
+        feedback: "יש שתי דמויות. אפשר לעבור ביניהן לפני שבוחרים."
       },
       en: {
         name: "Meet the heroes",
-        action: "Show the next character",
-        feedback: "This is the other hero. You can browse both characters before choosing."
+        action: "Show the other character",
+        feedback: "There are two heroes. You can browse both before choosing."
       }
     },
     {
-      id: "select-nabatick",
+      id: "select-character",
       target: () => document.getElementById("hero-gallery-select"),
+      feedbackMs: FEEDBACK_DELAY_MS.detailed,
+      afterFeedback: () => returnHomeFromGallery(),
       he: {
         name: "אישור דמות",
         action: "אשרו את הדמות",
-        feedback: "הדמות שבחרתם מוכנה למשחק הראשון."
+        feedback: "הדמות מוכנה. במבוך אוספים פריטים, נמנעים מאויבים ועונים נכון."
       },
       en: {
         name: "Confirm character",
         action: "Confirm this character",
-        feedback: "Your chosen character is ready for the first game."
-      }
-    },
-    {
-      id: "return-home",
-      target: () => document.getElementById("hero-gallery-home"),
-      he: {
-        name: "חזרה למשחק",
-        action: "חזרו למסך הראשי",
-        feedback: "הכול מוכן: דמות, מצב משחק, רמת קושי ודרך שליטה."
-      },
-      en: {
-        name: "Return to the game",
-        action: "Return to the home screen",
-        feedback: "Everything is ready: a hero, game mode, difficulty, and controls."
+        feedback: "Your hero is ready. In the maze, collect items, avoid enemies, and answer correctly."
       }
     },
     {
       id: "start-game",
       target: () => document.getElementById("start-button"),
-      feedbackMs: 2100,
+      feedbackMs: FEEDBACK_DELAY_MS.startGame,
+      deferAction: true,
       he: {
         name: "יוצאים לדרך",
         action: "לחצו שחק עכשיו",
-        feedback: "המטרה: לאסוף פריטים, להתחמק מאויבים, לפתור נכון ולהשלים את כל 4 העולמות. בהצלחה!"
+        feedback: "המטרה: לצבור נקודות ולהשלים את כל 4 העולמות. אם עוד אין כינוי, ההגדרות ייפתחו עכשיו."
       },
       en: {
         name: "Let’s play",
         action: "Tap Play Now",
-        feedback: "Collect items, dodge enemies, solve correctly, and complete all 4 worlds. Good luck!"
+        feedback: "Score points and complete all four worlds. If you do not have a nickname yet, Settings opens now."
       }
     }
   ];
 
   const TOTAL_STEPS = STEPS.length;
+  progress.setAttribute("aria-valuemax", String(TOTAL_STEPS));
   const state = {
     open: false,
     stepIndex: 0,
     phase: "closed",
     target: null,
     targetRect: null,
+    feedbackTarget: null,
     feedbackRect: null,
     previousFocus: null,
     feedbackTimer: null,
     lockTimer: null,
     repositionFrame: null,
     clickPending: false,
-    runToken: 0
+    bypassGuard: false,
+    runToken: 0,
+    resizeObserver: null,
+    lastViewport: null,
+    lastCardSize: null,
+    lockAnimation: null,
+    transitionStartedAt: null,
+    lastFeedbackLatencyMs: null,
+    forwardedClickUntil: 0,
+    renderStats: {
+      dimPaints: 0,
+      targetPositions: 0,
+      feedbackPositions: 0,
+      skippedRepositions: 0
+    }
   };
+
+  const STABLE_RECT_TOLERANCE = 0.15;
+  const STABLE_RECT_FRAMES = 6;
 
   function readStorage(key) {
     try {
@@ -274,13 +264,13 @@
   function interfaceCopy() {
     return language() === "en"
       ? {
-          step: (current) => `Tutorial ${current} of ${TOTAL_STEPS}`,
+          step: (current) => `${current}/${TOTAL_STEPS}`,
           skip: "Skip",
           replay: "Tutorial: how to play?",
           locked: "Tap only the button the hand is pointing at"
         }
       : {
-          step: (current) => `הדרכה ${current} מתוך ${TOTAL_STEPS}`,
+          step: (current) => `${current}/${TOTAL_STEPS}`,
           skip: "דלג",
           replay: "הדרכה: איך משחקים?",
           locked: "לחצו רק על הכפתור שהיד מצביעה עליו"
@@ -329,6 +319,24 @@
     };
   }
 
+  function rectIsStable(previous, next, tolerance = STABLE_RECT_TOLERANCE) {
+    return Boolean(
+      previous && next
+      && Math.abs(previous.left - next.left) <= tolerance
+      && Math.abs(previous.top - next.top) <= tolerance
+      && Math.abs(previous.width - next.width) <= tolerance
+      && Math.abs(previous.height - next.height) <= tolerance
+    );
+  }
+
+  function viewportIsStable(previous, next) {
+    return Boolean(
+      previous && next
+      && Math.abs(previous.width - next.width) <= STABLE_RECT_TOLERANCE
+      && Math.abs(previous.height - next.height) <= STABLE_RECT_TOLERANCE
+    );
+  }
+
   function paddedHole(rect) {
     const viewport = viewportSize();
     const padding = viewport.width <= 600 ? 6 : 9;
@@ -348,25 +356,156 @@
     };
   }
 
-  function positionShades(hole) {
-    const viewport = viewportSize();
-    setBox(shades.top, 0, 0, viewport.width, hole.top);
-    setBox(shades.bottom, 0, hole.bottom, viewport.width, viewport.height - hole.bottom);
-    setBox(shades.left, 0, hole.top, hole.left, hole.height);
-    setBox(shades.right, hole.right, hole.top, viewport.width - hole.right, hole.height);
+  function resizeDimLayer(viewport) {
+    const width = Math.ceil(viewport.width);
+    const height = Math.ceil(viewport.height);
+    if (dimLayer.width !== width) {
+      dimLayer.width = width;
+    }
+    if (dimLayer.height !== height) {
+      dimLayer.height = height;
+    }
   }
 
-  function positionActionPill(hole, side, handTop, handHeight) {
+  function roundedRectPath(context, x, y, width, height, radius) {
+    const safeRadius = Math.min(Math.max(0, radius), width / 2, height / 2);
+    context.beginPath();
+    if (typeof context.roundRect === "function") {
+      context.roundRect(x, y, width, height, safeRadius);
+      return;
+    }
+    context.moveTo(x + safeRadius, y);
+    context.arcTo(x + width, y, x + width, y + height, safeRadius);
+    context.arcTo(x + width, y + height, x, y + height, safeRadius);
+    context.arcTo(x, y + height, x, y, safeRadius);
+    context.arcTo(x, y, x + width, y, safeRadius);
+    context.closePath();
+  }
+
+  function drawDimLayer(hole = null, radius = 0) {
     const viewport = viewportSize();
-    const pillWidth = actionPill.offsetWidth;
-    const pillHeight = actionPill.offsetHeight;
-    const left = clamp(hole.centerX - pillWidth / 2, 8, viewport.width - pillWidth - 8);
-    const desiredTop = side === "below"
-      ? handTop + handHeight - 2
-      : handTop - pillHeight + 4;
-    const top = clamp(desiredTop, 8, viewport.height - pillHeight - 8);
-    actionPill.style.left = `${left}px`;
-    actionPill.style.top = `${top}px`;
+    resizeDimLayer(viewport);
+    state.renderStats.dimPaints += 1;
+    dimContext.globalCompositeOperation = "source-over";
+    dimContext.clearRect(0, 0, dimLayer.width, dimLayer.height);
+    dimContext.fillStyle = "rgba(1, 4, 15, 0.66)";
+    dimContext.fillRect(0, 0, viewport.width, viewport.height);
+    if (!hole || hole.width <= 0 || hole.height <= 0) {
+      return;
+    }
+    dimContext.globalCompositeOperation = "destination-out";
+    dimContext.fillStyle = "rgba(0, 0, 0, 1)";
+    roundedRectPath(dimContext, hole.left, hole.top, hole.width, hole.height, radius);
+    dimContext.fill();
+    dimContext.globalCompositeOperation = "source-over";
+  }
+
+  function cardSize() {
+    return {
+      width: Math.max(1, coachCard.offsetWidth),
+      height: Math.max(1, coachCard.offsetHeight)
+    };
+  }
+
+  function cardSizeIsStable(previous, next) {
+    return Boolean(
+      previous && next
+      && Math.abs(previous.width - next.width) <= STABLE_RECT_TOLERANCE
+      && Math.abs(previous.height - next.height) <= STABLE_RECT_TOLERANCE
+    );
+  }
+
+  function nearbyCardPlacement(rect, size = cardSize()) {
+    const viewport = viewportSize();
+    const safeInset = viewport.width <= 600 ? 10 : 12;
+    const gap = viewport.width <= 600 ? 13 : 15;
+    const { width: cardWidth, height: cardHeight } = size;
+    const verticalLeft = clamp(
+      rect.centerX - cardWidth / 2,
+      safeInset,
+      Math.max(safeInset, viewport.width - cardWidth - safeInset)
+    );
+    const horizontalTop = clamp(
+      rect.centerY - cardHeight / 2,
+      safeInset,
+      Math.max(safeInset, viewport.height - cardHeight - safeInset)
+    );
+    const candidates = [
+      {
+        placement: "above",
+        left: verticalLeft,
+        top: rect.top - gap - cardHeight,
+        available: rect.top - safeInset
+      },
+      {
+        placement: "below",
+        left: verticalLeft,
+        top: rect.bottom + gap,
+        available: viewport.height - safeInset - rect.bottom
+      },
+      {
+        placement: "left",
+        left: rect.left - gap - cardWidth,
+        top: horizontalTop,
+        available: rect.left - safeInset
+      },
+      {
+        placement: "right",
+        left: rect.right + gap,
+        top: horizontalTop,
+        available: viewport.width - safeInset - rect.right
+      }
+    ];
+    const required = (candidate) => (
+      candidate.placement === "above" || candidate.placement === "below"
+        ? cardHeight + gap
+        : cardWidth + gap
+    );
+    const fitting = candidates
+      .filter((candidate) => candidate.available >= required(candidate))
+      .sort((first, second) => {
+        const firstVertical = first.placement === "above" || first.placement === "below";
+        const secondVertical = second.placement === "above" || second.placement === "below";
+        if (firstVertical !== secondVertical) {
+          return firstVertical ? -1 : 1;
+        }
+        return (second.available - required(second)) - (first.available - required(first));
+      });
+    const selected = fitting[0] || candidates.sort(
+      (first, second) => (second.available - required(second)) - (first.available - required(first))
+    )[0];
+    const left = clamp(
+      selected.left,
+      safeInset,
+      Math.max(safeInset, viewport.width - cardWidth - safeInset)
+    );
+    const top = clamp(
+      selected.top,
+      safeInset,
+      Math.max(safeInset, viewport.height - cardHeight - safeInset)
+    );
+
+    return {
+      placement: selected.placement,
+      left,
+      top,
+      tailX: clamp(rect.centerX - left, 24, Math.max(24, cardWidth - 24)),
+      tailY: clamp(rect.centerY - top, 24, Math.max(24, cardHeight - 24)),
+      fits: fitting.length > 0,
+      gap
+    };
+  }
+
+  function positionCoachCard(rect) {
+    const size = cardSize();
+    const position = nearbyCardPlacement(rect, size);
+    state.lastCardSize = size;
+    coachCard.dataset.placement = position.placement;
+    coachCard.style.left = `${position.left}px`;
+    coachCard.style.top = `${position.top}px`;
+    coachCard.style.setProperty("--coach-tail-x", `${position.tailX}px`);
+    coachCard.style.setProperty("--coach-tail-y", `${position.tailY}px`);
+    return position;
   }
 
   function positionTarget(rect) {
@@ -374,57 +513,74 @@
       return;
     }
     const viewport = viewportSize();
+    state.lastViewport = viewport;
+    state.renderStats.targetPositions += 1;
     const hole = paddedHole(rect);
     const targetStyle = state.target ? window.getComputedStyle(state.target) : null;
     const radius = clamp(parseFloat(targetStyle?.borderRadius || "16") + 7, 14, 30);
-    positionShades(hole);
+    drawDimLayer(hole, radius);
     setBox(targetRing, hole.left, hole.top, hole.width, hole.height);
     targetRing.style.borderRadius = `${radius}px`;
 
     const isMobile = viewport.width <= 600;
-    const handWidth = isMobile ? 58 : 68;
-    const handHeight = isMobile ? 68 : 78;
-    const roomBelow = viewport.height - hole.bottom;
-    const side = roomBelow >= handHeight + 54 ? "below" : "above";
+    const handWidth = isMobile ? 42 : 48;
+    const handHeight = isMobile ? 50 : 56;
+    const room = {
+      below: viewport.height - hole.bottom,
+      above: hole.top,
+      right: viewport.width - hole.right,
+      left: hole.left
+    };
+    const verticalNeed = handHeight + 12;
+    const horizontalNeed = handWidth + 12;
+    let side;
+
+    const cardPosition = positionCoachCard(hole);
+
+    if (cardPosition.placement === "above" && room.below >= verticalNeed) {
+      side = "below";
+    } else if (cardPosition.placement === "below" && room.above >= verticalNeed) {
+      side = "above";
+    } else if (cardPosition.placement === "left" && room.right >= horizontalNeed) {
+      side = "right";
+    } else if (cardPosition.placement === "right" && room.left >= horizontalNeed) {
+      side = "left";
+    } else if (hole.left < handWidth + 8 && room.right >= horizontalNeed) {
+      side = "right";
+    } else if (hole.right > viewport.width - handWidth - 8 && room.left >= horizontalNeed) {
+      side = "left";
+    } else if (room.below >= verticalNeed) {
+      side = "below";
+    } else if (room.above >= verticalNeed) {
+      side = "above";
+    } else if (room.right >= horizontalNeed) {
+      side = "right";
+    } else if (room.left >= horizontalNeed) {
+      side = "left";
+    } else {
+      side = room.below >= room.above ? "below" : "above";
+    }
+
     let handLeft;
     let handTop;
     if (side === "below") {
       handLeft = hole.centerX - handWidth * 0.36;
-      handTop = hole.bottom + 7;
-    } else {
+      handTop = hole.bottom + 5;
+    } else if (side === "above") {
       handLeft = hole.centerX - handWidth * 0.64;
-      handTop = hole.top - handHeight - 7;
+      handTop = hole.top - handHeight - 5;
+    } else if (side === "right") {
+      handLeft = hole.right + 5;
+      handTop = hole.centerY - handHeight / 2;
+    } else {
+      handLeft = hole.left - handWidth - 5;
+      handTop = hole.centerY - handHeight / 2;
     }
     handLeft = clamp(handLeft, 4, viewport.width - handWidth - 4);
     handTop = clamp(handTop, 4, viewport.height - handHeight - 4);
     hand.dataset.side = side;
     hand.style.left = `${handLeft}px`;
     hand.style.top = `${handTop}px`;
-    positionActionPill(hole, side, handTop, handHeight);
-
-    statusBar.dataset.edge = hole.centerY < viewport.height / 2 ? "bottom" : "top";
-  }
-
-  function positionSpeech(rect) {
-    if (!rect || speechBubble.hidden) {
-      return;
-    }
-    const viewport = viewportSize();
-    const bubbleWidth = speechBubble.offsetWidth;
-    const bubbleHeight = speechBubble.offsetHeight;
-    const spaceAbove = rect.top;
-    const spaceBelow = viewport.height - rect.bottom;
-    const side = spaceAbove >= bubbleHeight + 22 || spaceAbove > spaceBelow ? "above" : "below";
-    const left = clamp(rect.centerX - bubbleWidth / 2, 8, viewport.width - bubbleWidth - 8);
-    const desiredTop = side === "above"
-      ? rect.top - bubbleHeight - 18
-      : rect.bottom + 18;
-    const top = clamp(desiredTop, 8, viewport.height - bubbleHeight - 8);
-    const tailX = clamp(rect.centerX - left, 30, bubbleWidth - 30);
-    speechBubble.dataset.side = side;
-    speechBubble.style.setProperty("--coach-tail-x", `${tailX}px`);
-    speechBubble.style.left = `${left}px`;
-    speechBubble.style.top = `${top}px`;
   }
 
   function scheduleReposition() {
@@ -439,11 +595,30 @@
       if (state.phase === "awaiting") {
         const nextRect = rectFor(state.target);
         if (nextRect) {
+          const nextViewport = viewportSize();
+          const nextCardSize = cardSize();
+          if (
+            rectIsStable(state.targetRect, nextRect)
+            && viewportIsStable(state.lastViewport, nextViewport)
+            && cardSizeIsStable(state.lastCardSize, nextCardSize)
+          ) {
+            state.renderStats.skippedRepositions += 1;
+            return;
+          }
           state.targetRect = nextRect;
           positionTarget(nextRect);
         }
       } else if (state.phase === "feedback" && state.feedbackRect) {
-        positionSpeech(state.feedbackRect);
+        const nextRect = state.feedbackRect;
+        const nextViewport = viewportSize();
+        if (viewportIsStable(state.lastViewport, nextViewport)) {
+          state.renderStats.skippedRepositions += 1;
+          return;
+        }
+        state.lastViewport = nextViewport;
+        state.renderStats.feedbackPositions += 1;
+        drawDimLayer();
+        positionCoachCard(paddedHole(nextRect));
       }
     });
   }
@@ -475,28 +650,53 @@
     }
   }
 
-  function delay(milliseconds) {
-    return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+  function nextPaint() {
+    return new Promise((resolve) => window.requestAnimationFrame(resolve));
   }
 
   async function waitForStepTarget(step, token) {
     const deadline = window.performance.now() + 4500;
-    let candidate = null;
+    let previousCandidate = null;
+    let previousRect = null;
+    let stableFrames = 0;
+    let centeredCandidate = null;
+
     while (state.open && token === state.runToken && window.performance.now() < deadline) {
-      candidate = resolveStepTarget(step);
+      const candidate = resolveStepTarget(step);
       const rect = rectFor(candidate);
       if (rect) {
         const viewport = viewportSize();
-        if (rect.top < 62 || rect.bottom > viewport.height - 62) {
-          candidate.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
-          await delay(320);
+        const placement = nearbyCardPlacement(rect);
+        if (
+          rect.top < 8 || rect.bottom > viewport.height - 8
+          || (!placement.fits && centeredCandidate !== candidate)
+        ) {
+          candidate.scrollIntoView({ block: "center", inline: "nearest", behavior: "auto" });
+          centeredCandidate = candidate;
+          previousCandidate = null;
+          previousRect = null;
+          stableFrames = 0;
+          await nextPaint();
+          continue;
         }
-        const settled = resolveStepTarget(step);
-        if (rectFor(settled)) {
-          return settled;
+
+        if (candidate === previousCandidate && rectIsStable(previousRect, rect)) {
+          stableFrames += 1;
+        } else {
+          stableFrames = 0;
         }
+        previousCandidate = candidate;
+        previousRect = rect;
+
+        if (stableFrames >= STABLE_RECT_FRAMES) {
+          return { target: candidate, rect };
+        }
+      } else {
+        previousCandidate = null;
+        previousRect = null;
+        stableFrames = 0;
       }
-      await delay(60);
+      await nextPaint();
     }
     return null;
   }
@@ -509,9 +709,58 @@
   }
 
   function clearActiveTarget() {
+    state.resizeObserver?.disconnect?.();
+    state.resizeObserver = null;
     state.target?.classList?.remove(TARGET_CLASS);
     state.target = null;
     state.targetRect = null;
+  }
+
+  function observeActiveGeometry(target) {
+    if (!("ResizeObserver" in window)) {
+      return;
+    }
+    state.resizeObserver?.disconnect?.();
+    state.resizeObserver = new ResizeObserver(scheduleReposition);
+    state.resizeObserver.observe(target);
+    state.resizeObserver.observe(coachCard);
+  }
+
+  function runWithoutTutorialGuard(action) {
+    state.bypassGuard = true;
+    try {
+      action?.();
+    } finally {
+      state.bypassGuard = false;
+    }
+  }
+
+  function openSettingsForTutorial() {
+    const settingsPanel = document.getElementById("settings-panel");
+    if (settingsPanel && !settingsPanel.hidden) {
+      return;
+    }
+    runWithoutTutorialGuard(() => document.getElementById("menu-settings-button")?.click());
+  }
+
+  function returnHomeFromGallery() {
+    const gallery = document.getElementById("hero-gallery");
+    if (!gallery || gallery.hidden) {
+      return;
+    }
+    runWithoutTutorialGuard(() => document.getElementById("hero-gallery-home")?.click());
+  }
+
+  function resetSettingsScrollAfterTutorial() {
+    const settingsPanel = document.getElementById("settings-panel");
+    if (!settingsPanel || settingsPanel.hidden) {
+      return;
+    }
+    const settingsSheet = settingsPanel.querySelector(".menu-sheet-inner");
+    if (settingsSheet instanceof HTMLElement) {
+      settingsSheet.scrollTop = 0;
+      settingsSheet.scrollLeft = 0;
+    }
   }
 
   async function showStep() {
@@ -523,32 +772,50 @@
 
     state.phase = "locating";
     state.clickPending = false;
+    state.feedbackTarget = null;
     state.feedbackRect = null;
     speechBubble.hidden = true;
-    speechBubble.classList.remove("is-popping");
+    tutorial.classList.add("is-locating");
     tutorial.classList.remove("is-ready", "is-feedback");
+    resetOverlayGeometry();
     clearActiveTarget();
     updateStaticCopy();
     progress.setAttribute("aria-valuenow", String(state.stepIndex + 1));
     progressFill.style.width = `${((state.stepIndex + 1) / TOTAL_STEPS) * 100}%`;
 
-    const target = await waitForStepTarget(step, token);
+    const located = await waitForStepTarget(step, token);
     if (!state.open || token !== state.runToken) {
       return;
     }
-    if (!target) {
+    if (!located) {
       console.warn(`[Kaflul tutorial] Target unavailable for step: ${step.id}`);
       closeTutorial({ complete: false });
       return;
     }
 
+    const { target } = located;
     state.target = target;
     state.target.classList.add(TARGET_CLASS);
-    state.targetRect = rectFor(target);
+    observeActiveGeometry(target);
+    state.phase = "positioning";
+    focusTarget(target);
+    await nextPaint();
+    await nextPaint();
+    if (!state.open || token !== state.runToken) {
+      return;
+    }
+
+    const finalRect = rectFor(target);
+    if (!finalRect) {
+      console.warn(`[Kaflul tutorial] Target moved before display: ${step.id}`);
+      showStep();
+      return;
+    }
+    state.targetRect = finalRect;
+    positionTarget(finalRect);
     state.phase = "awaiting";
-    positionTarget(state.targetRect);
+    tutorial.classList.remove("is-locating");
     tutorial.classList.add("is-ready");
-    window.setTimeout(() => focusTarget(target), 80);
     window.dispatchEvent(new CustomEvent("kaflul:tutorial-step", {
       detail: {
         step: state.stepIndex + 1,
@@ -565,9 +832,13 @@
     }
     window.clearTimeout(state.lockTimer);
     lockMessage.hidden = false;
-    lockMessage.style.animation = "none";
-    void lockMessage.offsetWidth;
-    lockMessage.style.animation = "";
+    state.lockAnimation?.cancel?.();
+    state.lockAnimation = lockMessage.animate?.([
+      { transform: "translateX(50%)" },
+      { transform: "translateX(calc(50% - 7px))", offset: 0.3 },
+      { transform: "translateX(calc(50% + 7px))", offset: 0.65 },
+      { transform: "translateX(50%)" }
+    ], { duration: 360, easing: "ease", fill: "none" }) || null;
     state.lockTimer = window.setTimeout(() => {
       lockMessage.hidden = true;
     }, 1250);
@@ -578,16 +849,20 @@
       return;
     }
     state.phase = "feedback";
+    state.lastFeedbackLatencyMs = state.transitionStartedAt === null
+      ? null
+      : window.performance.now() - state.transitionStartedAt;
+    state.feedbackTarget = state.feedbackTarget || state.target;
     state.feedbackRect = anchorRect || state.targetRect;
+    clearActiveTarget();
+    resetOverlayGeometry();
     const activeCopy = copyFor(step);
     speechCopy.textContent = activeCopy.feedback;
     speechBubble.hidden = false;
-    speechBubble.classList.remove("is-popping");
-    void speechBubble.offsetWidth;
-    speechBubble.classList.add("is-popping");
-    tutorial.classList.remove("is-ready");
+    tutorial.classList.remove("is-ready", "is-locating", "is-transitioning");
     tutorial.classList.add("is-feedback");
-    positionSpeech(state.feedbackRect);
+    state.lastViewport = viewportSize();
+    state.renderStats.feedbackPositions += 1;
     window.dispatchEvent(new CustomEvent("kaflul:tutorial-feedback", {
       detail: { step: state.stepIndex + 1, total: TOTAL_STEPS, id: step.id, copy: activeCopy.feedback }
     }));
@@ -598,12 +873,21 @@
         return;
       }
       if (state.stepIndex >= TOTAL_STEPS - 1) {
-        closeTutorial({ complete: true });
+        const deferredTarget = step.deferAction ? state.feedbackTarget : null;
+        closeTutorial({ complete: true, keepFocus: Boolean(deferredTarget) });
+        if (deferredTarget?.isConnected) {
+          window.setTimeout(() => {
+            runWithoutTutorialGuard(() => deferredTarget.click());
+            resetSettingsScrollAfterTutorial();
+            window.requestAnimationFrame(resetSettingsScrollAfterTutorial);
+          }, 0);
+        }
         return;
       }
+      step.afterFeedback?.();
       state.stepIndex += 1;
       showStep();
-    }, step.feedbackMs || 1450);
+    }, step.feedbackMs || FEEDBACK_DELAY_MS.standard);
   }
 
   function targetContains(node) {
@@ -611,7 +895,7 @@
   }
 
   function guardPointer(event) {
-    if (!state.open || skipButton.contains(event.target)) {
+    if (state.bypassGuard || !state.open || skipButton.contains(event.target)) {
       return;
     }
     if (state.phase === "awaiting" && targetContains(event.target)) {
@@ -623,7 +907,15 @@
   }
 
   function guardClick(event) {
-    if (!state.open || skipButton.contains(event.target)) {
+    if (state.bypassGuard || !state.open || skipButton.contains(event.target)) {
+      return;
+    }
+    if (
+      state.phase === "feedback"
+      && window.performance.now() <= state.forwardedClickUntil
+      && event.target instanceof Node
+      && state.feedbackTarget?.contains(event.target)
+    ) {
       return;
     }
     if (state.phase !== "awaiting" || !targetContains(event.target)) {
@@ -635,9 +927,21 @@
 
     if (!state.clickPending) {
       state.clickPending = true;
+      window.clearTimeout(state.lockTimer);
+      lockMessage.hidden = true;
       const step = STEPS[state.stepIndex];
-      const anchorRect = rectFor(state.target) || state.targetRect;
-      window.setTimeout(() => showFeedback(step, anchorRect), 0);
+      if (step.deferAction) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+      const clickedRect = rectFor(state.target) || state.targetRect;
+      state.feedbackTarget = state.target;
+      state.phase = "transitioning";
+      state.transitionStartedAt = window.performance.now();
+      state.forwardedClickUntil = state.transitionStartedAt + 250;
+      tutorial.classList.remove("is-ready");
+      tutorial.classList.add("is-transitioning");
+      showFeedback(step, clickedRect);
     }
   }
 
@@ -676,11 +980,7 @@
   }
 
   function resetOverlayGeometry() {
-    const viewport = viewportSize();
-    setBox(shades.top, 0, 0, viewport.width, viewport.height);
-    setBox(shades.right, 0, 0, 0, 0);
-    setBox(shades.bottom, 0, 0, 0, 0);
-    setBox(shades.left, 0, 0, 0, 0);
+    drawDimLayer();
   }
 
   function openTutorial(options = {}) {
@@ -693,6 +993,10 @@
     state.previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     state.runToken += 1;
     state.clickPending = false;
+    state.transitionStartedAt = null;
+    state.lastFeedbackLatencyMs = null;
+    state.forwardedClickUntil = 0;
+    state.lastViewport = null;
     writeStorage(TUTORIAL_STATUS_KEY, "in-progress");
     document.documentElement.classList.add("kf-tutorial-open");
     tutorial.hidden = false;
@@ -714,6 +1018,8 @@
     state.phase = "closed";
     window.clearTimeout(state.feedbackTimer);
     window.clearTimeout(state.lockTimer);
+    state.lockAnimation?.cancel?.();
+    state.lockAnimation = null;
     if (state.repositionFrame !== null) {
       window.cancelAnimationFrame(state.repositionFrame);
       state.repositionFrame = null;
@@ -722,11 +1028,12 @@
       writeStorage(TUTORIAL_STATUS_KEY, "complete");
     }
     clearActiveTarget();
-    tutorial.classList.remove("is-ready", "is-feedback");
+    tutorial.classList.remove("is-ready", "is-feedback", "is-locating", "is-transitioning");
     tutorial.hidden = true;
     speechBubble.hidden = true;
     lockMessage.hidden = true;
     document.documentElement.classList.remove("kf-tutorial-open");
+    state.lastViewport = null;
     if (!options.keepFocus) {
       state.previousFocus?.focus?.({ preventScroll: true });
     }
@@ -775,6 +1082,8 @@
   document.addEventListener("keydown", guardKeyboard, true);
   window.addEventListener("resize", scheduleReposition, { passive: true });
   document.addEventListener("scroll", scheduleReposition, { capture: true, passive: true });
+  window.visualViewport?.addEventListener("resize", scheduleReposition, { passive: true });
+  window.visualViewport?.addEventListener("scroll", scheduleReposition, { passive: true });
   skipButton.addEventListener("click", () => closeTutorial({ complete: true }));
   replayButton?.addEventListener("click", openFromSettings);
 
@@ -794,6 +1103,9 @@
       totalSteps: TOTAL_STEPS,
       phase: state.phase,
       stepId: STEPS[state.stepIndex]?.id || null,
+      feedbackDelayMs: STEPS[state.stepIndex]?.feedbackMs || FEEDBACK_DELAY_MS.standard,
+      lastFeedbackLatencyMs: state.lastFeedbackLatencyMs,
+      renderStats: { ...state.renderStats },
       status: readStorage(TUTORIAL_STATUS_KEY)
     }),
     statusKey: TUTORIAL_STATUS_KEY

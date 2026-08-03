@@ -1296,7 +1296,19 @@
   color: var(--phase5-ink);
   font-size: 18px;
   font-weight: 900;
-  text-align: right;
+  text-align: start;
+}
+
+.pause-name-error {
+  margin: 0;
+  color: #ff9aa8;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.pause-name-error:empty {
+  display: none;
 }
 
 .results-screen {

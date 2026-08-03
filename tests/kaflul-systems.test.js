@@ -151,6 +151,28 @@ test("default save locks legendary until a configured achievement", () => {
   }), true);
 });
 
+test("champion trophy progress persists wins and best score across game modes", () => {
+  const save = systems.createDefaultSave();
+  const first = systems.recordChampionTrophy(save, {
+    mode: "arcade",
+    score: 42000,
+    earnedAt: "2026-07-26T10:00:00.000Z"
+  });
+  const second = systems.recordChampionTrophy(save, {
+    mode: "adventure",
+    score: 39000,
+    earnedAt: "2026-07-27T10:00:00.000Z"
+  });
+
+  assert.equal(first.earned, true);
+  assert.equal(second.totalWins, 2);
+  assert.equal(second.firstEarnedAt, "2026-07-26T10:00:00.000Z");
+  assert.equal(second.lastEarnedAt, "2026-07-27T10:00:00.000Z");
+  assert.equal(second.bestScore, 42000);
+  assert.deepEqual(second.modes, { arcade: 1, adventure: 1 });
+  assert.deepEqual(save.achievementProgress.championTrophy, second);
+});
+
 test("score calculation applies difficulty and combo exactly once", () => {
   const score = systems.createScoreState();
   const award = systems.applyScoreEvent(score, {
@@ -475,11 +497,11 @@ test("public leaderboard UI stays local-only when public backend is unavailable"
   const localOnly = systems.getPublicLeaderboardUiState("localOnly", true);
   assert.equal(localOnly.panelHidden, false);
   assert.equal(localOnly.buttonDisabled, true);
-  assert.equal(localOnly.buttonText, "פרסום לא זמין");
-  assert.equal(localOnly.title, "השיא נשמר במכשיר הזה");
+  assert.equal(localOnly.buttonText, "הסנכרון ממתין");
+  assert.equal(localOnly.title, "השיא האישי נשמר");
   assert.equal(localOnly.copy, systems.PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE);
   assert.equal(localOnly.statusText, systems.PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE);
-  assert.equal(localOnly.publicChipText, "ציבורי לא פעיל");
+  assert.equal(localOnly.publicChipText, "הדירוג העולמי לא זמין");
   assert.equal(localOnly.publicAvailable, false);
 
   const ineligible = systems.getPublicLeaderboardUiState("localOnly", false);
@@ -488,7 +510,8 @@ test("public leaderboard UI stays local-only when public backend is unavailable"
 
   const available = systems.getPublicLeaderboardUiState("available", true);
   assert.equal(available.panelHidden, false);
-  assert.equal(available.buttonDisabled, false);
+  assert.equal(available.buttonDisabled, true);
+  assert.equal(available.buttonText, "מסנכרן אוטומטית");
   assert.equal(available.publicAvailable, true);
 });
 
@@ -504,6 +527,8 @@ test("champions API returns explicit unconfigured status without throwing", asyn
     assert.equal(response.statusCode, 503);
     assert.equal(response.headers["content-type"], "application/json; charset=utf-8");
     assert.deepEqual(JSON.parse(response.body), {
+      publicAvailable: false,
+      publicSubmissionsAvailable: false,
       code: "leaderboard_not_configured",
       message: "טבלת השיאים עדיין לא הוגדרה."
     });
@@ -523,13 +548,14 @@ test("champions API capability check stays HTTP 200 when backend is unconfigured
     assert.equal(response.statusCode, 200);
     assert.deepEqual(JSON.parse(response.body), {
       publicAvailable: false,
+      publicSubmissionsAvailable: false,
       code: "leaderboard_not_configured",
       message: "טבלת השיאים עדיין לא הוגדרה."
     });
   });
 });
 
-test("champions API keeps public score submissions disabled until server verification exists", async () => {
+test("champions API rejects a score that has no signed game session", async () => {
   await withLeaderboardEnv({
     SUPABASE_URL: "https://example.invalid",
     SUPABASE_SERVICE_ROLE_KEY: "placeholder"
@@ -543,10 +569,10 @@ test("champions API keeps public score submissions disabled until server verific
       body: { score: 50000000 }
     }, response);
 
-    assert.equal(response.statusCode, 403);
+    assert.equal(response.statusCode, 400);
     assert.deepEqual(JSON.parse(response.body), {
-      code: "score_submission_disabled",
-      message: "פרסום שיאים ציבורי יופעל לאחר הוספת אימות משחק בצד השרת."
+      code: "invalid_session",
+      message: "נתוני המשחק אינם תקינים."
     });
   });
 });
@@ -730,9 +756,35 @@ test("mobile HUD overrides do not hide approved permanent metrics", () => {
 });
 
 test("nickname validation rejects empty and dangerous input", () => {
+  assert.equal(systems.createDefaultSave().player.nickname, "");
+  assert.equal(systems.safeNickname(), "");
   assert.equal(systems.validateNickname("").ok, false);
   assert.equal(systems.validateNickname("<script>").ok, false);
   assert.equal(systems.validateNickname("  כפלול 7  ").value, "כפלול 7");
+});
+
+test("nickname moderation blocks multilingual profanity and punctuation obfuscation", () => {
+  const blocked = [
+    "f.u-c_k",
+    "hero.f.u.c.k.7",
+    "fuuuuck",
+    "s.h.1.t",
+    "ש.ר-מ_ו ט ה",
+    "ش.ر.م.و.ط.ة",
+    "б.л.я.т.ь",
+    "p.u.t.a",
+    "傻.逼",
+    "씨.발"
+  ];
+  for (const nickname of blocked) {
+    const result = systems.validateNickname(nickname);
+    assert.equal(result.ok, false, `expected ${nickname} to be blocked`);
+    assert.equal(result.code, "inappropriate", `expected ${nickname} to be classified as inappropriate`);
+  }
+
+  for (const nickname of ["אסף", "Scunthorpe", "ClassHero", "Мария", "ليان", "小龙", "Málaga"]) {
+    assert.equal(systems.validateNickname(nickname).ok, true, `expected ${nickname} to be accepted`);
+  }
 });
 
 test("local persistence saves, loads, recovers corruption and migrates legacy values", () => {

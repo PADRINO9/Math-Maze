@@ -34,17 +34,17 @@
   <link rel="preload" href="assets/math-maze-poster.png" as="image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@500;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@500;700;800&family=Fredoka:wght@600;700&family=Rubik:wght@800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260619-6">
   <link rel="stylesheet" href="ui/foundation.css?v=20260628-1">
   <link rel="stylesheet" href="ui/mobile-overrides.css?v=20260628-1">
-  <link rel="stylesheet" href="leaderboard.css?v=20260622-1">
+  <link rel="stylesheet" href="leaderboard.css?v=20260803-world-1">
   <link rel="stylesheet" href="arcade-foundation.css?v=20260712-stage-intro-2">
-  <link rel="stylesheet" href="main-menu.css?v=20260723-difficulty-1">
-  <link rel="stylesheet" href="ui/secondary-screens.css?v=20260628-1">
+  <link rel="stylesheet" href="main-menu.css?v=20260803-character-selection-cleanup-1">
+  <link rel="stylesheet" href="ui/secondary-screens.css?v=20260803-nickname-safety-1">
   <link rel="stylesheet" href="ui/motion/motion.css?v=20260630-1">
   <link rel="stylesheet" href="ui/game-number-pad.css?v=20260711-1">
-  <link rel="stylesheet" href="ui/tutorial.css?v=20260720-1">
+  <link rel="stylesheet" href="ui/tutorial.css?v=20260803-tutorial-anchored-flow-1">
 </head>
 <body>
   <div id="app-loading-screen" class="app-loading-screen" role="status" aria-live="polite" aria-label="כפלול נטען">
@@ -204,9 +204,10 @@
             <h3 id="pause-settings-title">הגדרות</h3>
             <label for="pause-player-name-input">כינוי</label>
             <div class="pause-settings-row">
-              <input id="pause-player-name-input" type="text" maxlength="14" autocomplete="nickname">
+              <input id="pause-player-name-input" type="text" maxlength="14" autocomplete="nickname" enterkeyhint="done" spellcheck="false" dir="auto" aria-describedby="pause-name-error">
               <button id="pause-save-name-button" class="phase5-button" type="button">שמור</button>
             </div>
+            <p id="pause-name-error" class="pause-name-error" role="alert" aria-live="assertive"></p>
           </section>
         </div>
       </section>
@@ -266,7 +267,7 @@
           <header class="menu-topbar home-player-bar" aria-label="סרגל שחקן">
             <section class="home-player-card" aria-label="שחקן נוכחי">
               <span class="home-mini-label">שחקן</span>
-              <strong id="player-greeting">אלוף כפלול</strong>
+              <strong id="player-greeting">עדיין אין כינוי</strong>
             </section>
 
             <button id="home-progress-button" class="menu-best-card" type="button" aria-label="פתח התקדמות ושיא אישי" aria-expanded="false" aria-controls="progress-panel" title="התקדמות ושיא אישי">
@@ -294,7 +295,10 @@
                 <span class="ui-icon-wrap" aria-hidden="true">
                   <svg class="ui-icon" focusable="false"><use href="ui/icons.svg?v=20260702-4#podium"></use></svg>
                 </span>
-                <span id="menu-rank-value" class="kf-visually-hidden">חדש</span>
+                <span class="home-world-rank-badge" aria-hidden="true">
+                  <small>בעולם</small>
+                  <strong id="menu-rank-value">—</strong>
+                </span>
               </button>
               <button id="menu-sound-button" class="menu-icon-button" type="button" aria-label="צלילים פועלים" title="צלילים" data-icon="sound-on">
                 <span class="ui-icon-wrap" aria-hidden="true">
@@ -330,7 +334,9 @@
                 <span class="character-card" data-animation-state="idle">
                   <span class="character-glow" aria-hidden="true"></span>
                   <img src="assets/generated/bifly-expression-idle.png" alt="" aria-hidden="true" data-character-state="idle">
-                  <strong class="character-name-badge">ביפלי</strong>
+                  <span class="character-nameplate">
+                    <strong class="character-name-badge">ביפלי</strong>
+                  </span>
                 </span>
               </label>
               <label class="character-option menu-character menu-character-nabatick">
@@ -338,7 +344,9 @@
                 <span class="character-card" data-animation-state="idle">
                   <span class="character-glow" aria-hidden="true"></span>
                   <img src="assets/generated/nabatick-expression-idle.png" alt="" aria-hidden="true" data-character-state="idle">
-                  <strong class="character-name-badge">נבטיק</strong>
+                  <span class="character-nameplate">
+                    <strong class="character-name-badge">נבטיק</strong>
+                  </span>
                 </span>
               </label>
             </div>
@@ -356,14 +364,14 @@
               <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#trophy"></use></svg>
             </span>
             <span class="menu-panel-title">היכל אלופי כפלול</span>
-            <span>שיא בקטגוריה: <strong id="menu-personal-best">0</strong></span>
-            <p id="menu-next-rank">עוד אין דירוג בקטגוריה הזאת.</p>
-            <button id="menu-leaderboard-link" class="menu-text-button" type="button">היכל אלופי כפלול</button>
+            <span>השיא האישי שלי: <strong id="menu-personal-best">0</strong></span>
+            <p id="menu-next-rank">שחקו סיבוב ראשון כדי להיכנס לדירוג העולמי.</p>
+            <button id="menu-leaderboard-link" class="menu-text-button" type="button">פתחו את אלוף האלופים</button>
           </aside>
 
           <section class="menu-cta" aria-label="התחלת משחק">
             <button id="start-button" class="arcade-play-button" type="submit" data-ui-sound="primary-play">
-              <span class="arcade-play-label">שחק עכשיו</span>
+              <span class="arcade-play-label">בחרו כינוי כדי לשחק</span>
             </button>
             <p id="menu-selection-summary" hidden></p>
             <p id="name-error" class="form-note" aria-live="assertive"></p>
@@ -746,8 +754,13 @@
                 <h2 id="settings-panel-title">הגדרות שחקן</h2>
                 <p>הכינוי, סוגי התרגילים והצלילים נשמרים על המכשיר הזה.</p>
               </header>
-              <label for="player-name-input">כינוי השחקן</label>
-              <input id="player-name-input" type="text" maxlength="14" placeholder="אלוף כפלול" autocomplete="nickname" required>
+              <section id="settings-nickname-section" class="settings-nickname-card" aria-labelledby="settings-nickname-label">
+                <label id="settings-nickname-label" for="player-name-input">כינוי השחקן</label>
+                <input id="player-name-input" type="text" maxlength="14" placeholder="כתבו כינוי" autocomplete="nickname" enterkeyhint="done" spellcheck="false" dir="auto" aria-describedby="settings-nickname-hint settings-name-error" required>
+                <p id="settings-nickname-hint" class="settings-nickname-hint">הכינוי יופיע בטבלת אלוף האלופים. אין להשתמש בקללות או במילים פוגעניות.</p>
+                <p id="settings-name-error" class="settings-name-error" role="alert" aria-live="assertive"></p>
+                <button id="settings-save-button" class="menu-save-button" type="button">שמור כינוי</button>
+              </section>
               <button id="settings-sound-button" class="phase5-button" type="button">
                 <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="ui/icons.svg#sound-on"></use></svg>
                 <span id="settings-sound-label" data-icon-label>צלילים פועלים</span>
@@ -863,7 +876,6 @@
               <a class="settings-privacy-link" href="privacy.html" aria-label="פתיחת מדיניות הפרטיות של כפלול">
                 מדיניות פרטיות
               </a>
-              <button id="settings-save-button" class="menu-save-button" type="button">שמור כינוי</button>
             </div>
           </section>
 
@@ -995,9 +1007,9 @@
           </div>
           <p id="trophy-share-status" class="trophy-share-status" aria-live="polite"></p>
           <div id="publish-score-panel" class="publish-score-panel" hidden>
-            <strong id="publish-score-title">השיא נשמר במכשיר הזה</strong>
-            <p id="publish-score-copy">טבלת השיאים הציבורית עדיין לא פעילה. השיא נשמר במכשיר הזה.</p>
-            <button id="publish-score-button" class="secondary-button" type="button">פרסם את השיא</button>
+            <strong id="publish-score-title">מסנכרנים את השיא העולמי</strong>
+            <p id="publish-score-copy">השיא האישי נשמר במכשיר ומסתנכרן אוטומטית עם אלוף האלופים.</p>
+            <button id="publish-score-button" class="secondary-button" type="button">סנכרן שוב</button>
             <p id="publish-score-status" class="publish-score-status" aria-live="polite"></p>
           </div>
         </div>
@@ -1007,8 +1019,8 @@
         <section class="leaderboard-panel">
           <div class="leaderboard-header">
             <div>
-              <p class="leaderboard-kicker">היכל אלופי כפלול</p>
-              <h2 id="leaderboard-title">טבלת השיאים המקומית</h2>
+              <p class="leaderboard-kicker">הדירוג העולמי של כפלול</p>
+              <h2 id="leaderboard-title">אלוף האלופים</h2>
             </div>
             <div class="leaderboard-actions">
               <button
@@ -1032,10 +1044,24 @@
             </div>
           </div>
           <div class="leaderboard-scope" aria-label="מקור הטבלה">
-            <span class="leaderboard-scope-chip is-active">מקומי</span>
-            <span id="leaderboard-public-chip" class="leaderboard-scope-chip is-unavailable">ציבורי לא פעיל</span>
+            <span id="leaderboard-public-chip" class="leaderboard-scope-chip is-unavailable">מתחבר לעולם</span>
+            <span class="leaderboard-scope-chip">גיבוי במכשיר</span>
           </div>
-          <p id="leaderboard-copy" class="leaderboard-copy">השיאים נשמרים במכשיר הזה. טבלת השיאים הציבורית עדיין לא פעילה.</p>
+          <p id="leaderboard-copy" class="leaderboard-copy">כל שחקן מופיע פעם אחת עם השיא הגבוה ביותר שלו.</p>
+          <section id="leaderboard-player-summary" class="leaderboard-player-summary" aria-label="המיקום שלי בעולם">
+            <div>
+              <span>השיא שלי</span>
+              <strong id="leaderboard-personal-best">0</strong>
+            </div>
+            <div class="is-rank">
+              <span>המקום שלי בעולם</span>
+              <strong id="leaderboard-world-rank">—</strong>
+            </div>
+            <div>
+              <span>שחקנים מדורגים</span>
+              <strong id="leaderboard-total-players">—</strong>
+            </div>
+          </section>
           <div class="leaderboard-filters" aria-label="סינון טבלת שיאים">
             <label>
               <span>מצב</span>
@@ -1058,15 +1084,15 @@
             </label>
           </div>
           <ol id="leaderboard-list" class="leaderboard-list" aria-live="polite">
-            <li class="leaderboard-placeholder">עדיין אין שיאים מקומיים.</li>
+            <li class="leaderboard-placeholder">מתחברים לטבלת אלוף האלופים...</li>
           </ol>
           <div id="leaderboard-empty-state" class="leaderboard-state-card" hidden>
             <strong>אין עדיין שיאים בקטגוריה הזאת</strong>
-            <span>שחקו סיבוב, ואז השיא המקומי יופיע כאן.</span>
+            <span>שחקו סיבוב — אולי תהיו הראשונים שיופיעו כאן.</span>
           </div>
           <div id="leaderboard-error-state" class="leaderboard-state-card is-error" hidden>
             <strong>לא הצלחנו לרענן עכשיו</strong>
-            <span>השיאים המקומיים נשארים זמינים על המכשיר.</span>
+            <span>השיא האישי בטוח במכשיר ונסתנכרן שוב בחיבור הבא.</span>
           </div>
           <p id="leaderboard-status" class="leaderboard-status" aria-live="polite"></p>
         </section>
@@ -1082,12 +1108,7 @@
   </main>
 
   <section id="first-run-tutorial" class="kf-coach" role="region" aria-label="הדרכת כפלול אינטראקטיבית" hidden>
-    <div class="kf-coach-shades" aria-hidden="true">
-      <span data-coach-shade="top"></span>
-      <span data-coach-shade="right"></span>
-      <span data-coach-shade="bottom"></span>
-      <span data-coach-shade="left"></span>
-    </div>
+    <canvas id="tutorial-dim-layer" class="kf-coach-dim-layer" aria-hidden="true"></canvas>
 
     <div id="tutorial-target-ring" class="kf-coach-target-ring" aria-hidden="true"></div>
 
@@ -1098,39 +1119,41 @@
       </svg>
     </div>
 
-    <div id="tutorial-action-pill" class="kf-coach-action-pill" aria-live="polite">
-      <span class="kf-coach-action-dot" aria-hidden="true"></span>
-      <strong id="tutorial-title">לחצו על הכפתור המואר</strong>
-    </div>
+    <div id="tutorial-coach-card" class="kf-coach-card">
+      <header id="tutorial-coach-status" class="kf-coach-status">
+        <div class="kf-coach-status-copy">
+          <strong id="tutorial-step-label">1/10</strong>
+          <span id="tutorial-step-name">הגדרות</span>
+        </div>
+        <button id="tutorial-skip-button" class="kf-coach-skip" type="button">דלג</button>
+        <div class="kf-coach-progress" role="progressbar" aria-label="התקדמות בהדרכה" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1">
+          <span id="tutorial-progress-fill"></span>
+        </div>
+      </header>
 
-    <aside id="tutorial-speech-bubble" class="kf-coach-speech" role="status" aria-live="polite" hidden>
-      <span class="kf-coach-check" aria-hidden="true">
-        <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#check"></use></svg>
-      </span>
-      <p id="tutorial-lead"></p>
-    </aside>
+      <div id="tutorial-action-pill" class="kf-coach-action-pill" aria-live="polite">
+        <span class="kf-coach-action-dot" aria-hidden="true"></span>
+        <strong id="tutorial-title">לחצו על הכפתור המואר</strong>
+      </div>
+
+      <aside id="tutorial-speech-bubble" class="kf-coach-speech" role="status" aria-live="polite" hidden>
+        <span class="kf-coach-check" aria-hidden="true">
+          <svg class="ui-icon" focusable="false"><use href="ui/icons.svg#check"></use></svg>
+        </span>
+        <p id="tutorial-lead"></p>
+      </aside>
+    </div>
 
     <div id="tutorial-lock-message" class="kf-coach-lock-message" role="status" aria-live="polite" hidden>
       לחצו רק על הכפתור שהיד מצביעה עליו
     </div>
-
-    <header id="tutorial-coach-status" class="kf-coach-status" data-edge="top">
-      <div class="kf-coach-status-copy">
-        <strong id="tutorial-step-label">הדרכה 1 מתוך 13</strong>
-        <span id="tutorial-step-name">הגדרות</span>
-      </div>
-      <div class="kf-coach-progress" role="progressbar" aria-label="התקדמות בהדרכה" aria-valuemin="1" aria-valuemax="13" aria-valuenow="1">
-        <span id="tutorial-progress-fill"></span>
-      </div>
-      <button id="tutorial-skip-button" class="kf-coach-skip" type="button">דלג</button>
-    </header>
   </section>
 
-  <script src="kaflul-systems.js?v=20260724-league-code-2"></script>
+  <script src="kaflul-systems.js?v=20260803-nickname-safety-1"></script>
   <script src="ui/assets/asset-manifest.js?v=20260701-3"></script>
   <script src="ui/character-animation-adapter.js?v=20260628-1"></script>
   <script src="ui/motion/motion-system.js?v=20260630-1"></script>
-  <script src="ui/sounds/kaflul-audio-engine.js?v=20260720-mobile-sync-1"></script>
+  <script src="ui/sounds/kaflul-audio-engine.js?v=20260728-ghost-blast-jank-1"></script>
   <script src="ui/sounds/ui-sound-controller.js?v=20260713-input-1"></script>
   <script src="poster-loader.js?v=20260705-loading-2"></script>
   <script src="mobile-enhancements.js?v=20260711-keypad-1"></script>
@@ -1142,7 +1165,7 @@
   <script src="maze-decor-system.js?v=20260703-1"></script>
   <script src="maze-tile-topology.js?v=20260712-modular-v3-1"></script>
   <script src="maze-axonometric-projection.js?v=20260712-axonometric-v1"></script>
-  <script src="game.js?v=20260723-difficulty-2"></script>
-  <script src="ui/tutorial.js?v=20260723-difficulty-2"></script>
+  <script src="game.js?v=20260803-character-selection-cleanup-1"></script>
+  <script src="ui/tutorial.js?v=20260803-tutorial-anchored-flow-1"></script>
 </body>
 </html>

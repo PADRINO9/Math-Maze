@@ -250,7 +250,37 @@ test("empty player name in settings stays on the start screen", async ({ page })
   await page.locator("#settings-save-button").click();
   await expect(page.locator("#start-screen")).toBeVisible();
   await expect(page.locator("#settings-panel")).toBeVisible();
-  await expect(page.locator("#name-error")).toContainText("כינוי קצר");
+  await expect(page.locator("#settings-name-error")).toContainText("כתבו כאן כינוי");
+  expect(errors).toEqual([]);
+});
+
+test("a new player starts without a nickname and must choose a safe one in Settings", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#start-screen")).toBeVisible();
+  await expect(page.locator("#player-greeting")).toHaveText("עדיין אין כינוי");
+  await expect(page.locator("#player-name-input")).toHaveValue("");
+  await expect(page.locator("#start-button .arcade-play-label")).toContainText("בחרו כינוי");
+
+  await page.locator("#start-button").click();
+  await expect(page.locator("#settings-panel")).toBeVisible();
+  await expect(page.locator("#player-name-input")).toBeFocused();
+  await expect(page.locator("#settings-name-error")).toContainText("כתבו כאן כינוי");
+
+  await page.locator("#player-name-input").fill("f.u-c_k");
+  await page.locator("#settings-save-button").click();
+  await expect(page.locator("#settings-panel")).toBeVisible();
+  await expect(page.locator("#settings-name-error")).toContainText("אינה מתאימה");
+
+  await page.locator("#player-name-input").fill("נועה 7");
+  await page.locator("#settings-save-button").click();
+  await expect(page.locator("#settings-panel")).toBeHidden();
+  await expect(page.locator("#player-greeting")).toHaveText("נועה 7");
+  await expect(page.locator("#start-button .arcade-play-label")).toHaveText("שחק עכשיו");
+
+  await page.locator("#start-button").click();
+  await expect(page.locator("#start-screen")).toBeHidden();
+  await expect(page.locator("#pause-button")).toHaveAttribute("data-icon", "pause");
   expect(errors).toEqual([]);
 });
 
@@ -306,6 +336,128 @@ test("every world opens on the full maze then focuses the camera on the player",
   expect(errors).toEqual([]);
 });
 
+test("all four mazes stay connected and the reported yellow-light pocket is a through-route", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/?verify=world1-collision&verifyLevel=0", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() =>
+    typeof window.__mathMazeRuntime?.auditAllMazeTopologiesForVerification === "function"
+  );
+
+  const result = await page.evaluate(() => {
+    const runtime = window.__mathMazeRuntime;
+    const allTopologies = runtime.auditAllMazeTopologiesForVerification();
+    const perWorldCollision = [];
+    for (let levelIndex = 0; levelIndex < 4; levelIndex += 1) {
+      runtime.forceLevelForVerification(levelIndex);
+      perWorldCollision.push({
+        levelIndex,
+        topology: runtime.auditCurrentMazeTopologyForVerification(),
+        collision: runtime.auditMazeCollisionForVerification(),
+        traversal: runtime.auditFullMazeTraversalForVerification()
+      });
+    }
+    runtime.forceLevelForVerification(0);
+    const placement = runtime.setPlayerCellForVerification(13, 12);
+    const movement = [];
+    for (let frame = 0; frame < 42; frame += 1) {
+      movement.push(runtime.stepPlayerForVerification("right", 2.2));
+    }
+    return {
+      allTopologies,
+      perWorldCollision,
+      placement,
+      movement,
+      finalPlayer: runtime.getPlayerSnapshot(),
+      finalCollision: runtime.getMazeCollisionSnapshot()
+    };
+  });
+
+  expect(result.allTopologies.passed).toBe(true);
+  expect(result.allTopologies.levelCount).toBe(4);
+  expect(result.allTopologies.disconnectedComponentCount).toBe(0);
+  expect(result.allTopologies.isolatedCellCount).toBe(0);
+  expect(result.allTopologies.levels.every((level) => level.connectedComponentCount === 1)).toBe(true);
+  expect(result.allTopologies.levels[0].reportedPassage.open).toBe(true);
+  expect(result.allTopologies.levels[0].reportedPassage.pocketExitCount).toBeGreaterThanOrEqual(2);
+  expect(result.perWorldCollision.every((entry) => entry.topology.passed)).toBe(true);
+  expect(result.perWorldCollision.every((entry) => entry.collision.passed)).toBe(true);
+  expect(result.perWorldCollision.every((entry) => entry.traversal.passed)).toBe(true);
+  expect(result.placement.moved).toBe(true);
+  expect(result.movement.every((entry) => entry && !entry.collision.playerOverlapsWall)).toBe(true);
+  expect(result.finalPlayer.x).toBeGreaterThan(17 * 24);
+  expect(result.finalCollision.playerCell.x).toBeGreaterThanOrEqual(17);
+  expect(result.finalCollision.playerOverlapsWall).toBe(false);
+  expect(errors).toEqual([]);
+});
+
+test("world hazards are distinct and burn damage completes before respawn", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() =>
+    typeof window.__mathMazeRuntime?.forceEnvironmentHazardHitForVerification === "function"
+  );
+
+  const hazards = await page.evaluate(() => {
+    return [0, 1, 2, 3].map((levelIndex) => {
+      window.__mathMazeRuntime.forceLevelForVerification(levelIndex);
+      window.__mathMazeRuntime.forceEnvironmentHazardForVerification();
+      return window.__mathMazeRuntime.getEnvironmentHazardSnapshotForVerification();
+    });
+  });
+
+  expect(hazards.map((snapshot) => snapshot.hazard?.type)).toEqual([
+    "ice-slick",
+    "lava-spill",
+    "rune-trap",
+    "crystal-burst"
+  ]);
+  expect(hazards.every((snapshot) => snapshot.hazard?.active)).toBe(true);
+  expect(hazards.every((snapshot) => snapshot.hazard?.cellCount >= 3)).toBe(true);
+
+  const sunImpact = await page.evaluate(() =>
+    window.__mathMazeRuntime.forceEnvironmentHazardHitForVerification(0)
+  );
+  expect(sunImpact.impact.type).toBe("ice-slick");
+  expect(sunImpact.impact.effect).toBe("burn");
+  expect(sunImpact.impact.lifeCommitted).toBe(false);
+  expect(sunImpact.impact.playerAttached).toBe(true);
+  await page.evaluate(() =>
+    window.__mathMazeRuntime.completeEnvironmentHazardImpactForVerification()
+  );
+
+  const impactStart = await page.evaluate(() =>
+    window.__mathMazeRuntime.forceEnvironmentHazardHitForVerification(1)
+  );
+  const livesBefore = impactStart.lives;
+  expect(impactStart.impact.type).toBe("lava-spill");
+  expect(impactStart.impact.effect).toBe("burn");
+  expect(impactStart.impact.lifeCommitted).toBe(false);
+  expect(impactStart.impact.playerAttached).toBe(true);
+  expect(impactStart.playerReaction.type).toBe("lava-spill");
+
+  const shrinking = await page.evaluate(() =>
+    window.__mathMazeRuntime.setEnvironmentHazardImpactProgressForVerification(0.38)
+  );
+  expect(shrinking.lives).toBe(livesBefore);
+  expect(shrinking.impact.lifeCommitted).toBe(false);
+  expect(shrinking.impact.playerAttached).toBe(true);
+
+  const heartLoss = await page.evaluate(() =>
+    window.__mathMazeRuntime.setEnvironmentHazardImpactProgressForVerification(0.66)
+  );
+  expect(heartLoss.lives).toBe(livesBefore - 1);
+  expect(heartLoss.impact.lifeCommitted).toBe(true);
+  expect(heartLoss.livesHudClass).toContain("hud-life-loss");
+
+  const completed = await page.evaluate(() =>
+    window.__mathMazeRuntime.completeEnvironmentHazardImpactForVerification()
+  );
+  expect(completed.impact).toBeNull();
+  expect(completed.playerReaction).toBeNull();
+  expect(completed.phase).toBe("playing");
+  expect(errors).toEqual([]);
+});
+
 test("24 correct answers trigger a three-question boss and cinematic next-stage transition", async ({ page }) => {
   const errors = collectRuntimeErrors(page);
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
@@ -328,8 +480,14 @@ test("24 correct answers trigger a three-question boss and cinematic next-stage 
   expect(entrance.regularCorrect).toBe(24);
   expect(entrance.bossCorrect).toBe(0);
   expect(entrance.boss.configKey).toBe("stage1");
-  expect(entrance.boss.definitionId).toBe("magma-bastion");
-  expect(entrance.boss.name).toBe("לבת-הר");
+  expect(entrance.boss.definitionId).toBe("sun-garden-warden");
+  expect(entrance.boss.name).toBe("שומר-השמש");
+  expect(entrance.boss.title).toBe("שומר גן השמש");
+  expect(entrance.boss.worldIndex).toBe(0);
+  expect(entrance.boss.worldLabel).toBe("גן השמש");
+  expect(entrance.boss.actorTheme).toBe("sun-garden");
+  expect(entrance.boss.proceduralStyle).toBeNull();
+  expect(entrance.boss.chestDistanceTiles).toBeGreaterThanOrEqual(2.5);
   expect(entrance.boss.speedRatio).toBeGreaterThanOrEqual(1.12);
   expect(entrance.boss.healthRemaining).toBe(3);
   expect(entrance.boss.healthTotal).toBe(3);
@@ -409,7 +567,7 @@ test("one correct collision answer blasts every nearby ghost and awards each def
 
   const before = await page.evaluate(() => {
     window.__mathMazeRuntime.setGhostBlastEffectDurationForVerification(3);
-    return window.__mathMazeRuntime.forceGhostBlastQuestionForVerification(4);
+    return window.__mathMazeRuntime.forceGhostBlastQuestionForVerification(4, 1);
   });
   expect(before.phase).toBe("question");
   expect(before.enemyCount).toBe(4);
@@ -428,11 +586,28 @@ test("one correct collision answer blasts every nearby ghost and awards each def
   expect(after.effect.perGhostAward).toBeGreaterThan(0);
   expect(after.effect.totalAward).toBe(after.effect.perGhostAward * 4);
   expect(after.effect.bonusAward).toBe(after.effect.perGhostAward * 3);
+  expect(after.effect.emittedParticleCount).toBeGreaterThan(0);
+  if (after.effect.mobileOptimized) {
+    expect(after.effect.particleBudget).toBe(96);
+    expect(after.effect.emittedParticleCount).toBeLessThanOrEqual(after.effect.particleBudget);
+    expect(after.activeParticleCount).toBeLessThanOrEqual(after.effect.particleBudget);
+  }
   expect(after.score - before.score).toBe(after.effect.totalAward);
+
+  const maximumBlast = await page.evaluate(() => {
+    window.__mathMazeRuntime.forceGhostBlastQuestionForVerification(6, 1);
+    window.__mathMazeRuntime.answerCurrentQuestionForVerification(undefined, true);
+    return window.__mathMazeRuntime.getGhostBlastSnapshotForVerification();
+  });
+  expect(maximumBlast.effect.count).toBe(6);
+  if (maximumBlast.effect.mobileOptimized) {
+    expect(maximumBlast.effect.emittedParticleCount).toBeLessThanOrEqual(maximumBlast.effect.particleBudget);
+    expect(maximumBlast.activeParticleCount).toBeLessThanOrEqual(maximumBlast.effect.particleBudget);
+  }
   expect(errors).toEqual([]);
 });
 
-test("each stage keeps its own numbered boss identity", async ({ page }) => {
+test("each world uses its matching boss identity and actor style", async ({ page }) => {
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceBossChallenge === "function");
   const bosses = await page.evaluate(() => {
@@ -446,6 +621,12 @@ test("each stage keeps its own numbered boss identity", async ({ page }) => {
         configKey: boss?.configKey,
         definitionId: boss?.definitionId,
         name: boss?.name,
+        title: boss?.title,
+        worldIndex: boss?.worldIndex,
+        worldLabel: boss?.worldLabel,
+        actorRow: boss?.actorRow,
+        actorTheme: boss?.actorTheme,
+        proceduralStyle: boss?.proceduralStyle,
         actorFacing: boss?.actorFacing,
         directionalFacing: ["down", "right", "up", "left"].map((direction) => {
           const pose = window.__mathMazeRuntime.setBossWalkPoseForVerification(Math.PI / 2, direction, 0.4);
@@ -458,10 +639,54 @@ test("each stage keeps its own numbered boss identity", async ({ page }) => {
 
   expect(bosses).toEqual([
     ...[
-      { levelIndex: 0, configKey: "stage1", definitionId: "magma-bastion", name: "לבת-הר" },
-      { levelIndex: 1, configKey: "stage2", definitionId: "frostmaw", name: "שן-הקרחון" },
-      { levelIndex: 2, configKey: "stage3", definitionId: "mire-tyrant", name: "מלך-הביצה" },
-      { levelIndex: 3, configKey: "stage4", definitionId: "eclipse-monarch", name: "כתר-הליקוי" }
+      {
+        levelIndex: 0,
+        configKey: "stage1",
+        definitionId: "sun-garden-warden",
+        name: "שומר-השמש",
+        title: "שומר גן השמש",
+        worldIndex: 0,
+        worldLabel: "גן השמש",
+        actorRow: 1,
+        actorTheme: "sun-garden",
+        proceduralStyle: null
+      },
+      {
+        levelIndex: 1,
+        configKey: "stage2",
+        definitionId: "magma-bastion",
+        name: "לבת-הר",
+        title: "שליט עולם הלבה",
+        worldIndex: 1,
+        worldLabel: "עולם הלבה",
+        actorRow: 0,
+        actorTheme: null,
+        proceduralStyle: null
+      },
+      {
+        levelIndex: 2,
+        configKey: "stage3",
+        definitionId: "ancient-rune-sentinel",
+        name: "שומר-הרונים",
+        title: "מגן עולם העתיקות",
+        worldIndex: 2,
+        worldLabel: "עולם העתיקות",
+        actorRow: 2,
+        actorTheme: null,
+        proceduralStyle: null
+      },
+      {
+        levelIndex: 3,
+        configKey: "stage4",
+        definitionId: "diamond-monarch",
+        name: "מלך-היהלום",
+        title: "שליט עולם היהלומים",
+        worldIndex: 3,
+        worldLabel: "עולם היהלומים",
+        actorRow: 3,
+        actorTheme: null,
+        proceduralStyle: null
+      }
     ].map((boss) => ({
       ...boss,
       actorFacing: "down",
@@ -469,6 +694,55 @@ test("each stage keeps its own numbered boss identity", async ({ page }) => {
     }))
   ]);
 });
+
+for (const mode of ["adventure", "arcade"]) {
+  test(`the fourth boss ends ${mode} with a persisted trophy instead of restarting world one`, async ({ page }) => {
+    const errors = collectRuntimeErrors(page);
+    await page.route("**/api/champions**", (route) => route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ configured: false, entries: [] })
+    }));
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(() => typeof window.__mathMazeRuntime?.forceFinalBossQuestionForVerification === "function");
+
+    const finalQuestion = await page.evaluate(({ playerName, gameMode }) => {
+      window.__mathMazeRuntime.setBossQuestionFeedbackDelayForVerification(80);
+      return window.__mathMazeRuntime.forceFinalBossQuestionForVerification(playerName, gameMode);
+    }, { playerName: `אלוף ${mode}`, gameMode: mode });
+    expect(finalQuestion.levelIndex).toBe(3);
+    expect(finalQuestion.correctAnswers).toBe(107);
+
+    await page.evaluate(() => {
+      window.__mathMazeRuntime.answerCurrentQuestionForVerification(undefined, true);
+    });
+    await expect(page.locator("#end-screen")).toBeVisible({ timeout: 5000 });
+    await page.waitForTimeout(1200);
+
+    const result = await page.evaluate(() => ({
+      encounter: window.__mathMazeRuntime.getBossEncounterSnapshot(),
+      finalResult: window.__mathMazeRuntime.getFinalResultForVerification(),
+      trophyVisible: !document.getElementById("winner-trophy").hidden,
+      shareVisible: !document.getElementById("trophy-share-button").hidden,
+      persistedSave: JSON.parse(localStorage.getItem("kaflulArcadeSave"))
+    }));
+
+    expect(result.encounter.phase).toBe("ended");
+    expect(result.encounter.levelIndex).toBe(3);
+    expect(result.encounter.finalBossDefeated).toBe(true);
+    expect(result.finalResult.mode).toBe(mode);
+    expect(result.finalResult.champion).toBe(true);
+    expect(result.finalResult.reachedStage).toBe(4);
+    expect(result.trophyVisible).toBe(true);
+    expect(result.shareVisible).toBe(true);
+    expect(result.persistedSave.completedLevels[`${mode}:normal`].won).toBe(true);
+    expect(result.persistedSave.achievementProgress.championTrophy.earned).toBe(true);
+    expect(result.persistedSave.achievementProgress.championTrophy.totalWins).toBe(1);
+    expect(result.persistedSave.achievementProgress.championTrophy.modes[mode]).toBe(1);
+    expect(errors).toEqual([]);
+  });
+}
 
 test("gameplay HUD stays streamlined and uses SVG lives", async ({ page }, testInfo) => {
   const errors = collectRuntimeErrors(page);
@@ -602,10 +876,24 @@ test("leaderboard remains local-only when public backend is unavailable", async 
   let postCount = 0;
   await seedLocalLeaderboard(page);
   await page.route("**/api/champions**", async (route) => {
+    const requestUrl = new URL(route.request().url());
     if (route.request().method() === "POST") {
       postCount += 1;
     } else {
       getCount += 1;
+    }
+    if (requestUrl.searchParams.get("capability") === "1") {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          publicAvailable: false,
+          publicSubmissionsAvailable: false,
+          code: "leaderboard_not_configured",
+          message: "טבלת השיאים עדיין לא הוגדרה."
+        })
+      });
+      return;
     }
     await route.fulfill({
       status: 503,
@@ -619,18 +907,209 @@ test("leaderboard remains local-only when public backend is unavailable", async 
 
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#start-screen")).toBeVisible();
-  await expect(page.locator("#leaderboard-copy")).toContainText("טבלת השיאים הציבורית עדיין לא פעילה");
+  await expect(page.locator("#leaderboard-copy")).toContainText("השיא שמור במכשיר");
 
   await page.locator("#leaderboard-open").click();
   await expect(page.locator("#leaderboard-dialog")).toBeVisible();
-  await expect(page.locator("#leaderboard-public-chip")).toContainText("ציבורי לא פעיל");
+  await expect(page.locator("#leaderboard-public-chip")).toContainText("לא זמין");
   await expect(page.locator("#leaderboard-list")).toContainText("שיא מקומי");
-  await expect(page.locator("#leaderboard-status")).toContainText("הטבלה המקומית");
+  await expect(page.locator("#leaderboard-status")).toContainText("גיבוי");
 
   await page.locator("#leaderboard-refresh").click();
   await expect(page.locator("#leaderboard-list")).toContainText("12,345");
   expect(postCount).toBe(0);
-  expect(getCount).toBe(0);
+  expect(getCount).toBeGreaterThanOrEqual(2);
+  expect(errors).toEqual([]);
+});
+
+test("leaderboard retries immediately when Android starts before the network is ready", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  let capabilityCount = 0;
+  await page.route("**/api/champions**", async (route) => {
+    const requestUrl = new URL(route.request().url());
+    if (requestUrl.searchParams.get("capability") === "1") {
+      capabilityCount += 1;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(capabilityCount === 1
+          ? { publicAvailable: false, publicSubmissionsAvailable: false }
+          : { publicAvailable: true, publicSubmissionsAvailable: true, automaticSync: true })
+      });
+      return;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        scope: "global",
+        scores: [],
+        player: { rank: null, totalPlayers: 0, score: 0, scoreToNextRank: null }
+      })
+    });
+  });
+
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#leaderboard-public-chip")).toContainText("לא זמין");
+  await page.locator("#leaderboard-open").click();
+  await expect(page.locator("#leaderboard-dialog")).toBeVisible();
+  await expect(page.locator("#leaderboard-public-chip")).toContainText("דירוג עולמי מחובר");
+  await expect(page.locator("#leaderboard-total-players")).toHaveText("0");
+  expect(capabilityCount).toBeGreaterThanOrEqual(2);
+  expect(errors).toEqual([]);
+});
+
+test("global champion table shows personal best and exact world rank on home and dialog", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  const playerId = "74d8f8db-3d41-4f4d-84e1-09b2f8bbbfc2";
+  await page.addInitScript(({ stablePlayerId }) => {
+    localStorage.setItem("mathMazePlayerId", stablePlayerId);
+    localStorage.setItem("mathMazeBest", "18500");
+  }, { stablePlayerId: playerId });
+
+  await page.route("**/api/champions**", async (route) => {
+    const requestUrl = new URL(route.request().url());
+    if (requestUrl.searchParams.get("capability") === "1") {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          publicAvailable: true,
+          publicSubmissionsAvailable: true,
+          automaticSync: true,
+          minimumCorrectAnswers: 1
+        })
+      });
+      return;
+    }
+    if (route.request().method() === "POST" && requestUrl.searchParams.get("action") === "session") {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ sessionToken: "test.session", expiresAt: Date.now() + 60_000 })
+      });
+      return;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        scope: "global",
+        player: {
+          rank: 42,
+          totalPlayers: 1200,
+          score: 18500,
+          scoreToNextRank: 175,
+          playerName: "אלוף 7"
+        },
+        scores: [
+          {
+            playerName: "מלכת הכפל",
+            score: 99000,
+            correctAnswers: 108,
+            levelReached: 4,
+            mode: "adventure",
+            difficulty: "legendary",
+            maxCombo: 36,
+            accuracy: 99
+          },
+          {
+            playerName: "אלוף 7",
+            score: 18500,
+            correctAnswers: 52,
+            levelReached: 2,
+            mode: "arcade",
+            difficulty: "normal",
+            maxCombo: 14,
+            accuracy: 96,
+            isCurrentPlayer: true
+          }
+        ]
+      })
+    });
+  });
+
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#leaderboard-public-chip")).toContainText("דירוג עולמי מחובר");
+  await expect(page.locator("#best-score")).toHaveText("18,500");
+  await expect(page.locator("#menu-rank-value")).toHaveText("#42");
+  await expect(page.locator("#leaderboard-open")).toHaveAttribute("aria-label", /מקום 42 בעולם/);
+
+  await page.locator("#leaderboard-open").click();
+  await expect(page.locator("#leaderboard-dialog")).toBeVisible();
+  await expect(page.locator("#leaderboard-title")).toHaveText("אלוף האלופים");
+  await expect(page.locator("#leaderboard-personal-best")).toHaveText("18,500");
+  await expect(page.locator("#leaderboard-world-rank")).toHaveText("#42");
+  await expect(page.locator("#leaderboard-total-players")).toHaveText("1,200");
+  await expect(page.locator("#leaderboard-list")).toContainText("מלכת הכפל");
+  await expect(page.locator("#leaderboard-list li.is-current-player")).toContainText("אלוף 7");
+  expect(errors).toEqual([]);
+});
+
+test("a finished standard game automatically syncs its score and updates world rank", async ({ page }) => {
+  const errors = collectRuntimeErrors(page);
+  const submittedScores = [];
+  await page.route("**/api/champions**", async (route) => {
+    const request = route.request();
+    const requestUrl = new URL(request.url());
+    if (request.method() === "GET" && requestUrl.searchParams.get("capability") === "1") {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ publicAvailable: true, publicSubmissionsAvailable: true, automaticSync: true })
+      });
+      return;
+    }
+    if (request.method() === "POST" && requestUrl.searchParams.get("action") === "session") {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ sessionToken: "signed.test-session", expiresAt: Date.now() + 60_000 })
+      });
+      return;
+    }
+    if (request.method() === "POST") {
+      submittedScores.push(request.postDataJSON());
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          improved: true,
+          player: { rank: 7, totalPlayers: 1200, score: submittedScores[0].score, scoreToNextRank: 240 }
+        })
+      });
+      return;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ scores: [], player: null, scope: "global" })
+    });
+  });
+
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#start-screen")).toBeVisible();
+  await setNickname(page, "אלוף אוטומטי");
+  await page.locator("#start-button").click();
+  await expect(page.locator("#start-screen")).toBeHidden();
+  await page.waitForFunction(() => Boolean(window.__mathMazeRuntime?.forceChampionTrophyForVerification));
+  await page.evaluate(() => window.__mathMazeRuntime.forceChampionTrophyForVerification("אלוף אוטומטי"));
+
+  await expect(page.locator("#end-screen")).toBeVisible();
+  await expect(page.locator("#publish-score-status")).toContainText("מקום 7 בעולם");
+  await expect(page.locator("#leaderboard-rank")).toHaveText("#7");
+  await expect.poll(() => submittedScores.length).toBe(1);
+  expect(submittedScores[0]).toMatchObject({
+    playerName: "אלוף אוטומטי",
+    correctAnswers: 108,
+    levelReached: 4,
+    mode: "adventure",
+    difficulty: "normal",
+    operationMode: "multiplication",
+    selectedCharacter: "bifly",
+    sessionToken: "signed.test-session"
+  });
+  expect(submittedScores[0].playTimeMs).toBeGreaterThanOrEqual(100);
   expect(errors).toEqual([]);
 });
 
@@ -696,8 +1175,8 @@ test("leaderboard capability check models local-only without browser errors", as
   });
   expect(localOnlyUi.publicAvailable).toBe(false);
   expect(localOnlyUi.buttonDisabled).toBe(true);
-  expect(localOnlyUi.copy).toContain("השיא נשמר במכשיר הזה");
-  expect(capabilityCount).toBe(1);
+  expect(localOnlyUi.copy).toContain("השיא שמור במכשיר");
+  expect(capabilityCount).toBeGreaterThanOrEqual(2);
   expect(postCount).toBe(0);
   expect(errors).toEqual([]);
 });
@@ -814,6 +1293,7 @@ test("personal daily maze uses a deterministic focus route and records completio
     }));
   });
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
+  await setNickname(page, "בודק יומי");
   await expect(page.locator("#daily-challenge-open")).toBeVisible();
   await expect(page.locator("#daily-home-status")).toContainText("10");
   const dailyEntryLayout = await page.locator("#daily-challenge-open").evaluate((element) => {

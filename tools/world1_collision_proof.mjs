@@ -22,8 +22,26 @@ const contentTypes = {
 
 function createStaticServer() {
   return createServer(async (request, response) => {
+    const url = new URL(request.url || "/", "http://127.0.0.1");
+    if (url.pathname === "/api/champions") {
+      response.writeHead(200, {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store"
+      });
+      response.end(JSON.stringify({
+        publicAvailable: false,
+        publicSubmissionsAvailable: false,
+        code: "leaderboard_not_configured",
+        message: "טבלת השיאים אינה פעילה בסביבת ההוכחה המקומית."
+      }));
+      return;
+    }
+    if (url.pathname === "/favicon.ico") {
+      response.writeHead(204, { "cache-control": "no-store" });
+      response.end();
+      return;
+    }
     try {
-      const url = new URL(request.url || "/", "http://127.0.0.1");
       const filePath = await resolveStaticFile(root, url.pathname);
       const bytes = await readFile(filePath);
       response.writeHead(200, {
@@ -247,7 +265,11 @@ async function captureMobileMovement(browser, baseUrl) {
   const viewport = { width: 390, height: 844 };
   const { context, page, browserErrors } = await openLevel(browser, baseUrl, viewport);
   try {
-    const placement = await page.evaluate(() => window.__mathMazeRuntime.setPlayerCellForVerification(17, 12));
+    // Cell (7, 12) is the first open lane immediately to the right of a wall
+    // in the canonical v6 layout. Keep the blocked-movement scenario tied to
+    // an actual wall instead of the former cell (17, 12), whose left neighbor
+    // became walkable when the authored maze was widened.
+    const placement = await page.evaluate(() => window.__mathMazeRuntime.setPlayerCellForVerification(7, 12));
     const recordingActors = await page.evaluate(() => (
       window.__mathMazeRuntime.setEnemyCellsForVerification([
         { x: 26, y: 3 },
@@ -461,7 +483,16 @@ try {
   if (Math.abs((mobile.realSwipeUpRun?.player?.x ?? 0) - 564) > 0.05) failures.push("real-swipe-turn-left-lane-center");
   if ((mobile.realSwipeUpRun?.player?.y ?? 720) >= 630) failures.push("real-swipe-legal-turn-stalled");
   if (mobile.realSwipeUpRun?.wallOverlapFrames || mobile.realSwipeUpRun?.collision?.playerOverlapsWall) failures.push("real-swipe-up-overlapped-wall");
-  if ((mobile.afterBlockedLeft?.player?.x || 0) < 415) failures.push("blocked-left-crossed-wall-boundary");
+  const blockedCell = mobile.placement?.cell;
+  const blockedGrid = mobile.afterBlockedLeft?.collision?.grid;
+  const blockedScenarioHasLeftWall = Boolean(
+    blockedCell
+      && blockedGrid?.[blockedCell.y]?.[blockedCell.x - 1] === "1"
+  );
+  if (!blockedScenarioHasLeftWall) failures.push("blocked-left-scenario-is-not-blocked");
+  if (mobile.afterBlockedLeft?.collision?.playerCell?.x !== blockedCell?.x) {
+    failures.push("blocked-left-crossed-wall-boundary");
+  }
   if (Math.abs((mobile.afterBlockedLeft?.player?.y || 0) - 300) > 0.1) failures.push("blocked-left-drifted-vertically");
   if ((mobile.afterOpenLane?.player?.x || 0) < 515) failures.push("open-horizontal-lane-did-not-move");
   if ((mobile.afterOpenVerticalLane?.player?.y || 0) < 350) failures.push("open-vertical-lane-did-not-move");

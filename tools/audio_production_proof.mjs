@@ -1,6 +1,6 @@
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
-import { mkdir, writeFile } from "node:fs/promises";
+import { access, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
@@ -13,6 +13,21 @@ const server = spawn("python3", ["-m", "http.server", "4173", "--bind", "127.0.0
 });
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function browserLaunchOptions() {
+  const options = { headless: true };
+  const installedBrowsers = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  ];
+  for (const executablePath of installedBrowsers) {
+    try {
+      await access(executablePath);
+      return { ...options, executablePath };
+    } catch {}
+  }
+  return options;
+}
 
 async function waitForServer() {
   for (let attempt = 0; attempt < 40; attempt += 1) {
@@ -27,7 +42,7 @@ async function waitForServer() {
 
 try {
   await waitForServer();
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch(await browserLaunchOptions());
   const desktop = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const page = await desktop.newPage();
   await page.goto("http://127.0.0.1:4173/?verify=1", { waitUntil: "domcontentloaded" });

@@ -342,6 +342,25 @@ html[data-language="en"] #question-feedback {
   animation: hudLifeLoss 620ms ease;
 }
 
+.metric-lives.hud-life-loss::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  z-index: 4;
+  width: 25px;
+  height: 23px;
+  background: #ff4c5f;
+  clip-path: polygon(50% 92%, 10% 54%, 6% 36%, 12% 21%, 25% 12%, 38% 14%, 50% 27%, 62% 14%, 75% 12%, 88% 21%, 94% 36%, 90% 54%);
+  filter:
+    drop-shadow(0 0 5px rgba(255, 76, 95, 0.94))
+    drop-shadow(0 0 10px rgba(255, 76, 95, 0.7));
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+  animation: hudHeartBreak 760ms cubic-bezier(0.2, 0.78, 0.22, 1);
+}
+
 .hud-life-gain,
 .hud-mission-progress,
 .hud-mission-complete,
@@ -412,6 +431,27 @@ html[data-language="en"] #question-feedback {
   }
   54% {
     transform: translateX(-2px);
+  }
+}
+
+@keyframes hudHeartBreak {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.62);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -58%) scale(1.32);
+  }
+  46% {
+    opacity: 1;
+    filter: saturate(1.35);
+    transform: translate(-50%, -78%) rotate(-9deg) scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    filter: saturate(0.55);
+    transform: translate(-50%, -148%) rotate(14deg) scale(0.38);
   }
 }
 
@@ -986,7 +1026,8 @@ html[data-game-state="leaderboard"] .hud * {
   .hud-mission-complete,
   .hud-progress-complete,
   .metric[data-hud-feedback]::after,
-  .progress-wrap[data-hud-feedback]::after {
+  .progress-wrap[data-hud-feedback]::after,
+  .metric-lives.hud-life-loss::before {
     animation: none;
   }
 }

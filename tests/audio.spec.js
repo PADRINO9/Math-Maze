@@ -26,6 +26,11 @@ test("production audio loads, changes music scene, ducks for a question and play
   expect(gameplay.currentScene).toBe("ice");
   expect(gameplay.musicEnabled).toBe(true);
   expect(gameplay.loadErrors).toBe(0);
+  await expect.poll(
+    () => page.evaluate(() => window.KaflulAudio.getDiagnostics().criticalReady)
+  ).toBe(true);
+  const preloadDiagnostics = await page.evaluate(() => window.KaflulAudio.getDiagnostics());
+  expect(preloadDiagnostics.criticalLoadedCount).toBe(13);
 
   const question = await page.evaluate(() => window.__mathMazeRuntime.openQuestionForVerification());
   expect(question.answer).toBeGreaterThan(0);

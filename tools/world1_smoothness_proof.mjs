@@ -90,6 +90,8 @@ async function runLiveMovementAudit(browser, baseUrl, viewport, { record = false
       window.__mathMazeRuntime?.gameReady
       && window.__mathMazeRuntime?.resumeLiveGameplayForVerification
       && window.__mathMazeRuntime?.getPlayerSnapshot
+      && window.__mathMazeRuntime?.getPresentedPlayerSnapshot
+      && window.__mathMazeRuntime?.getMovementPresentationDiagnostics
     ));
 
     const liveResult = await page.evaluate(async ({ shouldRecord }) => {
@@ -167,7 +169,7 @@ async function runLiveMovementAudit(browser, baseUrl, viewport, { record = false
 
       const samples = [];
       let previousTime = await nextFrame();
-      let previousPlayer = runtime.getPlayerSnapshot();
+      let previousPlayer = runtime.getPresentedPlayerSnapshot();
       for (let index = 0; index < 90; index += 1) {
         if (index === 24) {
           const stallStartedAt = performance.now();
@@ -177,7 +179,7 @@ async function runLiveMovementAudit(browser, baseUrl, viewport, { record = false
           }
         }
         const now = await nextFrame();
-        const player = runtime.getPlayerSnapshot();
+        const player = runtime.getPresentedPlayerSnapshot();
         samples.push({
           index,
           deltaMs: now - previousTime,
@@ -200,6 +202,8 @@ async function runLiveMovementAudit(browser, baseUrl, viewport, { record = false
         samples,
         recording,
         finalPlayer: runtime.getPlayerSnapshot(),
+        finalPresentedPlayer: runtime.getPresentedPlayerSnapshot(),
+        presentationDiagnostics: runtime.getMovementPresentationDiagnostics(),
         collision: runtime.getMazeCollisionSnapshot()
       };
     }, { shouldRecord: record });
@@ -213,6 +217,22 @@ async function runLiveMovementAudit(browser, baseUrl, viewport, { record = false
     }
 
     const summary = summarizeSamples(liveResult.samples);
+    const simulationStepPx = liveResult.finalPlayer.speed
+      * liveResult.presentationDiagnostics.simulationStepSeconds;
+    const modeledHighRefresh = {
+      displayHz: 120,
+      simulationHz: Math.round(1 / liveResult.presentationDiagnostics.simulationStepSeconds),
+      beforeInterpolation: {
+        presentedStepsPx: [0, simulationStepPx],
+        maximumStepPx: simulationStepPx,
+        repeatedPositionFramesPerCycle: 1
+      },
+      afterInterpolation: {
+        presentedStepsPx: [simulationStepPx / 2, simulationStepPx / 2],
+        maximumStepPx: simulationStepPx / 2,
+        repeatedPositionFramesPerCycle: 0
+      }
+    };
     return {
       viewport,
       screenshot: path.relative(root, screenshotPath),
@@ -222,6 +242,9 @@ async function runLiveMovementAudit(browser, baseUrl, viewport, { record = false
       ...summary,
       wallOverlapSamples: liveResult.samples.filter((sample) => sample.overlapsWall).length,
       finalPlayer: liveResult.finalPlayer,
+      finalPresentedPlayer: liveResult.finalPresentedPlayer,
+      presentationDiagnostics: liveResult.presentationDiagnostics,
+      modeledHighRefresh,
       collision: liveResult.collision,
       errors,
       passed: summary.movement.maxStepPx <= 6.2
@@ -283,6 +306,7 @@ try {
       movement: mobile.movement,
       wallOverlapSamples: mobile.wallOverlapSamples,
       videoBytes: mobile.videoBytes,
+      modeledHighRefresh: mobile.modeledHighRefresh,
       passed: mobile.passed
     },
     passed: report.passed

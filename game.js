@@ -581,7 +581,7 @@
     id: "world1-sun-garden-approved-v2",
     locked: true,
     authoredBoardSrc: "assets/maze/world1/sun-garden/board-v3.png",
-    navigationVersion: "world1-canonical-semantic-layout-v5",
+    navigationVersion: "world1-canonical-semantic-layout-v6",
     chestCell: Object.freeze({ x: 23, y: 18 }),
     actorScale: Object.freeze({
       playerPhone: 0.9,
@@ -598,14 +598,26 @@
   });
   const WORLD_ONE_AUTHORED_BOARD_SRC = WORLD_ONE_RELEASE_BASELINE.authoredBoardSrc;
   const WORLD_ONE_GAMEPLAY_MAZE_VERSION = WORLD_ONE_RELEASE_BASELINE.navigationVersion;
-  const WORLD_ONE_CORRIDOR_REPAIR = Object.freeze({
-    x: 23,
-    y: 12,
-    width: 4,
-    height: 1,
-    sourceX: 27,
-    sourceY: 13
-  });
+  const WORLD_ONE_CORRIDOR_REPAIRS = Object.freeze([
+    Object.freeze({
+      x: 23,
+      y: 12,
+      width: 4,
+      height: 1,
+      sourceX: 27,
+      sourceY: 13,
+      cue: "center-right-seam"
+    }),
+    Object.freeze({
+      x: 14,
+      y: 12,
+      width: 3,
+      height: 1,
+      sourceX: 27,
+      sourceY: 13,
+      cue: "reported-yellow-light-pocket"
+    })
+  ]);
   const WORLD_ONE_AUTHORED_ACTOR_SCALE = WORLD_ONE_RELEASE_BASELINE.actorScale;
   // Canonical gameplay topology for level one. The production board was
   // aligned to these lane centers during export; visual assets never select or
@@ -623,7 +635,7 @@
     "##..###..#######..###..########..###..##",
     "##..###..#######...#...########..###..##",
     "##..###..#######...#...#..#####..###..##",
-    "##..###.......###................###..##",
+    "##..###..........................###..##",
     "##...........####......####...........##",
     "##...........####......####...........##",
     "##..########.###.......####.########..##",
@@ -1051,11 +1063,44 @@
 
   const BOSS_CONFIG = {
     stage1: {
+      id: "sun-garden-warden",
+      name: "שומר-השמש",
+      nameEn: "Sun Warden",
+      title: "שומר גן השמש",
+      titleEn: "Sun Garden Guardian",
+      worldIndex: 0,
+      worldLabel: "גן השמש",
+      worldLabelEn: "Sun Garden",
+      actor: {
+        row: 1,
+        size: 130,
+        footColor: "#8bd17c",
+        motionColor: "#2dd4bf",
+        coreColor: "#f6bd45",
+        theme: "sun-garden",
+        filter: "hue-rotate(-105deg) saturate(0.84) sepia(0.48) brightness(1.08) contrast(1.04)"
+      },
+      accent: "#f6bd45",
+      glow: "rgba(45, 212, 191, 0.78)",
+      eyeColor: "#efffd2",
+      width: 134,
+      height: 132,
+      collisionRadius: 24,
+      speedMultiplier: 1.34,
+      spriteBlendMode: "multiply",
+      overlayDetails: false
+    },
+    stage2: {
       id: "magma-bastion",
       name: "לבת-הר",
-      title: "בוס שלב 1",
-      sheetSource: "assets/bosses/stage-1-boss-sprite.png",
-      sourceRect: { x: 0, y: 0, width: 410, height: 360 },
+      nameEn: "Magma Bastion",
+      title: "שליט עולם הלבה",
+      titleEn: "Lava World Overlord",
+      worldIndex: 1,
+      worldLabel: "עולם הלבה",
+      worldLabelEn: "Lava World",
+      sheetSource: BOSS_ACTOR_SHEET.src,
+      sourceRect: { x: 0, y: 0, width: 256, height: 256 },
       actor: {
         row: 0,
         size: 126,
@@ -1069,74 +1114,61 @@
       width: 148,
       height: 112,
       collisionRadius: 24,
-      speedMultiplier: 1.34,
-      spriteBlendMode: "multiply",
-      overlayDetails: false
-    },
-    stage2: {
-      id: "frostmaw",
-      name: "שן-הקרחון",
-      title: "בוס שלב 2",
-      sheetSource: "assets/bosses/stage-2-boss-sprite.png",
-      sourceRect: { x: 0, y: 0, width: 380, height: 600 },
-      actor: {
-        row: 1,
-        size: 122,
-        footColor: "#bdf9ff",
-        motionColor: "#69e7ff",
-        coreColor: "#e8fdff"
-      },
-      accent: "#9ef7ff",
-      glow: "rgba(104, 225, 244, 0.78)",
-      eyeColor: "#69e7ff",
-      width: 124,
-      height: 148,
-      collisionRadius: 23,
       speedMultiplier: 1.38,
       spriteBlendMode: "multiply",
       overlayDetails: false
     },
     stage3: {
-      id: "mire-tyrant",
-      name: "מלך-הביצה",
-      title: "בוס שלב 3",
-      sheetSource: "assets/bosses/stage-3-boss-sprite.png",
-      sourceRect: { x: 0, y: 0, width: 430, height: 430 },
+      id: "ancient-rune-sentinel",
+      name: "שומר-הרונים",
+      nameEn: "Rune Sentinel",
+      title: "מגן עולם העתיקות",
+      titleEn: "Ancient World Sentinel",
+      worldIndex: 2,
+      worldLabel: "עולם העתיקות",
+      worldLabelEn: "Ancient World",
+      sheetSource: BOSS_ACTOR_SHEET.src,
+      sourceRect: { x: 0, y: 512, width: 256, height: 256 },
       actor: {
         row: 2,
         size: 128,
         footColor: "#d6bd78",
-        motionColor: "#9bd846",
-        coreColor: "#67d98e"
+        motionColor: "#27e0c3",
+        coreColor: "#f0d69a"
       },
-      accent: "#9bd846",
-      glow: "rgba(155, 216, 70, 0.74)",
-      eyeColor: "#ffe66d",
-      width: 154,
-      height: 126,
+      accent: "#27e0c3",
+      glow: "rgba(39, 224, 195, 0.74)",
+      eyeColor: "#f0d69a",
+      width: 132,
+      height: 132,
       collisionRadius: 25,
       speedMultiplier: 1.36,
       spriteBlendMode: "multiply",
       overlayDetails: false
     },
     stage4: {
-      id: "eclipse-monarch",
-      name: "כתר-הליקוי",
-      title: "בוס שלב 4",
-      sheetSource: "assets/bosses/stage-4-boss-sprite.png",
-      sourceRect: { x: 0, y: 0, width: 340, height: 620 },
+      id: "diamond-monarch",
+      name: "מלך-היהלום",
+      nameEn: "Diamond Monarch",
+      title: "שליט עולם היהלומים",
+      titleEn: "Diamond World Monarch",
+      worldIndex: 3,
+      worldLabel: "עולם היהלומים",
+      worldLabelEn: "Diamond World",
+      sheetSource: BOSS_ACTOR_SHEET.src,
+      sourceRect: { x: 0, y: 768, width: 256, height: 256 },
       actor: {
         row: 3,
         size: 124,
-        footColor: "#d7c8ff",
-        motionColor: "#a66bff",
+        footColor: "#cffff8",
+        motionColor: "#55ffd6",
         coreColor: "#ff5fd7"
       },
-      accent: "#a66bff",
-      glow: "rgba(166, 107, 255, 0.8)",
+      accent: "#b96cff",
+      glow: "rgba(85, 255, 214, 0.76)",
       eyeColor: "#ff5fd7",
-      width: 124,
-      height: 152,
+      width: 128,
+      height: 132,
       collisionRadius: 23,
       speedMultiplier: 1.42,
       spriteBlendMode: "multiply",
@@ -1163,6 +1195,7 @@
     bosses: Object.fromEntries(Object.entries(BOSS_CONFIG).map(([bossKey]) => [bossKey, new Image()])),
     bossActorSheet: new Image(),
     worldOneAuthoredBoard: new Image(),
+    sunEruptionTrap: new Image(),
     mazeWorlds: Object.fromEntries(Object.entries(MAZE_WORLD_SHEETS).map(([worldKey]) => [worldKey, new Image()])),
     mazeWangWalls: Object.fromEntries(Object.keys(MAZE_CC0_WANG_SHEETS).map((worldKey) => [worldKey, new Image()])),
     mazeAxonometricWalls: Object.fromEntries(Object.keys(MAZE_AXONOMETRIC_WALL_ATLASES).map((worldKey) => [worldKey, new Image()])),
@@ -1223,6 +1256,8 @@
   GAME_ASSETS.worldOneAuthoredBoard.decoding = "async";
   GAME_ASSETS.worldOneAuthoredBoard.onload = () => mazeStaticBoardCache.clear();
   GAME_ASSETS.worldOneAuthoredBoard.src = WORLD_ONE_AUTHORED_BOARD_SRC;
+  GAME_ASSETS.sunEruptionTrap.decoding = "async";
+  GAME_ASSETS.sunEruptionTrap.src = "assets/generated/hazards/sun-eruption-trap-v1.png";
   for (const [worldKey, image] of Object.entries(GAME_ASSETS.mazeWorlds)) {
     if (worldKey === "ice") continue;
     image.decoding = "async";
@@ -1247,6 +1282,10 @@
   GAME_ASSETS.arcadeChest.closedRight.src = "assets/generated/arcade-chest-closed-right-v1.png";
   GAME_ASSETS.arcadeChest.openRight.decoding = "async";
   GAME_ASSETS.arcadeChest.openRight.src = "assets/generated/arcade-chest-open-right-v1.png";
+
+  const LEADERBOARD_ENDPOINT = window.Capacitor?.isNativePlatform?.()
+    ? "https://math-maze-il.vercel.app/api/champions"
+    : "/api/champions";
 
   const CONFIG = {
     regularAnswersPerStage: 24,
@@ -1283,7 +1322,25 @@
     },
     ghostBlast: {
       radiusTiles: 2.35,
-      effectDuration: 0.72
+      effectDuration: 0.72,
+      particles: {
+        mobile: {
+          perGhost: 12,
+          perGhostSpark: 4,
+          center: 22,
+          maxActive: 96,
+          maxVisible: 18,
+          shadowBlur: 0
+        },
+        desktop: {
+          perGhost: 38,
+          perGhostSpark: 16,
+          center: 52,
+          maxActive: Number.POSITIVE_INFINITY,
+          maxVisible: Number.POSITIVE_INFINITY,
+          shadowBlur: 12
+        }
+      }
     },
     rewardPower: {
       durationSeconds: 10,
@@ -1361,15 +1418,15 @@
         decorRgb: "114, 198, 109",
         hazard: {
           type: "ice-slick",
-          label: "תעלת אור פראית",
-          warning: "האור מתפרץ בשביל!",
-          activeText: "עוקפים את תעלת האור",
+          label: "מלכודת התפרצות שמש",
+          warning: "זהירות — השמש מתפרצת!",
+          activeText: "לא דורכים על האש!",
           duration: 22,
           telegraph: 1.6,
           intervalMin: 18,
           intervalMax: 30,
-          color: "#2dd4bf",
-          hitText: "האור הסיט אותנו מהמסלול"
+          color: "#ff3b22",
+          hitText: "אוי! מלכודת השמש שרפה חיים"
         },
         enemyColors: GAME_THEME.enemies.palettes[0]
       },
@@ -1495,10 +1552,12 @@
       "הכול בסדר, ננסה שוב"
     ],
     leaderboard: {
-      endpoint: "/api/champions",
+      endpoint: LEADERBOARD_ENDPOINT,
       limit: 50,
-      minimumCorrectAnswers: 25,
-      requestTimeoutMs: 6000
+      minimumCorrectAnswers: 1,
+      requestTimeoutMs: 6000,
+      retryDelayMs: 2500,
+      retryCooldownMs: 15000
     }
   };
 
@@ -1513,7 +1572,7 @@
       loadingSubtitle: "רגע קטן ומתחילים",
       loadingProgress: "טעינת המשחק",
       loadingNote: "כמעט מוכנים",
-      defaultNickname: "אלוף כפלול",
+      defaultNickname: "",
       characters: {
         bifly: "ביפלי",
         nabatick: "נבטיק"
@@ -1564,6 +1623,7 @@
         characterChoice: "בחירת דמות",
         worldsLabel: "עולמות קיימים",
         playNow: "שחק עכשיו",
+        chooseNicknameToPlay: "בחרו כינוי כדי לשחק",
         startGame: "התחל משחק",
         mainNav: "ניווט ראשי",
         navGame: "משחק",
@@ -1592,9 +1652,15 @@
         settingsClose: "סגור הגדרות",
         settingsKicker: "פרופיל מקומי",
         settingsTitle: "הגדרות שחקן",
-        settingsCopy: "הכינוי, סוגי התרגילים והצלילים נשמרים על המכשיר הזה.",
+        settingsCopy: "בחרו כינוי אישי שיופיע בטבלת אלוף האלופים. שאר ההעדפות נשמרות במכשיר הזה.",
         nickname: "כינוי השחקן",
-        nicknamePlaceholder: "אלוף כפלול",
+        nicknamePlaceholder: "כתבו כינוי",
+        nicknameMissing: "עדיין אין כינוי",
+        nicknameHint: "הכינוי יופיע בטבלת אלוף האלופים. אין להשתמש בקללות או במילים פוגעניות.",
+        nicknameRequired: "לפני שמתחילים, כתבו כאן כינוי ושמרו אותו.",
+        nicknameInappropriate: "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר.",
+        nicknameInvalidCharacters: "אפשר להשתמש באותיות מכל שפה, מספרים, רווח, נקודה, מקף או קו תחתון.",
+        nicknameTooLong: "הכינוי יכול לכלול עד 14 תווים.",
         operationModeLegend: "אילו תרגילים יופיעו?",
         operationModeChoice: "בחירת סוגי תרגילים",
         operationModeCopy: "תרגילי החילוק בנויים מאותן עובדות של לוח הכפל, תמיד ללא שארית.",
@@ -1755,7 +1821,7 @@
       loadingSubtitle: "Almost ready",
       loadingProgress: "Game loading",
       loadingNote: "Getting ready",
-      defaultNickname: "Kaflul Champion",
+      defaultNickname: "",
       characters: {
         bifly: "Bifly",
         nabatick: "Nabatik"
@@ -1806,6 +1872,7 @@
         characterChoice: "Choose a character",
         worldsLabel: "Available worlds",
         playNow: "Play Now",
+        chooseNicknameToPlay: "Choose a nickname to play",
         startGame: "Start Game",
         mainNav: "Main navigation",
         navGame: "Game",
@@ -1834,9 +1901,15 @@
         settingsClose: "Close settings",
         settingsKicker: "Local profile",
         settingsTitle: "Player Settings",
-        settingsCopy: "Your nickname, exercise types, and sound preferences are saved on this device.",
+        settingsCopy: "Choose a nickname for the Champions leaderboard. Your other preferences stay saved on this device.",
         nickname: "Player nickname",
-        nicknamePlaceholder: "Kaflul Champion",
+        nicknamePlaceholder: "Enter a nickname",
+        nicknameMissing: "No nickname yet",
+        nicknameHint: "Your nickname appears on the Champions leaderboard. Profanity and offensive words are not allowed.",
+        nicknameRequired: "Before playing, enter a nickname here and save it.",
+        nicknameInappropriate: "That nickname contains language that is not suitable for the game. Choose another one.",
+        nicknameInvalidCharacters: "Use letters from any language, numbers, spaces, periods, hyphens, or underscores.",
+        nicknameTooLong: "A nickname can contain up to 14 characters.",
         operationModeLegend: "Which exercises should appear?",
         operationModeChoice: "Choose exercise types",
         operationModeCopy: "Division questions use the same multiplication facts and always divide evenly.",
@@ -2164,6 +2237,9 @@
     modePanel: document.getElementById("mode-panel"),
     difficultyPanel: document.getElementById("difficulty-panel"),
     settingsPanel: document.getElementById("settings-panel"),
+    settingsNicknameSection: document.getElementById("settings-nickname-section"),
+    settingsNicknameHint: document.getElementById("settings-nickname-hint"),
+    settingsNameError: document.getElementById("settings-name-error"),
     settingsSoundButton: document.getElementById("settings-sound-button"),
     settingsSoundLabel: document.getElementById("settings-sound-label"),
     audioMasterVolume: document.getElementById("audio-master-volume"),
@@ -2252,6 +2328,7 @@
     pauseSoundLabel: document.getElementById("pause-sound-label"),
     pauseMenuButton: document.getElementById("pause-menu-button"),
     pauseNameInput: document.getElementById("pause-player-name-input"),
+    pauseNameError: document.getElementById("pause-name-error"),
     pauseSaveNameButton: document.getElementById("pause-save-name-button"),
     endScreen: document.getElementById("end-screen"),
     victoryConfetti: document.querySelector("#end-screen .victory-confetti"),
@@ -2305,6 +2382,10 @@
     leaderboardDifficultyFilter: document.getElementById("leaderboard-difficulty-filter"),
     leaderboardCopy: document.getElementById("leaderboard-copy"),
     leaderboardPublicChip: document.getElementById("leaderboard-public-chip"),
+    leaderboardPlayerSummary: document.getElementById("leaderboard-player-summary"),
+    leaderboardPersonalBest: document.getElementById("leaderboard-personal-best"),
+    leaderboardWorldRank: document.getElementById("leaderboard-world-rank"),
+    leaderboardTotalPlayers: document.getElementById("leaderboard-total-players"),
     endLeaderboardButton: document.getElementById("end-leaderboard-button"),
     publishScorePanel: document.getElementById("publish-score-panel"),
     publishScoreTitle: document.getElementById("publish-score-title"),
@@ -2420,6 +2501,21 @@
 
   function getPersonalBestForSelection(mode = state.mode, difficulty = state.difficulty) {
     return SYSTEMS.getPersonalBest(state.save, mode, difficulty);
+  }
+
+  function getGlobalPersonalBest() {
+    const savedBests = Object.values(state.save?.personalBests || {})
+      .map((entry) => Number(entry?.score) || 0);
+    const localLeaderboardBests = (state.save?.leaderboardEntries || [])
+      .filter((entry) => entry?.playerId === state.playerId || entry?.nickname === state.playerName)
+      .map((entry) => Number(entry?.score) || 0);
+    return Math.max(
+      0,
+      Number(storage.get(CONFIG.storageKeys.bestScore, "0")) || 0,
+      Number(state.publicLeaderboard?.playerSummary?.score) || 0,
+      ...savedBests,
+      ...localLeaderboardBests
+    );
   }
 
   function getLevelIndexForAnswers(correctAnswers) {
@@ -2673,6 +2769,7 @@
     setText("#settings-panel .phase5-sheet-header p", text.settingsCopy);
     setText("label[for='player-name-input']", text.nickname);
     els.playerNameInput?.setAttribute("placeholder", text.nicknamePlaceholder);
+    setText("#settings-nickname-hint", text.nicknameHint);
     setAttr(".settings-operation-mode", "aria-label", text.operationModeChoice);
     setText("#operation-mode-legend", text.operationModeLegend);
     setText("#operation-mode-copy", text.operationModeCopy);
@@ -2840,8 +2937,10 @@
     bossIntro: null,
     bossCinematic: null,
     bossDefeatTransition: null,
+    finalBossDefeated: false,
     finalBossExplosion: null,
     ghostBlastEffect: null,
+    hazardImpact: null,
     hazards: [],
     nextHazardAt: 0,
     particles: [],
@@ -2915,7 +3014,14 @@
     publicLeaderboard: {
       status: "localOnly",
       promise: null,
-      checked: false
+      checked: false,
+      playerSummary: null,
+      sessionToken: null,
+      sessionExpiresAt: 0,
+      sessionPromise: null,
+      summaryPromise: null,
+      lastCheckedAt: 0,
+      lastError: null
     },
     sessionStartedAt: null,
     activePlayTimeMs: 0,
@@ -3804,6 +3910,125 @@
     };
   }
 
+  function analyzeMazeTopology(maze, levelIndex = 0) {
+    const rows = maze.length;
+    const cols = maze[0]?.length || 0;
+    const isOpen = (x, y) => (
+      x >= 0
+      && y >= 0
+      && x < cols
+      && y < rows
+      && maze[y][x] !== 1
+    );
+    const openCells = [];
+    const isolatedCells = [];
+    const deadEndCells = [];
+
+    for (let y = 0; y < rows; y += 1) {
+      for (let x = 0; x < cols; x += 1) {
+        if (!isOpen(x, y)) continue;
+        openCells.push({ x, y });
+        const openNeighborCount = DIR_NAMES.reduce((count, direction) => {
+          const vector = DIRS[direction];
+          return count + (isOpen(x + vector.x, y + vector.y) ? 1 : 0);
+        }, 0);
+        if (openNeighborCount === 0) isolatedCells.push({ x, y });
+        if (openNeighborCount === 1) deadEndCells.push({ x, y });
+      }
+    }
+
+    const visited = new Set();
+    const components = [];
+    for (const origin of openCells) {
+      const originKey = cellKey(origin.x, origin.y);
+      if (visited.has(originKey)) continue;
+      const queue = [origin];
+      const cells = [];
+      visited.add(originKey);
+      for (let index = 0; index < queue.length; index += 1) {
+        const cell = queue[index];
+        cells.push(cell);
+        for (const direction of DIR_NAMES) {
+          const vector = DIRS[direction];
+          const next = { x: cell.x + vector.x, y: cell.y + vector.y };
+          const key = cellKey(next.x, next.y);
+          if (isOpen(next.x, next.y) && !visited.has(key)) {
+            visited.add(key);
+            queue.push(next);
+          }
+        }
+      }
+      components.push(cells);
+    }
+
+    const criticalCells = [
+      { ...PLAYER_START, cue: "player-start" },
+      { ...CENTER_CELL, cue: "boss-gate" },
+      levelIndex === 0
+        ? { ...WORLD_ONE_RELEASE_BASELINE.chestCell, cue: "arcade-chest" }
+        : { x: CENTER_CELL.x + 3, y: CENTER_CELL.y + 3, cue: "arcade-chest" }
+    ];
+    const startComponent = components.find((component) => (
+      component.some((cell) => cell.x === PLAYER_START.x && cell.y === PLAYER_START.y)
+    )) || [];
+    const startReachable = new Set(startComponent.map((cell) => cellKey(cell.x, cell.y)));
+    const blockedCriticalCells = criticalCells.filter((cell) => (
+      !isOpen(cell.x, cell.y) || !startReachable.has(cellKey(cell.x, cell.y))
+    ));
+    const reportedPassageCells = levelIndex === 0
+      ? [13, 14, 15, 16, 17].map((x) => ({ x, y: 12 }))
+      : [];
+    const reportedPassageOpen = reportedPassageCells.every((cell) => isOpen(cell.x, cell.y));
+    const reportedPocketExitCount = levelIndex === 0
+      ? DIR_NAMES.reduce((count, direction) => {
+        const vector = DIRS[direction];
+        return count + (isOpen(13 + vector.x, 12 + vector.y) ? 1 : 0);
+      }, 0)
+      : null;
+    const failures = [];
+    if (openCells.length === 0) failures.push({ type: "missing-walkable-cells" });
+    if (components.length !== 1) {
+      failures.push({
+        type: "disconnected-walkable-components",
+        count: components.length,
+        sizes: components.map((component) => component.length)
+      });
+    }
+    if (isolatedCells.length > 0) {
+      failures.push({ type: "isolated-walkable-cells", cells: isolatedCells });
+    }
+    if (blockedCriticalCells.length > 0) {
+      failures.push({ type: "blocked-critical-cells", cells: blockedCriticalCells });
+    }
+    if (levelIndex === 0 && (!reportedPassageOpen || reportedPocketExitCount < 2)) {
+      failures.push({
+        type: "reported-yellow-light-pocket-still-blocked",
+        passageCells: reportedPassageCells,
+        exitCount: reportedPocketExitCount
+      });
+    }
+
+    return {
+      levelIndex,
+      world: CONFIG.levels[levelIndex]?.enemyVisualStyle || "unknown",
+      passed: failures.length === 0,
+      walkableCellCount: openCells.length,
+      connectedComponentCount: components.length,
+      reachableFromPlayerStart: startComponent.length,
+      isolatedCells,
+      deadEndCells,
+      blockedCriticalCells,
+      reportedPassage: levelIndex === 0
+        ? {
+          cells: reportedPassageCells,
+          open: reportedPassageOpen,
+          pocketExitCount: reportedPocketExitCount
+        }
+        : null,
+      failures
+    };
+  }
+
   function seedCollectibles() {
     state.collectibles.clear();
     state.collectiblesRevision += 1;
@@ -4106,6 +4331,7 @@
       blinkTimer: 1.4 + Math.random() * 2.2,
       blinkDuration: 0,
       hitAnimation: 0,
+      hazardReaction: null,
       invulnerable: 0,
       questionAnimation: 0,
       rewardAnimation: 0,
@@ -4300,12 +4526,16 @@
       return normalizeTargetCell(CENTER_CELL);
     }
     const playerCell = toCell(player.x, player.y);
+    const chestCell = getArcadeChestCell();
     const targetDistance = CONFIG.bossEncounter.spawnDistanceTiles;
     const candidates = state.reachableList.filter((cell) => {
       const dx = cell.x - playerCell.x;
       const dy = cell.y - playerCell.y;
       const distance = Math.hypot(dx, dy);
-      return distance >= targetDistance - 1.5 && distance <= targetDistance + 1.5;
+      const clearsChestLandmark = !chestCell || distanceCells(cell, chestCell) >= 2.5;
+      return clearsChestLandmark
+        && distance >= targetDistance - 1.5
+        && distance <= targetDistance + 1.5;
     });
     if (candidates.length === 0) {
       return normalizeTargetCell(CENTER_CELL);
@@ -4362,6 +4592,7 @@
       configKey: bossKey,
       name: bossDefinition.name,
       title: bossDefinition.title,
+      worldLabel: bossDefinition.worldLabel,
       definition: bossDefinition,
       x: pos.x,
       y: pos.y,
@@ -4408,6 +4639,8 @@
       vanishingEnemies,
       bossName: bossDefinition.name,
       bossTitle: bossDefinition.title,
+      bossWorldLabel: bossDefinition.worldLabel,
+      bossWorldLabelEn: bossDefinition.worldLabelEn,
       accent: bossDefinition.accent
     };
     state.bossIntro = {
@@ -4439,8 +4672,10 @@
     state.bossIntro = null;
     state.bossCinematic = null;
     state.bossDefeatTransition = null;
+    state.finalBossDefeated = false;
     state.finalBossExplosion = null;
     state.ghostBlastEffect = null;
+    state.hazardImpact = null;
     document.documentElement.classList.remove("boss-encounter-active");
     document.documentElement.removeAttribute("data-boss-health-remaining");
     state.hazards = [];
@@ -4521,8 +4756,10 @@
     state.bossIntro = null;
     state.bossCinematic = null;
     state.bossDefeatTransition = null;
+    state.finalBossDefeated = false;
     state.finalBossExplosion = null;
     state.ghostBlastEffect = null;
+    state.hazardImpact = null;
     state.hazards = [];
     state.nextHazardAt = 0;
     state.answerLocked = false;
@@ -4687,8 +4924,39 @@
     return SYSTEMS.validateNickname(value);
   }
 
+  function nicknameValidationMessage(validation) {
+    if (validation?.ok) {
+      return "";
+    }
+    const keyByCode = {
+      missing: "nicknameRequired",
+      inappropriate: "nicknameInappropriate",
+      invalid_characters: "nicknameInvalidCharacters",
+      too_long: "nicknameTooLong"
+    };
+    return uiStatic(keyByCode[validation?.code] || "nicknameRequired", validation?.error || "");
+  }
+
+  function setNicknameError(message = "", options = {}) {
+    const { home = true, settings = true } = options;
+    if (home && els.nameError) {
+      els.nameError.textContent = message;
+    }
+    if (settings && els.settingsNameError) {
+      els.settingsNameError.textContent = message;
+    }
+    if (els.playerNameInput) {
+      els.playerNameInput.setAttribute("aria-invalid", String(Boolean(message)));
+    }
+    els.settingsNicknameSection?.classList.toggle("has-error", Boolean(message));
+  }
+
+  function getSavedNicknameValidation() {
+    return normalizePlayerName(state.playerName || state.save.player.nickname);
+  }
+
   function persistSave() {
-    state.save.player.nickname = SYSTEMS.safeNickname(state.playerName || els.playerNameInput.value || state.save.player.nickname);
+    state.save.player.nickname = SYSTEMS.safeNickname(state.playerName || state.save.player.nickname);
     state.save.settings.selectedCharacter = state.characterId;
     state.save.settings.selectedDifficulty = state.difficulty;
     state.save.settings.selectedMode = state.mode;
@@ -4705,11 +4973,12 @@
 
   function updateBestScorePreview() {
     state.bestScore = getPersonalBestForSelection();
+    const globalBest = getGlobalPersonalBest();
     if (els.bestScore) {
-      els.bestScore.textContent = numberFormat.format(state.bestScore);
+      els.bestScore.textContent = numberFormat.format(globalBest);
     }
     if (els.menuPersonalBest) {
-      els.menuPersonalBest.textContent = numberFormat.format(state.bestScore);
+      els.menuPersonalBest.textContent = numberFormat.format(globalBest);
     }
   }
 
@@ -5216,7 +5485,16 @@
     if (!els.playerGreeting) {
       return;
     }
-    els.playerGreeting.textContent = SYSTEMS.safeNickname(state.playerName || state.save.player.nickname);
+    const nickname = getSavedNicknameValidation();
+    const missing = !nickname.ok;
+    els.playerGreeting.textContent = missing ? uiStatic("nicknameMissing") : nickname.value;
+    els.playerGreeting.closest(".home-player-card")?.classList.toggle("is-missing-nickname", missing);
+    els.startButton?.classList.toggle("needs-nickname", missing);
+    els.startButton?.setAttribute("aria-label", missing ? uiStatic("chooseNicknameToPlay") : uiStatic("playNow"));
+    const startLabel = els.startButton?.querySelector(".arcade-play-label");
+    if (startLabel) {
+      startLabel.textContent = missing ? uiStatic("chooseNicknameToPlay") : uiStatic("playNow");
+    }
   }
 
   function updateMenuLeaderboardPreview() {
@@ -5224,9 +5502,13 @@
       return;
     }
 
+    const personalBest = getGlobalPersonalBest();
+    const remoteSummary = state.publicLeaderboard.playerSummary;
+    const remoteRank = Number(remoteSummary?.rank) || null;
+    const remoteTotal = Number(remoteSummary?.totalPlayers) || 0;
+    const remoteNeeded = Number(remoteSummary?.scoreToNextRank);
     const mode = state.mode;
     const difficulty = state.difficulty;
-    const personalBest = getPersonalBestForSelection(mode, difficulty);
     const entries = SYSTEMS.getLeaderboardEntries(state.save, {
       mode,
       difficulty,
@@ -5238,20 +5520,42 @@
       || entry.id === state.latestLeaderboardEntryId
     ));
     const playerEntry = playerEntryIndex >= 0 ? entries[playerEntryIndex] : null;
-    const rank = playerEntryIndex >= 0 ? playerEntryIndex + 1 : null;
+    const rank = remoteRank;
 
     if (els.menuPersonalBest) {
       els.menuPersonalBest.textContent = numberFormat.format(personalBest);
     }
     if (els.menuRankValue) {
-      els.menuRankValue.textContent = rank ? String(rank) : "חדש";
+      els.menuRankValue.textContent = rank ? `#${numberFormat.format(rank)}` : "—";
+    }
+    if (els.leaderboardOpen) {
+      const rankLabel = rank
+        ? `מקום ${numberFormat.format(rank)} בעולם${remoteTotal ? ` מתוך ${numberFormat.format(remoteTotal)} שחקנים` : ""}`
+        : "עדיין אין מקום בדירוג העולמי";
+      els.leaderboardOpen.setAttribute("aria-label", `פתח אלוף האלופים. ${rankLabel}`);
+      els.leaderboardOpen.title = rankLabel;
     }
     if (!els.menuNextRank) {
       return;
     }
 
+    if (remoteRank === 1) {
+      els.menuNextRank.textContent = "אתם במקום הראשון בעולם — אלופי האלופים!";
+      return;
+    }
+    if (remoteRank) {
+      const needed = Number.isFinite(remoteNeeded) && remoteNeeded > 0 ? remoteNeeded : 1;
+      els.menuNextRank.textContent = `מקום ${numberFormat.format(remoteRank)} בעולם · עוד ${numberFormat.format(needed)} נקודות למקום ${numberFormat.format(remoteRank - 1)}`;
+      return;
+    }
+    if (state.publicLeaderboard.status === "checking") {
+      els.menuNextRank.textContent = "מעדכנים את המקום שלכם בעולם...";
+      return;
+    }
     if (!entries.length) {
-      els.menuNextRank.textContent = uiRuntime("noCategoryRank");
+      els.menuNextRank.textContent = personalBest > 0
+        ? "השיא שמור במכשיר וייכנס לדירוג כשיתחדש החיבור."
+        : "שחקו סיבוב ראשון כדי להיכנס לדירוג העולמי.";
       return;
     }
     if (!playerEntry) {
@@ -5260,17 +5564,7 @@
         : uiRuntime("firstRoundRank");
       return;
     }
-    if (rank === 1) {
-      els.menuNextRank.textContent = uiRuntime("categoryLeader");
-      return;
-    }
-
-    const nextScore = entries[playerEntryIndex - 1]?.score || playerEntry.score;
-    const needed = Math.max(1, nextScore - playerEntry.score + 1);
-    els.menuNextRank.textContent = formatTemplate(uiRuntime("pointsToRank"), {
-      points: numberFormat.format(needed),
-      rank: rank - 1
-    });
+    els.menuNextRank.textContent = "השיא שמור במכשיר וממתין לעדכון המקום בעולם.";
   }
 
   function getHeroGalleryCopy(characterId) {
@@ -5958,7 +6252,9 @@
   }
 
   function focusMenuSheet(sheet) {
-    const target = sheet.querySelector("[data-close-panel]")
+    const target = sheet === els.settingsPanel && !getSavedNicknameValidation().ok
+      ? els.playerNameInput
+      : sheet.querySelector("[data-close-panel]")
       || sheet.querySelector("input:checked:not(:disabled)")
       || sheet.querySelector("input:not(:disabled)")
       || sheet.querySelector("button:not([data-close-panel])")
@@ -6008,11 +6304,30 @@
     openMenuSheet(els.progressPanel, trigger);
   }
 
+  function requireNicknameBeforeGame(trigger = els.startButton) {
+    const nickname = getSavedNicknameValidation();
+    if (nickname.ok) {
+      return nickname;
+    }
+    const message = nicknameValidationMessage(nickname);
+    setNicknameError(message);
+    if (els.playerNameInput) {
+      els.playerNameInput.value = state.playerName || state.save.player.nickname || "";
+    }
+    closeHeroGallery({ restoreFocus: false });
+    setHomeNavActive(els.homeNavGame);
+    openMenuSheet(els.settingsPanel, trigger);
+    window.setTimeout(() => els.playerNameInput?.focus({ preventScroll: true }), 80);
+    playUiSound("lockedAction", { fromGesture: true });
+    return null;
+  }
+
   function saveNicknameFromSettings() {
     const nickname = normalizePlayerName(els.playerNameInput.value);
     if (!nickname.ok) {
-      els.nameError.textContent = nickname.error;
-      els.playerNameInput.focus();
+      setNicknameError(nicknameValidationMessage(nickname));
+      els.playerNameInput.focus({ preventScroll: true });
+      playUiSound("lockedAction", { fromGesture: true });
       return;
     }
 
@@ -6020,9 +6335,10 @@
     state.save.player.nickname = nickname.value;
     storage.set(CONFIG.storageKeys.nickname, nickname.value);
     persistSave();
-    els.nameError.textContent = "";
+    setNicknameError("");
     syncMenuSummary();
     closeMenuSheets();
+    playUiSound("notification", { fromGesture: true });
   }
 
   function saveNicknameFromPause() {
@@ -6031,7 +6347,12 @@
     }
     const nickname = normalizePlayerName(els.pauseNameInput.value);
     if (!nickname.ok) {
-      els.nameError.textContent = nickname.error;
+      const message = nicknameValidationMessage(nickname);
+      setNicknameError(message);
+      if (els.pauseNameError) {
+        els.pauseNameError.textContent = message;
+      }
+      els.pauseNameInput.setAttribute("aria-invalid", "true");
       els.pauseNameInput.focus({ preventScroll: true });
       return;
     }
@@ -6041,7 +6362,11 @@
     storage.set(CONFIG.storageKeys.nickname, nickname.value);
     persistSave();
     els.playerNameInput.value = nickname.value;
-    els.nameError.textContent = "";
+    setNicknameError("");
+    if (els.pauseNameError) {
+      els.pauseNameError.textContent = "";
+    }
+    els.pauseNameInput.setAttribute("aria-invalid", "false");
     syncMenuSummary();
     updatePauseScreen();
     playUiMotion(els.pauseSaveNameButton, "badgeAppearance");
@@ -6067,6 +6392,30 @@
     return SYSTEMS.getPublicLeaderboardUiState(state.publicLeaderboard.status, eligible);
   }
 
+  function renderLeaderboardPlayerSummary() {
+    const summary = state.publicLeaderboard.playerSummary;
+    const personalBest = Math.max(getGlobalPersonalBest(), Number(summary?.score) || 0);
+    const rank = Number(summary?.rank) || null;
+    const totalPlayers = Number(summary?.totalPlayers);
+
+    if (els.leaderboardPersonalBest) {
+      els.leaderboardPersonalBest.textContent = numberFormat.format(personalBest);
+    }
+    if (els.leaderboardWorldRank) {
+      els.leaderboardWorldRank.textContent = rank ? `#${numberFormat.format(rank)}` : "—";
+    }
+    if (els.leaderboardTotalPlayers) {
+      els.leaderboardTotalPlayers.textContent = Number.isFinite(totalPlayers)
+        ? numberFormat.format(totalPlayers)
+        : "—";
+    }
+    if (els.leaderboardPlayerSummary) {
+      els.leaderboardPlayerSummary.dataset.ranked = rank ? "true" : "false";
+    }
+    updateBestScorePreview();
+    updateMenuLeaderboardPreview();
+  }
+
   function syncPublicLeaderboardUi(eligible = false) {
     const uiState = getPublicLeaderboardUi(eligible);
 
@@ -6076,6 +6425,7 @@
     if (els.leaderboardPublicChip) {
       els.leaderboardPublicChip.textContent = uiState.publicChipText;
       els.leaderboardPublicChip.classList.toggle("is-unavailable", !uiState.publicAvailable);
+      els.leaderboardPublicChip.classList.toggle("is-active", uiState.publicAvailable);
     }
 
     if (els.publishScoreTitle) {
@@ -6101,14 +6451,24 @@
   function setPublicLeaderboardStatus(status) {
     state.publicLeaderboard.status = status === "available" || status === "checking" ? status : "localOnly";
     state.publicLeaderboard.checked = state.publicLeaderboard.status !== "checking";
+    if (state.publicLeaderboard.checked) {
+      state.publicLeaderboard.lastCheckedAt = Date.now();
+    }
     syncPublicLeaderboardUi(state.phase === "ended" && state.correctAnswers >= CONFIG.leaderboard.minimumCorrectAnswers);
+    updateMenuLeaderboardPreview();
   }
 
-  function checkPublicLeaderboardCapability() {
-    if (state.publicLeaderboard.status === "available") {
+  function checkPublicLeaderboardCapability(options = {}) {
+    const force = options.force === true;
+    if (!force && state.publicLeaderboard.status === "available") {
       return Promise.resolve(true);
     }
-    if (state.publicLeaderboard.checked && state.publicLeaderboard.status === "localOnly") {
+    if (
+      !force
+      && state.publicLeaderboard.checked
+      && state.publicLeaderboard.status === "localOnly"
+      && Date.now() - state.publicLeaderboard.lastCheckedAt < CONFIG.leaderboard.retryCooldownMs
+    ) {
       return Promise.resolve(false);
     }
     if (state.publicLeaderboard.promise) {
@@ -6123,10 +6483,12 @@
       .then((payload) => {
         const isAvailable = payload?.publicAvailable === true
           && payload?.publicSubmissionsAvailable === true;
+        state.publicLeaderboard.lastError = isAvailable ? null : payload?.code || "leaderboard_not_configured";
         setPublicLeaderboardStatus(isAvailable ? "available" : "localOnly");
         return isAvailable;
       })
-      .catch(() => {
+      .catch((error) => {
+        state.publicLeaderboard.lastError = error?.code || "leaderboard_unavailable";
         setPublicLeaderboardStatus("localOnly");
         return false;
       })
@@ -6135,6 +6497,44 @@
       });
 
     return state.publicLeaderboard.promise;
+  }
+
+  async function prepareLeaderboardSession() {
+    if (state.sessionKind !== "standard") {
+      return null;
+    }
+    if (
+      state.publicLeaderboard.sessionToken
+      && state.publicLeaderboard.sessionExpiresAt > Date.now() + 60_000
+    ) {
+      return state.publicLeaderboard.sessionToken;
+    }
+    if (state.publicLeaderboard.sessionPromise) {
+      return state.publicLeaderboard.sessionPromise;
+    }
+
+    state.publicLeaderboard.sessionPromise = (async () => {
+      const available = await checkPublicLeaderboardCapability();
+      if (!available) return null;
+      try {
+        const payload = await leaderboardRequest({
+          method: "POST",
+          endpoint: `${CONFIG.leaderboard.endpoint}?action=session`,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ playerId: state.playerId })
+        });
+        state.publicLeaderboard.sessionToken = String(payload?.sessionToken || "");
+        state.publicLeaderboard.sessionExpiresAt = Number(payload?.expiresAt) || 0;
+        return state.publicLeaderboard.sessionToken || null;
+      } catch (error) {
+        state.publicLeaderboard.lastError = error?.code || "leaderboard_session_failed";
+        return null;
+      }
+    })().finally(() => {
+      state.publicLeaderboard.sessionPromise = null;
+    });
+
+    return state.publicLeaderboard.sessionPromise;
   }
 
   function modeLabel(modeId) {
@@ -6159,7 +6559,7 @@
     }
     showWithMotion(els.leaderboardDialog, "modalOpen");
     playUiSound("panelOpen");
-    loadLeaderboard();
+    loadLeaderboard({ force: state.publicLeaderboard.status === "localOnly" });
     window.setTimeout(() => els.leaderboardClose?.focus(), 0);
   }
 
@@ -6206,11 +6606,15 @@
       const entryDifficultyLabel = difficultyLabel(entry.difficulty);
       const stageLabel = (entry.mode || entry.gameMode) === "adventure" ? "שלב" : "גל";
 
-      item.classList.toggle("is-current-player", entry.id === state.latestLeaderboardEntryId || entry.playerId === state.playerId);
+      item.classList.toggle("is-current-player", Boolean(
+        entry.isCurrentPlayer
+        || entry.id === state.latestLeaderboardEntryId
+        || entry.playerId === state.playerId
+      ));
       rank.className = "leaderboard-rank";
       rank.textContent = String(index + 1);
       player.className = "leaderboard-player";
-      player.textContent = entry.nickname || entry.playerName;
+      player.textContent = SYSTEMS.safeNickname(entry.nickname || entry.playerName) || "כינוי הוסר";
       details.textContent = `${entryModeLabel} · ${entryDifficultyLabel} · ${stageLabel} ${entry.reachedStage || entry.levelReached || 1} · רצף ${entry.maxCombo || 0} · דיוק ${entry.accuracy || 0}%`;
       score.className = "leaderboard-score";
       score.textContent = numberFormat.format(entry.score);
@@ -6248,17 +6652,51 @@
     }
   }
 
-  function toRemoteDifficulty(difficultyId) {
-    return {
-      beginner: "easy",
-      normal: "medium",
-      advanced: "hard",
-      expert: "veryHard",
-      legendary: "veryHard"
-    }[normalizeDifficulty(difficultyId)] || "medium";
+  function getLocalLeaderboardFallback() {
+    return SYSTEMS.getLeaderboardEntries(state.save, {
+      mode: els.leaderboardModeFilter?.value || "all",
+      difficulty: els.leaderboardDifficultyFilter?.value || "all",
+      limit: CONFIG.leaderboard.limit
+    });
   }
 
-  async function loadLeaderboard() {
+  async function refreshGlobalLeaderboardSummary(options = {}) {
+    if (state.publicLeaderboard.summaryPromise) {
+      return state.publicLeaderboard.summaryPromise;
+    }
+
+    state.publicLeaderboard.summaryPromise = (async () => {
+      const available = await checkPublicLeaderboardCapability({ force: options.force === true });
+      if (!available) {
+        renderLeaderboardPlayerSummary();
+        return null;
+      }
+      try {
+        const query = new URLSearchParams({
+          limit: "1",
+          playerId: state.playerId
+        });
+        const payload = await leaderboardRequest({
+          method: "GET",
+          endpoint: `${CONFIG.leaderboard.endpoint}?${query.toString()}`
+        });
+        state.publicLeaderboard.playerSummary = payload?.player || null;
+        state.publicLeaderboard.lastError = null;
+        renderLeaderboardPlayerSummary();
+        return state.publicLeaderboard.playerSummary;
+      } catch (error) {
+        state.publicLeaderboard.lastError = error?.code || "leaderboard_unavailable";
+        renderLeaderboardPlayerSummary();
+        return null;
+      }
+    })().finally(() => {
+      state.publicLeaderboard.summaryPromise = null;
+    });
+
+    return state.publicLeaderboard.summaryPromise;
+  }
+
+  async function loadLeaderboard(options = {}) {
     if (!els.leaderboardList || state.leaderboardLoading) {
       return;
     }
@@ -6270,19 +6708,44 @@
     if (els.leaderboardErrorState) {
       els.leaderboardErrorState.hidden = true;
     }
-    setLeaderboardStatus("מרענן את הטבלה המקומית...");
+    setLeaderboardStatus("מתחבר לטבלת אלוף האלופים...");
 
     try {
-      const entries = SYSTEMS.getLeaderboardEntries(state.save, {
+      const available = await checkPublicLeaderboardCapability({ force: options.force === true });
+      if (!available) {
+        const entries = getLocalLeaderboardFallback();
+        renderLeaderboard(entries);
+        renderLeaderboardPlayerSummary();
+        setLeaderboardStatus(entries.length
+          ? "מוצג הגיבוי מהמכשיר. החיבור לדירוג העולמי יתחדש אוטומטית."
+          : "הדירוג העולמי אינו זמין כרגע. השיא האישי עדיין נשמר במכשיר.");
+        return;
+      }
+
+      const query = new URLSearchParams({
         mode: els.leaderboardModeFilter?.value || "all",
         difficulty: els.leaderboardDifficultyFilter?.value || "all",
-        limit: CONFIG.leaderboard.limit
+        limit: String(CONFIG.leaderboard.limit),
+        playerId: state.playerId
       });
-      renderLeaderboard(entries);
-      setLeaderboardStatus(entries.length ? "הטבלה המקומית מעודכנת." : "עדיין אין שיאים בקטגוריה הזאת.");
-    } catch {
-      renderLeaderboard([]);
-      setLeaderboardStatus("לא הצלחנו לרענן את הטבלה כרגע.", true);
+      const payload = await leaderboardRequest({
+        method: "GET",
+        endpoint: `${CONFIG.leaderboard.endpoint}?${query.toString()}`
+      });
+      const scores = Array.isArray(payload?.scores) ? payload.scores : [];
+      state.publicLeaderboard.playerSummary = payload?.player || state.publicLeaderboard.playerSummary;
+      state.publicLeaderboard.lastError = null;
+      renderLeaderboard(scores);
+      renderLeaderboardPlayerSummary();
+      setLeaderboardStatus(scores.length
+        ? `הדירוג העולמי מעודכן · ${numberFormat.format(scores.length)} אלופים מוצגים.`
+        : "עדיין אין שיאים בסינון הזה. אפשר להיות הראשונים.");
+    } catch (error) {
+      state.publicLeaderboard.lastError = error?.code || "leaderboard_unavailable";
+      const fallback = getLocalLeaderboardFallback();
+      renderLeaderboard(fallback);
+      renderLeaderboardPlayerSummary();
+      setLeaderboardStatus("לא הצלחנו לרענן את העולם. מוצג הגיבוי השמור במכשיר.", true);
     } finally {
       state.leaderboardLoading = false;
       if (els.leaderboardRefresh) {
@@ -6296,33 +6759,58 @@
       return;
     }
 
-    const eligible = state.correctAnswers >= CONFIG.leaderboard.minimumCorrectAnswers;
+    const eligible = state.sessionKind === "standard"
+      && state.correctAnswers >= CONFIG.leaderboard.minimumCorrectAnswers;
     syncPublicLeaderboardUi(eligible);
     if (eligible && state.publicLeaderboard.status === "localOnly") {
-      checkPublicLeaderboardCapability();
+      void checkPublicLeaderboardCapability();
     }
   }
 
-  async function publishScore() {
+  async function publishScore(options = {}) {
+    const automatic = options?.automatic === true;
     if (
       state.scorePublishing
       || state.phase !== "ended"
+      || state.sessionKind !== "standard"
       || state.correctAnswers < CONFIG.leaderboard.minimumCorrectAnswers
     ) {
       return;
     }
     if (state.publicLeaderboard.status !== "available") {
       syncPublicLeaderboardUi(true);
+      if (els.publishScoreStatus) {
+        els.publishScoreStatus.textContent = "השיא שמור במכשיר ויסתנכרן כשהדירוג העולמי יחזור.";
+      }
+      return;
+    }
+
+    if (state.publicLeaderboard.sessionPromise) {
+      await state.publicLeaderboard.sessionPromise;
+    }
+    if (!state.publicLeaderboard.sessionToken) {
+      if (els.publishScoreStatus) {
+        els.publishScoreStatus.textContent = "השיא שמור במכשיר. הסנכרון העולמי יופעל בסיבוב הבא.";
+        els.publishScoreStatus.style.color = "var(--phase5-muted, #91a2ba)";
+      }
       return;
     }
 
     state.scorePublishing = true;
     els.publishScoreButton.disabled = true;
-    els.publishScoreButton.textContent = "מפרסם...";
-    els.publishScoreStatus.textContent = "שומר את השיא בטבלה הציבורית...";
+    els.publishScoreButton.textContent = "מסנכרן...";
+    els.publishScoreStatus.textContent = automatic
+      ? "מעדכנים אוטומטית את המקום שלכם בעולם..."
+      : "מעדכנים את השיא באלוף האלופים...";
     els.publishScoreStatus.style.color = "";
 
     try {
+      const result = state.finalResult;
+      const elapsedPlayTimeMs = Math.max(
+        100,
+        Math.floor(state.activePlayTimeMs || 0),
+        Math.floor(performance.now() - (state.sessionStartedAt || performance.now()))
+      );
       const payload = await leaderboardRequest({
         method: "POST",
         headers: {
@@ -6331,30 +6819,56 @@
         body: JSON.stringify({
           playerId: state.playerId,
           playerName: state.playerName,
-          score: state.score,
-          correctAnswers: state.correctAnswers,
-          levelReached: getLevelIndexForAnswers(state.correctAnswers) + 1,
-          difficulty: toRemoteDifficulty(state.difficulty),
-          timeLimitEnabled: state.timeLimitEnabled
+          score: result?.score || state.scoreState.total,
+          correctAnswers: result?.correctAnswers || state.correctAnswers,
+          incorrectAnswers: result?.incorrectAnswers || state.incorrectAnswers,
+          levelReached: result?.reachedStage || (state.mode === "arcade" ? getArcadeWave() : getLevelIndexForAnswers(state.correctAnswers) + 1),
+          mode: state.mode,
+          difficulty: normalizeDifficulty(state.difficulty),
+          operationMode: state.operationMode,
+          selectedCharacter: state.characterId,
+          maxCombo: result?.maxCombo || state.comboState.max,
+          accuracy: result?.accuracy ?? SYSTEMS.getAccuracy(state.mathStats),
+          playTimeMs: elapsedPlayTimeMs,
+          timeLimitEnabled: state.timeLimitEnabled,
+          gameVersion: SYSTEMS.GAME_VERSION,
+          sessionToken: state.publicLeaderboard.sessionToken
         })
       });
 
-      els.publishScoreButton.textContent = "השיא פורסם";
+      state.publicLeaderboard.playerSummary = payload?.player || state.publicLeaderboard.playerSummary;
+      state.publicLeaderboard.lastError = null;
+      if (state.finalResult && payload?.player) {
+        state.finalResult.leaderboardRank = Number(payload.player.rank) || null;
+        state.finalResult.scoreToNextRank = Number(payload.player.scoreToNextRank);
+        els.leaderboardRank.textContent = state.finalResult.leaderboardRank
+          ? `#${numberFormat.format(state.finalResult.leaderboardRank)}`
+          : "-";
+        els.nextRankScore.textContent = state.finalResult.scoreToNextRank === 0
+          ? "בפסגה"
+          : (state.finalResult.scoreToNextRank ? `+${numberFormat.format(state.finalResult.scoreToNextRank)}` : "-");
+      }
+      renderLeaderboardPlayerSummary();
+      els.publishScoreButton.textContent = "השיא מסונכרן";
       els.publishScoreStatus.textContent = payload?.improved === false
-        ? "השיא הקודם שלך בטבלה עדיין גבוה יותר."
-        : "השיא נשמר בהצלחה באלוף האלופים.";
+        ? `השיא העולמי הקודם נשאר גבוה יותר${payload?.player?.rank ? ` · מקום ${numberFormat.format(payload.player.rank)} בעולם` : ""}.`
+        : `השיא נשמר באלוף האלופים${payload?.player?.rank ? ` · מקום ${numberFormat.format(payload.player.rank)} בעולם` : ""}!`;
       els.publishScoreStatus.style.color = "var(--green)";
-      await loadLeaderboard();
+      if (els.leaderboardDialog && !els.leaderboardDialog.hidden) {
+        await loadLeaderboard();
+      }
     } catch (error) {
       els.publishScoreButton.disabled = false;
-      els.publishScoreButton.textContent = "נסה לפרסם שוב";
+      els.publishScoreButton.textContent = "נסה לסנכרן שוב";
       if (error?.code === "leaderboard_not_configured") {
         setPublicLeaderboardStatus("localOnly");
         els.publishScoreStatus.textContent = SYSTEMS.PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE;
       } else if (error?.code === "rate_limited") {
-        els.publishScoreStatus.textContent = "כבר ניסית לפרסם עכשיו. חכה כמה שניות ונסה שוב.";
+        els.publishScoreStatus.textContent = "השיא כבר מסתנכרן. חכו כמה שניות ונסו שוב.";
+      } else if (error?.code === "invalid_session") {
+        els.publishScoreStatus.textContent = "השיא שמור במכשיר. נחדש את החיבור העולמי בסיבוב הבא.";
       } else {
-        els.publishScoreStatus.textContent = "לא הצלחנו לפרסם את השיא כרגע.";
+        els.publishScoreStatus.textContent = "לא הצלחנו לסנכרן כרגע. השיא שמור במכשיר ואפשר לנסות שוב.";
       }
       els.publishScoreStatus.style.color = "var(--red)";
     } finally {
@@ -6896,6 +7410,33 @@
       };
     };
 
+    runtime.auditCurrentMazeTopologyForVerification = () => (
+      analyzeMazeTopology(state.maze, state.levelIndex)
+    );
+
+    runtime.auditAllMazeTopologiesForVerification = () => {
+      const levels = CONFIG.levels.map((level, levelIndex) => (
+        analyzeMazeTopology(createMaze(levelIndex), levelIndex)
+      ));
+      return {
+        passed: levels.every((level) => level.passed),
+        levelCount: levels.length,
+        totalWalkableCells: levels.reduce(
+          (total, level) => total + level.walkableCellCount,
+          0
+        ),
+        disconnectedComponentCount: levels.reduce(
+          (total, level) => total + Math.max(0, level.connectedComponentCount - 1),
+          0
+        ),
+        isolatedCellCount: levels.reduce(
+          (total, level) => total + level.isolatedCells.length,
+          0
+        ),
+        levels
+      };
+    };
+
     runtime.getActorCollisionSnapshotForVerification = () => {
       const describeActor = (actor, kind, index = 0) => {
         if (!actor) return null;
@@ -7039,6 +7580,7 @@
       pendingSpawnCount: state.pendingSpawns.length,
       score: state.score,
       scoreBreakdown: { ...state.scoreState.breakdown },
+      activeParticleCount: state.particles.length,
       effect: state.ghostBlastEffect ? { ...state.ghostBlastEffect } : null,
       question: state.question ? {
         answer: state.question.answer,
@@ -7052,10 +7594,11 @@
       return CONFIG.ghostBlast.effectDuration;
     };
 
-    runtime.forceGhostBlastQuestionForVerification = (count = 3) => {
+    runtime.forceGhostBlastQuestionForVerification = (count = 3, levelIndex = 0) => {
       const requestedCount = clamp(Math.floor(Number(count) || 3), 2, 6);
+      const requestedLevelIndex = clamp(Math.floor(Number(levelIndex) || 0), 0, CONFIG.levels.length - 1);
       state.visualVerificationMode = true;
-      runtime.forceLevelForVerification(0);
+      runtime.forceLevelForVerification(requestedLevelIndex);
       cancelStageIntroCamera({ snapToGameplay: true });
       setPhase("playing", { force: true });
       els.startScreen.hidden = true;
@@ -7463,6 +8006,11 @@
         { x: 3, y: 12, cue: "left-side-passage" },
         { x: 36, y: 12, cue: "right-side-passage" },
         { x: 20, y: 14, cue: "central-passage" },
+        { x: 13, y: 12, cue: "reported-yellow-light-pocket-entry" },
+        { x: 14, y: 12, cue: "reported-yellow-light-passage-left" },
+        { x: 15, y: 12, cue: "reported-yellow-light-passage-center" },
+        { x: 16, y: 12, cue: "reported-yellow-light-passage-right" },
+        { x: 17, y: 12, cue: "reported-yellow-light-passage-exit" },
         { x: 23, y: 12, cue: "reported-center-corridor-left" },
         { x: 24, y: 12, cue: "reported-center-corridor-right" },
         { x: 23, y: 18, cue: "arcade-chest-floor" },
@@ -7848,6 +8396,84 @@
       };
     };
 
+    runtime.forceEnvironmentHazardHitForVerification = (levelIndex = state.levelIndex) => {
+      const index = clamp(Math.floor(Number(levelIndex) || 0), 0, CONFIG.levels.length - 1);
+      state.visualVerificationMode = true;
+      runtime.forceLevelForVerification(index);
+      const hazardInfo = runtime.forceEnvironmentHazardForVerification();
+      const hazard = state.hazards[0];
+      if (!hazard || !hazardInfo || !state.player) {
+        return null;
+      }
+
+      const impactCell = hazard.cells[Math.floor(hazard.cells.length / 2)] || hazard.cells[0];
+      const impactPosition = centerOfCell(impactCell.x, impactCell.y);
+      state.player.x = impactPosition.x;
+      state.player.y = impactPosition.y;
+      state.player.invulnerable = 0;
+      applyEnvironmentHazardHit(hazard);
+      return runtime.getEnvironmentHazardSnapshotForVerification();
+    };
+
+    runtime.setEnvironmentHazardImpactProgressForVerification = (progress = 0) => {
+      if (!state.hazardImpact) {
+        runtime.forceEnvironmentHazardHitForVerification(state.levelIndex);
+      }
+      const impact = state.hazardImpact;
+      if (!impact) {
+        return null;
+      }
+      impact.elapsed = clamp(Number(progress) || 0, 0, 0.98) * impact.duration;
+      if (!impact.lifeCommitted && impact.elapsed >= impact.lifeAt) {
+        commitEnvironmentHazardLifeLoss(impact);
+      }
+      return runtime.getEnvironmentHazardSnapshotForVerification();
+    };
+
+    runtime.completeEnvironmentHazardImpactForVerification = () => {
+      const impact = state.hazardImpact;
+      if (impact) {
+        updateEnvironmentHazardImpact(impact.duration);
+      }
+      return runtime.getEnvironmentHazardSnapshotForVerification();
+    };
+
+    runtime.setLivesForVerification = (lives = 3) => {
+      state.lives = clamp(Math.floor(Number(lives) || 3), 1, 9);
+      updateHud();
+      return runtime.getEnvironmentHazardSnapshotForVerification();
+    };
+
+    runtime.getEnvironmentHazardSnapshotForVerification = () => ({
+      levelIndex: state.levelIndex,
+      phase: state.phase,
+      lives: state.lives,
+      hazard: state.hazards[0]
+        ? {
+          type: state.hazards[0].type,
+          active: isHazardActive(state.hazards[0]),
+          cellCount: state.hazards[0].cells.length
+        }
+        : null,
+      impact: state.hazardImpact
+        ? {
+          type: state.hazardImpact.type,
+          effect: state.hazardImpact.effect,
+          elapsed: state.hazardImpact.elapsed,
+          duration: state.hazardImpact.duration,
+          lifeCommitted: state.hazardImpact.lifeCommitted,
+          playerAttached: state.hazardImpact.playerAttached
+        }
+        : null,
+      playerReaction: state.player?.hazardReaction
+        ? {
+          type: state.player.hazardReaction.type,
+          duration: state.player.hazardReaction.duration
+        }
+        : null,
+      livesHudClass: els.lives.closest(".metric")?.className || ""
+    });
+
     runtime.forceBossIceTrailForVerification = () => {
       if (state.phase === "start") {
         setupGame();
@@ -8073,8 +8699,19 @@
       configKey: state.boss.configKey,
       definitionId: state.boss.definition?.id || null,
       name: state.boss.name,
+      title: state.boss.title,
+      worldIndex: state.boss.definition?.worldIndex ?? null,
+      worldLabel: state.boss.worldLabel || state.boss.definition?.worldLabel || null,
+      actorRow: state.boss.definition?.actor?.row ?? null,
+      actorTheme: state.boss.definition?.actor?.theme || null,
+      proceduralStyle: state.boss.definition?.proceduralStyle || null,
       x: state.boss.x,
       y: state.boss.y,
+      spawnCell: toCell(state.boss.x, state.boss.y),
+      chestDistanceTiles: distanceCells(
+        toCell(state.boss.x, state.boss.y),
+        getArcadeChestCell()
+      ),
       direction: state.boss.direction,
       actorFacing: state.boss.direction && state.boss.direction !== "none"
         ? state.boss.direction
@@ -8108,6 +8745,7 @@
     runtime.getBossEncounterSnapshot = () => ({
       phase: state.phase,
       levelIndex: state.levelIndex,
+      finalBossDefeated: state.finalBossDefeated,
       correctAnswers: state.correctAnswers,
       stageCorrect: getStageCorrectCount(),
       regularCorrect: getStageRegularCorrectCount(),
@@ -8395,6 +9033,7 @@
       state.visualVerificationMode = true;
       setMode("adventure", false);
       state.playerName = SYSTEMS.safeNickname(playerName) || "אלוף כפלול";
+      state.finalBossDefeated = true;
       state.correctAnswers = CONFIG.targetCorrect;
       state.incorrectAnswers = 3;
       state.mathStats.correctAnswers = CONFIG.targetCorrect;
@@ -8417,11 +9056,12 @@
       };
     };
 
-    runtime.forceFinalBossQuestionForVerification = (playerName = "אלוף כפלול") => {
+    runtime.forceFinalBossQuestionForVerification = (playerName = "אלוף כפלול", mode = "adventure") => {
       if (state.phase === "start") {
         setupGame();
       }
-      setMode("adventure", false);
+      setMode(mode, false);
+      setPhase("playing", { force: true });
       state.playerName = SYSTEMS.safeNickname(playerName) || "אלוף כפלול";
       state.visualVerificationMode = false;
       state.lives = Math.max(state.lives, 4);
@@ -8450,6 +9090,15 @@
       };
     };
 
+    runtime.getFinalResultForVerification = () => state.finalResult
+      ? {
+        ...state.finalResult,
+        championTrophy: state.finalResult.championTrophy
+          ? { ...state.finalResult.championTrophy }
+          : null
+      }
+      : null;
+
     runtime.getQuestionFeedbackResult = () => els.questionDialog.dataset.answerResult || null;
 
     const verificationParams = new URLSearchParams(window.location.search);
@@ -8469,6 +9118,58 @@
       }, 80);
     }
 
+    if (verificationParams.has("verifyHazard")) {
+      state.visualVerificationMode = true;
+      window.addEventListener("keydown", (event) => {
+        if (event.key.toLowerCase() !== "h" || event.metaKey || event.ctrlKey || event.altKey) {
+          return;
+        }
+        event.preventDefault();
+        const levelIndex = clamp(
+          Math.floor(Number(verificationParams.get("verifyLevel")) || 0),
+          0,
+          CONFIG.levels.length - 1
+        );
+        state.hazardImpact = null;
+        runtime.forceEnvironmentHazardHitForVerification(levelIndex);
+      });
+      window.setTimeout(() => {
+        const levelIndex = clamp(
+          Math.floor(Number(verificationParams.get("verifyLevel")) || 0),
+          0,
+          CONFIG.levels.length - 1
+        );
+        const impactProgress = Number(verificationParams.get("verifyHazardImpact"));
+        runtime.forceLevelForVerification(levelIndex);
+        state.lives = 3;
+        els.startScreen.hidden = true;
+        els.startScreen.classList.remove("screen-visible");
+        els.endScreen.hidden = true;
+        els.questionDialog.hidden = true;
+        hidePauseScreen({ restoreFocus: false, sound: false });
+        if (Number.isFinite(impactProgress)) {
+          runtime.forceEnvironmentHazardHitForVerification(levelIndex);
+          runtime.setEnvironmentHazardImpactProgressForVerification(impactProgress);
+          if (state.hazardImpact) {
+            const heldProgress = clamp(impactProgress, 0, 0.98);
+            const heldDuration = 600;
+            state.hazardImpact.duration = heldDuration;
+            state.hazardImpact.elapsed = heldDuration * heldProgress;
+            state.hazardImpact.lifeAt = heldDuration * 0.58;
+            state.hazardImpact.resetAt = heldDuration * 0.86;
+            if (state.player?.hazardReaction) {
+              state.player.hazardReaction.duration = heldDuration * 0.86;
+            }
+          }
+        } else {
+          runtime.forceEnvironmentHazardForVerification();
+        }
+        updateHud();
+        updatePauseButton();
+        stage.focus({ preventScroll: true });
+      }, 120);
+    }
+
     installMazeThemePreviewMode(runtime);
   }
 
@@ -8478,11 +9179,8 @@
       return;
     }
 
-    const playerName = normalizePlayerName(els.playerNameInput.value);
-
-    if (!playerName.ok) {
-      els.nameError.textContent = playerName.error;
-      els.playerNameInput.focus();
+    const playerName = requireNicknameBeforeGame(event?.currentTarget || els.startButton);
+    if (!playerName) {
       return;
     }
 
@@ -8503,11 +9201,8 @@
     if (state.phase === "playing" || state.phase === "question") {
       return;
     }
-    const playerName = normalizePlayerName(els.playerNameInput.value);
-    if (!playerName.ok) {
-      els.nameError.textContent = playerName.error;
-      closeMenuSheets({ restoreFocus: false, sound: false });
-      els.playerNameInput.focus();
+    const playerName = requireNicknameBeforeGame(event?.currentTarget || els.dailyChallengeStart);
+    if (!playerName) {
       return;
     }
     state.playerName = playerName.value;
@@ -8529,11 +9224,8 @@
     if (state.phase === "playing" || state.phase === "question" || !state.duelChallenge) {
       return;
     }
-    const playerName = normalizePlayerName(els.playerNameInput.value);
-    if (!playerName.ok) {
-      els.nameError.textContent = playerName.error;
-      closeMenuSheets({ restoreFocus: false, sound: false });
-      els.playerNameInput.focus();
+    const playerName = requireNicknameBeforeGame(event?.currentTarget || els.duelStart);
+    if (!playerName) {
       return;
     }
     state.playerName = playerName.value;
@@ -8550,8 +9242,11 @@
   function launchPreparedGameSession() {
     closeMenuSheets({ restoreFocus: false, sound: false });
     hidePauseScreen();
-    els.nameError.textContent = "";
+    setNicknameError("");
+    state.publicLeaderboard.sessionToken = null;
+    state.publicLeaderboard.sessionExpiresAt = 0;
     setupGame();
+    void prepareLeaderboardSession();
     setPhase("playing");
     els.startScreen.hidden = true;
     els.startScreen.classList.remove("screen-visible");
@@ -8597,7 +9292,7 @@
       els.newRecordBadge.hidden = true;
     }
     els.playerNameInput.value = state.playerName;
-    els.nameError.textContent = "";
+    setNicknameError("");
     updatePauseButton();
     syncModeInputs();
     syncCharacterInputs();
@@ -9396,6 +10091,7 @@
     }
     state.shake = Math.max(0, state.shake - dt);
     updateGhostBlastEffect(dt);
+    updateEnvironmentHazardImpact(dt);
     updateCamera(dt);
 
     if (state.phase === "playing") {
@@ -9431,6 +10127,13 @@
     }
 
     updateEnvironmentHazards(dt);
+
+    if (state.hazardImpact && !state.hazardImpact.resolved) {
+      updatePlayerVisualState(state.player, dt);
+      updateParticles(dt);
+      updateFloatingTexts(dt);
+      return;
+    }
 
     if (!state.boss) {
       updateSpawns(dt);
@@ -9652,12 +10355,14 @@
     state.nextHazardAt = Number.POSITIVE_INFINITY;
     addFloatingText(center.x, center.y - 18, definition.warning, definition.color || getCurrentLevel().accent);
     addBurst(center.x, center.y, definition.color || getCurrentLevel().accent, 16, 82);
-    const hazardSound = {
+    const hazardSound = isWorldOneReimagined() && definition.type === "ice-slick"
+      ? "hazardLava"
+      : ({
       "ice-slick": "hazardIce",
       "lava-spill": "hazardLava",
       "rune-trap": "hazardRune",
       "crystal-burst": "hazardCrystal"
-    }[definition.type] || "notification";
+      }[definition.type] || "notification");
     playGameSound(hazardSound);
   }
 
@@ -10849,7 +11554,12 @@
   }
 
   function checkEnvironmentHazardCollision() {
-    if (!state.player || state.player.invulnerable > 0 || state.phase !== "playing") {
+    if (
+      !state.player
+      || state.player.invulnerable > 0
+      || state.hazardImpact
+      || state.phase !== "playing"
+    ) {
       return;
     }
 
@@ -10909,29 +11619,98 @@
       return;
     }
 
-    hazard.hitCooldown = 1.5;
-    state.lives -= 1;
-    state.hitsTaken += 1;
-    applyCombo("lifeLost");
-    updateMission("wrongAnswer");
-    state.shake = 0.32;
-    playGameSound("lifeLost");
-    playCharacterSound("hit", { gain: 0.64 });
-    pulseElement(stage, "stage-hit");
-    pulseElement(els.lives.closest(".metric"), "life-hit");
-    const player = state.player;
-    const color = hazard.color || getCurrentLevel().accent;
-    addBurst(player.x, player.y, color, 30, 140);
-    addFloatingText(player.x, player.y - 44, hazard.hitText || "זהירות!", "#ffd84a");
-    addFloatingText(player.x, player.y - 26, "-חיים", "#ff4c5f");
-
-    if (state.lives <= 0) {
-      showEndScreen(false);
+    if (state.hazardImpact) {
       return;
     }
 
-    resetPositionsAfterHit();
-    state.player.invulnerable = 2.8;
+    hazard.hitCooldown = 1.5;
+    state.hitsTaken += 1;
+    state.shake = 0.5;
+    playGameSound(isWorldOneReimagined() && hazard.type === "ice-slick"
+      ? "hazardLava"
+      : ({
+      "ice-slick": "hazardIce",
+      "lava-spill": "hazardLava",
+      "rune-trap": "hazardRune",
+      "crystal-burst": "hazardCrystal"
+      }[hazard.type] || "lifeLost"));
+    playCharacterSound("hit", { gain: 0.64 });
+    pulseElement(stage, "stage-hit");
+    const player = state.player;
+    const color = hazard.color || getCurrentLevel().accent;
+    const duration = MOBILE_RUNTIME.reducedEffects ? 1.16 : 2;
+    state.hazardImpact = {
+      type: hazard.type,
+      effect: hazard.type === "lava-spill" || (isWorldOneReimagined() && hazard.type === "ice-slick")
+        ? "burn"
+        : hazard.type,
+      x: player.x,
+      y: player.y,
+      color,
+      elapsed: 0,
+      duration,
+      lifeAt: duration * 0.58,
+      resetAt: duration * 0.86,
+      livesBefore: state.lives,
+      lifeCommitted: false,
+      playerAttached: true,
+      resolved: false
+    };
+    player.hazardReaction = {
+      type: hazard.type,
+      duration: duration * 0.82
+    };
+    player.invulnerable = Math.max(player.invulnerable, duration + 0.2);
+    player.lastMoveDistance = 0;
+    player.trail = [];
+    addBurst(player.x, player.y, color, 26, 118);
+    addFloatingText(player.x, player.y - 44, hazard.hitText || "זהירות!", "#ffd84a");
+  }
+
+  function updateEnvironmentHazardImpact(dt) {
+    const impact = state.hazardImpact;
+    if (!impact || state.phase !== "playing") {
+      return;
+    }
+
+    impact.elapsed = Math.min(impact.duration, impact.elapsed + dt);
+    if (!impact.lifeCommitted && impact.elapsed >= impact.lifeAt) {
+      commitEnvironmentHazardLifeLoss(impact);
+    }
+
+    if (!impact.resolved && impact.elapsed >= impact.resetAt) {
+      impact.resolved = true;
+      impact.playerAttached = false;
+      if (state.player) {
+        state.player.hazardReaction = null;
+      }
+      if (state.lives <= 0) {
+        showEndScreen(false);
+        return;
+      }
+      resetPositionsAfterHit();
+      state.player.invulnerable = 2.8;
+    }
+
+    if (impact.elapsed >= impact.duration) {
+      state.hazardImpact = null;
+    }
+  }
+
+  function commitEnvironmentHazardLifeLoss(impact) {
+    if (!impact || impact.lifeCommitted) {
+      return;
+    }
+
+    impact.lifeCommitted = true;
+    state.lives = Math.max(0, impact.livesBefore - 1);
+    applyCombo("lifeLost");
+    updateMission("wrongAnswer");
+    playGameSound("lifeLost");
+    pulseElement(els.lives.closest(".metric"), "life-hit");
+    animateHudFeedback(els.lives.closest(".metric"), "hud-life-loss", "-1 חיים", 980);
+    addFloatingText(impact.x, impact.y - 26, "-1 חיים", "#ff4c5f");
+    addBurst(impact.x, impact.y, "#ff4c5f", 18, 96);
     updateHud();
   }
 
@@ -11724,8 +12503,11 @@
 
     const accent = bossSnapshot.accent || "#55ffd6";
     const duration = MOBILE_RUNTIME.reducedEffects ? 0.9 : 1.72;
-    const isFinalAdventureBoss = state.mode === "adventure"
-      && state.levelIndex === CONFIG.levels.length - 1;
+    const isFinalBoss = state.levelIndex === CONFIG.levels.length - 1;
+    const isFinalAdventureBoss = state.mode === "adventure" && isFinalBoss;
+    if (isFinalBoss) {
+      state.finalBossDefeated = true;
+    }
     const nextLevelIndex = state.mode === "arcade"
       ? (state.levelIndex + 1) % CONFIG.levels.length
       : Math.min(CONFIG.levels.length - 1, state.levelIndex + 1);
@@ -11743,6 +12525,7 @@
       bossName: bossSnapshot.name || "הבוס",
       fromLevelIndex: state.levelIndex,
       nextLevelIndex,
+      isFinalBoss,
       isFinalAdventureBoss,
       awardedLife: Boolean(options.awardedLife)
     };
@@ -11767,7 +12550,7 @@
     addFloatingText(
       bossSnapshot.x,
       bossSnapshot.y - 74,
-      isFinalAdventureBoss ? "הבוס האחרון התפוצץ!" : "הבוס התפוצץ!",
+      isFinalBoss ? "הבוס האחרון התפוצץ!" : "הבוס התפוצץ!",
       "#fff7c6"
     );
     addFloatingText(bossSnapshot.x, bossSnapshot.y - 48, `+${award.total}`, "#ffd84a");
@@ -11777,7 +12560,7 @@
 
     state.victoryEndTimerId = window.setTimeout(() => {
       state.victoryEndTimerId = null;
-      if (isFinalAdventureBoss) {
+      if (isFinalBoss) {
         showEndScreen(true);
         return;
       }
@@ -11888,11 +12671,29 @@
     const centerX = player?.x ?? enemy.x;
     const centerY = player?.y ?? enemy.y;
     const accent = getCurrentLevel().accent;
+    const particleProfile = getGhostBlastParticleProfile(blastedEnemies.length);
+    const projectedParticleCount = blastedEnemies.length
+      * (particleProfile.perGhost + particleProfile.perGhostSpark)
+      + particleProfile.center;
+    reserveParticleCapacity(particleProfile.maxActive, projectedParticleCount);
+    let emittedParticleCount = 0;
     for (const blastedEnemy of blastedEnemies) {
-      addBurst(blastedEnemy.x, blastedEnemy.y, blastedEnemy.color, 38, 175);
-      addBurst(blastedEnemy.x, blastedEnemy.y, "#fff7c6", 16, 125);
+      emittedParticleCount += addBurst(
+        blastedEnemy.x,
+        blastedEnemy.y,
+        blastedEnemy.color,
+        particleProfile.perGhost,
+        175
+      );
+      emittedParticleCount += addBurst(
+        blastedEnemy.x,
+        blastedEnemy.y,
+        "#fff7c6",
+        particleProfile.perGhostSpark,
+        125
+      );
     }
-    addBurst(centerX, centerY, accent, 52, 220);
+    emittedParticleCount += addBurst(centerX, centerY, accent, particleProfile.center, 220);
     state.ghostBlastEffect = {
       x: centerX,
       y: centerY,
@@ -11902,6 +12703,11 @@
       perGhostAward: primaryAward.total,
       totalAward,
       bonusAward,
+      emittedParticleCount,
+      particleBudget: Number.isFinite(particleProfile.maxActive)
+        ? particleProfile.maxActive
+        : null,
+      mobileOptimized: MOBILE_RUNTIME.coarse,
       life: CONFIG.ghostBlast.effectDuration,
       maxLife: CONFIG.ghostBlast.effectDuration
     };
@@ -12147,6 +12953,7 @@
     state.player.eatAnimation = 0;
     state.player.eatEffect = null;
     state.player.hitAnimation = 0.48;
+    state.player.hazardReaction = null;
     state.player.questionAnimation = 0;
     state.player.turnAnimation = 0;
     state.player.trail = [];
@@ -12214,9 +13021,12 @@
 
     const mode = state.mode;
     const difficulty = state.difficulty;
+    const champion = Boolean(won && state.finalBossDefeated);
     const accuracy = SYSTEMS.getAccuracy(state.mathStats);
     const averageAnswerTimeMs = SYSTEMS.getAverageAnswerTime(state.mathStats);
-    const reachedStage = mode === "arcade" ? getArcadeWave() : getLevelIndexForAnswers(state.correctAnswers) + 1;
+    const reachedStage = champion
+      ? CONFIG.levels.length
+      : (mode === "arcade" ? getArcadeWave() : getLevelIndexForAnswers(state.correctAnswers) + 1);
     const previousBest = getPersonalBestForSelection(mode, difficulty);
     const score = state.scoreState.total;
     const resultDate = new Date().toISOString();
@@ -12349,6 +13159,14 @@
       playMissionSound();
     }
 
+    const championTrophy = champion
+      ? SYSTEMS.recordChampionTrophy(state.save, {
+        mode,
+        score,
+        earnedAt: resultDate
+      })
+      : null;
+
     state.save.player.nickname = state.playerName || state.save.player.nickname;
     state.save.settings.selectedMode = mode;
     state.save.settings.selectedDifficulty = difficulty;
@@ -12384,6 +13202,8 @@
       remainingLives: state.lives,
       breakdown: { ...state.scoreState.breakdown },
       unlocksLegendary,
+      champion,
+      championTrophy,
       sessionKind: "standard"
     };
 
@@ -12423,7 +13243,10 @@
   }
 
   function isChampionResult(result) {
-    return Boolean(result?.won && result.mode === "adventure" && result.correctAnswers >= CONFIG.targetCorrect);
+    return Boolean(
+      result?.champion
+      || (result?.won && result.mode === "adventure" && result.correctAnswers >= CONFIG.targetCorrect)
+    );
   }
 
   function renderVictoryConfetti(active) {
@@ -12979,7 +13802,7 @@
         : (result.unlocksLegendary
         ? "פתחת את רמת אגדי. עכשיו מתחיל המבחן האמיתי."
         : (state.mode === "arcade"
-          ? `הגעת לגל ${result.reachedStage} ושמרת שיא מקומי בהיכל.`
+          ? `הגעת לגל ${result.reachedStage}. השיא נשמר ומתעדכן באלוף האלופים.`
           : (result.won ? "השלמת את מסלול ההרפתקה." : "לא נורא, חוזרים חזקים יותר.")));
     }
     els.finalScore.textContent = numberFormat.format(result.score);
@@ -13021,6 +13844,7 @@
     state.bossDefeatTransition = null;
     state.finalBossExplosion = null;
     state.ghostBlastEffect = null;
+    state.hazardImpact = null;
     els.questionDialog.hidden = true;
     hidePauseScreen();
     renderResults(result);
@@ -13036,6 +13860,7 @@
     playUiMotion(els.endScreen, "screenEnter");
 
     updatePublishScorePanel();
+    void publishScore({ automatic: true });
     window.setTimeout(() => {
       els.endScreen.scrollTop = 0;
       if (resultsPanel) {
@@ -13075,6 +13900,35 @@
     }
   }
 
+  function getGhostBlastParticleProfile(enemyCount = 0) {
+    const profile = MOBILE_RUNTIME.coarse
+      ? CONFIG.ghostBlast.particles.mobile
+      : CONFIG.ghostBlast.particles.desktop;
+    const normalizedEnemyCount = Math.max(0, Math.floor(Number(enemyCount) || 0));
+    const projectedCount = normalizedEnemyCount * (profile.perGhost + profile.perGhostSpark) + profile.center;
+    if (!MOBILE_RUNTIME.coarse || normalizedEnemyCount === 0 || projectedCount <= profile.maxActive) {
+      return profile;
+    }
+    const perGhostBudget = Math.max(1, Math.floor((profile.maxActive - profile.center) / normalizedEnemyCount));
+    const basePerGhostTotal = profile.perGhost + profile.perGhostSpark;
+    const scale = perGhostBudget / basePerGhostTotal;
+    return {
+      ...profile,
+      perGhost: Math.max(6, Math.floor(profile.perGhost * scale)),
+      perGhostSpark: Math.max(2, Math.floor(profile.perGhostSpark * scale))
+    };
+  }
+
+  function reserveParticleCapacity(maxActive, incomingCount) {
+    if (!Number.isFinite(maxActive)) {
+      return;
+    }
+    const existingBudget = Math.max(0, maxActive - incomingCount);
+    if (state.particles.length > existingBudget) {
+      state.particles.splice(0, state.particles.length - existingBudget);
+    }
+  }
+
   function addBurst(x, y, color, count, speed) {
     const maxBurstCount = MOBILE_RUNTIME.reducedEffects ? 12 : 42;
     const effectiveCount = Math.min(maxBurstCount, MOBILE_RUNTIME.reducedEffects ? Math.max(3, Math.ceil(count * 0.45)) : count);
@@ -13092,6 +13946,7 @@
         maxLife: 0.9
       });
     }
+    return effectiveCount;
   }
 
   function spawnFirework(x, y) {
@@ -13280,14 +14135,19 @@
   }
 
   function updateParticles(dt) {
-    state.particles = state.particles.filter((particle) => {
+    let activeCount = 0;
+    for (const particle of state.particles) {
       particle.life -= dt;
       particle.x += particle.vx * dt;
       particle.y += particle.vy * dt;
       particle.vx *= 0.985;
       particle.vy *= 0.985;
-      return particle.life > 0;
-    });
+      if (particle.life > 0) {
+        state.particles[activeCount] = particle;
+        activeCount += 1;
+      }
+    }
+    state.particles.length = activeCount;
   }
 
   function updateFloatingTexts(dt) {
@@ -13383,6 +14243,7 @@
       }
       drawBoss();
     }
+    drawEnvironmentHazardImpact();
     drawBossVanishingEnemies();
     if (isWorldOneReimagined()) {
       drawArcadeBonusChest();
@@ -14587,7 +15448,11 @@
       concept: concept.key,
       renderer: authoredBoardReady ? "world1-authored-environment-v2" : "world1-continuous-2.5d",
       layersDrawn: authoredBoardReady
-        ? ["world1-authored-sandstone-board", "world1-authored-guidance-cleanup"]
+        ? [
+          "world1-authored-sandstone-board",
+          "world1-authored-guidance-cleanup",
+          "world1-authored-corridor-repairs"
+        ]
         : [
           "world1-backdrop",
           "world1-continuous-floor",
@@ -14602,6 +15467,9 @@
       assetUrlsActuallyDrawn: authoredBoardReady ? [WORLD_ONE_AUTHORED_BOARD_SRC] : [],
       legacyIceLayersDrawn: [],
       authoredGuidanceLineRemoved: authoredBoardReady,
+      authoredCorridorRepairs: authoredBoardReady
+        ? WORLD_ONE_CORRIDOR_REPAIRS.map((repair) => repair.cue)
+        : [],
       goalCue: false,
       landmarkCount: concept.artStyle.landmarks.length,
       gateStyle: concept.artStyle.goal.shape,
@@ -14832,55 +15700,56 @@
 
   function drawWorldOneAuthoredCorridorRepair(authoredBoard) {
     if (!isImageReady(authoredBoard)) return;
-    const repair = WORLD_ONE_CORRIDOR_REPAIR;
     const sourceScaleX = authoredBoard.naturalWidth / WIDTH;
     const sourceScaleY = authoredBoard.naturalHeight / HEIGHT;
-    const sourceX = repair.sourceX * TILE;
-    const sourceY = repair.sourceY * TILE;
-    const destinationX = repair.x * TILE;
-    const destinationY = repair.y * TILE;
-    const width = repair.width * TILE;
-    const height = repair.height * TILE;
 
-    // The baked 2.5D board visually reads as one continuous horizontal lane at
-    // this seam, but two legacy wall cells split it in the navigation grid.
-    // Reuse untouched floor pixels from the same board, then feather the patch
-    // into the authored shadows so the opened lane does not become a flat box.
-    const feather = 4;
-    const patchCanvas = document.createElement("canvas");
-    patchCanvas.width = width + feather * 2;
-    patchCanvas.height = height + feather * 2;
-    const patchContext = patchCanvas.getContext("2d");
-    if (!patchContext) return;
-    patchContext.imageSmoothingEnabled = true;
-    patchContext.imageSmoothingQuality = "high";
-    patchContext.drawImage(
-      authoredBoard,
-      sourceX * sourceScaleX,
-      sourceY * sourceScaleY,
-      width * sourceScaleX,
-      height * sourceScaleY,
-      feather,
-      feather,
-      width,
-      height
-    );
-    patchContext.globalCompositeOperation = "destination-in";
-    const horizontalMask = patchContext.createLinearGradient(0, 0, patchCanvas.width, 0);
-    horizontalMask.addColorStop(0, "rgba(0, 0, 0, 0)");
-    horizontalMask.addColorStop(0.08, "#000");
-    horizontalMask.addColorStop(0.92, "#000");
-    horizontalMask.addColorStop(1, "rgba(0, 0, 0, 0)");
-    patchContext.fillStyle = horizontalMask;
-    patchContext.fillRect(0, 0, patchCanvas.width, patchCanvas.height);
-    const verticalMask = patchContext.createLinearGradient(0, 0, 0, patchCanvas.height);
-    verticalMask.addColorStop(0, "rgba(0, 0, 0, 0)");
-    verticalMask.addColorStop(0.16, "#000");
-    verticalMask.addColorStop(0.84, "#000");
-    verticalMask.addColorStop(1, "rgba(0, 0, 0, 0)");
-    patchContext.fillStyle = verticalMask;
-    patchContext.fillRect(0, 0, patchCanvas.width, patchCanvas.height);
-    ctx.drawImage(patchCanvas, destinationX - feather, destinationY - feather);
+    // The baked 2.5D board contains two seams that read as continuous lanes
+    // but were blocked by legacy wall cells. Reuse untouched floor pixels from
+    // the same board and feather each opening into the authored shadows so the
+    // visual passage and the navigation grid stay registered.
+    WORLD_ONE_CORRIDOR_REPAIRS.forEach((repair) => {
+      const sourceX = repair.sourceX * TILE;
+      const sourceY = repair.sourceY * TILE;
+      const destinationX = repair.x * TILE;
+      const destinationY = repair.y * TILE;
+      const width = repair.width * TILE;
+      const height = repair.height * TILE;
+      const feather = 4;
+      const patchCanvas = document.createElement("canvas");
+      patchCanvas.width = width + feather * 2;
+      patchCanvas.height = height + feather * 2;
+      const patchContext = patchCanvas.getContext("2d");
+      if (!patchContext) return;
+      patchContext.imageSmoothingEnabled = true;
+      patchContext.imageSmoothingQuality = "high";
+      patchContext.drawImage(
+        authoredBoard,
+        sourceX * sourceScaleX,
+        sourceY * sourceScaleY,
+        width * sourceScaleX,
+        height * sourceScaleY,
+        feather,
+        feather,
+        width,
+        height
+      );
+      patchContext.globalCompositeOperation = "destination-in";
+      const horizontalMask = patchContext.createLinearGradient(0, 0, patchCanvas.width, 0);
+      horizontalMask.addColorStop(0, "rgba(0, 0, 0, 0)");
+      horizontalMask.addColorStop(0.08, "#000");
+      horizontalMask.addColorStop(0.92, "#000");
+      horizontalMask.addColorStop(1, "rgba(0, 0, 0, 0)");
+      patchContext.fillStyle = horizontalMask;
+      patchContext.fillRect(0, 0, patchCanvas.width, patchCanvas.height);
+      const verticalMask = patchContext.createLinearGradient(0, 0, 0, patchCanvas.height);
+      verticalMask.addColorStop(0, "rgba(0, 0, 0, 0)");
+      verticalMask.addColorStop(0.16, "#000");
+      verticalMask.addColorStop(0.84, "#000");
+      verticalMask.addColorStop(1, "rgba(0, 0, 0, 0)");
+      patchContext.fillStyle = verticalMask;
+      patchContext.fillRect(0, 0, patchCanvas.width, patchCanvas.height);
+      ctx.drawImage(patchCanvas, destinationX - feather, destinationY - feather);
+    });
   }
 
   function drawWorldOneContinuousFloorLayer(concept, visualProfile) {
@@ -25980,6 +26849,12 @@
       const telegraphProgress = active ? 1 : clamp(hazard.age / Math.max(0.1, hazard.telegraph), 0, 1);
       const remaining = Math.max(0, hazard.telegraph + hazard.duration - hazard.age);
       const pulse = 0.72 + Math.sin(state.clock * (active ? 7 : 4) + hazard.phase) * 0.18;
+      drawHazardFieldBase(hazard, {
+        active,
+        telegraphProgress,
+        remaining,
+        pulse
+      });
       for (let index = 0; index < hazard.cells.length; index += 1) {
         drawHazardCell(hazard, hazard.cells[index], index, {
           active,
@@ -25992,6 +26867,127 @@
     ctx.restore();
   }
 
+  function drawHazardFieldBase(hazard, visual) {
+    if (isWorldOneReimagined() && hazard.type === "ice-slick" && hazard.cells.length >= 2) {
+      drawWorldOneEruptionFieldBase(hazard, visual);
+      return;
+    }
+
+    if (hazard.type !== "lava-spill" || hazard.cells.length < 2) {
+      return;
+    }
+
+    const cellKeys = new Set(hazard.cells.map((cell) => cellKey(cell.x, cell.y)));
+    const segments = [];
+    for (const cell of hazard.cells) {
+      for (const direction of [{ x: 1, y: 0 }, { x: 0, y: 1 }]) {
+        const neighbor = { x: cell.x + direction.x, y: cell.y + direction.y };
+        if (cellKeys.has(cellKey(neighbor.x, neighbor.y))) {
+          segments.push([
+            centerOfCell(cell.x, cell.y),
+            centerOfCell(neighbor.x, neighbor.y)
+          ]);
+        }
+      }
+    }
+    if (!segments.length) {
+      return;
+    }
+
+    const alpha = visual.active ? 0.96 : 0.34 + visual.telegraphProgress * 0.42;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = alpha;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "rgba(31, 3, 2, 0.96)";
+    ctx.lineWidth = TILE * 0.92;
+    ctx.shadowColor = "#ff4c16";
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 8 : 20) : 4;
+    for (const [from, to] of segments) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.strokeStyle = visual.active ? "rgba(255, 91, 18, 0.88)" : "rgba(255, 139, 31, 0.5)";
+    ctx.lineWidth = TILE * 0.7;
+    ctx.shadowBlur = 0;
+    for (const [from, to] of segments) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneEruptionFieldBase(hazard, visual) {
+    const cellKeys = new Set(hazard.cells.map((cell) => cellKey(cell.x, cell.y)));
+    const segments = [];
+    for (const cell of hazard.cells) {
+      for (const direction of [{ x: 1, y: 0 }, { x: 0, y: 1 }]) {
+        const neighbor = { x: cell.x + direction.x, y: cell.y + direction.y };
+        if (cellKeys.has(cellKey(neighbor.x, neighbor.y))) {
+          segments.push([
+            centerOfCell(cell.x, cell.y),
+            centerOfCell(neighbor.x, neighbor.y)
+          ]);
+        }
+      }
+    }
+    if (!segments.length) {
+      return;
+    }
+
+    const activeAlpha = visual.active ? 0.94 : 0.24 + visual.telegraphProgress * 0.42;
+    const heatPulse = 0.78 + Math.sin(state.clock * 8.4 + hazard.phase) * 0.16;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = activeAlpha;
+    ctx.strokeStyle = "rgba(9, 3, 4, 0.98)";
+    ctx.lineWidth = TILE * 0.78;
+    ctx.shadowColor = "#ff2d16";
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 7 : 18) : 5;
+    for (const [from, to] of segments) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    }
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = activeAlpha * heatPulse;
+    ctx.strokeStyle = visual.active ? "rgba(255, 65, 21, 0.92)" : "rgba(255, 195, 45, 0.7)";
+    ctx.lineWidth = TILE * (visual.active ? 0.22 : 0.12);
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 5 : 12) : 3;
+    for (const [from, to] of segments) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = activeAlpha * 0.9;
+    ctx.strokeStyle = "#fff29a";
+    ctx.lineWidth = Math.max(1.1, TILE * 0.055);
+    ctx.shadowBlur = 5;
+    for (let index = 0; index < segments.length; index += 1) {
+      const [from, to] = segments[index];
+      const travel = (state.clock * 1.9 + index * 0.37 + hazard.phase) % 1;
+      const sparkX = from.x + (to.x - from.x) * travel;
+      const sparkY = from.y + (to.y - from.y) * travel;
+      ctx.beginPath();
+      ctx.arc(sparkX, sparkY, visual.active ? 1.5 : 1.05, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
   function drawHazardCell(hazard, cell, index, visual) {
     const px = cell.x * TILE;
     const py = cell.y * TILE;
@@ -26000,7 +26996,12 @@
     const cy = py + TILE / 2;
     const palette = getHazardVisualPalette(hazard);
 
-    if (isWorldOneReimagined() && (hazard.type === "boss-ice-trail" || hazard.type === "ice-slick")) {
+    if (isWorldOneReimagined() && hazard.type === "boss-ice-trail") {
+      drawWorldOneLegacySlipHazardCell(px, py, hazard, index, visual);
+      return;
+    }
+
+    if (isWorldOneReimagined() && hazard.type === "ice-slick") {
       drawWorldOneSlipHazardCell(px, py, hazard, index, visual);
       return;
     }
@@ -26021,6 +27022,26 @@
     const bob = visual.active && !MOBILE_RUNTIME.reducedEffects
       ? Math.sin(state.clock * 5.4 + index * 0.85 + hazard.phase) * 0.45
       : (1 - visual.telegraphProgress) * 2.4;
+
+    if (["lava-spill", "rune-trap", "crystal-burst"].includes(hazard.type)) {
+      ctx.save();
+      ctx.globalAlpha = materialAlpha;
+      ctx.translate(cx, cy + bob);
+      ctx.scale(revealScale, revealScale);
+      ctx.translate(-cx, -cy);
+      if (!visual.active) {
+        drawHazardTelegraphCue(px, py, inset, palette, visual);
+      }
+      if (hazard.type === "lava-spill") {
+        drawLavaHazardCell(px, py, inset, hazard, index, visual);
+      } else if (hazard.type === "rune-trap") {
+        drawRuneHazardCell(px, py, inset, hazard, index, visual);
+      } else {
+        drawCrystalHazardCell(cx, cy, hazard, index, visual);
+      }
+      ctx.restore();
+      return;
+    }
 
     ctx.save();
     drawHazardDangerPlate(px, py, inset, palette, index, visual);
@@ -26069,7 +27090,7 @@
     ctx.restore();
   }
 
-  function drawWorldOneSlipHazardCell(px, py, hazard, index, visual) {
+  function drawWorldOneLegacySlipHazardCell(px, py, hazard, index, visual) {
     const concept = getWorldOneConcept();
     const theme = concept.theme;
     const x = px + 2.2;
@@ -26078,7 +27099,7 @@
     const cx = px + TILE * 0.5;
     const cy = py + TILE * 0.5;
     const activeAlpha = visual.active ? 0.98 : 0.42 + visual.telegraphProgress * 0.38;
-    const danger = visual.active ? "rgba(255, 93, 110, 0.92)" : theme.accent;
+    const danger = visual.active ? "rgba(255, 222, 94, 0.98)" : theme.accent;
     const shimmer = Math.sin(state.clock * 5.2 + index * 0.9 + hazard.phase) * 0.5 + 0.5;
 
     ctx.save();
@@ -26089,17 +27110,18 @@
     ctx.ellipse(cx, py + TILE * 0.78, TILE * 0.43, TILE * 0.14, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    const channel = ctx.createLinearGradient(x, y, x + size, y + size);
-    channel.addColorStop(0, theme.floor[1]);
-    channel.addColorStop(0.5, theme.floor[0]);
+    const channel = ctx.createRadialGradient(cx, cy, 1, cx, cy, size * 0.72);
+    channel.addColorStop(0, visual.active ? "rgba(255, 248, 181, 0.98)" : "rgba(45, 212, 191, 0.82)");
+    channel.addColorStop(0.34, visual.active ? "rgba(246, 189, 69, 0.9)" : theme.floor[1]);
+    channel.addColorStop(0.7, theme.floor[0]);
     channel.addColorStop(1, theme.floor[2]);
     ctx.globalAlpha = activeAlpha;
     ctx.fillStyle = channel;
     ctx.strokeStyle = danger;
     ctx.shadowColor = danger;
     ctx.shadowBlur = visual.active ? 10 : 4;
-    ctx.lineWidth = visual.active ? 1.8 : 1.15;
-    roundedRect(x, y, size, size, concept.material === "workshop" ? 4 : 7);
+    ctx.lineWidth = visual.active ? 2.4 : 1.15;
+    roundedRect(x, y, size, size, concept.material === "workshop" ? 4 : 9);
     ctx.fill();
     ctx.stroke();
 
@@ -26113,16 +27135,35 @@
     ctx.lineWidth = isPhonePortraitView() ? 1 : 1.3;
 
     if (concept.material === "garden") {
-      for (const offset of [-5, 0, 5]) {
+      ctx.lineWidth = visual.active ? 1.8 : 1.1;
+      for (const offset of [-7, -2, 3, 8]) {
         ctx.beginPath();
-        ctx.moveTo(x - 4, cy + offset);
-        ctx.bezierCurveTo(cx - 3, cy + offset - 3, cx + 3, cy + offset + 3, x + size + 4, cy + offset);
+        ctx.moveTo(x - 4, cy + offset + Math.sin(state.clock * 6 + offset) * 2);
+        ctx.bezierCurveTo(
+          cx - 5,
+          cy + offset - 5,
+          cx + 5,
+          cy + offset + 5,
+          x + size + 4,
+          cy + offset + Math.cos(state.clock * 6 + offset) * 2
+        );
         ctx.stroke();
       }
       ctx.fillStyle = "rgba(246, 189, 69, 0.72)";
       ctx.beginPath();
-      ctx.arc(cx, cy, 2.2 + shimmer, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 3.2 + shimmer * 1.4, 0, Math.PI * 2);
       ctx.fill();
+      if (visual.active) {
+        ctx.strokeStyle = "rgba(255, 244, 169, 0.92)";
+        ctx.lineWidth = 1.25;
+        for (let ray = 0; ray < 8; ray += 1) {
+          const angle = state.clock * 0.9 + ray * Math.PI / 4;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(angle) * 7, cy + Math.sin(angle) * 7);
+          ctx.lineTo(cx + Math.cos(angle) * 12, cy + Math.sin(angle) * 12);
+          ctx.stroke();
+        }
+      }
     } else if (concept.material === "workshop") {
       ctx.strokeStyle = "rgba(241, 189, 85, 0.84)";
       for (let stripe = -size; stripe < size * 2; stripe += 8) {
@@ -26159,6 +27200,195 @@
       ctx.lineWidth = 1.2;
       roundedRect(x - 0.6, y - 0.6, size + 1.2, size + 1.2, 7);
       ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawWorldOneSlipHazardCell(px, py, hazard, index, visual) {
+    const cx = px + TILE * 0.5;
+    const cy = py + TILE * 0.5;
+    const trapAsset = GAME_ASSETS.sunEruptionTrap;
+    const assetReady = isImageReady(trapAsset);
+    const phase = state.clock * 6.8 + index * 0.91 + hazard.phase;
+    const pulse = Math.sin(phase) * 0.5 + 0.5;
+    const eruption = Math.pow(Math.max(0, Math.sin(state.clock * 3.4 + index * 0.58 + hazard.phase)), 3);
+    const warningPulse = Math.sin(state.clock * 10.5 + index * 0.72) * 0.5 + 0.5;
+    const reveal = visual.active ? 1 : 0.7 + visual.telegraphProgress * 0.3;
+    const trapScale = (visual.active ? 1.26 + pulse * 0.1 + eruption * 0.08 : 0.8 + visual.telegraphProgress * 0.24) * reveal;
+    const trapSize = TILE * trapScale;
+    const dangerAlpha = visual.active ? 1 : 0.34 + visual.telegraphProgress * 0.5;
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+
+    // A black burned footprint keeps the trap readable even when effects are
+    // reduced and prevents it from looking like a collectible or floor button.
+    ctx.globalAlpha = visual.active ? 0.9 : 0.32 + visual.telegraphProgress * 0.34;
+    const scorch = ctx.createRadialGradient(cx, cy, TILE * 0.08, cx, cy, TILE * 0.66);
+    scorch.addColorStop(0, "rgba(15, 2, 3, 0.98)");
+    scorch.addColorStop(0.58, "rgba(28, 5, 4, 0.9)");
+    scorch.addColorStop(0.82, "rgba(110, 12, 5, 0.5)");
+    scorch.addColorStop(1, "rgba(70, 6, 3, 0)");
+    ctx.fillStyle = scorch;
+    ctx.beginPath();
+    ctx.arc(cx, cy, TILE * 0.68, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Rotating segmented warning ring: motion and red/yellow alternation are
+    // visible from the wide camera and clearly communicate an active danger.
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.translate(cx, cy);
+    ctx.rotate((visual.active ? state.clock * 1.7 : state.clock * 0.65) + index * 0.22);
+    ctx.globalAlpha = dangerAlpha * (0.68 + warningPulse * 0.28);
+    ctx.lineCap = "round";
+    ctx.lineWidth = visual.active ? 2.15 : 1.45;
+    ctx.shadowColor = visual.active ? "#ff2918" : "#ffd23f";
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 6 : 14) : 5;
+    for (let segment = 0; segment < 8; segment += 1) {
+      ctx.strokeStyle = segment % 2 === 0 ? "#ff3520" : "#ffd23f";
+      ctx.beginPath();
+      ctx.arc(0, 0, TILE * (visual.active ? 0.66 + eruption * 0.08 : 0.5), segment * Math.PI / 4 + 0.08, segment * Math.PI / 4 + 0.54);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(index % 2 === 0 ? 0 : Math.PI / 8);
+    ctx.globalAlpha = dangerAlpha;
+    ctx.shadowColor = "#ff2b13";
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 7 : 18) : 6;
+    if (assetReady) {
+      ctx.drawImage(trapAsset, -trapSize / 2, -trapSize / 2, trapSize, trapSize);
+    } else {
+      const fallback = ctx.createRadialGradient(0, 0, 1, 0, 0, trapSize * 0.48);
+      fallback.addColorStop(0, "#fff8b0");
+      fallback.addColorStop(0.18, "#ffb111");
+      fallback.addColorStop(0.48, "#ff3218");
+      fallback.addColorStop(0.7, "#611009");
+      fallback.addColorStop(1, "#0a0303");
+      ctx.fillStyle = fallback;
+      ctx.beginPath();
+      for (let point = 0; point < 24; point += 1) {
+        const angle = point * Math.PI / 12;
+        const radius = trapSize * (point % 2 === 0 ? 0.5 : 0.42);
+        const pointX = Math.cos(angle) * radius;
+        const pointY = Math.sin(angle) * radius;
+        if (point === 0) ctx.moveTo(pointX, pointY);
+        else ctx.lineTo(pointX, pointY);
+      }
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+
+    if (visual.active) {
+      // White-hot breathing core plus upward flame tongues make the hazard
+      // unmistakably animated rather than a static floor decoration.
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(state.clock * 0.9 + index * 0.17);
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.48 + eruption * 0.42;
+      ctx.strokeStyle = eruption > 0.45 ? "#fff2a0" : "#ff4a1c";
+      ctx.shadowColor = "#ff3517";
+      ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 5 : 13;
+      ctx.lineCap = "round";
+      ctx.lineWidth = 1.3 + eruption * 1.15;
+      for (let ray = 0; ray < 10; ray += 1) {
+        ctx.rotate(Math.PI / 5);
+        ctx.beginPath();
+        ctx.moveTo(TILE * 0.48, 0);
+        ctx.lineTo(TILE * (0.66 + eruption * 0.2 + (ray % 2) * 0.05), 0);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.58 + pulse * 0.34;
+      ctx.shadowColor = "#ff461c";
+      ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 7 : 18;
+      const core = ctx.createRadialGradient(cx, cy, 1, cx, cy, TILE * (0.13 + pulse * 0.045));
+      core.addColorStop(0, "#ffffff");
+      core.addColorStop(0.22, "#fff7a8");
+      core.addColorStop(0.64, "#ff9f16");
+      core.addColorStop(1, "rgba(255, 48, 16, 0)");
+      ctx.fillStyle = core;
+      ctx.beginPath();
+      ctx.arc(cx, cy, TILE * (0.18 + pulse * 0.045), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      const flameCount = MOBILE_RUNTIME.reducedEffects ? 3 : 5;
+      for (let flame = 0; flame < flameCount; flame += 1) {
+        const angle = flame * Math.PI * 2 / flameCount + index * 0.31;
+        const baseX = cx + Math.cos(angle) * TILE * 0.29;
+        const baseY = cy + Math.sin(angle) * TILE * 0.16 + TILE * 0.18;
+        drawHazardFlame(
+          baseX,
+          baseY,
+          TILE * (0.18 + (flame % 2) * 0.035 + eruption * 0.04),
+          phase + flame * 1.47,
+          {
+            hot: "#fff4a1",
+            mid: "#ff8a16",
+            base: "rgba(220, 25, 9, 0.92)",
+            glow: "#ff3a12"
+          }
+        );
+      }
+
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.shadowColor = "#ff6a18";
+      ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 3 : 8;
+      const emberCount = MOBILE_RUNTIME.reducedEffects ? 3 : 7;
+      for (let ember = 0; ember < emberCount; ember += 1) {
+        const seed = ember * 1.83 + index * 0.61;
+        const cycle = (state.clock * (0.72 + (ember % 3) * 0.16) + seed) % 1;
+        const angle = seed + state.clock * 0.35;
+        const distance = TILE * (0.22 + cycle * 0.34);
+        ctx.globalAlpha = (1 - cycle) * (0.48 + (ember % 2) * 0.26);
+        ctx.fillStyle = ember % 2 === 0 ? "#fff09a" : "#ff4b1a";
+        ctx.beginPath();
+        ctx.arc(
+          cx + Math.cos(angle) * distance,
+          cy + Math.sin(angle) * distance - cycle * TILE * 0.32,
+          0.9 + (ember % 3) * 0.35,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
+      ctx.restore();
+    } else {
+      // Telegraph state deliberately uses a clear warning glyph and a
+      // contracting ring so the player has time to react before activation.
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.globalAlpha = 0.56 + visual.telegraphProgress * 0.4;
+      ctx.strokeStyle = visual.telegraphProgress > 0.7 ? "#ff3520" : "#ffd23f";
+      ctx.fillStyle = "rgba(48, 4, 4, 0.88)";
+      ctx.shadowColor = "#ff3520";
+      ctx.shadowBlur = 8;
+      ctx.lineWidth = 1.7;
+      const ringRadius = TILE * (0.68 - visual.telegraphProgress * 0.18);
+      ctx.beginPath();
+      ctx.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(cx, cy, TILE * 0.17, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#fff2a1";
+      ctx.font = `900 ${Math.round(TILE * 0.3)}px Assistant, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("!", cx, cy + 0.5);
+      ctx.restore();
     }
     ctx.restore();
   }
@@ -26902,64 +28132,101 @@
 
   function drawLavaHazardCell(px, py, inset, hazard, index, visual) {
     const cx = px + TILE / 2;
-    const baseY = py + TILE * 0.82;
-    const phase = state.clock * 5.8 + index * 0.85 + hazard.phase;
+    const cy = py + TILE / 2;
+    const phase = state.clock * 3.8 + index * 0.74 + hazard.phase;
+    const bubbleLift = Math.sin(phase * 1.7) * TILE * 0.04;
 
     ctx.save();
-    ctx.fillStyle = "rgba(34, 5, 3, 0.95)";
-    roundedRect(px + 5.5, py + TILE * 0.63, TILE - 11, TILE * 0.23, 4);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha *= visual.active ? 0.98 : 0.48 + visual.telegraphProgress * 0.35;
+    ctx.shadowColor = "#ff4b16";
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 7 : 18) : 5;
+    const molten = ctx.createRadialGradient(
+      cx + Math.sin(phase) * 4,
+      cy + Math.cos(phase * 0.8) * 3,
+      1,
+      cx,
+      cy,
+      TILE * 0.62
+    );
+    molten.addColorStop(0, "#fff8a6");
+    molten.addColorStop(0.18, "#ffd23f");
+    molten.addColorStop(0.48, "#ff6a14");
+    molten.addColorStop(0.76, "#c6200b");
+    molten.addColorStop(1, "#350503");
+    ctx.fillStyle = molten;
+    ctx.beginPath();
+    ctx.arc(cx, cy, TILE * 0.51, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.strokeStyle = "#ffd84a";
-    ctx.lineWidth = 1;
-    ctx.setLineDash([3, 3]);
+    ctx.shadowBlur = 0;
     ctx.beginPath();
-    ctx.moveTo(px + 7, py + TILE * 0.61);
-    ctx.lineTo(px + TILE - 7, py + TILE * 0.61);
+    ctx.arc(cx, cy, TILE * 0.51, 0, Math.PI * 2);
+    ctx.clip();
+    ctx.globalCompositeOperation = "screen";
+    ctx.lineCap = "round";
+    for (let flow = 0; flow < 3; flow += 1) {
+      const radius = TILE * (0.16 + flow * 0.105);
+      ctx.globalAlpha = visual.active ? 0.72 - flow * 0.12 : 0.3;
+      ctx.strokeStyle = flow % 2 === 0 ? "#fff39a" : "#ff9b22";
+      ctx.lineWidth = flow === 0 ? 2.2 : 1.45;
+      ctx.beginPath();
+      ctx.ellipse(
+        cx + Math.sin(phase + flow) * 2,
+        cy + Math.cos(phase * 0.8 + flow) * 1.5,
+        radius * 1.25,
+        radius * 0.62,
+        phase * 0.18 + flow * 0.7,
+        -2.7,
+        1.5
+      );
+      ctx.stroke();
+    }
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = visual.active ? 0.78 : 0.38;
+    ctx.strokeStyle = "#3a0905";
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    ctx.moveTo(cx - TILE * 0.46, cy - TILE * 0.12);
+    ctx.lineTo(cx - TILE * 0.29, cy - TILE * 0.03);
+    ctx.lineTo(cx - TILE * 0.18, cy - TILE * 0.14);
+    ctx.moveTo(cx + TILE * 0.18, cy + TILE * 0.25);
+    ctx.lineTo(cx + TILE * 0.3, cy + TILE * 0.14);
+    ctx.lineTo(cx + TILE * 0.47, cy + TILE * 0.2);
     ctx.stroke();
-    ctx.setLineDash([]);
 
     ctx.globalCompositeOperation = "screen";
-    ctx.globalAlpha *= 0.8;
-    ctx.fillStyle = "rgba(255, 39, 61, 0.42)";
-    ctx.beginPath();
-    ctx.ellipse(cx, baseY - TILE * 0.18, TILE * 0.36, TILE * 0.31, 0, 0, Math.PI * 2);
-    ctx.fill();
+    for (let bubble = 0; bubble < 3; bubble += 1) {
+      const angle = phase * (0.45 + bubble * 0.08) + bubble * 2.15;
+      const bx = cx + Math.cos(angle) * TILE * (0.12 + bubble * 0.07);
+      const by = cy + Math.sin(angle * 0.78) * TILE * 0.19 + bubbleLift;
+      const radius = 1.5 + (Math.sin(phase + bubble) * 0.5 + 0.5) * 2.1;
+      ctx.globalAlpha = visual.active ? 0.78 : 0.34;
+      ctx.fillStyle = "#ffe45a";
+      ctx.beginPath();
+      ctx.arc(bx, by, radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#fff4bc";
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
     ctx.restore();
 
-    drawHazardFlame(cx - TILE * 0.18, baseY, TILE * 0.16, phase, {
-      hot: "#fff0a4",
-      mid: "#ff8a1a",
-      base: "#ff273d",
-      glow: "#ff621f"
-    });
-    drawHazardFlame(cx + TILE * 0.04, baseY + 1, TILE * 0.2, phase + 0.9, {
-      hot: "#fff7c7",
-      mid: "#ffb340",
-      base: "#ff321b",
-      glow: "#ff7a1a"
-    });
-    drawHazardFlame(cx + TILE * 0.24, baseY, TILE * 0.14, phase + 1.8, {
-      hot: "#fff0a4",
-      mid: "#ff8a1a",
-      base: "#ff273d",
-      glow: "#ff621f"
-    });
-
     ctx.save();
     ctx.globalCompositeOperation = "screen";
-    ctx.globalAlpha *= 0.86;
-    ctx.strokeStyle = "#ffd84a";
-    ctx.lineWidth = 1.1;
-    for (let spark = 0; spark < 3; spark += 1) {
-      const sx = px + TILE * (0.26 + spark * 0.24);
-      const sy = py + TILE * (0.27 + Math.sin(phase + spark) * 0.08);
-      ctx.beginPath();
-      ctx.moveTo(sx - 2, sy);
-      ctx.lineTo(sx + 2, sy);
-      ctx.moveTo(sx, sy - 2);
-      ctx.lineTo(sx, sy + 2);
-      ctx.stroke();
+    if (visual.active && !MOBILE_RUNTIME.reducedEffects) {
+      for (let spark = 0; spark < 3; spark += 1) {
+        const sx = px + TILE * (0.22 + spark * 0.28);
+        const sy = py + TILE * (0.18 + Math.sin(phase * 1.4 + spark) * 0.1);
+        ctx.globalAlpha = 0.5 + Math.sin(phase + spark) * 0.25;
+        ctx.strokeStyle = spark % 2 === 0 ? "#fff2a1" : "#ff8a1a";
+        ctx.lineWidth = 1.1;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy + 3);
+        ctx.lineTo(sx + Math.sin(phase + spark) * 2, sy - 3);
+        ctx.stroke();
+      }
     }
     ctx.restore();
   }
@@ -27006,6 +28273,7 @@
 
   function drawRuneHazardCell(px, py, inset, hazard, index, visual) {
     const cx = px + TILE / 2;
+    const cy = py + TILE / 2;
     const x = px + 4.4;
     const y = py + 5.2;
     const w = TILE - 8.8;
@@ -27031,6 +28299,29 @@
     ctx.fillStyle = "rgba(18, 12, 7, 0.42)";
     roundedRect(x + w * 0.19, y + h * 0.19, w * 0.62, h * 0.58, 3.5);
     ctx.fill();
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate((visual.active ? state.clock * 0.9 : visual.telegraphProgress * 0.6) + index * 0.35);
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = visual.active ? 0.72 : 0.28 + visual.telegraphProgress * 0.24;
+    ctx.strokeStyle = hazard.color;
+    ctx.shadowColor = hazard.color;
+    ctx.shadowBlur = visual.active ? 12 : 4;
+    ctx.lineWidth = visual.active ? 1.7 : 1;
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.arc(0, 0, TILE * 0.33, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    for (let mark = 0; mark < 4; mark += 1) {
+      ctx.rotate(Math.PI / 2);
+      ctx.beginPath();
+      ctx.moveTo(TILE * 0.27, 0);
+      ctx.lineTo(TILE * 0.4, 0);
+      ctx.stroke();
+    }
+    ctx.restore();
 
     const spikeColors = {
       top: "#fff0a4",
@@ -27059,6 +28350,23 @@
     ctx.moveTo(cx - TILE * 0.1, y + h * 0.72);
     ctx.lineTo(cx + TILE * 0.11, y + h * 0.72);
     ctx.stroke();
+
+    if (visual.active && !MOBILE_RUNTIME.reducedEffects) {
+      ctx.globalAlpha = 0.62 + Math.sin(state.clock * 7 + index) * 0.18;
+      ctx.fillStyle = "#fff1b6";
+      for (let mote = 0; mote < 3; mote += 1) {
+        const angle = state.clock * (0.8 + mote * 0.14) + index + mote * 2.1;
+        ctx.beginPath();
+        ctx.arc(
+          cx + Math.cos(angle) * TILE * 0.34,
+          cy + Math.sin(angle) * TILE * 0.28,
+          1.2,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
+    }
     ctx.restore();
   }
 
@@ -27084,6 +28392,14 @@
     };
 
     ctx.save();
+    const crystalPulse = visual.active
+      ? 1 + Math.sin(state.clock * 6.4 + index * 0.8) * 0.07
+      : 0.84 + visual.telegraphProgress * 0.16;
+    ctx.translate(cx, cy);
+    ctx.scale(crystalPulse, crystalPulse);
+    ctx.translate(-cx, -cy);
+    ctx.shadowColor = index % 2 === 0 ? "#ff75df" : "#55ffd6";
+    ctx.shadowBlur = visual.active ? (MOBILE_RUNTIME.reducedEffects ? 6 : 16) : 4;
     ctx.fillStyle = "rgba(6, 13, 45, 0.5)";
     ctx.beginPath();
     ctx.ellipse(cx, baseY + 1, TILE * 0.34, TILE * 0.12, 0, 0, Math.PI * 2);
@@ -27097,15 +28413,34 @@
     drawHazardFacetLine(cx + TILE * 0.22, baseY - TILE * 0.31, cx + TILE * 0.28, baseY - TILE * 0.07, "#ffffff");
     if (visual.active) {
       ctx.globalCompositeOperation = "screen";
-      ctx.globalAlpha *= 0.42;
+      ctx.globalAlpha *= 0.62;
       ctx.strokeStyle = index % 2 === 0 ? "#ff5fd7" : "#55ffd6";
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1.25;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(state.clock * 1.25 + index * 0.4);
       ctx.beginPath();
-      ctx.moveTo(cx - TILE * 0.4, cy);
-      ctx.lineTo(cx + TILE * 0.4, cy);
-      ctx.moveTo(cx, cy - TILE * 0.4);
-      ctx.lineTo(cx, cy + TILE * 0.34);
+      ctx.moveTo(-TILE * 0.46, 0);
+      ctx.lineTo(TILE * 0.46, 0);
+      ctx.moveTo(0, -TILE * 0.46);
+      ctx.lineTo(0, TILE * 0.4);
       ctx.stroke();
+      ctx.restore();
+
+      ctx.fillStyle = "#ffffff";
+      for (let shard = 0; shard < 3; shard += 1) {
+        const angle = -state.clock * (0.7 + shard * 0.1) + shard * Math.PI * 2 / 3 + index;
+        ctx.globalAlpha = 0.45 + shard * 0.12;
+        ctx.beginPath();
+        ctx.arc(
+          cx + Math.cos(angle) * TILE * 0.39,
+          cy + Math.sin(angle) * TILE * 0.34,
+          1.1 + shard * 0.25,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
     }
     ctx.restore();
   }
@@ -27463,10 +28798,89 @@
     renderContext.restore();
   }
 
+  function drawSunGardenBossAura(renderContext, displaySize, active) {
+    const pulse = 0.5 + Math.abs(Math.sin(state.clock * (active ? 5.6 : 2.4))) * 0.5;
+    renderContext.save();
+    renderContext.translate(0, -displaySize * 0.12);
+    renderContext.rotate(state.clock * 0.16);
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.strokeStyle = "#f6bd45";
+    renderContext.lineCap = "round";
+    renderContext.shadowColor = "#f6bd45";
+    renderContext.shadowBlur = 12 + pulse * 9;
+    renderContext.globalAlpha = 0.24 + pulse * 0.16;
+    renderContext.lineWidth = Math.max(1.4, displaySize * 0.014);
+    renderContext.beginPath();
+    renderContext.arc(0, 0, displaySize * 0.39, 0, Math.PI * 2);
+    renderContext.stroke();
+    for (let ray = 0; ray < 10; ray += 1) {
+      const angle = ray * Math.PI * 0.2;
+      const inner = displaySize * 0.43;
+      const outer = displaySize * (0.5 + pulse * 0.025);
+      renderContext.beginPath();
+      renderContext.moveTo(Math.cos(angle) * inner, Math.sin(angle) * inner);
+      renderContext.lineTo(Math.cos(angle) * outer, Math.sin(angle) * outer);
+      renderContext.stroke();
+    }
+    renderContext.restore();
+  }
+
+  function drawSunGardenBossAccents(renderContext, displaySize, active) {
+    const leafColor = active ? "#9fe493" : "#79ca71";
+    renderContext.save();
+    renderContext.globalCompositeOperation = "source-over";
+    renderContext.lineJoin = "round";
+    renderContext.lineWidth = Math.max(1, displaySize * 0.012);
+    renderContext.strokeStyle = "#315d3d";
+
+    for (const side of [-1, 1]) {
+      renderContext.save();
+      renderContext.translate(side * displaySize * 0.31, -displaySize * 0.2);
+      renderContext.rotate(side * -0.62);
+      renderContext.fillStyle = leafColor;
+      renderContext.beginPath();
+      renderContext.moveTo(0, 0);
+      renderContext.bezierCurveTo(
+        side * displaySize * 0.02,
+        -displaySize * 0.13,
+        side * displaySize * 0.14,
+        -displaySize * 0.16,
+        side * displaySize * 0.17,
+        -displaySize * 0.03
+      );
+      renderContext.bezierCurveTo(
+        side * displaySize * 0.11,
+        displaySize * 0.04,
+        side * displaySize * 0.04,
+        displaySize * 0.035,
+        0,
+        0
+      );
+      renderContext.closePath();
+      renderContext.fill();
+      renderContext.stroke();
+      renderContext.restore();
+    }
+
+    renderContext.globalCompositeOperation = "screen";
+    renderContext.shadowColor = "#f6bd45";
+    renderContext.shadowBlur = active ? 18 : 11;
+    renderContext.fillStyle = "#f6bd45";
+    renderContext.globalAlpha = active ? 0.94 : 0.76;
+    renderContext.beginPath();
+    renderContext.arc(0, -displaySize * 0.055, displaySize * 0.068, 0, Math.PI * 2);
+    renderContext.fill();
+    renderContext.strokeStyle = "#efffd2";
+    renderContext.lineWidth = Math.max(1.2, displaySize * 0.012);
+    renderContext.stroke();
+    renderContext.restore();
+  }
+
   function drawBossActorSprite(renderContext, definition, directionName, displaySize) {
     const frame = getBossActorFrame(definition, directionName);
     const mirrorHorizontally = directionName === "right";
     renderContext.save();
+    renderContext.filter = definition.actor?.filter || "none";
     if (mirrorHorizontally) {
       // The authored side cells both look left. Mirror the right-facing cell so
       // the face, shoulders and feet actually point along the travel vector.
@@ -27503,6 +28917,7 @@
       y: gait.direction.y
     };
     renderContext.save();
+    renderContext.filter = definition.actor?.filter || "none";
     // A shadow applied separately to cropped torso/boot rectangles creates a
     // visible horizontal seam. The encounter already has a grounded shadow,
     // rim and core glow, so keep the articulated sprite itself seam-free.
@@ -27861,6 +29276,9 @@
 
     if (titleAlpha > 0.01) {
       const accent = cinematic.accent || "#ffd84a";
+      const worldLabel = state.language === "en"
+        ? (cinematic.bossWorldLabelEn || "World")
+        : (cinematic.bossWorldLabel || "העולם");
       ctx.globalAlpha = titleAlpha;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
@@ -27868,7 +29286,11 @@
       ctx.shadowBlur = 18;
       ctx.fillStyle = "#fff8dc";
       ctx.font = `900 ${isPhonePortraitView() ? 34 : 38}px Assistant, system-ui, sans-serif`;
-      ctx.fillText(state.language === "en" ? "BOSS AWAKENS" : "הבוס מתעורר", WIDTH / 2, barHeight * 0.48);
+      ctx.fillText(
+        state.language === "en" ? `${worldLabel} BOSS` : `הבוס של ${worldLabel}`,
+        WIDTH / 2,
+        barHeight * 0.48
+      );
       ctx.shadowBlur = 10;
       ctx.fillStyle = accent;
       ctx.font = `900 ${isPhonePortraitView() ? 28 : 31}px Assistant, system-ui, sans-serif`;
@@ -27929,7 +29351,9 @@
     ctx.font = `900 ${isPhonePortraitView() ? 20 : 22}px Assistant, system-ui, sans-serif`;
     ctx.textAlign = state.language === "en" ? "left" : "right";
     ctx.fillText(
-      state.language === "en" ? `${boss.name} · BOSS` : `${boss.name} · בוס`,
+      state.language === "en"
+        ? (boss.definition?.titleEn || `${boss.definition?.nameEn || boss.name} · BOSS`)
+        : (boss.title || `${boss.name} · בוס`),
       state.language === "en" ? innerX : innerX + innerWidth,
       panelY + 23
     );
@@ -28088,9 +29512,14 @@
 
     drawBossActorMotionArcs(ctx, displaySize, definition, direction, moving, footfall);
     drawBossActorStepPads(ctx, displaySize, definition, direction, walkPhase, moving);
+    const isSunGardenBoss = definition.actor?.theme === "sun-garden";
+    const bossQuestionActive = state.phase === "question" && state.currentEnemyId === boss.id;
+    if (isSunGardenBoss) {
+      drawSunGardenBossAura(ctx, displaySize, bossQuestionActive);
+    }
     if (definition.proceduralStyle === "sun-garden-warden") {
-      drawSunGardenWarden(ctx, displaySize, actorDirectionName, walkPhase, state.phase === "question" && state.currentEnemyId === boss.id);
-      drawBossActorCoreCue(ctx, displaySize, definition, actorDirectionName, state.phase === "question" && state.currentEnemyId === boss.id);
+      drawSunGardenWarden(ctx, displaySize, actorDirectionName, walkPhase, bossQuestionActive);
+      drawBossActorCoreCue(ctx, displaySize, definition, actorDirectionName, bossQuestionActive);
     } else if (actorSheetReady) {
       if (moving) {
         drawBossWalkingSprite(ctx, definition, actorDirectionName, displaySize, {
@@ -28103,12 +29532,15 @@
       } else {
         drawBossActorSprite(ctx, definition, actorDirectionName, displaySize);
       }
-      if (state.bossIntro || boss.hitFlash > 0 || (state.phase === "question" && state.currentEnemyId === boss.id)) {
+      if (state.bossIntro || boss.hitFlash > 0 || bossQuestionActive) {
         drawCharacterRim(ctx, displaySize, definition.accent, {
           intensity: state.bossIntro ? 0.46 : 0.3
         });
       }
-      drawBossActorCoreCue(ctx, displaySize, definition, actorDirectionName, state.phase === "question" && state.currentEnemyId === boss.id);
+      drawBossActorCoreCue(ctx, displaySize, definition, actorDirectionName, bossQuestionActive);
+      if (isSunGardenBoss) {
+        drawSunGardenBossAccents(ctx, displaySize, bossQuestionActive);
+      }
     } else {
       drawBossLegacySprite(ctx, sprite, definition, width, height, progress);
     }
@@ -28289,6 +29721,168 @@
     renderContext.restore();
   }
 
+  function drawEnvironmentHazardImpact() {
+    const impact = state.hazardImpact;
+    if (!impact || impact.elapsed <= 0) {
+      return;
+    }
+
+    const progress = clamp(impact.elapsed / Math.max(0.01, impact.duration), 0, 1);
+    const burstProgress = clamp(progress / 0.32, 0, 1);
+    const fade = 1 - Math.max(0, progress - 0.68) / 0.32;
+    const x = impact.x;
+    const y = impact.y;
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = Math.max(0, (1 - burstProgress) * 0.82);
+    ctx.strokeStyle = impact.color;
+    ctx.shadowColor = impact.color;
+    ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 5 : 18;
+    ctx.lineWidth = 3 - burstProgress * 1.4;
+    ctx.beginPath();
+    ctx.arc(x, y, TILE * (0.18 + burstProgress * 0.72), 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    if (impact.effect === "burn") {
+      const smokeProgress = clamp((progress - 0.12) / 0.88, 0, 1);
+      const flameFade = 1 - clamp(progress / 0.58, 0, 1);
+
+      ctx.save();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = Math.max(0, fade * 0.88);
+      const burnedGround = ctx.createRadialGradient(x, y + TILE * 0.18, 1, x, y + TILE * 0.18, TILE * 0.68);
+      burnedGround.addColorStop(0, "rgba(8, 2, 2, 0.94)");
+      burnedGround.addColorStop(0.5, "rgba(35, 4, 3, 0.72)");
+      burnedGround.addColorStop(0.76, "rgba(198, 28, 8, 0.32)");
+      burnedGround.addColorStop(1, "rgba(198, 28, 8, 0)");
+      ctx.fillStyle = burnedGround;
+      ctx.beginPath();
+      ctx.ellipse(x, y + TILE * 0.18, TILE * 0.68, TILE * 0.3, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      if (flameFade > 0) {
+        const flameCount = MOBILE_RUNTIME.reducedEffects ? 3 : 6;
+        ctx.save();
+        ctx.globalAlpha = flameFade;
+        for (let flame = 0; flame < flameCount; flame += 1) {
+          const angle = flame * Math.PI * 2 / flameCount + progress * 2.6;
+          drawHazardFlame(
+            x + Math.cos(angle) * TILE * 0.3,
+            y + TILE * 0.26 + Math.sin(angle) * TILE * 0.1,
+            TILE * (0.16 + (flame % 3) * 0.025) * (0.78 + flameFade * 0.38),
+            state.clock * 9 + flame * 1.31,
+            {
+              hot: "#fff8b8",
+              mid: "#ff9d1c",
+              base: "rgba(230, 24, 7, 0.95)",
+              glow: "#ff3517"
+            }
+          );
+        }
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.globalCompositeOperation = "source-over";
+      for (let puff = 0; puff < (MOBILE_RUNTIME.reducedEffects ? 5 : 11); puff += 1) {
+        const seed = puff * 1.73;
+        const rise = smokeProgress * TILE * (1.12 + (puff % 4) * 0.18);
+        const drift = Math.sin(seed + progress * 7) * TILE * (0.12 + (puff % 2) * 0.055);
+        const puffX = x + (puff - 5) * TILE * 0.055 + drift;
+        const puffY = y + TILE * 0.12 - rise + Math.cos(seed) * 4;
+        const radius = TILE * (0.2 + smokeProgress * 0.27 + (puff % 3) * 0.032);
+        const smoke = ctx.createRadialGradient(puffX - radius * 0.2, puffY - radius * 0.24, 1, puffX, puffY, radius);
+        smoke.addColorStop(0, puff % 2 === 0 ? "rgba(198, 192, 187, 0.95)" : "rgba(132, 125, 123, 0.94)");
+        smoke.addColorStop(0.62, "rgba(49, 44, 45, 0.82)");
+        smoke.addColorStop(1, "rgba(18, 15, 17, 0)");
+        ctx.globalAlpha = Math.max(0, fade * (0.94 - puff * 0.028));
+        ctx.fillStyle = smoke;
+        ctx.beginPath();
+        ctx.arc(puffX, puffY, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = "screen";
+      for (let ember = 0; ember < 7; ember += 1) {
+        const angle = ember * 2.17 + progress * 4.4;
+        const distance = TILE * (0.16 + progress * (0.34 + (ember % 3) * 0.08));
+        ctx.globalAlpha = fade * (0.48 + (ember % 2) * 0.24);
+        ctx.fillStyle = ember % 2 === 0 ? "#fff1a1" : "#ff671f";
+        ctx.beginPath();
+        ctx.arc(
+          x + Math.cos(angle) * distance,
+          y - progress * TILE * 0.5 + Math.sin(angle) * distance * 0.62,
+          1.2 + (ember % 3) * 0.45,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
+      ctx.restore();
+      return;
+    }
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = Math.max(0, fade * 0.82);
+    ctx.strokeStyle = impact.color;
+    ctx.fillStyle = impact.color;
+    ctx.shadowColor = impact.color;
+    ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 4 : 12;
+
+    if (impact.type === "rune-trap") {
+      ctx.translate(x, y);
+      ctx.rotate(progress * Math.PI * 1.4);
+      ctx.lineWidth = 1.8;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.arc(0, 0, TILE * (0.24 + progress * 0.44), 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      for (let fragment = 0; fragment < 6; fragment += 1) {
+        const angle = fragment * Math.PI / 3;
+        ctx.fillRect(
+          Math.cos(angle) * TILE * (0.18 + progress * 0.48) - 1.5,
+          Math.sin(angle) * TILE * (0.18 + progress * 0.48) - 1.5,
+          3,
+          3
+        );
+      }
+    } else if (impact.type === "crystal-burst") {
+      ctx.translate(x, y);
+      ctx.rotate(progress * Math.PI * 0.75);
+      for (let shard = 0; shard < 8; shard += 1) {
+        const angle = shard * Math.PI / 4;
+        const distance = TILE * (0.12 + progress * 0.68);
+        ctx.save();
+        ctx.translate(Math.cos(angle) * distance, Math.sin(angle) * distance);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.moveTo(7, 0);
+        ctx.lineTo(-3, -2.2);
+        ctx.lineTo(-1, 2.2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+    } else {
+      ctx.translate(x, y);
+      ctx.rotate(progress * Math.PI);
+      ctx.lineWidth = 2;
+      for (let ray = 0; ray < 10; ray += 1) {
+        ctx.rotate(Math.PI / 5);
+        ctx.beginPath();
+        ctx.moveTo(TILE * 0.16, 0);
+        ctx.lineTo(TILE * (0.28 + progress * 0.52), 0);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
   function drawPlayerCharacter(renderContext, playerState) {
     if (!playerState) {
       return;
@@ -28304,11 +29898,30 @@
     const compactAuthoredMobile = authoredGardenScale && MOBILE_RUNTIME.coarse;
     const mobileCharacterScale = getPlayerCharacterVisualScale();
     const displaySize = playerState.radius * theme.renderScale * mobileCharacterScale;
+    const hazardImpact = state.hazardImpact?.playerAttached && playerState.hazardReaction
+      ? state.hazardImpact
+      : null;
+    const hazardProgress = hazardImpact
+      ? clamp(hazardImpact.elapsed / Math.max(0.01, playerState.hazardReaction.duration), 0, 1)
+      : 0;
+    const hazardEase = 1 - Math.pow(1 - hazardProgress, 3);
+    const hazardScale = hazardImpact
+      ? Math.max(hazardImpact.effect === "burn" ? 0.12 : 0.28, 1 - hazardEase * (
+        hazardImpact.effect === "burn" ? 0.88 : 0.72
+      ))
+      : 1;
+    const hazardTilt = hazardImpact
+      ? Math.sin(hazardProgress * Math.PI * 3) * (1 - hazardProgress) * 0.24
+      : 0;
     renderContext.save();
-    drawPlayerTrail(renderContext, playerState, displaySize, theme);
-    drawIceWorldActorContact(renderContext, playerState.x, playerState.y, displaySize, state.clock, true);
+    if (!hazardImpact) {
+      drawPlayerTrail(renderContext, playerState, displaySize, theme);
+      drawIceWorldActorContact(renderContext, playerState.x, playerState.y, displaySize, state.clock, true);
+    }
 
-    renderContext.globalAlpha = 1;
+    renderContext.globalAlpha = hazardImpact
+      ? Math.max(0.16, 1 - Math.max(0, hazardProgress - 0.48) * 1.5)
+      : 1;
     const flicker = playerState.invulnerable > 0 && Math.floor(state.clock * 16) % 2 === 0;
     if (flicker) {
       renderContext.globalAlpha = 0.55;
@@ -28349,9 +29962,13 @@
     drawPlayerGroundSteps(renderContext, playerState, displaySize, theme, moving, direction, walkPhase);
     renderContext.translate(playerState.x, playerState.y);
     renderContext.translate(
-      direction.x * walkSquash * 7 - direction.x * questionBrake * 8 + Math.sin(hitProgress * Math.PI * 2) * hitProgress * 4,
+      direction.x * walkSquash * 7 - direction.x * questionBrake * 8 + Math.sin(hitProgress * Math.PI * 2) * hitProgress * 4
+        + (hazardImpact ? Math.sin(state.clock * 36) * (1 - hazardProgress) * 2.2 : 0),
       -Math.abs(hitLift) - walkBounce - rewardLift + hitSquash * displaySize * 0.12
+        + (hazardImpact?.effect === "burn" ? hazardEase * displaySize * 0.18 : 0)
     );
+    renderContext.rotate(hazardTilt);
+    renderContext.scale(hazardScale, hazardScale);
     renderContext.scale(
       pulseScale * (1 + eatProgress * 0.08 + walkSquash + horizontalStretch + hitSquash + questionBrake),
       pulseScale * (1 - eatProgress * 0.05 - walkSquash * 0.35 + verticalStretch - hitSquash * 0.55 + questionBrake * 0.32)
@@ -28417,6 +30034,34 @@
         turnProgress
       });
       drawPlayerBlink(renderContext, playerState, displaySize, theme);
+      if (hazardImpact?.effect === "burn") {
+        renderContext.save();
+        renderContext.globalCompositeOperation = "source-over";
+        renderContext.globalAlpha = hazardEase * 0.58;
+        const char = renderContext.createRadialGradient(
+          0,
+          -displaySize * 0.12,
+          displaySize * 0.04,
+          0,
+          0,
+          displaySize * 0.42
+        );
+        char.addColorStop(0, "rgba(38, 25, 24, 0.35)");
+        char.addColorStop(0.7, "rgba(18, 12, 14, 0.78)");
+        char.addColorStop(1, "rgba(5, 4, 6, 0)");
+        renderContext.fillStyle = char;
+        renderContext.beginPath();
+        renderContext.ellipse(0, 0, displaySize * 0.38, displaySize * 0.34, 0, 0, Math.PI * 2);
+        renderContext.fill();
+        renderContext.globalCompositeOperation = "screen";
+        renderContext.globalAlpha = (1 - hazardProgress) * 0.7;
+        renderContext.strokeStyle = "#ff8b2b";
+        renderContext.lineWidth = Math.max(1, displaySize * 0.025);
+        renderContext.beginPath();
+        renderContext.arc(0, 0, displaySize * 0.39, -2.8, -0.3);
+        renderContext.stroke();
+        renderContext.restore();
+      }
       renderContext.restore();
     } else {
       const fallbackSize = playerState.radius * 1.65;
@@ -29010,19 +30655,21 @@
   }
 
   function drawParticles() {
-    const compactAuthoredMobile = isWorldOneReimagined()
-      && isWorldOneAuthoredBoardReady()
-      && MOBILE_RUNTIME.coarse;
+    const particleProfile = getGhostBlastParticleProfile();
+    const maxVisible = MOBILE_RUNTIME.reducedEffects
+      ? Math.min(28, particleProfile.maxVisible)
+      : particleProfile.maxVisible;
+    const firstVisibleIndex = Number.isFinite(maxVisible)
+      ? Math.max(0, state.particles.length - maxVisible)
+      : 0;
     ctx.save();
-    const visibleParticles = compactAuthoredMobile && state.particles.length > 18
-      ? state.particles.slice(-18)
-      : state.particles;
-    for (const particle of visibleParticles) {
+    for (let index = firstVisibleIndex; index < state.particles.length; index += 1) {
+      const particle = state.particles[index];
       const alpha = clamp(particle.life / particle.maxLife, 0, 1);
       ctx.globalAlpha = alpha;
       ctx.fillStyle = particle.color;
       ctx.shadowColor = particle.color;
-      ctx.shadowBlur = compactAuthoredMobile ? 0 : 12;
+      ctx.shadowBlur = MOBILE_RUNTIME.reducedEffects ? 0 : particleProfile.shadowBlur;
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.radius * (0.7 + alpha), 0, Math.PI * 2);
       ctx.fill();
@@ -29658,7 +31305,13 @@
   els.menuSound?.addEventListener("click", toggleSound);
   els.playerForm.addEventListener("submit", startGame);
   els.playerNameInput.addEventListener("input", () => {
-    els.nameError.textContent = "";
+    setNicknameError("");
+  });
+  els.playerNameInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !els.settingsPanel?.hidden) {
+      event.preventDefault();
+      saveNicknameFromSettings();
+    }
   });
   els.answerInput.addEventListener("input", () => {
     const digitsOnly = els.answerInput.value.replace(/\D/g, "").slice(0, 4);
@@ -29869,6 +31522,18 @@
   els.pauseSoundButton?.addEventListener("click", toggleSound);
   els.pauseMenuButton?.addEventListener("click", showStartScreen);
   els.pauseSaveNameButton?.addEventListener("click", saveNicknameFromPause);
+  els.pauseNameInput?.addEventListener("input", () => {
+    if (els.pauseNameError) {
+      els.pauseNameError.textContent = "";
+    }
+    els.pauseNameInput.setAttribute("aria-invalid", "false");
+  });
+  els.pauseNameInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      saveNicknameFromPause();
+    }
+  });
   els.trophyShareButton?.addEventListener("click", shareTrophyResult);
   els.panelCloseButtons.forEach((button) => {
     button.addEventListener("click", () => closeMenuSheets());
@@ -29922,7 +31587,7 @@
   });
   els.leaderboardRefresh?.addEventListener("click", () => {
     playUiSound("notification");
-    loadLeaderboard();
+    loadLeaderboard({ force: true });
   });
   els.leaderboardModeFilter?.addEventListener("change", () => {
     playUiSound("tabChange");
@@ -29948,6 +31613,10 @@
     }
   });
 
+  window.addEventListener("online", () => {
+    void refreshGlobalLeaderboardSummary({ force: true });
+  });
+
   setPhase("start", { force: true });
   resizeCanvas();
   setMode(state.mode, false);
@@ -29960,6 +31629,12 @@
   els.playerNameInput.value = state.playerName;
   syncMenuSummary();
   syncPublicLeaderboardUi(false);
+  void refreshGlobalLeaderboardSummary();
+  window.setTimeout(() => {
+    if (state.publicLeaderboard.status !== "available" && navigator.onLine) {
+      void refreshGlobalLeaderboardSummary({ force: true });
+    }
+  }, CONFIG.leaderboard.retryDelayMs);
   setupGame();
   scheduleHomeCharacterIdleActing();
   installVerificationHooks();

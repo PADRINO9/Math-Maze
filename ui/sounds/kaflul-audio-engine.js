@@ -69,6 +69,14 @@
     ancient: { files: { base: SELECTED_GAMEPLAY_MUSIC } },
     diamond: { files: { base: SELECTED_GAMEPLAY_MUSIC } }
   });
+  const CRITICAL_PRELOAD_FILES = Object.freeze([
+    "sfx/button-press.wav", "sfx/primary-play.wav", "sfx/question-open.wav",
+    "sfx/answer-correct-1.wav", "sfx/answer-correct-2.wav", "sfx/answer-correct-3.wav",
+    "sfx/answer-wrong-1.wav", "sfx/life-lost.wav",
+    "sfx/enemy-defeated.wav", "sfx/reward-power.wav",
+    "characters/bifly/correct.wav", "characters/nabatick/correct.wav",
+    SELECTED_GAMEPLAY_MUSIC
+  ]);
 
   const CHARACTER_CUES = new Set(["select", "eat", "correct", "hit", "victory", "idle"]);
   const BOSS_CUES = new Set(["spawn", "move", "attack", "hit", "defeat"]);
@@ -222,12 +230,7 @@
   }
 
   function preloadCritical() {
-    const files = [
-      "sfx/button-press.wav", "sfx/primary-play.wav", "sfx/question-open.wav",
-      "sfx/answer-correct-1.wav", "sfx/answer-wrong-1.wav", "sfx/life-lost.wav",
-      SELECTED_GAMEPLAY_MUSIC
-    ];
-    for (const file of files) loadBuffer(file).catch(() => {});
+    for (const file of CRITICAL_PRELOAD_FILES) loadBuffer(file).catch(() => {});
   }
 
   function cleanupShots() {
@@ -516,6 +519,12 @@
     setPaused,
     createCaptureStream,
     preloadCritical,
-    getDiagnostics: () => ({ ...diagnostics, volumes: { ...volumes }, activeShots: activeShots.filter((item) => !item.ended).length })
+    getDiagnostics: () => ({
+      ...diagnostics,
+      volumes: { ...volumes },
+      activeShots: activeShots.filter((item) => !item.ended).length,
+      criticalLoadedCount: CRITICAL_PRELOAD_FILES.filter((file) => buffers.has(file)).length,
+      criticalReady: CRITICAL_PRELOAD_FILES.every((file) => buffers.has(file))
+    })
   });
 })();

@@ -59,6 +59,27 @@ const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ ...devices["Pixel 5"] });
 const page = await context.newPage();
 const errors = [];
+const leaderboardRequests = [];
+
+await page.addInitScript(() => {
+  window.Capacitor = {
+    isNativePlatform: () => true,
+    getPlatform: () => "android"
+  };
+});
+await page.route("https://math-maze-il.vercel.app/api/champions**", async (route) => {
+  leaderboardRequests.push(route.request().url());
+  await route.fulfill({
+    status: 200,
+    contentType: "application/json",
+    headers: { "Access-Control-Allow-Origin": "*" },
+    body: JSON.stringify({
+      publicAvailable: false,
+      publicSubmissionsAvailable: false,
+      code: "leaderboard_not_configured"
+    })
+  });
+});
 
 page.on("console", (message) => {
   if (message.type() === "error") errors.push(message.text());
@@ -73,6 +94,11 @@ page.on("response", (response) => {
 try {
   await page.goto(`${baseUrl}/?verify=android-webdir`, { waitUntil: "domcontentloaded" });
   await page.locator("#start-screen").waitFor({ state: "visible" });
+  await page.waitForFunction(() => document.querySelector("#leaderboard-public-chip")?.textContent?.includes("לא זמין"));
+
+  if (!leaderboardRequests.some((requestUrl) => requestUrl.startsWith("https://math-maze-il.vercel.app/api/champions"))) {
+    fail(`native leaderboard did not target the production API: ${JSON.stringify(leaderboardRequests)}`);
+  }
 
   const manifest = await page.evaluate(async () => {
     const link = document.querySelector("link[rel='manifest']");
@@ -101,7 +127,8 @@ try {
   if (await privacyLink.getAttribute("href") !== "privacy.html") {
     fail("settings privacy link does not target the bundled policy");
   }
-  await page.locator("#settings-panel [data-close-panel]").click();
+  await page.locator("#player-name-input").fill("בודק אנדרואיד");
+  await page.locator("#settings-save-button").click();
   await page.locator("#settings-panel").waitFor({ state: "hidden" });
 
   await page.locator("#start-button").click();

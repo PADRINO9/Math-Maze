@@ -12,9 +12,62 @@
 
   const GAME_VERSION = "2026.06-arcade-foundation";
   const SAVE_KEY = "kaflulArcadeSave";
-  const SAVE_SCHEMA_VERSION = 2;
-  const DEFAULT_NICKNAME = "אלוף כפלול";
+  const SAVE_SCHEMA_VERSION = 3;
+  const DEFAULT_NICKNAME = "";
   const MAX_NICKNAME_LENGTH = 14;
+  const NICKNAME_ALLOWED_PATTERN = /^[\p{L}\p{M}\p{N} ._'’׳״\-]+$/u;
+  const NICKNAME_VISIBLE_CHARACTER_PATTERN = /[\p{L}\p{N}]/u;
+  const NICKNAME_CONTROL_CHARACTER_PATTERN = /\p{C}/u;
+  const NICKNAME_LEET_AND_CONFUSABLES = Object.freeze({
+    "0": "o", "1": "i", "2": "z", "3": "e", "4": "a", "5": "s", "6": "g", "7": "t", "8": "b", "9": "g",
+    "!": "i", "|": "i", "@": "a", "$": "s", "+": "t",
+    "а": "a", "ɑ": "a", "α": "a", "е": "e", "ε": "e", "ё": "e", "о": "o", "ο": "o",
+    "р": "p", "ρ": "p", "с": "c", "ϲ": "c", "х": "x", "χ": "x", "у": "y", "γ": "y",
+    "к": "k", "κ": "k", "м": "m", "μ": "m", "н": "n", "η": "n", "т": "t", "τ": "t",
+    "в": "b", "β": "b", "і": "i", "ї": "i", "ј": "j", "ѕ": "s", "ԁ": "d", "ԍ": "g", "ӏ": "l"
+  });
+  const NICKNAME_SCRIPT_FOLDS = Object.freeze({
+    "ך": "כ", "ם": "מ", "ן": "נ", "ף": "פ", "ץ": "צ",
+    "أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا", "ى": "ي", "ؤ": "و", "ئ": "ي", "ة": "ه"
+  });
+  const PROFANITY_TERMS = Object.freeze([
+    // Hebrew
+    "זין", "זונה", "שרמוטה", "שרמוט", "כוס", "כוסאמק", "כוס אמא", "בן זונה", "בת זונה",
+    "מניאק", "חרא", "קוקסינל", "מפגר", "נאצי",
+    // English
+    "fuck", "fucker", "motherfucker", "shit", "bullshit", "bitch", "cunt", "dick", "cock", "pussy",
+    "asshole", "bastard", "whore", "slut", "porn", "nigger", "nigga", "faggot", "retard", "rape", "rapist",
+    // Arabic and Persian
+    "كس", "كسمك", "كس امك", "شرموطة", "شرموط", "قحبة", "زب", "طيز", "خرا", "ابن الكلب",
+    "ابن كلب", "منيوك", "متناك", "يلعن", "کیر", "کسکش", "جنده", "کونی", "حرومزاده",
+    // Russian and Ukrainian
+    "блять", "блядь", "сука", "хуй", "хуи", "пизда", "пиздец", "ебать", "ебаный", "ёбаный",
+    "мудак", "долбоеб", "шлюха",
+    // Spanish, French, German, Italian and Portuguese
+    "puta", "puto", "mierda", "coño", "cabron", "joder", "pendejo", "gilipollas", "verga", "maricon",
+    "putain", "merde", "salope", "connard", "connasse", "encule", "nique",
+    "scheisse", "scheiße", "fick", "ficken", "arschloch", "hurensohn", "fotze", "wichser",
+    "cazzo", "puttana", "stronzo", "vaffanculo", "troia",
+    "caralho", "porra", "filho da puta", "buceta", "foder", "foda se",
+    // Turkish, Polish, Dutch, Greek, Czech, Romanian and Nordic languages
+    "orospu", "siktir", "sik", "amk", "amina koyim", "amına koyim", "piç",
+    "kurwa", "chuj", "jebac", "jebać", "skurwysyn", "klootzak", "hoer", "tering", "kanker",
+    "μαλακα", "μαλακας", "γαμησου", "πουτανα", "σκατα", "kurva", "piča", "jebat", "kokot",
+    "pula", "muie", "curva", "fitta", "hora", "jävla", "helvete", "faen",
+    // Hindi, Bengali, Chinese, Japanese, Korean, Thai and Vietnamese
+    "चूत", "चुतिया", "गांड", "रंडी", "भोसड़ी", "मादरचोद", "मदरचोद", "बहनचोद",
+    "চুদ", "চোদ", "খানকি", "মাগী", "傻逼", "傻屄", "操你妈", "肏你媽", "妈的", "媽的", "婊子", "鸡巴", "雞巴",
+    "くそ", "クソ", "ちんこ", "まんこ", "しね", "死ね", "ビッチ",
+    "씨발", "시발", "개새끼", "병신", "좆", "썅", "เหี้ย", "ควย", "เย็ด", "สัส",
+    "địt", "dit me", "đụ", "lồn", "cặc",
+    // Indonesian, Malay and Filipino
+    "kontol", "memek", "ngentot", "bangsat", "putangina", "tangina", "gago", "ulol", "tarantado"
+  ]);
+  const PROFANITY_ALWAYS_CONTAINS = Object.freeze([
+    "fuck", "motherfucker", "bullshit", "bitch", "asshole", "pussy", "porn", "nigger", "faggot",
+    "hurensohn", "vaffanculo", "skurwysyn", "бляд", "пизд", "долбоеб", "شرموط", "كسم", "متناك",
+    "כוסאמק", "שרמוט", "בנזונה", "בתזונה", "操你妈", "肏你媽", "개새끼", "मादरचोद", "बहनचोद"
+  ]);
   const MASTERY_RANGE = Object.freeze({ min: 1, max: 10 });
   const MASTERY_LEVELS = Object.freeze({
     unpracticed: "unpracticed",
@@ -140,7 +193,7 @@
     expertArcadeScore: 75000
   };
 
-  const PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE = "טבלת השיאים הציבורית עדיין לא פעילה. השיא נשמר במכשיר הזה.";
+  const PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE = "השיא שמור במכשיר ויסתנכרן אוטומטית עם אלוף האלופים כשהחיבור העולמי יהיה זמין.";
 
   const LEGACY_DIFFICULTY_MAP = {
     easy: "beginner",
@@ -283,6 +336,92 @@
     return value === "nabatick" ? "nabatick" : "bifly";
   }
 
+  function foldNicknameCharacter(character, includeConfusables = false) {
+    const scriptFold = NICKNAME_SCRIPT_FOLDS[character] || character;
+    return includeConfusables
+      ? (NICKNAME_LEET_AND_CONFUSABLES[scriptFold] || scriptFold)
+      : scriptFold;
+  }
+
+  function normalizeNicknameForModeration(value, includeConfusables = false) {
+    const decomposed = String(value || "")
+      .normalize("NFKD")
+      .toLocaleLowerCase("und")
+      .replace(/\p{M}+/gu, "")
+      .replace(/\p{Cf}+/gu, "");
+    let result = "";
+    for (const character of decomposed) {
+      const folded = foldNicknameCharacter(character, includeConfusables);
+      result += /[\p{L}\p{N}]/u.test(folded) ? folded : " ";
+    }
+    return result.replace(/\s+/g, " ").trim();
+  }
+
+  function compactNickname(value) {
+    return String(value || "").replace(/[^\p{L}\p{N}]+/gu, "");
+  }
+
+  function collapseNicknameRepeats(value) {
+    return String(value || "").replace(/(.)\1{2,}/gu, "$1");
+  }
+
+  const PREPARED_PROFANITY_COMPACTS = Object.freeze(PROFANITY_TERMS.flatMap((term) => {
+    const native = normalizeNicknameForModeration(term, false);
+    const folded = normalizeNicknameForModeration(term, true);
+    return Array.from(new Set([native, folded].map(compactNickname))).filter(Boolean);
+  }));
+  const PROFANITY_COMPACT_SET = new Set(PREPARED_PROFANITY_COMPACTS);
+  const PROFANITY_MAX_COMPACT_LENGTH = Math.max(
+    1,
+    ...PREPARED_PROFANITY_COMPACTS.map((term) => Array.from(term).length)
+  );
+
+  const PREPARED_ALWAYS_CONTAINS = Object.freeze(PROFANITY_ALWAYS_CONTAINS.flatMap((term) => {
+    const native = compactNickname(normalizeNicknameForModeration(term, false));
+    const folded = compactNickname(normalizeNicknameForModeration(term, true));
+    return Array.from(new Set([native, folded])).filter(Boolean);
+  }));
+
+  function isNicknameInappropriate(value) {
+    const candidates = new Set();
+    for (const includeConfusables of [false, true]) {
+      const candidate = normalizeNicknameForModeration(value, includeConfusables);
+      if (!candidate) {
+        continue;
+      }
+      candidates.add(candidate);
+      candidates.add(collapseNicknameRepeats(candidate));
+    }
+
+    for (const candidate of candidates) {
+      const compact = compactNickname(candidate);
+      if (PROFANITY_COMPACT_SET.has(compact)) {
+        return true;
+      }
+
+      const tokens = candidate.split(/\s+/).map(compactNickname).filter(Boolean);
+      for (let start = 0; start < tokens.length; start += 1) {
+        let joined = "";
+        for (let end = start; end < tokens.length; end += 1) {
+          joined += tokens[end];
+          if (Array.from(joined).length > PROFANITY_MAX_COMPACT_LENGTH) {
+            break;
+          }
+          if (PROFANITY_COMPACT_SET.has(joined)) {
+            return true;
+          }
+        }
+      }
+
+      for (const blocked of PREPARED_ALWAYS_CONTAINS) {
+        if (blocked && compact.includes(blocked)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   function validateNickname(value) {
     const normalized = String(value || "")
       .normalize("NFKC")
@@ -293,28 +432,52 @@
       return {
         ok: false,
         value: "",
+        code: "missing",
         error: "צריך לבחור כינוי קצר לפני שמתחילים."
       };
     }
 
-    const trimmed = Array.from(normalized).slice(0, MAX_NICKNAME_LENGTH).join("");
-    if (!/^[\p{Script=Hebrew}A-Za-z0-9 _.\-]+$/u.test(trimmed)) {
+    if (Array.from(normalized).length > MAX_NICKNAME_LENGTH) {
       return {
         ok: false,
         value: "",
-        error: "הכינוי יכול לכלול אותיות, מספרים, רווח, נקודה, מקף או קו תחתון."
+        code: "too_long",
+        error: `הכינוי יכול לכלול עד ${MAX_NICKNAME_LENGTH} תווים.`
+      };
+    }
+
+    if (
+      NICKNAME_CONTROL_CHARACTER_PATTERN.test(normalized)
+      || !NICKNAME_ALLOWED_PATTERN.test(normalized)
+      || !NICKNAME_VISIBLE_CHARACTER_PATTERN.test(normalized)
+    ) {
+      return {
+        ok: false,
+        value: "",
+        code: "invalid_characters",
+        error: "הכינוי יכול לכלול אותיות מכל שפה, מספרים, רווח, נקודה, מקף או קו תחתון."
+      };
+    }
+
+    if (isNicknameInappropriate(normalized)) {
+      return {
+        ok: false,
+        value: "",
+        code: "inappropriate",
+        error: "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר."
       };
     }
 
     return {
       ok: true,
-      value: trimmed,
+      value: normalized,
+      code: "ok",
       error: ""
     };
   }
 
   function safeNickname(value) {
-    const result = validateNickname(value || DEFAULT_NICKNAME);
+    const result = validateNickname(value);
     return result.ok ? result.value : DEFAULT_NICKNAME;
   }
 
@@ -1109,6 +1272,38 @@
     return save;
   }
 
+  function recordChampionTrophy(save, result = {}) {
+    const achievementProgress = save.achievementProgress && typeof save.achievementProgress === "object"
+      ? save.achievementProgress
+      : {};
+    const previous = achievementProgress.championTrophy && typeof achievementProgress.championTrophy === "object"
+      ? achievementProgress.championTrophy
+      : {};
+    const mode = normalizeGameMode(result.mode);
+    const earnedAt = result.earnedAt || new Date().toISOString();
+    const previousModes = previous.modes && typeof previous.modes === "object"
+      ? previous.modes
+      : {};
+    const trophy = {
+      earned: true,
+      totalWins: Math.max(0, Number(previous.totalWins) || 0) + 1,
+      firstEarnedAt: previous.firstEarnedAt || earnedAt,
+      lastEarnedAt: earnedAt,
+      bestScore: Math.max(0, Number(previous.bestScore) || 0, Number(result.score) || 0),
+      modes: {
+        ...previousModes,
+        [mode]: Math.max(0, Number(previousModes[mode]) || 0) + 1
+      }
+    };
+
+    save.achievementProgress = {
+      ...achievementProgress,
+      championTrophy: trophy
+    };
+    save.updatedAt = earnedAt;
+    return trophy;
+  }
+
   function personalBestKey(mode, difficulty) {
     return `${normalizeGameMode(mode)}:${normalizeDifficulty(difficulty)}`;
   }
@@ -1589,19 +1784,19 @@
     const normalizedStatus = status === "available" || status === "checking" ? status : "localOnly";
     const isAvailable = normalizedStatus === "available";
     const isChecking = normalizedStatus === "checking";
-    const publicChipText = isAvailable ? "ציבורי זמין לפרסום" : (isChecking ? "בודק ציבורי" : "ציבורי לא פעיל");
+    const publicChipText = isAvailable ? "דירוג עולמי מחובר" : (isChecking ? "מתחבר לעולם" : "הדירוג העולמי לא זמין");
     const leaderboardCopy = isAvailable
-      ? "השיאים נשמרים במכשיר הזה. אפשר לפרסם שיא ציבורי אחרי מעבר השלב הראשון."
+      ? "כל שחקן מופיע פעם אחת עם השיא הגבוה ביותר שלו. שיאים חדשים מסתנכרנים אוטומטית."
       : (isChecking
-        ? "השיאים המקומיים זמינים עכשיו. בדיקת הטבלה הציבורית רצה ברקע."
-        : "השיאים נשמרים במכשיר הזה. טבלת השיאים הציבורית עדיין לא פעילה.");
+        ? "מעדכנים את הדירוג העולמי. השיא האישי נשאר בטוח במכשיר."
+        : PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE);
 
     if (!eligible) {
       return {
         panelHidden: true,
         buttonDisabled: true,
-        buttonText: "פרסם את השיא",
-        title: "השיא נשמר במכשיר הזה",
+        buttonText: "סנכרון אוטומטי",
+        title: "השיא האישי נשמר תמיד",
         copy: PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE,
         statusText: "",
         publicChipText,
@@ -1613,11 +1808,11 @@
     if (isAvailable) {
       return {
         panelHidden: false,
-        buttonDisabled: false,
-        buttonText: "פרסם את השיא",
-        title: "מקום בטבלת אלוף האלופים מחכה לך",
-        copy: "עברת את השלב הראשון, ולכן אפשר לפרסם את השיא הזה לכל השחקנים.",
-        statusText: "",
+        buttonDisabled: true,
+        buttonText: "מסנכרן אוטומטית",
+        title: "השיא עולה לאלוף האלופים",
+        copy: "אין צורך לעשות דבר — בסיום הסיבוב אנחנו שומרים את השיא ומעדכנים את המקום שלכם בעולם.",
+        statusText: "מכינים את עדכון הדירוג...",
         publicChipText,
         leaderboardCopy,
         publicAvailable: true
@@ -1627,12 +1822,12 @@
     return {
       panelHidden: false,
       buttonDisabled: true,
-      buttonText: isChecking ? "בודק זמינות" : "פרסום לא זמין",
-      title: "השיא נשמר במכשיר הזה",
+      buttonText: isChecking ? "מתחבר לעולם" : "הסנכרון ממתין",
+      title: "השיא האישי נשמר",
       copy: isChecking
-        ? "בודקים אם טבלת השיאים הציבורית זמינה. השיא נשמר במכשיר הזה בכל מקרה."
+        ? "מתחברים לאלוף האלופים. השיא כבר שמור במכשיר בכל מקרה."
         : PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE,
-      statusText: isChecking ? "בודקים זמינות ציבורית..." : PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE,
+      statusText: isChecking ? "מעדכנים את הדירוג העולמי..." : PUBLIC_LEADERBOARD_LOCAL_ONLY_MESSAGE,
       publicChipText,
       leaderboardCopy,
       publicAvailable: false
@@ -1670,6 +1865,7 @@
     isDifficultyUnlocked,
     shouldUnlockLegendary,
     unlockDifficulty,
+    recordChampionTrophy,
     personalBestKey,
     getPersonalBest,
     recordPersonalBest,

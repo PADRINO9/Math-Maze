@@ -180,7 +180,8 @@ test("phase 1 mobile vertical slice keeps home and first gameplay view playable"
   await expect(page.locator("#settings-panel")).toBeVisible();
   await expect(page.locator("input[name='control-mode'][value='swipe']")).toBeChecked();
   await expect(page.locator("input[name='control-mode'][value='joystick']")).not.toBeChecked();
-  await page.locator("#settings-panel [data-close-panel]").click();
+  await page.locator("#player-name-input").fill("בדיקת מובייל");
+  await page.locator("#settings-save-button").click();
   await expect(page.locator("#settings-panel")).toBeHidden();
 
   await page.locator("#start-button").click();

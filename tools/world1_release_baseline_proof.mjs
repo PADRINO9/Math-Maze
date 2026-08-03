@@ -12,18 +12,18 @@ import { resolveStaticFile } from "./static-file-security.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputDir = path.join(root, "docs", "visual-proof-screenshots", "world1-release-baseline");
 const EXPECTED = Object.freeze({
-  baselineId: "world1-sun-garden-approved-v1",
+  baselineId: "world1-sun-garden-approved-v2",
   authoredBoardSrc: "assets/maze/world1/sun-garden/board-v3.png",
   authoredBoardSha256: "f114291caf2ccf0f62db575be3809b750439d61fa07db65fbf086c3c8cd7bd63",
-  navigationVersion: "world1-canonical-semantic-layout-v5",
-  topologySha256: "a0c51f00182261651ae3d6b914296a14fea5c84c34f46bde09c531a1ca9bdf5b",
+  navigationVersion: "world1-canonical-semantic-layout-v6",
+  topologySha256: "9d34bb2e464b860aed3361acc096955719edc3efc27f6c11234d13a0f41ef1b4",
   rows: 30,
   cols: 40,
   tile: 24,
-  walkableCellCount: 582,
+  walkableCellCount: 585,
   chestCell: { x: 23, y: 18 },
-  desktop: { playerScale: 0.82, enemyScale: 0.64, gameplayZoom: 1.06 },
-  mobile: { playerScale: 0.84, enemyScale: 0.66, gameplayZoom: 1.05 }
+  desktop: { playerScale: 0.9328000000000001, enemyScale: 0.7, gameplayZoom: 1.06 },
+  mobile: { playerScale: 0.9540000000000001, enemyScale: 0.72, gameplayZoom: 1.05 }
 });
 
 const contentTypes = {

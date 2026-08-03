@@ -28,7 +28,7 @@ module.exports = defineConfig({
     }
   ],
   webServer: {
-    command: `python3 -m http.server ${testPort} --bind 127.0.0.1`,
+    command: "node tools/playwright_test_server.mjs",
     url: testBaseURL,
     reuseExistingServer: process.env.KAFLUL_PLAYWRIGHT_REUSE_SERVER === "1",
     timeout: 15_000

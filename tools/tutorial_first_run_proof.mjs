@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 import { resolveStaticFile } from "./static-file-security.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PROOF_ROOT = path.join(ROOT, "docs", "visual-proof-screenshots", "tutorial-coach-marks");
+const PROOF_ROOT = path.join(ROOT, "docs", "visual-proof-screenshots", "tutorial-anchored-flow");
 const BEFORE_DIR = path.join(PROOF_ROOT, "before");
 const OUTPUT_DIR = path.join(PROOF_ROOT, "after");
 const EXTERNAL_URL = process.env.KAFLUL_PROOF_URL || "";
@@ -21,20 +21,26 @@ const viewports = [
 
 const pointerCaptures = new Map([
   [1, "settings-hand"],
+  [2, "settings-mode-stable"],
   [3, "mode-hand"],
-  [5, "difficulty-hand"],
-  [8, "controls-hand"],
-  [10, "character-hand"],
-  [13, "start-hand"]
+  [4, "difficulty-hand"],
+  [5, "difficulty-choice"],
+  [6, "controls-hand"],
+  [7, "character-button-stable"],
+  [8, "character-hand"],
+  [9, "character-confirm"],
+  [10, "start-hand"]
 ]);
 
 const feedbackCaptures = new Map([
   [1, "settings-explanation"],
   [3, "worlds-explanation"],
-  [6, "score-explanation"],
-  [8, "movement-explanation"],
-  [9, "character-explanation"],
-  [13, "goal-explanation"]
+  [4, "difficulty-explanation"],
+  [5, "score-explanation"],
+  [6, "movement-explanation"],
+  [7, "character-explanation"],
+  [9, "maze-explanation"],
+  [10, "goal-explanation"]
 ]);
 
 function contentType(filePath) {
@@ -81,10 +87,10 @@ async function closeServer(server) {
 
 async function prepareBeforeProof() {
   await mkdir(BEFORE_DIR, { recursive: true });
-  const previousDir = path.join(ROOT, "docs", "visual-proof-screenshots", "tutorial-first-run", "after");
+  const previousDir = path.join(ROOT, "docs", "visual-proof-screenshots", "tutorial-coach-marks", "after");
   for (const viewport of viewports) {
-    const source = path.join(previousDir, `tutorial-step1-goal-${viewport.name}.png`);
-    const target = path.join(BEFORE_DIR, `full-screen-slide-${viewport.name}.png`);
+    const source = path.join(previousDir, `coach-01-settings-hand-${viewport.name}.png`);
+    const target = path.join(BEFORE_DIR, `coach-01-before-${viewport.name}.png`);
     await copyFile(source, target).catch(() => undefined);
   }
 }
@@ -102,6 +108,41 @@ function insideViewport(rect, viewport, tolerance = 2) {
     && rect.left >= -tolerance && rect.top >= -tolerance
     && rect.right <= viewport.width + tolerance
     && rect.bottom <= viewport.height + tolerance
+  );
+}
+
+function ringAlignmentError(layout) {
+  if (!layout.target || !layout.ring) return Number.POSITIVE_INFINITY;
+  const padding = layout.viewport.width <= 600 ? 6 : 9;
+  const expected = {
+    left: Math.max(0, layout.target.left - padding),
+    top: Math.max(0, layout.target.top - padding),
+    right: Math.min(layout.viewport.width, layout.target.right + padding),
+    bottom: Math.min(layout.viewport.height, layout.target.bottom + padding)
+  };
+  return Math.max(
+    Math.abs(layout.ring.left - expected.left),
+    Math.abs(layout.ring.top - expected.top),
+    Math.abs(layout.ring.right - expected.right),
+    Math.abs(layout.ring.bottom - expected.bottom)
+  );
+}
+
+function rectangleProximity(first, second) {
+  if (!first || !second) return Number.POSITIVE_INFINITY;
+  return Math.hypot(
+    Math.max(first.left - second.right, second.left - first.right, 0),
+    Math.max(first.top - second.bottom, second.top - first.bottom, 0)
+  );
+}
+
+function rectangleDrift(first, second) {
+  if (!first || !second) return Number.POSITIVE_INFINITY;
+  return Math.max(
+    Math.abs(first.left - second.left),
+    Math.abs(first.top - second.top),
+    Math.abs(first.right - second.right),
+    Math.abs(first.bottom - second.bottom)
   );
 }
 
@@ -127,11 +168,31 @@ async function coachLayout(page) {
       target: rectangle(".kf-coach-active-target"),
       ring: rectangle("#tutorial-target-ring"),
       hand: rectangle("#tutorial-hand"),
+      card: rectangle("#tutorial-coach-card"),
       action: rectangle("#tutorial-action-pill"),
       status: rectangle("#tutorial-coach-status"),
-      speech: rectangle("#tutorial-speech-bubble")
+      speech: rectangle("#tutorial-speech-bubble"),
+      cardOpacity: getComputedStyle(document.getElementById("tutorial-coach-card")).opacity,
+      placement: document.getElementById("tutorial-coach-card")?.dataset.placement || null,
+      lockVisible: !document.getElementById("tutorial-lock-message")?.hidden
     };
   });
+}
+
+async function sampleAwaitingStability(page, sampleCount = 6, intervalMs = 40) {
+  const samples = [];
+  for (let index = 0; index < sampleCount; index += 1) {
+    const layout = await coachLayout(page);
+    samples.push({
+      elapsedMs: index * intervalMs,
+      target: layout.target,
+      ring: layout.ring,
+      card: layout.card,
+      alignmentError: ringAlignmentError(layout)
+    });
+    if (index < sampleCount - 1) await page.waitForTimeout(intervalMs);
+  }
+  return samples;
 }
 
 async function waitForTutorialState(page, step, phase) {
@@ -200,6 +261,7 @@ async function runViewport(browser, baseUrl, viewport, report) {
   });
   const page = await context.newPage();
   const runtimeErrors = [];
+  const resourceFailures = [];
   const artifacts = [];
   const layouts = [];
   const framesDir = viewport.mobile ? path.join(OUTPUT_DIR, `.video-frames-${Date.now()}`) : null;
@@ -207,9 +269,30 @@ async function runViewport(browser, baseUrl, viewport, report) {
   if (framesDir) await mkdir(framesDir, { recursive: true });
 
   page.on("pageerror", (error) => runtimeErrors.push(String(error)));
+  page.on("response", (response) => {
+    if (response.status() >= 400) {
+      resourceFailures.push({ status: response.status(), url: response.url() });
+    }
+  });
+  page.on("requestfailed", (request) => {
+    const error = request.failure()?.errorText || "request failed";
+    if (error !== "net::ERR_ABORTED") {
+      resourceFailures.push({ error, url: request.url() });
+    }
+  });
   page.on("console", (message) => {
     if (message.type() === "error") runtimeErrors.push(message.text());
   });
+  await page.route("**/api/champions**", (route) => route.fulfill({
+    status: 200,
+    contentType: "application/json",
+    body: JSON.stringify({
+      publicAvailable: false,
+      publicSubmissionsAvailable: false,
+      code: "leaderboard_not_configured",
+      message: "Leaderboard is disabled in the isolated tutorial proof."
+    })
+  }));
   await page.addInitScript(() => {
     localStorage.removeItem("kaflulArcadeSave");
     localStorage.removeItem("kaflulFirstRunTutorialV1");
@@ -218,6 +301,13 @@ async function runViewport(browser, baseUrl, viewport, report) {
   await page.goto(`${baseUrl}/?tutorial=1`, { waitUntil: "domcontentloaded" });
   await page.locator("#first-run-tutorial").waitFor({ state: "visible", timeout: 10_000 });
   await waitForTutorialState(page, 1, "awaiting");
+  const tutorialTotal = await page.evaluate(() => window.KaflulTutorial?.getState?.().totalSteps || 0);
+  const initialSelections = await page.evaluate(() => ({
+    mode: document.querySelector('input[name="game-mode"]:checked')?.value,
+    difficulty: document.querySelector('input[name="difficulty"]:checked')?.value,
+    character: document.querySelector('input[name="character"]:checked')?.value,
+    control: document.querySelector('input[name="control-mode"]:checked')?.value
+  }));
 
   await page.locator("#start-button").click({ force: true });
   await page.waitForTimeout(100);
@@ -232,11 +322,40 @@ async function runViewport(browser, baseUrl, viewport, report) {
     && blockedState.lockVisible;
   await page.waitForTimeout(1300);
 
-  for (let step = 1; step <= 13; step += 1) {
+  const forbiddenGeometryTransitions = await page.evaluate(() => {
+    const selectors = [
+      "#tutorial-dim-layer",
+      "#tutorial-target-ring",
+      "#tutorial-hand",
+      "#tutorial-action-pill",
+      "#tutorial-coach-status"
+    ];
+    return selectors.flatMap((selector) => {
+      const element = document.querySelector(selector);
+      if (!element) return [];
+      return getComputedStyle(element).transitionProperty
+        .split(",")
+        .map((property) => ({ selector, property: property.trim() }))
+        .filter(({ property }) => ["top", "right", "bottom", "left", "width", "height", "border-radius"].includes(property));
+    });
+  });
+
+  for (let step = 1; step <= tutorialTotal; step += 1) {
     await waitForTutorialState(page, step, "awaiting");
     const awaitingLayout = await coachLayout(page);
     awaitingLayout.phase = "awaiting";
     awaitingLayout.step = step;
+    awaitingLayout.stabilitySamples = await sampleAwaitingStability(page);
+    awaitingLayout.maxAlignmentError = Math.max(
+      ...awaitingLayout.stabilitySamples.map((sample) => sample.alignmentError)
+    );
+    awaitingLayout.maxCardDrift = Math.max(
+      ...awaitingLayout.stabilitySamples.map((sample) => rectangleDrift(
+        awaitingLayout.stabilitySamples[0].card,
+        sample.card
+      ))
+    );
+    awaitingLayout.cardProximity = rectangleProximity(awaitingLayout.target, awaitingLayout.card);
     layouts.push(awaitingLayout);
 
     if (pointerCaptures.has(step)) {
@@ -251,21 +370,49 @@ async function runViewport(browser, baseUrl, viewport, report) {
     const feedbackLayout = await coachLayout(page);
     feedbackLayout.phase = "feedback";
     feedbackLayout.step = step;
+    feedbackLayout.anchor = awaitingLayout.target;
+    feedbackLayout.cardProximity = rectangleProximity(feedbackLayout.anchor, feedbackLayout.card);
+    feedbackLayout.cardShiftFromInstruction = rectangleDrift(awaitingLayout.card, feedbackLayout.card);
+    feedbackLayout.feedbackLatencyMs = feedbackLayout.state?.lastFeedbackLatencyMs ?? Number.POSITIVE_INFINITY;
     layouts.push(feedbackLayout);
 
     if (feedbackCaptures.has(step)) {
       await capture(page, `coach-${String(step).padStart(2, "0")}-${feedbackCaptures.get(step)}-${viewport.name}`, artifacts);
     }
     if (framesDir) {
-      await captureVideoFrames(page, framesDir, frameCounter, step === 13 ? 16 : 10);
+      await captureVideoFrames(page, framesDir, frameCounter, step === tutorialTotal ? 16 : 10);
     }
 
-    if (step < 13) {
+    if (step < tutorialTotal) {
       await waitForTutorialState(page, step + 1, "awaiting");
     }
   }
 
   await page.locator("#first-run-tutorial").waitFor({ state: "hidden", timeout: 6_000 });
+  if (await page.locator("#settings-panel").isVisible()) {
+    const nicknameEntryGeometry = await page.evaluate(() => {
+      const sheet = document.querySelector("#settings-panel .menu-sheet-inner");
+      const input = document.getElementById("player-name-input");
+      const rect = input?.getBoundingClientRect();
+      return {
+        scrollTop: sheet?.scrollTop ?? Number.POSITIVE_INFINITY,
+        top: rect?.top ?? -1,
+        bottom: rect?.bottom ?? Number.POSITIVE_INFINITY,
+        viewportHeight: innerHeight
+      };
+    });
+    if (
+      nicknameEntryGeometry.scrollTop > 1
+      || nicknameEntryGeometry.top < 0
+      || nicknameEntryGeometry.bottom > nicknameEntryGeometry.viewportHeight
+    ) {
+      throw new Error(`Nickname entry is not visible after tutorial: ${JSON.stringify(nicknameEntryGeometry)}`);
+    }
+    await page.locator("#player-name-input").fill("בודק מדריך");
+    await page.locator("#settings-save-button").click();
+    await page.locator("#settings-panel").waitFor({ state: "hidden", timeout: 5_000 });
+    await page.locator("#start-button").click();
+  }
   await page.locator("#start-screen").waitFor({ state: "hidden", timeout: 5_000 });
   await finishStageIntro(page);
   await capture(page, `first-playable-maze-${viewport.name}`, artifacts);
@@ -298,22 +445,47 @@ async function runViewport(browser, baseUrl, viewport, report) {
         !insideViewport(layout.target, layout.viewport)
         || !insideViewport(layout.ring, layout.viewport)
         || !insideViewport(layout.hand, layout.viewport)
+        || !insideViewport(layout.card, layout.viewport)
         || !insideViewport(layout.action, layout.viewport)
+        || layout.maxAlignmentError > 1
+        || layout.maxCardDrift > 1
+        || layout.cardProximity < 8
+        || layout.cardProximity > 30
+        || layout.cardOpacity !== "1"
+        || !["above", "below", "left", "right"].includes(layout.placement)
       ))
-      || (speechRequired && !insideViewport(layout.speech, layout.viewport));
+      || (speechRequired && (
+        !insideViewport(layout.speech, layout.viewport)
+        || !insideViewport(layout.card, layout.viewport)
+        || layout.cardProximity < 8
+        || layout.cardProximity > 30
+        || layout.cardShiftFromInstruction > 1
+        || layout.feedbackLatencyMs > 500
+        || layout.cardOpacity !== "1"
+      ));
   });
 
+  const falseLockFeedback = layouts.filter((layout) => layout.phase === "feedback" && layout.lockVisible);
+
   const expectedPersistence = persisted.tutorial === "complete"
-    && persisted.mode === "adventure"
-    && persisted.difficulty === "beginner"
+    && persisted.mode === initialSelections.mode
+    && persisted.difficulty === initialSelections.difficulty
     && persisted.character === "nabatick"
-    && persisted.control === "joystick";
-  if (runtimeErrors.length || invalidLayouts.length || !wrongClickBlocked || !expectedPersistence) {
+    && persisted.control === initialSelections.control;
+  if (
+    runtimeErrors.length || resourceFailures.length || invalidLayouts.length || falseLockFeedback.length
+    || forbiddenGeometryTransitions.length
+    || !wrongClickBlocked || !expectedPersistence
+  ) {
     throw new Error(JSON.stringify({
       viewport: viewport.name,
       runtimeErrors,
+      resourceFailures,
+      falseLockFeedback,
       invalidLayouts,
+      forbiddenGeometryTransitions,
       wrongClickBlocked,
+      initialSelections,
       persisted
     }, null, 2));
   }
@@ -321,9 +493,13 @@ async function runViewport(browser, baseUrl, viewport, report) {
   report.viewports.push({
     name: viewport.name,
     wrongClickBlocked,
+    tutorialTotal,
+    forbiddenGeometryTransitions,
     layouts,
+    initialSelections,
     persisted,
     runtimeErrors,
+    resourceFailures,
     artifacts,
     video: videoArtifact
   });
@@ -336,7 +512,7 @@ const local = EXTERNAL_URL ? { server: null, url: EXTERNAL_URL } : await startLo
 const report = {
   generatedAt: new Date().toISOString(),
   baseUrl: local.url,
-  interactionModel: "Only the highlighted real control accepts input; every click opens a short speech bubble.",
+  interactionModel: "Only the highlighted real control accepts input; a small anchored bubble stays beside it and changes to feedback without jumping.",
   viewports: []
 };
 const browser = await chromium.launch({ headless: true });
