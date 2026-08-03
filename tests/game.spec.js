@@ -338,7 +338,10 @@ test("every world opens on the full maze then focuses the camera on the player",
 
 test("all four mazes stay connected and the reported yellow-light pocket is a through-route", async ({ page }) => {
   const errors = collectRuntimeErrors(page);
-  await page.goto("/?verify=world1-collision&verifyLevel=0", { waitUntil: "domcontentloaded" });
+  // Use the stable verification bootstrap here. The named visual-proof route
+  // can keep Chromium's software renderer busy before the runtime is exposed
+  // on constrained CI runners; this audit only needs the verification API.
+  await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() =>
     typeof window.__mathMazeRuntime?.auditAllMazeTopologiesForVerification === "function"
   );
