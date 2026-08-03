@@ -345,6 +345,11 @@ test("all four mazes stay connected and the reported yellow-light pocket is a th
 
   const result = await page.evaluate(() => {
     const runtime = window.__mathMazeRuntime;
+    // Keep the software-rendered CI browser from painting every intermediate
+    // world while this state-only audit switches levels. The audit itself is
+    // deterministic and does not depend on animation frames.
+    runtime.forceLevelForVerification(0);
+    runtime.beginDeterministicPlayerCaptureForVerification();
     const allTopologies = runtime.auditAllMazeTopologiesForVerification();
     const perWorldCollision = [];
     for (let levelIndex = 0; levelIndex < 4; levelIndex += 1) {
@@ -398,10 +403,16 @@ test("world hazards are distinct and burn damage completes before respawn", asyn
   );
 
   const hazards = await page.evaluate(() => {
+    const runtime = window.__mathMazeRuntime;
+    // These assertions inspect state, not pixels. Holding the deterministic
+    // capture prevents a very slow software-canvas frame from running between
+    // the individual verification calls on shared CI runners.
+    runtime.forceLevelForVerification(0);
+    runtime.beginDeterministicPlayerCaptureForVerification();
     return [0, 1, 2, 3].map((levelIndex) => {
-      window.__mathMazeRuntime.forceLevelForVerification(levelIndex);
-      window.__mathMazeRuntime.forceEnvironmentHazardForVerification();
-      return window.__mathMazeRuntime.getEnvironmentHazardSnapshotForVerification();
+      runtime.forceLevelForVerification(levelIndex);
+      runtime.forceEnvironmentHazardForVerification();
+      return runtime.getEnvironmentHazardSnapshotForVerification();
     });
   });
 
