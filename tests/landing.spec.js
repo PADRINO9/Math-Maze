@@ -2,19 +2,37 @@ const { test, expect } = require("@playwright/test");
 
 test.describe("כפלול landing page", () => {
   test.beforeEach(async ({ page }) => {
+    await page.route("**/api/champions?capability=1", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ publicAvailable: true, automaticSync: true, minimumCorrectAnswers: 1 })
+      });
+    });
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, "share", { value: undefined, configurable: true });
+      Object.defineProperty(navigator, "clipboard", {
+        value: { writeText: async (value) => { window.__copiedLandingUrl = value; } },
+        configurable: true
+      });
+    });
     await page.goto("/landing.html?verify=landing", { waitUntil: "domcontentloaded" });
     await page.locator('body[data-landing-ready="true"]').waitFor();
   });
 
-  test("presents the screen-time and multiplication value proposition", async ({ page }) => {
+  test("presents the game without the removed steps row", async ({ page }) => {
     await expect(page).toHaveTitle(/כפלול/);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("זמן מסך");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("לוח הכפל");
-    await expect(page.getByRole("link", { name: "שחקו עכשיו בחינם", exact: true })).toHaveAttribute("href", /index\.html/);
-    await expect(page.getByAltText("קוד QR לפתיחת המשחק כפלול")).toHaveJSProperty("complete", true);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("הכפל רודף אחריכם");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("טוב שיש מבוך לברוח אליו");
+    await expect(page.getByRole("link", { name: "נכנסים למשחק", exact: true })).toHaveAttribute("href", /index\.html/);
+
+    await expect(page.locator("#how")).toHaveCount(0);
+    await expect(page.getByRole("list", { name: "שלבי המשחק" })).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: /רואים אותה בתוך המשחק/ })).toBeVisible();
+    await expect(page.locator("#champions").getByRole("heading", { name: /אלוף האלופים/ })).toBeVisible();
   });
 
-  test("keeps the page within the viewport and loads its real imagery", async ({ page }) => {
+  test("loads real artwork and stays within the viewport", async ({ page }) => {
     await page.locator("#download").scrollIntoViewIfNeeded();
     await page.waitForTimeout(200);
 
@@ -23,41 +41,136 @@ test.describe("כפלול landing page", () => {
       pageWidth: document.documentElement.scrollWidth,
       brokenImages: Array.from(document.images)
         .filter((image) => image.complete && image.naturalWidth === 0)
-        .map((image) => image.getAttribute("src"))
+        .map((image) => image.getAttribute("src")),
+      generatedHeroLoaded: document.querySelector(".hero-background")?.naturalWidth > 0,
+      characterArtLoaded: Array.from(document.querySelectorAll(".hero-characters img"))
+        .every((image) => image.naturalWidth > 0)
     }));
 
     expect(audit.pageWidth).toBeLessThanOrEqual(audit.viewportWidth + 1);
     expect(audit.brokenImages).toEqual([]);
+    expect(audit.generatedHeroLoaded).toBe(true);
+    expect(audit.characterArtLoaded).toBe(true);
   });
 
-  test("moves the flashlight reveal and advances the scroll story", async ({ page }) => {
-    const hero = page.locator("#top");
-    const bounds = await hero.boundingBox();
-    expect(bounds).toBeTruthy();
+  test("keeps Bifly fully visible inside the download card", async ({ page }) => {
+    await page.locator("#download").scrollIntoViewIfNeeded();
+    await page.waitForTimeout(200);
 
-    await page.mouse.move(bounds.x + bounds.width * 0.28, bounds.y + bounds.height * 0.42);
-    await expect(hero).toHaveClass(/is-pointer-active/);
+    const placement = await page.evaluate(() => {
+      const card = document.querySelector(".download-card").getBoundingClientRect();
+      const bifly = document.querySelector(".download-character").getBoundingClientRect();
+      const tolerance = 1;
+      return {
+        left: bifly.left >= card.left - tolerance,
+        right: bifly.right <= card.right + tolerance,
+        top: bifly.top >= card.top - tolerance,
+        bottom: bifly.bottom <= card.bottom + tolerance,
+        square: Math.abs(bifly.width - bifly.height) < 12
+      };
+    });
 
-    const revealPosition = await hero.evaluate((element) => ({
-      x: element.style.getPropertyValue("--reveal-x"),
-      y: element.style.getPropertyValue("--reveal-y")
-    }));
-    expect(revealPosition.x).toMatch(/px$/);
-    expect(revealPosition.y).toMatch(/px$/);
-
-    await page.evaluate(() => window.__kaflulLanding.setJourneyStep("question"));
-    await expect(page.locator('[data-screen="question"]')).toHaveClass(/is-active/);
-    await expect(page.locator("[data-device-caption]")).toHaveText("פוגשים תרגיל ברגע הנכון");
+    expect(placement).toEqual({ left: true, right: true, top: true, bottom: true, square: true });
   });
 
-  test("keeps the main interactions keyboard accessible", async ({ page }) => {
+  test("provides working sharing, Google Play links and disabled App Store buttons", async ({ page }) => {
+    const shareButton = page.getByRole("button", { name: "שתפו את האתגר" });
+    await shareButton.scrollIntoViewIfNeeded();
+    await shareButton.click();
+    await expect(page.locator("[data-share-toast]")).toBeVisible();
+    await expect(page.locator("[data-share-message]")).toContainText("הקישור הועתק");
+    await expect.poll(() => page.evaluate(() => window.__copiedLandingUrl)).toContain("math-maze-il.vercel.app/landing.html");
+
+    const googlePlayLinks = page.getByRole("link", { name: "פתיחת כפלול ב-Google Play" });
+    await expect(googlePlayLinks).toHaveCount(2);
+    for (let index = 0; index < await googlePlayLinks.count(); index += 1) {
+      await expect(googlePlayLinks.nth(index)).toHaveAttribute(
+        "href",
+        "https://play.google.com/store/apps/details?id=com.kaflul.mathmaze&pcampaignid=web_share"
+      );
+      await expect(googlePlayLinks.nth(index)).not.toHaveAttribute("download", /.+/);
+      await expect(googlePlayLinks.nth(index)).toHaveAttribute("rel", /noopener/);
+      await expect(googlePlayLinks.nth(index)).toContainText("Google Play");
+    }
+
+    await expect(page.locator('.store-button-google img[src$="google-play-mark.svg"]')).toHaveCount(2);
+    const comingSoonButtons = page.getByRole("button", { name: "גרסת כפלול ל-App Store — בקרוב" });
+    await expect(comingSoonButtons).toHaveCount(2);
+    for (let index = 0; index < await comingSoonButtons.count(); index += 1) {
+      await expect(comingSoonButtons.nth(index)).toBeDisabled();
+      await expect(comingSoonButtons.nth(index)).toContainText("בקרוב");
+    }
+  });
+
+  test("has a semantic Hebrew structure and visible keyboard focus", async ({ page }) => {
+    await expect(page.locator("html")).toHaveAttribute("lang", "he");
+    await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+    await expect(page.locator("main")).toHaveCount(1);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator('nav[aria-label="ניווט ראשי"]')).toHaveCount(1);
+    await expect(page.getByRole("heading", { name: /הדף נבנה כדי/ })).toBeVisible();
+    await expect(page.getByRole("link", { name: "דיווח על בעיית נגישות" })).toHaveAttribute("href", /^mailto:/);
+    const creatorCredit = page.locator(".creator-credit");
+    await expect(creatorCredit).toHaveAccessibleName("האפליקציה מבית היוצר של יציר");
+    await expect(creatorCredit).toContainText("האפליקציה מבית היוצר של יציר");
+    const creatorLogo = creatorCredit.locator('img[src$="yatzir-logo.png"]');
+    await expect(creatorLogo).toHaveCount(1);
+    await expect.poll(() => creatorLogo.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.keyboard.press("Tab");
     await expect(page.locator(".skip-link")).toBeFocused();
+    const outline = await page.locator(".skip-link").evaluate((element) => getComputedStyle(element).outlineStyle);
+    expect(outline).not.toBe("none");
 
-    const firstQuestion = page.locator(".faq-list details").first();
-    await firstQuestion.scrollIntoViewIfNeeded();
-    await firstQuestion.locator("summary").focus();
+    const faq = page.locator(".faq-list details").first();
+    await faq.locator("summary").focus();
     await page.keyboard.press("Enter");
-    await expect(firstQuestion).not.toHaveAttribute("open", "");
+    await expect(faq).toHaveAttribute("open", "");
+  });
+
+  test("mobile navigation opens, closes with Escape, and restores focus", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const toggle = page.locator(".nav-toggle");
+    await expect(toggle).toHaveAttribute("aria-label", "פתיחת תפריט הניווט");
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(toggle).toHaveAttribute("aria-label", "סגירת תפריט הניווט");
+    const primaryNavigation = page.getByRole("navigation", { name: "ניווט ראשי" });
+    await expect(primaryNavigation).toBeVisible();
+    await expect(primaryNavigation.getByRole("link", { name: "המשחק מבפנים", exact: true })).toBeFocused();
+
+    await page.keyboard.press("Escape");
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await expect(toggle).toBeFocused();
+  });
+
+  test("meets minimum touch target sizing on mobile", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const tooSmall = await page.evaluate(() => Array.from(document.querySelectorAll("a, button, summary"))
+      .filter((element) => {
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+      })
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return { text: element.textContent.trim().slice(0, 60), width: rect.width, height: rect.height };
+      })
+      .filter(({ width, height }) => width < 44 || height < 44));
+
+    expect(tooSmall).toEqual([]);
+  });
+
+  test("honors reduced motion", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await page.locator('body[data-landing-ready="true"]').waitFor();
+    const motion = await page.locator("[data-enter]").first().evaluate((element) => {
+      const style = getComputedStyle(element);
+      return { opacity: style.opacity, transform: style.transform, duration: style.transitionDuration };
+    });
+    expect(motion.opacity).toBe("1");
+    expect(motion.transform).toBe("none");
   });
 });
