@@ -1,7 +1,7 @@
 {
   "phase": 2,
-  "capturedAt": "2026-07-12T19:11:44.831Z",
-  "chrome": "Chrome/149.0.7827.201",
+  "capturedAt": "2026-08-03T18:58:15.916Z",
+  "chrome": "Chrome/150.0.7871.187",
   "ok": false,
   "results": [
     {
@@ -10,7 +10,12 @@
       "height": 844,
       "mobile": true,
       "file": "docs/phase2-screenshots/phase2-home-390x844-portrait.png",
-      "events": [],
+      "events": [
+        {
+          "type": "log",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
       "evaluation": {
         "title": "כפלול | משחק לוח הכפל",
         "lang": "he",
@@ -136,6 +141,14 @@
             "scrollWidth": 15,
             "clientHeight": 26,
             "scrollHeight": 29
+          },
+          {
+            "selector": "#start-button .arcade-play-label",
+            "text": "בחרו כינוי כדי לשחק",
+            "clientWidth": 208,
+            "scrollWidth": 208,
+            "clientHeight": 28,
+            "scrollHeight": 31
           }
         ]
       }
@@ -146,7 +159,12 @@
       "height": 932,
       "mobile": true,
       "file": "docs/phase2-screenshots/phase2-home-430x932-portrait.png",
-      "events": [],
+      "events": [
+        {
+          "type": "log",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
       "evaluation": {
         "title": "כפלול | משחק לוח הכפל",
         "lang": "he",
@@ -272,6 +290,14 @@
             "scrollWidth": 17,
             "clientHeight": 29,
             "scrollHeight": 32
+          },
+          {
+            "selector": "#start-button .arcade-play-label",
+            "text": "בחרו כינוי כדי לשחק",
+            "clientWidth": 208,
+            "scrollWidth": 208,
+            "clientHeight": 28,
+            "scrollHeight": 31
           }
         ]
       }
@@ -282,7 +308,12 @@
       "height": 390,
       "mobile": true,
       "file": "docs/phase2-screenshots/phase2-home-844x390-landscape.png",
-      "events": [],
+      "events": [
+        {
+          "type": "log",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
       "evaluation": {
         "title": "כפלול | משחק לוח הכפל",
         "lang": "he",
@@ -411,7 +442,16 @@
             }
           }
         ],
-        "overflowingText": []
+        "overflowingText": [
+          {
+            "selector": "#start-button .arcade-play-label",
+            "text": "בחרו כינוי כדי לשחק",
+            "clientWidth": 270,
+            "scrollWidth": 270,
+            "clientHeight": 36,
+            "scrollHeight": 40
+          }
+        ]
       }
     },
     {
@@ -420,7 +460,12 @@
       "height": 720,
       "mobile": false,
       "file": "docs/phase2-screenshots/phase2-home-1280x720-desktop.png",
-      "events": [],
+      "events": [
+        {
+          "type": "log",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
       "evaluation": {
         "title": "כפלול | משחק לוח הכפל",
         "lang": "he",
@@ -519,7 +564,7 @@
             "x": 335,
             "y": 582,
             "width": 610,
-            "height": 91,
+            "height": 90,
             "visible": true
           },
           ".home-pregame-summary": {
@@ -538,7 +583,16 @@
           }
         },
         "outOfBounds": [],
-        "overflowingText": []
+        "overflowingText": [
+          {
+            "selector": "#start-button .arcade-play-label",
+            "text": "בחרו כינוי כדי לשחק",
+            "clientWidth": 385,
+            "scrollWidth": 385,
+            "clientHeight": 52,
+            "scrollHeight": 57
+          }
+        ]
       }
     },
     {
@@ -547,7 +601,12 @@
       "height": 900,
       "mobile": false,
       "file": "docs/phase2-screenshots/phase2-home-1440x900-desktop.png",
-      "events": [],
+      "events": [
+        {
+          "type": "log",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
       "evaluation": {
         "title": "כפלול | משחק לוח הכפל",
         "lang": "he",
@@ -665,40 +724,49 @@
           }
         },
         "outOfBounds": [],
-        "overflowingText": []
+        "overflowingText": [
+          {
+            "selector": "#start-button .arcade-play-label",
+            "text": "בחרו כינוי כדי לשחק",
+            "clientWidth": 385,
+            "scrollWidth": 385,
+            "clientHeight": 52,
+            "scrollHeight": 57
+          }
+        ]
       }
     }
   ],
   "acceptance": {
     "ok": false,
     "checks": {
-      "characterSelected": true,
+      "characterSelected": false,
       "modeSheetOpened": false,
       "difficultySheetOpened": false,
       "settingsOpened": true,
       "settingsClosed": false,
-      "soundPersistedBeforeReload": true,
+      "soundPersistedBeforeReload": false,
       "progressFocused": false,
       "characterGalleryOpened": false,
       "gameFocused": false,
       "keyboardReachedControl": true,
       "leaderboardOpened": false,
-      "persistedCharacter": true,
-      "persistedMode": true,
-      "persistedDifficulty": true,
-      "persistedNickname": true,
-      "persistedSound": true,
+      "persistedCharacter": false,
+      "persistedMode": false,
+      "persistedDifficulty": false,
+      "persistedNickname": false,
+      "persistedSound": false,
       "gameStarted": false,
       "returnedToMenu": true,
       "noRuntimeErrors": true,
-      "noConsoleErrors": true
+      "noConsoleErrors": false
     },
     "persisted": {
-      "character": "nabatick",
-      "mode": "adventure",
-      "difficulty": "advanced",
-      "nickname": "בודק בית",
-      "soundIcon": "sound-off"
+      "character": "bifly",
+      "mode": "arcade",
+      "difficulty": "normal",
+      "nickname": "",
+      "soundIcon": "sound-on"
     },
     "probes": {
       "settingsProbe": {
@@ -711,7 +779,7 @@
         "hitId": null,
         "hitClass": "ui-icon-wrap",
         "actionableId": "menu-settings-button",
-        "actionableClass": "menu-icon-button"
+        "actionableClass": "menu-icon-button kf-coach-active-target"
       },
       "soundProbe": {
         "selector": "#menu-sound-button",
@@ -719,14 +787,35 @@
           "x": 279,
           "y": 54
         },
-        "hitTag": "SPAN",
-        "hitId": null,
-        "hitClass": "ui-icon-wrap",
-        "actionableId": "menu-sound-button",
-        "actionableClass": "menu-icon-button"
+        "hitTag": "H2",
+        "hitId": "settings-panel-title",
+        "hitClass": null,
+        "actionableId": null,
+        "actionableClass": null
       }
     },
-    "events": [],
+    "events": [
+      {
+        "type": "log",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      },
+      {
+        "type": "log",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      },
+      {
+        "type": "log",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      },
+      {
+        "type": "log",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      },
+      {
+        "type": "log",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      }
+    ],
     "runtimeErrors": []
   }
 }

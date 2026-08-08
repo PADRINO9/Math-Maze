@@ -1,0 +1,1 @@
+WebView id=id/webview flags=clickable,focusable bounds=[0,0][432,936]

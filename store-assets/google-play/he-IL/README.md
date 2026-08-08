@@ -4,19 +4,21 @@
 
 | שדה ב־Play Console | קובץ | מפרט |
 | --- | --- | --- |
-| App icon | `play-icon-512.png` | PNG, ‏512×512, שקיפות, 133 KB |
+| App icon | `play-icon-512.png` | PNG, ‏512×512, שקיפות, 139 KB |
 | Feature graphic | `feature-graphic-1024x500.png` | PNG, ‏1024×500, ללא שקיפות, 728 KB |
 | Phone screenshot 1 | `screenshots/01-gameplay-sun-garden.png` | PNG, ‏1080×1920, ללא שקיפות |
 | Phone screenshot 2 | `screenshots/02-multiplication-question.png` | PNG, ‏1080×1920, ללא שקיפות |
 | Phone screenshot 3 | `screenshots/03-lava-world.png` | PNG, ‏1080×1920, ללא שקיפות |
 | Phone screenshot 4 | `screenshots/04-home-screen.png` | PNG, ‏1080×1920, ללא שקיפות |
+| Phone screenshot 5 | `screenshots/05-division-question.png` | PNG, ‏1080×1920, ללא שקיפות |
+| Phone screenshot 6 | `screenshots/06-boss-battle.png` | PNG, ‏1080×1920, ללא שקיפות |
 
-כל ארבעת צילומי המסך שומרים את צילום המשחק המקורי בשלמותו. השוליים הצרים הם מילוי מטושטש מאותו צילום בלבד; לא נוספו מצבי משחק או ממשק שאינם קיימים.
+כל ששת צילומי המסך שומרים את צילום המשחק המקורי בשלמותו. השוליים הצרים הם מילוי מטושטש מאותו צילום בלבד; לא נוספו מצבי משחק או ממשק שאינם קיימים.
 
 ## מקור הנכסים
 
 - האייקון בנוי ממקור הדמות הרשמי `assets/generated/bifly-expression-idle.png`, באותה שפה חזותית של אייקון Android.
-- שלושת צילומי המשחק מגיעים מצילומי הוכחה של המשחק האמיתי תחת `docs/visual-proof-screenshots/`.
+- חמשת צילומי המשחק מגיעים מצילומי הוכחה של המשחק האמיתי תחת `docs/visual-proof-screenshots/`.
 - צילום הבית מגיע מהרצת Android האמיתית ונשמר ב־`sources/home-native-432x936.png`.
 - תמונת ה־Feature נוצרה בעזרת מחולל התמונות המובנה, בהסתמך על הפוסטר הרשמי ומקורות הדמויות של כפלול. הלוגו עצמו נוסף לאחר מכן מקובץ המקור הרשמי, כדי לשמור על איות ועיצוב מדויקים.
 - מקור תמונת ה־Feature נשמר ב־`feature-graphic-source-v1.png`.

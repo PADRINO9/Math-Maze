@@ -14,6 +14,10 @@ async function startAudioGame(page) {
   });
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => window.__mathMazeRuntime?.gameReady && window.KaflulAudio);
+  await page.locator("#menu-settings-button").click();
+  await page.locator("#player-name-input").fill("בודק שמע");
+  await page.locator("#settings-save-button").click();
+  await expect(page.locator("#settings-panel")).toBeHidden();
   await page.locator("#start-button").click();
   await expect(page.locator("#start-screen")).toBeHidden();
   await page.waitForFunction(() => window.KaflulAudio.getDiagnostics().loaded >= 4);

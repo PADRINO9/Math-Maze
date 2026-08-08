@@ -5,16 +5,16 @@
     "musicEnabled": true,
     "unlocked": true,
     "contextState": "running",
-    "loaded": 28,
+    "loaded": 22,
     "loadErrors": 0,
-    "played": 21,
+    "played": 19,
     "mutedSkips": 0,
     "autoplayBlocks": 0,
     "throttledSkips": 0,
     "voiceSteals": 0,
-    "currentScene": "lava",
+    "currentScene": "ice",
     "questionDucked": false,
-    "bossActive": false,
+    "bossActive": true,
     "lastEvent": "character:bifly:victory",
     "lastReason": "played",
     "volumes": {
@@ -24,7 +24,7 @@
       "voices": 0.82,
       "ui": 0.68
     },
-    "activeShots": 5
+    "activeShots": 0
   },
   "files": [
     "audio-boss-desktop-1280x800.png",

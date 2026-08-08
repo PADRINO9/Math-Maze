@@ -1,0 +1,317 @@
+{
+  "generatedAt": "2026-07-19T14:10:50.696Z",
+  "screenshots": [
+    {
+      "viewport": {
+        "key": "desktop-1280x800",
+        "width": 1280,
+        "height": 800,
+        "mobile": false
+      },
+      "characterId": "bifly",
+      "screenshot": "docs/visual-proof-screenshots/player-gameplay-animation/desktop-1280x800-bifly-after.png",
+      "setup": {
+        "characterId": "bifly",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "animation": {
+        "characterId": "bifly",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": true,
+        "walkCycle": 1.7088146928203287,
+        "lastMoveDistance": 2.46666666666664,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "key": "desktop-1280x800",
+        "width": 1280,
+        "height": 800,
+        "mobile": false
+      },
+      "characterId": "nabatick",
+      "screenshot": "docs/visual-proof-screenshots/player-gameplay-animation/desktop-1280x800-nabatick-after.png",
+      "setup": {
+        "characterId": "nabatick",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "animation": {
+        "characterId": "nabatick",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": true,
+        "walkCycle": 1.7088146928203287,
+        "lastMoveDistance": 2.46666666666664,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "key": "mobile-390x844",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "characterId": "bifly",
+      "screenshot": "docs/visual-proof-screenshots/player-gameplay-animation/mobile-390x844-bifly-after.png",
+      "setup": {
+        "characterId": "bifly",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "animation": {
+        "characterId": "bifly",
+        "frame": "eatPrepare",
+        "eating": true,
+        "eatAnimation": 0.3066666666666667,
+        "rewardAnimation": 0,
+        "moving": true,
+        "walkCycle": 5.260814692820291,
+        "lastMoveDistance": 2.46666666666664,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "key": "mobile-390x844",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "characterId": "nabatick",
+      "screenshot": "docs/visual-proof-screenshots/player-gameplay-animation/mobile-390x844-nabatick-after.png",
+      "setup": {
+        "characterId": "nabatick",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": false,
+        "walkCycle": 0,
+        "lastMoveDistance": 0,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "animation": {
+        "characterId": "nabatick",
+        "frame": "idle",
+        "eating": false,
+        "eatAnimation": 0,
+        "rewardAnimation": 0,
+        "moving": true,
+        "walkCycle": 3.040814692820314,
+        "lastMoveDistance": 2.46666666666664,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "maximumSquash": 0.028
+      },
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "video": {
+    "video": "docs/visual-proof-screenshots/player-gameplay-animation/kaflul-blue-green-maze-animation.mp4",
+    "videoBytes": 1610370,
+    "pickupPolicy": {
+      "bifly": {
+        "standard": {
+          "characterId": "bifly",
+          "frame": "eatPrepare",
+          "eating": true,
+          "eatAnimation": 0.34,
+          "rewardAnimation": 0,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        },
+        "bonus-letter": {
+          "characterId": "bifly",
+          "frame": "victory",
+          "eating": false,
+          "eatAnimation": 0,
+          "rewardAnimation": 0.38,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        },
+        "bonus-key": {
+          "characterId": "bifly",
+          "frame": "victory",
+          "eating": false,
+          "eatAnimation": 0,
+          "rewardAnimation": 0.44,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        },
+        "boss-core": {
+          "characterId": "bifly",
+          "frame": "victory",
+          "eating": false,
+          "eatAnimation": 0,
+          "rewardAnimation": 0.42,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        }
+      },
+      "nabatick": {
+        "standard": {
+          "characterId": "nabatick",
+          "frame": "eatPrepare",
+          "eating": true,
+          "eatAnimation": 0.34,
+          "rewardAnimation": 0,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        },
+        "bonus-letter": {
+          "characterId": "nabatick",
+          "frame": "victory",
+          "eating": false,
+          "eatAnimation": 0,
+          "rewardAnimation": 0.38,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        },
+        "bonus-key": {
+          "characterId": "nabatick",
+          "frame": "victory",
+          "eating": false,
+          "eatAnimation": 0,
+          "rewardAnimation": 0.44,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        },
+        "boss-core": {
+          "characterId": "nabatick",
+          "frame": "victory",
+          "eating": false,
+          "eatAnimation": 0,
+          "rewardAnimation": 0.42,
+          "moving": false,
+          "walkCycle": 0,
+          "lastMoveDistance": 0,
+          "displayScaleBoost": 1.06,
+          "maximumMovingBouncePx": 0.72,
+          "maximumSquash": 0.028
+        }
+      }
+    },
+    "sequences": [
+      {
+        "characterId": "bifly",
+        "sampleCount": 81,
+        "eatingFrames": 11,
+        "movingNonEatingFrames": 50,
+        "maximumStepPx": 4.933333333333337,
+        "frames": [
+          "idle",
+          "eatPrepare",
+          "eat"
+        ]
+      },
+      {
+        "characterId": "nabatick",
+        "sampleCount": 81,
+        "eatingFrames": 11,
+        "movingNonEatingFrames": 50,
+        "maximumStepPx": 4.933333333333337,
+        "frames": [
+          "idle",
+          "eatPrepare",
+          "eat"
+        ]
+      }
+    ],
+    "renderedFrameCount": 162,
+    "playbackFps": 30,
+    "durationSeconds": 5.4,
+    "encoder": "{\"frames\":162,\"fps\":30,\"duration\":5.400,\"width\":432,\"height\":432}",
+    "finalAnimation": {
+      "characterId": "nabatick",
+      "frame": "idle",
+      "eating": false,
+      "eatAnimation": 0,
+      "rewardAnimation": 0,
+      "moving": false,
+      "walkCycle": 3.0551831112804546,
+      "lastMoveDistance": 0,
+      "displayScaleBoost": 1.06,
+      "maximumMovingBouncePx": 0.72,
+      "maximumSquash": 0.028
+    },
+    "errors": [],
+    "passed": true
+  },
+  "passed": true
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 600" role="img" aria-label="Three symbol-only Hebrew monogram refinements">
+  <rect width="1680" height="600" fill="#fff"/>
+  <g fill="#000" font-family="sans-serif" font-size="22" font-weight="700">
+    <text x="90" y="65">1</text>
+    <text x="650" y="65">2</text>
+    <text x="1210" y="65">3</text>
+  </g>
+
+  <g transform="translate(80 70)">
+    <path d="M56 52h242c102 0 160 60 160 158v92c0 98-58 158-160 158H56v-90h230c52 0 80-26 80-76v-76c0-50-28-76-80-76H56z" fill="#000"/>
+    <path d="m264 96 50-16 104 344-54 16zM410 108l48 36-100 128-38-32zM236 414l48 20 84-142-42-24z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(640 70)">
+    <path d="M56 50h240c104 0 162 60 162 160v92c0 100-58 160-162 160H56v-92h228c54 0 82-26 82-78v-72c0-52-28-78-82-78H56z" fill="#000"/>
+    <path d="m264 94 50-16 104 350-54 16z" fill="#fff"/>
+    <path d="M414 108h44c0 68-18 116-64 166l-38-34c39-41 58-79 58-132z" fill="#fff"/>
+    <path d="M232 428h48c2-68 18-116 58-164l40 30c-32 40-44 78-46 134z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(1200 70)">
+    <path d="M54 50h242c104 0 162 60 162 160v92c0 100-58 160-162 160H54v-92h230c54 0 82-26 82-78v-72c0-52-28-78-82-78H54z" fill="#000"/>
+    <path d="m264 94 50-16 42 142-50 15zM334 286l50-15 47 157-54 16z" fill="#fff"/>
+    <path d="M414 108h44c0 62-16 107-54 152l-38-32c32-36 48-72 48-120z" fill="#fff"/>
+    <path d="M232 428h48c2-62 16-105 48-146l40 30c-24 33-34 69-36 116z" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Concept 07 — Open interlock">
+  <rect width="240" height="240" fill="#fff"/>
+  <g fill="#000">
+    <path d="M24 42h92c20 0 35 10 44 29l13 27-30 14-12-24c-4-8-10-12-19-12H24z"/>
+    <path d="M24 198h92c20 0 35-10 44-29l13-27-30-14-12 24c-4 8-10 12-19 12H24z"/>
+    <path d="M111 28h31l79 184h-36z"/>
+    <path d="M209 43h31l-68 84-24-20z"/>
+  </g>
+  <path d="m146 100 25 22-23 28-26-23z" fill="#fff"/>
+</svg>

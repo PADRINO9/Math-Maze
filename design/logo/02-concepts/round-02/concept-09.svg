@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Concept 09 — Editorial asymmetry">
+  <rect width="240" height="240" fill="#fff"/>
+  <g fill="#000">
+    <path d="M26 48c42-8 76-1 100 20 16 14 24 31 24 51 0 18-7 34-21 48-22 22-56 31-103 25l6-31c31 4 54-1 69-14 10-9 15-18 15-28 0-11-5-20-16-29-15-12-38-16-68-11z"/>
+    <path d="M112 23h25l75 194h-31z"/>
+    <path d="M208 38h32l-72 91-23-19z"/>
+    <path d="M82 205h34l54-82-24-17z"/>
+  </g>
+  <path d="m145 99 24 21-21 26-25-22z" fill="#fff"/>
+</svg>

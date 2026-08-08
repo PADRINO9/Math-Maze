@@ -1,0 +1,6857 @@
+{
+  "generatedAt": "2026-08-03T19:16:01.716Z",
+  "baseUrl": "http://127.0.0.1:65015",
+  "interactionModel": "Only the highlighted real control accepts input; a small anchored bubble stays beside it and changes to feedback without jumping.",
+  "viewports": [
+    {
+      "name": "desktop-1280x800",
+      "wrongClickBlocked": true,
+      "tutorialTotal": 10,
+      "forbiddenGeometryTransitions": [],
+      "layouts": [
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": null,
+            "renderStats": {
+              "dimPaints": 3,
+              "targetPositions": 1,
+              "feedbackPositions": 0,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 976,
+            "top": 54,
+            "right": 1028,
+            "bottom": 106,
+            "width": 52,
+            "height": 52
+          },
+          "ring": {
+            "left": 967,
+            "top": 45,
+            "right": 1037,
+            "bottom": 115,
+            "width": 70,
+            "height": 70
+          },
+          "hand": {
+            "left": 984.71875,
+            "top": 118.02208709716797,
+            "right": 1030.71875,
+            "bottom": 172.0220947265625,
+            "width": 46,
+            "height": 54.00000762939453
+          },
+          "card": {
+            "left": 850,
+            "top": 130,
+            "right": 1154,
+            "bottom": 248,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 851,
+            "top": 175,
+            "right": 1153,
+            "bottom": 247,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 851,
+            "top": 131,
+            "right": 1153,
+            "bottom": 175,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "below",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 1,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "card": {
+                "left": 850,
+                "top": 130,
+                "right": 1154,
+                "bottom": 248,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "card": {
+                "left": 850,
+                "top": 130,
+                "right": 1154,
+                "bottom": 248,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "card": {
+                "left": 850,
+                "top": 130,
+                "right": 1154,
+                "bottom": 248,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "card": {
+                "left": 850,
+                "top": 130,
+                "right": 1154,
+                "bottom": 248,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "card": {
+                "left": 850,
+                "top": 130,
+                "right": 1154,
+                "bottom": 248,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "card": {
+                "left": 850,
+                "top": 130,
+                "right": 1154,
+                "bottom": 248,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 4,
+              "targetPositions": 1,
+              "feedbackPositions": 1,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 967,
+            "top": 45,
+            "right": 1037,
+            "bottom": 115,
+            "width": 70,
+            "height": 70
+          },
+          "hand": {
+            "left": 984.71875,
+            "top": 120,
+            "right": 1030.71875,
+            "bottom": 174,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 850,
+            "top": 130,
+            "right": 1154,
+            "bottom": 248,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 851,
+            "top": 131,
+            "right": 1153,
+            "bottom": 175,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 851,
+            "top": 175,
+            "right": 1153,
+            "bottom": 247,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "below",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 1,
+          "anchor": {
+            "left": 976,
+            "top": 54,
+            "right": 1028,
+            "bottom": 106,
+            "width": 52,
+            "height": 52
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0.10000000149011612
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 6,
+              "targetPositions": 2,
+              "feedbackPositions": 1,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 570.671875,
+            "top": 353.375,
+            "right": 709.34375,
+            "bottom": 446.96875,
+            "width": 138.671875,
+            "height": 93.59375
+          },
+          "ring": {
+            "left": 561.671875,
+            "top": 344.375,
+            "right": 718.34375,
+            "bottom": 455.96875,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 622.71875,
+            "top": 460.95709228515625,
+            "right": 668.71875,
+            "bottom": 514.9570922851562,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 488,
+            "top": 211.375,
+            "right": 792,
+            "bottom": 329.375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 489,
+            "top": 256.375,
+            "right": 791,
+            "bottom": 328.375,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 489,
+            "top": 212.375,
+            "right": 791,
+            "bottom": 256.375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 2,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 570.671875,
+                "top": 353.375,
+                "right": 709.34375,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 344.375,
+                "right": 718.34375,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 488,
+                "top": 211.375,
+                "right": 792,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 570.671875,
+                "top": 353.375,
+                "right": 709.34375,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 344.375,
+                "right": 718.34375,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 488,
+                "top": 211.375,
+                "right": 792,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 570.671875,
+                "top": 353.375,
+                "right": 709.34375,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 344.375,
+                "right": 718.34375,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 488,
+                "top": 211.375,
+                "right": 792,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 570.671875,
+                "top": 353.375,
+                "right": 709.34375,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 344.375,
+                "right": 718.34375,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 488,
+                "top": 211.375,
+                "right": 792,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 570.671875,
+                "top": 353.375,
+                "right": 709.34375,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 344.375,
+                "right": 718.34375,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 488,
+                "top": 211.375,
+                "right": 792,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 570.671875,
+                "top": 353.375,
+                "right": 709.34375,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 344.375,
+                "right": 718.34375,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 488,
+                "top": 211.375,
+                "right": 792,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 7,
+              "targetPositions": 2,
+              "feedbackPositions": 2,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 561.671875,
+            "top": 344.375,
+            "right": 718.34375,
+            "bottom": 455.96875,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 622.71875,
+            "top": 460.96875,
+            "right": 668.71875,
+            "bottom": 514.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 488,
+            "top": 211.375,
+            "right": 792,
+            "bottom": 329.375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 489,
+            "top": 212.375,
+            "right": 791,
+            "bottom": 256.375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 489,
+            "top": 256.375,
+            "right": 791,
+            "bottom": 328.375,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 2,
+          "anchor": {
+            "left": 570.671875,
+            "top": 353.375,
+            "right": 709.34375,
+            "bottom": 446.96875,
+            "width": 138.671875,
+            "height": 93.59375
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 9,
+              "targetPositions": 3,
+              "feedbackPositions": 2,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 346,
+            "top": 355.46875,
+            "right": 934,
+            "bottom": 458.109375,
+            "width": 588,
+            "height": 102.640625
+          },
+          "ring": {
+            "left": 337,
+            "top": 346.46875,
+            "right": 943,
+            "bottom": 467.109375,
+            "width": 606,
+            "height": 120.640625
+          },
+          "hand": {
+            "left": 622.71875,
+            "top": 472.109375,
+            "right": 668.71875,
+            "bottom": 526.109375,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 488,
+            "top": 213.46875,
+            "right": 792,
+            "bottom": 331.46875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 489,
+            "top": 258.46875,
+            "right": 791,
+            "bottom": 330.46875,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 489,
+            "top": 214.46875,
+            "right": 791,
+            "bottom": 258.46875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 3,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "card": {
+                "left": 488,
+                "top": 213.46875,
+                "right": 792,
+                "bottom": 331.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "card": {
+                "left": 488,
+                "top": 213.46875,
+                "right": 792,
+                "bottom": 331.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "card": {
+                "left": 488,
+                "top": 213.46875,
+                "right": 792,
+                "bottom": 331.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "card": {
+                "left": 488,
+                "top": 213.46875,
+                "right": 792,
+                "bottom": 331.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "card": {
+                "left": 488,
+                "top": 213.46875,
+                "right": 792,
+                "bottom": 331.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "card": {
+                "left": 488,
+                "top": 213.46875,
+                "right": 792,
+                "bottom": 331.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 10,
+              "targetPositions": 3,
+              "feedbackPositions": 3,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 337,
+            "top": 346.46875,
+            "right": 943,
+            "bottom": 467.109375,
+            "width": 606,
+            "height": 120.640625
+          },
+          "hand": {
+            "left": 622.71875,
+            "top": 472.109375,
+            "right": 668.71875,
+            "bottom": 526.109375,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 488,
+            "top": 213.46875,
+            "right": 792,
+            "bottom": 331.46875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 489,
+            "top": 214.46875,
+            "right": 791,
+            "bottom": 258.46875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 489,
+            "top": 258.46875,
+            "right": 791,
+            "bottom": 330.46875,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 3,
+          "anchor": {
+            "left": 346,
+            "top": 355.46875,
+            "right": 934,
+            "bottom": 458.109375,
+            "width": 588,
+            "height": 102.640625
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 12,
+              "targetPositions": 4,
+              "feedbackPositions": 3,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 424,
+            "top": 353.375,
+            "right": 562.671875,
+            "bottom": 446.96875,
+            "width": 138.671875,
+            "height": 93.59375
+          },
+          "ring": {
+            "left": 415,
+            "top": 344.375,
+            "right": 571.671875,
+            "bottom": 455.96875,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 476.046875,
+            "top": 460.96875,
+            "right": 522.046875,
+            "bottom": 514.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 341.328125,
+            "top": 211.375,
+            "right": 645.328125,
+            "bottom": 329.375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 342.328125,
+            "top": 256.375,
+            "right": 644.328125,
+            "bottom": 328.375,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 342.328125,
+            "top": 212.375,
+            "right": 644.328125,
+            "bottom": 256.375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 4,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 424,
+                "top": 353.375,
+                "right": 562.671875,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 344.375,
+                "right": 571.671875,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 341.328125,
+                "top": 211.375,
+                "right": 645.328125,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 424,
+                "top": 353.375,
+                "right": 562.671875,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 344.375,
+                "right": 571.671875,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 341.328125,
+                "top": 211.375,
+                "right": 645.328125,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 424,
+                "top": 353.375,
+                "right": 562.671875,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 344.375,
+                "right": 571.671875,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 341.328125,
+                "top": 211.375,
+                "right": 645.328125,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 424,
+                "top": 353.375,
+                "right": 562.671875,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 344.375,
+                "right": 571.671875,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 341.328125,
+                "top": 211.375,
+                "right": 645.328125,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 424,
+                "top": 353.375,
+                "right": 562.671875,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 344.375,
+                "right": 571.671875,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 341.328125,
+                "top": 211.375,
+                "right": 645.328125,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 424,
+                "top": 353.375,
+                "right": 562.671875,
+                "bottom": 446.96875,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 344.375,
+                "right": 571.671875,
+                "bottom": 455.96875,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 341.328125,
+                "top": 211.375,
+                "right": 645.328125,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 13,
+              "targetPositions": 4,
+              "feedbackPositions": 4,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 415,
+            "top": 344.375,
+            "right": 571.671875,
+            "bottom": 455.96875,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 476.046875,
+            "top": 460.96875,
+            "right": 522.046875,
+            "bottom": 514.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 341.328125,
+            "top": 211.375,
+            "right": 645.328125,
+            "bottom": 329.375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 342.328125,
+            "top": 212.375,
+            "right": 644.328125,
+            "bottom": 256.375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 342.328125,
+            "top": 256.375,
+            "right": 644.328125,
+            "bottom": 328.375,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 4,
+          "anchor": {
+            "left": 424,
+            "top": 353.375,
+            "right": 562.671875,
+            "bottom": 446.96875,
+            "width": 138.671875,
+            "height": 93.59375
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 15,
+              "targetPositions": 5,
+              "feedbackPositions": 4,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 729.8125,
+            "top": 378.5625,
+            "right": 889.40625,
+            "bottom": 567.90625,
+            "width": 159.59375,
+            "height": 189.34375
+          },
+          "ring": {
+            "left": 720.8125,
+            "top": 369.5625,
+            "right": 898.40625,
+            "bottom": 576.90625,
+            "width": 177.59375,
+            "height": 207.34375
+          },
+          "hand": {
+            "left": 792.328125,
+            "top": 581.90625,
+            "right": 838.328125,
+            "bottom": 635.90625,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 657.609375,
+            "top": 236.5625,
+            "right": 961.609375,
+            "bottom": 354.5625,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 658.609375,
+            "top": 281.5625,
+            "right": 960.609375,
+            "bottom": 353.5625,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 658.609375,
+            "top": 237.5625,
+            "right": 960.609375,
+            "bottom": 281.5625,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 5,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "card": {
+                "left": 657.609375,
+                "top": 236.5625,
+                "right": 961.609375,
+                "bottom": 354.5625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "card": {
+                "left": 657.609375,
+                "top": 236.5625,
+                "right": 961.609375,
+                "bottom": 354.5625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "card": {
+                "left": 657.609375,
+                "top": 236.5625,
+                "right": 961.609375,
+                "bottom": 354.5625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "card": {
+                "left": 657.609375,
+                "top": 236.5625,
+                "right": 961.609375,
+                "bottom": 354.5625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "card": {
+                "left": 657.609375,
+                "top": 236.5625,
+                "right": 961.609375,
+                "bottom": 354.5625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "card": {
+                "left": 657.609375,
+                "top": 236.5625,
+                "right": 961.609375,
+                "bottom": 354.5625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 16,
+              "targetPositions": 5,
+              "feedbackPositions": 5,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 720.8125,
+            "top": 369.5625,
+            "right": 898.40625,
+            "bottom": 576.90625,
+            "width": 177.59375,
+            "height": 207.34375
+          },
+          "hand": {
+            "left": 792.328125,
+            "top": 581.90625,
+            "right": 838.328125,
+            "bottom": 635.90625,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 657.609375,
+            "top": 236.5625,
+            "right": 961.609375,
+            "bottom": 354.5625,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 658.609375,
+            "top": 237.5625,
+            "right": 960.609375,
+            "bottom": 281.5625,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 658.609375,
+            "top": 281.5625,
+            "right": 960.609375,
+            "bottom": 353.5625,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 5,
+          "anchor": {
+            "left": 729.8125,
+            "top": 378.5625,
+            "right": 889.40625,
+            "bottom": 567.90625,
+            "width": 159.59375,
+            "height": 189.34375
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 18,
+              "targetPositions": 6,
+              "feedbackPositions": 5,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 644,
+            "top": 633.96875,
+            "right": 869,
+            "bottom": 679.96875,
+            "width": 225,
+            "height": 46
+          },
+          "ring": {
+            "left": 635,
+            "top": 624.96875,
+            "right": 878,
+            "bottom": 688.96875,
+            "width": 243,
+            "height": 64
+          },
+          "hand": {
+            "left": 739.21875,
+            "top": 693.96875,
+            "right": 785.21875,
+            "bottom": 747.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 604.5,
+            "top": 491.96875,
+            "right": 908.5,
+            "bottom": 609.96875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 605.5,
+            "top": 536.96875,
+            "right": 907.5,
+            "bottom": 608.96875,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 605.5,
+            "top": 492.96875,
+            "right": 907.5,
+            "bottom": 536.96875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 6,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 644,
+                "top": 633.96875,
+                "right": 869,
+                "bottom": 679.96875,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.96875,
+                "right": 878,
+                "bottom": 688.96875,
+                "width": 243,
+                "height": 64
+              },
+              "card": {
+                "left": 604.5,
+                "top": 491.96875,
+                "right": 908.5,
+                "bottom": 609.96875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 644,
+                "top": 633.96875,
+                "right": 869,
+                "bottom": 679.96875,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.96875,
+                "right": 878,
+                "bottom": 688.96875,
+                "width": 243,
+                "height": 64
+              },
+              "card": {
+                "left": 604.5,
+                "top": 491.96875,
+                "right": 908.5,
+                "bottom": 609.96875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 644,
+                "top": 633.96875,
+                "right": 869,
+                "bottom": 679.96875,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.96875,
+                "right": 878,
+                "bottom": 688.96875,
+                "width": 243,
+                "height": 64
+              },
+              "card": {
+                "left": 604.5,
+                "top": 491.96875,
+                "right": 908.5,
+                "bottom": 609.96875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 644,
+                "top": 633.96875,
+                "right": 869,
+                "bottom": 679.96875,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.96875,
+                "right": 878,
+                "bottom": 688.96875,
+                "width": 243,
+                "height": 64
+              },
+              "card": {
+                "left": 604.5,
+                "top": 491.96875,
+                "right": 908.5,
+                "bottom": 609.96875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 644,
+                "top": 633.96875,
+                "right": 869,
+                "bottom": 679.96875,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.96875,
+                "right": 878,
+                "bottom": 688.96875,
+                "width": 243,
+                "height": 64
+              },
+              "card": {
+                "left": 604.5,
+                "top": 491.96875,
+                "right": 908.5,
+                "bottom": 609.96875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 644,
+                "top": 633.96875,
+                "right": 869,
+                "bottom": 679.96875,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.96875,
+                "right": 878,
+                "bottom": 688.96875,
+                "width": 243,
+                "height": 64
+              },
+              "card": {
+                "left": 604.5,
+                "top": 491.96875,
+                "right": 908.5,
+                "bottom": 609.96875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 19,
+              "targetPositions": 6,
+              "feedbackPositions": 6,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 635,
+            "top": 624.96875,
+            "right": 878,
+            "bottom": 688.96875,
+            "width": 243,
+            "height": 64
+          },
+          "hand": {
+            "left": 739.21875,
+            "top": 693.96875,
+            "right": 785.21875,
+            "bottom": 747.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 604.5,
+            "top": 491.96875,
+            "right": 908.5,
+            "bottom": 609.96875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 605.5,
+            "top": 492.96875,
+            "right": 907.5,
+            "bottom": 536.96875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 605.5,
+            "top": 536.96875,
+            "right": 907.5,
+            "bottom": 608.96875,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 6,
+          "anchor": {
+            "left": 644,
+            "top": 633.96875,
+            "right": 869,
+            "bottom": 679.96875,
+            "width": 225,
+            "height": 46
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 21,
+              "targetPositions": 7,
+              "feedbackPositions": 6,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 717.34375,
+            "top": 353.375,
+            "right": 856,
+            "bottom": 446.96875,
+            "width": 138.65625,
+            "height": 93.59375
+          },
+          "ring": {
+            "left": 708.34375,
+            "top": 344.375,
+            "right": 865,
+            "bottom": 455.96875,
+            "width": 156.65625,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 769.390625,
+            "top": 460.96875,
+            "right": 815.390625,
+            "bottom": 514.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 634.671875,
+            "top": 211.375,
+            "right": 938.671875,
+            "bottom": 329.375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 635.671875,
+            "top": 256.375,
+            "right": 937.671875,
+            "bottom": 328.375,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 635.671875,
+            "top": 212.375,
+            "right": 937.671875,
+            "bottom": 256.375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 7,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 717.34375,
+                "top": 353.375,
+                "right": 856,
+                "bottom": 446.96875,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 344.375,
+                "right": 865,
+                "bottom": 455.96875,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 634.671875,
+                "top": 211.375,
+                "right": 938.671875,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 717.34375,
+                "top": 353.375,
+                "right": 856,
+                "bottom": 446.96875,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 344.375,
+                "right": 865,
+                "bottom": 455.96875,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 634.671875,
+                "top": 211.375,
+                "right": 938.671875,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 717.34375,
+                "top": 353.375,
+                "right": 856,
+                "bottom": 446.96875,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 344.375,
+                "right": 865,
+                "bottom": 455.96875,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 634.671875,
+                "top": 211.375,
+                "right": 938.671875,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 717.34375,
+                "top": 353.375,
+                "right": 856,
+                "bottom": 446.96875,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 344.375,
+                "right": 865,
+                "bottom": 455.96875,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 634.671875,
+                "top": 211.375,
+                "right": 938.671875,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 717.34375,
+                "top": 353.375,
+                "right": 856,
+                "bottom": 446.96875,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 344.375,
+                "right": 865,
+                "bottom": 455.96875,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 634.671875,
+                "top": 211.375,
+                "right": 938.671875,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 717.34375,
+                "top": 353.375,
+                "right": 856,
+                "bottom": 446.96875,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 344.375,
+                "right": 865,
+                "bottom": 455.96875,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "card": {
+                "left": 634.671875,
+                "top": 211.375,
+                "right": 938.671875,
+                "bottom": 329.375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 22,
+              "targetPositions": 7,
+              "feedbackPositions": 7,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 708.34375,
+            "top": 344.375,
+            "right": 865,
+            "bottom": 455.96875,
+            "width": 156.65625,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 769.390625,
+            "top": 460.96875,
+            "right": 815.390625,
+            "bottom": 514.96875,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 634.671875,
+            "top": 211.375,
+            "right": 938.671875,
+            "bottom": 329.375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 635.671875,
+            "top": 212.375,
+            "right": 937.671875,
+            "bottom": 256.375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 635.671875,
+            "top": 256.375,
+            "right": 937.671875,
+            "bottom": 328.375,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 7,
+          "anchor": {
+            "left": 717.34375,
+            "top": 353.375,
+            "right": 856,
+            "bottom": 446.96875,
+            "width": 138.65625,
+            "height": 93.59375
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 24,
+              "targetPositions": 8,
+              "feedbackPositions": 7,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 1028,
+            "top": 367.390625,
+            "right": 1092,
+            "bottom": 439.390625,
+            "width": 64,
+            "height": 72
+          },
+          "ring": {
+            "left": 1019,
+            "top": 358.390625,
+            "right": 1101,
+            "bottom": 448.390625,
+            "width": 82,
+            "height": 90
+          },
+          "hand": {
+            "left": 1042.71875,
+            "top": 453.3858337402344,
+            "right": 1088.71875,
+            "bottom": 507.3858337402344,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 908,
+            "top": 225.390625,
+            "right": 1212,
+            "bottom": 343.390625,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 909,
+            "top": 270.390625,
+            "right": 1211,
+            "bottom": 342.390625,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 909,
+            "top": 226.390625,
+            "right": 1211,
+            "bottom": 270.390625,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 8,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "card": {
+                "left": 908,
+                "top": 225.390625,
+                "right": 1212,
+                "bottom": 343.390625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "card": {
+                "left": 908,
+                "top": 225.390625,
+                "right": 1212,
+                "bottom": 343.390625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "card": {
+                "left": 908,
+                "top": 225.390625,
+                "right": 1212,
+                "bottom": 343.390625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "card": {
+                "left": 908,
+                "top": 225.390625,
+                "right": 1212,
+                "bottom": 343.390625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "card": {
+                "left": 908,
+                "top": 225.390625,
+                "right": 1212,
+                "bottom": 343.390625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "card": {
+                "left": 908,
+                "top": 225.390625,
+                "right": 1212,
+                "bottom": 343.390625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 25,
+              "targetPositions": 8,
+              "feedbackPositions": 8,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 1019,
+            "top": 358.390625,
+            "right": 1101,
+            "bottom": 448.390625,
+            "width": 82,
+            "height": 90
+          },
+          "hand": {
+            "left": 1042.71875,
+            "top": 453.390625,
+            "right": 1088.71875,
+            "bottom": 507.390625,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 908,
+            "top": 225.390625,
+            "right": 1212,
+            "bottom": 343.390625,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 909,
+            "top": 226.390625,
+            "right": 1211,
+            "bottom": 270.390625,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 909,
+            "top": 270.390625,
+            "right": 1211,
+            "bottom": 342.390625,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 8,
+          "anchor": {
+            "left": 1028,
+            "top": 367.390625,
+            "right": 1092,
+            "bottom": 439.390625,
+            "width": 64,
+            "height": 72
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 27,
+              "targetPositions": 9,
+              "feedbackPositions": 8,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 183.859375,
+            "top": 718,
+            "right": 1254,
+            "bottom": 776,
+            "width": 1070.140625,
+            "height": 58
+          },
+          "ring": {
+            "left": 174.859375,
+            "top": 709,
+            "right": 1263,
+            "bottom": 785,
+            "width": 1088.140625,
+            "height": 76
+          },
+          "hand": {
+            "left": 121.859375,
+            "top": 718.9937133789062,
+            "right": 167.859375,
+            "bottom": 772.9937133789062,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 566.921875,
+            "top": 576,
+            "right": 870.921875,
+            "bottom": 694,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 567.921875,
+            "top": 621,
+            "right": 869.921875,
+            "bottom": 693,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 567.921875,
+            "top": 577,
+            "right": 869.921875,
+            "bottom": 621,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 9,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "card": {
+                "left": 566.921875,
+                "top": 576,
+                "right": 870.921875,
+                "bottom": 694,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "card": {
+                "left": 566.921875,
+                "top": 576,
+                "right": 870.921875,
+                "bottom": 694,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "card": {
+                "left": 566.921875,
+                "top": 576,
+                "right": 870.921875,
+                "bottom": 694,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "card": {
+                "left": 566.921875,
+                "top": 576,
+                "right": 870.921875,
+                "bottom": 694,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "card": {
+                "left": 566.921875,
+                "top": 576,
+                "right": 870.921875,
+                "bottom": 694,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "card": {
+                "left": 566.921875,
+                "top": 576,
+                "right": 870.921875,
+                "bottom": 694,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 28,
+              "targetPositions": 9,
+              "feedbackPositions": 9,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 174.859375,
+            "top": 709,
+            "right": 1263,
+            "bottom": 785,
+            "width": 1088.140625,
+            "height": 76
+          },
+          "hand": {
+            "left": 121.859375,
+            "top": 719,
+            "right": 167.859375,
+            "bottom": 773,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 566.921875,
+            "top": 576,
+            "right": 870.921875,
+            "bottom": 694,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 567.921875,
+            "top": 577,
+            "right": 869.921875,
+            "bottom": 621,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 567.921875,
+            "top": 621,
+            "right": 869.921875,
+            "bottom": 693,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 9,
+          "anchor": {
+            "left": 183.859375,
+            "top": 718,
+            "right": 1254,
+            "bottom": 776,
+            "width": 1070.140625,
+            "height": 58
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1450,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 30,
+              "targetPositions": 10,
+              "feedbackPositions": 9,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 335,
+            "top": 662,
+            "right": 945,
+            "bottom": 752,
+            "width": 610,
+            "height": 90
+          },
+          "ring": {
+            "left": 326,
+            "top": 653,
+            "right": 954,
+            "bottom": 761,
+            "width": 628,
+            "height": 108
+          },
+          "hand": {
+            "left": 609.265625,
+            "top": 592,
+            "right": 655.265625,
+            "bottom": 646,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 488,
+            "top": 520,
+            "right": 792,
+            "bottom": 638,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 489,
+            "top": 565,
+            "right": 791,
+            "bottom": 637,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 489,
+            "top": 521,
+            "right": 791,
+            "bottom": 565,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 10,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 335,
+                "top": 662,
+                "right": 945,
+                "bottom": 752,
+                "width": 610,
+                "height": 90
+              },
+              "ring": {
+                "left": 326,
+                "top": 653,
+                "right": 954,
+                "bottom": 761,
+                "width": 628,
+                "height": 108
+              },
+              "card": {
+                "left": 488,
+                "top": 520,
+                "right": 792,
+                "bottom": 638,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 335,
+                "top": 662,
+                "right": 945,
+                "bottom": 752,
+                "width": 610,
+                "height": 90
+              },
+              "ring": {
+                "left": 326,
+                "top": 653,
+                "right": 954,
+                "bottom": 761,
+                "width": 628,
+                "height": 108
+              },
+              "card": {
+                "left": 488,
+                "top": 520,
+                "right": 792,
+                "bottom": 638,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 335,
+                "top": 662,
+                "right": 945,
+                "bottom": 752,
+                "width": 610,
+                "height": 90
+              },
+              "ring": {
+                "left": 326,
+                "top": 653,
+                "right": 954,
+                "bottom": 761,
+                "width": 628,
+                "height": 108
+              },
+              "card": {
+                "left": 488,
+                "top": 520,
+                "right": 792,
+                "bottom": 638,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 335,
+                "top": 662,
+                "right": 945,
+                "bottom": 752,
+                "width": 610,
+                "height": 90
+              },
+              "ring": {
+                "left": 326,
+                "top": 653,
+                "right": 954,
+                "bottom": 761,
+                "width": 628,
+                "height": 108
+              },
+              "card": {
+                "left": 488,
+                "top": 520,
+                "right": 792,
+                "bottom": 638,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 335,
+                "top": 662,
+                "right": 945,
+                "bottom": 752,
+                "width": 610,
+                "height": 90
+              },
+              "ring": {
+                "left": 326,
+                "top": 653,
+                "right": 954,
+                "bottom": 761,
+                "width": 628,
+                "height": 108
+              },
+              "card": {
+                "left": 488,
+                "top": 520,
+                "right": 792,
+                "bottom": 638,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 335,
+                "top": 662,
+                "right": 945,
+                "bottom": 752,
+                "width": 610,
+                "height": 90
+              },
+              "ring": {
+                "left": 326,
+                "top": 653,
+                "right": 954,
+                "bottom": 761,
+                "width": 628,
+                "height": 108
+              },
+              "card": {
+                "left": 488,
+                "top": 520,
+                "right": 792,
+                "bottom": 638,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 24
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1450,
+            "lastFeedbackLatencyMs": 0.09999999403953552,
+            "renderStats": {
+              "dimPaints": 31,
+              "targetPositions": 10,
+              "feedbackPositions": 10,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 326,
+            "top": 653,
+            "right": 954,
+            "bottom": 761,
+            "width": 628,
+            "height": 108
+          },
+          "hand": {
+            "left": 609.265625,
+            "top": 592,
+            "right": 655.265625,
+            "bottom": 646,
+            "width": 46,
+            "height": 54
+          },
+          "card": {
+            "left": 488,
+            "top": 520,
+            "right": 792,
+            "bottom": 638,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 489,
+            "top": 521,
+            "right": 791,
+            "bottom": 565,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 489,
+            "top": 565,
+            "right": 791,
+            "bottom": 637,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 10,
+          "anchor": {
+            "left": 335,
+            "top": 662,
+            "right": 945,
+            "bottom": 752,
+            "width": 610,
+            "height": 90
+          },
+          "cardProximity": 24,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0.09999999403953552
+        }
+      ],
+      "initialSelections": {
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "bifly",
+        "control": "swipe"
+      },
+      "persisted": {
+        "tutorial": "complete",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick",
+        "control": "swipe"
+      },
+      "runtimeErrors": [],
+      "resourceFailures": [],
+      "artifacts": [
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-01-settings-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-01-settings-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-02-settings-mode-stable-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-03-mode-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-03-worlds-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-04-difficulty-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-04-difficulty-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-05-difficulty-choice-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-05-score-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-06-controls-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-06-movement-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-07-character-button-stable-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-07-character-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-08-character-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-09-character-confirm-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-09-maze-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-10-start-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-10-goal-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/first-playable-maze-desktop-1280x800.png"
+      ],
+      "video": null
+    },
+    {
+      "name": "mobile-390x844",
+      "wrongClickBlocked": true,
+      "tutorialTotal": 10,
+      "forbiddenGeometryTransitions": [],
+      "layouts": [
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": null,
+            "renderStats": {
+              "dimPaints": 3,
+              "targetPositions": 1,
+              "feedbackPositions": 0,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 184.1875,
+            "top": 30.375,
+            "right": 226.296875,
+            "bottom": 72.484375,
+            "width": 42.109375,
+            "height": 42.109375
+          },
+          "ring": {
+            "left": 178.1875,
+            "top": 24.375,
+            "right": 232.296875,
+            "bottom": 78.484375,
+            "width": 54.109375,
+            "height": 54.109375
+          },
+          "hand": {
+            "left": 190.109375,
+            "top": 81.52067565917969,
+            "right": 232.109375,
+            "bottom": 131.5206756591797,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 53.234375,
+            "top": 91.484375,
+            "right": 357.234375,
+            "bottom": 209.484375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 54.234375,
+            "top": 136.484375,
+            "right": 356.234375,
+            "bottom": 208.484375,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 54.234375,
+            "top": 92.484375,
+            "right": 356.234375,
+            "bottom": 136.484375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "below",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 1,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "card": {
+                "left": 53.234375,
+                "top": 91.484375,
+                "right": 357.234375,
+                "bottom": 209.484375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "card": {
+                "left": 53.234375,
+                "top": 91.484375,
+                "right": 357.234375,
+                "bottom": 209.484375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "card": {
+                "left": 53.234375,
+                "top": 91.484375,
+                "right": 357.234375,
+                "bottom": 209.484375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "card": {
+                "left": 53.234375,
+                "top": 91.484375,
+                "right": 357.234375,
+                "bottom": 209.484375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "card": {
+                "left": 53.234375,
+                "top": 91.484375,
+                "right": 357.234375,
+                "bottom": 209.484375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "card": {
+                "left": 53.234375,
+                "top": 91.484375,
+                "right": 357.234375,
+                "bottom": 209.484375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 4,
+              "targetPositions": 1,
+              "feedbackPositions": 1,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 178.1875,
+            "top": 24.375,
+            "right": 232.296875,
+            "bottom": 78.484375,
+            "width": 54.109375,
+            "height": 54.109375
+          },
+          "hand": {
+            "left": 190.109375,
+            "top": 83.484375,
+            "right": 232.109375,
+            "bottom": 133.484375,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 53.234375,
+            "top": 91.484375,
+            "right": 357.234375,
+            "bottom": 209.484375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 54.234375,
+            "top": 92.484375,
+            "right": 356.234375,
+            "bottom": 136.484375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 54.234375,
+            "top": 136.484375,
+            "right": 356.234375,
+            "bottom": 208.484375,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "below",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 1,
+          "anchor": {
+            "left": 184.1875,
+            "top": 30.375,
+            "right": 226.296875,
+            "bottom": 72.484375,
+            "width": 42.109375,
+            "height": 42.109375
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0.10000000149011612
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 6,
+              "targetPositions": 2,
+              "feedbackPositions": 1,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 143.34375,
+            "top": 396.703125,
+            "right": 246.671875,
+            "bottom": 467.953125,
+            "width": 103.328125,
+            "height": 71.25
+          },
+          "ring": {
+            "left": 137.34375,
+            "top": 390.703125,
+            "right": 252.671875,
+            "bottom": 473.953125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 477.205810546875,
+            "right": 221.875,
+            "bottom": 527.205810546875,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 259.703125,
+            "right": 347,
+            "bottom": 377.703125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 44,
+            "top": 304.703125,
+            "right": 346,
+            "bottom": 376.703125,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 44,
+            "top": 260.703125,
+            "right": 346,
+            "bottom": 304.703125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 2,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 143.34375,
+                "top": 396.703125,
+                "right": 246.671875,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 390.703125,
+                "right": 252.671875,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 43,
+                "top": 259.703125,
+                "right": 347,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 143.34375,
+                "top": 396.703125,
+                "right": 246.671875,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 390.703125,
+                "right": 252.671875,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 43,
+                "top": 259.703125,
+                "right": 347,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 143.34375,
+                "top": 396.703125,
+                "right": 246.671875,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 390.703125,
+                "right": 252.671875,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 43,
+                "top": 259.703125,
+                "right": 347,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 143.34375,
+                "top": 396.703125,
+                "right": 246.671875,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 390.703125,
+                "right": 252.671875,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 43,
+                "top": 259.703125,
+                "right": 347,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 143.34375,
+                "top": 396.703125,
+                "right": 246.671875,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 390.703125,
+                "right": 252.671875,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 43,
+                "top": 259.703125,
+                "right": 347,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 143.34375,
+                "top": 396.703125,
+                "right": 246.671875,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 390.703125,
+                "right": 252.671875,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 43,
+                "top": 259.703125,
+                "right": 347,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 7,
+              "targetPositions": 2,
+              "feedbackPositions": 2,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 137.34375,
+            "top": 390.703125,
+            "right": 252.671875,
+            "bottom": 473.953125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 478.953125,
+            "right": 221.875,
+            "bottom": 528.953125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 259.703125,
+            "right": 347,
+            "bottom": 377.703125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 44,
+            "top": 260.703125,
+            "right": 346,
+            "bottom": 304.703125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 44,
+            "top": 304.703125,
+            "right": 346,
+            "bottom": 376.703125,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 2,
+          "anchor": {
+            "left": 143.34375,
+            "top": 396.703125,
+            "right": 246.671875,
+            "bottom": 467.953125,
+            "width": 103.328125,
+            "height": 71.25
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 9,
+              "targetPositions": 3,
+              "feedbackPositions": 2,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 21,
+            "top": 612.90625,
+            "right": 369,
+            "bottom": 710.953125,
+            "width": 348,
+            "height": 98.046875
+          },
+          "ring": {
+            "left": 15,
+            "top": 606.90625,
+            "right": 375,
+            "bottom": 716.953125,
+            "width": 360,
+            "height": 110.046875
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 720.5817260742188,
+            "right": 221.875,
+            "bottom": 770.5817260742188,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 475.90625,
+            "right": 347,
+            "bottom": 593.90625,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 44,
+            "top": 520.90625,
+            "right": 346,
+            "bottom": 592.90625,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 44,
+            "top": 476.90625,
+            "right": 346,
+            "bottom": 520.90625,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 3,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "card": {
+                "left": 43,
+                "top": 475.90625,
+                "right": 347,
+                "bottom": 593.90625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "card": {
+                "left": 43,
+                "top": 475.90625,
+                "right": 347,
+                "bottom": 593.90625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "card": {
+                "left": 43,
+                "top": 475.90625,
+                "right": 347,
+                "bottom": 593.90625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "card": {
+                "left": 43,
+                "top": 475.90625,
+                "right": 347,
+                "bottom": 593.90625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "card": {
+                "left": 43,
+                "top": 475.90625,
+                "right": 347,
+                "bottom": 593.90625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "card": {
+                "left": 43,
+                "top": 475.90625,
+                "right": 347,
+                "bottom": 593.90625,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 10,
+              "targetPositions": 3,
+              "feedbackPositions": 3,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 15,
+            "top": 606.90625,
+            "right": 375,
+            "bottom": 716.953125,
+            "width": 360,
+            "height": 110.046875
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 721.953125,
+            "right": 221.875,
+            "bottom": 771.953125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 475.90625,
+            "right": 347,
+            "bottom": 593.90625,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 44,
+            "top": 476.90625,
+            "right": 346,
+            "bottom": 520.90625,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 44,
+            "top": 520.90625,
+            "right": 346,
+            "bottom": 592.90625,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 3,
+          "anchor": {
+            "left": 21,
+            "top": 612.90625,
+            "right": 369,
+            "bottom": 710.953125,
+            "width": 348,
+            "height": 98.046875
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 12,
+              "targetPositions": 4,
+              "feedbackPositions": 3,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 34,
+            "top": 396.703125,
+            "right": 137.34375,
+            "bottom": 467.953125,
+            "width": 103.34375,
+            "height": 71.25
+          },
+          "ring": {
+            "left": 28,
+            "top": 390.703125,
+            "right": 143.34375,
+            "bottom": 473.953125,
+            "width": 115.34375,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 70.546875,
+            "top": 477.7971496582031,
+            "right": 112.546875,
+            "bottom": 527.797119140625,
+            "width": 42,
+            "height": 49.999969482421875
+          },
+          "card": {
+            "left": 10,
+            "top": 259.703125,
+            "right": 314,
+            "bottom": 377.703125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 11,
+            "top": 304.703125,
+            "right": 313,
+            "bottom": 376.703125,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 11,
+            "top": 260.703125,
+            "right": 313,
+            "bottom": 304.703125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 4,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 34,
+                "top": 396.703125,
+                "right": 137.34375,
+                "bottom": 467.953125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 390.703125,
+                "right": 143.34375,
+                "bottom": 473.953125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "card": {
+                "left": 10,
+                "top": 259.703125,
+                "right": 314,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 34,
+                "top": 396.703125,
+                "right": 137.34375,
+                "bottom": 467.953125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 390.703125,
+                "right": 143.34375,
+                "bottom": 473.953125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "card": {
+                "left": 10,
+                "top": 259.703125,
+                "right": 314,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 34,
+                "top": 396.703125,
+                "right": 137.34375,
+                "bottom": 467.953125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 390.703125,
+                "right": 143.34375,
+                "bottom": 473.953125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "card": {
+                "left": 10,
+                "top": 259.703125,
+                "right": 314,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 34,
+                "top": 396.703125,
+                "right": 137.34375,
+                "bottom": 467.953125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 390.703125,
+                "right": 143.34375,
+                "bottom": 473.953125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "card": {
+                "left": 10,
+                "top": 259.703125,
+                "right": 314,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 34,
+                "top": 396.703125,
+                "right": 137.34375,
+                "bottom": 467.953125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 390.703125,
+                "right": 143.34375,
+                "bottom": 473.953125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "card": {
+                "left": 10,
+                "top": 259.703125,
+                "right": 314,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 34,
+                "top": 396.703125,
+                "right": 137.34375,
+                "bottom": 467.953125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 390.703125,
+                "right": 143.34375,
+                "bottom": 473.953125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "card": {
+                "left": 10,
+                "top": 259.703125,
+                "right": 314,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 13,
+              "targetPositions": 4,
+              "feedbackPositions": 4,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 28,
+            "top": 390.703125,
+            "right": 143.34375,
+            "bottom": 473.953125,
+            "width": 115.34375,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 70.546875,
+            "top": 478.953125,
+            "right": 112.546875,
+            "bottom": 528.953125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 10,
+            "top": 259.703125,
+            "right": 314,
+            "bottom": 377.703125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 11,
+            "top": 260.703125,
+            "right": 313,
+            "bottom": 304.703125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 11,
+            "top": 304.703125,
+            "right": 313,
+            "bottom": 376.703125,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 4,
+          "anchor": {
+            "left": 34,
+            "top": 396.703125,
+            "right": 137.34375,
+            "bottom": 467.953125,
+            "width": 103.34375,
+            "height": 71.25
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0.10000000149011612
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 15,
+              "targetPositions": 5,
+              "feedbackPositions": 4,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 21,
+            "top": 429.46875,
+            "right": 190,
+            "bottom": 519.5625,
+            "width": 169,
+            "height": 90.09375
+          },
+          "ring": {
+            "left": 15,
+            "top": 423.46875,
+            "right": 196,
+            "bottom": 525.5625,
+            "width": 181,
+            "height": 102.09375
+          },
+          "hand": {
+            "left": 90.375,
+            "top": 529.389892578125,
+            "right": 132.375,
+            "bottom": 579.389892578125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 10,
+            "top": 292.46875,
+            "right": 314,
+            "bottom": 410.46875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 11,
+            "top": 337.46875,
+            "right": 313,
+            "bottom": 409.46875,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 11,
+            "top": 293.46875,
+            "right": 313,
+            "bottom": 337.46875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 5,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "card": {
+                "left": 10,
+                "top": 292.46875,
+                "right": 314,
+                "bottom": 410.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "card": {
+                "left": 10,
+                "top": 292.46875,
+                "right": 314,
+                "bottom": 410.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "card": {
+                "left": 10,
+                "top": 292.46875,
+                "right": 314,
+                "bottom": 410.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "card": {
+                "left": 10,
+                "top": 292.46875,
+                "right": 314,
+                "bottom": 410.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "card": {
+                "left": 10,
+                "top": 292.46875,
+                "right": 314,
+                "bottom": 410.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "card": {
+                "left": 10,
+                "top": 292.46875,
+                "right": 314,
+                "bottom": 410.46875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 16,
+              "targetPositions": 5,
+              "feedbackPositions": 5,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 15,
+            "top": 423.46875,
+            "right": 196,
+            "bottom": 525.5625,
+            "width": 181,
+            "height": 102.09375
+          },
+          "hand": {
+            "left": 90.375,
+            "top": 530.5625,
+            "right": 132.375,
+            "bottom": 580.5625,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 10,
+            "top": 292.46875,
+            "right": 314,
+            "bottom": 410.46875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 11,
+            "top": 293.46875,
+            "right": 313,
+            "bottom": 337.46875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 11,
+            "top": 337.46875,
+            "right": 313,
+            "bottom": 409.46875,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 5,
+          "anchor": {
+            "left": 21,
+            "top": 429.46875,
+            "right": 190,
+            "bottom": 519.5625,
+            "width": 169,
+            "height": 90.09375
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 18,
+              "targetPositions": 6,
+              "feedbackPositions": 5,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 199,
+            "top": 654.953125,
+            "right": 369,
+            "bottom": 700.953125,
+            "width": 170,
+            "height": 46
+          },
+          "ring": {
+            "left": 193,
+            "top": 648.953125,
+            "right": 375,
+            "bottom": 706.953125,
+            "width": 182,
+            "height": 58
+          },
+          "hand": {
+            "left": 268.875,
+            "top": 710.90087890625,
+            "right": 310.875,
+            "bottom": 760.90087890625,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 76,
+            "top": 517.953125,
+            "right": 380,
+            "bottom": 635.953125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 77,
+            "top": 562.953125,
+            "right": 379,
+            "bottom": 634.953125,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 77,
+            "top": 518.953125,
+            "right": 379,
+            "bottom": 562.953125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 6,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 199,
+                "top": 654.953125,
+                "right": 369,
+                "bottom": 700.953125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 648.953125,
+                "right": 375,
+                "bottom": 706.953125,
+                "width": 182,
+                "height": 58
+              },
+              "card": {
+                "left": 76,
+                "top": 517.953125,
+                "right": 380,
+                "bottom": 635.953125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 199,
+                "top": 654.953125,
+                "right": 369,
+                "bottom": 700.953125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 648.953125,
+                "right": 375,
+                "bottom": 706.953125,
+                "width": 182,
+                "height": 58
+              },
+              "card": {
+                "left": 76,
+                "top": 517.953125,
+                "right": 380,
+                "bottom": 635.953125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 199,
+                "top": 654.953125,
+                "right": 369,
+                "bottom": 700.953125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 648.953125,
+                "right": 375,
+                "bottom": 706.953125,
+                "width": 182,
+                "height": 58
+              },
+              "card": {
+                "left": 76,
+                "top": 517.953125,
+                "right": 380,
+                "bottom": 635.953125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 199,
+                "top": 654.953125,
+                "right": 369,
+                "bottom": 700.953125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 648.953125,
+                "right": 375,
+                "bottom": 706.953125,
+                "width": 182,
+                "height": 58
+              },
+              "card": {
+                "left": 76,
+                "top": 517.953125,
+                "right": 380,
+                "bottom": 635.953125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 199,
+                "top": 654.953125,
+                "right": 369,
+                "bottom": 700.953125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 648.953125,
+                "right": 375,
+                "bottom": 706.953125,
+                "width": 182,
+                "height": 58
+              },
+              "card": {
+                "left": 76,
+                "top": 517.953125,
+                "right": 380,
+                "bottom": 635.953125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 199,
+                "top": 654.953125,
+                "right": 369,
+                "bottom": 700.953125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 648.953125,
+                "right": 375,
+                "bottom": 706.953125,
+                "width": 182,
+                "height": 58
+              },
+              "card": {
+                "left": 76,
+                "top": 517.953125,
+                "right": 380,
+                "bottom": 635.953125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 19,
+              "targetPositions": 6,
+              "feedbackPositions": 6,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 193,
+            "top": 648.953125,
+            "right": 375,
+            "bottom": 706.953125,
+            "width": 182,
+            "height": 58
+          },
+          "hand": {
+            "left": 268.875,
+            "top": 711.953125,
+            "right": 310.875,
+            "bottom": 761.953125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 76,
+            "top": 517.953125,
+            "right": 380,
+            "bottom": 635.953125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 77,
+            "top": 518.953125,
+            "right": 379,
+            "bottom": 562.953125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 77,
+            "top": 562.953125,
+            "right": 379,
+            "bottom": 634.953125,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 6,
+          "anchor": {
+            "left": 199,
+            "top": 654.953125,
+            "right": 369,
+            "bottom": 700.953125,
+            "width": 170,
+            "height": 46
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 21,
+              "targetPositions": 7,
+              "feedbackPositions": 6,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 252.671875,
+            "top": 396.703125,
+            "right": 356,
+            "bottom": 467.953125,
+            "width": 103.328125,
+            "height": 71.25
+          },
+          "ring": {
+            "left": 246.671875,
+            "top": 390.703125,
+            "right": 362,
+            "bottom": 473.953125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 289.203125,
+            "top": 477.446533203125,
+            "right": 331.203125,
+            "bottom": 527.446533203125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 76,
+            "top": 259.703125,
+            "right": 380,
+            "bottom": 377.703125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 77,
+            "top": 304.703125,
+            "right": 379,
+            "bottom": 376.703125,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 77,
+            "top": 260.703125,
+            "right": 379,
+            "bottom": 304.703125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 7,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 252.671875,
+                "top": 396.703125,
+                "right": 356,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 390.703125,
+                "right": 362,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 76,
+                "top": 259.703125,
+                "right": 380,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 252.671875,
+                "top": 396.703125,
+                "right": 356,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 390.703125,
+                "right": 362,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 76,
+                "top": 259.703125,
+                "right": 380,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 252.671875,
+                "top": 396.703125,
+                "right": 356,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 390.703125,
+                "right": 362,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 76,
+                "top": 259.703125,
+                "right": 380,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 252.671875,
+                "top": 396.703125,
+                "right": 356,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 390.703125,
+                "right": 362,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 76,
+                "top": 259.703125,
+                "right": 380,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 252.671875,
+                "top": 396.703125,
+                "right": 356,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 390.703125,
+                "right": 362,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 76,
+                "top": 259.703125,
+                "right": 380,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 252.671875,
+                "top": 396.703125,
+                "right": 356,
+                "bottom": 467.953125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 390.703125,
+                "right": 362,
+                "bottom": 473.953125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "card": {
+                "left": 76,
+                "top": 259.703125,
+                "right": 380,
+                "bottom": 377.703125,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 22,
+              "targetPositions": 7,
+              "feedbackPositions": 7,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 246.671875,
+            "top": 390.703125,
+            "right": 362,
+            "bottom": 473.953125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 289.203125,
+            "top": 478.953125,
+            "right": 331.203125,
+            "bottom": 528.953125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 76,
+            "top": 259.703125,
+            "right": 380,
+            "bottom": 377.703125,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 77,
+            "top": 260.703125,
+            "right": 379,
+            "bottom": 304.703125,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 77,
+            "top": 304.703125,
+            "right": 379,
+            "bottom": 376.703125,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 7,
+          "anchor": {
+            "left": 252.671875,
+            "top": 396.703125,
+            "right": 356,
+            "bottom": 467.953125,
+            "width": 103.328125,
+            "height": 71.25
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 24,
+              "targetPositions": 8,
+              "feedbackPositions": 7,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 340,
+            "top": 395.875,
+            "right": 382,
+            "bottom": 455.875,
+            "width": 42,
+            "height": 60
+          },
+          "ring": {
+            "left": 334,
+            "top": 389.875,
+            "right": 388,
+            "bottom": 461.875,
+            "width": 54,
+            "height": 72
+          },
+          "hand": {
+            "left": 344,
+            "top": 464.9672546386719,
+            "right": 386,
+            "bottom": 514.96728515625,
+            "width": 42,
+            "height": 50.000030517578125
+          },
+          "card": {
+            "left": 76,
+            "top": 258.875,
+            "right": 380,
+            "bottom": 376.875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 77,
+            "top": 303.875,
+            "right": 379,
+            "bottom": 375.875,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 77,
+            "top": 259.875,
+            "right": 379,
+            "bottom": 303.875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 8,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "card": {
+                "left": 76,
+                "top": 258.875,
+                "right": 380,
+                "bottom": 376.875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "card": {
+                "left": 76,
+                "top": 258.875,
+                "right": 380,
+                "bottom": 376.875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "card": {
+                "left": 76,
+                "top": 258.875,
+                "right": 380,
+                "bottom": 376.875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "card": {
+                "left": 76,
+                "top": 258.875,
+                "right": 380,
+                "bottom": 376.875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "card": {
+                "left": 76,
+                "top": 258.875,
+                "right": 380,
+                "bottom": 376.875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "card": {
+                "left": 76,
+                "top": 258.875,
+                "right": 380,
+                "bottom": 376.875,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1050,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 25,
+              "targetPositions": 8,
+              "feedbackPositions": 8,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 334,
+            "top": 389.875,
+            "right": 388,
+            "bottom": 461.875,
+            "width": 54,
+            "height": 72
+          },
+          "hand": {
+            "left": 344,
+            "top": 466.875,
+            "right": 386,
+            "bottom": 516.875,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 76,
+            "top": 258.875,
+            "right": 380,
+            "bottom": 376.875,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 77,
+            "top": 259.875,
+            "right": 379,
+            "bottom": 303.875,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 77,
+            "top": 303.875,
+            "right": 379,
+            "bottom": 375.875,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 8,
+          "anchor": {
+            "left": 340,
+            "top": 395.875,
+            "right": 382,
+            "bottom": 455.875,
+            "width": 42,
+            "height": 60
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 27,
+              "targetPositions": 9,
+              "feedbackPositions": 8,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 8,
+            "top": 737,
+            "right": 382,
+            "bottom": 783,
+            "width": 374,
+            "height": 46
+          },
+          "ring": {
+            "left": 2,
+            "top": 731,
+            "right": 388,
+            "bottom": 789,
+            "width": 386,
+            "height": 58
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 674.66064453125,
+            "right": 210.109375,
+            "bottom": 724.66064453125,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 600,
+            "right": 347,
+            "bottom": 718,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 44,
+            "top": 645,
+            "right": 346,
+            "bottom": 717,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 44,
+            "top": 601,
+            "right": 346,
+            "bottom": 645,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 9,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "card": {
+                "left": 43,
+                "top": 600,
+                "right": 347,
+                "bottom": 718,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "card": {
+                "left": 43,
+                "top": 600,
+                "right": 347,
+                "bottom": 718,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "card": {
+                "left": 43,
+                "top": 600,
+                "right": 347,
+                "bottom": 718,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "card": {
+                "left": 43,
+                "top": 600,
+                "right": 347,
+                "bottom": 718,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "card": {
+                "left": 43,
+                "top": 600,
+                "right": 347,
+                "bottom": 718,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "card": {
+                "left": 43,
+                "top": 600,
+                "right": 347,
+                "bottom": 718,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1250,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 28,
+              "targetPositions": 9,
+              "feedbackPositions": 9,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 2,
+            "top": 731,
+            "right": 388,
+            "bottom": 789,
+            "width": 386,
+            "height": 58
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 676,
+            "right": 210.109375,
+            "bottom": 726,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 600,
+            "right": 347,
+            "bottom": 718,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 44,
+            "top": 601,
+            "right": 346,
+            "bottom": 645,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 44,
+            "top": 645,
+            "right": 346,
+            "bottom": 717,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 9,
+          "anchor": {
+            "left": 8,
+            "top": 737,
+            "right": 382,
+            "bottom": 783,
+            "width": 374,
+            "height": 46
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1450,
+            "lastFeedbackLatencyMs": 0,
+            "renderStats": {
+              "dimPaints": 30,
+              "targetPositions": 10,
+              "feedbackPositions": 9,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 12,
+            "top": 734.859375,
+            "right": 378,
+            "bottom": 809.125,
+            "width": 366,
+            "height": 74.265625
+          },
+          "ring": {
+            "left": 6,
+            "top": 728.859375,
+            "right": 384,
+            "bottom": 815.125,
+            "width": 378,
+            "height": 86.265625
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 672.281494140625,
+            "right": 210.109375,
+            "bottom": 722.281494140625,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 597.859375,
+            "right": 347,
+            "bottom": 715.859375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 44,
+            "top": 642.859375,
+            "right": 346,
+            "bottom": 714.859375,
+            "width": 302,
+            "height": 72
+          },
+          "status": {
+            "left": 44,
+            "top": 598.859375,
+            "right": 346,
+            "bottom": 642.859375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": null,
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "awaiting",
+          "step": 10,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "card": {
+                "left": 43,
+                "top": 597.859375,
+                "right": 347,
+                "bottom": 715.859375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "card": {
+                "left": 43,
+                "top": 597.859375,
+                "right": 347,
+                "bottom": 715.859375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "card": {
+                "left": 43,
+                "top": 597.859375,
+                "right": 347,
+                "bottom": 715.859375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "card": {
+                "left": 43,
+                "top": 597.859375,
+                "right": 347,
+                "bottom": 715.859375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "card": {
+                "left": 43,
+                "top": 597.859375,
+                "right": 347,
+                "bottom": 715.859375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "card": {
+                "left": 43,
+                "top": 597.859375,
+                "right": 347,
+                "bottom": 715.859375,
+                "width": 304,
+                "height": 118
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0,
+          "maxCardDrift": 0,
+          "cardProximity": 19
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1450,
+            "lastFeedbackLatencyMs": 0.10000000149011612,
+            "renderStats": {
+              "dimPaints": 31,
+              "targetPositions": 10,
+              "feedbackPositions": 10,
+              "skippedRepositions": 0
+            },
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 6,
+            "top": 728.859375,
+            "right": 384,
+            "bottom": 815.125,
+            "width": 378,
+            "height": 86.265625
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 673.859375,
+            "right": 210.109375,
+            "bottom": 723.859375,
+            "width": 42,
+            "height": 50
+          },
+          "card": {
+            "left": 43,
+            "top": 597.859375,
+            "right": 347,
+            "bottom": 715.859375,
+            "width": 304,
+            "height": 118
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 44,
+            "top": 598.859375,
+            "right": 346,
+            "bottom": 642.859375,
+            "width": 302,
+            "height": 44
+          },
+          "speech": {
+            "left": 44,
+            "top": 642.859375,
+            "right": 346,
+            "bottom": 714.859375,
+            "width": 302,
+            "height": 72
+          },
+          "cardOpacity": "1",
+          "placement": "above",
+          "lockVisible": false,
+          "phase": "feedback",
+          "step": 10,
+          "anchor": {
+            "left": 12,
+            "top": 734.859375,
+            "right": 378,
+            "bottom": 809.125,
+            "width": 366,
+            "height": 74.265625
+          },
+          "cardProximity": 19,
+          "cardShiftFromInstruction": 0,
+          "feedbackLatencyMs": 0.10000000149011612
+        }
+      ],
+      "initialSelections": {
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "bifly",
+        "control": "swipe"
+      },
+      "persisted": {
+        "tutorial": "complete",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick",
+        "control": "swipe"
+      },
+      "runtimeErrors": [],
+      "resourceFailures": [],
+      "artifacts": [
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-01-settings-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-01-settings-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-02-settings-mode-stable-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-03-mode-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-03-worlds-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-04-difficulty-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-04-difficulty-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-05-difficulty-choice-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-05-score-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-06-controls-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-06-movement-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-07-character-button-stable-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-07-character-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-08-character-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-09-character-confirm-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-09-maze-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-10-start-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/coach-10-goal-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-anchored-flow/after/first-playable-maze-mobile-390x844.png"
+      ],
+      "video": "docs/visual-proof-screenshots/tutorial-anchored-flow/after/tutorial-coach-marks-mobile-390x844.mp4"
+    }
+  ]
+}

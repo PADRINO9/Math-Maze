@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" role="img" aria-label="Hebrew monogram black reverse and small-size proof">
+  <rect width="1600" height="980" fill="#fff"/>
+  <rect x="820" width="780" height="650" fill="#000"/>
+  <defs>
+    <mask id="master-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+      <rect width="512" height="512" fill="#fff"/>
+      <path d="m266 96 48-16 40 134 56-102 46 34-94 120 55 158-52 16-25-86-56 74-44-18 84-137z" fill="#000"/>
+    </mask>
+    <mask id="small-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect width="64" height="64" fill="#fff"/>
+      <path d="m31 10 9-2 5 16 8-12 9 7-13 16 6 20-10 3-4-14-8 12-9-4 13-18z" fill="#000"/>
+    </mask>
+    <g id="master-black">
+      <path d="M52 54h246c102 0 160 60 160 158v88c0 98-58 158-160 158H52l12-88h222c52 0 80-26 80-76v-76c0-50-28-76-80-76H64z" fill="#000" mask="url(#master-cut)"/>
+    </g>
+    <g id="master-white">
+      <path d="M52 54h246c102 0 160 60 160 158v88c0 98-58 158-160 158H52l12-88h222c52 0 80-26 80-76v-76c0-50-28-76-80-76H64z" fill="#fff" mask="url(#master-cut)"/>
+    </g>
+    <g id="small-black">
+      <path d="M6 6h31c13 0 21 8 21 21v10c0 13-8 21-21 21H6l2-12h27c7 0 11-4 11-11v-6c0-7-4-11-11-11H8z" fill="#000" mask="url(#small-cut)"/>
+    </g>
+  </defs>
+  <use href="#master-black" transform="translate(150 70)"/>
+  <use href="#master-white" transform="translate(955 70)"/>
+  <g fill="#000" font-family="sans-serif" font-size="18" font-weight="700">
+    <text x="90" y="736">128</text><text x="370" y="736">64</text>
+    <text x="610" y="736">32</text><text x="825" y="736">24</text>
+    <text x="1030" y="736">16</text>
+  </g>
+  <use href="#master-black" transform="translate(90 770) scale(.25)"/>
+  <use href="#master-black" transform="translate(370 770) scale(.125)"/>
+  <use href="#small-black" transform="translate(610 770) scale(.5)"/>
+  <use href="#small-black" transform="translate(825 770) scale(.375)"/>
+  <use href="#small-black" transform="translate(1030 770) scale(.25)"/>
+</svg>

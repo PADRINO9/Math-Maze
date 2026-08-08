@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>כפלול — בחירת כיוון לדף הנחיתה</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Arial, sans-serif;
+        background: #07142d;
+        color: #fff;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #07142d; }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 18px 24px;
+        text-align: center;
+        background: rgb(7 20 45 / 92%);
+        border-bottom: 1px solid rgb(255 255 255 / 15%);
+        backdrop-filter: blur(14px);
+      }
+      h1 { margin: 0 0 6px; font-size: clamp(22px, 3vw, 38px); }
+      p { margin: 0; color: #c8d8ff; }
+      main {
+        width: min(1500px, 100%);
+        margin: 0 auto;
+        padding: 28px 18px 80px;
+        display: grid;
+        gap: 42px;
+      }
+      figure {
+        margin: 0;
+        overflow: hidden;
+        border: 2px solid rgb(255 255 255 / 18%);
+        border-radius: 24px;
+        background: #0d234d;
+        box-shadow: 0 24px 60px rgb(0 0 0 / 35%);
+      }
+      figcaption {
+        padding: 16px 22px;
+        font-size: 28px;
+        font-weight: 900;
+        color: #07142d;
+        background: #ffd63d;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      @media (max-width: 600px) {
+        header { padding: 14px 12px; }
+        main { padding: 18px 10px 52px; gap: 24px; }
+        figure { border-radius: 14px; }
+        figcaption { padding: 12px 14px; font-size: 21px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>אפשרות 2 — זרימת משחק ודירוג מדויקים</h1>
+      <p>הגרסה העדכנית מופיעה ראשונה, והגרסאות הקודמות נשמרו להשוואה</p>
+    </header>
+    <main>
+      <figure>
+        <figcaption>אפשרות 2 — גרסה עדכנית: איך משחקים + מקום 1</figcaption>
+        <img src="option-2-final-flow-leaderboard.png" alt="אפשרות 2 עם זרימת המשחק האמיתית ואתגר להגיע למקום הראשון" />
+      </figure>
+      <figure>
+        <figcaption>אפשרות 2 — גרסה מתוקנת</figcaption>
+        <img src="option-2-accurate-characters.png" alt="אפשרות 2 עם הדמויות המדויקות של כפלול" />
+      </figure>
+      <figure>
+        <figcaption>אפשרות 1</figcaption>
+        <img src="option-1.png" alt="אפשרות 1 לדף הנחיתה" />
+      </figure>
+      <figure>
+        <figcaption>אפשרות 2</figcaption>
+        <img src="option-2.png" alt="אפשרות 2 לדף הנחיתה" />
+      </figure>
+      <figure>
+        <figcaption>אפשרות 3</figcaption>
+        <img src="option-3.png" alt="אפשרות 3 לדף הנחיתה" />
+      </figure>
+    </main>
+  </body>
+</html>

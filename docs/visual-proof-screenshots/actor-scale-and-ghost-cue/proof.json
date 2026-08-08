@@ -1,0 +1,516 @@
+{
+  "generatedAt": "2026-07-19T13:29:21.123Z",
+  "passed": true,
+  "results": [
+    {
+      "viewport": {
+        "key": "desktop-1280x800",
+        "width": 1280,
+        "height": 800,
+        "mobile": false
+      },
+      "screenshot": "docs/visual-proof-screenshots/actor-scale-and-ghost-cue/desktop-1280x800-after.png",
+      "actorCrop": "docs/visual-proof-screenshots/actor-scale-and-ghost-cue/desktop-actor-crop-after.png",
+      "snapshot": {
+        "release": {
+          "baseline": {
+            "id": "world1-sun-garden-approved-v2",
+            "locked": true,
+            "authoredBoardSrc": "assets/maze/world1/sun-garden/board-v3.png",
+            "navigationVersion": "world1-canonical-semantic-layout-v5",
+            "chestCell": {
+              "x": 23,
+              "y": 18
+            },
+            "actorScale": {
+              "playerPhone": 0.9,
+              "playerWide": 0.88,
+              "enemyPhone": 0.72,
+              "enemyWide": 0.7
+            },
+            "gameplayZoom": {
+              "desktop": 1.06,
+              "phonePortrait": 1.05,
+              "phoneLandscape": 1.07,
+              "tablet": 1.05
+            }
+          },
+          "runtime": {
+            "levelIndex": 0,
+            "concept": "sun-garden",
+            "authoredBoardReady": true,
+            "cols": 40,
+            "rows": 30,
+            "tile": 24,
+            "mazeRows": [
+              "########################################",
+              "########################################",
+              "##....................................##",
+              "##...#................................##",
+              "##..########...###...###....########..##",
+              "##..########...###...###....########..##",
+              "##.....###.....#########......###.....##",
+              "##.....###.....#########......####....##",
+              "##..###...........###............###..##",
+              "##..###..#######..###..########..###..##",
+              "##..###..#######...#...########..###..##",
+              "##..###..#######...#...#..#####..###..##",
+              "##..###.......###................###..##",
+              "##...........####......####...........##",
+              "##...........####......####...........##",
+              "##..########.###.......####.########..##",
+              "##..########.###.......####.########..##",
+              "##...........###.......####...........##",
+              "##....#####..####.......###..#####....##",
+              "##....#####..#######.######..#####....##",
+              "##................###.................##",
+              "##..##########....###....###########..##",
+              "##..##########....###....###########..##",
+              "##....................................##",
+              "##....................................##",
+              "##.....########.........#########.....##",
+              "##.....########.........#########.....##",
+              "##....................................##",
+              "########################################",
+              "########################################"
+            ],
+            "walkableCellCount": 582,
+            "reachableCellCount": 582,
+            "chest": {
+              "cell": {
+                "x": 23,
+                "y": 18
+              },
+              "reachable": true
+            },
+            "actors": {
+              "authoredWorldOne": true,
+              "coarsePointer": false,
+              "player": {
+                "radius": 10.2,
+                "scale": 0.88,
+                "displaySize": 22.8888
+              },
+              "enemies": [
+                {
+                  "index": 0,
+                  "radius": 10.4,
+                  "scale": 0.7,
+                  "displaySize": 22.203999999999997
+                },
+                {
+                  "index": 1,
+                  "radius": 10.4,
+                  "scale": 0.7,
+                  "displaySize": 20.87176
+                },
+                {
+                  "index": 2,
+                  "radius": 10.4,
+                  "scale": 0.7,
+                  "displaySize": 23.092159999999996
+                },
+                {
+                  "index": 3,
+                  "radius": 10.4,
+                  "scale": 0.7,
+                  "displaySize": 21.759919999999997
+                }
+              ]
+            },
+            "camera": {
+              "viewportMode": "desktop",
+              "coarsePointer": false,
+              "gameplayZoom": 1.06,
+              "projectionWidth": 960,
+              "projectionHeight": 720
+            }
+          }
+        },
+        "visual": {
+          "authoredWorldOne": true,
+          "coarsePointer": false,
+          "player": {
+            "radius": 10.2,
+            "scale": 0.88,
+            "displaySize": 22.8888
+          },
+          "enemies": [
+            {
+              "index": 0,
+              "radius": 10.4,
+              "scale": 0.7,
+              "displaySize": 22.203999999999997
+            },
+            {
+              "index": 1,
+              "radius": 10.4,
+              "scale": 0.7,
+              "displaySize": 20.87176
+            },
+            {
+              "index": 2,
+              "radius": 10.4,
+              "scale": 0.7,
+              "displaySize": 23.092159999999996
+            },
+            {
+              "index": 3,
+              "radius": 10.4,
+              "scale": 0.7,
+              "displaySize": 21.759919999999997
+            }
+          ]
+        },
+        "collision": {
+          "player": {
+            "kind": "player",
+            "index": 0,
+            "x": 492,
+            "y": 564,
+            "speed": 148,
+            "direction": "none",
+            "lastMoveDistance": 0,
+            "stuckTime": 0,
+            "pathCooldown": 0,
+            "cell": {
+              "x": 20,
+              "y": 23
+            },
+            "collisionRadius": 7.343999999999999,
+            "overlapsWall": false
+          },
+          "enemies": [
+            {
+              "kind": "enemy",
+              "index": 0,
+              "x": 396,
+              "y": 564,
+              "speed": 108,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 16,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 1,
+              "x": 444,
+              "y": 564,
+              "speed": 113,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 18,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 2,
+              "x": 540,
+              "y": 564,
+              "speed": 118,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 22,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 3,
+              "x": 588,
+              "y": 564,
+              "speed": 123,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 24,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            }
+          ],
+          "boss": null
+        },
+        "rejectedEnemyCells": []
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "key": "mobile-390x844",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "screenshot": "docs/visual-proof-screenshots/actor-scale-and-ghost-cue/mobile-390x844-after.png",
+      "actorCrop": "docs/visual-proof-screenshots/actor-scale-and-ghost-cue/mobile-actor-crop-after.png",
+      "snapshot": {
+        "release": {
+          "baseline": {
+            "id": "world1-sun-garden-approved-v2",
+            "locked": true,
+            "authoredBoardSrc": "assets/maze/world1/sun-garden/board-v3.png",
+            "navigationVersion": "world1-canonical-semantic-layout-v5",
+            "chestCell": {
+              "x": 23,
+              "y": 18
+            },
+            "actorScale": {
+              "playerPhone": 0.9,
+              "playerWide": 0.88,
+              "enemyPhone": 0.72,
+              "enemyWide": 0.7
+            },
+            "gameplayZoom": {
+              "desktop": 1.06,
+              "phonePortrait": 1.05,
+              "phoneLandscape": 1.07,
+              "tablet": 1.05
+            }
+          },
+          "runtime": {
+            "levelIndex": 0,
+            "concept": "sun-garden",
+            "authoredBoardReady": true,
+            "cols": 40,
+            "rows": 30,
+            "tile": 24,
+            "mazeRows": [
+              "########################################",
+              "########################################",
+              "##....................................##",
+              "##...#................................##",
+              "##..########...###...###....########..##",
+              "##..########...###...###....########..##",
+              "##.....###.....#########......###.....##",
+              "##.....###.....#########......####....##",
+              "##..###...........###............###..##",
+              "##..###..#######..###..########..###..##",
+              "##..###..#######...#...########..###..##",
+              "##..###..#######...#...#..#####..###..##",
+              "##..###.......###................###..##",
+              "##...........####......####...........##",
+              "##...........####......####...........##",
+              "##..########.###.......####.########..##",
+              "##..########.###.......####.########..##",
+              "##...........###.......####...........##",
+              "##....#####..####.......###..#####....##",
+              "##....#####..#######.######..#####....##",
+              "##................###.................##",
+              "##..##########....###....###########..##",
+              "##..##########....###....###########..##",
+              "##....................................##",
+              "##....................................##",
+              "##.....########.........#########.....##",
+              "##.....########.........#########.....##",
+              "##....................................##",
+              "########################################",
+              "########################################"
+            ],
+            "walkableCellCount": 582,
+            "reachableCellCount": 582,
+            "chest": {
+              "cell": {
+                "x": 23,
+                "y": 18
+              },
+              "reachable": true
+            },
+            "actors": {
+              "authoredWorldOne": true,
+              "coarsePointer": true,
+              "player": {
+                "radius": 10.2,
+                "scale": 0.9,
+                "displaySize": 23.409
+              },
+              "enemies": [
+                {
+                  "index": 0,
+                  "radius": 10.4,
+                  "scale": 0.72,
+                  "displaySize": 22.8384
+                },
+                {
+                  "index": 1,
+                  "radius": 10.4,
+                  "scale": 0.72,
+                  "displaySize": 21.468095999999996
+                },
+                {
+                  "index": 2,
+                  "radius": 10.4,
+                  "scale": 0.72,
+                  "displaySize": 23.751935999999997
+                },
+                {
+                  "index": 3,
+                  "radius": 10.4,
+                  "scale": 0.72,
+                  "displaySize": 22.381632
+                }
+              ]
+            },
+            "camera": {
+              "viewportMode": "phone-portrait",
+              "coarsePointer": true,
+              "gameplayZoom": 1.05,
+              "projectionWidth": 365.625,
+              "projectionHeight": 720
+            }
+          }
+        },
+        "visual": {
+          "authoredWorldOne": true,
+          "coarsePointer": true,
+          "player": {
+            "radius": 10.2,
+            "scale": 0.9,
+            "displaySize": 23.409
+          },
+          "enemies": [
+            {
+              "index": 0,
+              "radius": 10.4,
+              "scale": 0.72,
+              "displaySize": 22.8384
+            },
+            {
+              "index": 1,
+              "radius": 10.4,
+              "scale": 0.72,
+              "displaySize": 21.468095999999996
+            },
+            {
+              "index": 2,
+              "radius": 10.4,
+              "scale": 0.72,
+              "displaySize": 23.751935999999997
+            },
+            {
+              "index": 3,
+              "radius": 10.4,
+              "scale": 0.72,
+              "displaySize": 22.381632
+            }
+          ]
+        },
+        "collision": {
+          "player": {
+            "kind": "player",
+            "index": 0,
+            "x": 492,
+            "y": 564,
+            "speed": 148,
+            "direction": "none",
+            "lastMoveDistance": 0,
+            "stuckTime": 0,
+            "pathCooldown": 0,
+            "cell": {
+              "x": 20,
+              "y": 23
+            },
+            "collisionRadius": 7.343999999999999,
+            "overlapsWall": false
+          },
+          "enemies": [
+            {
+              "kind": "enemy",
+              "index": 0,
+              "x": 396,
+              "y": 564,
+              "speed": 108,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 16,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 1,
+              "x": 444,
+              "y": 564,
+              "speed": 113,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 18,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 2,
+              "x": 540,
+              "y": 564,
+              "speed": 118,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 22,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            },
+            {
+              "kind": "enemy",
+              "index": 3,
+              "x": 588,
+              "y": 564,
+              "speed": 123,
+              "direction": "none",
+              "lastMoveDistance": 0,
+              "stuckTime": 0,
+              "pathCooldown": 9999,
+              "cell": {
+                "x": 24,
+                "y": 23
+              },
+              "collisionRadius": 7.4879999999999995,
+              "overlapsWall": false
+            }
+          ],
+          "boss": null
+        },
+        "rejectedEnemyCells": []
+      },
+      "errors": [],
+      "passed": true
+    }
+  ]
+}

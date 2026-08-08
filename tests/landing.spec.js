@@ -20,7 +20,7 @@ test.describe("כפלול landing page", () => {
     await page.locator('body[data-landing-ready="true"]').waitFor();
   });
 
-  test("presents the game without the removed steps row", async ({ page }) => {
+  test("presents the game without the removed steps and stage galleries", async ({ page }) => {
     await expect(page).toHaveTitle(/כפלול/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("הכפל רודף אחריכם");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("טוב שיש מבוך לברוח אליו");
@@ -28,7 +28,8 @@ test.describe("כפלול landing page", () => {
 
     await expect(page.locator("#how")).toHaveCount(0);
     await expect(page.getByRole("list", { name: "שלבי המשחק" })).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: /רואים אותה בתוך המשחק/ })).toBeVisible();
+    await expect(page.locator("#gameplay")).toHaveCount(0);
+    await expect(page.locator(".screens-grid, .screen-card, .world-strip")).toHaveCount(0);
     await expect(page.locator("#champions").getByRole("heading", { name: /אלוף האלופים/ })).toBeVisible();
   });
 
@@ -53,7 +54,37 @@ test.describe("כפלול landing page", () => {
     expect(audit.characterArtLoaded).toBe(true);
   });
 
-  test("keeps Bifly fully visible inside the download card", async ({ page }) => {
+  test("keeps the hero characters separated and Bifly fully visible", async ({ page }) => {
+    await page.setViewportSize({ width: 1152, height: 970 });
+    const desktopCharacterOverlap = await page.evaluate(() => {
+      const bifly = document.querySelector(".hero-bifly").getBoundingClientRect();
+      const nabatick = document.querySelector(".hero-nabatick").getBoundingClientRect();
+      const overlapWidth = Math.max(0, Math.min(bifly.right, nabatick.right) - Math.max(bifly.left, nabatick.left));
+      const overlapHeight = Math.max(0, Math.min(bifly.bottom, nabatick.bottom) - Math.max(bifly.top, nabatick.top));
+      return (overlapWidth * overlapHeight) / (nabatick.width * nabatick.height);
+    });
+    expect(desktopCharacterOverlap).toBeLessThan(0.08);
+
+    await page.setViewportSize({ width: 390, height: 700 });
+    const heroPlacement = await page.evaluate(() => {
+      const hero = document.querySelector(".hero").getBoundingClientRect();
+      const playbar = document.querySelector(".mobile-playbar").getBoundingClientRect();
+      const tolerance = 1;
+      return Array.from(document.querySelectorAll(".hero-characters img")).map((image) => {
+        const rect = image.getBoundingClientRect();
+        return {
+          insideHero: rect.left >= hero.left - tolerance
+            && rect.right <= hero.right + tolerance
+            && rect.top >= hero.top - tolerance
+            && rect.bottom <= hero.bottom + tolerance,
+          clearOfPlaybar: rect.bottom <= playbar.top - 8,
+          square: Math.abs(rect.width - rect.height) < 12
+        };
+      });
+    });
+    expect(heroPlacement).toHaveLength(4);
+    expect(heroPlacement.every(({ insideHero, clearOfPlaybar, square }) => insideHero && clearOfPlaybar && square)).toBe(true);
+
     await page.locator("#download").scrollIntoViewIfNeeded();
     await page.waitForTimeout(200);
 
@@ -138,7 +169,7 @@ test.describe("כפלול landing page", () => {
     await expect(toggle).toHaveAttribute("aria-label", "סגירת תפריט הניווט");
     const primaryNavigation = page.getByRole("navigation", { name: "ניווט ראשי" });
     await expect(primaryNavigation).toBeVisible();
-    await expect(primaryNavigation.getByRole("link", { name: "המשחק מבפנים", exact: true })).toBeFocused();
+    await expect(primaryNavigation.getByRole("link", { name: "אלוף האלופים", exact: true })).toBeFocused();
 
     await page.keyboard.press("Escape");
     await expect(toggle).toHaveAttribute("aria-expanded", "false");

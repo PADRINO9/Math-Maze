@@ -1,0 +1,115 @@
+{
+  "baseUrl": "http://127.0.0.1:4179",
+  "label": "local-after",
+  "generatedAt": "2026-07-20T02:22:35.146Z",
+  "profiles": [
+    {
+      "profile": "desktop-1280x800",
+      "screenshot": "docs/visual-proof-screenshots/website-mobile-sync/local-after-desktop-1280x800-maze.png",
+      "features": {
+        "operationModeMarkup": true,
+        "divisionCopyVisibleInDom": true,
+        "playerAnimationHook": true,
+        "ghostBlastHook": true,
+        "bossWalkHook": true,
+        "scriptSources": [
+          "kaflul-systems.js?v=20260720-mobile-sync-1",
+          "ui/assets/asset-manifest.js?v=20260701-3",
+          "ui/character-animation-adapter.js?v=20260628-1",
+          "ui/motion/motion-system.js?v=20260630-1",
+          "ui/sounds/kaflul-audio-engine.js?v=20260720-mobile-sync-1",
+          "ui/sounds/ui-sound-controller.js?v=20260713-input-1",
+          "poster-loader.js?v=20260705-loading-2",
+          "mobile-enhancements.js?v=20260711-keypad-1",
+          "mobile-screen-state.js?v=20260621-4",
+          "mobile-question-state.js?v=20260621-5",
+          "mobile-native-answer.js?v=20260711-keypad-1",
+          "maze-enhancements.js?v=20260622-1",
+          "maze-theme-system.js?v=20260703-1",
+          "maze-decor-system.js?v=20260703-1",
+          "maze-tile-topology.js?v=20260712-modular-v3-1",
+          "maze-axonometric-projection.js?v=20260712-axonometric-v1",
+          "game.js?v=20260720-mobile-sync-1"
+        ],
+        "stylesheetSources": [
+          "https://fonts.googleapis.com/css2?family=Assistant:wght@500;700;800&family=Fredoka:wght@600;700&display=swap",
+          "styles.css?v=20260619-6",
+          "ui/foundation.css?v=20260628-1",
+          "ui/mobile-overrides.css?v=20260628-1",
+          "leaderboard.css?v=20260622-1",
+          "arcade-foundation.css?v=20260712-stage-intro-2",
+          "main-menu.css?v=20260720-mobile-sync-1",
+          "ui/secondary-screens.css?v=20260628-1",
+          "ui/motion/motion.css?v=20260630-1",
+          "ui/game-number-pad.css?v=20260711-1"
+        ],
+        "musicAssetStatus": 200,
+        "bossDirectionAssetStatus": 200,
+        "viewportWidth": 1280,
+        "documentWidth": 1280
+      },
+      "gameplay": {
+        "canvasWidth": 1280,
+        "canvasHeight": 731,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "playerCharacter": "bifly"
+      }
+    },
+    {
+      "profile": "mobile-390x844",
+      "screenshot": "docs/visual-proof-screenshots/website-mobile-sync/local-after-mobile-390x844-maze.png",
+      "features": {
+        "operationModeMarkup": true,
+        "divisionCopyVisibleInDom": true,
+        "playerAnimationHook": true,
+        "ghostBlastHook": true,
+        "bossWalkHook": true,
+        "scriptSources": [
+          "kaflul-systems.js?v=20260720-mobile-sync-1",
+          "ui/assets/asset-manifest.js?v=20260701-3",
+          "ui/character-animation-adapter.js?v=20260628-1",
+          "ui/motion/motion-system.js?v=20260630-1",
+          "ui/sounds/kaflul-audio-engine.js?v=20260720-mobile-sync-1",
+          "ui/sounds/ui-sound-controller.js?v=20260713-input-1",
+          "poster-loader.js?v=20260705-loading-2",
+          "mobile-enhancements.js?v=20260711-keypad-1",
+          "mobile-screen-state.js?v=20260621-4",
+          "mobile-question-state.js?v=20260621-5",
+          "mobile-native-answer.js?v=20260711-keypad-1",
+          "maze-enhancements.js?v=20260622-1",
+          "maze-theme-system.js?v=20260703-1",
+          "maze-decor-system.js?v=20260703-1",
+          "maze-tile-topology.js?v=20260712-modular-v3-1",
+          "maze-axonometric-projection.js?v=20260712-axonometric-v1",
+          "game.js?v=20260720-mobile-sync-1"
+        ],
+        "stylesheetSources": [
+          "https://fonts.googleapis.com/css2?family=Assistant:wght@500;700;800&family=Fredoka:wght@600;700&display=swap",
+          "styles.css?v=20260619-6",
+          "ui/foundation.css?v=20260628-1",
+          "ui/mobile-overrides.css?v=20260628-1",
+          "leaderboard.css?v=20260622-1",
+          "arcade-foundation.css?v=20260712-stage-intro-2",
+          "main-menu.css?v=20260720-mobile-sync-1",
+          "ui/secondary-screens.css?v=20260628-1",
+          "ui/motion/motion.css?v=20260630-1",
+          "ui/game-number-pad.css?v=20260711-1"
+        ],
+        "musicAssetStatus": 200,
+        "bossDirectionAssetStatus": 200,
+        "viewportWidth": 390,
+        "documentWidth": 390
+      },
+      "gameplay": {
+        "canvasWidth": 390,
+        "canvasHeight": 768,
+        "displayScaleBoost": 1.06,
+        "maximumMovingBouncePx": 0.72,
+        "playerCharacter": "bifly"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

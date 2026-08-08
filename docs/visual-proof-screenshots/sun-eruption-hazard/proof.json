@@ -1,0 +1,33 @@
+{
+  "feature": "world-one-sun-eruption-hazard",
+  "source": "before/user-reported-world1-hazard.jpeg",
+  "asset": "../../../assets/generated/hazards/sun-eruption-trap-v1.png",
+  "viewports": {
+    "mobile": "390x844",
+    "desktop": "1280x800"
+  },
+  "screenshots": [
+    "after/mobile-active-390x844.png",
+    "after/desktop-active-1280x800.png",
+    "after/mobile-impact-shrink-flame-390x844.png",
+    "after/mobile-impact-smoke-heart-loss-390x844.png"
+  ],
+  "videos": [
+    "after/sun-eruption-hazard-mobile-full.mp4",
+    "after/sun-eruption-hazard-mobile-focus.mp4",
+    "after/sun-eruption-impact-sequence.mp4"
+  ],
+  "checks": {
+    "build": "passed",
+    "desktopHazardTest": "passed",
+    "mobileHazardTest": "passed",
+    "browserConsoleErrors": 0,
+    "significantlyDifferentFromBefore": true
+  },
+  "releaseActions": {
+    "googlePlayUpdated": false,
+    "deployed": false,
+    "committed": false,
+    "pushed": false
+  }
+}

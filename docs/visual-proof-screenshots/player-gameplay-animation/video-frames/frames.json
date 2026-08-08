@@ -1,0 +1,14 @@
+{
+  "video": "docs/visual-proof-screenshots/player-gameplay-animation/kaflul-blue-green-maze-animation.mp4",
+  "duration": 5.4,
+  "frames": [
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-01-0.25s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-02-0.75s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-03-0.90s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-04-1.25s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-05-2.95s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-06-3.40s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-07-3.62s.png",
+    "docs/visual-proof-screenshots/player-gameplay-animation/video-frames/player-animation-08-4.85s.png"
+  ]
+}

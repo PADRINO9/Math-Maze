@@ -1,0 +1,4915 @@
+{
+  "generatedAt": "2026-08-01T20:20:24.205Z",
+  "baseUrl": "http://127.0.0.1:56511",
+  "interactionModel": "Only the highlighted real control accepts input; every click opens a short speech bubble.",
+  "viewports": [
+    {
+      "name": "desktop-1280x800",
+      "wrongClickBlocked": true,
+      "tutorialTotal": 10,
+      "forbiddenGeometryTransitions": [],
+      "layouts": [
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 976,
+            "top": 54,
+            "right": 1028,
+            "bottom": 106,
+            "width": 52,
+            "height": 52
+          },
+          "ring": {
+            "left": 967,
+            "top": 45,
+            "right": 1037,
+            "bottom": 115,
+            "width": 70,
+            "height": 70
+          },
+          "hand": {
+            "left": 984.71875,
+            "top": 118.0362548828125,
+            "right": 1030.71875,
+            "bottom": 172.0362548828125,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 831,
+            "top": 733,
+            "right": 1173,
+            "bottom": 787,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 831,
+            "top": 685,
+            "right": 1173,
+            "bottom": 733,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 1,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 976,
+                "top": 54,
+                "right": 1028,
+                "bottom": 106,
+                "width": 52,
+                "height": 52
+              },
+              "ring": {
+                "left": 967,
+                "top": 45,
+                "right": 1037,
+                "bottom": 115,
+                "width": 70,
+                "height": 70
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 967,
+            "top": 45,
+            "right": 1037,
+            "bottom": 115,
+            "width": 70,
+            "height": 70
+          },
+          "hand": {
+            "left": 984.71875,
+            "top": 120,
+            "right": 1030.71875,
+            "bottom": 174,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 831,
+            "top": 673,
+            "right": 1173,
+            "bottom": 721,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 837.8399658203125,
+            "top": 727.32373046875,
+            "right": 1166.1600341796875,
+            "bottom": 790.86376953125,
+            "width": 328.320068359375,
+            "height": 63.5400390625
+          },
+          "phase": "feedback",
+          "step": 1
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 570.671875,
+            "top": 352.9375,
+            "right": 709.34375,
+            "bottom": 446.53125,
+            "width": 138.671875,
+            "height": 93.59375
+          },
+          "ring": {
+            "left": 561.671875,
+            "top": 343.9375,
+            "right": 718.34375,
+            "bottom": 455.53125,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 609.28125,
+            "top": 282.9375,
+            "right": 655.28125,
+            "bottom": 336.9375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 469,
+            "top": 733,
+            "right": 811,
+            "bottom": 787,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 469,
+            "top": 685,
+            "right": 811,
+            "bottom": 733,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 2,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 570.671875,
+                "top": 352.9375,
+                "right": 709.34375,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 343.9375,
+                "right": 718.34375,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 570.671875,
+                "top": 352.9375,
+                "right": 709.34375,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 343.9375,
+                "right": 718.34375,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 570.671875,
+                "top": 352.9375,
+                "right": 709.34375,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 343.9375,
+                "right": 718.34375,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 570.671875,
+                "top": 352.9375,
+                "right": 709.34375,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 343.9375,
+                "right": 718.34375,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 570.671875,
+                "top": 352.9375,
+                "right": 709.34375,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 343.9375,
+                "right": 718.34375,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 570.671875,
+                "top": 352.9375,
+                "right": 709.34375,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 561.671875,
+                "top": 343.9375,
+                "right": 718.34375,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 561.671875,
+            "top": 343.9375,
+            "right": 718.34375,
+            "bottom": 455.53125,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 609.28125,
+            "top": 282.9375,
+            "right": 655.28125,
+            "bottom": 336.9375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 469,
+            "top": 13,
+            "right": 811,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 475.8399963378906,
+            "top": 67.3237533569336,
+            "right": 804.1600341796875,
+            "bottom": 130.86375427246094,
+            "width": 328.3200378417969,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 2
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 346,
+            "top": 355.46875,
+            "right": 934,
+            "bottom": 458.109375,
+            "width": 588,
+            "height": 102.640625
+          },
+          "ring": {
+            "left": 337,
+            "top": 346.46875,
+            "right": 943,
+            "bottom": 467.109375,
+            "width": 606,
+            "height": 120.640625
+          },
+          "hand": {
+            "left": 622.71875,
+            "top": 472.1014709472656,
+            "right": 668.71875,
+            "bottom": 526.1014404296875,
+            "width": 46,
+            "height": 53.999969482421875
+          },
+          "action": {
+            "left": 469,
+            "top": 61,
+            "right": 811,
+            "bottom": 115,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 469,
+            "top": 13,
+            "right": 811,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 3,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 346,
+                "top": 355.46875,
+                "right": 934,
+                "bottom": 458.109375,
+                "width": 588,
+                "height": 102.640625
+              },
+              "ring": {
+                "left": 337,
+                "top": 346.46875,
+                "right": 943,
+                "bottom": 467.109375,
+                "width": 606,
+                "height": 120.640625
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 337,
+            "top": 346.46875,
+            "right": 943,
+            "bottom": 467.109375,
+            "width": 606,
+            "height": 120.640625
+          },
+          "hand": {
+            "left": 622.71875,
+            "top": 472.109375,
+            "right": 668.71875,
+            "bottom": 526.109375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 469,
+            "top": 13,
+            "right": 811,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 475.8399963378906,
+            "top": 67.3237533569336,
+            "right": 804.1600341796875,
+            "bottom": 130.86375427246094,
+            "width": 328.3200378417969,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 3
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 424,
+            "top": 352.9375,
+            "right": 562.671875,
+            "bottom": 446.53125,
+            "width": 138.671875,
+            "height": 93.59375
+          },
+          "ring": {
+            "left": 415,
+            "top": 343.9375,
+            "right": 571.671875,
+            "bottom": 455.53125,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 462.609375,
+            "top": 282.9375,
+            "right": 508.609375,
+            "bottom": 336.9375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 322.328125,
+            "top": 733,
+            "right": 664.328125,
+            "bottom": 787,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 322.328125,
+            "top": 685,
+            "right": 664.328125,
+            "bottom": 733,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 4,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 424,
+                "top": 352.9375,
+                "right": 562.671875,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 343.9375,
+                "right": 571.671875,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 424,
+                "top": 352.9375,
+                "right": 562.671875,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 343.9375,
+                "right": 571.671875,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 424,
+                "top": 352.9375,
+                "right": 562.671875,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 343.9375,
+                "right": 571.671875,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 424,
+                "top": 352.9375,
+                "right": 562.671875,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 343.9375,
+                "right": 571.671875,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 424,
+                "top": 352.9375,
+                "right": 562.671875,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 343.9375,
+                "right": 571.671875,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 424,
+                "top": 352.9375,
+                "right": 562.671875,
+                "bottom": 446.53125,
+                "width": 138.671875,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 415,
+                "top": 343.9375,
+                "right": 571.671875,
+                "bottom": 455.53125,
+                "width": 156.671875,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 415,
+            "top": 343.9375,
+            "right": 571.671875,
+            "bottom": 455.53125,
+            "width": 156.671875,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 462.609375,
+            "top": 282.9375,
+            "right": 508.609375,
+            "bottom": 336.9375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 322.328125,
+            "top": 13,
+            "right": 664.328125,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 329.1681213378906,
+            "top": 67.75563049316406,
+            "right": 657.4881591796875,
+            "bottom": 152.02561950683594,
+            "width": 328.3200378417969,
+            "height": 84.26998901367188
+          },
+          "phase": "feedback",
+          "step": 4
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 729.8125,
+            "top": 378.5625,
+            "right": 889.40625,
+            "bottom": 567.90625,
+            "width": 159.59375,
+            "height": 189.34375
+          },
+          "ring": {
+            "left": 720.8125,
+            "top": 369.5625,
+            "right": 898.40625,
+            "bottom": 576.90625,
+            "width": 177.59375,
+            "height": 207.34375
+          },
+          "hand": {
+            "left": 792.328125,
+            "top": 581.90625,
+            "right": 838.328125,
+            "bottom": 635.90625,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 638.609375,
+            "top": 61,
+            "right": 980.609375,
+            "bottom": 115,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 638.609375,
+            "top": 13,
+            "right": 980.609375,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 5,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 729.8125,
+                "top": 378.5625,
+                "right": 889.40625,
+                "bottom": 567.90625,
+                "width": 159.59375,
+                "height": 189.34375
+              },
+              "ring": {
+                "left": 720.8125,
+                "top": 369.5625,
+                "right": 898.40625,
+                "bottom": 576.90625,
+                "width": 177.59375,
+                "height": 207.34375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 720.8125,
+            "top": 369.5625,
+            "right": 898.40625,
+            "bottom": 576.90625,
+            "width": 177.59375,
+            "height": 207.34375
+          },
+          "hand": {
+            "left": 792.328125,
+            "top": 581.90625,
+            "right": 838.328125,
+            "bottom": 635.90625,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 638.609375,
+            "top": 13,
+            "right": 980.609375,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 645.4493408203125,
+            "top": 67.75563049316406,
+            "right": 973.7694091796875,
+            "bottom": 152.02561950683594,
+            "width": 328.320068359375,
+            "height": 84.26998901367188
+          },
+          "phase": "feedback",
+          "step": 5
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 644,
+            "top": 633.53125,
+            "right": 869,
+            "bottom": 679.53125,
+            "width": 225,
+            "height": 46
+          },
+          "ring": {
+            "left": 635,
+            "top": 624.53125,
+            "right": 878,
+            "bottom": 688.53125,
+            "width": 243,
+            "height": 64
+          },
+          "hand": {
+            "left": 739.21875,
+            "top": 693.53125,
+            "right": 785.21875,
+            "bottom": 747.53125,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 585.5,
+            "top": 61,
+            "right": 927.5,
+            "bottom": 115,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 585.5,
+            "top": 13,
+            "right": 927.5,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 6,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 644,
+                "top": 633.53125,
+                "right": 869,
+                "bottom": 679.53125,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.53125,
+                "right": 878,
+                "bottom": 688.53125,
+                "width": 243,
+                "height": 64
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 644,
+                "top": 633.53125,
+                "right": 869,
+                "bottom": 679.53125,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.53125,
+                "right": 878,
+                "bottom": 688.53125,
+                "width": 243,
+                "height": 64
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 644,
+                "top": 633.53125,
+                "right": 869,
+                "bottom": 679.53125,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.53125,
+                "right": 878,
+                "bottom": 688.53125,
+                "width": 243,
+                "height": 64
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 644,
+                "top": 633.53125,
+                "right": 869,
+                "bottom": 679.53125,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.53125,
+                "right": 878,
+                "bottom": 688.53125,
+                "width": 243,
+                "height": 64
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 644,
+                "top": 633.53125,
+                "right": 869,
+                "bottom": 679.53125,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.53125,
+                "right": 878,
+                "bottom": 688.53125,
+                "width": 243,
+                "height": 64
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 644,
+                "top": 633.53125,
+                "right": 869,
+                "bottom": 679.53125,
+                "width": 225,
+                "height": 46
+              },
+              "ring": {
+                "left": 635,
+                "top": 624.53125,
+                "right": 878,
+                "bottom": 688.53125,
+                "width": 243,
+                "height": 64
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 635,
+            "top": 624.53125,
+            "right": 878,
+            "bottom": 688.53125,
+            "width": 243,
+            "height": 64
+          },
+          "hand": {
+            "left": 739.21875,
+            "top": 693.53125,
+            "right": 785.21875,
+            "bottom": 747.53125,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 585.5,
+            "top": 13,
+            "right": 927.5,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 592.3399658203125,
+            "top": 67.3237533569336,
+            "right": 920.6600341796875,
+            "bottom": 130.86375427246094,
+            "width": 328.320068359375,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 6
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 717.34375,
+            "top": 352.9375,
+            "right": 856,
+            "bottom": 446.53125,
+            "width": 138.65625,
+            "height": 93.59375
+          },
+          "ring": {
+            "left": 708.34375,
+            "top": 343.9375,
+            "right": 865,
+            "bottom": 455.53125,
+            "width": 156.65625,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 755.9375,
+            "top": 282.9375,
+            "right": 801.9375,
+            "bottom": 336.9375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 615.671875,
+            "top": 733,
+            "right": 957.671875,
+            "bottom": 787,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 615.671875,
+            "top": 685,
+            "right": 957.671875,
+            "bottom": 733,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 7,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 717.34375,
+                "top": 352.9375,
+                "right": 856,
+                "bottom": 446.53125,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 343.9375,
+                "right": 865,
+                "bottom": 455.53125,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 717.34375,
+                "top": 352.9375,
+                "right": 856,
+                "bottom": 446.53125,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 343.9375,
+                "right": 865,
+                "bottom": 455.53125,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 717.34375,
+                "top": 352.9375,
+                "right": 856,
+                "bottom": 446.53125,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 343.9375,
+                "right": 865,
+                "bottom": 455.53125,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 717.34375,
+                "top": 352.9375,
+                "right": 856,
+                "bottom": 446.53125,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 343.9375,
+                "right": 865,
+                "bottom": 455.53125,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 717.34375,
+                "top": 352.9375,
+                "right": 856,
+                "bottom": 446.53125,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 343.9375,
+                "right": 865,
+                "bottom": 455.53125,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 717.34375,
+                "top": 352.9375,
+                "right": 856,
+                "bottom": 446.53125,
+                "width": 138.65625,
+                "height": 93.59375
+              },
+              "ring": {
+                "left": 708.34375,
+                "top": 343.9375,
+                "right": 865,
+                "bottom": 455.53125,
+                "width": 156.65625,
+                "height": 111.59375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 708.34375,
+            "top": 343.9375,
+            "right": 865,
+            "bottom": 455.53125,
+            "width": 156.65625,
+            "height": 111.59375
+          },
+          "hand": {
+            "left": 755.9375,
+            "top": 282.9375,
+            "right": 801.9375,
+            "bottom": 336.9375,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 615.671875,
+            "top": 13,
+            "right": 957.671875,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 622.5118408203125,
+            "top": 67.3237533569336,
+            "right": 950.8319091796875,
+            "bottom": 130.86375427246094,
+            "width": 328.320068359375,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 7
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 1028,
+            "top": 367.390625,
+            "right": 1092,
+            "bottom": 439.390625,
+            "width": 64,
+            "height": 72
+          },
+          "ring": {
+            "left": 1019,
+            "top": 358.390625,
+            "right": 1101,
+            "bottom": 448.390625,
+            "width": 82,
+            "height": 90
+          },
+          "hand": {
+            "left": 1042.71875,
+            "top": 453.390625,
+            "right": 1088.71875,
+            "bottom": 507.390625,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 889,
+            "top": 61,
+            "right": 1231,
+            "bottom": 115,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 889,
+            "top": 13,
+            "right": 1231,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 8,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 1028,
+                "top": 367.390625,
+                "right": 1092,
+                "bottom": 439.390625,
+                "width": 64,
+                "height": 72
+              },
+              "ring": {
+                "left": 1019,
+                "top": 358.390625,
+                "right": 1101,
+                "bottom": 448.390625,
+                "width": 82,
+                "height": 90
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 1019,
+            "top": 358.390625,
+            "right": 1101,
+            "bottom": 448.390625,
+            "width": 82,
+            "height": 90
+          },
+          "hand": {
+            "left": 1042.71875,
+            "top": 453.390625,
+            "right": 1088.71875,
+            "bottom": 507.390625,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 888.984375,
+            "top": 13,
+            "right": 1230.984375,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 895.8243408203125,
+            "top": 67.3237533569336,
+            "right": 1224.1444091796875,
+            "bottom": 130.86375427246094,
+            "width": 328.320068359375,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 8
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 183.859375,
+            "top": 718,
+            "right": 1254,
+            "bottom": 776,
+            "width": 1070.140625,
+            "height": 58
+          },
+          "ring": {
+            "left": 174.859375,
+            "top": 709,
+            "right": 1263,
+            "bottom": 785,
+            "width": 1088.140625,
+            "height": 76
+          },
+          "hand": {
+            "left": 121.859375,
+            "top": 719,
+            "right": 167.859375,
+            "bottom": 773,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 547.921875,
+            "top": 61,
+            "right": 889.921875,
+            "bottom": 115,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 547.921875,
+            "top": 13,
+            "right": 889.921875,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 9,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 183.859375,
+                "top": 718,
+                "right": 1254,
+                "bottom": 776,
+                "width": 1070.140625,
+                "height": 58
+              },
+              "ring": {
+                "left": 174.859375,
+                "top": 709,
+                "right": 1263,
+                "bottom": 785,
+                "width": 1088.140625,
+                "height": 76
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 174.859375,
+            "top": 709,
+            "right": 1263,
+            "bottom": 785,
+            "width": 1088.140625,
+            "height": 76
+          },
+          "hand": {
+            "left": 121.859375,
+            "top": 719,
+            "right": 167.859375,
+            "bottom": 773,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 547.921875,
+            "top": 13,
+            "right": 889.921875,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 554.7618408203125,
+            "top": 67.3237533569336,
+            "right": 883.0819091796875,
+            "bottom": 130.86375427246094,
+            "width": 328.320068359375,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 9
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1850,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": {
+            "left": 335,
+            "top": 661.53125,
+            "right": 945,
+            "bottom": 752.46875,
+            "width": 610,
+            "height": 90.9375
+          },
+          "ring": {
+            "left": 326,
+            "top": 652.53125,
+            "right": 954,
+            "bottom": 761.46875,
+            "width": 628,
+            "height": 108.9375
+          },
+          "hand": {
+            "left": 609.265625,
+            "top": 591.53125,
+            "right": 655.265625,
+            "bottom": 645.53125,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 469,
+            "top": 61,
+            "right": 811,
+            "bottom": 115,
+            "width": 342,
+            "height": 54
+          },
+          "status": {
+            "left": 469,
+            "top": 13,
+            "right": 811,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 10,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 335,
+                "top": 661.53125,
+                "right": 945,
+                "bottom": 752.46875,
+                "width": 610,
+                "height": 90.9375
+              },
+              "ring": {
+                "left": 326,
+                "top": 652.53125,
+                "right": 954,
+                "bottom": 761.46875,
+                "width": 628,
+                "height": 108.9375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 335,
+                "top": 661.53125,
+                "right": 945,
+                "bottom": 752.46875,
+                "width": 610,
+                "height": 90.9375
+              },
+              "ring": {
+                "left": 326,
+                "top": 652.53125,
+                "right": 954,
+                "bottom": 761.46875,
+                "width": 628,
+                "height": 108.9375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 335,
+                "top": 661.53125,
+                "right": 945,
+                "bottom": 752.46875,
+                "width": 610,
+                "height": 90.9375
+              },
+              "ring": {
+                "left": 326,
+                "top": 652.53125,
+                "right": 954,
+                "bottom": 761.46875,
+                "width": 628,
+                "height": 108.9375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 335,
+                "top": 661.53125,
+                "right": 945,
+                "bottom": 752.46875,
+                "width": 610,
+                "height": 90.9375
+              },
+              "ring": {
+                "left": 326,
+                "top": 652.53125,
+                "right": 954,
+                "bottom": 761.46875,
+                "width": 628,
+                "height": 108.9375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 335,
+                "top": 661.53125,
+                "right": 945,
+                "bottom": 752.46875,
+                "width": 610,
+                "height": 90.9375
+              },
+              "ring": {
+                "left": 326,
+                "top": 652.53125,
+                "right": 954,
+                "bottom": 761.46875,
+                "width": 628,
+                "height": 108.9375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 335,
+                "top": 661.53125,
+                "right": 945,
+                "bottom": 752.46875,
+                "width": 610,
+                "height": 90.9375
+              },
+              "ring": {
+                "left": 326,
+                "top": 652.53125,
+                "right": 954,
+                "bottom": 761.46875,
+                "width": 628,
+                "height": 108.9375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1850,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "target": null,
+          "ring": {
+            "left": 326,
+            "top": 652.53125,
+            "right": 954,
+            "bottom": 761.46875,
+            "width": 628,
+            "height": 108.9375
+          },
+          "hand": {
+            "left": 609.265625,
+            "top": 591.53125,
+            "right": 655.265625,
+            "bottom": 645.53125,
+            "width": 46,
+            "height": 54
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 469,
+            "top": 13,
+            "right": 811,
+            "bottom": 61,
+            "width": 342,
+            "height": 48
+          },
+          "speech": {
+            "left": 475.8399963378906,
+            "top": 67.3237533569336,
+            "right": 804.1600341796875,
+            "bottom": 130.86375427246094,
+            "width": 328.3200378417969,
+            "height": 63.540000915527344
+          },
+          "phase": "feedback",
+          "step": 10
+        }
+      ],
+      "initialSelections": {
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "bifly",
+        "control": "swipe"
+      },
+      "persisted": {
+        "tutorial": "complete",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick",
+        "control": "swipe"
+      },
+      "runtimeErrors": [],
+      "artifacts": [
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-01-settings-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-01-settings-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-02-settings-mode-stable-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-03-mode-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-03-worlds-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-04-difficulty-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-04-difficulty-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-05-difficulty-choice-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-05-score-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-06-controls-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-06-movement-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-07-character-button-stable-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-07-character-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-08-character-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-09-character-confirm-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-09-maze-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-10-start-hand-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-10-goal-explanation-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/first-playable-maze-desktop-1280x800.png"
+      ],
+      "video": null
+    },
+    {
+      "name": "mobile-390x844",
+      "wrongClickBlocked": true,
+      "tutorialTotal": 10,
+      "forbiddenGeometryTransitions": [],
+      "layouts": [
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 184.1875,
+            "top": 30.375,
+            "right": 226.296875,
+            "bottom": 72.484375,
+            "width": 42.109375,
+            "height": 42.109375
+          },
+          "ring": {
+            "left": 178.1875,
+            "top": 24.375,
+            "right": 232.296875,
+            "bottom": 78.484375,
+            "width": 54.109375,
+            "height": 54.109375
+          },
+          "hand": {
+            "left": 190.109375,
+            "top": 81.516845703125,
+            "right": 232.109375,
+            "bottom": 131.516845703125,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 777,
+            "right": 377,
+            "bottom": 831,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 729,
+            "right": 377,
+            "bottom": 777,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 1,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 184.1875,
+                "top": 30.375,
+                "right": 226.296875,
+                "bottom": 72.484375,
+                "width": 42.109375,
+                "height": 42.109375
+              },
+              "ring": {
+                "left": 178.1875,
+                "top": 24.375,
+                "right": 232.296875,
+                "bottom": 78.484375,
+                "width": 54.109375,
+                "height": 54.109375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 1,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-settings",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 178.1875,
+            "top": 24.375,
+            "right": 232.296875,
+            "bottom": 78.484375,
+            "width": 54.109375,
+            "height": 54.109375
+          },
+          "hand": {
+            "left": 190.109375,
+            "top": 83.484375,
+            "right": 232.109375,
+            "bottom": 133.484375,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 719,
+            "right": 377,
+            "bottom": 767,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 773.2806396484375,
+            "right": 369.7200012207031,
+            "bottom": 834.7506103515625,
+            "width": 349.44000244140625,
+            "height": 61.469970703125
+          },
+          "phase": "feedback",
+          "step": 1
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 143.34375,
+            "top": 386.78125,
+            "right": 246.671875,
+            "bottom": 458.03125,
+            "width": 103.328125,
+            "height": 71.25
+          },
+          "ring": {
+            "left": 137.34375,
+            "top": 380.78125,
+            "right": 252.671875,
+            "bottom": 464.03125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 467.5096740722656,
+            "right": 221.875,
+            "bottom": 517.5096435546875,
+            "width": 42,
+            "height": 49.999969482421875
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 2,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 143.34375,
+                "top": 386.78125,
+                "right": 246.671875,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 380.78125,
+                "right": 252.671875,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 143.34375,
+                "top": 386.78125,
+                "right": 246.671875,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 380.78125,
+                "right": 252.671875,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 143.34375,
+                "top": 386.78125,
+                "right": 246.671875,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 380.78125,
+                "right": 252.671875,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 143.34375,
+                "top": 386.78125,
+                "right": 246.671875,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 380.78125,
+                "right": 252.671875,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 143.34375,
+                "top": 386.78125,
+                "right": 246.671875,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 380.78125,
+                "right": 252.671875,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 143.34375,
+                "top": 386.78125,
+                "right": 246.671875,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 137.34375,
+                "top": 380.78125,
+                "right": 252.671875,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 2,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-mode",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 137.34375,
+            "top": 380.78125,
+            "right": 252.671875,
+            "bottom": 464.03125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 469.03125,
+            "right": 221.875,
+            "bottom": 519.03125,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 2
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 21,
+            "top": 612.90625,
+            "right": 369,
+            "bottom": 710.953125,
+            "width": 348,
+            "height": 98.046875
+          },
+          "ring": {
+            "left": 15,
+            "top": 606.90625,
+            "right": 375,
+            "bottom": 716.953125,
+            "width": 360,
+            "height": 110.046875
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 721.0592651367188,
+            "right": 221.875,
+            "bottom": 771.0592651367188,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 3,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 21,
+                "top": 612.90625,
+                "right": 369,
+                "bottom": 710.953125,
+                "width": 348,
+                "height": 98.046875
+              },
+              "ring": {
+                "left": 15,
+                "top": 606.90625,
+                "right": 375,
+                "bottom": 716.953125,
+                "width": 360,
+                "height": 110.046875
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 3,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-mode",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 15,
+            "top": 606.90625,
+            "right": 375,
+            "bottom": 716.953125,
+            "width": 360,
+            "height": 110.046875
+          },
+          "hand": {
+            "left": 179.875,
+            "top": 721.953125,
+            "right": 221.875,
+            "bottom": 771.953125,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 3
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 34,
+            "top": 386.78125,
+            "right": 137.34375,
+            "bottom": 458.03125,
+            "width": 103.34375,
+            "height": 71.25
+          },
+          "ring": {
+            "left": 28,
+            "top": 380.78125,
+            "right": 143.34375,
+            "bottom": 464.03125,
+            "width": 115.34375,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 70.546875,
+            "top": 468.567138671875,
+            "right": 112.546875,
+            "bottom": 518.567138671875,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 4,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 34,
+                "top": 386.78125,
+                "right": 137.34375,
+                "bottom": 458.03125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 380.78125,
+                "right": 143.34375,
+                "bottom": 464.03125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 34,
+                "top": 386.78125,
+                "right": 137.34375,
+                "bottom": 458.03125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 380.78125,
+                "right": 143.34375,
+                "bottom": 464.03125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 34,
+                "top": 386.78125,
+                "right": 137.34375,
+                "bottom": 458.03125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 380.78125,
+                "right": 143.34375,
+                "bottom": 464.03125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 34,
+                "top": 386.78125,
+                "right": 137.34375,
+                "bottom": 458.03125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 380.78125,
+                "right": 143.34375,
+                "bottom": 464.03125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 34,
+                "top": 386.78125,
+                "right": 137.34375,
+                "bottom": 458.03125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 380.78125,
+                "right": 143.34375,
+                "bottom": 464.03125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 34,
+                "top": 386.78125,
+                "right": 137.34375,
+                "bottom": 458.03125,
+                "width": 103.34375,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 28,
+                "top": 380.78125,
+                "right": 143.34375,
+                "bottom": 464.03125,
+                "width": 115.34375,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 4,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 28,
+            "top": 380.78125,
+            "right": 143.34375,
+            "bottom": 464.03125,
+            "width": 115.34375,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 70.546875,
+            "top": 469.03125,
+            "right": 112.546875,
+            "bottom": 519.03125,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.69093322753906,
+            "right": 369.7200012207031,
+            "bottom": 148.85594177246094,
+            "width": 349.44000244140625,
+            "height": 81.16500854492188
+          },
+          "phase": "feedback",
+          "step": 4
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 21,
+            "top": 429.46875,
+            "right": 190,
+            "bottom": 519.5625,
+            "width": 169,
+            "height": 90.09375
+          },
+          "ring": {
+            "left": 15,
+            "top": 423.46875,
+            "right": 196,
+            "bottom": 525.5625,
+            "width": 181,
+            "height": 102.09375
+          },
+          "hand": {
+            "left": 90.375,
+            "top": 529.3904418945312,
+            "right": 132.375,
+            "bottom": 579.3904418945312,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 5,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 21,
+                "top": 429.46875,
+                "right": 190,
+                "bottom": 519.5625,
+                "width": 169,
+                "height": 90.09375
+              },
+              "ring": {
+                "left": 15,
+                "top": 423.46875,
+                "right": 196,
+                "bottom": 525.5625,
+                "width": 181,
+                "height": 102.09375
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 5,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-difficulty",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 15,
+            "top": 423.46875,
+            "right": 196,
+            "bottom": 525.5625,
+            "width": 181,
+            "height": 102.09375
+          },
+          "hand": {
+            "left": 90.375,
+            "top": 530.5625,
+            "right": 132.375,
+            "bottom": 580.5625,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 5
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 199,
+            "top": 645.03125,
+            "right": 369,
+            "bottom": 691.03125,
+            "width": 170,
+            "height": 46
+          },
+          "ring": {
+            "left": 193,
+            "top": 639.03125,
+            "right": 375,
+            "bottom": 697.03125,
+            "width": 182,
+            "height": 58
+          },
+          "hand": {
+            "left": 268.875,
+            "top": 701.5090942382812,
+            "right": 310.875,
+            "bottom": 751.5090942382812,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 6,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 199,
+                "top": 645.03125,
+                "right": 369,
+                "bottom": 691.03125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 639.03125,
+                "right": 375,
+                "bottom": 697.03125,
+                "width": 182,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 199,
+                "top": 645.03125,
+                "right": 369,
+                "bottom": 691.03125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 639.03125,
+                "right": 375,
+                "bottom": 697.03125,
+                "width": 182,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 199,
+                "top": 645.03125,
+                "right": 369,
+                "bottom": 691.03125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 639.03125,
+                "right": 375,
+                "bottom": 697.03125,
+                "width": 182,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 199,
+                "top": 645.03125,
+                "right": 369,
+                "bottom": 691.03125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 639.03125,
+                "right": 375,
+                "bottom": 697.03125,
+                "width": 182,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 199,
+                "top": 645.03125,
+                "right": 369,
+                "bottom": 691.03125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 639.03125,
+                "right": 375,
+                "bottom": 697.03125,
+                "width": 182,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 199,
+                "top": 645.03125,
+                "right": 369,
+                "bottom": 691.03125,
+                "width": 170,
+                "height": 46
+              },
+              "ring": {
+                "left": 193,
+                "top": 639.03125,
+                "right": 375,
+                "bottom": 697.03125,
+                "width": 182,
+                "height": 58
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 6,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "choose-control",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 193,
+            "top": 639.03125,
+            "right": 375,
+            "bottom": 697.03125,
+            "width": 182,
+            "height": 58
+          },
+          "hand": {
+            "left": 268.875,
+            "top": 702.03125,
+            "right": 310.875,
+            "bottom": 752.03125,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 6
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 252.671875,
+            "top": 386.78125,
+            "right": 356,
+            "bottom": 458.03125,
+            "width": 103.328125,
+            "height": 71.25
+          },
+          "ring": {
+            "left": 246.671875,
+            "top": 380.78125,
+            "right": 362,
+            "bottom": 464.03125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 289.203125,
+            "top": 468.08343505859375,
+            "right": 331.203125,
+            "bottom": 518.0834350585938,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 7,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 252.671875,
+                "top": 386.78125,
+                "right": 356,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 380.78125,
+                "right": 362,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 252.671875,
+                "top": 386.78125,
+                "right": 356,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 380.78125,
+                "right": 362,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 252.671875,
+                "top": 386.78125,
+                "right": 356,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 380.78125,
+                "right": 362,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 252.671875,
+                "top": 386.78125,
+                "right": 356,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 380.78125,
+                "right": 362,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 252.671875,
+                "top": 386.78125,
+                "right": 356,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 380.78125,
+                "right": 362,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 252.671875,
+                "top": 386.78125,
+                "right": 356,
+                "bottom": 458.03125,
+                "width": 103.328125,
+                "height": 71.25
+              },
+              "ring": {
+                "left": 246.671875,
+                "top": 380.78125,
+                "right": 362,
+                "bottom": 464.03125,
+                "width": 115.328125,
+                "height": 83.25
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 7,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "open-characters",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 246.671875,
+            "top": 380.78125,
+            "right": 362,
+            "bottom": 464.03125,
+            "width": 115.328125,
+            "height": 83.25
+          },
+          "hand": {
+            "left": 289.203125,
+            "top": 469.03125,
+            "right": 331.203125,
+            "bottom": 519.03125,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 7
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 340,
+            "top": 395.875,
+            "right": 382,
+            "bottom": 455.875,
+            "width": 42,
+            "height": 60
+          },
+          "ring": {
+            "left": 334,
+            "top": 389.875,
+            "right": 388,
+            "bottom": 461.875,
+            "width": 54,
+            "height": 72
+          },
+          "hand": {
+            "left": 344,
+            "top": 465.19549560546875,
+            "right": 386,
+            "bottom": 515.1954956054688,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 8,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 340,
+                "top": 395.875,
+                "right": 382,
+                "bottom": 455.875,
+                "width": 42,
+                "height": 60
+              },
+              "ring": {
+                "left": 334,
+                "top": 389.875,
+                "right": 388,
+                "bottom": 461.875,
+                "width": 54,
+                "height": 72
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 8,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "preview-character",
+            "feedbackDelayMs": 1300,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 334,
+            "top": 389.875,
+            "right": 388,
+            "bottom": 461.875,
+            "width": 54,
+            "height": 72
+          },
+          "hand": {
+            "left": 344,
+            "top": 466.875,
+            "right": 386,
+            "bottom": 516.875,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 8
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 8,
+            "top": 737,
+            "right": 382,
+            "bottom": 783,
+            "width": 374,
+            "height": 46
+          },
+          "ring": {
+            "left": 2,
+            "top": 731,
+            "right": 388,
+            "bottom": 789,
+            "width": 386,
+            "height": 58
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 675.1730346679688,
+            "right": 210.109375,
+            "bottom": 725.1730346679688,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 9,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 8,
+                "top": 737,
+                "right": 382,
+                "bottom": 783,
+                "width": 374,
+                "height": 46
+              },
+              "ring": {
+                "left": 2,
+                "top": 731,
+                "right": 388,
+                "bottom": 789,
+                "width": 386,
+                "height": 58
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 9,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "select-character",
+            "feedbackDelayMs": 1550,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 2,
+            "top": 731,
+            "right": 388,
+            "bottom": 789,
+            "width": 386,
+            "height": 58
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 676,
+            "right": 210.109375,
+            "bottom": 726,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 9
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "awaiting",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1850,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": {
+            "left": 12,
+            "top": 734.859375,
+            "right": 378,
+            "bottom": 809.125,
+            "width": 366,
+            "height": 74.265625
+          },
+          "ring": {
+            "left": 6,
+            "top": 728.859375,
+            "right": 384,
+            "bottom": 815.125,
+            "width": 378,
+            "height": 86.265625
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 672.5687255859375,
+            "right": 210.109375,
+            "bottom": 722.5687255859375,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 13,
+            "top": 61,
+            "right": 377,
+            "bottom": 115,
+            "width": 364,
+            "height": 54
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": null,
+          "phase": "awaiting",
+          "step": 10,
+          "stabilitySamples": [
+            {
+              "elapsedMs": 0,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 40,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 80,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 120,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 160,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "alignmentError": 0
+            },
+            {
+              "elapsedMs": 200,
+              "target": {
+                "left": 12,
+                "top": 734.859375,
+                "right": 378,
+                "bottom": 809.125,
+                "width": 366,
+                "height": 74.265625
+              },
+              "ring": {
+                "left": 6,
+                "top": 728.859375,
+                "right": 384,
+                "bottom": 815.125,
+                "width": 378,
+                "height": 86.265625
+              },
+              "alignmentError": 0
+            }
+          ],
+          "maxAlignmentError": 0
+        },
+        {
+          "state": {
+            "isOpen": true,
+            "currentStep": 10,
+            "totalSteps": 10,
+            "phase": "feedback",
+            "stepId": "start-game",
+            "feedbackDelayMs": 1850,
+            "status": "in-progress"
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "target": null,
+          "ring": {
+            "left": 6,
+            "top": 728.859375,
+            "right": 384,
+            "bottom": 815.125,
+            "width": 378,
+            "height": 86.265625
+          },
+          "hand": {
+            "left": 168.109375,
+            "top": 673.859375,
+            "right": 210.109375,
+            "bottom": 723.859375,
+            "width": 42,
+            "height": 50
+          },
+          "action": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          },
+          "status": {
+            "left": 13,
+            "top": 13,
+            "right": 377,
+            "bottom": 61,
+            "width": 364,
+            "height": 48
+          },
+          "speech": {
+            "left": 20.279998779296875,
+            "top": 67.28062438964844,
+            "right": 369.7200012207031,
+            "bottom": 128.75062561035156,
+            "width": 349.44000244140625,
+            "height": 61.470001220703125
+          },
+          "phase": "feedback",
+          "step": 10
+        }
+      ],
+      "initialSelections": {
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "bifly",
+        "control": "swipe"
+      },
+      "persisted": {
+        "tutorial": "complete",
+        "mode": "arcade",
+        "difficulty": "normal",
+        "character": "nabatick",
+        "control": "swipe"
+      },
+      "runtimeErrors": [],
+      "artifacts": [
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-01-settings-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-01-settings-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-02-settings-mode-stable-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-03-mode-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-03-worlds-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-04-difficulty-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-04-difficulty-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-05-difficulty-choice-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-05-score-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-06-controls-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-06-movement-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-07-character-button-stable-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-07-character-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-08-character-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-09-character-confirm-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-09-maze-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-10-start-hand-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/coach-10-goal-explanation-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-coach-marks/after/first-playable-maze-mobile-390x844.png"
+      ],
+      "video": "docs/visual-proof-screenshots/tutorial-coach-marks/after/tutorial-coach-marks-mobile-390x844.mp4"
+    }
+  ]
+}

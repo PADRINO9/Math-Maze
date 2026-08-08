@@ -1,0 +1,18 @@
+{
+  "output": "assets/audio/music/kaflul-afropop-gameplay.m4a",
+  "source_title": "Celestial Pulse (Comet Joy) [Instrumental - 113 BPM - One-Stop]",
+  "creator": "DjOldCatz",
+  "source_url": "https://pixabay.com/music/afrobeat-celestial-pulse-comet-joy-instrumental-113-bpm-one-stop-460494/",
+  "license": "Pixabay Content License",
+  "license_url": "https://pixabay.com/service/license-summary/",
+  "bpm": 113,
+  "duration_seconds": 50.973447,
+  "beats": 96,
+  "bars_4_4": 24,
+  "sample_rate": 44100,
+  "channels": 2,
+  "rms_dbfs": -23.0,
+  "peak_dbfs": -11.659,
+  "edge_jump": 0.007297,
+  "edge_rms_delta_db": 1.602
+}

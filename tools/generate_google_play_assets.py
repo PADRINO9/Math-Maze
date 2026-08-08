@@ -38,11 +38,24 @@ SCREENSHOT_SOURCES = {
         / "stage-2-lava-390x844.png"
     ),
     "04-home-screen.png": OUT / "sources" / "home-native-432x936.png",
+    "05-division-question.png": (
+        ROOT
+        / "docs"
+        / "visual-proof-screenshots"
+        / "division-mode"
+        / "android-division-question-1.2.png"
+    ),
+    "06-boss-battle.png": (
+        ROOT
+        / "docs"
+        / "visual-proof-screenshots"
+        / "boss-encounter"
+        / "android-16-boss-after-hit-1.3.png"
+    ),
 }
 
 BACKGROUND = (5, 7, 11, 255)
 CYAN = (104, 231, 255, 75)
-GOLD = (255, 216, 74, 120)
 MIB = 1024 * 1024
 
 
@@ -50,6 +63,12 @@ def contain(image: Image.Image, max_width: int, max_height: int) -> Image.Image:
     copy = image.copy()
     copy.thumbnail((max_width, max_height), Image.Resampling.LANCZOS)
     return copy
+
+
+def trim_transparent_margins(image: Image.Image) -> Image.Image:
+    rgba = image.convert("RGBA")
+    bounds = rgba.getchannel("A").getbbox()
+    return rgba.crop(bounds) if bounds else rgba
 
 
 def paste_center(
@@ -71,14 +90,9 @@ def make_play_icon() -> Image.Image:
         outline=CYAN,
         width=round(size * 0.025),
     )
-    draw.ellipse(
-        (round(size * 0.16), round(size * 0.16), round(size * 0.84), round(size * 0.84)),
-        outline=GOLD,
-        width=round(size * 0.018),
-    )
-
+    icon_source = trim_transparent_margins(Image.open(ICON_SOURCE))
     icon = contain(
-        Image.open(ICON_SOURCE).convert("RGBA"), round(size * 0.78), round(size * 0.78)
+        icon_source, round(size * 0.68), round(size * 0.68)
     )
     paste_center(canvas, icon, size / 2, size / 2)
     return canvas

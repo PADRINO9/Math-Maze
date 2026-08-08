@@ -29,9 +29,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&amp;family=Fredoka:wght@600;700&amp;display=swap" rel="stylesheet">
   <link rel="preload" href="assets/landing/hero-maze-chase-v2.png" as="image">
-  <link rel="preload" href="assets/generated/bifly-expression-victory.png" as="image">
+  <link rel="preload" href="assets/generated/bifly-expression-idle.png" as="image">
   <link rel="preload" href="assets/generated/nabatick-expression-victory.png" as="image">
-  <link rel="stylesheet" href="landing.css?v=20260807-bifly-fix">
+  <link rel="stylesheet" href="landing.css?v=20260807-character-cleanup3">
   <title>כפלול — משחק מבוך ללימוד לוח הכפל</title>
   <script>document.documentElement.classList.add("js");</script>
   <script type="application/ld+json">
@@ -65,7 +65,6 @@
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתיחת תפריט הניווט">תפריט</button>
 
       <nav id="site-nav" class="site-nav" aria-label="ניווט ראשי">
-        <a href="#gameplay">המשחק מבפנים</a>
         <a href="#champions">אלוף האלופים</a>
         <a href="#parents">להורים</a>
         <a href="#faq">שאלות</a>
@@ -89,7 +88,7 @@
         <img class="hero-ghost hero-ghost-one" src="assets/dark-enemy-angry.png" width="512" height="512" alt="">
         <img class="hero-ghost hero-ghost-two" src="assets/dark-enemy-sad.png" width="512" height="512" alt="">
         <img class="hero-nabatick" src="assets/generated/nabatick-expression-victory.png" width="512" height="512" alt="">
-        <img class="hero-bifly" src="assets/generated/bifly-expression-victory.png" width="512" height="512" alt="">
+        <img class="hero-bifly" src="assets/generated/bifly-expression-idle.png" width="512" height="512" alt="">
       </div>
 
       <div class="shell hero-layout">
@@ -119,39 +118,7 @@
           </ul>
         </div>
       </div>
-      <a class="hero-scroll" href="#gameplay">גלו את המשחק מבפנים</a>
-    </section>
-
-    <section id="gameplay" class="gameplay-section section-pad" aria-labelledby="gameplay-title">
-      <div class="shell">
-        <div class="section-heading" data-enter>
-          <p class="section-kicker">המשחק מבפנים</p>
-          <h2 id="gameplay-title">לא מדמיינים למידה.<br><span>רואים אותה בתוך המשחק.</span></h2>
-          <p>אלה מסכים אמיתיים מתוך כפלול: המבוך ממשיך לזוז, התרגיל מגיע ברגע הנכון, והעולמות משתנים ככל שמתקדמים.</p>
-        </div>
-
-        <div class="screens-grid" aria-label="צילומי מסך אמיתיים מתוך כפלול">
-          <figure class="screen-card screen-card-main" data-enter>
-            <img src="assets/landing/screen-gameplay.jpg" width="562" height="1000" loading="lazy" alt="ביפלי נע במבוך גן השמש ובורח מאויבים">
-            <figcaption><span>01</span><strong>נעים במבוך</strong><small>היגוי במגע או במקלדת</small></figcaption>
-          </figure>
-          <figure class="screen-card" data-enter>
-            <img src="assets/landing/screen-question.jpg" width="562" height="1000" loading="lazy" alt="מסך תרגיל כפל שנפתח לאחר מפגש עם אויב">
-            <figcaption><span>02</span><strong>פותרים בזמן אמת</strong><small>המשחק נעצר כדי לאפשר ריכוז</small></figcaption>
-          </figure>
-          <figure class="screen-card" data-enter>
-            <img src="assets/landing/screen-lava.jpg" width="562" height="1000" loading="lazy" alt="ביפלי ונבטיק בעולם הלבה של כפלול">
-            <figcaption><span>03</span><strong>פותחים עולם חדש</strong><small>ארבעה עולמות ומפגשי בוס</small></figcaption>
-          </figure>
-        </div>
-
-        <div class="world-strip" aria-label="ארבעת העולמות במשחק" data-enter>
-          <figure><img src="assets/landing/world-ancient.jpg" width="562" height="1000" loading="lazy" alt="עולם גן השמש"><figcaption>גן השמש</figcaption></figure>
-          <figure><img src="assets/landing/world-ice.jpg" width="562" height="1000" loading="lazy" alt="עולם הקרח"><figcaption>מערות הקרח</figcaption></figure>
-          <figure><img src="assets/landing/world-lava.jpg" width="562" height="1000" loading="lazy" alt="עולם הלבה"><figcaption>הר הגעש</figcaption></figure>
-          <figure><img src="assets/landing/world-diamond.jpg" width="562" height="1000" loading="lazy" alt="עולם היהלומים"><figcaption>מכרה היהלומים</figcaption></figure>
-        </div>
-      </div>
+      <a class="hero-scroll" href="#champions">קפצו לאתגר אלוף האלופים</a>
     </section>
 
     <section id="champions" class="champions-section section-pad" aria-labelledby="champions-title">
@@ -206,7 +173,7 @@
       <div class="shell download-card" data-enter>
         <div class="download-art" aria-hidden="true">
           <img class="download-ghost" src="assets/dark-enemy-surprised.png" width="512" height="512" alt="">
-          <img class="download-character" src="assets/generated/bifly-expression-victory.png" width="512" height="512" alt="">
+          <img class="download-character" src="assets/generated/bifly-expression-idle.png" width="512" height="512" alt="">
         </div>
         <div class="download-copy">
           <p class="section-kicker">הסיבוב הראשון מתחיל כאן</p>
@@ -293,7 +260,7 @@
     <div class="shell footer-inner">
       <a class="footer-brand" href="#top"><img src="assets/kaflul-logo-official.png" width="1065" height="489" alt="כפלול"><span>מבוך הכפל</span></a>
       <nav aria-label="ניווט תחתון">
-        <a href="#gameplay">המשחק מבפנים</a>
+        <a href="#champions">אלוף האלופים</a>
         <a href="#parents">להורים</a>
         <a href="#accessibility">נגישות</a>
         <a href="privacy.html">פרטיות</a>

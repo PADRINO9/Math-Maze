@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-label="Three selected finalist studies for the Eliran Cohen Hebrew monogram">
+  <rect width="1200" height="460" fill="#fff"/>
+  <g fill="#000" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">
+    <text x="56" y="54">A / 01</text>
+    <text x="456" y="54">B / 09</text>
+    <text x="856" y="54">C / 05</text>
+  </g>
+
+  <g transform="translate(82 100)">
+    <path d="M22 34h130c43 0 68 25 68 64v44c0 39-25 64-68 64H22v-42h122c22 0 34-11 34-32v-24c0-21-12-32-34-32H22z" fill="#000"/>
+    <path d="m128 55 18-6 40 133-20 6zM191 66l19 15-48 60-17-15zM116 178l17 8 35-58-17-12z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(482 100)">
+    <path d="M20 56h132c43 0 68 24 68 64s-25 64-68 64H20v-40h125c22 0 34-8 34-24s-12-24-34-24H20z" fill="#000"/>
+    <path d="m129 72 18-5 37 107-20 6zM193 78l18 14-45 53-16-14zM119 168l18 7 30-48-17-11z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(882 100)">
+    <path d="M28 30h132l50 48v84l-50 48H28v-48h117l25-22V100l-25-22H28z" fill="#000"/>
+    <path d="m126 53 21-7 40 145-23 7zM190 67l20 18-49 58-19-17zM113 185l20 8 35-61-20-13z" fill="#fff"/>
+  </g>
+</svg>

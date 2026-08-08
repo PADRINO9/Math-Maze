@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Concept 01 — Shared shoulder">
+  <rect width="240" height="240" fill="#fff"/>
+  <g fill="#000">
+    <path d="M27 42c48-9 87-1 112 23 17 16 25 34 25 55s-8 39-25 55c-25 24-64 32-112 23l7-33c33 6 58 1 75-14 12-10 18-20 18-31s-6-21-18-31c-17-15-42-20-75-14z"/>
+    <path d="M105 31h29l79 178h-33z"/>
+    <path d="M210 46h30l-70 86-22-19z"/>
+    <path d="M91 190h32l49-74-23-17z"/>
+  </g>
+  <path d="m151 101 23 20-21 25-23-21z" fill="#fff"/>
+</svg>

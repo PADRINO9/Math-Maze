@@ -566,22 +566,24 @@ a.store-button:hover {
 
 .hero-characters img {
   position: absolute;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 22px 20px rgba(0, 0, 0, 0.45));
 }
 
 .hero-bifly {
   z-index: 4;
-  inset: auto auto 2% 3%;
-  width: min(35vw, 500px);
-  transform: rotate(-7deg);
+  inset: auto auto 2% 0;
+  width: min(29vw, 430px);
+  transform: rotate(-4deg);
 }
 
 .hero-nabatick {
-  z-index: 3;
-  inset: auto 2% 15% auto;
-  width: min(25vw, 365px);
-  transform: rotate(6deg);
+  z-index: 5;
+  inset: auto 0 7% auto;
+  width: min(20vw, 295px);
+  transform: rotate(3deg);
 }
 
 .hero-ghost-one {
@@ -872,106 +874,6 @@ a.store-button:hover {
   font-size: 14px;
 }
 
-.gameplay-section {
-  background: #05101d;
-}
-
-.screens-grid {
-  display: grid;
-  grid-template-columns: 1.12fr 1fr 1fr;
-  gap: 22px;
-  align-items: end;
-}
-
-.screen-card {
-  position: relative;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  border-radius: 28px;
-  background: #0e2030;
-  box-shadow: var(--shadow);
-}
-
-.screen-card-main {
-  transform: translateY(-18px);
-}
-
-.screen-card img {
-  width: 100%;
-  aspect-ratio: 0.67;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.screen-card figcaption {
-  min-height: 112px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  align-items: center;
-  gap: 0 12px;
-  padding: 18px 20px;
-  background: #0e2030;
-}
-
-.screen-card figcaption span {
-  grid-row: 1 / 3;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--cyan);
-  color: #07121f;
-  font-family: var(--display);
-  font-weight: 700;
-}
-
-.screen-card figcaption strong {
-  font-size: 18px;
-}
-
-.screen-card figcaption small {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.world-strip {
-  margin-top: 34px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.world-strip figure {
-  position: relative;
-  height: 160px;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: #102131;
-}
-
-.world-strip img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 34%;
-}
-
-.world-strip figcaption {
-  position: absolute;
-  inset: auto 0 0;
-  min-height: 44px;
-  padding: 10px 14px;
-  background: rgba(3, 9, 20, 0.88);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 800;
-}
-
 .champions-section {
   overflow: hidden;
   border-block: 1px solid rgba(255, 215, 96, 0.22);
@@ -1184,9 +1086,10 @@ a.store-button:hover {
 
 .download-character {
   z-index: 2;
-  width: 280px;
-  inset: auto auto -42px 50%;
-  transform: translateX(-50%) rotate(-2deg);
+  width: 250px;
+  inset: auto auto 8px 50%;
+  padding: 8px;
+  transform: translateX(-50%);
 }
 
 .download-ghost {
@@ -1611,12 +1514,12 @@ a.store-button:hover {
   }
 
   .hero-bifly {
-    width: 380px;
+    width: min(39vw, 330px);
   }
 
   .hero-nabatick {
-    width: 270px;
-    inset-inline-end: 10%;
+    width: min(29vw, 240px);
+    inset-inline-end: 4%;
   }
 
   .hero-ghost-one {
@@ -1642,22 +1545,6 @@ a.store-button:hover {
     min-height: 480px;
   }
 
-  .screens-grid {
-    grid-template-columns: repeat(3, minmax(250px, 1fr));
-    overflow-x: auto;
-    scroll-snap-type: inline mandatory;
-    padding: 22px 4px 24px;
-    margin-inline: -4px;
-  }
-
-  .screen-card {
-    scroll-snap-align: center;
-  }
-
-  .world-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .download-card {
     grid-template-columns: 1fr;
     padding-top: 48px;
@@ -1673,7 +1560,7 @@ a.store-button:hover {
   }
 
   .download-character {
-    width: 260px;
+    width: 240px;
   }
 
   .download-ghost {
@@ -1739,12 +1626,13 @@ a.store-button:hover {
   }
 
   .hero {
-    min-height: 860px;
+    min-height: 1040px;
   }
 
   .hero-layout {
-    min-height: 860px;
-    padding-block: calc(var(--header-height) + 42px) 350px;
+    min-height: 1040px;
+    align-items: start;
+    padding-block: calc(var(--header-height) + 214px) 82px;
   }
 
   .eyebrow {
@@ -1799,36 +1687,39 @@ a.store-button:hover {
   }
 
   .hero-characters {
-    inset-inline: 0;
+    inset: calc(var(--header-height) + 10px) 0 auto;
     width: 100%;
-    height: 350px;
-    inset-block-end: 20%;
+    height: 210px;
   }
 
   .hero-bifly {
-    width: 230px;
+    width: 168px;
     inset-inline: auto;
-    left: 10px;
+    inset-block: 26px auto;
+    left: 20px;
     right: auto;
-    transform: rotate(-2deg);
+    transform: none;
   }
 
   .hero-nabatick {
-    width: 175px;
+    width: 136px;
     inset-inline: auto;
+    inset-block: 34px auto;
     left: auto;
-    right: 10px;
-    inset-block-end: 10%;
+    right: 24px;
+    transform: none;
   }
 
   .hero-ghost-one {
-    width: 112px;
-    inset-inline-start: 15%;
+    width: 78px;
+    inset: 2px auto auto 48%;
+    transform: rotate(-8deg);
   }
 
   .hero-ghost-two {
-    width: 86px;
-    inset-inline-end: 12%;
+    width: 62px;
+    inset: 10px 9% auto auto;
+    transform: rotate(7deg);
   }
 
   .hero-scroll {
@@ -1894,27 +1785,6 @@ a.store-button:hover {
     width: 240px;
   }
 
-  .screens-grid {
-    width: 100vw;
-    grid-template-columns: repeat(3, minmax(78vw, 1fr));
-    gap: 14px;
-    margin-inline-end: calc((100vw - var(--shell)) / -2);
-    margin-inline-start: calc((100vw - var(--shell)) / -2);
-    padding-inline: calc((100vw - var(--shell)) / 2);
-  }
-
-  .screen-card-main {
-    transform: none;
-  }
-
-  .world-strip {
-    gap: 8px;
-  }
-
-  .world-strip figure {
-    height: 126px;
-  }
-
   .champions-visual {
     min-height: 390px;
   }
@@ -1960,9 +1830,9 @@ a.store-button:hover {
   }
 
   .download-character {
-    width: 235px;
-    inset: auto auto 8px 50%;
-    transform: translateX(-50%) rotate(-1deg);
+    width: 218px;
+    inset: auto auto 22px 50%;
+    transform: translateX(-50%);
   }
 
   .faq-list summary {
@@ -2025,6 +1895,22 @@ a.store-button:hover {
   }
 }
 
+@media (max-width: 620px) and (max-height: 760px) {
+  .hero {
+    min-height: 850px;
+  }
+
+  .hero-layout {
+    min-height: 850px;
+  }
+
+  .hero-actions,
+  .hero-store-buttons,
+  .hero .trust-list {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2078,7 +1964,6 @@ a.store-button:hover {
   .nav-toggle,
   .flow-card,
   .rank-challenge,
-  .screen-card,
   .faq-list details {
     border: 2px solid ButtonText;
   }
@@ -2102,7 +1987,6 @@ a.store-button:hover {
 
   .hero,
   .how-section,
-  .gameplay-section,
   .champions-section,
   .parents-section,
   .download-section,

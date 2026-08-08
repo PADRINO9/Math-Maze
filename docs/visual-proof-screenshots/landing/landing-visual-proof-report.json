@@ -1,0 +1,38 @@
+{
+  "baseUrl": "http://127.0.0.1:4179",
+  "generatedAt": "2026-07-20T03:14:48.920Z",
+  "screenshots": [
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-hero-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-journey-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-worlds-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-download-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-hero-mobile-390x844.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-journey-mobile-390x844.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-download-mobile-390x844.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-qr-mobile-390x844.png"
+  ],
+  "videos": [
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing/after-landing-scroll-mobile-390x844.webm"
+  ],
+  "audits": [
+    {
+      "profile": "desktop-1440x960",
+      "viewportWidth": 1440,
+      "pageWidth": 1440,
+      "brokenImages": [],
+      "h1": "הופכים זמן מסך\n            לשליטה בלוח הכפל.",
+      "activeJourneyStep": "question",
+      "ready": true
+    },
+    {
+      "profile": "mobile-390x844",
+      "viewportWidth": 390,
+      "pageWidth": 390,
+      "brokenImages": [],
+      "h1": "הופכים זמן מסך\n            לשליטה בלוח הכפל.",
+      "activeJourneyStep": "question",
+      "ready": true
+    }
+  ],
+  "errors": []
+}

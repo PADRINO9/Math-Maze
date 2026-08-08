@@ -1,0 +1,1092 @@
+--------- beginning of main
+08-03 20:30:07.128  1052  1052 I NotificationListener: Handling notification state refresh for android#0
+08-03 20:30:07.128  1052  1052 D SsBaseTemplateCard: No text view can be set up
+08-03 20:30:07.128  1052  1052 D SsBaseTemplateCard: Passed-in item info is null
+08-03 20:30:07.128  1052  1052 D SsBaseTemplateCard: Passed-in item info is null
+08-03 20:30:07.128  1052  1052 D SsBaseTemplateCard: Passed-in item info is null
+08-03 20:30:07.128  1052  1052 I SsBaseTemplateCard: Secondary card pane is null
+08-03 20:30:07.139  1052  1052 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+08-03 20:30:07.139  1052  1052 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.prepareToAnimate(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:22)
+08-03 20:30:07.139  1052  1052 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.<init>(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+08-03 20:30:07.139  1052  1052 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:339)
+08-03 20:30:07.142  1052  1052 D b/311077782: LauncherAnimationRunner.setAnimation
+08-03 20:30:07.143   670   811 I system_server: AssetManager2(0xb400007b48abc0f8) locale list changing from [] to [en-US]
+--------- beginning of system
+08-03 20:30:07.158   670   783 D ActivityManager: sync unfroze 2099 com.google.android.apps.messaging for 6
+08-03 20:30:07.161   670   728 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_99001/pid_4409
+08-03 20:30:07.164   670  1739 W ProcessStats: Tracking association SourceState{654d936 system/1000 ImpBg #2420} whose proc state 6 is better than process ProcessState{c1cac1 com.google.android.apps.messaging/10146 pkg=com.google.android.apps.messaging} proc state 15 (114 skipped)
+08-03 20:30:07.166  2099  2751 I ForwardSyncCache: reclaimMemory: Clearing caches
+08-03 20:30:07.169  2099  2751 W BugleSpam: trimming memory: closing msg model.
+08-03 20:30:07.173  2099  2751 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+08-03 20:30:07.196   670   717 V WindowManager: Sent Transition (#18) createdAt=08-03 20:30:07.059 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=77 effectiveUid=10215 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} numActivities=0 lastActiveTime=334360 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{5dbd28b Task{e374fb #77 type=standard A=10215:com.kaflul.mathmaze.test}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=true lastNonFullscreenBounds=Rect(108, 267 - 325, 699) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 0, 0) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=undefined}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 18 }
+08-03 20:30:07.196   670   717 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+08-03 20:30:07.196   670   717 V WindowManager:     info={id=18 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-03 20:30:07.196   670   717 V WindowManager:         {WCT{RemoteToken{f8070a5 Task{d86dce6 #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xdb29b22 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},
+08-03 20:30:07.196   670   717 V WindowManager:         {WCT{RemoteToken{5dbd28b Task{e374fb #77 type=standard A=10215:com.kaflul.mathmaze.test}}} m=CLOSE f=NONE leash=Surface(name=Task=77)/@0xbb5f805 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},
+08-03 20:30:07.196   670   717 V WindowManager:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{b5fc4f8 showWhenLocked=false})/@0xfe910ed sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0}
+08-03 20:30:07.196   670   717 V WindowManager:     ]}
+08-03 20:30:07.205   938  1114 V WindowManagerShell:  animated by com.android.wm.shell.transition.RemoteTransitionHandler@81c037e
+08-03 20:30:07.205   938  1114 W Looper  : Slow dispatch took 69ms wmshell.main app=com.android.systemui main=false group=FOREGROUND h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@b2675ce m=0
+08-03 20:30:07.206  2099  2225 I BugleDataModel: ActionExecutorImpl: ACTION_EXECUTE_QUEUED_CountryCodeDetectorAction
+08-03 20:30:07.206  2099  4647 I BugleDataModel: ExecuteActionRunnable: running action CountryCodeDetectorAction
+08-03 20:30:07.207  2099  4647 I BugleDataModel: ActionExecutorImpl: ACTION_BACKGROUND_QUEUED_CountryCodeDetectorAction
+08-03 20:30:07.212   670   810 I ImeTracker: com.google.android.apps.nexuslauncher:7bff25c8: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+08-03 20:30:07.223  1514  1514 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+08-03 20:30:07.223  1514  1514 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+08-03 20:30:07.224  1514  1514 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+08-03 20:30:07.224   670  1773 I ImeTracker: system_server:230a000c: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+08-03 20:30:07.224   670   720 I ImeTracker: system_server:230a000c: onCancelled at PHASE_SERVER_SHOULD_HIDE
+08-03 20:30:07.230  2099  4649 I Bugle   : CountryCodeDetector: updateSmsNetworkCountry from default subscription network country. detected country: us
+08-03 20:30:07.231  2099  4649 I BugleDataModel: ActionExecutorImpl: ACTION_RESPONSE_QUEUED_CountryCodeDetectorAction
+08-03 20:30:07.234  1514  1514 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+08-03 20:30:07.235  1052  1052 D InsetsController: hide(ime(), fromIme=false)
+08-03 20:30:07.235  2099  2441 I ForwardSyncCache: reclaimMemory: Clearing caches
+08-03 20:30:07.235  1052  1052 I ImeTracker: com.google.android.apps.nexuslauncher:7bff25c8: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+08-03 20:30:07.235  2099  2441 W BugleSpam: trimming memory: closing msg model.
+08-03 20:30:07.235  2099  2441 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+08-03 20:30:07.236   670  1835 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.apps.nexuslauncher and userId: 0
+08-03 20:30:07.244   670   721 W ActivityTaskManager: Unable to send transaction to client proc com.kaflul.mathmaze.test: no app thread
+08-03 20:30:07.249   670  1835 W ActivityTaskManager: callingPackage for (uid=2000, pid=4652) has no WPC
+08-03 20:30:07.251   670  1835 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10215, packageName = null, attributionTag = null, token = android.os.Binder@55734fa, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-03 20:30:07.262   670  1835 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+08-03 20:30:07.262   670  1835 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+08-03 20:30:07.262   670  1835 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+08-03 20:30:07.263   670  1835 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+08-03 20:30:07.270   670  1835 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+08-03 20:30:07.271   670  1835 I ActivityTaskManager: Add Task{e374fb #77 type=standard A=10215:com.kaflul.mathmaze.test} to hidden list because adding Task{a5c2a41 #78 type=standard A=10215:com.kaflul.mathmaze.test}
+08-03 20:30:07.272   670  1835 I ActivityTaskManager: START u0 {flg=0x10000000 xflg=0x5 cmp=com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+08-03 20:30:07.272   670  1427 D CompatChangeReporter: Compat change id reported: 377864165; UID 10215; state: ENABLED
+08-03 20:30:07.274   938  1114 V WindowManagerShell: Transition requested (#19): android.os.BinderProxy@9366839 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=78 effectiveUid=10215 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity } baseActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} topActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} origActivity=null realActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} numActivities=1 lastActiveTime=372846 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@501ee7e} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 54 - 0, 0) topActivityInfo=ActivityInfo{bf11fdf com.kaflul.mathmaze.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(108, 267 - 325, 699) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 432, 936) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 19 }
+08-03 20:30:07.274   938  1114 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+08-03 20:30:07.278   938  1171 W HWUI    : Image decoding logging dropped!
+08-03 20:30:07.279   938  1171 D SplashScreenView: Build android.window.SplashScreenView{6792bd7 V.E...... ......ID 0,0-0,0}
+08-03 20:30:07.279   938  1171 D SplashScreenView: Icon: view: android.widget.ImageView{c3d5cc4 V.ED..... ......I. 0,0-0,0 #1020542 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@bfc67ad size: 160
+08-03 20:30:07.279   938  1171 D SplashScreenView: Branding: view: android.view.View{edd0ae2 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+08-03 20:30:07.306   670   720 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10215, packageName = null, attributionTag = null, token = android.os.Binder@55734fa, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-03 20:30:07.321   455   455 D Zygote  : Forked child process 4656
+08-03 20:30:07.321   670   727 I ActivityManager: Start proc 4656:com.kaflul.mathmaze.test/u0a215 for next-top-activity {com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity}
+08-03 20:30:07.321   670   727 I ActivityManager: ProcessObserver broadcast disabled
+08-03 20:30:07.322  1052  1052 W SplitSelectStateCtor: Missing session instanceIds
+08-03 20:30:07.322  1052  1052 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+08-03 20:30:07.322   507  1035 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+08-03 20:30:07.322   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.334  4656  4656 I l.mathmaze.test: Late-enabling -Xcheck:jni
+08-03 20:30:07.337   670   872 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_UNSTOPPED on user 0
+08-03 20:30:07.337   670   872 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10215 package com.kaflul.mathmaze.test isStopped false
+08-03 20:30:07.338   938  1114 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=201
+08-03 20:30:07.363   670   717 V WindowManager: Sent Transition (#19) createdAt=08-03 20:30:07.263 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=78 effectiveUid=10215 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity } baseActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} topActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} origActivity=null realActivity=ComponentInfo{com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity} numActivities=1 lastActiveTime=372846 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{5350617 Task{a5c2a41 #78 type=standard A=10215:com.kaflul.mathmaze.test}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 54 - 0, 0) topActivityInfo=ActivityInfo{c38ca04 com.kaflul.mathmaze.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(108, 267 - 325, 699) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 432, 936) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 19 }
+08-03 20:30:07.363   670   717 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+08-03 20:30:07.363   670   717 V WindowManager:     info={id=19 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-03 20:30:07.363   670   717 V WindowManager:         {WCT{RemoteToken{5350617 Task{a5c2a41 #78 type=standard A=10215:com.kaflul.mathmaze.test}}} m=OPEN f=NONE leash=Surface(name=Task=78)/@0x86325b1 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},
+08-03 20:30:07.363   670   717 V WindowManager:         {WCT{RemoteToken{f8070a5 Task{d86dce6 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xdb29b22 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},
+08-03 20:30:07.363   670   717 V WindowManager:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{b5fc4f8 showWhenLocked=false})/@0xfe910ed sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0}
+08-03 20:30:07.363   670   717 V WindowManager:     ]}
+08-03 20:30:07.363   938  1490 V WindowManagerShell: onTransitionReady(transaction=2877628089537)
+08-03 20:30:07.364   938  1114 V WindowManagerShell: onTransitionReady (#19) android.os.BinderProxy@9366839: {id=19 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-03 20:30:07.364   938  1114 V WindowManagerShell:         {m=OPEN f=NONE leash=Surface(name=Task=78)/@0x7e40ce1 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},
+08-03 20:30:07.364   938  1114 V WindowManagerShell:         {m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xf0c3a06 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},
+08-03 20:30:07.364   938  1114 V WindowManagerShell:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{b5fc4f8 showWhenLocked=false})/@0x886b8c7 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0}
+08-03 20:30:07.364   938  1114 V WindowManagerShell:     ]}
+08-03 20:30:07.364  4656  4656 I l.mathmaze.test: Using CollectorTypeCMC GC.
+08-03 20:30:07.364   938  1114 V WindowManagerShell: Transition (#19) android.os.BinderProxy@9366839@0 ready while (#18) android.os.BinderProxy@64165f7@0 is still animating. Notify the animating transition in case they can be merged
+08-03 20:30:07.364   938  1114 V WindowManagerShell:    Merge into remote: RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@5d98be7, appThread = android.app.IApplicationThread$Stub$Proxy@1eb2394, debugName = QuickstepLaunchHome }
+08-03 20:30:07.366   938  1114 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#18) android.os.BinderProxy@64165f7@0
+08-03 20:30:07.367   670  1144 E IPCThreadState: Binder transaction failure. id: 207292, BR_*: 29189, error: -22 (Invalid argument)
+08-03 20:30:07.367   670  1144 W ActivityManager: pid 670 system sent binder code 7 with flags 1 to frozen apps and got error -32
+08-03 20:30:07.367   670   717 V WindowManager: Finish Transition (#18): created at 08-03 20:30:07.059 collect-started=0.02ms request-sent=0.083ms started=10.649ms ready=74.747ms sent=75.989ms commit=8.023ms finished=307.264ms
+08-03 20:30:07.367   670  1144 W WindowManager: Exception thrown during dispatchAppVisibility Window{319de02 u0 com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity EXITING}
+08-03 20:30:07.367   670  1144 W WindowManager: android.os.DeadObjectException
+08-03 20:30:07.367   670  1144 W WindowManager: 	at android.os.BinderProxy.transactNative(Native Method)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at android.os.BinderProxy.transact(BinderProxy.java:592)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at android.view.IWindow$Stub$Proxy.dispatchAppVisibility(IWindow.java:557)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.WindowState.sendAppVisibilityToClients(WindowState.java:3151)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.WindowContainer.sendAppVisibilityToClients(WindowContainer.java:1311)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.WindowToken.setClientVisible(WindowToken.java:389)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.ActivityRecord.setClientVisible(ActivityRecord.java:6650)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.ActivityRecord.commitVisibility(ActivityRecord.java:5561)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.Transition.finishTransition(Transition.java:1391)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.TransitionController.finishTransition(TransitionController.java:1029)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.finishTransition(WindowOrganizerController.java:496)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at android.window.IWindowOrganizerController$Stub.onTransact(IWindowOrganizerController.java:261)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.onTransact(WindowOrganizerController.java:223)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at android.os.Binder.execTransactInternal(Binder.java:1426)
+08-03 20:30:07.367   670  1144 W WindowManager: 	at android.os.Binder.execTransact(Binder.java:1365)
+08-03 20:30:07.367   670  1144 W Process : Unable to open /proc/4370/status
+--------- beginning of kernel
+08-03 20:30:07.371  1144  1144 I binder  : 1144:670 cannot find target node
+08-03 20:30:07.371  1144  1144 I binder  : 670:1144 transaction async to 0:0 failed 207292/29189/-22, size 64-0 line 3348
+08-03 20:30:07.371   938  1114 V WindowManagerShell: Playing animation for (#19) android.os.BinderProxy@9366839@0
+08-03 20:30:07.371   938  1114 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+08-03 20:30:07.371   938  1114 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=19 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=78)/@0x7e40ce1 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xf0c3a06 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{b5fc4f8 showWhenLocked=false})/@0x886b8c7 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0}]}
+08-03 20:30:07.372   938  1114 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@cb45da windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@6715a0b, appThread = android.app.IApplicationThread$Stub$Proxy@734e0e8, debugName = overlayBackTransition }}
+08-03 20:30:07.372   938  1114 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@97aa301, appThread = android.app.IApplicationThread$Stub$Proxy@aa7e5a6, debugName = LauncherToDream }}
+08-03 20:30:07.373   938  1114 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@5d98be7, appThread = android.app.IApplicationThread$Stub$Proxy@1eb2394, debugName = QuickstepLaunchHome }}
+08-03 20:30:07.373   938  1114 V WindowManagerShell:  Delegate animation for (#19) to null
+08-03 20:30:07.374   938  1114 V WindowManagerShell: start default transition animation, info = {id=19 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=78)/@0x7e40ce1 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xf0c3a06 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0 taskParent=-1},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{b5fc4f8 showWhenLocked=false})/@0x886b8c7 sb=Rect(0, 0 - 432, 936) eb=Rect(0, 0 - 432, 936) epz=Point(432, 936) d=0}]}
+08-03 20:30:07.374   938  1114 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@721f092 animAttr=0x13 type=OPEN isEntrance=false
+08-03 20:30:07.374   938  1114 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@3ac1a63 animAttr=0x12 type=OPEN isEntrance=true
+08-03 20:30:07.376   521   550 I adbd    : jdwp connection from 4656
+08-03 20:30:07.377  4656  4656 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-03 20:30:07.385   938  1114 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@46154e1
+08-03 20:30:07.403   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.405   938   945 I ndroid.systemui: Background concurrent mark compact GC freed 6245KB AllocSpace bytes, 4(80KB) LOS objects, 49% free, 19MB/39MB, paused 1.033ms,1.208ms total 132.889ms
+08-03 20:30:07.443   507   507 E BpTransactionCompletedListener: Failed to transact (-32)
+08-03 20:30:07.465  1052  1052 D RecentsView: onTaskRemoved: 77, not handling task stack changes
+08-03 20:30:07.466  1052  1052 D RecentsView: onTaskRemoved: 77, not handling task stack changes
+08-03 20:30:07.500  1052  1052 D WorkspaceRevealAnim: onAnimationEnd: workspace alpha = 1.0
+08-03 20:30:07.597  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50391, 75968102, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.597  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50391, 75968102, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.597  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50406, 58500229, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50406, 58500229, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50421, 75800521, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50421, 75800521, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50436, 97245647, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50436, 97245647, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50451, 111413481, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50451, 111413481, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50489, 87003358, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50489, 87003358, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50512, 96117943, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50512, 96117943, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50527, 110005818, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50527, 110005818, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50602, 62417238, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50602, 62417238, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed App frame:UNKNOWN: 3, 50639, 57412490, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.598  1052  1052 W FrameTracker: Missed SF frame:UNKNOWN: 3, 50639, 57412490, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME_FALLBACK>
+08-03 20:30:07.626  4656  4656 D nativeloader: Configuring clns-9 for other apk /data/app/~~U2XS4t8kfBAY7kLSiW8oow==/com.kaflul.mathmaze.test-XDQ-K6so-QDGhlADWqKHdw==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~U2XS4t8kfBAY7kLSiW8oow==/com.kaflul.mathmaze.test-XDQ-K6so-QDGhlADWqKHdw==/lib/arm64, permitted_path=/data:/mnt/expand:/data/user/0/com.kaflul.mathmaze.test
+08-03 20:30:07.634  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aa5678) locale list changing from [] to [en-US]
+08-03 20:30:07.640  4656  4656 V GraphicsEnvironment: Currently set values for:
+08-03 20:30:07.640  4656  4656 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+08-03 20:30:07.640  4656  4656 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+08-03 20:30:07.640  4656  4656 V GraphicsEnvironment: com.kaflul.mathmaze.test is not listed in per-application setting
+08-03 20:30:07.641  4656  4656 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+08-03 20:30:07.641  4656  4656 V GraphicsEnvironment: com.kaflul.mathmaze.test is not listed in ANGLE allowlist or settings, returning default
+08-03 20:30:07.641  4656  4656 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+08-03 20:30:07.677   938  1114 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#19) android.os.BinderProxy@9366839@0
+08-03 20:30:07.678   670  1842 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+08-03 20:30:07.699   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.699   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.701   938  1114 V WindowManagerShell: Track 0 became idle
+08-03 20:30:07.701  1052  1052 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+08-03 20:30:07.701   670   717 V WindowManager: Finish Transition (#19): created at 08-03 20:30:07.263 collect-started=0.018ms request-sent=8.922ms started=11.864ms ready=97.153ms sent=99.304ms commit=14.432ms finished=435.09ms
+08-03 20:30:07.701   938  1114 V WindowManagerShell: All active transition animations finished
+08-03 20:30:07.706  4656  4671 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+08-03 20:30:07.708  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aad058) locale list changing from [] to [en-US]
+08-03 20:30:07.711  1052  1052 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+08-03 20:30:07.747  4656  4671 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+08-03 20:30:07.747  4656  4671 I EGL_emulation: Opening libGLESv2_emulation.so
+08-03 20:30:07.749  4656  4656 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+08-03 20:30:07.751  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48ab3db8) locale list changing from [] to [en-US]
+08-03 20:30:07.754  4656  4671 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+08-03 20:30:07.754  4656  4671 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+08-03 20:30:07.757  4656  4656 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+08-03 20:30:07.805  4656  4656 D CompatChangeReporter: Compat change id reported: 377864165; UID 10215; state: ENABLED
+08-03 20:30:07.808  4656  4656 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+08-03 20:30:07.838  4656  4656 I l.mathmaze.test: hiddenapi: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/appcompat/widget/ViewUtils; (domain=app) using reflection: allowed
+08-03 20:30:07.869  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aaec78) locale list changing from [] to [en-US]
+08-03 20:30:07.869  4656  4656 I WebViewFactory: Loading com.google.android.webview version 133.0.6943.137 (code 694313732)
+08-03 20:30:07.871  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aaadf8) locale list changing from [] to [en-US]
+08-03 20:30:07.872  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aaa178) locale list changing from [] to [en-US]
+08-03 20:30:07.875  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aae958) locale list changing from [] to [en-US]
+08-03 20:30:07.881  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48ab3778) locale list changing from [] to [en-US]
+08-03 20:30:07.881  4656  4656 V ResourcesManager: The following library key has been added: ResourcesKey{ mHash=90fe9c62 mResDir=null mSplitDirs=[] mOverlayDirs=[] mLibDirs=[/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/WebViewGoogle.apk,/data/app/~~HIBWj-w2Ne9NR06lv4_Vdw==/com.google.android.trichromelibrary_694313732-xV7qgio3ffdseKnH3RfWCQ==/TrichromeLibrary.apk,/system_ext/framework/androidx.window.extensions.jar] mDisplayId=0 mOverrideConfig=v36 mCompatInfo={440dpi always-compat} mLoaders=[]}
+08-03 20:30:07.882  4656  4656 W l.mathmaze.test: Failed to find entry 'classes.dex': Entry not found
+08-03 20:30:07.882  4656  4656 D nativeloader: Configuring clns-10 for other apk /data/app/~~HIBWj-w2Ne9NR06lv4_Vdw==/com.google.android.trichromelibrary_694313732-xV7qgio3ffdseKnH3RfWCQ==/TrichromeLibrary.apk. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/lib/arm64:/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/WebViewGoogle.apk!/lib/arm64-v8a:/data/app/~~HIBWj-w2Ne9NR06lv4_Vdw==/com.google.android.trichromelibrary_694313732-xV7qgio3ffdseKnH3RfWCQ==/TrichromeLibrary.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand
+08-03 20:30:07.882  4656  4656 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+08-03 20:30:07.888  4656  4656 D nativeloader: Configuring clns-11 for other apk /data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/WebViewGoogle.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/lib/arm64:/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/WebViewGoogle.apk!/lib/arm64-v8a:/data/app/~~HIBWj-w2Ne9NR06lv4_Vdw==/com.google.android.trichromelibrary_694313732-xV7qgio3ffdseKnH3RfWCQ==/TrichromeLibrary.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand
+08-03 20:30:07.923  4656  4656 I cr_WVCFactoryProvider: version=133.0.6943.137 (694313732) minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+08-03 20:30:07.926  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48ab2af8) locale list changing from [] to [en-US]
+08-03 20:30:07.941  4656  4656 D nativeloader: Load /data/app/~~HIBWj-w2Ne9NR06lv4_Vdw==/com.google.android.trichromelibrary_694313732-xV7qgio3ffdseKnH3RfWCQ==/TrichromeLibrary.apk!/lib/arm64-v8a/libmonochrome_64.so using class loader ns clns-11 (caller=/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/WebViewGoogle.apk): ok
+08-03 20:30:07.943  4656  4656 D nativeloader: Load /system/lib64/libwebviewchromium_plat_support.so using class loader ns clns-11 (caller=/data/app/~~HTXeCGqRaAIqLRa-DS338A==/com.google.android.webview-t9XnS2WK-ViTcrK6EaUnbA==/WebViewGoogle.apk): ok
+08-03 20:30:07.957  4656  4656 I cr_LibraryLoader: Successfully loaded native library
+08-03 20:30:07.958  4656  4656 I cr_CachingUmaRecorder: Flushed 6 samples from 6 histograms, 0 samples were dropped.
+08-03 20:30:07.958  4656  4656 I cr_VariationsUtils: Loaded seed with age 8546s
+08-03 20:30:07.960  4656  4656 I cr_CombinedPProvider: #registerProvider() provider:WV.C8@7588bef isPolicyCacheEnabled:false policyProvidersSize:0
+08-03 20:30:07.961  4656  4656 I cr_PolicyProvider: #setManagerAndSource() 0
+08-03 20:30:07.964   670  1773 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 99002, packageName = null, attributionTag = null, token = android.os.Binder@55734fa, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-03 20:30:07.967  4656  4656 I cr_CombinedPProvider: #linkNativeInternal() 1
+08-03 20:30:07.967  4656  4656 I cr_AppResProvider: #getApplicationRestrictionsFromUserManager() Bundle[EMPTY_PARCEL]
+08-03 20:30:07.967  4656  4656 I cr_PolicyProvider: #notifySettingsAvailable() 0
+08-03 20:30:07.968  4656  4656 I cr_CombinedPProvider: #onSettingsAvailable() 0
+08-03 20:30:07.968  4656  4656 I cr_CombinedPProvider: #flushPolicies()
+08-03 20:30:07.969  1096  1096 D Zygote  : Forked child process 4680
+08-03 20:30:07.970  4680  4680 E libc    : SetHeapTaggingLevel: re-enabling tagging after it was disabled is not supported
+08-03 20:30:07.971  4680  4680 I ocessService0:0: Using CollectorTypeCMC GC.
+08-03 20:30:07.974  4680  4680 E ocessService0:0: Not starting debugger since process cannot load the jdwp agent.
+08-03 20:30:07.975  4680  4680 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-03 20:30:07.976   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.978   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.978   670  1144 I ActivityManager: Start proc 4680:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i2 for  {com.kaflul.mathmaze.test/org.chromium.content.app.SandboxedProcessService0:0}
+08-03 20:30:07.978   670  1144 I ActivityManager: ProcessObserver broadcast disabled
+08-03 20:30:07.979  1555  1555 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.safetynet.service.START xflg=0x4 pkg=com.google.android.gms }
+08-03 20:30:07.979  1555  1555 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.safetynet.service.START xflg=0x4 pkg=com.google.android.gms }
+08-03 20:30:07.981  4680  4680 D CompatChangeReporter: Compat change id reported: 242716250; UID 99002; state: ENABLED
+08-03 20:30:07.983  4680  4680 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+08-03 20:30:07.984  4680  4680 I ocessService0:0: AssetManager2(0x7b48ab1518) locale list changing from [] to [en-US]
+08-03 20:30:07.985  4680  4680 I LoadedApk: No resource references to update in package com.google.android.trichromelibrary
+08-03 20:30:07.987   224   224 W servicemanager: Isolated app with UID 99002 requested 'network_management', but the service is not allowed for isolated apps.
+08-03 20:30:07.988   224   224 W servicemanager: Isolated app with UID 99002 requested 'connectivity', but the service is not allowed for isolated apps.
+08-03 20:30:07.985  4680  4680 I cr_WebViewApkApp: version=133.0.6943.137 (694313732) minSdkVersion=29 isBundle=false processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+08-03 20:30:07.986   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:07.988  4680  4680 I cr_ChildProcessService: Creating new ChildProcessService pid=4680
+08-03 20:30:07.992   224   224 W servicemanager: Isolated app with UID 99002 requested 'content_capture', but the service is not allowed for isolated apps.
+08-03 20:30:08.004  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aa8558) locale list changing from [] to [en-US]
+08-03 20:30:08.005  4656  4691 W chromium: [WARNING:dns_config_service_android.cc(81)] Failed to read DnsConfig.
+08-03 20:30:08.006  4656  4656 I l.mathmaze.test: AssetManager2(0xb400007b48aae638) locale list changing from [] to [en-US]
+08-03 20:30:08.026  1555  1555 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.safebrowsing.SafeBrowsingService.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+08-03 20:30:08.026  1555  1555 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.safebrowsing.SafeBrowsingService.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+08-03 20:30:08.040   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:08.042  4656  4702 E chromium: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.kaflul.mathmaze.test/cache/WebView/Default/HTTP Cache/Code Cache/js: No such file or directory (2)
+08-03 20:30:08.042  4656  4702 E chromium: [ERROR:simple_index_file.cc(613)] Could not reconstruct index from disk
+08-03 20:30:08.046  4656  4693 E chromium: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.kaflul.mathmaze.test/cache/WebView/Default/HTTP Cache/Code Cache/wasm: No such file or directory (2)
+08-03 20:30:08.046  4656  4693 E chromium: [ERROR:simple_index_file.cc(613)] Could not reconstruct index from disk
+08-03 20:30:08.053   670  1773 D ActivityManager: sync unfroze 3595 com.google.android.webview:webview_service for 6
+08-03 20:30:08.054   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:08.070   452  1181 I netd    : tetherGetStats() -> {[]} <0.66ms>
+08-03 20:30:08.111  4656  4656 D Capacitor: Starting BridgeActivity
+08-03 20:30:08.129  4656  4656 D Capacitor: Registering plugin instance: CapacitorCookies
+08-03 20:30:08.133  4656  4656 D Capacitor: Registering plugin instance: WebView
+08-03 20:30:08.135  4656  4656 D Capacitor: Registering plugin instance: CapacitorHttp
+08-03 20:30:08.137  4656  4656 D Capacitor: Registering plugin instance: SystemBars
+08-03 20:30:08.152  4656  4656 W Capacitor: Unable to read file at path public/plugins
+08-03 20:30:08.157  4656  4656 D Capacitor: Loading app at https://localhost
+08-03 20:30:08.171  4656  4699 W cr_media: BLUETOOTH_CONNECT permission is missing.
+08-03 20:30:08.172  4656  4699 W cr_media: getBluetoothAdapter() requires BLUETOOTH permission
+08-03 20:30:08.172  4656  4699 W cr_media: registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+08-03 20:30:08.176  4656  4714 W libc    : Access denied finding property "vendor.mesa.log"
+08-03 20:30:08.176  4656  4714 W libc    : Access denied finding property "vendor.mesa.log.file"
+08-03 20:30:08.176  4656  4714 E MESA    : Failed to open rendernode: No such file or directory
+08-03 20:30:08.182  4680  4698 I cr_LibraryLoader: Successfully loaded native library
+08-03 20:30:08.187   224   224 W servicemanager: Isolated app with UID 99002 requested 'uimode', but the service is not allowed for isolated apps.
+08-03 20:30:08.182  4680  4698 I cr_CachingUmaRecorder: Flushed 2 samples from 2 histograms, 0 samples were dropped.
+08-03 20:30:08.184  4680  4698 W SystemServiceRegistry: No service published for: uimode
+08-03 20:30:08.186  4656  4714 W libc    : Access denied finding property "vendor.mesa.vk.trace.per.submit"
+08-03 20:30:08.186  4656  4714 W libc    : Access denied finding property "vendor.mesa.gallium.print.optio"
+08-03 20:30:08.186  4656  4714 W libc    : Access denied finding property "vendor.mesa.vk.trace.frame"
+08-03 20:30:08.189  4656  4656 D Capacitor: App started
+08-03 20:30:08.191  4656  4714 W libc    : Access denied finding property "vendor.mesa.vk.wsi.headless.swa"
+08-03 20:30:08.191  4656  4656 D Capacitor: App resumed
+08-03 20:30:08.195  4680  4698 W chromium: [WARNING:runtime_features.cc(560)] Fenced frames cannot be enabled in this configuration. Use --enable-features=FencedFrames instead.
+08-03 20:30:08.195  4680  4698 W chromium: [WARNING:runtime_features.cc(585)] Topics cannot be enabled in this configuration. Use --enable-features=BrowsingTopics in addition.
+08-03 20:30:08.195  4680  4698 W chromium: [WARNING:runtime_features.cc(606)] SharedStorage cannot be enabled in this configuration. Use --enable-features=SharedStorageAPI in addition.
+08-03 20:30:08.200  4656  4656 W HWUI    : Unknown dataspace 0
+08-03 20:30:08.203   224   224 I servicemanager: Caller(pid=4656,uid=10215,sid=u:r:untrusted_app:s0:c215,c256,c512,c768) Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+08-03 20:30:08.204   224   224 I servicemanager: Caller(pid=4656,uid=10215,sid=u:r:untrusted_app:s0:c215,c256,c512,c768) Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+08-03 20:30:08.203  4656  4656 D InsetsController: Setting requestedVisibleTypes to -12 (was -9)
+08-03 20:30:08.204  4656  4656 D InsetsController: Setting requestedVisibleTypes to -16 (was -12)
+08-03 20:30:08.204   670  1427 W WindowManager: Failed looking up window session=Session{6189042 4656:u0a10215} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6410 com.android.server.wm.Session.updateRequestedVisibleTypes:700 android.view.IWindowSession$Stub.onTransact:1023 
+08-03 20:30:08.206   224   224 I servicemanager: Caller(pid=4656,uid=10215,sid=u:r:untrusted_app:s0:c215,c256,c512,c768) Found mapper/ranchu in device VINTF manifest.
+08-03 20:30:08.225  4656  4726 I CameraManagerGlobal: Connecting to camera service
+08-03 20:30:08.240  4656  4692 D Capacitor: Handling local request: https://localhost/
+08-03 20:30:08.241   584   584 I AttributionAndPermissionUtils: checkPermission (forDataDelivery 0 startDataDelivery 0): Permission hard denied for client attribution [uid 10215, pid 4656, packageName "<unknown>"]
+08-03 20:30:08.242  4656  4656 D InsetsController: Setting requestedVisibleTypes to -528 (was -16)
+08-03 20:30:08.244   670  1842 D CoreBackPreview: Window{8c9e89 u0 com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@c4d9ca7, mPriority=-1, mIsAnimationCallback=false, mOverrideBehavior=0}
+08-03 20:30:08.249   507   558 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+08-03 20:30:08.254  4656  4714 W chromium: [WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+08-03 20:30:08.259  1239  1694 I FontLog : Received query name=Google Sans&weight=700&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+08-03 20:30:08.259  1239  1694 I FontLog : Query [name=Google Sans&weight=700&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.266  1239  1694 I FontLog : Font PFD returned from cache for {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.266  1239  1694 I FontLog : Fetch {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+08-03 20:30:08.330  1239  1694 I FontLog : Pulling font file for id = 27, cache size = 7 [CONTEXT service_id=132 ]
+08-03 20:30:08.333  1239  1694 I FontLog : Received query name=Noto Color Emoji Compat&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+08-03 20:30:08.334  1239  1694 I FontLog : Query [name=Noto Color Emoji Compat&weight=400&besteffort=false] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.334  1239  1694 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+08-03 20:30:08.340  1239  1694 I FontLog : Pulling font file for id = 28, cache size = 8 [CONTEXT service_id=132 ]
+08-03 20:30:08.352  1239  1694 I FontLog : Received query name=Google Sans Flex&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+08-03 20:30:08.355   670   717 I ActivityTaskManager: Displayed com.kaflul.mathmaze.test/com.kaflul.mathmaze.MainActivity for user 0: +1s105ms
+08-03 20:30:08.357  1239  1694 I FontLog : Query [name=Google Sans Flex&weight=400&besteffort=false] resolved to {Google Sans Flex, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.357  1239  1694 I FontLog : Font PFD returned from cache for {Google Sans Flex, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.357  1239  1694 I FontLog : Fetch {Google Sans Flex, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+08-03 20:30:08.360  1239  1694 I FontLog : Pulling font file for id = 29, cache size = 9 [CONTEXT service_id=132 ]
+08-03 20:30:08.423   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:08.432  1239  1694 I FontLog : Received query name=Google Sans&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+08-03 20:30:08.432  1239  1694 I FontLog : Query [name=Google Sans&weight=400&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.433  1239  1694 I FontLog : Font PFD returned from cache for {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.433  1239  1694 I FontLog : Fetch {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+08-03 20:30:08.435  1239  1694 I FontLog : Pulling font file for id = 30, cache size = 10 [CONTEXT service_id=132 ]
+08-03 20:30:08.440  4656  4694 D Capacitor: Handling local request: https://localhost/assets/loading/kaflul-loading-background-v1.webp
+08-03 20:30:08.442   670   810 I ImeTracker: com.kaflul.mathmaze.test:68decb4a: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+08-03 20:30:08.443  4656  4656 D InsetsController: hide(ime(), fromIme=false)
+08-03 20:30:08.443  4656  4656 I ImeTracker: com.kaflul.mathmaze.test:68decb4a: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+08-03 20:30:08.457   452  4743 I resolv  : GetAddrInfoHandler::run: {102 102 102 983142 10215 0}
+08-03 20:30:08.458  4656  4742 D Capacitor: Handling local request: https://localhost/assets/kaflul-logo-official.png
+08-03 20:30:08.458   452  4744 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-03 20:30:08.458   452  4744 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0xb40000716f0e97b0
+08-03 20:30:08.458   452  4744 I resolv  : doQuery: rcode=0, ancount=1, return value=63
+08-03 20:30:08.459   670  1842 I ImeTracker: system_server:e3abe5a0: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+08-03 20:30:08.458  1514  1514 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+08-03 20:30:08.459   452  4745 I resolv  : res_nmkquery: (QUERY, IN, A)
+08-03 20:30:08.462  4656  4702 D Capacitor: Handling local request: https://localhost/styles.css?v=20260619-6
+08-03 20:30:08.463  4656  4746 D Capacitor: Handling local request: https://localhost/ui/foundation.css?v=20260628-1
+08-03 20:30:08.464  1052  1052 D BaseDepthController: setSurface:
+08-03 20:30:08.464  1052  1052 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+08-03 20:30:08.464  1052  1052 D BaseDepthController: 	mBaseSurface: null
+08-03 20:30:08.464  1052  1052 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+08-03 20:30:08.464  1052  1052 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+08-03 20:30:08.464  1052  1052 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+08-03 20:30:08.464  1052  1052 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+08-03 20:30:08.464  1052  1052 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+08-03 20:30:08.465  1052  1052 D StatsLog: LAUNCHER_ONSTOP
+08-03 20:30:08.465   452  4747 I resolv  : GetAddrInfoHandler::run: {102 102 102 983142 10215 0}
+08-03 20:30:08.465   452  4749 I resolv  : res_nmkquery: (QUERY, IN, A)
+08-03 20:30:08.465   452  4749 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0xb40000722f0e0290
+08-03 20:30:08.465   452  4749 I resolv  : doQuery: rcode=0, ancount=1, return value=54
+08-03 20:30:08.465   452  4748 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-03 20:30:08.465   452  4748 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0xb40000716f0e8ef0
+08-03 20:30:08.465   452  4748 I resolv  : doQuery: rcode=0, ancount=1, return value=66
+08-03 20:30:08.465  1239  1694 I FontLog : Received query name=Google Sans&weight=500&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+08-03 20:30:08.465  1239  1694 I FontLog : Query [name=Google Sans&weight=500&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.465   670  1773 I AppWidgetServiceImpl: setAppWidgetHidden() 0
+08-03 20:30:08.465  4656  4697 D Capacitor: Handling local request: https://localhost/ui/mobile-overrides.css?v=20260628-1
+08-03 20:30:08.466  1052  1052 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+08-03 20:30:08.467  1514  1514 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+08-03 20:30:08.469  1514  1514 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.kaflul.mathmaze.test, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=12000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+08-03 20:30:08.469  1239  1694 I FontLog : Font PFD returned from cache for {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.470  1239  1694 I FontLog : Fetch {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+08-03 20:30:08.470  1514  1514 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+08-03 20:30:08.471   670  1144 W PackageConfigPersister: App-specific configuration not found for packageName: com.kaflul.mathmaze.test and userId: 0
+08-03 20:30:08.474   670   720 I ImeTracker: system_server:e3abe5a0: onCancelled at PHASE_SERVER_SHOULD_HIDE
+08-03 20:30:08.487   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:08.490  1239  1694 I FontLog : Pulling font file for id = 31, cache size = 11 [CONTEXT service_id=132 ]
+08-03 20:30:08.505  4656  4691 D Capacitor: Handling local request: https://localhost/leaderboard.css?v=20260803-world-1
+08-03 20:30:08.564   452  4745 I resolv  : res_nsend: used send_dg 51 terrno: 0
+08-03 20:30:08.564   452  4745 I resolv  : doQuery: rcode=0, ancount=1, return value=51
+08-03 20:30:08.600  4656  4746 D Capacitor: Handling local request: https://localhost/arcade-foundation.css?v=20260712-stage-intro-2
+08-03 20:30:08.600  4656  4746 D Capacitor: Handling local request: https://localhost/main-menu.css?v=20260803-character-nameplates-1
+08-03 20:30:08.600  4656  4746 D Capacitor: Handling local request: https://localhost/ui/secondary-screens.css?v=20260803-nickname-safety-1
+08-03 20:30:08.601  4656  4746 D Capacitor: Handling local request: https://localhost/ui/motion/motion.css?v=20260630-1
+08-03 20:30:08.601  4656  4746 D Capacitor: Handling local request: https://localhost/ui/game-number-pad.css?v=20260711-1
+08-03 20:30:08.604  4656  4694 D Capacitor: Handling local request: https://localhost/ui/tutorial.css?v=20260803-tutorial-anchored-flow-1
+08-03 20:30:08.604  4656  4702 W l.mathmaze.test: Long monitor contention with owner ThreadPoolForeg (4694) at java.lang.Object libcore.content.type.MimeMap$MemoizingSupplier.get()(MimeMap.java:475) waiters=1 in java.lang.Object libcore.content.type.MimeMap$MemoizingSupplier.get() for 140ms
+08-03 20:30:08.604  4656  4702 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-idle.png
+08-03 20:30:08.604  4656  4702 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-idle.png
+08-03 20:30:08.605  4656  4702 D Capacitor: Handling local request: https://localhost/assets/dark-enemy.png
+08-03 20:30:08.609  4656  4691 D Capacitor: Handling local request: https://localhost/ui/assets/asset-manifest.js?v=20260701-3
+08-03 20:30:08.609  4656  4691 D Capacitor: Handling local request: https://localhost/ui/character-animation-adapter.js?v=20260628-1
+08-03 20:30:08.609  4656  4691 D Capacitor: Handling local request: https://localhost/ui/motion/motion-system.js?v=20260630-1
+08-03 20:30:08.609  4656  4691 D Capacitor: Handling local request: https://localhost/ui/sounds/kaflul-audio-engine.js?v=20260728-ghost-blast-jank-1
+08-03 20:30:08.610  4656  4691 D Capacitor: Handling local request: https://localhost/ui/sounds/ui-sound-controller.js?v=20260713-input-1
+08-03 20:30:08.610  4656  4691 D Capacitor: Handling local request: https://localhost/poster-loader.js?v=20260705-loading-2
+08-03 20:30:08.610  4656  4691 D Capacitor: Handling local request: https://localhost/mobile-enhancements.js?v=20260711-keypad-1
+08-03 20:30:08.610  4656  4691 D Capacitor: Handling local request: https://localhost/mobile-screen-state.js?v=20260621-4
+08-03 20:30:08.610  4656  4691 D Capacitor: Handling local request: https://localhost/mobile-question-state.js?v=20260621-5
+08-03 20:30:08.611  4656  4691 D Capacitor: Handling local request: https://localhost/mobile-native-answer.js?v=20260711-keypad-1
+08-03 20:30:08.611  4656  4691 D Capacitor: Handling local request: https://localhost/maze-enhancements.js?v=20260622-1
+08-03 20:30:08.611  4656  4691 D Capacitor: Handling local request: https://localhost/maze-theme-system.js?v=20260703-1
+08-03 20:30:08.611  4656  4691 D Capacitor: Handling local request: https://localhost/maze-decor-system.js?v=20260703-1
+08-03 20:30:08.611  4656  4691 D Capacitor: Handling local request: https://localhost/maze-tile-topology.js?v=20260712-modular-v3-1
+08-03 20:30:08.612  4656  4691 D Capacitor: Handling local request: https://localhost/maze-axonometric-projection.js?v=20260712-axonometric-v1
+08-03 20:30:08.612  4656  4691 D Capacitor: Handling local request: https://localhost/game.js?v=20260803-character-nameplates-1
+08-03 20:30:08.612  4656  4691 D Capacitor: Handling local request: https://localhost/ui/tutorial.js?v=20260803-tutorial-anchored-flow-1
+08-03 20:30:08.613  4656  4697 D Capacitor: Handling local request: https://localhost/assets/bifly-menu.png
+08-03 20:30:08.614  4656  4697 D Capacitor: Handling local request: https://localhost/assets/bifly-player.png
+08-03 20:30:08.614  4656  4697 D Capacitor: Handling local request: https://localhost/assets/bifly-eat-prepare.png
+08-03 20:30:08.614  4656  4697 D Capacitor: Handling local request: https://localhost/assets/bifly-eat.png
+08-03 20:30:08.615  4656  4697 D Capacitor: Handling local request: https://localhost/assets/nabatick-idle-reference.png
+08-03 20:30:08.615  4656  4697 D Capacitor: Handling local request: https://localhost/assets/nabatick-eat-prepare-reference.png
+08-03 20:30:08.615  4656  4697 D Capacitor: Handling local request: https://localhost/assets/nabatick-eat-reference.png
+08-03 20:30:08.615  4656  4697 D Capacitor: Handling local request: https://localhost/assets/dark-enemy-angry.png
+08-03 20:30:08.616  4656  4697 D Capacitor: Handling local request: https://localhost/assets/dark-enemy-surprised.png
+08-03 20:30:08.617  4656  4702 D Capacitor: Handling local request: https://localhost/kaflul-systems.js?v=20260803-nickname-safety-1
+08-03 20:30:08.618  4656  4694 D Capacitor: Handling local request: https://localhost/assets/dark-enemy-sad.png
+08-03 20:30:08.618  4656  4746 D Capacitor: Handling local request: https://localhost/assets/math-maze-poster.png
+08-03 20:30:08.619  4656  4742 D Capacitor: Handling local request: https://localhost/assets/generated/kaflul-champion-trophy-v2.png
+08-03 20:30:08.619  4656  4742 D Capacitor: Handling local request: https://localhost/ui/icons.svg#score
+08-03 20:30:08.619  4656  4742 D Capacitor: Handling local request: https://localhost/ui/icons.svg?v=20260702-4#podium
+08-03 20:30:08.709  1239  1694 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+08-03 20:30:08.711  1239  1694 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+08-03 20:30:08.712  1239  1694 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+08-03 20:30:08.713  1239  1694 I FontLog : Pulling font file for id = 32, cache size = 12 [CONTEXT service_id=132 ]
+08-03 20:30:08.717  1239  1694 I FontLog : Pulling font file for id = 32, cache size = 12 [CONTEXT service_id=132 ]
+08-03 20:30:08.806  4656  4739 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.kaflul.mathmaze.test
+08-03 20:30:09.040   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:09.040   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:09.040   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:09.040   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:09.040   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:09.040   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:09.040   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:09.040   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:09.041   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:09.041   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:09.041   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:09.041   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:09.041   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:09.041   670   839 D WifiScoreCard: txRate: 3 txSpeed: 1
+08-03 20:30:09.041   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed -1
+08-03 20:30:09.041   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=2.5, 0.0, 0.0 rx=1.2 bcn=0 [on:0 tx:0 rx:0 period:3002] from screen [on:0 period:-928186095] score=60
+08-03 20:30:09.057  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:09.182  4656  4692 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-eat-prepare.png
+08-03 20:30:09.182  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-eat.png
+08-03 20:30:09.182  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-hit.png
+08-03 20:30:09.185  4656  4692 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-eat-prepare.png
+08-03 20:30:09.185  4656  4692 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-eat.png
+08-03 20:30:09.185  4656  4692 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-hit.png
+08-03 20:30:09.187  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-blink.png
+08-03 20:30:09.187  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:09.188  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-tap.png
+08-03 20:30:09.188  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/bifly-expression-victory.png
+08-03 20:30:09.188  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-blink.png
+08-03 20:30:09.190  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-tap.png
+08-03 20:30:09.191  4656  4692 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-victory.png
+08-03 20:30:09.192  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/nabatick-expression-selected.png
+08-03 20:30:09.194  4656  4692 D Capacitor: Handling local request: https://localhost/assets/bosses/boss-actor-direction-sheet.png
+08-03 20:30:09.194  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:09.194  4656  4692 D Capacitor: Handling local request: https://localhost/assets/reference/maze-worlds/world_lava.png
+08-03 20:30:09.194  4656  4697 D Capacitor: Handling local request: https://localhost/assets/generated/hazards/sun-eruption-trap-v1.png
+08-03 20:30:09.196  4656  4697 D Capacitor: Handling local request: https://localhost/assets/reference/maze-worlds/world_diamond.png
+08-03 20:30:09.196  4656  4691 D Capacitor: Handling local request: https://localhost/assets/maze/source-cc0-sbs/Wall-Stone_02-64x64.png
+08-03 20:30:09.197  4656  4692 D Capacitor: Handling local request: https://localhost/assets/reference/maze-worlds/world_ancient.png
+08-03 20:30:09.197  4656  4693 D Capacitor: Handling local request: https://localhost/assets/maze/source-cc0-sbs/Wall-Sand_02-64x64.png
+08-03 20:30:09.197  4656  4692 D Capacitor: Handling local request: https://localhost/assets/maze/source-cc0-sbs/Wall-Glass_03-64x64.png
+08-03 20:30:09.197  4656  4694 D Capacitor: Handling local request: https://localhost/assets/maze/world1/sun-garden/board-v3.png
+08-03 20:30:09.198  4656  4691 D Capacitor: Handling local request: https://localhost/assets/maze/lava/v4/walls.png
+08-03 20:30:09.198  4656  4691 D Capacitor: Handling local request: https://localhost/assets/maze/ancient/v4/walls.png
+08-03 20:30:09.199  4656  4691 D Capacitor: Handling local request: https://localhost/assets/maze/diamond/v4/walls.png
+08-03 20:30:09.204  4656  4694 D Capacitor: Handling local request: https://localhost/assets/generated/arcade-chest-open-v1.png
+08-03 20:30:09.204  4656  4692 D Capacitor: Handling local request: https://localhost/assets/generated/arcade-chest-closed-right-v1.png
+08-03 20:30:09.205  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:09.205  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:09.206  4656  4693 D Capacitor: Handling local request: https://localhost/assets/generated/arcade-chest-closed-v1.png
+08-03 20:30:09.208  4656  4691 D Capacitor: Handling local request: https://localhost/assets/generated/arcade-chest-open-right-v1.png
+08-03 20:30:09.429  4656  4660 I l.mathmaze.test: Compiler allocated 5111KB to compile void android.view.ViewRootImpl.performTraversals()
+08-03 20:30:09.610  1555  4758 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: vision.ocr:-1
+08-03 20:30:09.626  1555  4758 I ChimeraConfigurator: Detected pending changes for urgent request: [vision.ocr]. Pending module sets: container:2526359260400+mlkit.ocr.common+vision.ocr,tflite_dynamite:2605805025100400+tflite_dynamite
+08-03 20:30:09.633  1555  4758 I GmsDebugLogger: [73] 1801
+08-03 20:30:09.639  1555  4758 W ZappDownloader: No successful Zapp module downloads for requested modules [MlkitOcrCommon.optional:252635100400:permitMetered, TfliteDynamiteDynamite.integ:260580502100400:permitMetered, VisionOcr.optional:252635100000:permitMetered].
+08-03 20:30:09.639  1555  4758 I GmsDebugLogger: [30] [MlkitOcrCommon.optional:252635100400],[TfliteDynamiteDynamite.integ:260580502100400],[VisionOcr.optional:252635100000]
+08-03 20:30:09.640  1555  4758 W ChimeraConfigService: Retry attempt was throttled. [CONTEXT service_id=264 ]
+08-03 20:30:09.642  1555  4758 I GmsDebugLogger: [83] 1 [vision.ocr]
+08-03 20:30:09.644  1555  4757 W Vision  : Request for optional module download of ocr failed. Request again.
+08-03 20:30:09.645  1555  4757 W Vision  : Would have logged:
+08-03 20:30:09.645  1555  4757 W Vision  : # gpti@37884fe7
+08-03 20:30:09.647  1555  4757 I Vision  : Schedule retrying download ocr at 375222 with backoff 320 seconds
+08-03 20:30:10.059   458  3776 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 11589376
+08-03 20:30:10.059   458  3776 D android.hardware.audio@7.1-impl.ranchu: ~TinyalsaSink: joining consumeThread
+08-03 20:30:10.069   458  4537 D android.hardware.audio@7.1-impl.ranchu: consumeThread: exiting
+08-03 20:30:10.070   458  3776 D android.hardware.audio@7.1-impl.ranchu: ~TinyalsaSink: stopping PCM stream
+08-03 20:30:10.679  4656  4656 I Choreographer: Skipped 92 frames!  The application may be doing too much work on its main thread.
+08-03 20:30:10.682   452  4764 I resolv  : GetAddrInfoHandler::run: {102 102 102 983142 10215 0}
+08-03 20:30:10.684   452  4765 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-03 20:30:10.684   452  4765 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0xb4000071df0e3410
+08-03 20:30:10.684   452  4765 I resolv  : doQuery: rcode=0, ancount=0, return value=122
+08-03 20:30:10.684   452  4766 I resolv  : res_nmkquery: (QUERY, IN, A)
+08-03 20:30:10.684   452  4766 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0xb40000716f0e9430
+08-03 20:30:10.684   452  4766 I resolv  : doQuery: rcode=0, ancount=2, return value=73
+08-03 20:30:10.689  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.694  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.714  4656  4665 I HWUI    : Davey! duration=1596ms; Flags=0, FrameTimelineVsyncId=51905, IntendedVsync=374683715997, Vsync=374683715997, InputEventId=0, HandleInputStart=374684846928, AnimationStart=374684848011, PerformTraversalsStart=374685849678, DrawStart=374690465928, FrameDeadline=374717049329, FrameStartTime=374684843178, FrameInterval=16666666, WorkloadTarget=16666666, SyncQueued=374690771969, SyncStart=374691509011, IssueDrawCommandsStart=374691653053, SwapBuffers=376245015762, FrameCompleted=376280799762, DequeueBufferDuration=4208, QueueBufferDuration=424375, GpuCompleted=376280799762, SwapBuffersCompleted=376245803970, DisplayPresentTime=0, CommandSubmissionCompleted=376245015762, 
+08-03 20:30:10.730  4656  4691 D Capacitor: Handling local request: https://localhost/assets/bifly-player.png
+08-03 20:30:10.735  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.740  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.741  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.783  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.783  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.784  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.813  4656  4665 I HWUI    : Davey! duration=1620ms; Flags=0, FrameTimelineVsyncId=51919, IntendedVsync=374717049329, Vsync=376250382601, InputEventId=0, HandleInputStart=376257565762, AnimationStart=376257567137, PerformTraversalsStart=376261361637, DrawStart=376261404804, FrameDeadline=376350382597, FrameStartTime=376254442512, FrameInterval=16666666, WorkloadTarget=16666666, SyncQueued=376261581345, SyncStart=376301912512, IssueDrawCommandsStart=376301952804, SwapBuffers=376348572970, FrameCompleted=376378107262, DequeueBufferDuration=1958, QueueBufferDuration=585791, GpuCompleted=376378107262, SwapBuffersCompleted=376349780887, DisplayPresentTime=0, CommandSubmissionCompleted=376348572970, 
+08-03 20:30:10.829  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:10.830  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.056  1034  1262 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+08-03 20:30:11.222   922   922 D wpa_supplicant: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
+08-03 20:30:11.222   922   922 D wpa_supplicant: nl80211: Beacon loss event
+08-03 20:30:11.222   922   922 D wpa_supplicant: wlan0: Event BEACON_LOSS (53) received
+08-03 20:30:11.222   922   922 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+08-03 20:30:11.284   670  1713 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+08-03 20:30:11.734  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.736  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.768  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.771  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.827  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.829  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.893   670   839 D WifiNetworkSelector: Current connected network: 0
+08-03 20:30:11.893   670   839 V WifiConnectivityManager: No full band scan because current network is sufficient
+08-03 20:30:11.893   670   839 V WifiConnectivityManager: schedulePeriodicScanTimer intervalMs 160000
+08-03 20:30:11.894   670   843 I WifiScanningService: Registering listener= com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@e794f02 uid=1000 packageName=null workSource=WorkSource{1000}
+08-03 20:30:11.894   670   843 I WifiScanningService: start scan: ClientInfo[uid=1000, package=null, attributionTag=null, com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@e794f02] package null AttributionTag null
+08-03 20:30:11.894   670   843 I WifiScanningService: addSingleScanRequest: ClientInfo[uid=1000, package=null, attributionTag=null, com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@e794f02],WorkSource{1010}, ScanSettings {  type:HIGH ACCURACY band:unspecified ignoreLocationSettings:false period:0 reportEvents:3 numBssidsPerScan:0 maxScansToCache:0 rnrSetting:2 6GhzPscOnlyEnabled:false channels:[ 2447  ]  } 
+08-03 20:30:11.894   670   843 D WifiScanningService: replySucceeded onSuccess
+08-03 20:30:11.899   922   922 D wpa_supplicant: nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+08-03 20:30:11.899   922   922 D wpa_supplicant: wlan0: nl80211: Scan trigger
+08-03 20:30:11.899   922   922 D wpa_supplicant: wlan0: Event SCAN_STARTED (47) received
+08-03 20:30:11.899   922   922 D wpa_supplicant: wlan0: External program started a scan
+08-03 20:30:11.920  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.922  4680  4729 E chromium: [ERROR:tile_manager.cc(937)] WARNING: tile memory limits exceeded, some content may not draw
+08-03 20:30:11.952   922   922 D wpa_supplicant: nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+08-03 20:30:11.952   922   922 D wpa_supplicant: wlan0: nl80211: New scan results available
+08-03 20:30:11.952   922   922 D wpa_supplicant: nl80211: Scan probed for SSID ''
+08-03 20:30:11.952   922   922 D wpa_supplicant: nl80211: Scan included frequencies: 2447
+08-03 20:30:11.952   922   922 D wpa_supplicant: wlan0: Event SCAN_RESULTS (3) received
+08-03 20:30:11.952   922   922 D wpa_supplicant: nl80211: Received scan results (1 BSSes)
+08-03 20:30:11.952   922   922 D wpa_supplicant: nl80211: Scan results indicate BSS status with 00:13:10:85:fe:01 as associated
+08-03 20:30:11.952   922   922 D wpa_supplicant: wlan0: BSS: Start scan result update 10
+08-03 20:30:11.952   922   922 D wpa_supplicant: BSS: last_scan_res_used=1/32
+08-03 20:30:11.952   922   922 D wpa_supplicant: wlan0: New scan results available (own=0 ext=1)
+08-03 20:30:11.952   922   922 D wpa_supplicant: wlan0: Do not use results from externally requested scan operation for network selection
+08-03 20:30:11.952   922   922 D wpa_supplicant: p2p-dev-wlan0: Updating scan results from sibling
+08-03 20:30:11.952   922   922 D wpa_supplicant: nl80211: Received scan results (1 BSSes)
+08-03 20:30:11.952   922   922 D wpa_supplicant: p2p-dev-wlan0: BSS: Start scan result update 10
+08-03 20:30:11.952   922   922 D wpa_supplicant: BSS: last_scan_res_used=1/32
+08-03 20:30:11.952   922   922 D wpa_supplicant: p2p-dev-wlan0: New scan results available (own=0 ext=1)
+08-03 20:30:11.952   922   922 D wpa_supplicant: p2p-dev-wlan0: Do not use results from externally requested scan operation for network selection
+08-03 20:30:11.952   670  1773 D WifiNl80211Manager: Scan result ready event
+08-03 20:30:11.952   670  1773 D WifiNative: Scan result ready event
+08-03 20:30:11.958   670   843 D WifiNl80211Manager: get 1 scan results from wificond
+08-03 20:30:11.958   670   843 D WifiNative: get 1 scan results from wificond
+08-03 20:30:11.959  1239  1694 I WifiScanner: onFullResults
+08-03 20:30:11.959  1239  1694 I WifiScanner: onFullResults
+08-03 20:30:11.959   670   843 I WifiScanningService: singleScanResults: ClientInfo[uid=1000, package=null, attributionTag=null, com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@e794f02],results=1
+08-03 20:30:11.959   670   843 I WifiScanningService: singleScanResults listener: ClientInfo[uid=1000, package=android, attributionTag=null, com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@1104f34],results=1
+08-03 20:30:11.959   670   843 I WifiScanningService: singleScanResults listener: ClientInfo[uid=1000, package=android, attributionTag=null, com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@a19dad2],results=1
+08-03 20:30:11.959   670   843 I WifiScanningService: singleScanResults listener: ClientInfo[uid=1000, package=android, attributionTag=null, com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@198455],results=1
+08-03 20:30:11.959   670   843 I WifiScanningService: singleScanResults listener: ClientInfo[uid=10144, package=com.google.android.gms, attributionTag=network_location_provider, android.net.wifi.IWifiScannerListener$Stub$Proxy@505d43f],results=1
+08-03 20:30:11.959   670   839 D WifiScanRequestProxy: Scan results received
+08-03 20:30:11.959   670   839 D WifiScanRequestProxy: Received 1 scan results
+08-03 20:30:11.960   670   843 I WifiScanningService: singleScanResults listener: ClientInfo[uid=10144, package=com.google.android.gms, attributionTag=fused_location_provider, android.net.wifi.IWifiScannerListener$Stub$Proxy@f6b5895],results=1
+08-03 20:30:11.960   670   843 I WifiScanningService: Unregistering listener= com.android.server.wifi.scanner.WifiScannerInternal$ScanListener@e794f02 uid=1000 packageName=null workSource=WorkSource{1000}
+08-03 20:30:11.962   670   839 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+08-03 20:30:11.962   670   839 V WifiConnectivityManager: AllSingleScanListener onResults: start network selection
+08-03 20:30:11.962   670   839 V WifiConfigManager: getSavedNetworkFromScanResult Found "AndroidWifi"NONE for AndroidWifi[[ESS]]
+08-03 20:30:11.962   670   839 D WifiNetworkSelector: Current connected network: 0
+08-03 20:30:11.962   670   839 D WifiNetworkSelector: wlan0: Current connected network already sufficient. Skip network selection.
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog: updateAvailableNetworks: size = 0
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog: mWatchdogFeatureEnabled: true
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog: mWatchdogAllowedToTrigger: true
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog: mRecentAvailableNetworks: 1
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog:  00:13:10:85:fe:01: "AndroidWifi" HasEverConnected: true, Failures: {Assoc: 0, Auth: 0, Dhcp: 0}, Age: 4
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog: mSsidFailureCount:
+08-03 20:30:11.963   670   839 V WifiLastResortWatchdog: "AndroidWifi": 1, HasEverConnected: true, Failures: {Assoc: 0, Auth: 0, Dhcp: 0}
+08-03 20:30:11.963   670   839 V WifiConnectivityManager: AllSingleScanListener:  No candidates
+08-03 20:30:12.042   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:12.042   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:12.042   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:12.042   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:12.042   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:12.043   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:12.043   670   839 D WifiScoreCard: txRate: 10 txSpeed: 1
+08-03 20:30:12.043   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed 1
+08-03 20:30:12.043   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=9.4, 0.0, 0.0 rx=8.5 bcn=0 [on:0 tx:0 rx:0 period:3002] from screen [on:0 period:-928183093] score=60
+08-03 20:30:13.262  4656  4767 D ProfileInstaller: Installing profile for com.kaflul.mathmaze.test
+08-03 20:30:13.428   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:13.428   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:13.428   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10168} in 1ms
+08-03 20:30:13.428   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:13.429   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:13.430   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={20168} in 2ms
+08-03 20:30:13.528   452  1181 I netd    : setProcSysNet(4, 2, wlan0, retrans_time_ms, 750) <0.18ms>
+08-03 20:30:13.530   452  1181 I netd    : setProcSysNet(4, 2, wlan0, ucast_solicit, 10) <0.98ms>
+08-03 20:30:13.530   452  1181 I netd    : setProcSysNet(6, 2, wlan0, retrans_time_ms, 750) <0.02ms>
+08-03 20:30:13.530   452  1181 I netd    : setProcSysNet(6, 2, wlan0, ucast_solicit, 10) <0.01ms>
+08-03 20:30:14.042   670   725 D OomAdjuster: Not killing cached processes
+08-03 20:30:14.434  4768  4768 W dumpsys : Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: gfxinfo
+08-03 20:30:14.435   670  1773 D ActivityManager: freezer override set to true
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 1969 com.android.imsserviceentitlement for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 1650 com.android.printspooler for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2024 com.android.localtransport for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2201 com.google.android.apps.wallpaper for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2204 com.android.traceur for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2260 com.google.android.onetimeinitializer for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2299 com.android.camera2 for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2418 com.android.devicediagnostics for 19
+08-03 20:30:14.436   670  1773 D ActivityManager: sync unfroze 2437 com.android.dynsystem for 19
+08-03 20:30:14.437   670  1773 D ActivityManager: sync unfroze 2473 com.android.managedprovisioning for 19
+08-03 20:30:14.439   670  1773 D ActivityManager: sync unfroze 2474 com.android.dynsystem:dynsystem for 19
+08-03 20:30:14.440   670  1773 D ActivityManager: sync unfroze 2628 com.android.shell for 19
+08-03 20:30:14.440   670  1773 D ActivityManager: sync unfroze 2649 com.google.android.apps.restore for 19
+08-03 20:30:14.441   670  1773 D ActivityManager: sync unfroze 2717 com.google.android.apps.safetyhub for 19
+08-03 20:30:14.441   670  1773 D ActivityManager: sync unfroze 1576 com.google.android.deskclock for 19
+08-03 20:30:14.441   670  1773 D ActivityManager: sync unfroze 2858 com.google.android.configupdater for 19
+08-03 20:30:14.441   670  1773 D ActivityManager: sync unfroze 2901 com.google.android.federatedcompute for 19
+08-03 20:30:14.442   670  1773 D ActivityManager: sync unfroze 2935 com.google.android.healthconnect.controller for 19
+08-03 20:30:14.442   670  1773 D ActivityManager: sync unfroze 2962 com.google.android.ondevicepersonalization.services for 19
+08-03 20:30:14.442   670  1773 D ActivityManager: sync unfroze 2984 com.google.android.packageinstaller for 19
+08-03 20:30:14.442   670  1773 D ActivityManager: sync unfroze 3021 com.google.android.projection.gearhead:car for 19
+08-03 20:30:14.443   670  1773 D ActivityManager: sync unfroze 3182 com.android.keychain for 19
+08-03 20:30:14.443   670  1773 D ActivityManager: sync unfroze 3006 com.google.android.partnersetup for 19
+08-03 20:30:14.443   670  1773 D ActivityManager: sync unfroze 3051 com.android.externalstorage for 19
+08-03 20:30:14.444   670  1773 D ActivityManager: sync unfroze 1984 android.process.media for 19
+08-03 20:30:14.444   670  1773 D ActivityManager: sync unfroze 3277 com.google.android.accessibility.switchaccess for 19
+08-03 20:30:14.444   670  1773 D ActivityManager: sync unfroze 3323 com.google.android.cellbroadcastreceiver for 19
+08-03 20:30:14.446   670  1773 D ActivityManager: sync unfroze 3345 com.google.android.marvin.talkback for 19
+08-03 20:30:14.446   670  1773 D ActivityManager: sync unfroze 3331 com.google.android.gms.ui for 19
+08-03 20:30:14.447   670  1773 D ActivityManager: sync unfroze 2125 com.google.android.as.oss for 19
+08-03 20:30:14.447   670  1773 D ActivityManager: sync unfroze 2873 com.google.android.rkpdapp for 19
+08-03 20:30:14.447   670  1773 D ActivityManager: sync unfroze 3105 com.google.android.settings.intelligence for 19
+08-03 20:30:14.447   670  1773 D ActivityManager: sync unfroze 1366 com.google.android.dialer for 19
+08-03 20:30:14.448   670  1773 D ActivityManager: sync unfroze 3035 com.google.android.photopicker for 19
+08-03 20:30:14.450   670  1773 D ActivityManager: sync unfroze 3071 com.google.android.apps.photos for 19
+08-03 20:30:14.450   670  1773 D ActivityManager: sync unfroze 3142 com.android.chrome for 19
+08-03 20:30:14.450   670  1773 D ActivityManager: sync unfroze 3216 com.google.android.documentsui for 19
+08-03 20:30:14.451   670  1773 D ActivityManager: sync unfroze 2526 com.android.providers.calendar for 19
+08-03 20:30:14.451   670  1773 D ActivityManager: sync unfroze 2767 com.google.android.calendar for 19
+08-03 20:30:14.451   670  1773 D ActivityManager: sync unfroze 1725 com.google.android.googlequicksearchbox:search for 19
+08-03 20:30:14.451   670  1773 D ActivityManager: sync unfroze 2665 com.google.android.gms.unstable for 19
+08-03 20:30:14.451   670  1773 D ActivityManager: sync unfroze 2541 com.google.android.tts for 19
+08-03 20:30:14.451   670  1773 D ActivityManager: sync unfroze 4140 android.process.acore for 19
+08-03 20:30:14.452   670  1773 D ActivityManager: sync unfroze 1321 com.google.android.permissioncontroller for 19
+08-03 20:30:14.592   670  1773 D ActivityManager: freezer override set to false
+08-03 20:30:15.046   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:15.046   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:15.046   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:15.046   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:15.046   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:15.047   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:15.047   670   839 D WifiScoreCard: txRate: 5 txSpeed: 1
+08-03 20:30:15.047   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed 1
+08-03 20:30:15.047   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=4.3, 0.0, 0.0 rx=4.6 bcn=0 [on:0 tx:0 rx:0 period:3004] from screen [on:0 period:-928180089] score=60
+08-03 20:30:17.242   670   793 D ActivityManager: freezing 2099 com.google.android.apps.messaging
+08-03 20:30:17.689  1626  2091 I bdee    : (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+08-03 20:30:18.050   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:18.050   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:18.050   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:18.050   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:18.050   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:18.050   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:18.050   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:18.050   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:18.051   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:18.051   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:18.051   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:18.051   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:18.051   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:18.051   670   839 D WifiScoreCard: txRate: 2 txSpeed: 1
+08-03 20:30:18.051   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed -1
+08-03 20:30:18.051   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=1.5, 0.0, 0.0 rx=1.6 bcn=0 [on:0 tx:0 rx:0 period:3004] from screen [on:0 period:-928177085] score=60
+08-03 20:30:18.281  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-player.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:18.282  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-idle-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:18.282  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-eat-prepare-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:18.282  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-eat-prepare.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:18.282  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-eat.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:18.282  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-eat-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:18.401   670   793 D ActivityManager: freezing 3595 com.google.android.webview:webview_service
+08-03 20:30:18.403   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:18.403   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:18.403   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10168} in 1ms
+08-03 20:30:18.760  1595  1775 D PickerSyncController: Attempting to enable cloud media queries.
+08-03 20:30:18.760  1595  1775 D PickerSyncLockManager: Trying to acquire lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@537b29a[Unlocked]. Lock Name = CLOUD_SYNC_LOCK. Threads that may be waiting to acquire this lock = [] with timeout.
+08-03 20:30:18.760  1595  1775 D CloseableReentrantLock: Successfully acquired lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@537b29a[Locked by thread com.android.providers.media.internal.modules.utils.BackgroundThread]. Lock Name = CLOUD_SYNC_LOCK. Threads that may be waiting to acquire this lock = []
+08-03 20:30:18.760  1595  1775 D PickerSyncLockManager: Trying to acquire lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@8753110[Unlocked]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = [] with timeout.
+08-03 20:30:18.760  1595  1775 D CloseableReentrantLock: Successfully acquired lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@8753110[Locked by thread com.android.providers.media.internal.modules.utils.BackgroundThread]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+08-03 20:30:18.760  1595  1775 D CloseableReentrantLock: Successfully released lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@8753110[Unlocked]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+08-03 20:30:18.760  1595  1775 D PickerSyncLockManager: Trying to acquire lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@8753110[Unlocked]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = [] with timeout.
+08-03 20:30:18.760  1595  1775 D CloseableReentrantLock: Successfully acquired lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@8753110[Locked by thread com.android.providers.media.internal.modules.utils.BackgroundThread]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+08-03 20:30:18.760  1595  1775 D PickerSyncController: getSyncRequestParams() CLOUD, auth=com.google.android.apps.photos.cloudpicker
+08-03 20:30:18.763   670   891 D BackgroundInstallControlService: Package event received: 0
+08-03 20:30:18.775  3071  3967 W libc    : Access denied finding property "ro.debuggable"
+08-03 20:30:18.772  3071  3071 W binder:3071_6: type=1400 audit(0.0:31): avc:  denied  { read } for  name="u:object_r:userdebug_or_eng_prop:s0" dev="tmpfs" ino=366 scontext=u:r:untrusted_app:s0:c163,c256,c512,c768 tcontext=u:object_r:userdebug_or_eng_prop:s0 tclass=file permissive=0 app=com.google.android.apps.photos
+08-03 20:30:18.776  1595  1775 D PickerSyncController:    Latest ID/Gen=null/0
+08-03 20:30:18.776  1595  1775 D PickerSyncController:    Cached ID/Gen=null/-1
+08-03 20:30:18.776  1595  1775 D CloseableReentrantLock: Successfully released lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@8753110[Unlocked]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+08-03 20:30:18.776  1595  1775 D CloseableReentrantLock: Successfully released lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@537b29a[Unlocked]. Lock Name = CLOUD_SYNC_LOCK. Threads that may be waiting to acquire this lock = []
+08-03 20:30:18.776  1595  1775 D PickerSyncController: Error occurred, remaining retry count: 1
+08-03 20:30:18.776  1595  1775 D PickerSyncController: java.lang.IllegalStateException: Unexpected Latest Media Collection Info: ID/Gen=null/0
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at com.android.providers.media.photopicker.PickerSyncController.getSyncRequestParamsLocked(PickerSyncController.java:1554)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at com.android.providers.media.photopicker.PickerSyncController.getSyncRequestParams(PickerSyncController.java:1514)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at com.android.providers.media.photopicker.PickerSyncController.maybeEnableCloudMediaQueries(PickerSyncController.java:355)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at com.android.providers.media.photopicker.PickerSyncController.lambda$tryEnablingCloudMediaQueries$0(PickerSyncController.java:286)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at com.android.providers.media.photopicker.PickerSyncController.$r8$lambda$igHbLHRBgFxI5G0Bp5TN28PcQJ4(PickerSyncController.java:0)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at com.android.providers.media.photopicker.PickerSyncController$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at android.os.Handler.handleCallback(Handler.java:995)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at android.os.Handler.dispatchMessage(Handler.java:103)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at android.os.Looper.loopOnce(Looper.java:248)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at android.os.Looper.loop(Looper.java:338)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+08-03 20:30:18.776  1595  1775 D PickerSyncController: Schedule enable cloud media query task.
+08-03 20:30:18.787   452  1181 I netd    : tetherGetStats() -> {[]} <0.63ms>
+08-03 20:30:19.008   938  1170 E FrameTracker: force finish cuj, time out: J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:JANK_APPLICATION, 51055, 44179442, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51113, 70977443, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51113, 70977443, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51128, 86402444, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51128, 86402444, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51143, 103475612, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51143, 103475612, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:JANK_APPLICATION, 51187, 103407821, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51245, 100638906, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51245, 100638906, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:JANK_APPLICATION, 51296, 86881532, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:JANK_COMPOSER, 51384, 67116993, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51399, 79639369, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51399, 79639369, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51422, 86040829, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51422, 86040829, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed App frame:UNKNOWN: 3, 51437, 102110871, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.008   938  1170 W FrameTracker: Missed SF frame:UNKNOWN: 3, 51437, 102110871, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-03 20:30:19.417   922   922 D wpa_supplicant: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
+08-03 20:30:19.417   922   922 D wpa_supplicant: nl80211: Beacon loss event
+08-03 20:30:19.417   922   922 D wpa_supplicant: wlan0: Event BEACON_LOSS (53) received
+08-03 20:30:19.417   922   922 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+08-03 20:30:19.455   670  1842 D OomAdjuster: Not killing cached processes
+08-03 20:30:21.056   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:21.056   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:21.056   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:21.056   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:21.056   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:21.056   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:21.056   670   839 D WifiScoreCard: txRate: 1 txSpeed: 1
+08-03 20:30:21.056   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed -1
+08-03 20:30:21.056   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.5, 0.0, 0.0 rx=0.6 bcn=0 [on:0 tx:0 rx:0 period:3005] from screen [on:0 period:-928174080] score=60
+08-03 20:30:21.062  1034  1262 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+08-03 20:30:23.452  1555  1555 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.safetynet.service.START xflg=0x4 pkg=com.google.android.gms }
+08-03 20:30:23.516  1555  1555 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.safebrowsing.SafeBrowsingService.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+08-03 20:30:23.540   452  1181 I netd    : tetherGetStats() -> {[]} <1.25ms>
+08-03 20:30:23.572  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-player.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:23.572  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-idle-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:23.572  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-eat-prepare-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:23.572  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-eat-prepare.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:23.572  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-eat.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:23.572  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-eat-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:24.058   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:24.058   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:24.058   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:24.058   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:24.058   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:24.058   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:24.058   670   839 D WifiScoreCard: txRate: 1 txSpeed: 1
+08-03 20:30:24.058   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed -1
+08-03 20:30:24.058   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.2, 0.0, 0.0 rx=0.2 bcn=0 [on:0 tx:0 rx:0 period:3002] from screen [on:0 period:-928171078] score=60
+08-03 20:30:24.618   670   793 D ActivityManager: freezing 1969 com.android.imsserviceentitlement
+08-03 20:30:24.619   670   793 D ActivityManager: freezing 1650 com.android.printspooler
+08-03 20:30:24.620   670   793 D ActivityManager: freezing 2024 com.android.localtransport
+08-03 20:30:24.620   670   793 D ActivityManager: freezing 2201 com.google.android.apps.wallpaper
+08-03 20:30:24.620   670   793 D ActivityManager: freezing 2204 com.android.traceur
+08-03 20:30:24.620   670   793 D ActivityManager: freezing 2260 com.google.android.onetimeinitializer
+08-03 20:30:24.620   670   793 D ActivityManager: freezing 2299 com.android.camera2
+08-03 20:30:24.621   670   793 D ActivityManager: freezing 2418 com.android.devicediagnostics
+08-03 20:30:24.621   670   793 D ActivityManager: freezing 2437 com.android.dynsystem
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2473 com.android.managedprovisioning
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2474 com.android.dynsystem:dynsystem
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2628 com.android.shell
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2649 com.google.android.apps.restore
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2717 com.google.android.apps.safetyhub
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 1576 com.google.android.deskclock
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2858 com.google.android.configupdater
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2901 com.google.android.federatedcompute
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2935 com.google.android.healthconnect.controller
+08-03 20:30:24.622   670   793 D ActivityManager: freezing 2962 com.google.android.ondevicepersonalization.services
+08-03 20:30:24.623   670   793 D ActivityManager: freezing 2984 com.google.android.packageinstaller
+08-03 20:30:24.623   670   793 D ActivityManager: freezing 3021 com.google.android.projection.gearhead:car
+08-03 20:30:24.623   670   793 D ActivityManager: freezing 3182 com.android.keychain
+08-03 20:30:24.623   670   793 D ActivityManager: freezing 3006 com.google.android.partnersetup
+08-03 20:30:24.624   670   793 D ActivityManager: freezing 3051 com.android.externalstorage
+08-03 20:30:24.624   670   793 D ActivityManager: freezing 1984 android.process.media
+08-03 20:30:24.624   670   793 D ActivityManager: freezing 3277 com.google.android.accessibility.switchaccess
+08-03 20:30:24.624   670   793 D ActivityManager: freezing 3323 com.google.android.cellbroadcastreceiver
+08-03 20:30:24.625   670   793 D ActivityManager: freezing 3345 com.google.android.marvin.talkback
+08-03 20:30:24.625   670   793 D ActivityManager: freezing 3331 com.google.android.gms.ui
+08-03 20:30:24.625   670   793 D ActivityManager: freezing 2125 com.google.android.as.oss
+08-03 20:30:24.626   670   793 D ActivityManager: freezing 2873 com.google.android.rkpdapp
+08-03 20:30:24.626   670   793 D ActivityManager: freezing 3105 com.google.android.settings.intelligence
+08-03 20:30:24.626   670   793 D ActivityManager: freezing 1366 com.google.android.dialer
+08-03 20:30:24.626   670   793 D ActivityManager: freezing 3035 com.google.android.photopicker
+08-03 20:30:24.627   670   793 D ActivityManager: freezing 3142 com.android.chrome
+08-03 20:30:24.627   670   793 D ActivityManager: freezing 3216 com.google.android.documentsui
+08-03 20:30:24.627   670   793 D ActivityManager: freezing 2526 com.android.providers.calendar
+08-03 20:30:24.627   670   793 D ActivityManager: freezing 2767 com.google.android.calendar
+08-03 20:30:24.628   670   793 D ActivityManager: freezing 1725 com.google.android.googlequicksearchbox:search
+08-03 20:30:24.628   670   793 D ActivityManager: freezing 2665 com.google.android.gms.unstable
+08-03 20:30:24.630   670   793 D ActivityManager: freezing 2541 com.google.android.tts
+08-03 20:30:24.630   670   793 D ActivityManager: freezing 1321 com.google.android.permissioncontroller
+08-03 20:30:24.631   670   793 D ActivityManager: freezing 4140 android.process.acore
+08-03 20:30:24.631   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10140} in 1ms
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10118} in 0ms
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10175} in 0ms
+08-03 20:30:24.632   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10130} in 0ms
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10143} in 1ms
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10162} in 0ms
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10097} in 0ms
+08-03 20:30:24.633   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10111} in 0ms
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={2000} in 1ms
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10134} in 0ms
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10136} in 0ms
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.634   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10164} in 0ms
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10138} in 0ms
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10200} in 1ms
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10195} in 0ms
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10199} in 0ms
+08-03 20:30:24.635   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10104} in 0ms
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10133} in 1ms
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10135} in 0ms
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10108} in 0ms
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.636   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10095} in 0ms
+08-03 20:30:24.637   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.637   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.637   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10158} in 0ms
+08-03 20:30:24.638   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.638   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.638   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10198} in 2ms
+08-03 20:30:24.638   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.639   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.639   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10160} in 1ms
+08-03 20:30:24.639   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.639   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.639   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10132} in 0ms
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10211} in 0ms
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10137} in 1ms
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10142} in 0ms
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.640   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10189} in 0ms
+08-03 20:30:24.641   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.641   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.641   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10154} in 0ms
+08-03 20:30:24.641   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10099} in 1ms
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10105} in 1ms
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10152} in 0ms
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.642   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10149} in 0ms
+08-03 20:30:24.643   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.643   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.643   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10193} in 0ms
+08-03 20:30:24.643   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:24.643   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:24.643   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10094} in 1ms
+08-03 20:30:24.670   670  1773 D OomAdjuster: Not killing cached processes
+08-03 20:30:24.818   452  1181 I netd    : tetherGetStats() -> {[]} <0.61ms>
+08-03 20:30:27.062   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:27.062   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:27.062   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:27.062   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:27.062   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:27.062   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:27.062   670   839 D WifiScoreCard: txRate: 1 txSpeed: 1
+08-03 20:30:27.062   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed -1
+08-03 20:30:27.063   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3005] from screen [on:0 period:-928168073] score=60
+08-03 20:30:27.350   922   922 D wpa_supplicant: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
+08-03 20:30:27.350   922   922 D wpa_supplicant: nl80211: Beacon loss event
+08-03 20:30:27.350   922   922 D wpa_supplicant: wlan0: Event BEACON_LOSS (53) received
+08-03 20:30:27.350   922   922 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+08-03 20:30:29.215  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-player.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:29.215  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-idle-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:29.215  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-eat-prepare-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:29.215  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-eat-prepare.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:29.216  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/bifly-eat.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:29.216  4656  4656 W Capacitor/Console: File: https://localhost/ - Line 0 - Msg: The resource https://localhost/assets/nabatick-eat-reference.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+08-03 20:30:29.811   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:29.811   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:29.811   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={10163} in 1ms
+08-03 20:30:29.811   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-03 20:30:29.812   670   845 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-03 20:30:29.812   670   845 D InetDiagMessage: Destroyed live tcp sockets for uids={20163} in 0ms
+08-03 20:30:30.067   670   839 D WifiClientModeImpl[10870:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+08-03 20:30:30.067   670   839 D WifiDataStall: tx tput in kbps: 11000
+08-03 20:30:30.068   670   839 D WifiDataStall: rx tput in kbps: 11000
+08-03 20:30:30.068   670   839 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+08-03 20:30:30.068   670   839 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+08-03 20:30:30.068   670   839 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 480069220 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+08-03 20:30:30.068   670   839 D WifiScoreCard: txRate: 1 txSpeed: 1
+08-03 20:30:30.068   670   839 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1026339397 RSSI -50 txSpeed -1
+08-03 20:30:30.068   670   839 D WifiClientModeImpl[10870:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 2 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3005] from screen [on:0 period:-928165068] score=60
+08-03 20:30:31.060  1034  1262 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+08-03 20:30:32.656  4820  4820 W dumpsys : Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: gfxinfo
+08-03 20:30:32.657   670  1773 D ActivityManager: freezer override set to true
+08-03 20:30:32.658   670  1773 D ActivityManager: sync unfroze 1969 com.android.imsserviceentitlement for 19
+08-03 20:30:32.658   670  1773 D ActivityManager: sync unfroze 1650 com.android.printspooler for 19
+08-03 20:30:32.658   670  1773 D ActivityManager: sync unfroze 2024 com.android.localtransport for 19
+08-03 20:30:32.660   670  1773 D ActivityManager: sync unfroze 2201 com.google.android.apps.wallpaper for 19
+08-03 20:30:32.660   670  1773 D ActivityManager: sync unfroze 2204 com.android.traceur for 19
+08-03 20:30:32.660   670  1773 D ActivityManager: sync unfroze 2260 com.google.android.onetimeinitializer for 19
+08-03 20:30:32.660   670  1773 D ActivityManager: sync unfroze 2299 com.android.camera2 for 19
+08-03 20:30:32.661   670  1773 D ActivityManager: sync unfroze 2418 com.android.devicediagnostics for 19
+08-03 20:30:32.663   670  1773 D ActivityManager: sync unfroze 2437 com.android.dynsystem for 19
+08-03 20:30:32.666   670  1773 D ActivityManager: sync unfroze 2473 com.android.managedprovisioning for 19
+08-03 20:30:32.667   670  1773 D ActivityManager: sync unfroze 2474 com.android.dynsystem:dynsystem for 19
+08-03 20:30:32.667   670  1773 D ActivityManager: sync unfroze 2628 com.android.shell for 19
+08-03 20:30:32.667   670  1773 D ActivityManager: sync unfroze 2649 com.google.android.apps.restore for 19
+08-03 20:30:32.667   670  1773 D ActivityManager: sync unfroze 2717 com.google.android.apps.safetyhub for 19
+08-03 20:30:32.667   670  1773 D ActivityManager: sync unfroze 1576 com.google.android.deskclock for 19
+08-03 20:30:32.667   670  1773 D ActivityManager: sync unfroze 2858 com.google.android.configupdater for 19
+08-03 20:30:32.668   670  1773 D ActivityManager: sync unfroze 2901 com.google.android.federatedcompute for 19
+08-03 20:30:32.668   670  1773 D ActivityManager: sync unfroze 2935 com.google.android.healthconnect.controller for 19
+08-03 20:30:32.668   670  1773 D ActivityManager: sync unfroze 2962 com.google.android.ondevicepersonalization.services for 19
+08-03 20:30:32.668   670  1773 D ActivityManager: sync unfroze 2984 com.google.android.packageinstaller for 19
+08-03 20:30:32.670   670  1773 D ActivityManager: sync unfroze 3021 com.google.android.projection.gearhead:car for 19
+08-03 20:30:32.672   670  1773 D ActivityManager: sync unfroze 3182 com.android.keychain for 19
+08-03 20:30:32.674   670  1773 D ActivityManager: sync unfroze 3006 com.google.android.partnersetup for 19
+08-03 20:30:32.674   670  1773 D ActivityManager: sync unfroze 3051 com.android.externalstorage for 19
+08-03 20:30:32.674   670  1773 D ActivityManager: sync unfroze 1984 android.process.media for 19
+08-03 20:30:32.674   670  1773 D ActivityManager: sync unfroze 3277 com.google.android.accessibility.switchaccess for 19
+08-03 20:30:32.675   670  1773 D ActivityManager: sync unfroze 3323 com.google.android.cellbroadcastreceiver for 19
+08-03 20:30:32.675   670  1773 D ActivityManager: sync unfroze 3345 com.google.android.marvin.talkback for 19
+08-03 20:30:32.675   670  1773 D ActivityManager: sync unfroze 3331 com.google.android.gms.ui for 19
+08-03 20:30:32.675   670  1773 D ActivityManager: sync unfroze 2125 com.google.android.as.oss for 19
+08-03 20:30:32.676   670  1773 D ActivityManager: sync unfroze 2873 com.google.android.rkpdapp for 19
+08-03 20:30:32.676   670  1773 D ActivityManager: sync unfroze 3105 com.google.android.settings.intelligence for 19
+08-03 20:30:32.676   670  1773 D ActivityManager: sync unfroze 1366 com.google.android.dialer for 19
+08-03 20:30:32.676   670  1773 D ActivityManager: sync unfroze 3035 com.google.android.photopicker for 19
+08-03 20:30:32.676   670  1773 D ActivityManager: sync unfroze 3142 com.android.chrome for 19
+08-03 20:30:32.676   670  1773 D ActivityManager: sync unfroze 3216 com.google.android.documentsui for 19
+08-03 20:30:32.677  1366  1794 D WM-DelayedWorkTracker: Scheduling work 7aef904d-8d29-43f2-af26-e496cb462402
+08-03 20:30:32.677   670  1773 D ActivityManager: sync unfroze 2526 com.android.providers.calendar for 19
+08-03 20:30:32.677  1366  1794 D WM-GreedyScheduler: Starting tracking for 7aef904d-8d29-43f2-af26-e496cb462402
+08-03 20:30:32.678   670  1773 D ActivityManager: sync unfroze 2767 com.google.android.calendar for 19
+08-03 20:30:32.678   670  1773 D ActivityManager: sync unfroze 1725 com.google.android.googlequicksearchbox:search for 19
+08-03 20:30:32.679   670  1773 D ActivityManager: sync unfroze 2665 com.google.android.gms.unstable for 19
+08-03 20:30:32.679   670  1773 D ActivityManager: sync unfroze 2541 com.google.android.tts for 19
+08-03 20:30:32.679   670  1773 D ActivityManager: sync unfroze 1321 com.google.android.permissioncontroller for 19
+08-03 20:30:32.680   670  1773 D ActivityManager: sync unfroze 2099 com.google.android.apps.messaging for 19
+08-03 20:30:32.680   670  1773 D ActivityManager: sync unfroze 3595 com.google.android.webview:webview_service for 19
+08-03 20:30:32.680   670  1773 D ActivityManager: sync unfroze 4140 android.process.acore for 19
+08-03 20:30:32.683  1725  2203 I adxq    : dispose()
+08-03 20:30:32.686   670  1842 D ConnectivityService: Returning BLOCKED NetworkInfo to uid=10142
+08-03 20:30:32.688  1366  1743 D WM-ConstraintTracker: fkd: initial state = NetworkState(isConnected=false, isValidated=false, isMetered=true, isNotRoaming=true)
+08-03 20:30:32.688  1366  1743 D WM-NetworkStateTracker: Registering network callback
+08-03 20:30:32.688   670  1144 D ConnectivityService: requestNetwork for uid/pid:10142/1366 activeRequest: null callbackRequest: 157 [NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10142 RequestorUid: 10142 RequestorPkg: com.google.android.dialer UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOST|NC
+08-03 20:30:32.689   670   793 D ActivityManager: Skipping freeze for process 1725 com.google.android.googlequicksearchbox:search curAdj = 915(override)
+08-03 20:30:32.691   670   839 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10142 RequestorUid: 10142 RequestorPkg: com.google.android.dialer UnderlyingNetworks: Null] ]
+08-03 20:30:32.691   670   839 V WifiNetworkFactory: Accepted network request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10142 RequestorUid: 10142 RequestorPkg: com.google.android.dialer UnderlyingNetworks: Null] ]
+08-03 20:30:32.691   670   845 D ConnectivityService: NetReassign [158 : null → 102] [c 0] [a 1] [i 2]
+08-03 20:30:32.692   670   839 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10142 RequestorUid: 10142 RequestorPkg: com.google.android.dialer UnderlyingNetworks: Null] ]
+08-03 20:30:32.692   670   839 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10142 RequestorUid: 10142 RequestorPkg: com.google.android.dialer UnderlyingNetworks: Null] ]
+08-03 20:30:32.692   670   839 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10142 RequestorUid: 10142 RequestorPkg: com.google.android.dialer UnderlyingNetworks: Null] ]
+08-03 20:30:32.695  1366  1854 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&VALIDATED&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 2Mbps, Tx Link speed: 2Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+08-03 20:30:32.696  1366  1380 D WM-GreedyScheduler: Constraints not met: Cancelling work ID WorkGenerationalId(workSpecId=7aef904d-8d29-43f2-af26-e496cb462402, generation=0)
+08-03 20:30:32.696  1366  1380 D WM-GreedyScheduler: Constraints met: Scheduling work ID WorkGenerationalId(workSpecId=7aef904d-8d29-43f2-af26-e496cb462402, generation=0)
+08-03 20:30:32.698  1366  1380 D WM-Processor: fgy: processing WorkGenerationalId(workSpecId=7aef904d-8d29-43f2-af26-e496cb462402, generation=0)
+08-03 20:30:32.703  1366  1366 D WM-WorkerWrapper: Starting work for com.google.apps.tiktok.contrib.work.TikTokListenableWorker
+08-03 20:30:32.705   670   793 D ActivityManager: Skipping freeze for process 2665 com.google.android.gms.unstable curAdj = 915(override)
+08-03 20:30:32.707  1366  1383 I DialerSingletonScopedExternalsLogging: com.google.android.dialershared.externals.logging.SingletonScopedExternalsLogging.recordCallMethodInvocation:75 event: TIKTOK_WORK_EXECUTION_MONITOR_ON_WORK_STARTED, function parameters: [7aef904d-8d29-43f2-af26-e496cb462402,com.android.dialer.voicemail.service.impl.VvmTaskWorker], return value: <empty>
+08-03 20:30:32.707  1366  1383 I DialerVvmTaskWorkerDelegate: com.android.dialer.voicemail.service.impl.scheduler.VvmTaskWorker$VvmTaskWorkerDelegate.executeVvmJob:191 Beginning execution of job ID: 2
+08-03 20:30:32.707  1366  1383 I DialerSingletonScopedExternalsLogging: com.google.android.dialershared.externals.logging.SingletonScopedExternalsLogging.recordCallMethodInvocation:66 event: VVM_TASK_WORKER_EXECUTE_VVM_JOB, function parameters: [2], return value: <empty> [CONTEXT enable_persistent_logger=true ]
+08-03 20:30:32.711  1366  4826 I DialerVvmCarrierIdentifierImpl: com.android.dialer.voicemail.service.impl.carriermapping.VvmCarrierIdentifierImpl.getVvmCarrierNameBlocking:120 Looking up carrier name for phone account handle: 1 [CONTEXT ratelimit_period="1 MINUTES" skipped=23 ]
+08-03 20:30:32.711  1366  1384 I DialerRestVoicemailEnabledFn: com.android.dialer.voicemail.service.impl.vvmclients.rest.RestVoicemailEnabledFn.isEnabled:67 device is supported, enabling. [CONTEXT ratelimit_period="1 MINUTES" skipped=155 ]
+08-03 20:30:32.731  1366  1384 I DialerVvmExecutorImpl: com.android.dialer.voicemail.service.impl.scheduler.VvmExecutorImpl.execute:229 Beginning VVM action: SYNC with retryCount: 3 for ComponentInfo{com.android.phone/com.android.services.telephony.TelephonyConnectionService}, 1, UserHandle{0} [CONTEXT enable_persistent_logger=true ]
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: com.android.dialer.voicemail.service.impl.vvmclients.rest.RestVvmCarrierService.getMsisdn:420 Retrieved phone number in an unexpected format: +15551234567 [CONTEXT disable_client_error_logging=true ]
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: zxo: MEDIUM
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at a.cN(PG:15)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at pxq.apply(PG:489)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at zcp.apply(PG:13)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at aaka.d(PG:3)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at aakb.run(PG:38)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at umz.run(PG:7)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at aadu.run(PG:44)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at tdt.run(PG:78)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at cp.run(PG:143)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at java.lang.Thread.run(Thread.java:1119)
+08-03 20:30:32.735  1366  1383 E DialerRestVvmCarrierService: 	at uoe.run(PG:61)
+08-03 20:30:32.735  1366  1383 I DialerAndroidAutoStatusLookupImpl: com.android.dialer.androidautostatuslookup.impl.AndroidAutoStatusLookupImpl.isAndroidAutoConnected:97 Android Auto connected in 0 mode [CONTEXT ratelimit_period="1 MINUTES" skipped=5 ]
+08-03 20:30:32.735  1366  1383 I DialerLogcatLoggingBindings: com.android.dialer.logging.logcat.LogcatLoggingBindings.logImpression:54 Impression: ANDROID_API_UNEXPECTED_PHONE_NUMBER_FORMAT
+08-03 20:30:32.737  1366  1383 I DialerLogcatLoggingBindings: com.android.dialer.logging.logcat.LogcatLoggingBindings.logImpression:47 Impression: VVM_SYNC_STARTED
+08-03 20:30:32.737  1366  1383 W DialerGbaCredentialProvider: com.android.dialer.voicemail.service.impl.vvmclients.rest.GbaCredentialProvider$1.onAuthenticationFailure:93 GBA failed with reason: 1 [CONTEXT disable_client_error_logging=true ]
+08-03 20:30:32.737  1366  1384 I DialerSingletonScopedExternalsLogging: com.google.android.dialershared.externals.logging.SingletonScopedExternalsLogging.recordCallMethodInvocation:75 event: TELEPHONY_BOOTSTRAP_AUTHENTICATION_REQUEST, function parameters: [], return value: Default
+08-03 20:30:32.737  1366  1384 I DialerLoggingConsentCheckerImpl: com.google.android.dialershared.logging.consent.impl.LoggingConsentCheckerImpl.getConsent:72 timer stop with success, timer present: false
+08-03 20:30:32.738  1366  1383 W DialerVvmExecutorImpl: com.android.dialer.voicemail.service.impl.scheduler.VvmExecutorImpl.executeWorkOnCarrierService:444 Could not complete vvm work with action: SYNC. Error: [GeneralFailureReason: UNSPECIFIED, RestFailureReason: GBA_AUTHENTICATION_FAILURE_FEATURE_NOT_SUPPORTED, OmtpFailureReason: OMTP_UNSPECIFIED] for ComponentInfo{com.android.phone/com.android.services.telephony.TelephonyConnectionService}, 1, UserHandle{0} [CONTEXT disable_client_error_logging=true enable_persistent_logger=true ]
+08-03 20:30:32.738  1366  1384 I DialerVvmExecutorImpl: com.android.dialer.voicemail.service.impl.scheduler.VvmExecutorImpl.executeWork:194 VvmResult is: # pug@1db0ddb for ComponentInfo{com.android.phone/com.android.services.telephony.TelephonyConnectionService}, 1, UserHandle{0}
+08-03 20:30:32.741  1366  1384 I DialerLoggingConsentCheckerImpl: com.google.android.dialershared.logging.consent.impl.LoggingConsentCheckerImpl.getConsent:72 timer stop with success, timer present: false
+08-03 20:30:32.743  1366  1384 I DialerLoggingConsentCheckerImpl: com.google.android.dialershared.logging.consent.impl.LoggingConsentCheckerImpl.getConsent:72 timer stop with success, timer present: false
+08-03 20:30:32.747  1366  1384 I DialerSingletonScopedExternalsLogging: com.google.android.dialershared.externals.logging.SingletonScopedExternalsLogging.recordCallMethodInvocation:75 event: TIKTOK_WORK_EXECUTION_MONITOR_ON_WORK_FINISHED, function parameters: [7aef904d-8d29-43f2-af26-e496cb462402,com.android.dialer.voicemail.service.impl.VvmTaskWorker], return value: Failure
+08-03 20:30:32.750  1366  1748 I WM-WorkerWrapper: Worker result FAILURE for Work [ id=7aef904d-8d29-43f2-af26-e496cb462402, tags={ com.google.apps.tiktok.contrib.work.TikTokListenableWorker,1,SYNC,TikTokWorker#com.android.dialer.voicemail.service.impl.VvmTaskWorker } ]
+08-03 20:30:32.756  1366  1384 I DialerLoggingConsentCheckerImpl: com.google.android.dialershared.logging.consent.impl.LoggingConsentCheckerImpl.getConsent:72 timer stop with success, timer present: false
+08-03 20:30:32.759  1366  1366 D WM-Processor: fgy 7aef904d-8d29-43f2-af26-e496cb462402 executed; reschedule = false
+08-03 20:30:32.759  1366  1366 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=7aef904d-8d29-43f2-af26-e496cb462402, generation=0)
+08-03 20:30:32.762  1366  1380 D WM-GreedyScheduler: Cancelling work ID 7aef904d-8d29-43f2-af26-e496cb462402
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: 67c413d3-ab2c-48bd-a1b6-47a52f65d7a2}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: cccab44e-7b1e-49ea-b475-3068d4b57092}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: 845281da-17fe-41e5-bef6-bdbc0015be28}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: ad189e7c-fe2b-4232-b52a-ed7bee697726}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: aa433404-d842-439c-907b-0a5839756222}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: c6f66092-e377-4d19-84e4-6f96414b5f12}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-GreedyScheduler: Ignoring {WorkSpec: 202e15f2-dd56-4277-a81e-5bf1f1c00773}. Requires device idle.
+08-03 20:30:32.763  1366  1380 D WM-NetworkStateTracker: Unregistering network callback
+08-03 20:30:32.811   670  1773 D ActivityManager: freezer override set to false
+08-03 20:30:32.818  2099  2751 I ForwardSyncCache: reclaimMemory: Clearing caches
+08-03 20:30:32.819  2099  2751 W BugleSpam: trimming memory: closing msg model.
+08-03 20:30:32.820  2099  2751 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+08-03 20:30:32.846   235   235 I logd    : logdr: UID=2000 GID=2000 PID=4829 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns

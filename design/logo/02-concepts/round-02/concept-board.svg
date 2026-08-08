@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1080" role="img" aria-label="Round 02 — twelve Hebrew aleph and kaf monogram concepts">
+  <rect width="1440" height="1080" fill="#fff"/>
+  <g fill="#000" font-family="sans-serif" font-size="18" font-weight="700" letter-spacing="2">
+    <text x="40" y="50">01</text>
+    <text x="400" y="50">02</text>
+    <text x="760" y="50">03</text>
+    <text x="1120" y="50">04</text>
+    <text x="40" y="410">05</text>
+    <text x="400" y="410">06</text>
+    <text x="760" y="410">07</text>
+    <text x="1120" y="410">08</text>
+    <text x="40" y="770">09</text>
+    <text x="400" y="770">10</text>
+    <text x="760" y="770">11</text>
+    <text x="1120" y="770">12</text>
+  </g>
+
+  <g transform="translate(60 70)">
+    <g fill="#000">
+      <path d="M27 42c48-9 87-1 112 23 17 16 25 34 25 55s-8 39-25 55c-25 24-64 32-112 23l7-33c33 6 58 1 75-14 12-10 18-20 18-31s-6-21-18-31c-17-15-42-20-75-14z"/>
+      <path d="M105 31h29l79 178h-33z"/>
+      <path d="M210 46h30l-70 86-22-19z"/>
+      <path d="M91 190h32l49-74-23-17z"/>
+    </g>
+    <path d="m151 101 23 20-21 25-23-21z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(420 70)">
+    <path d="M23 34h142c32 0 52 20 52 52v68c0 32-20 52-52 52H23v-39h133c14 0 22-8 22-22V95c0-14-8-22-22-22H23z" fill="#000"/>
+    <path d="m137 55 19-6 42 134-21 7zM202 67l18 15-45 57-17-15zM124 180l19 8 34-55-18-12z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(780 70)">
+    <path d="M20 31h139v178H20z" fill="#000"/>
+    <path d="M39 67c52-12 86 8 86 53s-34 65-86 53" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="square"/>
+    <path d="M117 25h31l77 190h-36zM207 41h33l-70 87-25-20zM87 205h35l54-83-26-17z" fill="#000"/>
+  </g>
+
+  <g transform="translate(1140 70)">
+    <path d="M32 63c58-13 96 8 96 57s-38 70-96 57" fill="none" stroke="#000" stroke-width="30" stroke-linecap="square"/>
+    <path d="m105 39 91 165" fill="none" stroke="#000" stroke-width="30" stroke-linecap="square"/>
+    <path d="m219 52-67 81" fill="none" stroke="#000" stroke-width="27" stroke-linecap="square"/>
+    <path d="m145 105 22 20-19 24-23-21z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(60 430)">
+    <g fill="#000">
+      <path d="M24 39h105l24 35H24z"/>
+      <path d="M24 201h105l24-35H24z"/>
+      <path d="m115 31 34-7 67 184-37 8z"/>
+      <path d="M208 44h32l-71 84-24-20z"/>
+      <path d="m96 198 31 15 48-83-28-16z"/>
+    </g>
+    <path d="m142 100 27 23-24 29-27-25z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(420 430)">
+    <path d="M25 38c47-10 86-3 113 20 20 17 30 38 30 62s-10 45-30 62c-27 23-66 30-113 20l8-36c32 7 57 2 74-12 14-11 21-22 21-34s-7-23-21-34c-17-14-42-19-74-12z" fill="#000"/>
+    <path d="M119 30h48c21 0 37 11 46 31l20 45-35 15-19-42c-3-7-8-10-16-10h-44zM153 116l30-13 50 107h-40z" fill="#000"/>
+    <path d="m161 92 21 19-20 25-22-20z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(780 430)">
+    <g fill="#000">
+      <path d="M24 42h92c20 0 35 10 44 29l13 27-30 14-12-24c-4-8-10-12-19-12H24z"/>
+      <path d="M24 198h92c20 0 35-10 44-29l13-27-30-14-12 24c-4 8-10 12-19 12H24z"/>
+      <path d="M111 28h31l79 184h-36z"/>
+      <path d="M209 43h31l-68 84-24-20z"/>
+    </g>
+    <path d="m146 100 25 22-23 28-26-23z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(1140 430)">
+    <path d="M28 31h139c33 0 51 20 51 51v76c0 31-18 51-51 51H28v-44h128c13 0 20-7 20-20V95c0-13-7-20-20-20H28z" fill="#000"/>
+    <path d="m132 54 24-8 44 139-26 8zM204 65l22 18-50 60-20-17z" fill="#fff"/>
+    <path d="m145 116 22 19-19 24-23-20z" fill="#000"/>
+  </g>
+
+  <g transform="translate(60 790)">
+    <g fill="#000">
+      <path d="M26 48c42-8 76-1 100 20 16 14 24 31 24 51 0 18-7 34-21 48-22 22-56 31-103 25l6-31c31 4 54-1 69-14 10-9 15-18 15-28 0-11-5-20-16-29-15-12-38-16-68-11z"/>
+      <path d="M112 23h25l75 194h-31z"/>
+      <path d="M208 38h32l-72 91-23-19z"/>
+      <path d="M82 205h34l54-82-24-17z"/>
+    </g>
+    <path d="m145 99 24 21-21 26-25-22z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(420 790)">
+    <path d="M22 37h108c25 0 43 12 54 34l16 32-34 16-14-28c-5-10-13-15-25-15H22zM22 203h108c25 0 43-12 54-34l16-32-34-16-14 28c-5 10-13 15-25 15H22z" fill="#000"/>
+    <path d="M115 30h30l76 180h-35zM211 43h29l-68 84-23-19z" fill="#fff"/>
+    <path d="m145 99 26 23-23 29-27-24z" fill="#000"/>
+  </g>
+
+  <g transform="translate(780 790)">
+    <path d="M24 41h100l30 42 46-42h40l-70 82 52 81h-40l-34-55c-7 18-19 33-37 43-23 13-52 16-87 9l7-34c29 6 52 1 68-14 10-9 15-20 15-33s-5-24-15-33c-16-15-39-20-68-14z" fill="#000"/>
+    <path d="m131 96 24 22-21 27-25-23z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(1140 790)">
+    <g fill="#000">
+      <path d="M24 35h107l27 40H24z"/>
+      <path d="M24 205h107l27-40H24z"/>
+      <path d="m108 28 37-8 73 192-40 9z"/>
+      <path d="M207 42h33l-72 87-25-21z"/>
+    </g>
+    <path d="m142 98 29 24-25 31-30-26z" fill="#fff"/>
+  </g>
+</svg>
