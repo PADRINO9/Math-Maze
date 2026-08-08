@@ -1,0 +1,52 @@
+{
+  "purpose": "Kaflul background-music direction selection",
+  "productionChanged": false,
+  "sampleRate": 24000,
+  "candidates": [
+    {
+      "number": 1,
+      "title": "הרפתקת ארקייד",
+      "bpm": 116,
+      "feeling": "נועזת, משחקית ומקדמת קדימה; הוק מרימבה וכלי הקשה קלים.",
+      "wav": "01-arcade-adventure.wav",
+      "durationSeconds": 49.655,
+      "rms": 0.14466
+    },
+    {
+      "number": 2,
+      "title": "פאנק מצויר",
+      "bpm": 124,
+      "feeling": "קופצנית, מצחיקה ובטוחה בעצמה; בס מסונקף וסטאבים קצרים.",
+      "wav": "02-cartoon-funk.wav",
+      "durationSeconds": 46.452,
+      "rms": 0.14392
+    },
+    {
+      "number": 3,
+      "title": "מסע ים־תיכוני",
+      "bpm": 112,
+      "feeling": "הרפתקה חמה ומקומית; פריטות עוד ודופק דרבוקה שובבי.",
+      "wav": "03-mediterranean-quest.wav",
+      "durationSeconds": 51.429,
+      "rms": 0.14301
+    },
+    {
+      "number": 4,
+      "title": "גיבור פיקסל",
+      "bpm": 128,
+      "feeling": "ארקייד קלאסי ואנרגטי, אבל רך מספיק לתרגול מתמשך.",
+      "wav": "04-pixel-hero.wav",
+      "durationSeconds": 45.0,
+      "rms": 0.14428
+    },
+    {
+      "number": 5,
+      "title": "תעלומת המבוך",
+      "bpm": 108,
+      "feeling": "סקרנית, שובבה ומעט מסתורית; רגועה בלי להישמע כמו מעלית.",
+      "wav": "05-mischievous-mystery.wav",
+      "durationSeconds": 53.333,
+      "rms": 0.14401
+    }
+  ]
+}

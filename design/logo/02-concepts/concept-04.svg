@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 04 — Folded Ribbon">
+  <rect width="200" height="200" fill="#fff"/>
+  <path d="M24 48h74c24 0 38 18 38 39v26c0 21-14 39-38 39H24" fill="none" stroke="#000" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="m91 33 71 134" fill="none" stroke="#000" stroke-width="25" stroke-linecap="square"/>
+  <path d="m178 44-52 67" fill="none" stroke="#000" stroke-width="22" stroke-linecap="square"/>
+</svg>

@@ -1,0 +1,213 @@
+{
+  "generatedAt": "2026-08-06T21:24:14.069Z",
+  "passed": true,
+  "chase": {
+    "phase": "playing",
+    "levelIndex": 0,
+    "finalBossDefeated": false,
+    "correctAnswers": 24,
+    "stageCorrect": 24,
+    "regularCorrect": 24,
+    "bossCorrect": 0,
+    "boss": {
+      "id": "boss-0-24",
+      "configKey": "stage1",
+      "definitionId": "sun-garden-warden",
+      "name": "שומר-השמש",
+      "title": "שומר גן השמש",
+      "worldIndex": 0,
+      "worldLabel": "גן השמש",
+      "actorRow": 1,
+      "actorTheme": "sun-garden",
+      "proceduralStyle": null,
+      "x": 532.2914963442444,
+      "y": 564,
+      "spawnCell": {
+        "x": 22,
+        "y": 23
+      },
+      "chestDistanceTiles": 6,
+      "direction": "right",
+      "actorFacing": "right",
+      "moving": true,
+      "walkCycle": 1.9473764448802784,
+      "walkBlend": 1,
+      "stepImpact": 0,
+      "lastMoveDistance": 3.2320855253012724,
+      "actorSheetReady": true,
+      "spawnProgress": 1,
+      "phase": "playing",
+      "enemyCount": 0,
+      "iceTrailReady": true,
+      "iceTrailCount": 0,
+      "speed": 165.76000000000002,
+      "pursuitSpeed": 193.9251315180743,
+      "playerSpeed": 148,
+      "speedRatio": 1.310304942689691,
+      "contactCount": 0,
+      "questionsCorrect": 0,
+      "questionsTotal": 3,
+      "healthRemaining": 3,
+      "healthTotal": 3,
+      "damageLevel": 0,
+      "cinematicProgress": 1
+    },
+    "camera": {
+      "active": true,
+      "zoom": 0.78,
+      "targetZoom": 0.78,
+      "cameraX": 618.2812139497024,
+      "cameraY": 360,
+      "targetX": 632.1457481721222,
+      "targetY": 360,
+      "projectionWidth": 383.4,
+      "projectionHeight": 720,
+      "player": {
+        "x": 568.7006531192321,
+        "y": 519.12,
+        "onScreen": true
+      },
+      "boss": {
+        "x": 412.9280202677427,
+        "y": 519.12,
+        "onScreen": true
+      }
+    },
+    "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+    "cinematic": null,
+    "defeatTransition": null,
+    "stageIntro": false
+  },
+  "contact": {
+    "status": "תקיפה נגד שומר גן השמש · פגיעה 1 מתוך 3",
+    "contactCount": 1,
+    "camera": {
+      "active": true,
+      "zoom": 0.78,
+      "targetZoom": 0.78,
+      "cameraX": 622.5008103762965,
+      "cameraY": 360,
+      "targetX": 714.2307692307693,
+      "targetY": 360,
+      "projectionWidth": 383.4,
+      "projectionHeight": 720,
+      "player": {
+        "x": 565.4093679064888,
+        "y": 519.12,
+        "onScreen": true
+      },
+      "boss": {
+        "x": 565.4093679064888,
+        "y": 519.12,
+        "onScreen": true
+      }
+    }
+  },
+  "afterHit": {
+    "encounter": {
+      "phase": "playing",
+      "levelIndex": 0,
+      "finalBossDefeated": false,
+      "correctAnswers": 25,
+      "stageCorrect": 25,
+      "regularCorrect": 24,
+      "bossCorrect": 1,
+      "boss": {
+        "id": "boss-0-24",
+        "configKey": "stage1",
+        "definitionId": "sun-garden-warden",
+        "name": "שומר-השמש",
+        "title": "שומר גן השמש",
+        "worldIndex": 0,
+        "worldLabel": "גן השמש",
+        "actorRow": 1,
+        "actorTheme": "sun-garden",
+        "proceduralStyle": null,
+        "x": 623.5503830664356,
+        "y": 564,
+        "spawnCell": {
+          "x": 25,
+          "y": 23
+        },
+        "chestDistanceTiles": 7,
+        "direction": "right",
+        "actorFacing": "right",
+        "moving": true,
+        "walkCycle": 3.186089817604056,
+        "walkBlend": 1,
+        "stepImpact": 1,
+        "lastMoveDistance": 2.8704900221184744,
+        "actorSheetReady": true,
+        "spawnProgress": 1,
+        "phase": "playing",
+        "enemyCount": 0,
+        "iceTrailReady": true,
+        "iceTrailCount": 0,
+        "speed": 165.76000000000002,
+        "pursuitSpeed": 172.22940132710573,
+        "playerSpeed": 148,
+        "speedRatio": 1.1637121711290928,
+        "contactCount": 1,
+        "questionsCorrect": 1,
+        "questionsTotal": 3,
+        "healthRemaining": 2,
+        "healthTotal": 3,
+        "damageLevel": 1,
+        "cinematicProgress": 1
+      },
+      "camera": {
+        "active": true,
+        "zoom": 0.78,
+        "targetZoom": 0.78,
+        "cameraX": 645.0032059918709,
+        "cameraY": 360,
+        "targetX": 677.7751915332178,
+        "targetY": 360,
+        "projectionWidth": 383.4,
+        "projectionHeight": 720,
+        "player": {
+          "x": 547.8574993263406,
+          "y": 519.12,
+          "onScreen": true
+        },
+        "boss": {
+          "x": 463.26679811816047,
+          "y": 519.12,
+          "onScreen": true
+        }
+      },
+      "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+      "cinematic": null,
+      "defeatTransition": null,
+      "stageIntro": false
+    },
+    "audio": {
+      "enabled": true,
+      "musicEnabled": true,
+      "unlocked": true,
+      "contextState": "running",
+      "loaded": 18,
+      "loadErrors": 0,
+      "played": 8,
+      "mutedSkips": 0,
+      "autoplayBlocks": 0,
+      "throttledSkips": 0,
+      "voiceSteals": 0,
+      "currentScene": "ice",
+      "questionDucked": false,
+      "bossActive": true,
+      "lastEvent": "boss:stage1:attack",
+      "lastReason": "played",
+      "volumes": {
+        "master": 0.4368000000000001,
+        "music": 0.45,
+        "sfx": 0.78,
+        "voices": 0.82,
+        "ui": 0.68
+      },
+      "activeShots": 0,
+      "criticalLoadedCount": 13,
+      "criticalReady": true
+    }
+  }
+}

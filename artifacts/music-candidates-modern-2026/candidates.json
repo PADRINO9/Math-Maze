@@ -1,0 +1,234 @@
+[
+  {
+    "id": "01",
+    "slug": "glossy-pop-adventure",
+    "title": "פופ הרפתקה מבריק",
+    "bpm": 120,
+    "drums": "pop",
+    "chord": "warm_keys",
+    "hook": "vocal",
+    "hook_gain": 0.19,
+    "progression": [
+      [
+        "C4",
+        "E4",
+        "G4"
+      ],
+      [
+        "G3",
+        "B3",
+        "D4"
+      ],
+      [
+        "A3",
+        "C4",
+        "E4"
+      ],
+      [
+        "F3",
+        "A3",
+        "C4"
+      ]
+    ],
+    "bass": [
+      "C2",
+      "G2",
+      "A2",
+      "F2"
+    ],
+    "motif": [
+      "E5",
+      "G5",
+      "A5",
+      "G5",
+      "D5"
+    ],
+    "sparkle": "G5",
+    "power_chord": [
+      "C4",
+      "E4",
+      "G4",
+      "C5"
+    ],
+    "caption": "פופ־דאנס עכשווי ושמח: תופים נקיים, בס עגול והוק קולי ללא מילים. הכי קרוב לעולם של Just Dance/K-pop בלי להפוך לשיר שמפריע לחשבון.",
+    "wav": "artifacts/music-candidates-modern-2026/01-glossy-pop-adventure.wav",
+    "m4a": "artifacts/music-candidates-modern-2026/01-glossy-pop-adventure.m4a",
+    "duration": 52.0,
+    "rms_dbfs": -15.38,
+    "peak_dbfs": -0.82
+  },
+  {
+    "id": "02",
+    "slug": "afropop-playground",
+    "title": "אפרו־פופ משחקי",
+    "bpm": 110,
+    "drums": "afro",
+    "chord": "soft_pluck",
+    "hook": "soft_pluck",
+    "hook_gain": 0.23,
+    "progression": [
+      [
+        "A3",
+        "C4",
+        "E4"
+      ],
+      [
+        "F3",
+        "A3",
+        "C4"
+      ],
+      [
+        "C4",
+        "E4",
+        "G4"
+      ],
+      [
+        "G3",
+        "B3",
+        "D4"
+      ]
+    ],
+    "bass": [
+      "A2",
+      "F2",
+      "C2",
+      "G2"
+    ],
+    "motif": [
+      "E5",
+      "C5",
+      "A4",
+      "C5",
+      "G5"
+    ],
+    "sparkle": "A5",
+    "power_chord": [
+      "A3",
+      "C4",
+      "E4",
+      "A4"
+    ],
+    "caption": "אפרו־פופ קליל ומודרני: שייקרים, קצב מקפיץ ובס log רך. פחות עמוס ופחות מתיש לאורך שלב ארוך, אבל עדיין מרגיש חדש ורוקד.",
+    "wav": "artifacts/music-candidates-modern-2026/02-afropop-playground.wav",
+    "m4a": "artifacts/music-candidates-modern-2026/02-afropop-playground.m4a",
+    "duration": 52.0,
+    "rms_dbfs": -17.22,
+    "peak_dbfs": -0.82
+  },
+  {
+    "id": "03",
+    "slug": "hero-pop-rock",
+    "title": "פופ־רוק גיבורי",
+    "bpm": 122,
+    "drums": "rock",
+    "chord": "guitar_pluck",
+    "hook": "guitar_pluck",
+    "hook_gain": 0.21,
+    "progression": [
+      [
+        "D4",
+        "F4",
+        "A4"
+      ],
+      [
+        "B3",
+        "D4",
+        "F4"
+      ],
+      [
+        "F3",
+        "A3",
+        "C4"
+      ],
+      [
+        "C4",
+        "E4",
+        "G4"
+      ]
+    ],
+    "bass": [
+      "D2",
+      "B2",
+      "F2",
+      "C2"
+    ],
+    "motif": [
+      "A4",
+      "C5",
+      "D5",
+      "F5",
+      "E5"
+    ],
+    "sparkle": "A5",
+    "power_chord": [
+      "D4",
+      "F4",
+      "A4",
+      "D5"
+    ],
+    "caption": "פופ־רוק של גיבורי אנימציה: תופים חזקים, פריטות ובס קדמי. נותן לפיצוץ הרוחות תחושת הישג ואקשן בלי צלילי ארקייד ישנים.",
+    "wav": "artifacts/music-candidates-modern-2026/03-hero-pop-rock.wav",
+    "m4a": "artifacts/music-candidates-modern-2026/03-hero-pop-rock.m4a",
+    "duration": 52.0,
+    "rms_dbfs": -15.04,
+    "peak_dbfs": -0.82
+  },
+  {
+    "id": "04",
+    "slug": "future-bubble-power",
+    "title": "באבל־פופ עתידני",
+    "bpm": 128,
+    "drums": "future",
+    "chord": "wide_synth",
+    "hook": "vocal",
+    "hook_gain": 0.18,
+    "progression": [
+      [
+        "F3",
+        "A3",
+        "C4"
+      ],
+      [
+        "A3",
+        "C4",
+        "E4"
+      ],
+      [
+        "C4",
+        "E4",
+        "G4"
+      ],
+      [
+        "G3",
+        "B3",
+        "D4"
+      ]
+    ],
+    "bass": [
+      "F2",
+      "A2",
+      "C2",
+      "G2"
+    ],
+    "motif": [
+      "C5",
+      "E5",
+      "G5",
+      "E5",
+      "D5"
+    ],
+    "sparkle": "C5",
+    "power_chord": [
+      "F3",
+      "A3",
+      "C4",
+      "F4"
+    ],
+    "caption": "Future/Bubble Pop רחב: אקורדים נוצצים, דרופ קצר ואנרגיית כוח. האפשרות הכי צבעונית ועוצמתית לפיצוצים ולבונוסים.",
+    "wav": "artifacts/music-candidates-modern-2026/04-future-bubble-power.wav",
+    "m4a": "artifacts/music-candidates-modern-2026/04-future-bubble-power.m4a",
+    "duration": 52.0,
+    "rms_dbfs": -14.96,
+    "peak_dbfs": -0.82
+  }
+]

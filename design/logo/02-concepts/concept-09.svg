@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 09 — Split Beam">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M20 35h101l17 29H20z"/>
+    <path d="M20 165h88l19-29H20z"/>
+    <path d="m89 29 27-7 69 149-30 7z"/>
+    <path d="m181 39 19 20-58 59-20-19z"/>
+    <path d="m76 164 25 14 39-62-23-14z"/>
+  </g>
+</svg>

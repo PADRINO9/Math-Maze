@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 600" role="img" aria-label="Final Hebrew monogram comparison">
+  <rect width="1120" height="600" fill="#fff"/>
+  <g fill="#000" font-family="sans-serif" font-size="22" font-weight="700">
+    <text x="90" y="65">1</text>
+    <text x="650" y="65">4</text>
+  </g>
+
+  <g transform="translate(80 70)">
+    <path d="M56 52h242c102 0 160 60 160 158v92c0 98-58 158-160 158H56v-90h230c52 0 80-26 80-76v-76c0-50-28-76-80-76H56z" fill="#000"/>
+    <path d="m264 96 50-16 104 344-54 16zM410 108l48 36-100 128-38-32zM236 414l48 20 84-142-42-24z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(640 70)">
+    <path d="M52 54h246c102 0 160 60 160 158v88c0 98-58 158-160 158H52l12-88h222c52 0 80-26 80-76v-76c0-50-28-76-80-76H64z" fill="#000"/>
+    <path d="m266 96 48-16 103 344-52 16zM410 112l46 34-94 120-36-30zM240 410l44 18 78-132-38-23z" fill="#fff"/>
+  </g>
+</svg>

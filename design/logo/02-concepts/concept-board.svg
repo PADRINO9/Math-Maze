@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1080" role="img" aria-label="Eliran Cohen Hebrew monogram — twelve black and white symbol concepts">
+  <rect width="1440" height="1080" fill="#fff"/>
+
+  <g fill="#000" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">
+    <text x="42" y="54">01</text>
+    <text x="402" y="54">02</text>
+    <text x="762" y="54">03</text>
+    <text x="1122" y="54">04</text>
+    <text x="42" y="414">05</text>
+    <text x="402" y="414">06</text>
+    <text x="762" y="414">07</text>
+    <text x="1122" y="414">08</text>
+    <text x="42" y="774">09</text>
+    <text x="402" y="774">10</text>
+    <text x="762" y="774">11</text>
+    <text x="1122" y="774">12</text>
+  </g>
+
+  <g transform="translate(80 82)">
+    <g fill="#000">
+      <path d="M22 38h76c15 0 27 8 34 21l17 34-23 12-18-34c-3-5-7-8-13-8H22z"/>
+      <path d="M22 162h76c15 0 27-8 34-21l17-34-23-12-18 34c-3 5-7 8-13 8H22z"/>
+      <path d="M91 32h25l66 136h-28z"/>
+      <path d="M169 42h27l-58 69-18-17z"/>
+    </g>
+  </g>
+
+  <g transform="translate(440 82)">
+    <path fill="#000" fill-rule="evenodd" d="M25 32h104c28 0 46 18 46 44v48c0 26-18 44-46 44H25v-31h99c11 0 18-7 18-17V80c0-10-7-17-18-17H25zm79 16 20-7 47 117-21 8zm67 9 19 14-49 59-18-16zm-72 91 15 15 30-40-17-16z"/>
+  </g>
+
+  <g transform="translate(800 82)">
+    <g fill="#000">
+      <path d="M20 42h82c18 0 30 8 38 23l10 20-26 13-11-20c-3-6-8-9-15-9H20z"/>
+      <path d="M20 158h82c18 0 30-8 38-23l10-20-26-13-11 20c-3 6-8 9-15 9H20z"/>
+      <path d="M82 25h31l74 150h-31z"/>
+      <path d="M176 34h23l-51 65-18-16z"/>
+      <path d="M67 166h26l42-58-19-15z"/>
+    </g>
+    <path d="m128 93 13 13-13 14-13-14z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(1160 82)">
+    <path d="M24 48h74c24 0 38 18 38 39v26c0 21-14 39-38 39H24" fill="none" stroke="#000" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"/>
+    <path d="m91 33 71 134" fill="none" stroke="#000" stroke-width="25" stroke-linecap="square"/>
+    <path d="m178 44-52 67" fill="none" stroke="#000" stroke-width="22" stroke-linecap="square"/>
+  </g>
+
+  <g transform="translate(80 442)">
+    <g fill="#000">
+      <path d="M20 34h101l18 27H20z"/>
+      <path d="M20 166h101l18-27H20z"/>
+      <path d="m118 34 25 1 42 131h-29z"/>
+      <path d="m183 37 17 19-55 58-18-18z"/>
+      <path d="M105 102h37v27h-37z"/>
+    </g>
+  </g>
+
+  <g transform="translate(440 442)">
+    <path fill="#000" fill-rule="evenodd" d="M24 28h107c31 0 48 20 48 48v48c0 28-17 48-48 48H24v-28h101c16 0 25-9 25-24V80c0-15-9-24-25-24H24zM85 24h27l69 152h-29zm94 22 21 17-58 65-19-18z"/>
+    <path d="m117 94 14 14-13 15-14-14z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(800 442)">
+    <g fill="#000">
+      <path d="M24 39h71c23 0 38 11 46 31l7 18-29 11-7-17c-3-8-9-12-19-12H24z"/>
+      <path d="M24 161h71c23 0 38-11 46-31l7-18-29-11-7 17c-3 8-9 12-19 12H24z"/>
+      <path d="M102 20h21l58 160h-27z"/>
+      <path d="m181 31 19 14-55 69-18-16z"/>
+      <path d="M75 180h24l40-61-18-13z"/>
+    </g>
+  </g>
+
+  <g transform="translate(1160 442)">
+    <g fill="#000">
+      <path d="M28 30h91l20 30H28z"/>
+      <path d="M28 170h91l20-30H28z"/>
+      <path d="m102 24 35 2 45 150h-37z"/>
+      <path d="m177 31 23 24-62 68-24-22z"/>
+    </g>
+    <path d="m126 91 18 17-17 20-18-18z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(80 802)">
+    <g fill="#000">
+      <path d="M20 35h101l17 29H20z"/>
+      <path d="M20 165h88l19-29H20z"/>
+      <path d="m89 29 27-7 69 149-30 7z"/>
+      <path d="m181 39 19 20-58 59-20-19z"/>
+      <path d="m76 164 25 14 39-62-23-14z"/>
+    </g>
+  </g>
+
+  <g transform="translate(440 802)">
+    <g fill="#000">
+      <path d="M22 38h73c25 0 43 12 52 34l8 20-26 11-8-19c-5-12-14-18-28-18H22z"/>
+      <path d="M22 162h73c25 0 43-12 52-34l8-20-26-11-8 19c-5 12-14 18-28 18H22z"/>
+      <path d="M83 25c17 0 28 6 36 22l67 128h-31L92 56c-3-6-5-7-9-7z"/>
+      <path d="M175 32c11 3 18 8 25 17l-58 68-20-17z"/>
+      <path d="M71 175c12-1 22-7 31-19l32-45 21 16-34 46c-2 2-3 3-4 4H71z"/>
+    </g>
+  </g>
+
+  <g transform="translate(800 802)">
+    <path fill="#000" fill-rule="evenodd" d="M22 36h82c17 0 28 8 36 23l16 31-25 13-17-32c-3-6-8-9-15-9H22zm0 128h82c17 0 28-8 36-23l16-31-25-13-17 32c-3 6-8 9-15 9H22zM92 28h28l66 144h-30zm91 8 17 20-58 62-19-18zM77 172h27l39-59-21-14z"/>
+    <path d="m126 88 20 20-20 22-20-21z" fill="#fff"/>
+  </g>
+
+  <g transform="translate(1160 802)">
+    <g fill="#000">
+      <path d="M20 32h96l20 32H20z"/>
+      <path d="M20 168h96l20-32H20z"/>
+      <path d="m88 28 31-8 67 152-33 8z"/>
+      <path d="m179 33 21 26-59 59-22-22z"/>
+      <path d="m88 168 27 12 34-60-26-14z"/>
+    </g>
+    <path d="m121 89 20 18-18 21-20-19z" fill="#fff"/>
+  </g>
+</svg>

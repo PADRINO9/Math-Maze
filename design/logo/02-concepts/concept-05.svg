@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 05 — Architectural Hinge">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M20 34h101l18 27H20z"/>
+    <path d="M20 166h101l18-27H20z"/>
+    <path d="m118 34 25 1 42 131h-29z"/>
+    <path d="m183 37 17 19-55 58-18-18z"/>
+    <path d="M105 102h37v27h-37z"/>
+  </g>
+</svg>

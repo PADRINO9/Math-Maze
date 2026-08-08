@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Hebrew aleph kaf monogram construction master">
+  <g id="kaf-field" fill="#000">
+    <path d="M52 54h246c102 0 160 60 160 158v88c0 98-58 158-160 158H52l12-88h222c52 0 80-26 80-76v-76c0-50-28-76-80-76H64z"/>
+  </g>
+  <g id="aleph-counter" fill="#fff">
+    <path d="m266 96 48-16 40 134 56-102 46 34-94 120 55 158-52 16-25-86-56 74-44-18 84-137z"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 01 — Shared Junction">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M22 38h76c15 0 27 8 34 21l17 34-23 12-18-34c-3-5-7-8-13-8H22z"/>
+    <path d="M22 162h76c15 0 27-8 34-21l17-34-23-12-18 34c-3 5-7 8-13 8H22z"/>
+    <path d="M91 32h25l66 136h-28z"/>
+    <path d="M169 42h27l-58 69-18-17z"/>
+  </g>
+</svg>

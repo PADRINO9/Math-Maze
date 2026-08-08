@@ -3,6 +3,10 @@ const { test, expect } = require("@playwright/test");
 async function openReadyGame(page) {
   await page.goto("/?verify=1", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => window.__mathMazeRuntime?.gameReady);
+  await page.locator("#menu-settings-button").click();
+  await page.locator("#player-name-input").fill("בודק חילוק");
+  await page.locator("#settings-save-button").click();
+  await expect(page.locator("#settings-panel")).toBeHidden();
 }
 
 async function submitAnswer(page, answer) {

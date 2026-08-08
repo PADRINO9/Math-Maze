@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Concept 12 — Stepped resolution">
+  <rect width="240" height="240" fill="#fff"/>
+  <g fill="#000">
+    <path d="M24 35h107l27 40H24z"/>
+    <path d="M24 205h107l27-40H24z"/>
+    <path d="m108 28 37-8 73 192-40 9z"/>
+    <path d="M207 42h33l-72 87-25-21z"/>
+  </g>
+  <path d="m142 98 29 24-25 31-30-26z" fill="#fff"/>
+</svg>

@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-08-03T19:17:39.451Z",
+  "captures": [
+    {
+      "state": "before",
+      "viewport": "desktop-1280x800",
+      "home": "docs/visual-proof-screenshots/global-champions/before/home-desktop-1280x800.png",
+      "dialog": "docs/visual-proof-screenshots/global-champions/before/champions-desktop-1280x800.png",
+      "layout": {
+        "rank": "—",
+        "worldRank": "—",
+        "personalBest": "18,500",
+        "totalPlayers": "—",
+        "publicChip": "הדירוג העולמי לא זמין",
+        "noHorizontalOverflow": true,
+        "dialogInsideViewport": true,
+        "badgeHasArea": true
+      },
+      "errors": []
+    },
+    {
+      "state": "after",
+      "viewport": "desktop-1280x800",
+      "home": "docs/visual-proof-screenshots/global-champions/after/home-desktop-1280x800.png",
+      "dialog": "docs/visual-proof-screenshots/global-champions/after/champions-desktop-1280x800.png",
+      "layout": {
+        "rank": "#42",
+        "worldRank": "#42",
+        "personalBest": "18,500",
+        "totalPlayers": "1,200",
+        "publicChip": "דירוג עולמי מחובר",
+        "noHorizontalOverflow": true,
+        "dialogInsideViewport": true,
+        "badgeHasArea": true
+      },
+      "errors": []
+    },
+    {
+      "state": "before",
+      "viewport": "mobile-390x844",
+      "home": "docs/visual-proof-screenshots/global-champions/before/home-mobile-390x844.png",
+      "dialog": "docs/visual-proof-screenshots/global-champions/before/champions-mobile-390x844.png",
+      "layout": {
+        "rank": "—",
+        "worldRank": "—",
+        "personalBest": "18,500",
+        "totalPlayers": "—",
+        "publicChip": "הדירוג העולמי לא זמין",
+        "noHorizontalOverflow": true,
+        "dialogInsideViewport": true,
+        "badgeHasArea": true
+      },
+      "errors": []
+    },
+    {
+      "state": "after",
+      "viewport": "mobile-390x844",
+      "home": "docs/visual-proof-screenshots/global-champions/after/home-mobile-390x844.png",
+      "dialog": "docs/visual-proof-screenshots/global-champions/after/champions-mobile-390x844.png",
+      "layout": {
+        "rank": "#42",
+        "worldRank": "#42",
+        "personalBest": "18,500",
+        "totalPlayers": "1,200",
+        "publicChip": "דירוג עולמי מחובר",
+        "noHorizontalOverflow": true,
+        "dialogInsideViewport": true,
+        "badgeHasArea": true
+      },
+      "errors": []
+    }
+  ],
+  "passed": true
+}

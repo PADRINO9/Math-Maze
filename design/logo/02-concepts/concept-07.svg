@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 07 — Editorial Tension">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M24 39h71c23 0 38 11 46 31l7 18-29 11-7-17c-3-8-9-12-19-12H24z"/>
+    <path d="M24 161h71c23 0 38-11 46-31l7-18-29-11-7 17c-3 8-9 12-19 12H24z"/>
+    <path d="M102 20h21l58 160h-27z"/>
+    <path d="m181 31 19 14-55 69-18-16z"/>
+    <path d="M75 180h24l40-61-18-13z"/>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-08-03T13:39:03.047Z",
+  "state": "after",
+  "captures": [
+    {
+      "viewport": "desktop-1280x800",
+      "home": "docs/visual-proof-screenshots/nickname-safety/after/home-desktop-1280x800.png",
+      "settings": "docs/visual-proof-screenshots/nickname-safety/after/settings-desktop-1280x800.png",
+      "blocked": "docs/visual-proof-screenshots/nickname-safety/after/blocked-desktop-1280x800.png",
+      "requiredError": "לפני שמתחילים, כתבו כאן כינוי ושמרו אותו.",
+      "snapshot": {
+        "greeting": "עדיין אין כינוי",
+        "inputValue": "f.u-c_k",
+        "inputFocused": true,
+        "homeError": "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר.",
+        "settingsError": "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר.",
+        "noHorizontalOverflow": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": "mobile-390x844",
+      "home": "docs/visual-proof-screenshots/nickname-safety/after/home-mobile-390x844.png",
+      "settings": "docs/visual-proof-screenshots/nickname-safety/after/settings-mobile-390x844.png",
+      "blocked": "docs/visual-proof-screenshots/nickname-safety/after/blocked-mobile-390x844.png",
+      "requiredError": "לפני שמתחילים, כתבו כאן כינוי ושמרו אותו.",
+      "snapshot": {
+        "greeting": "עדיין אין כינוי",
+        "inputValue": "f.u-c_k",
+        "inputFocused": true,
+        "homeError": "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר.",
+        "settingsError": "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר.",
+        "noHorizontalOverflow": true
+      },
+      "errors": []
+    }
+  ],
+  "passed": true
+}

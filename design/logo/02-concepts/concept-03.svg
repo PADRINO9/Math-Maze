@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 03 — Counter Embrace">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M20 42h82c18 0 30 8 38 23l10 20-26 13-11-20c-3-6-8-9-15-9H20z"/>
+    <path d="M20 158h82c18 0 30-8 38-23l10-20-26-13-11 20c-3 6-8 9-15 9H20z"/>
+    <path d="M82 25h31l74 150h-31z"/>
+    <path d="M176 34h23l-51 65-18-16z"/>
+    <path d="M67 166h26l42-58-19-15z"/>
+  </g>
+  <path d="m128 93 13 13-13 14-13-14z" fill="#fff"/>
+</svg>

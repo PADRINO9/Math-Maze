@@ -1,0 +1,186 @@
+{
+  "generatedAt": "2026-07-20T11:45:27.429Z",
+  "baseUrl": "http://127.0.0.1:57751",
+  "viewports": [
+    {
+      "name": "desktop-1280x800",
+      "selectedSummary": "נבטיק · הרפתקה · מתחילים ×1",
+      "layouts": [
+        {
+          "step": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 2,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 3,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 4,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 5,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 6,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        }
+      ],
+      "persisted": {
+        "tutorial": "complete",
+        "mode": "adventure",
+        "difficulty": "beginner",
+        "character": "nabatick",
+        "control": "joystick"
+      },
+      "runtimeErrors": [],
+      "artifacts": [
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step1-goal-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step2-settings-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step3-character-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step4-how-to-play-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step5-score-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step6-worlds-desktop-1280x800.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/first-playable-maze-desktop-1280x800.png"
+      ],
+      "video": null
+    },
+    {
+      "name": "mobile-390x844",
+      "selectedSummary": "נבטיק · הרפתקה · מתחילים ×1",
+      "layouts": [
+        {
+          "step": 1,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 2,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 3,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 4,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 5,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        },
+        {
+          "step": 6,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "horizontalOverflow": false,
+          "shellInsideViewport": true,
+          "footerVisible": true
+        }
+      ],
+      "persisted": {
+        "tutorial": "complete",
+        "mode": "adventure",
+        "difficulty": "beginner",
+        "character": "nabatick",
+        "control": "joystick"
+      },
+      "runtimeErrors": [],
+      "artifacts": [
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step1-goal-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step2-settings-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step3-character-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step4-how-to-play-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step5-score-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-step6-worlds-mobile-390x844.png",
+        "docs/visual-proof-screenshots/tutorial-first-run/after/first-playable-maze-mobile-390x844.png"
+      ],
+      "video": "docs/visual-proof-screenshots/tutorial-first-run/after/tutorial-mobile-walkthrough-390x844.webm"
+    }
+  ]
+}

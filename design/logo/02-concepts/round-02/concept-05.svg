@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Concept 05 — Architectural junction">
+  <rect width="240" height="240" fill="#fff"/>
+  <g fill="#000">
+    <path d="M24 39h105l24 35H24z"/>
+    <path d="M24 201h105l24-35H24z"/>
+    <path d="m115 31 34-7 67 184-37 8z"/>
+    <path d="M208 44h32l-71 84-24-20z"/>
+    <path d="m96 198 31 15 48-83-28-16z"/>
+  </g>
+  <path d="m142 100 27 23-24 29-27-25z" fill="#fff"/>
+</svg>

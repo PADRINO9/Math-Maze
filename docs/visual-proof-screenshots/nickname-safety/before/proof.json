@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-08-03T13:08:22.168Z",
+  "state": "before",
+  "captures": [
+    {
+      "viewport": "desktop-1280x800",
+      "home": "docs/visual-proof-screenshots/nickname-safety/before/home-desktop-1280x800.png",
+      "settings": "docs/visual-proof-screenshots/nickname-safety/before/settings-desktop-1280x800.png",
+      "snapshot": {
+        "greeting": "אלוף כפלול",
+        "inputValue": "אלוף כפלול",
+        "inputFocused": false,
+        "homeError": "",
+        "settingsError": "",
+        "noHorizontalOverflow": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": "mobile-390x844",
+      "home": "docs/visual-proof-screenshots/nickname-safety/before/home-mobile-390x844.png",
+      "settings": "docs/visual-proof-screenshots/nickname-safety/before/settings-mobile-390x844.png",
+      "snapshot": {
+        "greeting": "אלוף כפלול",
+        "inputValue": "אלוף כפלול",
+        "inputFocused": false,
+        "homeError": "",
+        "settingsError": "",
+        "noHorizontalOverflow": true
+      },
+      "errors": []
+    }
+  ],
+  "passed": true
+}

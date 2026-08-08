@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="Round 02 finalist size proof at 64, 32, 24, and 16 pixels">
+  <rect width="780" height="340" fill="#fff"/>
+  <defs>
+    <g id="concept-02">
+      <path d="M23 34h142c32 0 52 20 52 52v68c0 32-20 52-52 52H23v-39h133c14 0 22-8 22-22V95c0-14-8-22-22-22H23z" fill="#000"/>
+      <path d="m137 55 19-6 42 134-21 7zM202 67l18 15-45 57-17-15zM124 180l19 8 34-55-18-12z" fill="#fff"/>
+    </g>
+    <g id="concept-03">
+      <path d="M18 31h142v178H18z" fill="#000"/>
+      <path d="M38 67c52-12 87 8 87 53s-35 65-87 53" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="square"/>
+      <path d="M116 31h31l76 178h-35z" fill="#000"/>
+      <path d="M204 34h32c0 43-10 72-33 96l-23-20c17-18 24-40 24-76z" fill="#000"/>
+      <path d="M86 209h35c2-36 10-60 31-87l24 19c-16 22-22 41-23 68z" fill="#000"/>
+    </g>
+    <g id="concept-08">
+      <path d="M28 31h139c33 0 51 20 51 51v76c0 31-18 51-51 51H28v-44h128c13 0 20-7 20-20V95c0-13-7-20-20-20H28z" fill="#000"/>
+      <path d="m132 54 24-8 44 139-26 8zM204 65l22 18-50 60-20-17z" fill="#fff"/>
+      <path d="m145 116 22 19-19 24-23-20z" fill="#000"/>
+    </g>
+  </defs>
+
+  <g fill="#000" font-family="sans-serif">
+    <text x="180" y="30" font-size="18" font-weight="700">02</text>
+    <text x="390" y="30" font-size="18" font-weight="700">03 v2</text>
+    <text x="600" y="30" font-size="18" font-weight="700">08</text>
+    <text x="45" y="91" font-size="16">64 px</text>
+    <text x="45" y="171" font-size="16">32 px</text>
+    <text x="45" y="231" font-size="16">24 px</text>
+    <text x="45" y="287" font-size="16">16 px</text>
+  </g>
+
+  <use href="#concept-02" transform="translate(180 46) scale(.266667)"/>
+  <use href="#concept-03" transform="translate(390 46) scale(.266667)"/>
+  <use href="#concept-08" transform="translate(600 46) scale(.266667)"/>
+  <use href="#concept-02" transform="translate(180 143) scale(.133333)"/>
+  <use href="#concept-03" transform="translate(390 143) scale(.133333)"/>
+  <use href="#concept-08" transform="translate(600 143) scale(.133333)"/>
+  <use href="#concept-02" transform="translate(180 207) scale(.1)"/>
+  <use href="#concept-03" transform="translate(390 207) scale(.1)"/>
+  <use href="#concept-08" transform="translate(600 207) scale(.1)"/>
+  <use href="#concept-02" transform="translate(180 271) scale(.066667)"/>
+  <use href="#concept-03" transform="translate(390 271) scale(.066667)"/>
+  <use href="#concept-08" transform="translate(600 271) scale(.066667)"/>
+</svg>

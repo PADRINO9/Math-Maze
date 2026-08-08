@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-13T18:42:41.424Z",
+  "generatedAt": "2026-07-30T06:37:56.184Z",
   "passed": true,
-  "baselineId": "world1-sun-garden-approved-v1",
+  "baselineId": "world1-sun-garden-approved-v2",
   "authoredBoardSha256": "f114291caf2ccf0f62db575be3809b750439d61fa07db65fbf086c3c8cd7bd63",
   "desktop": {
     "viewport": {
@@ -9,22 +9,22 @@
       "height": 720
     },
     "screenshot": "docs/visual-proof-screenshots/world1-release-baseline/world1-baseline-desktop-1280x720.png",
-    "topologySha256": "a0c51f00182261651ae3d6b914296a14fea5c84c34f46bde09c531a1ca9bdf5b",
+    "topologySha256": "9d34bb2e464b860aed3361acc096955719edc3efc27f6c11234d13a0f41ef1b4",
     "snapshot": {
       "baseline": {
-        "id": "world1-sun-garden-approved-v1",
+        "id": "world1-sun-garden-approved-v2",
         "locked": true,
         "authoredBoardSrc": "assets/maze/world1/sun-garden/board-v3.png",
-        "navigationVersion": "world1-canonical-semantic-layout-v5",
+        "navigationVersion": "world1-canonical-semantic-layout-v6",
         "chestCell": {
           "x": 23,
           "y": 18
         },
         "actorScale": {
-          "playerPhone": 0.84,
-          "playerWide": 0.82,
-          "enemyPhone": 0.66,
-          "enemyWide": 0.64
+          "playerPhone": 0.9,
+          "playerWide": 0.88,
+          "enemyPhone": 0.72,
+          "enemyWide": 0.7
         },
         "gameplayZoom": {
           "desktop": 1.06,
@@ -53,7 +53,7 @@
           "##..###..#######..###..########..###..##",
           "##..###..#######...#...########..###..##",
           "##..###..#######...#...#..#####..###..##",
-          "##..###.......###................###..##",
+          "##..###..........................###..##",
           "##...........####......####...........##",
           "##...........####......####...........##",
           "##..########.###.......####.########..##",
@@ -72,8 +72,8 @@
           "########################################",
           "########################################"
         ],
-        "walkableCellCount": 582,
-        "reachableCellCount": 582,
+        "walkableCellCount": 585,
+        "reachableCellCount": 585,
         "chest": {
           "cell": {
             "x": 23,
@@ -86,39 +86,39 @@
           "coarsePointer": false,
           "player": {
             "radius": 10.2,
-            "scale": 0.82,
-            "displaySize": 22.164599999999997
+            "scale": 0.9328000000000001,
+            "displaySize": 25.213584
           },
           "enemies": [
             {
               "index": 0,
               "radius": 10.4,
-              "scale": 0.64,
-              "displaySize": 20.3008
+              "scale": 0.7,
+              "displaySize": 22.203999999999997
             },
             {
               "index": 1,
               "radius": 10.4,
-              "scale": 0.64,
-              "displaySize": 19.082752
+              "scale": 0.7,
+              "displaySize": 20.87176
             },
             {
               "index": 2,
               "radius": 10.4,
-              "scale": 0.64,
-              "displaySize": 21.112831999999997
+              "scale": 0.7,
+              "displaySize": 23.092159999999996
             },
             {
               "index": 3,
               "radius": 10.4,
-              "scale": 0.64,
-              "displaySize": 19.894784
+              "scale": 0.7,
+              "displaySize": 21.759919999999997
             },
             {
               "index": 4,
               "radius": 10.4,
-              "scale": 0.64,
-              "displaySize": 20.3008
+              "scale": 0.7,
+              "displaySize": 22.203999999999997
             }
           ]
         },
@@ -139,22 +139,22 @@
       "height": 844
     },
     "screenshot": "docs/visual-proof-screenshots/world1-release-baseline/world1-baseline-mobile-390x844.png",
-    "topologySha256": "a0c51f00182261651ae3d6b914296a14fea5c84c34f46bde09c531a1ca9bdf5b",
+    "topologySha256": "9d34bb2e464b860aed3361acc096955719edc3efc27f6c11234d13a0f41ef1b4",
     "snapshot": {
       "baseline": {
-        "id": "world1-sun-garden-approved-v1",
+        "id": "world1-sun-garden-approved-v2",
         "locked": true,
         "authoredBoardSrc": "assets/maze/world1/sun-garden/board-v3.png",
-        "navigationVersion": "world1-canonical-semantic-layout-v5",
+        "navigationVersion": "world1-canonical-semantic-layout-v6",
         "chestCell": {
           "x": 23,
           "y": 18
         },
         "actorScale": {
-          "playerPhone": 0.84,
-          "playerWide": 0.82,
-          "enemyPhone": 0.66,
-          "enemyWide": 0.64
+          "playerPhone": 0.9,
+          "playerWide": 0.88,
+          "enemyPhone": 0.72,
+          "enemyWide": 0.7
         },
         "gameplayZoom": {
           "desktop": 1.06,
@@ -183,7 +183,7 @@
           "##..###..#######..###..########..###..##",
           "##..###..#######...#...########..###..##",
           "##..###..#######...#...#..#####..###..##",
-          "##..###.......###................###..##",
+          "##..###..........................###..##",
           "##...........####......####...........##",
           "##...........####......####...........##",
           "##..########.###.......####.########..##",
@@ -202,8 +202,8 @@
           "########################################",
           "########################################"
         ],
-        "walkableCellCount": 582,
-        "reachableCellCount": 582,
+        "walkableCellCount": 585,
+        "reachableCellCount": 585,
         "chest": {
           "cell": {
             "x": 23,
@@ -216,39 +216,39 @@
           "coarsePointer": true,
           "player": {
             "radius": 10.2,
-            "scale": 0.84,
-            "displaySize": 22.705199999999998
+            "scale": 0.9540000000000001,
+            "displaySize": 25.78662
           },
           "enemies": [
             {
               "index": 0,
               "radius": 10.4,
-              "scale": 0.66,
-              "displaySize": 20.935200000000002
+              "scale": 0.72,
+              "displaySize": 22.8384
             },
             {
               "index": 1,
               "radius": 10.4,
-              "scale": 0.66,
-              "displaySize": 19.679088
+              "scale": 0.72,
+              "displaySize": 21.468095999999996
             },
             {
               "index": 2,
               "radius": 10.4,
-              "scale": 0.66,
-              "displaySize": 21.772607999999998
+              "scale": 0.72,
+              "displaySize": 23.751935999999997
             },
             {
               "index": 3,
               "radius": 10.4,
-              "scale": 0.66,
-              "displaySize": 20.516496
+              "scale": 0.72,
+              "displaySize": 22.381632
             },
             {
               "index": 4,
               "radius": 10.4,
-              "scale": 0.66,
-              "displaySize": 20.935200000000002
+              "scale": 0.72,
+              "displaySize": 22.8384
             }
           ]
         },

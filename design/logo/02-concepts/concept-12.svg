@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 12 — Modular Lock">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M20 32h96l20 32H20z"/>
+    <path d="M20 168h96l20-32H20z"/>
+    <path d="m88 28 31-8 67 152-33 8z"/>
+    <path d="m179 33 21 26-59 59-22-22z"/>
+    <path d="m88 168 27 12 34-60-26-14z"/>
+  </g>
+  <path d="m121 89 20 18-18 21-20-19z" fill="#fff"/>
+</svg>

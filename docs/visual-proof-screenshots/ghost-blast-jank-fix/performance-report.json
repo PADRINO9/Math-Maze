@@ -1,0 +1,66 @@
+{
+  "feature": "correct-answer ghost blast",
+  "capturedAt": "2026-07-28",
+  "rootCauses": [
+    "The blast allocated up to 258 particles synchronously for four ghosts on mobile.",
+    "Later worlds rendered every particle with a 12px shadow blur.",
+    "Correct-answer, enemy-defeat, reward and character cues could be fetched and decoded for the first time during the blast."
+  ],
+  "fix": {
+    "mobileEmittedParticlesForFourGhosts": 86,
+    "mobileEmittedParticlesForSixGhosts": 94,
+    "mobileActiveParticleBudget": 96,
+    "mobileVisibleParticleBudget": 18,
+    "particleUpdateAllocationPerFrame": false,
+    "criticalAudioBuffersPreloaded": 13,
+    "criticalAudioLoadErrors": 0
+  },
+  "measurement": {
+    "environment": "Chromium mobile emulation, 390x844, 2x CPU throttling",
+    "scenario": "Four-ghost correct-answer blast in world 2",
+    "comparisonScope": "Particle allocation, update and drawing changes only; audio preload readiness was validated separately.",
+    "runsPerVariant": 6,
+    "windowMs": 900,
+    "baseline": {
+      "averageSynchronousAnswerMs": 6.35,
+      "averageWorstFrameMs": 87.73,
+      "worstObservedFrameMs": 116.2,
+      "framesOver100Ms": 1,
+      "averageFramesCaptured": 12.83
+    },
+    "fixed": {
+      "averageSynchronousAnswerMs": 5.27,
+      "averageWorstFrameMs": 77.8,
+      "worstObservedFrameMs": 83.9,
+      "framesOver100Ms": 0,
+      "averageFramesCaptured": 16
+    }
+  },
+  "normalSpeedMeasurement": {
+    "environment": "Chromium mobile emulation, 390x844, normal CPU speed",
+    "scenario": "Four-ghost correct-answer blast in world 2",
+    "runsPerVariant": 8,
+    "baseline": {
+      "averageWorstFrameMs": 50.1,
+      "worstObservedFrameMs": 107.6,
+      "framesOver50Ms": 10,
+      "framesOver100Ms": 1
+    },
+    "fixed": {
+      "averageWorstFrameMs": 42.3,
+      "worstObservedFrameMs": 91,
+      "framesOver50Ms": 1,
+      "framesOver100Ms": 0
+    }
+  },
+  "validation": {
+    "desktopViewport": "1280x720",
+    "mobileViewport": "390x844",
+    "pageErrors": 0,
+    "awardForFourGhosts": 4440,
+    "allFourGhostsRemoved": true,
+    "replacementGhostsScheduled": true,
+    "androidProfilerAvailable": false,
+    "androidProfilerNote": "ADB and an Android target were not available in this environment."
+  }
+}

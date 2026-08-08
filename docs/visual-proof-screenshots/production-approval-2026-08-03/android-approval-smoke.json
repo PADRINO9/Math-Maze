@@ -1,0 +1,28 @@
+{
+  "initial": {
+    "url": "https://localhost/?verify=android-approval",
+    "nickname": "",
+    "startLabel": "בחרו כינוי כדי לשחק",
+    "settingsVisible": false
+  },
+  "opened": {
+    "settingsVisible": true,
+    "nickname": ""
+  },
+  "blocked": {
+    "settingsVisible": true,
+    "error": "הכינוי מכיל מילה שאינה מתאימה למשחק. בחרו כינוי אחר.",
+    "greeting": "עדיין אין כינוי"
+  },
+  "saved": {
+    "settingsVisible": false,
+    "greeting": "בודק אישור",
+    "startLabel": "שחק עכשיו"
+  },
+  "gameplay": {
+    "state": "playing",
+    "canvasVisible": true,
+    "paintedSamples": 574
+  },
+  "passed": true
+}

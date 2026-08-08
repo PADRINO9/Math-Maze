@@ -1,0 +1,68 @@
+{
+  "baseUrl": "http://127.0.0.1:4179",
+  "generatedAt": "2026-08-03T03:28:23.606Z",
+  "screenshots": [
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-hero-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-routine-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-download-desktop-1440x960.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-hero-mobile-390x844.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-routine-mobile-390x844.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-proof-mobile-390x844.png",
+    "/Users/eliran/math-pacman/docs/visual-proof-screenshots/landing-summer/after-summer-download-mobile-390x844.png"
+  ],
+  "audits": [
+    {
+      "profile": "desktop-1440x960",
+      "viewportWidth": 1440,
+      "pageWidth": 1440,
+      "pageHeight": 14223,
+      "brokenImages": [],
+      "title": "כפלול — משחק כפל לילדים בחופש הגדול",
+      "h1": "הופכים את החופש הגדול ליתרון בלוח הכפל.",
+      "shareButtons": 4,
+      "apkLinks": [
+        {
+          "href": "dist/kaflul-updated-20260729.apk",
+          "download": "kaflul-math-maze-android.apk"
+        },
+        {
+          "href": "dist/kaflul-updated-20260729.apk",
+          "download": "kaflul-math-maze-android.apk"
+        }
+      ],
+      "ready": true
+    },
+    {
+      "profile": "mobile-390x844",
+      "viewportWidth": 390,
+      "pageWidth": 390,
+      "pageHeight": 18249,
+      "brokenImages": [],
+      "title": "כפלול — משחק כפל לילדים בחופש הגדול",
+      "h1": "הופכים את החופש הגדול ליתרון בלוח הכפל.",
+      "shareButtons": 4,
+      "apkLinks": [
+        {
+          "href": "dist/kaflul-updated-20260729.apk",
+          "download": "kaflul-math-maze-android.apk"
+        },
+        {
+          "href": "dist/kaflul-updated-20260729.apk",
+          "download": "kaflul-math-maze-android.apk"
+        }
+      ],
+      "ready": true
+    }
+  ],
+  "interactions": {
+    "desktopShareMessage": "הקישור הועתק. עכשיו נשאר לבחור למי לשלוח.",
+    "desktopClipboard": "https://math-maze-il.vercel.app/landing.html"
+  },
+  "download": {
+    "status": 200,
+    "ok": true,
+    "contentLength": "37519981",
+    "contentType": "application/vnd.android.package-archive"
+  },
+  "errors": []
+}

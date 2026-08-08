@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 08 — Compact Keystone">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M28 30h91l20 30H28z"/>
+    <path d="M28 170h91l20-30H28z"/>
+    <path d="m102 24 35 2 45 150h-37z"/>
+    <path d="m177 31 23 24-62 68-24-22z"/>
+  </g>
+  <path d="m126 91 18 17-17 20-18-18z" fill="#fff"/>
+</svg>

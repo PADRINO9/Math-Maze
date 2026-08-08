@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 10 — Sculpted Current">
+  <rect width="200" height="200" fill="#fff"/>
+  <g fill="#000">
+    <path d="M22 38h73c25 0 43 12 52 34l8 20-26 11-8-19c-5-12-14-18-28-18H22z"/>
+    <path d="M22 162h73c25 0 43-12 52-34l8-20-26-11-8 19c-5 12-14 18-28 18H22z"/>
+    <path d="M83 25c17 0 28 6 36 22l67 128h-31L92 56c-3-6-5-7-9-7z"/>
+    <path d="M175 32c11 3 18 8 25 17l-58 68-20-17z"/>
+    <path d="M71 175c12-1 22-7 31-19l32-45 21 16-34 46c-2 2-3 3-4 4H71z"/>
+  </g>
+</svg>

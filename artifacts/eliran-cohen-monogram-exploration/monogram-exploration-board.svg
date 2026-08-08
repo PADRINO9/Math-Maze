@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Eliran Cohen — Aleph Kaf monogram exploration</title>
+  <desc id="desc">Eight numbered, black-on-white structural explorations of a fused Hebrew Aleph and Kaf monogram.</desc>
+
+  <defs>
+    <!-- 01 — Shared-stroke fusion. The Kaf bowl and Aleph diagonal resolve through one loaded junction. -->
+    <g id="concept-01">
+      <path d="M35 33C77 24 116 34 135 58C155 83 153 119 136 144C118 169 76 180 35 170V140C64 148 91 141 105 123C120 104 119 80 105 64C91 49 63 47 35 55V33Z"/>
+      <path d="M66 30H94L177 170H147L66 30Z"/>
+      <path d="M151 30H180C178 67 170 89 147 103L133 81C145 72 150 57 151 30Z"/>
+    </g>
+
+    <!-- 02 — Negative-space fusion. Aleph is cut through a disciplined Kaf enclosure. -->
+    <g id="concept-02">
+      <path fill-rule="evenodd" d="M34 29H98C139 29 161 58 161 100C161 142 136 171 96 171H34V138H91C115 138 128 123 128 100C128 77 115 62 91 62H34V29ZM64 27H90L169 173H142L64 27Z"/>
+      <path d="M151 29H180C178 67 170 89 147 103L132 81C145 72 150 57 151 29Z"/>
+      <path d="M119 105L176 170H144L104 121L119 105Z"/>
+    </g>
+
+    <!-- 03 — Architectural construction. Chamfered Kaf frame, beam-like Aleph. -->
+    <g id="concept-03">
+      <path fill-rule="evenodd" d="M35 30H105L145 67V134L107 171H35V138H94L116 117V83L94 62H35V30Z"/>
+      <path d="M65 29H95L179 171H148L65 29Z"/>
+      <path d="M151 29H181V48C180 74 169 93 147 105L132 82C144 74 150 60 151 29Z"/>
+      <path d="M35 138H65L93 91L108 116L75 171H35V138Z"/>
+    </g>
+
+    <!-- 04 — Continuous-form construction. A single structural sweep carries framework into intervention. -->
+    <g id="concept-04">
+      <path d="M35 49C78 34 118 42 135 68C152 94 141 127 111 146C89 160 60 159 36 151" fill="none" stroke="#000" stroke-width="27" stroke-linecap="square" stroke-linejoin="round"/>
+      <path d="M73 40L166 165" fill="none" stroke="#000" stroke-width="27" stroke-linecap="square"/>
+      <path d="M166 37C165 67 155 88 133 101" fill="none" stroke="#000" stroke-width="27" stroke-linecap="square" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 05 — Open-form construction. Separated Kaf shoulders let the Aleph become the joining intelligence. -->
+    <g id="concept-05">
+      <path d="M35 31C79 23 119 33 143 56L128 78C105 58 70 51 35 59V31Z"/>
+      <path d="M35 139C63 148 89 143 105 126L126 148C103 171 70 178 35 169V139Z"/>
+      <path d="M65 30H93L178 170H147L65 30Z"/>
+      <path d="M151 30H180C178 67 170 89 147 103L133 81C145 72 150 57 151 30Z"/>
+    </g>
+
+    <!-- 06 — Compact emblem construction. Dense, near-square Kaf enclosure with a decisive diagonal key. -->
+    <g id="concept-06">
+      <path fill-rule="evenodd" d="M37 27H101C141 27 164 56 164 100C164 145 139 173 101 173H37V137H94C117 137 129 124 129 100C129 76 117 63 94 63H37V27Z"/>
+      <path d="M60 27H91L180 173H147L60 27Z"/>
+      <path d="M151 27H182V48C181 75 170 94 146 106L131 81C144 73 150 58 151 27Z"/>
+    </g>
+
+    <!-- 07 — Balanced asymmetry. A restrained upper Kaf shoulder sits over a weighted lower system. -->
+    <g id="concept-07">
+      <path d="M34 72C77 61 116 72 133 98C148 122 138 150 112 166C90 179 59 178 34 169V140C59 149 81 145 96 132C111 120 112 103 102 91C90 78 61 79 34 87V72Z"/>
+      <path d="M61 29H89L178 171H147L61 29Z"/>
+      <path d="M151 28H180C178 68 170 90 146 104L132 81C144 72 150 57 151 28Z"/>
+    </g>
+
+    <!-- 08 — Optical interlock. Split Aleph beam and a protected central counter create an over-under junction. -->
+    <g id="concept-08">
+      <path d="M35 33C77 24 116 34 135 58C155 83 153 119 136 144C118 169 76 180 35 170V140C64 148 91 141 105 123C120 104 119 80 105 64C91 49 63 47 35 55V33Z"/>
+      <path d="M66 30H94L120 73L102 94L66 30Z"/>
+      <path d="M114 88L132 106L177 170H147L98 101L114 88Z"/>
+      <path d="M151 30H180C178 67 170 89 147 103L133 81C145 72 150 57 151 30Z"/>
+      <path d="M102 94L114 82L130 102L116 115L102 94Z" fill="#fff"/>
+    </g>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#fff"/>
+
+  <g fill="#000" shape-rendering="geometricPrecision">
+    <g transform="translate(100 74) scale(1.2)"><use href="#concept-01"/></g>
+    <g transform="translate(480 74) scale(1.2)"><use href="#concept-02"/></g>
+    <g transform="translate(860 74) scale(1.2)"><use href="#concept-03"/></g>
+    <g transform="translate(1240 74) scale(1.2)"><use href="#concept-04"/></g>
+
+    <g transform="translate(100 534) scale(1.2)"><use href="#concept-05"/></g>
+    <g transform="translate(480 534) scale(1.2)"><use href="#concept-06"/></g>
+    <g transform="translate(860 534) scale(1.2)"><use href="#concept-07"/></g>
+    <g transform="translate(1240 534) scale(1.2)"><use href="#concept-08"/></g>
+  </g>
+
+  <g fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" letter-spacing="2" text-anchor="middle">
+    <text x="220" y="408">01</text>
+    <text x="600" y="408">02</text>
+    <text x="980" y="408">03</text>
+    <text x="1360" y="408">04</text>
+    <text x="220" y="868">05</text>
+    <text x="600" y="868">06</text>
+    <text x="980" y="868">07</text>
+    <text x="1360" y="868">08</text>
+  </g>
+</svg>

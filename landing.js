@@ -110,6 +110,7 @@
       threshold: 0.08
     });
 
+    document.documentElement.classList.add("landing-motion");
     enterElements.forEach((element) => observer.observe(element));
   }
 
@@ -164,6 +165,7 @@
 
         try {
           if (navigator.share) {
+            showToast("חלון השיתוף נפתח. בחרו למי לשלוח את האתגר.");
             await navigator.share(shareData);
             showToast("האתגר שותף בהצלחה.");
           } else {

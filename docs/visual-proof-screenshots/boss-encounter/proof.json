@@ -1,0 +1,511 @@
+{
+  "generatedAt": "2026-07-19T13:02:18.955Z",
+  "passed": true,
+  "results": [
+    {
+      "profile": "desktop-1280x800",
+      "passed": true,
+      "setup": {
+        "playerPlacement": {
+          "moved": true,
+          "cell": {
+            "x": 34,
+            "y": 23
+          },
+          "x": 828,
+          "y": 564
+        },
+        "bossPlacement": {
+          "moved": true,
+          "cell": {
+            "x": 24,
+            "y": 23
+          },
+          "x": 588,
+          "y": 564
+        },
+        "encounter": {
+          "phase": "playing",
+          "levelIndex": 0,
+          "correctAnswers": 24,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-0-24",
+            "configKey": "stage1",
+            "definitionId": "magma-bastion",
+            "name": "לבת-הר",
+            "x": 588,
+            "y": 564,
+            "direction": "none",
+            "actorFacing": "down",
+            "moving": false,
+            "walkCycle": 0,
+            "walkBlend": 0,
+            "stepImpact": 0,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 1,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": true,
+            "iceTrailCount": 0,
+            "speed": 165.76000000000002,
+            "pursuitSpeed": 165.76000000000002,
+            "playerSpeed": 148,
+            "speedRatio": 1.12,
+            "contactCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "healthRemaining": 3,
+            "healthTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 1
+          },
+          "camera": {
+            "active": true,
+            "zoom": 0.92,
+            "targetZoom": 0.92,
+            "cameraX": 480,
+            "cameraY": 360,
+            "targetX": 480,
+            "targetY": 360,
+            "projectionWidth": 960,
+            "projectionHeight": 720,
+            "player": {
+              "x": 800.1600000000001,
+              "y": 547.6800000000001,
+              "onScreen": true
+            },
+            "boss": {
+              "x": 579.36,
+              "y": 547.6800000000001,
+              "onScreen": true
+            }
+          },
+          "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": false
+        }
+      },
+      "chase": {
+        "phase": "playing",
+        "levelIndex": 0,
+        "correctAnswers": 24,
+        "stageCorrect": 24,
+        "regularCorrect": 24,
+        "bossCorrect": 0,
+        "boss": {
+          "id": "boss-0-24",
+          "configKey": "stage1",
+          "definitionId": "magma-bastion",
+          "name": "לבת-הר",
+          "x": 601.4335976968326,
+          "y": 564,
+          "direction": "right",
+          "actorFacing": "right",
+          "moving": true,
+          "walkCycle": 0.6698871719944471,
+          "walkBlend": 0.38666666666666666,
+          "stepImpact": 0,
+          "lastMoveDistance": 3.338504699637724,
+          "actorSheetReady": true,
+          "spawnProgress": 1,
+          "phase": "playing",
+          "enemyCount": 0,
+          "iceTrailReady": true,
+          "iceTrailCount": 0,
+          "speed": 165.76000000000002,
+          "pursuitSpeed": 200.31028197826427,
+          "playerSpeed": 148,
+          "speedRatio": 1.3534478512044883,
+          "contactCount": 0,
+          "questionsCorrect": 0,
+          "questionsTotal": 3,
+          "healthRemaining": 3,
+          "healthTotal": 3,
+          "damageLevel": 0,
+          "cinematicProgress": 1
+        },
+        "camera": {
+          "active": true,
+          "zoom": 0.92,
+          "targetZoom": 0.92,
+          "cameraX": 480,
+          "cameraY": 360,
+          "targetX": 480,
+          "targetY": 360,
+          "projectionWidth": 960,
+          "projectionHeight": 720,
+          "player": {
+            "x": 800.1600000000001,
+            "y": 547.6800000000001,
+            "onScreen": true
+          },
+          "boss": {
+            "x": 591.718909881086,
+            "y": 547.6800000000001,
+            "onScreen": true
+          }
+        },
+        "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+        "cinematic": null,
+        "defeatTransition": null,
+        "stageIntro": false
+      },
+      "contact": {
+        "phase": "question",
+        "status": "תקיפה נגד בוס שלב 1 · פגיעה 1 מתוך 3",
+        "bossQuestionNumber": 1,
+        "camera": {
+          "active": true,
+          "zoom": 0.92,
+          "targetZoom": 0.92,
+          "cameraX": 480,
+          "cameraY": 360,
+          "targetX": 480,
+          "targetY": 360,
+          "projectionWidth": 960,
+          "projectionHeight": 720,
+          "player": {
+            "x": 800.1600000000001,
+            "y": 547.6800000000001,
+            "onScreen": true
+          },
+          "boss": {
+            "x": 800.1600000000001,
+            "y": 547.6800000000001,
+            "onScreen": true
+          }
+        },
+        "contactCount": 1
+      },
+      "hit": {
+        "phase": "playing",
+        "levelIndex": 0,
+        "correctAnswers": 25,
+        "stageCorrect": 25,
+        "regularCorrect": 24,
+        "bossCorrect": 1,
+        "boss": {
+          "id": "boss-0-24",
+          "configKey": "stage1",
+          "definitionId": "magma-bastion",
+          "name": "לבת-הר",
+          "x": 708,
+          "y": 564,
+          "direction": "down",
+          "actorFacing": "down",
+          "moving": false,
+          "walkCycle": 3.026167245669023,
+          "walkBlend": 1,
+          "stepImpact": 0,
+          "lastMoveDistance": 0,
+          "actorSheetReady": true,
+          "spawnProgress": 1,
+          "phase": "playing",
+          "enemyCount": 0,
+          "iceTrailReady": true,
+          "iceTrailCount": 0,
+          "speed": 165.76000000000002,
+          "pursuitSpeed": 189.0767405265938,
+          "playerSpeed": 148,
+          "speedRatio": 1.2775455440986068,
+          "contactCount": 1,
+          "questionsCorrect": 1,
+          "questionsTotal": 3,
+          "healthRemaining": 2,
+          "healthTotal": 3,
+          "damageLevel": 1,
+          "cinematicProgress": 1
+        },
+        "camera": {
+          "active": true,
+          "zoom": 0.92,
+          "targetZoom": 0.92,
+          "cameraX": 480,
+          "cameraY": 360,
+          "targetX": 480,
+          "targetY": 360,
+          "projectionWidth": 960,
+          "projectionHeight": 720,
+          "player": {
+            "x": 800.1600000000001,
+            "y": 547.6800000000001,
+            "onScreen": true
+          },
+          "boss": {
+            "x": 689.76,
+            "y": 547.6800000000001,
+            "onScreen": true
+          }
+        },
+        "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+        "cinematic": null,
+        "defeatTransition": null,
+        "stageIntro": false
+      },
+      "errors": [],
+      "screenshots": {
+        "chase": "docs/visual-proof-screenshots/boss-encounter/desktop-1280x800-chase-3hp.png",
+        "question": "docs/visual-proof-screenshots/boss-encounter/desktop-1280x800-contact-question.png",
+        "afterHit": "docs/visual-proof-screenshots/boss-encounter/desktop-1280x800-after-hit-2hp.png"
+      }
+    },
+    {
+      "profile": "mobile-390x844",
+      "passed": true,
+      "setup": {
+        "playerPlacement": {
+          "moved": true,
+          "cell": {
+            "x": 34,
+            "y": 23
+          },
+          "x": 828,
+          "y": 564
+        },
+        "bossPlacement": {
+          "moved": true,
+          "cell": {
+            "x": 24,
+            "y": 23
+          },
+          "x": 588,
+          "y": 564
+        },
+        "encounter": {
+          "phase": "playing",
+          "levelIndex": 0,
+          "correctAnswers": 24,
+          "stageCorrect": 24,
+          "regularCorrect": 24,
+          "bossCorrect": 0,
+          "boss": {
+            "id": "boss-0-24",
+            "configKey": "stage1",
+            "definitionId": "magma-bastion",
+            "name": "לבת-הר",
+            "x": 588,
+            "y": 564,
+            "direction": "none",
+            "actorFacing": "down",
+            "moving": false,
+            "walkCycle": 0,
+            "walkBlend": 0,
+            "stepImpact": 0,
+            "lastMoveDistance": 0,
+            "actorSheetReady": true,
+            "spawnProgress": 1,
+            "phase": "playing",
+            "enemyCount": 0,
+            "iceTrailReady": true,
+            "iceTrailCount": 0,
+            "speed": 165.76000000000002,
+            "pursuitSpeed": 165.76000000000002,
+            "playerSpeed": 148,
+            "speedRatio": 1.12,
+            "contactCount": 0,
+            "questionsCorrect": 0,
+            "questionsTotal": 3,
+            "healthRemaining": 3,
+            "healthTotal": 3,
+            "damageLevel": 0,
+            "cinematicProgress": 1
+          },
+          "camera": {
+            "active": true,
+            "zoom": 0.78,
+            "targetZoom": 0.7264223183426809,
+            "cameraX": 528,
+            "cameraY": 360,
+            "targetX": 708,
+            "targetY": 360,
+            "projectionWidth": 332.70142180094786,
+            "projectionHeight": 720,
+            "player": {
+              "x": 714,
+              "y": 519.12,
+              "onScreen": false
+            },
+            "boss": {
+              "x": 526.8,
+              "y": 519.12,
+              "onScreen": true
+            }
+          },
+          "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+          "cinematic": null,
+          "defeatTransition": null,
+          "stageIntro": false
+        }
+      },
+      "chase": {
+        "phase": "playing",
+        "levelIndex": 0,
+        "correctAnswers": 24,
+        "stageCorrect": 24,
+        "regularCorrect": 24,
+        "bossCorrect": 0,
+        "boss": {
+          "id": "boss-0-24",
+          "configKey": "stage1",
+          "definitionId": "magma-bastion",
+          "name": "לבת-הר",
+          "x": 601.4335976968326,
+          "y": 564,
+          "direction": "right",
+          "actorFacing": "right",
+          "moving": true,
+          "walkCycle": 0.6698871719944471,
+          "walkBlend": 0.38666666666666666,
+          "stepImpact": 0,
+          "lastMoveDistance": 3.338504699637724,
+          "actorSheetReady": true,
+          "spawnProgress": 1,
+          "phase": "playing",
+          "enemyCount": 0,
+          "iceTrailReady": true,
+          "iceTrailCount": 0,
+          "speed": 165.76000000000002,
+          "pursuitSpeed": 200.31028197826427,
+          "playerSpeed": 148,
+          "speedRatio": 1.3534478512044883,
+          "contactCount": 0,
+          "questionsCorrect": 0,
+          "questionsTotal": 3,
+          "healthRemaining": 3,
+          "healthTotal": 3,
+          "damageLevel": 0,
+          "cinematicProgress": 1
+        },
+        "camera": {
+          "active": true,
+          "zoom": 0.78,
+          "targetZoom": 0.78,
+          "cameraX": 708.6816033517166,
+          "cameraY": 360,
+          "targetX": 714.7167988484164,
+          "targetY": 360,
+          "projectionWidth": 365.7142857142857,
+          "projectionHeight": 720,
+          "player": {
+            "x": 573.068349385661,
+            "y": 519.12,
+            "onScreen": true
+          },
+          "boss": {
+            "x": 396.34655558919053,
+            "y": 519.12,
+            "onScreen": true
+          }
+        },
+        "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+        "cinematic": null,
+        "defeatTransition": null,
+        "stageIntro": false
+      },
+      "contact": {
+        "phase": "question",
+        "status": "תקיפה נגד בוס שלב 1 · פגיעה 1 מתוך 3",
+        "bossQuestionNumber": 1,
+        "camera": {
+          "active": true,
+          "zoom": 0.78,
+          "targetZoom": 0.78,
+          "cameraX": 719.2526024399357,
+          "cameraY": 360,
+          "targetX": 725.5677655677656,
+          "targetY": 360,
+          "projectionWidth": 365.7142857142857,
+          "projectionHeight": 720,
+          "player": {
+            "x": 564.8229700968502,
+            "y": 519.12,
+            "onScreen": true
+          },
+          "boss": {
+            "x": 564.8229700968502,
+            "y": 519.12,
+            "onScreen": true
+          }
+        },
+        "contactCount": 1
+      },
+      "hit": {
+        "phase": "playing",
+        "levelIndex": 0,
+        "correctAnswers": 25,
+        "stageCorrect": 25,
+        "regularCorrect": 24,
+        "bossCorrect": 1,
+        "boss": {
+          "id": "boss-0-24",
+          "configKey": "stage1",
+          "definitionId": "magma-bastion",
+          "name": "לבת-הר",
+          "x": 708,
+          "y": 564,
+          "direction": "down",
+          "actorFacing": "down",
+          "moving": false,
+          "walkCycle": 3.3385959402288625,
+          "walkBlend": 1,
+          "stepImpact": 0.9233333333333333,
+          "lastMoveDistance": 0,
+          "actorSheetReady": true,
+          "spawnProgress": 1,
+          "phase": "playing",
+          "enemyCount": 0,
+          "iceTrailReady": true,
+          "iceTrailCount": 0,
+          "speed": 165.76000000000002,
+          "pursuitSpeed": 187.58723988096133,
+          "playerSpeed": 148,
+          "speedRatio": 1.2674813505470361,
+          "contactCount": 1,
+          "questionsCorrect": 1,
+          "questionsTotal": 3,
+          "healthRemaining": 2,
+          "healthTotal": 3,
+          "damageLevel": 1,
+          "cinematicProgress": 1
+        },
+        "camera": {
+          "active": true,
+          "zoom": 0.78,
+          "targetZoom": 0.78,
+          "cameraX": 724.1109004893473,
+          "cameraY": 360,
+          "targetX": 725.5677655677656,
+          "targetY": 360,
+          "projectionWidth": 365.7142857142857,
+          "projectionHeight": 720,
+          "player": {
+            "x": 561.0334976183092,
+            "y": 519.12,
+            "onScreen": true
+          },
+          "boss": {
+            "x": 467.4334976183091,
+            "y": 519.12,
+            "onScreen": true
+          }
+        },
+        "guideText": "הבוס יתפוס אותך · תשובה נכונה = פגיעה",
+        "cinematic": null,
+        "defeatTransition": null,
+        "stageIntro": false
+      },
+      "errors": [],
+      "screenshots": {
+        "chase": "docs/visual-proof-screenshots/boss-encounter/mobile-390x844-chase-3hp.png",
+        "question": "docs/visual-proof-screenshots/boss-encounter/mobile-390x844-contact-question.png",
+        "afterHit": "docs/visual-proof-screenshots/boss-encounter/mobile-390x844-after-hit-2hp.png"
+      },
+      "video": "docs/visual-proof-screenshots/boss-encounter/mobile-390x844-boss-flow.webm"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concept 06 v2 — Soft Counter">
+  <rect width="200" height="200" fill="#fff"/>
+  <path d="M18 36h96c39 0 65 24 65 63v2c0 39-26 63-65 63H18v-30h91c24 0 39-12 39-34s-15-34-39-34H18z" fill="#000"/>
+  <path d="M83 30c15 0 27 7 34 23l58 119h-30L91 62c-3-6-5-7-8-7zM174 39c11 2 20 8 26 17l-57 66-20-18zM68 170c13-2 24-10 33-23l29-42 22 16-31 44c-3 4-5 6-8 7H68z" fill="#fff"/>
+</svg>
